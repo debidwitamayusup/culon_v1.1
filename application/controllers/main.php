@@ -25,6 +25,7 @@ class main extends CI_Controller {
 		$this->load->view('sidebar');
         $this->load->view('body');
         $this->load->view('footer');
+        // echo "baba";
 	}
 
 	public function traffic_channel()
