@@ -20,7 +20,7 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{	
-		// echo "hello world"; die();
+		echo "hello!!!"; die();
 
 		$this->load->view('header');
 		$this->load->view('navbar');
