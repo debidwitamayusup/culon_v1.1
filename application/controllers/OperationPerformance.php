@@ -22,4 +22,83 @@ class OperationPerformance extends CI_Controller {
 	{
 
 	}	
+
+	public function responeRate(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
+	public function intervalResponeRate(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
+	public function responeTime(){
+		//get input data channel
+
+		//filter by annual, monthly, weekly, daily
+
+		//process
+
+		//output json
+	}
+
+	public function handlingTime(){
+		//get input data channel
+
+		//filter by annual, monthly, weekly, daily
+
+		//process
+
+		//output json
+	}
+
+	public function avarageInteraction(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
+	public function totalTraffic(){
+		//get input data channel
+
+		//by category
+
+		//process
+
+		//output json
+	}
+
+	public function totalFCR(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
+	public function totalFCRByCategory(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
+	public function productivityChannel(){
+		//get input data channel
+
+		//process
+
+		//output json
+	}
+
 }
