@@ -35,6 +35,7 @@ class main extends CI_Controller {
 		$this->load->view('sidebar');
         $this->load->view('Traffic_Channel');
         $this->load->view('footer');
+        // echo "baba";
 	}
 	
 	public function agent_performance()
