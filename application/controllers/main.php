@@ -19,7 +19,8 @@ class main extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
+	{	
+		echo "hello world"; die();
 		$this->load->view('header');
 		$this->load->view('navbar');
 		$this->load->view('sidebar');
