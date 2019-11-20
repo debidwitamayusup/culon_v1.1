@@ -51,11 +51,13 @@ class main extends CI_Controller {
 	
 	public function ticket()
 	{
+		echo "Yanuar Dev"; die();
 		$this->load->view('header');
 		$this->load->view('navbar');
 		$this->load->view('sidebar');
         $this->load->view('Ticket');
         $this->load->view('footer');
+		
 	}
 
 	
