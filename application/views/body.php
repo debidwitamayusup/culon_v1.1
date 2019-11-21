@@ -1,6 +1,6 @@
 
 
-	<body class="app">
+	<body class="app  sidebar-mini">
 
 		<!-- Global Loader-->
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
@@ -9,13 +9,13 @@
 			<div class="page-main">
 
 				
-			<div class=" app-content" style="margin-left:100px;">
+			<div class=" app-content mt-7">
 					<div class="side-app">
 
 						<!--Page Header-->
 						
 						<div class="row">
-						<div class="col-xl-3 col-lg-4 col-md-12">
+						<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card">
 									<div class="card-body">
 										<div class="row mb-3">
@@ -40,7 +40,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-4 col-md-12">
+							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card">
 									<div class="card-body">
 										<div class="row mb-3">
@@ -65,7 +65,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-4 col-md-12">
+							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card">
 									<div class="card-body">
 										<div class="row mb-3">
@@ -90,7 +90,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-3 col-lg-4 col-md-12">
+							<!-- <div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card">
 									<div class="card-body">
 										<div class="row mb-3">
@@ -110,7 +110,7 @@
 											
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 
@@ -733,21 +733,3 @@
 					</div>
 					<!--/Sidebar-right-->
 
-					<!--footer-->
-					<footer class="footer">
-						<div class="container">
-							<div class="row align-items-center flex-row-reverse">
-								<div class="col-md-12 col-sm-12 text-center">
-									Copyright © 2019 <a href="#">Spaner</a>. Designed by <a href="https://spruko.com/">Spruko Technologies Pvt.Ltd</a> All rights reserved.
-								</div>
-							</div>
-						</div>
-					</footer>
-					<!-- End Footer-->
-
-				</div>
-			</div>
-		</div>
-
-		<!-- Back to top -->
-		<a href="#top" id="back-to-top"><i class="fas fa-angle-up "></i></a>

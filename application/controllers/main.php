@@ -25,38 +25,44 @@ class main extends CI_Controller {
 		$this->load->view('sidebar');
         $this->load->view('body');
         $this->load->view('footer');
-        // echo "baba";
 	}
 
-	public function traffic_channel()
-	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-        $this->load->view('Traffic_Channel');
-        $this->load->view('footer');
-        // echo "baba";
-	}
+	// public function traffic_channel()
+	// {
+	// 	$this->load->view('header');
+	// 	$this->load->view('navbar');
+	// 	$this->load->view('sidebar');
+    //     $this->load->view('Traffic_Channel');
+    //     $this->load->view('footer');
+	// }
 	
-	public function agent_performance()
-	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-        $this->load->view('Agent_Performance');
-        $this->load->view('footer');
-	}
+	// public function agent_performance()
+	// {
+	// 	$this->load->view('header');
+	// 	$this->load->view('navbar');
+	// 	$this->load->view('sidebar');
+    //     $this->load->view('Agent_Performance');
+    //     $this->load->view('footer');
+	// }
 	
-	public function ticket()
+	// public function ticket()
+	// {
+	// 	$this->load->view('header');
+	// 	$this->load->view('navbar');
+	// 	$this->load->view('sidebar');
+    //     $this->load->view('Ticket');
+    //     $this->load->view('footer');
+		
+	// }
+
+	public function left_menu()
 	{
-		echo "Yanuar Dev"; die();
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-        $this->load->view('Ticket');
-        $this->load->view('footer');
+		$this->load->view('left_menu');
+		$this->load->view('footer');
+		
 		
 	}
+	
 
 	
 }
