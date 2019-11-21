@@ -1,5 +1,5 @@
 <!-- Navbar-->
-<header class="app-header header">
+			<header class="app-header header">
 					<!-- Navbar Right Menu-->
 					<div class="container-fluid">
 						<div class="d-flex">
@@ -8,7 +8,7 @@
 								<img alt="logo" class="header-brand-img mobile-logo" src="<?= base_url()?>assets/images/brand/icon.png">
 							</a>
 							<!-- Sidebar toggle button-->
-							
+							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 							<div class="d-flex order-lg-2 ml-auto">
 								<div class="d-sm-flex d-none">
 									<a href="#" class="nav-link icon full-screen-link">
@@ -16,7 +16,7 @@
 									</a>
 								</div>
 							
-								<div class="dropdown d-sm-flex d-none header-message">
+								<!-- <div class="dropdown d-sm-flex d-none header-message">
 									<a class="nav-link icon" data-toggle="dropdown">
 										<i class="fe fe-mail"></i>
 										<span class=" nav-unread badge badge-danger badge-pill">4</span>
@@ -64,10 +64,10 @@
 												<a href="#" class=" btn btn-secondary btn-sm"><i class="fe fe-eye mr-1"></i>View All</a>
 											</div>
 										</div>
-									</div>
+									</div> --> 
 								</div>
 								<div class="dropdown d-sm-flex d-none header-message">
-									<a class="nav-link icon" data-toggle="dropdown">
+									<!-- <a class="nav-link icon" data-toggle="dropdown">
 										<i class="fe fe-bell"></i>
 										<span class=" nav-unread badge badge-warning  badge-pill">3</span>
 									</a>
@@ -128,15 +128,15 @@
 												<a href="#" class=" btn btn-secondary btn-sm"><i class="fe fe-eye mr-1"></i>View All</a>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
-								<button class="navbar-toggler navresponsive-toggler d-sm-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+								<!-- <button class="navbar-toggler navresponsive-toggler d-sm-none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
 									aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon fe fe-more-vertical text-white"></span>
-								</button>
+								</button> -->
 								<!--Navbar -->
 								<div class="dropdown">
-									<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
+									<!-- <a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
 										<span class="avatar avatar-md brround cover-image" data-image-src="<?= base_url()?>assets/images/users/5.jpg"></span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -160,7 +160,7 @@
 												<a href="#" class="btn btn-icon btn-instagram btn-sm"><i class="si si-social-instagram"></i></a>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="dropdown d-md-flex header-settings">
 									
@@ -170,7 +170,7 @@
 					</div>
 				</header>
 				<div class="mb-1 navbar navbar-expand-lg  responsive-navbar navbar-dark d-sm-none bg-white">
-					<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+					<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 						<div class="d-flex order-lg-2 ml-auto">
 							<div class="dropdown d-md-flex">
 								
@@ -294,7 +294,7 @@
 								</div>
 							</div>
 							
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!--/.Navbar -->

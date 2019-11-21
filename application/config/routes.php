@@ -55,5 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'main/index';
 $route['traffic_channel'] = 'main/traffic_channel';
-$route['user_agent'] = 'main/user_agent';
+$route['agent_performance'] = 'main/agent_performance';
 $route['ticket'] = 'main/ticket';
+$route['left_menu'] = 'main/left_menu';
