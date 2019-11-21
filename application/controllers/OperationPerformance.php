@@ -60,8 +60,14 @@ class OperationPerformance extends CI_Controller {
 		//get input data channel
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function responeTime(){
@@ -70,8 +76,14 @@ class OperationPerformance extends CI_Controller {
 		//filter by annual, monthly, weekly, daily
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function handlingTime(){
@@ -121,42 +133,74 @@ class OperationPerformance extends CI_Controller {
 		//get input data channel
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function totalTraffic(){
 		//get input data channel
+		$channel_id = "";
 
 		//by category
+		$category = "";
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function totalFCR(){
 		//get input data channel
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function totalFCRByCategory(){
 		//get input data channel
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function productivityChannel(){
 		//get input data channel
 
 		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 }
