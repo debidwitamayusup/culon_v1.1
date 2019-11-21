@@ -62,6 +62,9 @@
 		<!-- peitychart -->
 		<script src="<?= base_url()?>assets/plugins/peitychart/jquery.peity.min.js"></script>
 
+		<script src="<?= base_url()?>assets/plugins/morris/morris.min.js"></script>
+		<script src="<?= base_url()?>assets/plugins/morris/raphael.min.js"></script>
+
 		<!--Counters -->
 		<script src="<?= base_url()?>assets/plugins/counters/counterup.min.js"></script>
 		<script src="<?= base_url()?>assets/plugins/counters/waypoints.min.js"></script>
