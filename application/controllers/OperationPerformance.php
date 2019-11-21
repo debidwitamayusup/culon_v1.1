@@ -17,6 +17,18 @@ class OperationPerformance extends CI_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
+			11 channel
+			voice
+			email
+			Webchat
+			Sms
+			Telegram
+			Facebook
+			facebook messenger
+			twitter
+			twitter DM
+			instagram
+			Whatsapp
 	 */
 	public function index()
 	{
@@ -25,10 +37,23 @@ class OperationPerformance extends CI_Controller {
 
 	public function responeRate(){
 		//get input data channel
+		$channel_id = 1;
 
 		//process
+		$channel_name = "voice line";
+		$respone_rate_total = 100;
+		$return_data = array(
+			"id" => $channel_id,
+			"name" => $channel_name,
+			"respone_rate_total" => $respone_rate_total,
+		);
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => $return_data);
 
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function intervalResponeRate(){
@@ -50,13 +75,46 @@ class OperationPerformance extends CI_Controller {
 	}
 
 	public function handlingTime(){
-		//get input data channel
-
+		//get input data channel 
+		$return_data = array(
+			[
+				"id" => 1,
+				"name" => "voice",
+				"handling_time" => "",
+			],
+			[
+				"id" => 2,
+				"name" => "email",
+				"handling_time" => "",
+			],
+			[
+				"id" => 3,
+				"name" => "Webchat",
+				"handling_time" => "",
+			],
+			[
+				"id" => 4,
+				"name" => "Sms",
+				"handling_time" => "",
+			],
+			[
+				"id" => 5,
+				"name" => "Telegram",
+				"handling_time" => "",
+			],
+			
+		);
 		//filter by annual, monthly, weekly, daily
+		$filter = "";
 
 		//process
-
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => $return_data
+		);
 		//output json
+		echo json_encode($response_data);
 	}
 
 	public function avarageInteraction(){
