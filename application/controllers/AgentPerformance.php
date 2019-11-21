@@ -20,6 +20,15 @@ class AgentPerformance extends CI_Controller {
 	 */
 	public function index()
 	{
-
+		$this->load->view('header');
+		$this->load->view('navbar');
+		$this->load->view('sidebar');
+		$this->load->view('Summary_Call');
+		$this->load->view('footer');
 	}	
+
+	public function get_traffic()
+	{
+		
+	}
 }

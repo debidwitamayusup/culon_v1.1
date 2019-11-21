@@ -58,3 +58,5 @@ $route['traffic_channel'] = 'main/traffic_channel';
 $route['agent_performance'] = 'main/agent_performance';
 $route['ticket'] = 'main/ticket';
 $route['left_menu'] = 'main/left_menu';
+
+$route['Summary_Call_Agent'] = 'AgentPerformance/index';
