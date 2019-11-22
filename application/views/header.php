@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/favicon.ico" />
 
 		<!-- Title -->
-		<title>Spaner - Simple light Bootstrap Nice Admin Panel Dashboard Design Responsive HTML5 Template</title>
+		<title>Dashboard ON4</title>
 
 		<!--Bootstrap.min css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
