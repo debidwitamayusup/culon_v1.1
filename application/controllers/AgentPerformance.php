@@ -31,4 +31,112 @@ class AgentPerformance extends CI_Controller {
 	{
 		
 	}
+
+	public function totalCallByAgent(){
+		//get input data channel
+		$channel_id = 1;
+
+		//process
+		$channel_name = "voice line";
+		$respone_rate_total = 100;
+		$return_data = array(
+			"id" => $channel_id,
+			"name" => $channel_name,
+			"respone_rate_total" => $respone_rate_total,
+		);
+		
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => $return_data,
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function detailIntervalCall(){
+		// get data agent 
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function averageHandlingTime(){
+		// get data agent
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function averageResponseTime(){
+		// get data agent
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function averageServiceTime(){
+		// get data agent
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function summaryCall(){
+		// get data agent
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function summaryCase(){
+		// get data agent
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
 }
