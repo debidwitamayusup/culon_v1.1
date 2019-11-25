@@ -21,5 +21,101 @@ class SummaryTicket extends CI_Controller {
 	public function index()
 	{
 
-	}	
+	}
+
+	public function ticketStatusToday(){
+
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function ticketStatusInterval(){
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function proportionStatusTicket(){
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function SummaryTicketByChannel(){
+
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function SummaryTicketInSLA(){
+
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function SummaryTicketOutSLA()}{
+
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
+
+	public function SummaryTicketByUnitHandle(){
+
+
+		//process
+		$response_data = array(
+			"status" => 200, 
+			"message" => "success", 
+			"data" => "",
+		);
+
+		//output json
+		echo json_encode($response_data);
+	}
 }
