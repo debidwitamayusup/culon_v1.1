@@ -54,9 +54,19 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'main/index';
-$route['traffic_channel'] = 'main/traffic_channel';
-$route['agent_performance'] = 'main/agent_performance';
 $route['ticket'] = 'main/ticket';
 $route['left_menu'] = 'main/left_menu';
 
+//Summary Trafic Channel
+$route['Summary-Traffic'] = 'SummaryTrafficChannel/index';
+$route['Traffic-Channel'] = 'SummaryTrafficChannel/tc_menu';
+$route['Average-Time'] = 'SummaryTrafficChannel/avr_time_menu';
+$route['Case-I-O'] = 'SummaryTrafficChannel/case_menu';
+
+//Agent Performance
 $route['Summary_Call_Agent'] = 'AgentPerformance/index';
+
+//Operation Performance
+
+
+//Summary Ticket

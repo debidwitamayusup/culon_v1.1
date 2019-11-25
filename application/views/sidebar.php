@@ -15,15 +15,12 @@
 						<li>
 							<a class="side-menu__item" href="<?= base_url()?>home"><i class="side-menu__icon si si-home"></i><span class="side-menu__label">Home</span></a>
 						</li>
-						<li class="slide">
-							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon si si-chart"></i><span class="side-menu__label">Traffic</span><i class="angle fas fa-angle-right"></i></a>
-							<ul class="slide-menu">
-								<li><a class="slide-item" href="index.html">Summary Traffic</a></li>
-								<li><a class="slide-item" href="index2.html">Traffic Interval</a></li>
-								<li><a class="slide-item" href="index3.html">Average Time</a></li>
-								<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
-							</ul>
-						</li>
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="<?= base_url()?>Summary-Traffic">Summary Traffic</a></li>
+							<li><a class="slide-item" href="<?= base_url()?>Traffic-Channel">Traffic Interval</a></li>
+							<li><a class="slide-item" href="<?= base_url()?>Average-Time">Average Time</a></li>
+							<li><a class="slide-item" href="<?= base_url()?>Case-I-O">Case In / Out</a></li>
+						</ul>
 						<li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon si si-user"></i><span class="side-menu__label">Agent Performance</span><i class="angle fas fa-angle-right"></i></a>
 							<ul class="slide-menu">

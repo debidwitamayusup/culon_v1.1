@@ -18,12 +18,89 @@ class SummaryTrafficChannel extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	// public function __construct()
+	// {
+
+	// }
 	public function index()
 	{
 		$this->load->view('header');
 		$this->load->view('navbar');
 		$this->load->view('sidebar');
-		$this->load->view('Summary_Call');
+		$this->load->view('stc/Summary_Call');
 		$this->load->view('footer');
 	}	
+
+	public function tc_menu()
+	{
+		$this->load->view('header');
+		$this->load->view('navbar');
+		$this->load->view('sidebar');
+		$this->load->view('stc/Traffic_Channel');
+		$this->load->view('footer');
+	}
+
+	public function avr_time_menu()
+	{
+		$this->load->view('header');
+		$this->load->view('navbar');
+		$this->load->view('sidebar');
+		$this->load->view('stc/Average_Time');
+		$this->load->view('footer');
+	}
+
+	public function case_menu()
+	{
+		$this->load->view('header');
+		$this->load->view('navbar');
+		$this->load->view('sidebar');
+		$this->load->view('stc/Case_In_Out');
+		$this->load->view('footer');
+	}
+
+	public function stc_today()
+	{
+		
+	}
+
+	public function stc_month()
+	{
+
+	}
+
+	public function stc_year()
+	{
+
+	}
+
+	public function stc_interval()
+	{
+
+	}
+
+	public function stc_art()
+	{
+
+	}
+
+	public function stc_aht()
+	{
+
+	}
+
+	public function stc_ast()
+	{
+
+	}
+
+	public function case_in_interval()
+	{
+
+	}
+
+	public function case_out_interval()
+	{
+
+	}
 }
