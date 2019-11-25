@@ -18,6 +18,11 @@ class AgentPerformance extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct()
+	{		
+		parent::__construct();
+		$this->load->model('summary_agent');
+	}
 	public function index()
 	{
 		$this->load->view('header');
@@ -34,22 +39,27 @@ class AgentPerformance extends CI_Controller {
 
 	public function totalCallByAgent(){
 		//get input data channel
-		$channel_id = 1;
+		$channel_id = "";
+		$agent_id = "";
 
-		//process
-		$channel_name = "voice line";
-		$respone_rate_total = 100;
-		$return_data = array(
-			"id" => $channel_id,
-			"name" => $channel_name,
-			"respone_rate_total" => $respone_rate_total,
-		);
-		
+		// collect from db
+
+		// //process
+		// $channel_name = "voice line";
+		// $respone_rate_total = 100;
+		// $return_data = array(
+		// 	"id" => $channel_id,
+		// 	"name" => $channel_name,
+		// 	"respone_rate_total" => $respone_rate_total,
+		// );
+		$data = "";
+		$data = $this->summary_agent->get_all_rsummary();
+
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => $return_data,
+			"data" => $data,
 		);
 
 		//output json
@@ -71,7 +81,10 @@ class AgentPerformance extends CI_Controller {
 	}
 
 	public function averageHandlingTime(){
-		// get data agent
+		// get data 
+		$agent_id = "";
+
+		// collect from db
 
 		//process
 		$response_data = array(
@@ -85,7 +98,10 @@ class AgentPerformance extends CI_Controller {
 	}
 
 	public function averageResponseTime(){
-		// get data agent
+		// get data 
+		$agent_id = "";
+
+		// collect from db
 
 		//process
 		$response_data = array(
@@ -99,7 +115,10 @@ class AgentPerformance extends CI_Controller {
 	}
 
 	public function averageServiceTime(){
-		// get data agent
+		// get data 
+		$agent_id = "";
+
+		// collect from db
 
 		//process
 		$response_data = array(
@@ -113,6 +132,8 @@ class AgentPerformance extends CI_Controller {
 	}
 
 	public function summaryCall(){
+		// Summary (Call, AHT, ART, AST, SL) by tanggal per agent.
+
 		// get data agent
 
 		//process
@@ -127,6 +148,8 @@ class AgentPerformance extends CI_Controller {
 	}
 
 	public function summaryCase(){
+		// summary (case in, message in, message out) by tanggal per agent.
+
 		// get data agent
 
 		//process
