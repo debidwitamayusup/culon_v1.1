@@ -27,6 +27,8 @@ class main extends CI_Controller {
         $this->load->view('footer');
 	}
 
+	//Test
+
 	// public function traffic_channel()
 	// {
 	// 	$this->load->view('header');
