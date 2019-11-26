@@ -1,7 +1,7 @@
 <body class="app">
 
 		<!-- Global Loader-->
-		<div id="global-loader"><img src="assets/images/svgs/loader.svg" alt="loader"></div>
+		<div id="global-loader"><img src="<?php echo base_url();?>assets/images/svgs/loader.svg" alt="loader"></div>
 
 		<div class="page">
 			<div class="page-main">
@@ -10,7 +10,7 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="index.html">
-								<img alt="logo" class="header-brand-img main-logo" src="assets/images/brand/Infomedia.png">
+								<img alt="logo" class="header-brand-img main-logo" src="<?php echo base_url();?>assets/images/brand/Infomedia.png">
 							</a>
 							<!-- Sidebar toggle button-->
 							<a aria-label="Hide Sidebar" style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
