@@ -1,4 +1,5 @@
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<!-- Sidebar menu-->
+				<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 				<aside class="app-sidebar">
 					<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
 						<div class="first-sidemenu">
