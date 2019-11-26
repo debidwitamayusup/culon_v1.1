@@ -1,3 +1,5 @@
+	</head>
+
 <!-- Navbar-->
 			<header class="app-header header">
 					<!-- Navbar Right Menu-->

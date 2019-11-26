@@ -44,4 +44,3 @@
 		<!-- Sidebar css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 	</head>
-</html>
