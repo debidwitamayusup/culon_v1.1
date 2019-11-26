@@ -1,10 +1,3 @@
-<body class="app">
-
-		<!-- Global Loader-->
-		<div id="global-loader"><img src="assets/images/svgs/loader.svg" alt="loader"></div>
-
-		<div class="page">
-			<div class="page-main">
 <!-- Navbar-->
 			<header class="app-header header">
 					<!-- Navbar Right Menu-->
