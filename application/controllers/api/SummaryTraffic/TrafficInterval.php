@@ -8,14 +8,6 @@ class TrafficInterval extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Stc_Model');
 	}
-	public function index()
-	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-		$this->load->view('stc/Traffic_Channel');
-		$this->load->view('footer');
-	}	
 
 	//interval 15 menit
 	public function stc_interval15()
@@ -23,6 +15,7 @@ class TrafficInterval extends CI_Controller {
 		//proses get data
 		$interval['data'] = $this->Stc_Model->getInterval15();
 
+		//response true false
 		if($interval)
 		{
 			$response = array(
@@ -43,6 +36,7 @@ class TrafficInterval extends CI_Controller {
 		//proses get data
 		$interval['data'] = $this->Stc_Model->getInterval30();
 
+		//response true false
 		if($interval)
 		{
 			$response = array(

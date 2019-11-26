@@ -70,6 +70,7 @@ class Stc_Model extends CI_Model
 		}
 	}
 
+	//controller TrafficInterval function stc_interval30//
 	public function getInterval30()
 	{
 		$query = $this->db->query('SELECT DATE(lup),TIME(lup), SUM(tot_pickup), SUM(antrian), SUM(chat_in_progress)
@@ -86,6 +87,7 @@ class Stc_Model extends CI_Model
 		}
 	}
 
+	//controller CaseInOut function case_in_interval
 	public function getCaseIn()
 	{
 		$query = $this->db->query('SELECT lup, case_in
@@ -102,6 +104,7 @@ class Stc_Model extends CI_Model
 		}
 	}
 
+	//controller CaseInOut function case_out_interval
 	public function getCaseOut()
 	{
 		$query = $this->db->query('SELECT lup, case_out
@@ -115,6 +118,48 @@ class Stc_Model extends CI_Model
 				$caseout[] = $data;
 			}
 			return $caseout;
+		}
+	}
+
+	//controller AverageTime function stc_art
+	public function getArt()
+	{
+		$query = $this->db->query('');
+
+		if($query->num_rows() > 0)
+		{
+			foreach ($query->result() as $data) {
+				$get_art[] = $data;
+			}
+			return $get_art;
+		}
+	}
+
+	//controller AverageTime function stc_aht
+	public function getAht()
+	{
+		$query = $this->db->query('');
+
+		if($query->num_rows() > 0)
+		{
+			foreach ($query->result() as $data) {
+				$get_aht[] = $data;
+			}
+			return $get_aht;
+		}
+	}
+
+	//controller AverageTime function stc_ast
+	public function getAst()
+	{
+		$query = $this->db->query('');
+
+		if($query->num_rows() > 0)
+		{
+			foreach ($query->result() as $data) {
+				$get_ast[] = $data;
+			}
+			return $get_ast;
 		}
 	}
 }
