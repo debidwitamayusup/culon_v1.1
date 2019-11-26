@@ -16,39 +16,39 @@
 		<title>Infomedia</title>
 
 		<!--Bootstrap.min css-->
-		<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
 
         <!--Font Awesome-->
-		<link href="assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="assets/css/style.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
+		<link href="assets/css/color-styles.css" rel="stylesheet" />
 		<link href="assets/css/skin-modes.css" rel="stylesheet" />
 
 		<!-- Vector-map -->
-		<link href="assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
 
 		<!-- Custom scroll bar css-->
-		<link href="assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 		<!--Sidemenu css-->
-		<link rel="stylesheet" href="assets/plugins/side-menu/side-menu.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/side-menu/side-menu.css">
 
 		<!--Sidemenu-responsive-tabs  css -->
-		<link href="assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
 
 		<!-- P-scroll css -->
-		<link href="assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
+		<link href="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
 
 		<!-- morris Charts Plugin -->
-		<link href="assets/plugins/morris/morris.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
 
 		<!---Font icons-->
-		<link href="assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
-		<link href="assets/fonts/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/fonts/fonts/font-awesome.min.css" rel="stylesheet" />
 	
 		<!-- Sidebar css -->
-		<link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 
 	</head>

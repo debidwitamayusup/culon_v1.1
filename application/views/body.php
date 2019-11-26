@@ -78,10 +78,28 @@
 								</div>
 							</div>
 						</div>
-
+					</div>
 						<div class="row">
-							
-							<div class="col-xl-8 col-lg-12">
+							<div class="col-xl-6 col-lg-12">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">Web Traffic</h3>
+										<div class="card-options">
+											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
+											<ul class="dropdown-menu dropdown-menu-right" role="menu">
+												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
+												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
+												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
+												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="card-body">
+										<canvas id="pieChart1" class="donutShadow overflow-hidden"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6 col-lg-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">Summery Trafic</h3>
@@ -120,124 +138,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-lg-12">
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Recent Activity</h3>
-										<div class="card-options ">
-											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
-												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
-												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
-												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="activity">
-											<img src="assets/images/users/2.jpg" alt="" class="img-activity">
-											<div class="time-activity">
-												<div class="item-activity">
-													<p class="mb-0"><b>Adam	Berry</b> Add a new projects <b> AngularJS Template</b></p>
-													<small class="text-primary">30 mins ago</small>
-												</div>
-											</div>
-											<img src="assets/images/users/1.jpg" alt="" class="img-activity">
-											<div class="time-activity">
-												<div class="item-activity">
-													<p class="mb-0"><b>Irene Hunter</b> Add a new projects <b>Free HTML Template</b></p>
-													<small class="text-danger">1 days ago</small>
-												</div>
-											</div>
-											<img src="assets/images/users/4.jpg" alt="" class="img-activity">
-											<div class="time-activity">
-												<div class="item-activity">
-													<p class="mb-0"><b>John	Payne</b> Add a new projects <b>Free PSD Template</b></p>
-													<small class="text-warning">3 days ago</small>
-												</div>
-											</div>
-											<img src="assets/images/users/3.jpg" alt="" class="img-activity">
-											<div class="time-activity mb-0">
-												<div class="item-activity mb-0">
-													<p class="mb-0"><b>Julia Hardacre</b> Add a new projects <b>Free UI Template</b></p>
-													<small class="text-success">5 days ago</small>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-							
 						</div>
-
-						<div class="row">
-							<div class="col-xl-6 col-lg-9">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h5 class="card-title m-b-0">Weekly Tasks</h5>
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Day</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Month</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Year</span>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="dash4 d-none d-sm-block">
-											<p class="fs-16 float-right ml-4 text-orange">Pending Tasks: <b class="num-font">3</b></p>
-											<p class="fs-16 float-right text-success">Completed Tasks: <b class="num-font">3</b></p>
-											<p class="fs-16">Total Tasks: <b class="num-font">6</b></p>
-										</div>
-										<div class="chart-wrapper ">
-											<canvas id="team-chart" class="chart-dropshadow"></canvas>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-xl-6 col-lg-9">
-								<div class="card card-aside">
-									<div class="card-aside-column cover-image br-tl-7 br-bl-7" data-image-src="assets/images/photos/9.jpg" ></div>
-									<div class="card-body">
-										<h4 class="card-title mb-4">Card with Rightside</h4>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing tempor incididunt ut labore.</p>
-										<p>Duis aute irure dolor in reprehenderit in voluptate velit Duis aute irure dolor in </p>
-									</div>
-								</div>
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Orders</h3>
-										<div class="card-options">
-											<a class="btn btn-sm btn-primary" href="#" data-toggle="tooltip" title="" data-original-title="View More">View More</a>
-										</div>
-									</div>
-									<div class="card-body ">
-										<div class="d-flex">
-											<div>
-												<h6 class="text-muted">Total Orders</h6>
-												<h2 class="counter mt-0  num-font font-weight-extrabold mb-2">26,536</h2>
-												<span><i class="fa fa-caret-up text-green"></i>10% increases</span>
-											</div>
-											<div class="ml-auto">
-												<div class="fs-50 text-center text-info">
-													<i class="fe fe-shopping-cart"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
 						<div class="row">
 							<div class="col-xl-12 col-lg-12">
 								<div class="card">
@@ -370,4 +271,3 @@
 								</div>
 							</div>
 						</div>
-					</div>
