@@ -33,14 +33,21 @@
 		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 		<!-- Sidemenu Css -->
-		<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/side-menu/css/side-menu.css" rel="stylesheet">
+
+		<!--Sidemenu-responsive-tabs  css -->
+		<link href="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
+
+		<!-- P-scroll css -->
+		<link href="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
 
 		<!-- Morris Charts Plugin -->
 		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
 
 		<!---Font icons-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
-
+		<link href="<?php echo base_url();?>assets/fonts/fonts/font-awesome.min.css" rel="stylesheet" />
+		
 		<!-- Sidebar css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 	</head>
