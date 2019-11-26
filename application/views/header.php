@@ -10,10 +10,10 @@
 		<meta name="keywords" content="bootstrap panel, bootstrap admin template, dashboard template, bootstrap dashboard, dashboard design, best dashboard, html css admin template, html admin template, admin panel template, admin dashbaord template, bootstrap dashbaord template, it dashbaord, hr dashbaord, marketing dashbaord, sales dashbaord, dashboard ui, admin portal, bootstrap 4 admin template, bootstrap 4 admin"/>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/infomedia_icon96.ico" />
 
 		<!-- Title -->
-		<title>Dashboard ON4</title>
+		<title>Infomedia</title>
 
 		<!--Bootstrap.min css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
