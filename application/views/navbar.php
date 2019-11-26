@@ -1,12 +1,10 @@
-	</head>
-
 <!-- Navbar-->
 			<header class="app-header header">
 					<!-- Navbar Right Menu-->
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="index.html">
-								<img alt="logo" class="header-brand-img main-logo" src="<?= base_url()?>assets/images/brand/Infomedia.png"> &nbsp; Infomedia
+								<img alt="logo" class="header-brand-img main-logo" src="<?= base_url()?>assets/images/brand/Infomedia.png"> &nvInfomedia
 								<img alt="logo" class="header-brand-img mobile-logo" src="<?= base_url()?>assets/images/brand/icon.png">
 							</a>
 							<!-- Sidebar toggle button-->
