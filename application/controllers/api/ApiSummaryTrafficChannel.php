@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SummaryTicket extends CI_Controller {
+class ApiSummaryTrafficChannel extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,10 @@ class SummaryTicket extends CI_Controller {
 	 */
 	public function index()
 	{
-
-	}
+		$this->load->view('header');
+		$this->load->view('navbar');
+		$this->load->view('sidebar');
+		$this->load->view('Summary_Call');
+		$this->load->view('footer');
+	}	
 }
