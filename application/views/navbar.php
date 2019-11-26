@@ -4,14 +4,14 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="index.html">
-								<img alt="logo" class="header-brand-img main-logo" src="<?= base_url()?>assets/images/brand/Infomedia.png">
+								<img alt="logo" class="header-brand-img main-logo" src="<?= base_url()?>assets/images/brand/Infomedia.png">Infomedia
 								<img alt="logo" class="header-brand-img mobile-logo" src="<?= base_url()?>assets/images/brand/icon.png">
 							</a>
 							<!-- Sidebar toggle button-->
-							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
+							<a aria-label="Hide Sidebar"  style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 							<div class="d-flex order-lg-2 ml-auto">
 								<div class="d-sm-flex d-none">
-									<a href="#" class="nav-link icon full-screen-link">
+									<a  style="color: #000" href="#" class="nav-link icon full-screen-link">
 										<i class="fe fe-minimize fullscreen-button"></i>
 									</a>
 								</div>
