@@ -19,10 +19,11 @@ class SummaryTrafficChannel extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
-	// public function __construct()
-	// {
-
-	// }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Stc_Model');
+	}
 	public function index()
 	{
 		$this->load->view('header');
@@ -61,7 +62,13 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function stc_today()
 	{
-		
+		//proses
+		$date = $this->get('row_date');
+		$rowdate = $this->Stc_Model->getRowdate('$date');
+		//response true
+		$response = array(
+			'status' => true,
+			'data' => $rowdate);
 	}
 
 	public function stc_month()
@@ -74,33 +81,33 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	}
 
-	public function stc_interval()
-	{
+	// public function stc_interval()
+	// {
 
-	}
+	// }
 
-	public function stc_art()
-	{
+	// public function stc_art()
+	// {
 
-	}
+	// }
 
-	public function stc_aht()
-	{
+	// public function stc_aht()
+	// {
 
-	}
+	// }
 
-	public function stc_ast()
-	{
+	// public function stc_ast()
+	// {
 
-	}
+	// }
 
-	public function case_in_interval()
-	{
+	// public function case_in_interval()
+	// {
 
-	}
+	// }
 
-	public function case_out_interval()
-	{
+	// public function case_out_interval()
+	// {
 
-	}
+	// }
 }

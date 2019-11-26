@@ -58,10 +58,10 @@ $route['ticket'] = 'main/ticket';
 $route['left_menu'] = 'main/left_menu';
 
 //Summary Trafic Channel
-$route['Summary-Traffic'] = 'SummaryTrafficChannel/index';
-$route['Traffic-Channel'] = 'SummaryTrafficChannel/tc_menu';
-$route['Average-Time'] = 'SummaryTrafficChannel/avr_time_menu';
-$route['Case-I-O'] = 'SummaryTrafficChannel/case_menu';
+$route['Summary-Traffic'] = 'SummaryTraffic/SummaryTrafficChannel/index';
+// $route['Traffic-Channel'] = 'TrafficInterval/index';
+// $route['Average-Time'] = 'AverageTime/index';
+// $route['Case-I-O'] = 'CaseInOut/index';
 
 //Agent Performance
 $route['Summary_Call_Agent'] = 'AgentPerformance/index';

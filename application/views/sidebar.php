@@ -19,9 +19,9 @@
 							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon si si-chart"></i><span class="side-menu__label">Traffic</span><i class="angle fas fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item" href="<?= base_url()?>Summary-Traffic">Summary Traffic</a></li>
-								<li><a class="slide-item" href="<?= base_url()?>Traffic-Channel">Traffic Interval</a></li>
+								<!-- <li><a class="slide-item" href="<?= base_url()?>Traffic-Channel">Traffic Interval</a></li>
 								<li><a class="slide-item" href="<?= base_url()?>Average-Time">Average Time</a></li>
-								<li><a class="slide-item" href="<?= base_url()?>Case-I-O">Case In / Out</a></li>
+								<li><a class="slide-item" href="<?= base_url()?>Case-I-O">Case In / Out</a></li> -->
 							</ul>
 						</li>
 						<li class="slide">
