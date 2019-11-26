@@ -11,8 +11,8 @@
 							<a aria-label="Hide Sidebar"  style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 							<div class="d-flex order-lg-2 ml-auto">
 								<div class="d-sm-flex d-none">
-									<a  style="color: #000" href="#" class="nav-link icon full-screen-link">
-										<i class="fe fe-minimize fullscreen-button"></i>
+									<a  class="nav-link icon full-screen-link">
+										<i style="color: #000" href="#" class="fe fe-minimize fullscreen-button"></i>
 									</a>
 								</div>
 							
