@@ -126,33 +126,22 @@ class SummaryTrafficChannel extends CI_Controller {
 		echo json_encode($response);
 	}
 
-	// public function stc_interval()
-	// {
+	public function persen_channel()
+	{
+		$persen = $this->Stc_Model->getPersenChannel();
 
-	// }
+		if($persen)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $persen);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
+		
 
-	// public function stc_art()
-	// {
-
-	// }
-
-	// public function stc_aht()
-	// {
-
-	// }
-
-	// public function stc_ast()
-	// {
-
-	// }
-
-	// public function case_in_interval()
-	// {
-
-	// }
-
-	// public function case_out_interval()
-	// {
-
-	// }
+		echo json_encode($response);
+	}
 }

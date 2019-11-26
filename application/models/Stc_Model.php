@@ -37,4 +37,10 @@ class Stc_Model extends CI_Model
 				FROM hsummary_copy WHERE YEAR(lup) = YEAR(CURRENT_TIME) group by channel;');
 		return $query->result();
 	}
+
+	public function getPersenChannel()
+	{
+		$query = $this->db->query('');
+		return $query->result();
+	}
 }
