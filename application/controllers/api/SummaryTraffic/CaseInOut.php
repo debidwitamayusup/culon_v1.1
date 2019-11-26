@@ -3,26 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CaseInOut extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Stc_Model');
+	}
 
-	// public function __construct()
-	// {
-
-	// }
 	public function index()
 	{
 		$this->load->view('header');
@@ -34,11 +20,37 @@ class CaseInOut extends CI_Controller {
 
 	public function case_in_interval()
 	{
+		$case['data'] = $this->Stc_Model->getCaseIn();
 
+		if($case)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $case);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
+
+		echo json_encode($response);
 	}
 
 	public function case_out_interval()
 	{
+		$case['data'] = $this->Stc_Model->getCaseOut();
 
+		if($case)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $case);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
+
+		echo json_encode($response);
 	}
 }

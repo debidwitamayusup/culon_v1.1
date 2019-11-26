@@ -3,26 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class TrafficInterval extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-
-	// public function __construct()
-	// {
-
-	// }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Stc_Model');
+	}
 	public function index()
 	{
 		$this->load->view('header');
@@ -32,13 +17,43 @@ class TrafficInterval extends CI_Controller {
 		$this->load->view('footer');
 	}	
 
+	//interval 15 menit
 	public function stc_interval15()
 	{
+		//proses get data
+		$interval['data'] = $this->Stc_Model->getInterval15();
+
+		if($interval)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $interval);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
 		
+		echo json_encode($response);
 	}
 
+	//interval 30menit
 	public function stc_interval30()
 	{
+		//proses get data
+		$interval['data'] = $this->Stc_Model->getInterval30();
+
+		if($interval)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $interval);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
 		
+		echo json_encode($response);
 	}
 }
