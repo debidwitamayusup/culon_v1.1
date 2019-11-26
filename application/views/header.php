@@ -22,9 +22,9 @@
 		<link href="<?php echo base_url();?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="assets/css/style.css" rel="stylesheet" />
-		<link href="assets/css/color-styles.css" rel="stylesheet" />
-		<link href="assets/css/skin-modes.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
 
 		<!-- vector-map -->
 		<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
@@ -33,14 +33,7 @@
 		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 		<!-- Sidemenu Css -->
-		<link href="assets/plugins/side-menu/css/side-menu.css" rel="stylesheet">
-		<link href="assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
-
-		<!--Sidemenu-responsive-tabs  css -->
-		<link href="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
-
-		<!-- P-scroll css -->
-		<link href="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
+		<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
 
 		<!-- Morris Charts Plugin -->
 		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
