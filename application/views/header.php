@@ -23,7 +23,7 @@
 
 		<!-- Dashboard Css -->
 		<link href="assets/css/style.css" rel="stylesheet" />
-		<link href="assets/css/color-styles.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
 		<link href="assets/css/skin-modes.css" rel="stylesheet" />
 
 		<!-- Vector-map -->

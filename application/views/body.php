@@ -1,13 +1,84 @@
 <div class=" app-content">
 					<div class="side-app">
 
-						<div class="page-header">
-							<h3 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard 01</h3>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
-							</ol>
+						<div class="row">
+							<div class="col-xl-4 col-lg-4 col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="row mb-3">
+											<div class="col">
+												<h6 class="text-muted mb-0 mt-1">Total Case </h6>
+											</div>
+											<div class="col col-auto">
+												<a class="btn btn-sm btn-white border">View Details</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="dash-2">
+													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">500</span></h2>
+													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-up text-success"></i> 5%</span>  Total Case Increased </span>
+												</div>
+											</div>
+											<div class="col col-auto">
+												<span class="sparkline_bar3"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="row mb-3">
+											<div class="col">
+												<h6 class="text-muted mb-0 mt-1">Total Case In</h6>
+											</div>
+											<div class="col col-auto">
+												<a class="btn btn-sm btn-white border">View Details</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="dash-2">
+													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">500</span></h2>
+													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 5%</span>  Case In Increased </span>
+												</div>
+											</div>
+											<div class="col col-auto">
+												<span class="sparkline_bar2"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-4 col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="row mb-3">
+											<div class="col">
+												<h6 class="text-muted mb-0 mt-1">Total Case Out</h6>
+											</div>
+											<div class="col col-auto">
+												<a class="btn btn-sm btn-white border">View Details</a>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col">
+												<div class="dash-2">
+													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">300</span></h2>
+													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 10%</span>  Case Out Decresed</span>
+												</div>
+											</div>
+											<div class="col col-auto">
+												<span class="sparkline_bar3"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
+
 						<div class="row">
 							
 							<div class="col-xl-8 col-lg-12">
