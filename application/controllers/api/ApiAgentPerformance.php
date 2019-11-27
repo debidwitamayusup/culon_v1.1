@@ -144,13 +144,21 @@ class ApiAgentPerformance extends CI_Controller {
 		// summary (case in, message in, message out) by tanggal per agent.
 
 		// get data agent
+		$data = $this->summary_agent->get_summary_case();
 
-		//process
-		$response_data = array(
-			"status" => 200, 
-			"message" => "success", 
-			"data" => "",
-		);
+		if($data){
+			$response_data = array(
+				"status" => 200, 
+				"message" => "success", 
+				"data" => $data,
+			);
+		}else {
+			$response_data = array(
+				"status" => 200, 
+				"message" => "not found", 
+				"data" => $data,
+			);
+		}
 
 		//output json
 		echo json_encode($response_data);
