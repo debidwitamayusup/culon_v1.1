@@ -26,6 +26,10 @@ class main extends CI_Controller {
         $this->load->view('body');
         $this->load->view('footer');
 	}
+	
+	public function cobaview(){
+		$this->load->view('index2');
+	}
 
 	//Test
 

@@ -100,15 +100,15 @@ h2.resp-tab-title:last-child {
     text-align: center;
 	border-top: 1px solid;
 	border-right: 0 !important;
-	background-color:#161917 !important;
+	background-color:#696969  !important;
 }
 .resp-vtabs li.active{
 	border-right:0 !important;
 	color:#fff;
-	background: #212724 !important;
+	background: #696969  !important;
 }
 .resp-vtabs li:hover{
-	background: #212724 !important;
+	background: #696969  !important;
 }
 .resp-vtabs .resp-tab-active:hover{
 	border-right:0 !important;
