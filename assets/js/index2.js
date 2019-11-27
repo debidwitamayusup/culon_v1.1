@@ -44,12 +44,10 @@
 		},
 		barColor: '#ff9933'
 	});
-
-
-
+	
+	
 	//line chart
     var ctx = document.getElementById( "lineChart" );
-
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
@@ -95,13 +93,12 @@
         type: 'pie',
         data: {
             datasets: [ {
-                data: [ 85, 48, 59, 37, 70],
+                data: [ 85, 48, 59, 37 ],
                 backgroundColor: [
                                     "#089e60",
                                     "#1396cc",
                                     "#cc66ff",
-                                    "#ff9933",
-									"#283142"
+                                    "#ff9933"
                                 ],
                 hoverBackgroundColor: [
                                     "#089e60",
@@ -115,8 +112,7 @@
                             "Google",
                             "IE",
                             "Firefox",
-							"Opera",
-							"Safari"
+							"Opera"
                         ]
         },
         options: {

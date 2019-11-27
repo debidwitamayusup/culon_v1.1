@@ -10,10 +10,10 @@
 		<meta name="keywords" content="bootstrap panel, bootstrap admin template, dashboard template, bootstrap dashboard, dashboard design, best dashboard, html css admin template, html admin template, admin panel template, admin dashbaord template, bootstrap dashbaord template, it dashbaord, hr dashbaord, marketing dashbaord, sales dashbaord, dashboard ui, admin portal, bootstrap 4 admin template, bootstrap 4 admin"/>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/infomedia_icon96.ico" />
 
 		<!-- Title -->
-		<title>Dashboard ON4</title>
+		<title>Infomedia</title>
 
 		<!--Bootstrap.min css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -23,25 +23,31 @@
 
 		<!-- Dashboard Css -->
 		<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+		<link href="assets/css/color-styles.css" rel="stylesheet" />
+		<link href="assets/css/skin-modes.css" rel="stylesheet" />
 
-		<!-- vector-map -->
+		<!-- Vector-map -->
 		<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
 
 		<!-- Custom scroll bar css-->
 		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
-		<!-- Sidemenu Css -->
-		<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
+		<!--Sidemenu css-->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/side-menu/side-menu.css">
 
-		<!-- Morris Charts Plugin -->
+		<!--Sidemenu-responsive-tabs  css -->
+		<link href="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
+
+		<!-- P-scroll css -->
+		<link href="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
+
+		<!-- morris Charts Plugin -->
 		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
-
+		
 		<!---Font icons-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
-
+	
 		<!-- Sidebar css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
 	</head>
-</html>

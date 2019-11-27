@@ -24,8 +24,14 @@ class main extends CI_Controller {
 		$this->load->view('navbar');
 		$this->load->view('sidebar');
         $this->load->view('body');
-        $this->load->view('footer');
+     //   $this->load->view('footer');
 	}
+	
+	public function cobaview(){
+		$this->load->view('index2');
+	}
+
+	//Test
 
 	// public function traffic_channel()
 	// {
