@@ -126,4 +126,11 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
+
+	public function getInteraction()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
 }
