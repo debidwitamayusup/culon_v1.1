@@ -11,109 +11,279 @@
 				
 			<div class=" app-content mt-7">
 					<div class="side-app">
-
+						<div class="page-header">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><h4>Dashboard</h4></a></li>
+								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+							</ol>
+							<div class="card-options d-none d-sm-block">
+											<div class="btn-group btn-sm">
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Day</span>
+												</button>
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Month</span>
+												</button>
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Year</span>
+												</button>
+											</div>
+										</div>
+						</div>
 						<!--Page Header-->
 						
+						
+					</div>
+					<!----Baris Pertama----!-->
+					
 						<div class="row">
-						<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Case </h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
+							<div class="col-xl-6 col-lg-4 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">Web Traffic</h3>
+										<div class="card-options">
+											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
+											<ul class="dropdown-menu dropdown-menu-right" role="menu">
+												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
+												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
+												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
+												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
+											</ul>
 										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">500</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-up text-success"></i> 5%</span>  Total Case Increased </span>
+									</div>
+									<div class="card-body">
+										<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
+									</div>
+								</div>
+							</div>
+							
+							<!---! Kolom Channel--->
+							<div class="col-xl-6 col-lg-4 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">CHANNEL</h3>
+									</div>
+									<div class="card-body">
+									<div class="row">
+										<div class="col-xl-4 col-lg-2">
+											<div class="mini-stat clearfix bg-primary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Whatsapp
 												</div>
 											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar3"></span>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Facebook
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-2">
+											<div class="mini-stat clearfix bg-primary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Whatsapp
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Facebook
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-2">
+											<div class="mini-stat clearfix bg-primary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Whatsapp
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Facebook
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-secondary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter Like
+												</div>
+											</div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+						<!---Baris Kedua!-->
+						<div class="row">
+							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
+								<div class="card">
+									<div class="card-header bg-primary">
+										<h3 class="card-title">Total Interaksi</h3>
+									</div>
+									<div class="card-body">
+										<h2 class="mb-1 num-font">$1,87,595</h2>
+										<span class="text-muted">15% Higher Of Previous Month</span>
+										<div class="row mt-5">
+											<div class="col-sm-12">
+												<div class="mb-0">
+													<h4 class="mb-2 d-block">
+														<span class="fs-16">Total Expences</span>
+														<span class="float-right num-font">$1587</span>
+													</h4>
+													<div class="progress progress-md h-1 mb-1">
+														<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													</div>
+													<span>12% of your Goals</span>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
+							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 								<div class="card">
+									<div class="card-header bg-primary">
+										<h3 class="card-title">Unik Customer</h3>
+									</div>
 									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Case In</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">500</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 5%</span>  Case In Increased </span>
+										<h2 class="mb-1 num-font">$1,87,595</h2>
+										<span class="text-muted">15% Higher Of Previous Month</span>
+										<div class="row mt-5">
+											<div class="col-sm-12">
+												<div class="mb-0">
+													<h4 class="mb-2 d-block">
+														<span class="fs-16">Total Expences</span>
+														<span class="float-right num-font">$1587</span>
+													</h4>
+													<div class="progress progress-md h-1 mb-1">
+														<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													</div>
+													<span>12% of your Goals</span>
 												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar2"></span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
+							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 								<div class="card">
+									<div class="card-header bg-primary">
+										<h3 class="card-title">Rata-rata Customer</h3>
+									</div>
 									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Case Out</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">300</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 10%</span>  Case Out Decresed</span>
+										<h2 class="mb-1 num-font">$1,87,595</h2>
+										<span class="text-muted">15% Higher Of Previous Month</span>
+										<div class="row mt-5">
+											<div class="col-sm-12">
+												<div class="mb-0">
+													<h4 class="mb-2 d-block">
+														<span class="fs-16">Total Expences</span>
+														<span class="float-right num-font">$1587</span>
+													</h4>
+													<div class="progress progress-md h-1 mb-1">
+														<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													</div>
+													<span>12% of your Goals</span>
 												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar3"></span>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- <div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Agent</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-3"><span class="counter font-weight-extrabold num-font">50</span></h2>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-								</div> -->
 							</div>
 						</div>
-
+						
+						
+						<!-----Baris Ketiga----!--->
+						<div class="row">
+							<div class="col-xl-8 col-lg-12">
+								<div class="card overflow-hidden">
+									<div class="card-header">
+										<h3 class="card-title">Statistics</h3>
+										<div class="card-options d-none d-sm-block">
+											<div class="btn-group btn-sm">
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Day</span>
+												</button>
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Month</span>
+												</button>
+												<button type="button" class="btn btn-light btn-sm">
+													<span class="">Year</span>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<div id="echart1" class="chartsh overflow-hidden"></div>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-4 col-12  text-center">
+												<small class="fs-14 text-muted"><span class="dot-label bg-primary"></span>Visitors</small>
+												<h2 class="mb-4 mb-sm-0 counter font-weight-extrabold num-font">69,568</h2>
+											</div>
+											<div class="col-sm-4 col-12  text-center">
+												<small class="fs-14 text-muted"><span class="dot-label bg-secondary"></span>Page Views</small>
+												<h2 class="mb-4 mb-sm-0 counter font-weight-extrabold num-font">60,475</h2>
+											</div>
+											<div class="col-sm-4 col-12  text-center">
+												<small class="fs-14 text-muted"><span class="dot-label bg-danger"></span>Clients</small>
+												<h2 class="mb-0 mb-sm-0 counter font-weight-extrabold num-font">40,245</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card overflow-hidden">
@@ -178,98 +348,7 @@
 							</div>
 						</div>
 
-						<div class="row">
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Web Traffic</h3>
-										<div class="card-options">
-											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
-												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
-												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
-												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body">
-										<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Yearly Earnings</h3>
-										<div class="card-options">
-											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
-												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
-												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
-												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body">
-										<div id="graph5" class="chart-dropshadow chartwidget"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Product Sales</h3>
-										<div class="card-options">
-											<a class="btn btn-white border btn-sm btn-icon mr-2" href="#"><i class="fas fa-chevron-left"></i></a>
-											<a class="btn btn-white border btn-sm btn-icon" href="#"><i class="fas fa-chevron-right"></i></a>
-										</div>
-									</div>
-									<div class="card-body">
-										<h2 class="mb-1 num-font">$1,87,595</h2>
-										<span class="text-muted">15% Higher Of Previous Month</span>
-										<div class="row mt-5">
-											<div class="col-sm-12">
-												<div class="mb-0">
-													<h4 class="mb-2 d-block">
-														<span class="fs-16">Total Expences</span>
-														<span class="float-right num-font">$1587</span>
-													</h4>
-													<div class="progress progress-md h-1 mb-1">
-														<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
-													</div>
-													<span>12% of your Goals</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Net Profit</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2">$<span class="counter font-weight-extrabold num-font">99,425</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 13%</span>  Net Profit Incresed </span>
-												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar4"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<!-----Baris Keempat---!--->
 
 						<div class="row">
 							<div class="col-xl-12">
