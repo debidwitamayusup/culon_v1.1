@@ -190,7 +190,34 @@ class ApiAgentPerformance extends CI_Controller {
 		// summary (case in, message in, message out) by tanggal per agent.
 
 		// get data agent
-		$data = $this->summary_agent->get_summary_case();
+		$data = array();
+		$query = $this->summary_agent->get_summary_case();
+		// var_dump($query);die();
+		$row_date = array();
+		$tenant_id = array();
+		$case_in = array();
+		$case_out = array();
+		$msg_in = array();
+		$msg_out = array();
+		foreach ($query as $key){
+			array_push($row_date, $key->row_date);
+			array_push($tenant_id, $key->tenant_id);
+			array_push($case_in, $key->case_in);
+			array_push($case_out, $key->case_out);
+			array_push($msg_in, $key->msg_in);
+			array_push($msg_out, $key->msg_out);
+		}
+		// var_dump($row_date);die();
+		$data = [
+			"row_date" => $row_date,
+			"tenant_id" => $tenant_id,
+			"case_in" => $case_in,
+			"case_out" => $case_out,
+			"msg_in" => $msg_in,
+			"msg_out" => $msg_out,
+
+		];
+
 
 		if($data){
 			$response_data = array(
