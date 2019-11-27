@@ -44,6 +44,7 @@
 
 		<!--Echart Plugin -->
 		<script src="<?= base_url()?>assets/plugins/echart/echart.js"></script>
+		<script src="<?= base_url()?>assets/js/echarts.js"></script>
 
 		<!-- Progress -->
         <script src="<?= base_url()?>assets/js/vendors/circle-progress.min.js"></script>
@@ -68,7 +69,13 @@
 		<!--Counters -->
 		<script src="<?= base_url()?>assets/plugins/counters/counterup.min.js"></script>
 		<script src="<?= base_url()?>assets/plugins/counters/waypoints.min.js"></script>
+		
+		<!-- Chartist.js -->
+		<script src="<?= base_url()?>assets/plugins/chartist/chartist.js"></script>
+		<script src="<?= base_url()?>assets/plugins/chartist/chart.chartist.js"></script>
+		<script src="<?= base_url()?>assets/plugins/chartist/chartist-plugin-tooltip.js"></script>
 
+		
 		<!-- Sidebar js -->
 		<script src="<?= base_url()?>assets/plugins/sidebar/sidebar.js"></script>
 

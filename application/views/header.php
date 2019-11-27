@@ -43,5 +43,9 @@
 
 		<!-- Sidebar css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+		
+		<!--Chartist css-->
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist-plugin-tooltip.css">
 	</head>
 </html>

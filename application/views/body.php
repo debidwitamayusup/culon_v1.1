@@ -37,7 +37,7 @@
 					<!----Baris Pertama----!-->
 					
 						<div class="row">
-							<div class="col-xl-6 col-lg-4 col-md-12">
+							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">Web Traffic</h3>
@@ -58,14 +58,14 @@
 							</div>
 							
 							<!---! Kolom Channel--->
-							<div class="col-xl-6 col-lg-4 col-md-12">
+							<div class="col-xl-8 col-lg-4 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">CHANNEL</h3>
 									</div>
 									<div class="card-body">
 									<div class="row">
-										<div class="col-xl-4 col-lg-2">
+										<div class="col-xl-3 col-lg-2">
 											<div class="mini-stat clearfix bg-primary rounded">
 												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
 												<div class="mini-stat-info text-white float-right">
@@ -73,85 +73,88 @@
 													Whatsapp
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-info"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Twitter Like
+													Twitter
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-info rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+											<div class="mini-stat clearfix bg-blue rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
 													Facebook
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+											
+										</div>
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-danger rounded">
+												<span class="mini-stat-icon"><i class="fa fa-envelope text-danger"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Twitter Like
+													Email
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-dark rounded">
+												<span class="mini-stat-icon"><i class="fab fa-telegram text-dark"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Telegram
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-success rounded">
+												<span class="mini-stat-icon"><i class="fab fa-line text-success"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Line
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4 col-lg-2">
-											<div class="mini-stat clearfix bg-primary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-warning rounded">
+												<span class="mini-stat-icon"><i class="fa fa-microphone text-warning"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Whatsapp
+													Voice
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+											<div class="mini-stat clearfix bg-pink rounded">
+												<span class="mini-stat-icon"><i class="fab fa-instagram text-pink"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Twitter Like
+													Instagram
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-info rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+											<div class="mini-stat clearfix bg-blue-dark rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Facebook
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Twitter Like
+													Messenger
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4 col-lg-2">
-											<div class="mini-stat clearfix bg-primary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-indigo rounded">
+												<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-indigo"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Whatsapp
+													Twitter DM 
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
+											<div class="mini-stat clearfix bg-purple-darker rounded">
+												<span class="mini-stat-icon"><i class="fa fa-comments text-purple"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Twitter Like
+													Live Chat
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-info rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook text-info"></i></span>
+											<div class="mini-stat clearfix bg-blue-darker rounded">
+												<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-blue"></i></span>
 												<div class="mini-stat-info text-white float-right">
 													<h3>1,142</h3>
-													Facebook
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-secondary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-secondary"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Twitter Like
+													Insta DM
 												</div>
 											</div>
 										</div>
@@ -167,7 +170,7 @@
 							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 								<div class="card">
 									<div class="card-header bg-primary">
-										<h3 class="card-title">Total Interaksi</h3>
+										<h3 class="card-title">Total Interaction</h3>
 									</div>
 									<div class="card-body">
 										<h2 class="mb-1 num-font">$1,87,595</h2>
@@ -191,8 +194,8 @@
 							</div>
 							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 								<div class="card">
-									<div class="card-header bg-primary">
-										<h3 class="card-title">Unik Customer</h3>
+									<div class="card-header bg-blue">
+										<h3 class="card-title">Unique Customer</h3>
 									</div>
 									<div class="card-body">
 										<h2 class="mb-1 num-font">$1,87,595</h2>
@@ -216,8 +219,8 @@
 							</div>
 							<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 								<div class="card">
-									<div class="card-header bg-primary">
-										<h3 class="card-title">Rata-rata Customer</h3>
+									<div class="card-header bg-indigo">
+										<h3 class="card-title">Average Customer</h3>
 									</div>
 									<div class="card-body">
 										<h2 class="mb-1 num-font">$1,87,595</h2>
@@ -241,10 +244,8 @@
 							</div>
 						</div>
 						
-						
-						<!-----Baris Ketiga----!--->
 						<div class="row">
-							<div class="col-xl-8 col-lg-12">
+							<div class="col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">Statistics</h3>
@@ -284,189 +285,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Website Activities</h3>
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Day</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Month</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Year</span>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="card-body overflow-hidden">
-													<canvas id="lineChart" class="chart-dropshadow h-350 overflow-hidden"></canvas>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row website-section">
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Daily Visitors</p>
-												<h2 class=" mb-3 font-weight-extrabold num-font">6,254</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Returning Visitors</p>
-												<h2 class=" mb-3 font-weight-extrabold num-font">1254</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Page Views</p>
-												<h2 class="mb-3 font-weight-extrabold num-font">24,325</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-pink w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center ">
-												<p class="mb-1 text-muted">Today Subscribers</p>
-												<h2 class="mb-3 font-weight-extrabold num-font">357</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning w-70"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						
 						<!-----Baris Keempat---!--->
-
-						<div class="row">
-							<div class="col-xl-12">
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Invoice List</h3>
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Day</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Month</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Year</span>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="table-responsive border-top mb-0">
-											<table class="table table-bordered table-hover mb-0 text-nowrap">
-												<thead>
-													<tr>
-														<th>Invoice ID</th>
-														<th>Category</th>
-														<th>Purchase Date</th>
-														<th>Price</th>
-														<th>Due Date</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>#INV-<span class="num-font">348</span></td>
-														<td>Resturant</td>
-														<td class="num-font">07-12-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$89</td>
-														<td class="num-font">17-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">186</span></td>
-														<td>Rela Estate</td>
-														<td class="num-font">02-12-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$14,276</td>
-														<td class="num-font">14-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">831</span></td>
-														<td>Jobs</td>
-														<td class="num-font">30-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$25,000</td>
-														<td class="num-font">04-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">672</span></td>
-														<td>Education</td>
-														<td class="num-font">25-18-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$50.00</td>
-														<td class="num-font">07-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">428</span></td>
-														<td>Electornics</td>
-														<td class="num-font">24-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$99.99</td>
-														<td class="num-font">11-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">543</span></td>
-														<td>Vechicle</td>
-														<td class="num-font">22-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$145</td>
-														<td class="num-font">12-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">986</span></td>
-														<td>Pet &amp; Animals</td>
-														<td class="num-font">18-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$378</td>
-														<td class="num-font">07-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<!--Sidebar-right-->

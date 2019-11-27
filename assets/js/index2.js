@@ -45,74 +45,127 @@
 		barColor: '#ff9933'
 	});
 	
-	
-	//line chart
-    var ctx = document.getElementById( "lineChart" );
-    var myChart = new Chart( ctx, {
-        type: 'line',
-        data: {
-            labels: [ "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" ],
-            datasets: [
-                {
-                    label: "Visitors",
-                    borderColor: "rgb(8,158,96,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(8,158,96,0.5)",
-                    data: [ 10, 60, 30, 90, 120, 76, 35]
-                            },
-                {
-                    label: "Returning Visitors",
-                    borderColor: "rgb(19, 150, 204,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(19, 150, 204,0.5)",
-                    pointHighlightStroke: "rgb(19, 150, 204)",
-                    data: [22, 88, 68, 140, 60, 80, 95]
-                            }
-                        ]
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            }
 
-        }
-    } );
-
+	/*----Echart2----*/
+	var chartdata = [{
+		name: 'Vistors',
+		type: 'bar',
+		data: [10, 15, 9, 18, 10, 15]
+	}, {
+		name: 'PageViews',
+		type: 'line',
+		smooth: true,
+		data: [8, 5, 25, 10, 10]
+	}, {
+		name: 'Clients',
+		type: 'bar',
+		data: [10, 14, 10, 15, 9, 25]
+	}];
+	var chart = document.getElementById('echart1');
+	var barChart = echarts.init(chart);
+	var option = {
+		grid: {
+			top: '6',
+			right: '0',
+			bottom: '17',
+			left: '25',
+		},
+		xAxis: {
+			data: ['2014', '2015', '2016', '2017', '2018'],
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: true,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: false,
+				}
+			}
+		},
+		yAxis: {
+			splitLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		series: chartdata,
+		color: ['#089e60', '#ff9933', '#1396cc', ]
+	};
+	barChart.setOption(option);
 
 	//pie chart
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 290;
+    ctx.height = 335;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
             datasets: [ {
-                data: [ 85, 48, 59, 37 ],
+                data: [ 85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12 ],
                 backgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933"
+                                    "#31a550 ",
+									"#45aaf2",
+                                    "#316cbe",
+                                    "#e41313",
+                                    "#343a40",
+									"#31a550",
+									"#ff9933",
+									"#fbc0d5",
+									"#3866a6",
+									"#6574cd",
+									"#42265e",
+									"#1c3353"
                                 ],
                 hoverBackgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933"
+                                    "#31a550",
+									"#45aaf2",
+                                    "#316cbe",
+                                    "#e41313",
+                                    "#343a40",
+									"#31a550",
+									"#ff9933",
+									"#fbc0d5",
+									"#3866a6",
+									"#6574cd",
+									"#42265e",
+									"#1c3353"
                                 ]
 
                             } ],
             labels: [
-                            "Google",
-                            "IE",
-                            "Firefox",
-							"Opera"
+                            "Whatsapp",
+                            "Twitter",
+                            "Facebook",
+							"Email",
+							"Telegram",
+							"Line",
+							"Voice",
+							"Instagram",
+							"Messenger",
+							"Twitter DM",
+							"Live Chat",
+							"Insta DM"
                         ]
         },
         options: {
