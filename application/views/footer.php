@@ -63,9 +63,14 @@
 		<!--Echart Plugin -->
 		<script src="<?php echo base_url();?>assets/plugins/echart/echart.js"></script>
 
-		<!--Jquery.sparkline js-->
-		<!--<script src="<?php //echo base_url();?>assets/plugins/othercharts/jquery.sparkline.min.js"></script>-->
-
+	
+		<!--Morris Charts js-->
+		<script src="<?php echo base_url();?> assets/plugins/morris/morris.min.js"></script>
+		<script src="<?php echo base_url();?> assets/plugins/morris/raphael.min.js"></script>
+		
+		<!--  Chart js -->
+		
+		<script src="<?php echo base_url();?> assets/plugins/chart/chart.bundle.js"></script>
 		<!-- peitychart -->
 		<script src="<?php echo base_url();?>assets/plugins/peitychart/jquery.peity.min.js"></script>
 

@@ -43,10 +43,9 @@
 
 		<!-- morris Charts Plugin -->
 		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
-
+		
 		<!---Font icons-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/fonts/fonts/font-awesome.min.css" rel="stylesheet" />
 	
 		<!-- Sidebar css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">

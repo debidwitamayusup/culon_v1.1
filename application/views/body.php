@@ -78,9 +78,9 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					
 						<div class="row">
-							<div class="col-xl-6 col-lg-12">
+							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">Web Traffic</h3>
@@ -95,11 +95,11 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<canvas id="pieChart1" class="donutShadow overflow-hidden"></canvas>
+										<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-lg-12">
+							<div class="col-xl-8 col-lg-12">
 								<div class="card overflow-hidden">
 									<div class="card-header">
 										<h3 class="card-title">Summery Trafic</h3>

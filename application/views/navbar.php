@@ -14,20 +14,33 @@
 							</a>
 							<!-- Sidebar toggle button-->
 							<a aria-label="Hide Sidebar" style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
-							
-							
+							<div class="dropdown d-sm-flex d-none">
+								<a href="#" class="nav-link icon" data-toggle="dropdown">
+									<i style="color: #000" class="fe fe-home"></i>
+								</a>
+							</div>
 							<div class="d-flex order-lg-2 ml-auto">
 								<div class="d-sm-flex d-none">
 									<a href="#" class="nav-link icon full-screen-link">
 										<i class="fe fe-minimize fullscreen-button" style="color: #000"></i>
 									</a>
 								</div>
+								<div class="d-sm-flex d-none">
+									<input type="text" class="form-control " placeholder="Search....">
+										<div class="input-group-append ">
+											<button type="button" class="btn btn-primary ">
+												<i class="fas fa-search" aria-hidden="true"></i>
+											</button>
+										</div>
+								</div>
+								
 								
 								<div class="dropdown d-md-flex header-settings">
 									<a href="#" class="nav-link icon" data-toggle="sidebar-right" data-target=".sidebar-right">
 										<i style="color: #000" class="fe fe-align-right"></i>
 									</a>
 								</div>
+								
 							</div>
 						</div>
 					</div>
