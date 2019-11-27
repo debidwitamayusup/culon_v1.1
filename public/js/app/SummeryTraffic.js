@@ -7,7 +7,7 @@ $(document).ready(function(){
 		data:{},
 		success:function(r){
 			var response = JSON.parse(r);
-			// console.log(response.data);
+			console.log(response.data);
 			data = response;
 			drawchart(data);
 		},
