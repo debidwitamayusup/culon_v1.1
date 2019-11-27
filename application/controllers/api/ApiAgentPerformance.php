@@ -113,11 +113,29 @@ class ApiAgentPerformance extends CI_Controller {
 
 		// collect from db
 
+		$data = array(
+			[
+				"agent_id" => 1,
+				"ast" => 215,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 2,
+				"ast" => 433,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 3,
+				"ast" => 165,
+				"date" => "2019-11-30"
+			]
+		);
+
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => "",
+			"data" => $data,
 		);
 
 		//output json
@@ -126,14 +144,42 @@ class ApiAgentPerformance extends CI_Controller {
 
 	public function summaryCall(){
 		// Summary (Call, AHT, ART, AST, SL) by tanggal per agent.
-
+		$data = array(
+			[
+				"agent_id" => 1,
+				"call" => 20,
+				"aht" => 200,
+				"art" => 100,
+				"ast" => 76,
+				"sl" => 52,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 2,
+				"call" => 10,
+				"aht" => 100,
+				"art" => 60,
+				"ast" => 32,
+				"sl" => 16,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 3,
+				"call" => 50,
+				"aht" => 40,
+				"art" => 30,
+				"ast" => 20,
+				"sl" => 10,
+				"date" => "2019-11-30"
+			]
+		);
 		// get data agent
 
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => "",
+			"data" => $data,
 		);
 
 		//output json
