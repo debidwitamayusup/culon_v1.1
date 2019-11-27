@@ -9,7 +9,6 @@ $(document).ready(function(){
 			var response = JSON.parse(r);
 			// console.log(response.data);
 			data = response;
-			alert();
 			drawchart(data);
 		},
 		error:function(r){
