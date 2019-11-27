@@ -78,7 +78,7 @@
 								</div>
 							</div>
 						</div>
-					
+					</div>
 						<div class="row">
 							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card overflow-hidden">
@@ -271,3 +271,9 @@
 								</div>
 							</div>
 						</div>
+						
+						<?php $this->load->view('footer');?>
+						
+						<script type="text/javascript" src="<?php echo base_url()?>public/js/app/SummeryTraffic.js">
+						
+						</script>
