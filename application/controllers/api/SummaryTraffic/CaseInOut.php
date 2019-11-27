@@ -9,18 +9,9 @@ class CaseInOut extends CI_Controller {
 		$this->load->model('Stc_Model');
 	}
 
-	public function index()
-	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-		$this->load->view('stc/Case_In_Out');
-		$this->load->view('footer');
-	}	
-
 	public function case_in_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseIn();
+		$case['data'] = $this->Stc_Model->getCaseIn()->result();
 
 		if($case)
 		{
@@ -38,7 +29,7 @@ class CaseInOut extends CI_Controller {
 
 	public function case_out_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseOut();
+		$case['data'] = $this->Stc_Model->getCaseOut()->result();
 
 		if($case)
 		{

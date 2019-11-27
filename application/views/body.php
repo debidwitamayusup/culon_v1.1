@@ -1,6 +1,5 @@
 <div class=" app-content">
 	<div class="side-app">
-
 				<div class="row">
 					<div class="col-xl-4 col-lg-4 col-md-12">
 						<div class="card">
@@ -78,7 +77,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div
 				<div class="row">
 					<div class="col-xl-4 col-lg-4 col-md-12">
 						<div class="card overflow-hidden">
