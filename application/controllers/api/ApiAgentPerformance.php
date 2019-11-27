@@ -113,11 +113,29 @@ class ApiAgentPerformance extends CI_Controller {
 
 		// collect from db
 
+		$data = array(
+			[
+				"agent_id" => 1,
+				"ast" => 215,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 2,
+				"ast" => 433,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 3,
+				"ast" => 165,
+				"date" => "2019-11-30"
+			]
+		);
+
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => "",
+			"data" => $data,
 		);
 
 		//output json
@@ -126,14 +144,42 @@ class ApiAgentPerformance extends CI_Controller {
 
 	public function summaryCall(){
 		// Summary (Call, AHT, ART, AST, SL) by tanggal per agent.
-
+		$data = array(
+			[
+				"agent_id" => 1,
+				"call" => 20,
+				"aht" => 200,
+				"art" => 100,
+				"ast" => 76,
+				"sl" => 52,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 2,
+				"call" => 10,
+				"aht" => 100,
+				"art" => 60,
+				"ast" => 32,
+				"sl" => 16,
+				"date" => "2019-11-30"
+			],
+			[
+				"agent_id" => 3,
+				"call" => 50,
+				"aht" => 40,
+				"art" => 30,
+				"ast" => 20,
+				"sl" => 10,
+				"date" => "2019-11-30"
+			]
+		);
 		// get data agent
 
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => "",
+			"data" => $data,
 		);
 
 		//output json
@@ -144,7 +190,34 @@ class ApiAgentPerformance extends CI_Controller {
 		// summary (case in, message in, message out) by tanggal per agent.
 
 		// get data agent
-		$data = $this->summary_agent->get_summary_case();
+		$data = array();
+		$query = $this->summary_agent->get_summary_case();
+		// var_dump($query);die();
+		$row_date = array();
+		$tenant_id = array();
+		$case_in = array();
+		$case_out = array();
+		$msg_in = array();
+		$msg_out = array();
+		foreach ($query as $key){
+			array_push($row_date, $key->row_date);
+			array_push($tenant_id, $key->tenant_id);
+			array_push($case_in, $key->case_in);
+			array_push($case_out, $key->case_out);
+			array_push($msg_in, $key->msg_in);
+			array_push($msg_out, $key->msg_out);
+		}
+		// var_dump($row_date);die();
+		$data = [
+			"row_date" => $row_date,
+			"tenant_id" => $tenant_id,
+			"case_in" => $case_in,
+			"case_out" => $case_out,
+			"msg_in" => $msg_in,
+			"msg_out" => $msg_out,
+
+		];
+
 
 		if($data){
 			$response_data = array(
