@@ -11,7 +11,7 @@ class CaseInOut extends CI_Controller {
 
 	public function case_in_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseIn();
+		$case['data'] = $this->Stc_Model->getCaseIn()->result();
 
 		if($case)
 		{
@@ -29,7 +29,7 @@ class CaseInOut extends CI_Controller {
 
 	public function case_out_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseOut();
+		$case['data'] = $this->Stc_Model->getCaseOut()->result();
 
 		if($case)
 		{

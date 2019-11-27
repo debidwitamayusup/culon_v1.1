@@ -13,7 +13,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	public function stc_today()
 	{
 		//proses select data
-		$rowdate['data'] = $this->Stc_Model->getToday();
+		$rowdate['data'] = $this->Stc_Model->getToday()->result();
 
 		//response true false
 		if($rowdate)
@@ -34,7 +34,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	public function stc_month()
 	{
 		//proses select data
-		$rowdate['data'] = $this->Stc_Model->getMonth();
+		$rowdate['data'] = $this->Stc_Model->getMonth()->result();
 
 		//response true false
 		if($rowdate)
@@ -55,7 +55,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	public function stc_year()
 	{
 		//proses select data
-		$rowdate['data'] = $this->Stc_Model->getYear();
+		$rowdate['data'] = $this->Stc_Model->getYear()->result();
 
 		//response true false
 		if($rowdate)

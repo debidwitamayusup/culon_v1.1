@@ -12,7 +12,7 @@ class AverageTime extends CI_Controller {
 
 	public function stc_art()
 	{
-		$art['data'] = $this->Stc_Model->getArt();
+		$art['data'] = $this->Stc_Model->getArt()->result();
 
 		if($art)
 		{
@@ -30,7 +30,7 @@ class AverageTime extends CI_Controller {
 
 	public function stc_aht()
 	{
-		$aht['data'] = $this->Stc_Model->getAht();
+		$aht['data'] = $this->Stc_Model->getAht()->result();
 
 		if($aht)
 		{
@@ -48,7 +48,7 @@ class AverageTime extends CI_Controller {
 
 	public function stc_ast()
 	{
-		$ast['data'] = $this->Stc_Model->getAst();
+		$ast['data'] = $this->Stc_Model->getAst()->result();
 
 		if($ast)
 		{

@@ -14,13 +14,7 @@ class Stc_Model extends CI_Model
 	{
 		$query = $this->db->query('SELECT channel, SUM(tot_pickup) + SUM(antrian) + SUM(chat_in_progress) AS summary_traffic FROM hsummary_copy WHERE date(lup) = CURRENT_DATE GROUP BY channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$today[] = $data;
-			}
-			return $today;
-		}
+		return $query;
 	}
 
 	//controller SummaryTrafficChannel function stc_month
@@ -29,13 +23,7 @@ class Stc_Model extends CI_Model
 		$query = $this->db->query('SELECT channel, SUM(tot_pickup) + SUM(antrian) + SUM(chat_in_progress) AS summary_traffic
 				FROM hsummary_copy WHERE MONTH(lup) = MONTH(CURRENT_TIME) AND YEAR(lup) = YEAR(CURRENT_TIME) group by channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$month[] = $data;
-			}
-			return $month;
-		}
+		return $query;
 	}
 
 	//controller SummaryTrafficChannel function stc_year
@@ -44,13 +32,7 @@ class Stc_Model extends CI_Model
 		$query = $this->db->query('SELECT channel, sum(tot_pickup) + sum(antrian) + sum(chat_in_progress) AS summary_traffic
 				FROM hsummary_copy WHERE YEAR(lup) = YEAR(CURRENT_TIME) group by channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$year[] = $data;
-			}
-			return $year;
-		}
+		return $query;
 	}
 
 	//controller TrafficInterval function stc_interval15
@@ -61,13 +43,7 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
 		
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$interval15[] = $data;
-			}
-			return $interval15;
-		}
+		return $query;
 	}
 
 	//controller TrafficInterval function stc_interval30//
@@ -78,13 +54,7 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 1800;');
 		
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$interval30[] = $data;
-			}
-			return $interval30;
-		}
+		return $query;
 	}
 
 	//controller CaseInOut function case_in_interval
@@ -95,13 +65,7 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$casein[] = $data;
-			}
-			return $casein;
-		}
+		return $query;
 	}
 
 	//controller CaseInOut function case_out_interval
@@ -112,27 +76,18 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$caseout[] = $data;
-			}
-			return $caseout;
-		}
+		return $query;
 	}
 
 	//controller AverageTime function stc_art
 	public function getArt()
 	{
-		$query = $this->db->query('');
+		$query = $this->db->query('SELECT DATE(lup), TIME(lup), AVG(response_time) avg_handle
+				FROM hsummary_copy
+				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$get_art[] = $data;
-			}
-			return $get_art;
-		}
+		return $query;
 	}
 
 	//controller AverageTime function stc_aht
@@ -140,13 +95,7 @@ class Stc_Model extends CI_Model
 	{
 		$query = $this->db->query('');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$get_aht[] = $data;
-			}
-			return $get_aht;
-		}
+		return $query;
 	}
 
 	//controller AverageTime function stc_ast
@@ -154,12 +103,6 @@ class Stc_Model extends CI_Model
 	{
 		$query = $this->db->query('');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$get_ast[] = $data;
-			}
-			return $get_ast;
-		}
+		return $query;
 	}
 }
