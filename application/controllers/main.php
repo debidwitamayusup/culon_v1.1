@@ -20,15 +20,19 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-        $this->load->view('body');
-       $this->load->view('footer');
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+        $this->load->view('temp/body');
+       $this->load->view('temp/footer');
 	}
 	
-	public function cobaview(){
-		$this->load->view('index2');
+	public function this_day(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('today');
+       $this->load->view('temp/footer');
 	}
 
 	//Test
