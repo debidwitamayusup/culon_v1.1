@@ -70,6 +70,47 @@
 	};
 	barChart.setOption(option);
 
+	
+	//line chart
+    var ctx = document.getElementById( "lineChart" );
+    var myChart = new Chart( ctx, {
+        type: 'line',
+        data: {
+            labels: [ "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" ],
+            datasets: [
+                {
+                    label: "Visitors",
+                    borderColor: "rgb(8,158,96,0.9)",
+                    borderWidth: "2",
+                    backgroundColor: "rgb(8,158,96,0.5)",
+                    data: [ 10, 60, 30, 90, 120, 76, 35]
+                            },
+                {
+                    label: "Returning Visitors",
+                    borderColor: "rgb(19, 150, 204,0.9)",
+                    borderWidth: "2",
+                    backgroundColor: "rgb(19, 150, 204,0.5)",
+                    pointHighlightStroke: "rgb(19, 150, 204)",
+                    data: [22, 88, 68, 140, 60, 80, 95]
+                            }
+                        ]
+        },
+        options: {
+            responsive: true,
+			maintainAspectRatio: false,
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            }
+
+        }
+    } );
+
+
 	//Team chart
     var ctx = document.getElementById( "team-chart" );
 	 ctx.height = 235;
