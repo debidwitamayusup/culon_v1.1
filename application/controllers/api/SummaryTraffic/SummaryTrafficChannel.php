@@ -14,12 +14,13 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getToday();
+		$rowdate = $this->Stc_Model->getToday()->result();
 
 		if($rowdate)
 		{
 			$channel = array();
 			$summary_traffic = array();
+
 			foreach ($rowdate as $key) {
 				array_push($channel, $key->channel);
 				array_push($summary_traffic, $key->summary_traffic);
@@ -50,7 +51,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getMonth();
+		$rowdate = $this->Stc_Model->getMonth()->result();
 
 		$channel = array();
 		$summary_traffic = array();
@@ -87,7 +88,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getYear();
+		$rowdate = $this->Stc_Model->getYear()->result();
 
 		$channel = array();
 		$summary_traffic = array();

@@ -14,7 +14,7 @@ class TrafficInterval extends CI_Controller {
 	{
 		//proses get data
 		$data = array();
-		$interval = $this->Stc_Model->getInterval15();
+		$interval = $this->Stc_Model->getInterval15()->result();
 
 		if($interval)
 		{
@@ -33,8 +33,8 @@ class TrafficInterval extends CI_Controller {
 			}
 
 			$data = [
-				date('lup') => $tl,
-				time('lup') => $dl,
+				'tl' => $tl,
+				'dl' => $dl,
 				'tot_pickup' => $tp,
 				'antrian' => $a,
 				'chat_in_progress' => $cip
@@ -60,7 +60,7 @@ class TrafficInterval extends CI_Controller {
 	{
 		//proses get data
 		$data = array();
-		$interval = $this->Stc_Model->getInterval30();
+		$interval = $this->Stc_Model->getInterval30()->result();
 
 		//response true false
 		if($interval)
@@ -80,8 +80,8 @@ class TrafficInterval extends CI_Controller {
 			}
 
 			$data = [
-				date('lup') => $tl,
-				time('lup') => $dl,
+				'dl' => $dl,
+				'tl' => $tl,
 				'tot_pickup' => $tp,
 				'antrian' => $a,
 				'chat_in_progress' => $cip
