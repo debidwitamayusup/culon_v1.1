@@ -43,7 +43,7 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
 		
-		return $query;
+		return $query->result();
 	}
 
 	//controller TrafficInterval function stc_interval30//
@@ -54,7 +54,7 @@ class Stc_Model extends CI_Model
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 1800 AND channel;');
 		
-		return $query;
+		return $query->result();
 	}
 
 	//controller CaseInOut function case_in_interval
@@ -108,7 +108,7 @@ class Stc_Model extends CI_Model
 
 	public function getCardMain()
 	{
-		$query = $this->db->query('');
+		$query = $this->db->query("");
 
 		return $query->result();
 	}

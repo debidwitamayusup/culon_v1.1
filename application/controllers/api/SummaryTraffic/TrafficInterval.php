@@ -13,7 +13,7 @@ class TrafficInterval extends CI_Controller {
 	public function stc_interval15()
 	{
 		//proses get data
-		$interval['data'] = $this->Stc_Model->getInterval15()->result();
+		$interval['data'] = $this->Stc_Model->getInterval15();
 
 		//response true false
 		if($interval)
@@ -34,7 +34,7 @@ class TrafficInterval extends CI_Controller {
 	public function stc_interval30()
 	{
 		//proses get data
-		$interval['data'] = $this->Stc_Model->getInterval30()->result();
+		$interval['data'] = $this->Stc_Model->getInterval30();
 
 		//response true false
 		if($interval)

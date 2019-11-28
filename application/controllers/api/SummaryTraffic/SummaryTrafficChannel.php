@@ -122,7 +122,7 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cardMain()
 	{
-		$card_today = $this->Stc_Model->getCardToday();
+		$card_today = $this->Stc_Model->getCardMain();
 
 		if($card_today)
 		{
