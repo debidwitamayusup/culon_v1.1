@@ -133,4 +133,18 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
+
+	public function getUniqueCustomer()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
+
+	public function getAverageCustom()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
 }

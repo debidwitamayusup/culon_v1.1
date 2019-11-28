@@ -155,6 +155,7 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $circle_main);
 		}
+		echo json_encode($response);
 	}
 
 	public function bGraphMain()
@@ -173,6 +174,7 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $batang_main);
 		}
+		echo json_encode($response);
 	}
 
 	public function interaction()
@@ -191,5 +193,44 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $interaction);
 		}
+		echo json_encode($response);
+	}
+
+	public function uniqueCustomer()
+	{
+		$customer = $this->Stc_Model->getUniqueCustom();
+
+		if($customer)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		}
+		echo json_encode($response);
+	}
+
+	public function averageCustomer()
+	{
+		$customer = $this->Stc_Model->getAverageCustom();
+
+		if($customer)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $customer);
+		}
+		echo json_encode($response);
 	}
 }
