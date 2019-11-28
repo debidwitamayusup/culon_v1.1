@@ -46,74 +46,6 @@
 	});
 	
 
-	/*----Echart2----*/
-	var chartdata = [{
-		name: 'Vistors',
-		type: 'bar',
-		data: [10, 15, 9, 18, 10, 15]
-	}, {
-		name: 'PageViews',
-		type: 'line',
-		smooth: true,
-		data: [8, 5, 25, 10, 10]
-	}, {
-		name: 'Clients',
-		type: 'bar',
-		data: [10, 14, 10, 15, 9, 25]
-	}];
-	var chart = document.getElementById('echart1');
-	var barChart = echarts.init(chart);
-	var option = {
-		grid: {
-			top: '6',
-			right: '0',
-			bottom: '17',
-			left: '25',
-		},
-		xAxis: {
-			data: ['2014', '2015', '2016', '2017', '2018'],
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: true,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: false,
-				}
-			}
-		},
-		yAxis: {
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		series: chartdata,
-		color: ['#089e60', '#ff9933', '#1396cc', ]
-	};
-	barChart.setOption(option);
 
 	//pie chart
     var ctx = document.getElementById( "pieChart" );
@@ -169,8 +101,11 @@
                         ]
         },
         options: {
-            responsive: true,
 			maintainAspectRatio: false,
+            responsive: true,
+			legend:{
+				position:'bottom'
+			}
         }
     } );
 
