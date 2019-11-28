@@ -30,13 +30,35 @@ class AverageTime extends CI_Controller {
 
 	public function stc_aht()
 	{
-		$aht['data'] = $this->Stc_Model->getAht()->result();
+		$data = array();
+		$aht = $this->Stc_Model->getAht()->result();
 
 		if($aht)
 		{
+			$channel = array();
+			$lup_date = array();
+			$lup_interval = array();
+			$avg_handling_time = array();
+			
+			foreach ($aht as $key){
+				array_push($channel, $key->channel);
+				array_push($lup_date,$key->lup_date);
+				array_push($lup_interval, $key->lup_interval);
+				array_push($avg_handling_time, $key->avg_handling_time);
+			}
+
+			$data = [
+				"channel" => $channel,
+				"lup_date" => $lup_date,
+				"lup_interval" => $lup_interval,
+				"avg_handling_time" => $avg_handling_time,
+			];
+
 			$response = array(
-				'status' => true,
-				'data' => $aht);
+				'status' => 200,
+				'massage' => "success",
+				'data' => $data);
+		
 		} else {
 			$response = array(
 				'status' => false,
@@ -48,13 +70,33 @@ class AverageTime extends CI_Controller {
 
 	public function stc_ast()
 	{
-		$ast['data'] = $this->Stc_Model->getAst()->result();
+		$data = array();
+		$ast= $this->Stc_Model->getAst()->result();
 
 		if($ast)
 		{
+			$channel = array();
+			$lup_date = array();
+			$lup_time = array();
+			$avg_service = array();
+			foreach ($ast as $key) {
+				array_push($channel, $key->channel);
+				array_push($lup_date, $key->lup_date);
+				array_push($lup_time, $key->lup_time);
+				array_push($avg_service, $key->avg_service);
+			}
+
+			$data = [
+				"channel" => $channel,
+				"lup_date" => $lup_date,
+				"lup_time" => $lup_time,
+				"avg_service" =>$avg_service,
+			];
+
 			$response = array(
-				'status' => true,
-				'data' => $ast);
+				'status' => 200,
+				'massage' => "success",
+				'data' => $data);
 		} else {
 			$response = array(
 				'status' => false,

@@ -16,22 +16,21 @@ class SummaryTrafficChannel extends CI_Controller {
 		$data = array();
 		$rowdate = $this->Stc_Model->getToday();
 
-		$channel = array();
-		$summary_traffic = array();
+		if($rowdate)
+		{
+			$channel = array();
+			$summary_traffic = array();
+			foreach ($rowdate as $key) {
+				array_push($channel, $key->channel);
+				array_push($summary_traffic, $key->summary_traffic);
+			}
 
-		foreach ($rowdate as $key) {
-			array_push($channel, $key->channel);
-			array_push($summary_traffic, $key->summary_traffic);
-		}
-
-		$data = [
-			"channel" => $channel,
-			"summary_traffic" => $summary_traffic
-		];
+			$data = [
+				"channel" => $channel,
+				"summary_traffic" => $summary_traffic
+			];
 
 		//response true false
-		if($data)
-		{
 			$response = array(
 				'status' => 200,
 				'message' => "Success",

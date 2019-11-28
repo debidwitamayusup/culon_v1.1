@@ -38,7 +38,7 @@ class Stc_Model extends CI_Model
 	//controller TrafficInterval function stc_interval15
 	public function getInterval15()
 	{
-		$query = $this->db->query('SELECT DATE(lup),TIME(lup), SUM(tot_pickup), SUM(antrian), SUM(chat_in_progress)
+		$query = $this->db->query('SELECT DATE(lup) AS dl,TIME(lup) AS tl, SUM(tot_pickup) AS tp, SUM(antrian) AS a, SUM(chat_in_progress) AS cip
 				FROM hsummary_copy
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
@@ -49,7 +49,7 @@ class Stc_Model extends CI_Model
 	//controller TrafficInterval function stc_interval30//
 	public function getInterval30()
 	{
-		$query = $this->db->query('SELECT DATE(lup),TIME(lup), SUM(tot_pickup), SUM(antrian), SUM(chat_in_progress)
+		$query = $this->db->query('SELECT DATE(lup) AS dl,TIME(lup) AS tl, SUM(tot_pickup) AS tp, SUM(antrian) AS a, SUM(chat_in_progress) AS cip
 				FROM hsummary_copy
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
 				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 1800 AND channel;');
@@ -93,16 +93,32 @@ class Stc_Model extends CI_Model
 	//controller AverageTime function stc_aht
 	public function getAht()
 	{
-		$query = $this->db->query('');
+		$this->db->select('channel, DATE(lup) lup_date, TIME(lup) lup_interval, CAST(AVG(handling_time)AS DECIMAL(10,0)) avg_handling_time');
+		$this->db->from('hsummary');
 
+		//where
+		$this->db->where('TIME(lup) BETWEEN "00:00:00" AND "23:59:59"');
+		$this->db->group_by('DATE(lup)');
+		$this->db->group_by('UNIX_TIMESTAMP(lup) DIV 900');
+		$this->db->group_by('channel');
+		$this->db->order_by('channel');
+		$query = $this->db->get();
 		return $query;
 	}
 
 	//controller AverageTime function stc_ast
 	public function getAst()
 	{
-		$query = $this->db->query('');
+		$this->db->select('channel, DATE(lup) lup_date, TIME(lup) lup_time, CAST(AVG(conversation_time)AS DECIMAL(10,0)) avg_service');
+		$this->db->from('hsummary_copy');
 
+		//where
+		$this->db->where('TIME(lup) BETWEEN "00:00:00" AND "23:59:59"');
+		$this->db->group_by('channel');
+		$this->db->group_by('DATE(lup)');
+		$this->db->group_by('UNIX_TIMESTAMP(lup) DIV 900');
+		$this->db->order_by('channel');
+		$query = $this->db->get();
 		return $query;
 	}
 
