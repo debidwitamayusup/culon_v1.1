@@ -26,6 +26,9 @@
 		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
 		<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
 
+		<!---Datepicke---->
+		<link href="<?php echo base_url();?>assets/css/datepicker.css" rel="stylesheet">
+
 		<!-- vector-map -->
 		<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
 
@@ -34,9 +37,19 @@
 
 		<!-- Sidemenu Css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/plugins/side-menu/css/side-menu.css" rel="stylesheet">
 
-		<!-- Morris Charts Plugin -->
-		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
+		<!--Sidemenu-responsive-tabs  css -->
+		<link href="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
+		
+		<!-- select2 Plugin -->
+		<link href="<?php echo base_url();?>assets/plugins/select2/select2.min.css" rel="stylesheet" />
+		
+		<!-- Date Picker Plugin -->
+		<link href="<?php echo base_url();?>assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
+		
+		<!-- P-scroll css -->
+		<link href="<?=base_url()?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
 
 		<!---Font icons-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
@@ -47,5 +60,7 @@
 		<!--Chartist css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist-plugin-tooltip.css">
+		
+		
 	</head>
 </html>

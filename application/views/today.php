@@ -14,7 +14,7 @@
 							</ol>
 							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
-									<button type="button" class="btn btn-light btn-sm">
+									<button type="button" class="btn btn-danger btn-sm">
 										<span class="">Day</span>
 									</button>
 									<button type="button" class="btn btn-light btn-sm">
@@ -30,325 +30,234 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-4 col-lg-4 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Web Traffic</h3>
-								</div>
-								<div class="card-body">
-									<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
-								</div>
-							</div>
-						</div>
-							
-						<!---! Kolom Channel--->
-						<div class="col-xl-8 col-lg-4 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Channel</h3>
-								</div>
-								<div class="card-body">
-								<div class="row">
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-whatsapp text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Whatsapp
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-twitter text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Twitter
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Facebook
-											</div>
-										</div>
-										
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fa fa-envelope text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Email
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-telegram text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Telegram
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-line text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Line
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fa fa-microphone text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Voice
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-instagram text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Instagram
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Messenger
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Twitter DM 
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fa fa-comments text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Live Chat
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Insta DM
-											</div>
-										</div>
-									</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-						
-					<!---Baris Kedua!-->
-					<div class="row">
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Total Interaction</h3>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
-												</div>
-												<span>12% of your Goals</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="text-center card-title">Unique Customer</h3>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
-												</div>
-												<span>12% of your Goals</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Average Customer</h3>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
-												</div>
-												<span>12% of your Goals</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-12">
-							<div class="card box-widget widget-user">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Unique Customer per Channel</h3>
+							<div class="card overflow-hidden">
+								<div class="card-header">
+									<h3 class="card-title">Graphic Interval</h3>
 								</div>
-								<div class="box-footer">
+								<div class="card-body">
+									<div class="form-label">Channels</div>
 									<div class="row">
-										<div class="col-md-12">
-											<div class="row">
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<i class="fab fa-whatsapp text-primary plan-icon"></i>
-														<div class="dash3">
-															<h5 class="text-muted">Whatsapp</h5>
-															<h4 class="counter text-primary num-font">3,628</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-twitter text-info plan-icon"></i>
-															<h5 class="text-muted">Twitter</h5>
-															<h4 class="counter text-info num-font">593</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-facebook text-blue plan-icon"></i>
-															<h5 class="text-muted">Facebook</h5>
-															<h4 class="counter text-blue num-font">168</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-envelope text-warning plan-icon"></i>
-															<h5 class="text-muted">Email</h5>
-															<h4 class="counter text-warning num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-telegram text-dark plan-icon"></i>
-															<h5 class="text-muted">Telegram</h5>
-															<h4 class="counter text-dark num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-instagram text-pink plan-icon"></i>
-															<h5 class="text-muted">Instagram</h5>
-															<h4 class="counter text-pink num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-md-12 border-top"></div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-microphone text-primary plan-icon"></i>
-															<h5 class="text-muted">Voice</h5>
-															<h4 class="counter text-primary num-font">3,628</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-mail-bulk text-info plan-icon"></i>
-															<h5 class="text-muted">Twitter DM</h5>
-															<h4 class="counter text-info num-font">593</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-facebook-messenger text-blue plan-icon"></i>
-															<h5 class="text-muted">Messenger</h5>
-															<h4 class="counter text-blue num-font">168</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-line text-warning plan-icon"></i>
-															<h5 class="text-muted">Line</h5>
-															<h4 class="counter text-warning num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-comments text-dark plan-icon"></i>
-															<h5 class="text-muted">Live Chat</h5>
-															<h4 class="counter text-dark num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-mail-bulk text-pink plan-icon"></i>
-															<h5 class="text-muted">Instagram DM</h5>
-															<h4 class="counter text-pink num-font">7,945</h4>
-														</div>
-													</div>
+										<div class="col-md-2">
+											<div class="form-group m-0">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+														<span class="custom-control-label">Show All</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Whatsapp</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Twitter</span>
+													</label>
 												</div>
 											</div>
 										</div>
+										<div class="col-md-2">
+											<div class="form-group m-0">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" >
+														<span class="custom-control-label">Facebook</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Email</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Telegram</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group m-0">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<span class="custom-control-label">Line</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Voice</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Instagram</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group m-0">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<span class="custom-control-label">Messenger</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Twitter DM</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Live Chat</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="form-group m-0">
+												<div class="custom-controls-stacked">
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<span class="custom-control-label">Instagram DM</span>
+													</label>
+												</div>
+											</div>
+										</div>
+
 									</div>
 								</div>
+								<div class="card-body">
+									<canvas id="customerChart" class="h-400"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Summary Interval Today</h4>
+								</div>
+								<div class="card-body">
+									<div id="echartVertical" class="chartsh overflow-hidden"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Average Interval</h3>
+								</div>
+								<div class="table-responsive">
+									<table class="table card-table table-vcenter table-hover">
+										<thead >
+											<tr>
+												<th>No</th>
+												<th>Channel</th>
+												<th>SLA</th>
+												<th>ART</th>
+												<th>AHT</th>
+												<th>AST</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">1</th>
+												<td>Whatsapp</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td>Twitter</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>Facebook</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>Email</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>Telegram</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>Line</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>Voice</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>Instagram</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">9</th>
+												<td>Messenger</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>Twitter DM</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">11</th>
+												<td>Live Chat</td>
+												<td>70%</td>
+												<td>89%</td>
+												<td>70%</td>
+												<td>70%</td>
+											</tr>
+											<tr>
+												<th scope="row">12</th>
+												<td>Instagram DM</td>
+												<td>80%</td>
+												<td>80%</td>
+												<td>80%</td>
+												<td>80%</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- table-responsive -->
 							</div>
 						</div>
 					</div>
@@ -695,3 +604,11 @@
 					</div>
 				</div>
 				<!--/Sidebar-right-->
+				<?php $this->load->view('temp/footer');?>
+				
+				<!--Plugin -->
+				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
+				<!--Highcharts Plugin -->
+				
+				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
+				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>

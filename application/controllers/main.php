@@ -32,9 +32,25 @@ class main extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('today');
-       $this->load->view('temp/footer');
 	}
-
+	
+	public function this_month(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('this_month');
+	}
+	
+	public function this_year(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('this_year');
+	}
+	
+	public function tester(){
+		$this->load->view('tester');
+	}
 	//Test
 
 	// public function traffic_channel()
