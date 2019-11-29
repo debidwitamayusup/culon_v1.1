@@ -121,7 +121,7 @@ class ApiAgentPerformance extends CI_Controller {
 			);
 		}else{
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "data not found", 
 				"data" => '',
 			);
@@ -179,7 +179,7 @@ class ApiAgentPerformance extends CI_Controller {
 			);
 		}else{
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "data not found", 
 				"data" => '',
 			);
@@ -239,7 +239,7 @@ class ApiAgentPerformance extends CI_Controller {
 			);
 		}else{
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "data not found", 
 				"data" => '',
 			);
@@ -328,7 +328,7 @@ class ApiAgentPerformance extends CI_Controller {
 		}
 		else{
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "data not found", 
 				"data" => '',
 			);
@@ -379,7 +379,7 @@ class ApiAgentPerformance extends CI_Controller {
 			);
 		}else {
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "not found", 
 				"data" => $data,
 			);

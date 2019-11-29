@@ -43,8 +43,8 @@
 		<script src="<?php echo base_url();?>assets/js/left-menu.js"></script>
 
 		<!-- P-scroll js -->
-		<script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll-leftmenu.js"></script>
+		<!-- <script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.js"></script> -->
+		<!-- <script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll-leftmenu.js"></script> -->
 
 		<!-- Input Mask js -->
 		<script src="<?php echo base_url();?>assets/plugins/jquery.mask/jquery.mask.min.js"></script>
@@ -65,12 +65,12 @@
 
 	
 		<!--Morris Charts js-->
-		<script src="<?php echo base_url();?> assets/plugins/morris/morris.min.js"></script>
-		<script src="<?php echo base_url();?> assets/plugins/morris/raphael.min.js"></script>
+		<script src="<?php echo base_url();?>assets/plugins/morris/morris.min.js"></script>
+		<script src="<?php echo base_url();?>assets/plugins/morris/raphael.min.js"></script>
 		
 		<!--  Chart js -->
 		
-		<script src="<?php echo base_url();?> assets/plugins/chart/chart.bundle.js"></script>
+		<script src="<?php echo base_url();?>assets/plugins/chart/chart.bundle.js"></script>
 		<!-- peitychart -->
 		<script src="<?php echo base_url();?>assets/plugins/peitychart/jquery.peity.min.js"></script>
 
