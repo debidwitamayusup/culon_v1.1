@@ -162,7 +162,14 @@ class Stc_Model extends CI_Model
 
 	public function getCardMain()
 	{
-		$query = $this->db->query("");
+		$this->db->select('COUNT(channel)', '*');
+		$this->db->from('hsummary');
+		$this->db->join('m_content','m_content.id = hsummary.content');
+		$this->db->distinct('content');
+		$this->db->where('channel');
+		$this->db->group_by('channel');
+
+		$query = $this->db->get();
 
 		return $query->result();
 	}
