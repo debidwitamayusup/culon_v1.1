@@ -353,29 +353,29 @@ class ApiAgentPerformance extends CI_Controller {
 			$case_out = array();
 			$msg_in = array();
 			$msg_out = array();
-			foreach ($query as $key){
-				array_push($row_date, $key->row_date);
-				array_push($tenant_id, $key->tenant_id);
-				array_push($case_in, $key->case_in);
-				array_push($case_out, $key->case_out);
-				array_push($msg_in, $key->msg_in);
-				array_push($msg_out, $key->msg_out);
-			}
+			// foreach ($query as $key){
+			// 	array_push($row_date, $key->row_date);
+			// 	array_push($tenant_id, $key->tenant_id);
+			// 	array_push($case_in, $key->case_in);
+			// 	array_push($case_out, $key->case_out);
+			// 	array_push($msg_in, $key->msg_in);
+			// 	array_push($msg_out, $key->msg_out);
+			// }
 			// var_dump($row_date);die();
-			$data = [
-				"row_date" => $row_date,
-				"tenant_id" => $tenant_id,
-				"case_in" => $case_in,
-				"case_out" => $case_out,
-				"msg_in" => $msg_in,
-				"msg_out" => $msg_out,
+			// $data = [
+			// 	"row_date" => $row_date,
+			// 	"tenant_id" => $tenant_id,
+			// 	"case_in" => $case_in,
+			// 	"case_out" => $case_out,
+			// 	"msg_in" => $msg_in,
+			// 	"msg_out" => $msg_out,
 
-			];
+			// ];
 		
 			$response_data = array(
 				"status" => 200, 
 				"message" => "success", 
-				"data" => $data
+				"data" => $query
 			);
 		}else {
 			$response_data = array(
