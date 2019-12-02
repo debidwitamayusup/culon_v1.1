@@ -120,6 +120,23 @@ class SummaryTrafficChannel extends CI_Controller {
 		echo json_encode($response);
 	}
 
+	public function uniqueCustomerPerChannel(){
+
+		$query = $this->Stc_Model->get_all_unique_customer_per_channel();
+		if($query)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $query);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
+
+		echo json_encode($response);
+	}
+
 	public function cardMain()
 	{
 		$data = array();
@@ -248,4 +265,62 @@ class SummaryTrafficChannel extends CI_Controller {
 		}
 		echo json_encode($response);
 	}
+
+	public function total_interaction()
+	{
+		$totInteraction = $this->Stc_Model->getTotInteraction()->row();
+
+		if($totInteraction)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $totInteraction);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $interaction);
+		}
+		echo json_encode($response);
+	}
+
+	public function total_unique_customer()
+	{
+		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer()->row();
+
+		if ($totUniqueCustomer) 
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $totUniqueCustomer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $totUniqueCustomer);
+		}
+		echo json_encode($response);
+	}
+
+	public function average_customer()
+	{
+		$averageCustomer = $this->Stc_Model->getAverageCustomer()->row();
+
+		if ($averageCustomer) 
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $averageCustomer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $averageCustomer);
+		}
+		echo json_encode($response);
+	}
+
 }

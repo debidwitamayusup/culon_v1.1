@@ -112,6 +112,15 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
+	public function get_all_unique_customer_per_channel()
+	{
+		$this->db->select('channel_name, sum(total_unique) as total_unique');
+		$this->db->from('summary_channel');
+		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name', 'ASC');
+		$query = $this->db->get();
+    	return $query->result();
+	}
 	//controller AverageTime function stc_art
 	public function getArt()
 	{
@@ -187,24 +196,28 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function getInteraction()
+	public function getTotInteraction()
 	{
-		$query = $this->db->query('');
-
-		return $query->result();
+		$this->db->select('SUM(total) total_interaction');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
 	}
 
-	public function getUniqueCustomer()
+	public function getTotUniqueCustomer()
 	{
-		$query = $this->db->query('');
-
-		return $query->result();
+		$this->db->select('SUM(total_unique) total_unique_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
 	}
 
-	public function getAverageCustom()
+	public function getAverageCustomer()
 	{
-		$query = $this->db->query('');
-
-		return $query->result();
+		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
 	}
+
 }
