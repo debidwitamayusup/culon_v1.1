@@ -156,7 +156,9 @@ class Stc_Model extends CI_Model
 		$this->db->group_by('DATE(lup)');
 		$this->db->group_by('UNIX_TIMESTAMP(lup) DIV 900');
 		$this->db->order_by('channel');
+
 		$query = $this->db->get();
+		
 		return $query;
 	}
 
