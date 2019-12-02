@@ -49,9 +49,14 @@ class main extends CI_Controller {
 		$this->load->view('this_year');
 	}
 	
-	public function tester(){
-		$this->load->view('tester');
+	public function average(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_average');
+		$this->load->view('temp/footer');		
 	}
+
 	//Test
 
 	// public function traffic_channel()
