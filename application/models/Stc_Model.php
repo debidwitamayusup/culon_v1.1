@@ -164,12 +164,9 @@ class Stc_Model extends CI_Model
 
 	public function getCardMain()
 	{
-		$this->db->select('COUNT(channel)', '*');
-		$this->db->from('hsummary');
-		$this->db->join('m_content','m_content.id = hsummary.content');
-		$this->db->distinct('content');
-		$this->db->where('channel');
-		$this->db->group_by('channel');
+		$this->db->select('channel_name channel, SUM(total) total');
+		$this->db->from('summary_channel');
+		$this->db->group_by('channel_name');
 
 		$query = $this->db->get();
 

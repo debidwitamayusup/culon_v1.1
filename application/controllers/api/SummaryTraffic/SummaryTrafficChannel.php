@@ -122,7 +122,22 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cardMain()
 	{
+		$data = array();
 		$card_today = $this->Stc_Model->getCardMain();
+
+
+		$channel = array();
+		$total = array();
+
+		foreach ($card_today as $key) {
+			array_push($channel, $key->channel);
+			array_push($total, $key->total);
+		}
+
+		$data = [
+			'channel' => $channel,
+			'total' => $total
+		];
 
 		if($card_today)
 		{
