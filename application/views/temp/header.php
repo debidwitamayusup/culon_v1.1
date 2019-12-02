@@ -64,4 +64,5 @@
 		
 		
 	</head>
+	<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
 </html>
