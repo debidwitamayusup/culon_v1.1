@@ -35,29 +35,31 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="form-group row">
-												<select class="form-control select2" data-placeholder="Choose one (with optgroup)">
-													<optgroup label="Channel">
-														<option value="1">Show</option>
-														<option value="2">Whatsapp</option>
-														<option value="3">Twitter</option>
-														<option value="4">Facebook</option>
-														<option value="5">Email</option>
-														<option value="6">Telegram</option>
-														<option value="7">Line</option>
-														<option value="8">Voice</option>
-														<option value="9">Instagram</option>
-														<option value="10">Messenger</option>
-														<option value="11">Twitter DM</option>
-														<option value="12">Live Chat</option>
-														<option value="13">Pesan</option>
-													</optgroup>
-												</select>
+											<select class="form-control select2"
+												data-placeholder="Choose one (with optgroup)">
+												<optgroup label="Channel">
+													<option value="1">Show</option>
+													<option value="2">Whatsapp</option>
+													<option value="3">Twitter</option>
+													<option value="4">Facebook</option>
+													<option value="5">Email</option>
+													<option value="6">Telegram</option>
+													<option value="7">Line</option>
+													<option value="8">Voice</option>
+													<option value="9">Instagram</option>
+													<option value="10">Messenger</option>
+													<option value="11">Twitter DM</option>
+													<option value="12">Live Chat</option>
+													<option value="13">Pesan</option>
+												</optgroup>
+											</select>
 										</div>
 										<div class="d-flex order-lg-2 ml-auto float-right">
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
-														<select class="form-control select2" data-placeholder="Choose one (with optgroup)">
+														<select class="form-control select2"
+															data-placeholder="Choose one (with optgroup)">
 															<optgroup label="Month">
 																<option value="1">Januari</option>
 																<option value="2">Februari</option>
@@ -108,7 +110,7 @@
 									</div>
 									<div class="table-responsive">
 										<table class="table card-table table-vcenter table-hover">
-											<thead >
+											<thead>
 												<tr>
 													<th>No</th>
 													<th>Channel</th>
@@ -122,7 +124,8 @@
 												<tr>
 													<th scope="row">1</th>
 													<td>Whatsapp</td>
-													<td>70%</td><td>10:00:00</td>
+													<td>70%</td>
+													<td>10:00:00</td>
 													<td>10:50:19</td>
 													<td>09:10:10</td>
 												</tr>
@@ -145,7 +148,8 @@
 												<tr>
 													<th scope="row">4</th>
 													<td>Email</td>
-													<td>70%</td><td>10:00:00</td>
+													<td>70%</td>
+													<td>10:00:00</td>
 													<td>10:50:19</td>
 													<td>09:10:10</td>
 												</tr>
@@ -194,8 +198,8 @@
 													<td>Twitter DM</td>
 													<td>70%</td>
 													<t<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
+														<td>10:50:19</td>
+														<td>09:10:10</td>
 												</tr>
 												<tr>
 													<th scope="row">11</th>
@@ -220,10 +224,9 @@
 								</div>
 							</div>
 						</div>
-				</div>
-				<?php $this->load->view('temp/footer');?>
-				<!--Chart Plugin -->
-				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
-				<script src="<?=base_url()?>public/js/app/lineChart.js"></script>
-				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
-				
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<!--Chart Plugin -->
+					<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
+					<script src="<?=base_url()?>public/js/app/lineChart.js"></script>
+					<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
