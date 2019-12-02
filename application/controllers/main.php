@@ -20,17 +20,38 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('navbar');
-		$this->load->view('sidebar');
-        $this->load->view('body');
-       $this->load->view('footer');
+
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+        $this->load->view('temp/body');
+       $this->load->view('temp/footer');
 	}
 	
-	public function cobaview(){
-		$this->load->view('index2');
+	public function this_day(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('today');
 	}
-
+	
+	public function this_month(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('this_month');
+	}
+	
+	public function this_year(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('this_year');
+	}
+	
+	public function tester(){
+		$this->load->view('tester');
+	}
 	//Test
 
 	// public function traffic_channel()
