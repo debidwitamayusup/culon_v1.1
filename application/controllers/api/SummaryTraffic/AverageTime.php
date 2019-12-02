@@ -12,17 +12,39 @@ class AverageTime extends CI_Controller {
 
 	public function stc_art()
 	{
-		$art['data'] = $this->Stc_Model->getArt()->result();
+		$data = array();
+		$art = $this->Stc_Model->getArt()->result();
 
 		if($art)
 		{
+			$channel = array();
+			$lup_date = array();
+			$lup_time = array();
+			$avg_response_time = array();
+
+			foreach ($art as $key) {
+				array_push($channel, $key->channel);
+				array_push($lup_date, $key->lup_date);
+				array_push($lup_time, $key->lup_time);
+				array_push($avg_response_time, $key->avg_response_time);
+			}
+
+			$data = [
+				'channel' => $channel,
+				'lup_date' => $lup_date,
+				'lup_time' => $lup_time,
+				'avg_response_time' => $avg_response_time
+			];
+
 			$response = array(
-				'status' => true,
-				'data' => $art);
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
 		} else {
 			$response = array(
-				'status' => false,
-				'data' => 'Data Not Found');
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $data);
 		}
 
 		echo json_encode($response);

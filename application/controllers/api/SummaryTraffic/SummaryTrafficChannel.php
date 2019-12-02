@@ -14,24 +14,24 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getToday();
+		$rowdate = $this->Stc_Model->getToday()->result();
 
-		$channel = array();
-		$summary_traffic = array();
+		if($rowdate)
+		{
+			$channel = array();
+			$summary_traffic = array();
 
-		foreach ($rowdate as $key) {
-			array_push($channel, $key->channel);
-			array_push($summary_traffic, $key->summary_traffic);
-		}
+			foreach ($rowdate as $key) {
+				array_push($channel, $key->channel);
+				array_push($summary_traffic, $key->summary_traffic);
+			}
 
-		$data = [
-			"channel" => $channel,
-			"summary_traffic" => $summary_traffic
-		];
+			$data = [
+				"channel" => $channel,
+				"summary_traffic" => $summary_traffic
+			];
 
 		//response true false
-		if($data)
-		{
 			$response = array(
 				'status' => 200,
 				'message' => "Success",
@@ -51,7 +51,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getMonth();
+		$rowdate = $this->Stc_Model->getMonth()->result();
 
 		$channel = array();
 		$summary_traffic = array();
@@ -88,7 +88,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		//proses select data
 		$data = array();
-		$rowdate = $this->Stc_Model->getYear();
+		$rowdate = $this->Stc_Model->getYear()->result();
 
 		$channel = array();
 		$summary_traffic = array();
@@ -139,7 +139,22 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cardMain()
 	{
-		$card_today = $this->Stc_Model->getCardToday();
+		$data = array();
+		$card_today = $this->Stc_Model->getCardMain();
+
+
+		$channel = array();
+		$total = array();
+
+		foreach ($card_today as $key) {
+			array_push($channel, $key->channel);
+			array_push($total, $key->total);
+		}
+
+		$data = [
+			'channel' => $channel,
+			'total' => $total
+		];
 
 		if($card_today)
 		{
@@ -158,7 +173,24 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cGraphMain()
 	{
+		$data = array();
 		$circle_main = $this->Stc_Model->getCGraph();
+
+		$channel = array();
+		$total = array();
+		$persen = array();
+
+		foreach ($circle_main as $key) {
+			array_push($channel, $key->channel);
+			array_push($total, $key->total);
+			array_push($persen, $key->persen);
+		}
+
+		$data = [
+			'channel' => $channel,
+			'total' => $total,
+			'persen' => $persen
+		];
 
 		if($circle_main)
 		{
@@ -172,6 +204,7 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $circle_main);
 		}
+		echo json_encode($response);
 	}
 
 	public function bGraphMain()
@@ -190,6 +223,7 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $batang_main);
 		}
+		echo json_encode($response);
 	}
 
 	public function interaction()
@@ -208,6 +242,45 @@ class SummaryTrafficChannel extends CI_Controller {
 				'message' => 'Data Not Found',
 				'data' => $interaction);
 		}
+		echo json_encode($response);
+	}
+
+	public function uniqueCustomer()
+	{
+		$customer = $this->Stc_Model->getUniqueCustom();
+
+		if($customer)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		}
+		echo json_encode($response);
+	}
+
+	public function averageCustomer()
+	{
+		$customer = $this->Stc_Model->getAverageCustom();
+
+		if($customer)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $customer);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $customer);
+		}
+		echo json_encode($response);
 	}
 
 	public function total_interaction()

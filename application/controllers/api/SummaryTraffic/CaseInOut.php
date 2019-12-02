@@ -11,17 +11,33 @@ class CaseInOut extends CI_Controller {
 
 	public function case_in_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseIn()->result();
+		$data = array();
+		$case = $this->Stc_Model->getCaseIn()->result();
 
 		if($case)
 		{
+			$lup = array();
+			$case_in = array();
+
+			foreach ($case as $key) {
+				array_push($lup, $key->lup);
+				array_push($case_in, $key->case_in);
+			}
+
+			$data = [
+				'lup' => $lup,
+				'case_in' => $case_in
+			];
+
 			$response = array(
-				'status' => true,
-				'data' => $case);
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
 		} else {
 			$response = array(
-				'status' => false,
-				'data' => 'Data Not Found');
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $data);
 		}
 
 		echo json_encode($response);
@@ -29,17 +45,33 @@ class CaseInOut extends CI_Controller {
 
 	public function case_out_interval()
 	{
-		$case['data'] = $this->Stc_Model->getCaseOut()->result();
+		$data = array();
+		$case = $this->Stc_Model->getCaseOut()->result();
 
 		if($case)
 		{
+			$lup = array();
+			$case_out = array();
+
+			foreach ($case as $key) {
+				array_push($lup, $key->lup);
+				array_push($case_out, $key->case_out);
+			}
+
+			$data = [
+				'lup' => $lup,
+				'case_out' => $case_out
+			];
+
 			$response = array(
-				'status' => true,
-				'data' => $case);
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
 		} else {
 			$response = array(
-				'status' => false,
-				'data' => 'Data Not Found');
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $data);
 		}
 
 		echo json_encode($response);
