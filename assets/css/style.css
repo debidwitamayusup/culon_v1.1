@@ -4751,7 +4751,7 @@ div.dataTables_wrapper div.dataTables_filter input {
 	margin-left: 1.5rem;
 }
 .card-header {
-	padding: 1.5rem 1.5rem;
+	padding: 1.5rem 0rem;
 	margin-bottom: 0;
 	background-color: rgba(0, 0, 0, 0.03);
 	border-bottom:1px solid #e4e6f9;
@@ -13954,7 +13954,7 @@ a.icon {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
 	margin: 0;
-	padding: 1.5rem 1.5rem;
+	padding: 0.5rem 1.5rem;
 	position: relative;
 	
 }

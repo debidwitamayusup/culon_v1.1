@@ -3,11 +3,12 @@
 					<!-- Navbar Right Menu-->
 					<div class="container-fluid">
 						<div class="d-flex">
+							<!-- Sidebar toggle button-->
+							<a aria-label="Hide Sidebar"  style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 							<a class="header-brand">
 								<img alt="logo" class="header-brand-img main-logo float-left" src="<?= base_url()?>assets/images/brand/Infomedia.png">
 							</a>
-							<!-- Sidebar toggle button-->
-							<a aria-label="Hide Sidebar"  style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
+							
 							<div class="d-flex order-lg-2 ml-auto">
 								<div class="d-sm-flex d-none">
 									<a  class="nav-link icon full-screen-link">

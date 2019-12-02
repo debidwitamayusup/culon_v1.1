@@ -26,9 +26,6 @@
 		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
 		<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
 
-		<!---Datepicke---->
-		<link href="<?php echo base_url();?>assets/css/datepicker.css" rel="stylesheet">
-
 		<!-- vector-map -->
 		<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
 
@@ -42,14 +39,17 @@
 		<!--Sidemenu-responsive-tabs  css -->
 		<link href="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
 		
-		<!-- select2 Plugin -->
-		<link href="<?php echo base_url();?>assets/plugins/select2/select2.min.css" rel="stylesheet" />
-		
-		<!-- Date Picker Plugin -->
-		<link href="<?php echo base_url();?>assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
-		
 		<!-- P-scroll css -->
 		<link href="<?=base_url()?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
+
+		<!-- select2 Plugin -->
+		<link href="<?php echo base_url();?>/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+
+		<!-- Time picker Plugin -->
+		<link href="<?php echo base_url();?>assets/plugins/jquery.timepicker/jquery.timepicker.css" rel="stylesheet" />
+
+		<!-- Date Picker Plugin -->
+		<link href="<?php echo base_url();?>assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
 
 		<!---Font icons-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />

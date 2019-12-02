@@ -1,14 +1,15 @@
 ( function ( $ ) {
     "use strict";
 	var chartdata = [{
-		name: 'whatsapp',
+		name: 'Insta DM',
 		type: 'bar',
-		data: [10, 15, 9, 18, 10, 15]
+		data: [10]
 	}, {
-		name: 'twitter',
+		name: 'Live Chat',
 		type: 'bar',
-		data: [10, 14, 10, 15, 9, 25]
+		data: [7]
 	}];
+	
 	/*----Echart3----*/
 	var option3 = {
 		grid: {
@@ -31,7 +32,7 @@
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp', 'Twitter', 'Facebook', 'Email', 'Telegram', 'Line', 'Voice', 'Instagram', 'Messenger', 'Twitter DM', 'Live Chat','Insta DM'],
+			data: ['Whatsapp', 'Twitter', 'Facebook', 'Email', 'Telegram', 'Line', 'Voice', 'Instagram', 'Messenger', 'Twitter DM', 'Live Chat','Pesan'],
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -39,7 +40,7 @@
 			},
 			axisLine: {
 				lineStyle: {
-					color: '#efefff'
+					color: '#1396cc'
 				}
 			},
 			axisLabel: {
@@ -48,9 +49,10 @@
 			}
 		},
 		series: chartdata,
-		color: ['#1396cc', '#1389jc']
+		color: ['#1c3353', '#42265e']
 	};
 	var chart3 = document.getElementById('echartVertical');
 	var barChart3 = echarts.init(chart3);
 	barChart3.setOption(option3);
+	
 } )( jQuery );

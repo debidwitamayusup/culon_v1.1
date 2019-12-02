@@ -19,7 +19,7 @@ Chart.elements.Rectangle.prototype.draw = function() {
 		right = vm.x + vm.width / 2;
 		top = vm.y;
 		bottom = vm.base;
-		signX = 1;
+		signX = 2;
 		signY = bottom > top ? 1 : -1;
 		borderSkipped = vm.borderSkipped || 'bottom';
 	} else {
