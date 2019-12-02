@@ -71,4 +71,21 @@ class SummaryTrafficChannel extends CI_Controller {
 
 		echo json_encode($response);
 	}
+
+	public function uniqueCustomerPerChannel(){
+
+		$query = $this->Stc_Model->get_all_unique_customer_per_channel();
+		if($query)
+		{
+			$response = array(
+				'status' => true,
+				'data' => $query);
+		} else {
+			$response = array(
+				'status' => false,
+				'data' => 'Data Not Found');
+		}
+
+		echo json_encode($response);
+	}
 }
