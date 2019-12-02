@@ -24,7 +24,7 @@
 			<ul class="slide-menu">
 				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
 				<li><a class="slide-item" href="<?= base_url()?>">Traffic Interval</a></li>
-				<li><a class="slide-item" href="<?= base_url()?>">ART / AHT / AST</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 			</ul>
 		</li>
 		<li class="slide">

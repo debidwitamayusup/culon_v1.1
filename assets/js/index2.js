@@ -98,7 +98,7 @@
 				"Messenger",
 				"Twitter DM",
 				"Live Chat",
-				"Insta DM"
+				"Pesan"
 			]
 		},
 		options: {
