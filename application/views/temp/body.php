@@ -42,7 +42,6 @@
 								</div>
 							</div>
 						</div>
-
 						<!---! Kolom Channel--->
 						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
@@ -50,117 +49,12 @@
 									<h3 class="card-title">Interaction</h3>
 								</div>
 								<div class="card-body">
-									<div class="row">
-										<div class="col-xl-3 col-lg-2">
-											<div class="mini-stat clearfix bg-primary rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-whatsapp text-primary"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Whatsapp
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-info rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-twitter text-info"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Twitter
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-blue rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-facebook text-blue"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Facebook
-												</div>
-											</div>
-
-										</div>
-										<div class="col-xl-3 col-lg-2">
-											<div class="mini-stat clearfix bg-danger rounded">
-												<span class="mini-stat-icon"><i
-														class="fa fa-envelope text-danger"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Email
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-dark rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-telegram text-dark"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Telegram
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-success rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-line text-success"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Line
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-3 col-lg-2">
-											<div class="mini-stat clearfix bg-warning rounded">
-												<span class="mini-stat-icon"><i
-														class="fa fa-microphone text-warning"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Voice
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-pink rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-instagram text-pink"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Instagram
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-blue-dark rounded">
-												<span class="mini-stat-icon"><i
-														class="fab fa-facebook-messenger text-blue"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Messenger
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-3 col-lg-2">
-											<div class="mini-stat clearfix bg-indigo rounded">
-												<span class="mini-stat-icon"><i
-														class="fa fa-mail-bulk text-indigo"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Twitter DM
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-indigo-dark rounded">
-												<span class="mini-stat-icon"><i
-														class="fa fa-comments text-indigo"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Live Chat
-												</div>
-											</div>
-											<div class="mini-stat clearfix bg-indigo-darker rounded">
-												<span class="mini-stat-icon"><i class="fa fa-envelope-open text-indigo"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Pesan
-												</div>
-											</div>
-										</div>
-									</div>
+									<div id="retres" class="row"></div>
 								</div>
 							</div>
 						</div>
 					</div>
-
+						
 					<!---Baris Kedua!-->
 					<div class="row">
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
