@@ -14,15 +14,12 @@
 							</ol>
 							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
-									<button type="button" class="btn btn-light btn-sm">
-										<span class="">Day</span>
-									</button>
-									<button type="button" class="btn btn-light btn-sm">
-										<span class="">Month</span>
-									</button>
-									<button type="button" class="btn btn-light btn-sm">
-										<span class="">Year</span>
-									</button>
+									<a href="<?=base_url()?>main/this_day" class="btn btn-light btn-sm">
+										<span class="">Day</a></span>
+									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
+										<span class="">Month</a></span>
+									<a href="<?=base_url()?>main/this_year" class="btn btn-light btn-sm">
+										<span class="">Year</a></span>
 								</div>
 							</div>
 						</div>
@@ -150,13 +147,12 @@
 													Live Chat
 												</div>
 											</div>
-											<div class="mini-stat clearfix bg-indigo-darker rounded">
-												<span class="mini-stat-icon"><i
-														class="fa fa-mail-bulk text-indigo"></i></span>
-												<div class="mini-stat-info text-white float-right">
-													<h3>1,142</h3>
-													Insta DM
-												</div>
+										</div>
+										<div class="mini-stat clearfix bg-indigo-darker rounded">
+											<span class="mini-stat-icon"><i class="fa fa-envelope-open text-indigo"></i></span>
+											<div class="mini-stat-info text-white float-right">
+												<h3>1,142</h3>
+												Pesan
 											</div>
 										</div>
 									</div>
@@ -362,8 +358,8 @@
 												<div class="col-xl-2 border-right">
 													<div class="card-body text-center">
 														<div class="dash3">
-															<i class="fa fa-mail-bulk text-pink plan-icon"></i>
-															<h5 class="text-muted">Instagram DM</h5>
+															<i class="fa fa-envelope-open text-pink plan-icon"></i>
+															<h5 class="text-muted">Pesan</h5>
 															<h4 class="counter text-pink num-font">7,945</h4>
 														</div>
 													</div>

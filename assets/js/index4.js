@@ -31,7 +31,7 @@
                 label: "Facebook",
                 data: [ 0, 5, 12, 14, 30, 40, 60,90,19,40,50,80,70,60,60,20,25,20,18,40,50,40,70,50,60 ],
                 backgroundColor: 'transparent',
-                borderColor: '#316cbe',
+                borderColor: '#467fcf',
                 borderWidth: 3,
                 pointStyle: 'circle',
                 pointRadius: 4,
@@ -118,13 +118,13 @@
                 pointBorderColor: 'transparent',
                 pointBackgroundColor: '#42265e',
                     },{
-                label: "Insta DM",
+                label: "Pesan",
                 data: [ 0, 3, 20, 48, 60, 30, 50,30,20,30,60,40,70,80,60,70,35,42,30,50,40,50,90,50,40 ],
                 backgroundColor: 'transparent',
                 borderColor: '#1c3353',
                 borderWidth: 2,
                 pointStyle: 'circle',
-                pointRadius: 0,
+                pointRadius: 4,
                 pointBorderColor: 'transparent',
                 pointBackgroundColor: '#1c3353',
                     }]
@@ -133,9 +133,12 @@
 			responsive: true,
 			maintainAspectRatio: false,
 			legend:{
-				position:'bottom'
+				position:'bottom',
+                labels:{
+                     boxWidth:10
+                }
 			},
-			barRoundness: 1,
+			barRoundness:  1,
             scales: {
                 yAxes: [ {
                     ticks: {
@@ -169,6 +172,7 @@
             maintainAspectRatio: false,
             legend: {
                 display: false
+
             },
             responsive: true,
             tooltips: {
