@@ -20,6 +20,7 @@ class main extends CI_Controller {
 	 */
 	public function index()
 	{
+
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');

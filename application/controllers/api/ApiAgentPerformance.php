@@ -98,7 +98,7 @@ class ApiAgentPerformance extends CI_Controller {
 		$agent_id = "";
 
 		// collect from db
-		$data = array(
+		$arr_data = array(
 			[
 				"agent_id" => 1,
 				"aht" => 215,
@@ -116,12 +116,36 @@ class ApiAgentPerformance extends CI_Controller {
 			]
 		);
 
-		//process
-		$response_data = array(
-			"status" => 200, 
-			"message" => "success", 
-			"data" => "",
-		);
+		$data = array();
+		if($arr_data){
+			// var_dump($query);die();
+			$agent_id = array();
+			$aht = array();
+			$date = array();
+			foreach ($arr_data as $key){
+				array_push($agent_id, $key['agent_id']);
+				array_push($aht, $key['aht']);
+				array_push($date, $key['date']);
+			}
+			// var_dump($row_date);die();
+			$data = [
+				"agent_id" => $agent_id,
+				"aht" => $aht,
+				"date" => $date,
+			];
+
+			$response_data = array(
+				"status" => 200, 
+				"message" => "success", 
+				"data" => $data,
+			);
+		}else{
+			$response_data = array(
+				"status" => 204, 
+				"message" => "data not found", 
+				"data" => '',
+			);
+		}
 
 		//output json
 		echo json_encode($response_data);
@@ -132,7 +156,7 @@ class ApiAgentPerformance extends CI_Controller {
 		$agent_id = "";
 
 		// collect from db
-		$data = array(
+		$arr_data = array(
 			[
 				"agent_id" => 1,
 				"art" => 215,
@@ -150,12 +174,36 @@ class ApiAgentPerformance extends CI_Controller {
 			]
 		);
 
-		//process
-		$response_data = array(
-			"status" => 200, 
-			"message" => "success", 
-			"data" => "",
-		);
+		$data = array();
+		if($arr_data){
+			// var_dump($query);die();
+			$agent_id = array();
+			$art = array();
+			$date = array();
+			foreach ($arr_data as $key){
+				array_push($agent_id, $key['agent_id']);
+				array_push($art, $key['art']);
+				array_push($date, $key['date']);
+			}
+			// var_dump($row_date);die();
+			$data = [
+				"agent_id" => $agent_id,
+				"art" => $art,
+				"date" => $date,
+			];
+
+			$response_data = array(
+				"status" => 200, 
+				"message" => "success", 
+				"data" => $data,
+			);
+		}else{
+			$response_data = array(
+				"status" => 204, 
+				"message" => "data not found", 
+				"data" => '',
+			);
+		}
 
 		//output json
 		echo json_encode($response_data);
@@ -167,7 +215,7 @@ class ApiAgentPerformance extends CI_Controller {
 
 		// collect from db
 
-		$data = array(
+		$arr_data = array(
 			[
 				"agent_id" => 1,
 				"ast" => 215,
@@ -186,11 +234,36 @@ class ApiAgentPerformance extends CI_Controller {
 		);
 
 		//process
-		$response_data = array(
-			"status" => 200, 
-			"message" => "success", 
-			"data" => $data,
-		);
+		$data = array();
+		if($arr_data){
+			// var_dump($query);die();
+			$agent_id = array();
+			$ast = array();
+			$date = array();
+			foreach ($arr_data as $key){
+				array_push($agent_id, $key['agent_id']);
+				array_push($ast, $key['ast']);
+				array_push($date, $key['date']);
+			}
+			// var_dump($row_date);die();
+			$data = [
+				"agent_id" => $agent_id,
+				"ast" => $ast,
+				"date" => $date,
+			];
+
+			$response_data = array(
+				"status" => 200, 
+				"message" => "success", 
+				"data" => $data,
+			);
+		}else{
+			$response_data = array(
+				"status" => 204, 
+				"message" => "data not found", 
+				"data" => '',
+			);
+		}
 
 		//output json
 		echo json_encode($response_data);
@@ -198,7 +271,8 @@ class ApiAgentPerformance extends CI_Controller {
 
 	public function summaryCall(){
 		// Summary (Call, AHT, ART, AST, SL) by tanggal per agent.
-		$data = array(
+		// dummy
+		$arr_data = array(
 			[
 				"agent_id" => 1,
 				"name" => "Agent 1",
@@ -230,14 +304,55 @@ class ApiAgentPerformance extends CI_Controller {
 				"date" => "2019-11-30"
 			]
 		);
-		// get data agent
+		
 
-		//process
-		$response_data = array(
-			"status" => 200, 
-			"message" => "success", 
-			"data" => $data,
-		);
+		$data = array();
+		if($arr_data){
+			// var_dump($query);die();
+			$agent_id = array();
+			$name = array();
+			$call = array();
+			$aht = array();
+			$art = array();
+			$ast = array();
+			$sl = array();
+			$date = array();
+			foreach ($arr_data as $key){
+				array_push($agent_id, $key['agent_id']);
+				array_push($name, $key['name']);
+				array_push($call, $key['call']);
+				array_push($aht, $key['aht']);
+				array_push($art, $key['art']);
+				array_push($ast, $key['ast']);
+				array_push($sl, $key['sl']);
+				array_push($date, $key['date']);
+			}
+			// var_dump($row_date);die();
+			$data = [
+				"agent_id" => $agent_id,
+				"name" => $name,
+				"call" => $call,
+				"aht" => $aht,
+				"art" => $art,
+				"ast" => $ast,
+				"sl" => $sl,
+				"date" => $date,
+			];
+
+			//process
+			$response_data = array(
+				"status" => 200, 
+				"message" => "success", 
+				"data" => $data,
+			);
+		}
+		else{
+			$response_data = array(
+				"status" => 204, 
+				"message" => "data not found", 
+				"data" => '',
+			);
+		}
 
 		//output json
 		echo json_encode($response_data);
@@ -258,33 +373,33 @@ class ApiAgentPerformance extends CI_Controller {
 			$case_out = array();
 			$msg_in = array();
 			$msg_out = array();
-			foreach ($query as $key){
-				array_push($row_date, $key->row_date);
-				array_push($tenant_id, $key->tenant_id);
-				array_push($case_in, $key->case_in);
-				array_push($case_out, $key->case_out);
-				array_push($msg_in, $key->msg_in);
-				array_push($msg_out, $key->msg_out);
-			}
+			// foreach ($query as $key){
+			// 	array_push($row_date, $key->row_date);
+			// 	array_push($tenant_id, $key->tenant_id);
+			// 	array_push($case_in, $key->case_in);
+			// 	array_push($case_out, $key->case_out);
+			// 	array_push($msg_in, $key->msg_in);
+			// 	array_push($msg_out, $key->msg_out);
+			// }
 			// var_dump($row_date);die();
-			$data = [
-				"row_date" => $row_date,
-				"tenant_id" => $tenant_id,
-				"case_in" => $case_in,
-				"case_out" => $case_out,
-				"msg_in" => $msg_in,
-				"msg_out" => $msg_out,
+			// $data = [
+			// 	"row_date" => $row_date,
+			// 	"tenant_id" => $tenant_id,
+			// 	"case_in" => $case_in,
+			// 	"case_out" => $case_out,
+			// 	"msg_in" => $msg_in,
+			// 	"msg_out" => $msg_out,
 
-			];
+			// ];
 		
 			$response_data = array(
 				"status" => 200, 
 				"message" => "success", 
-				"data" => $data
+				"data" => $query
 			);
 		}else {
 			$response_data = array(
-				"status" => 200, 
+				"status" => 204, 
 				"message" => "not found", 
 				"data" => $data,
 			);

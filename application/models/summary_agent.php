@@ -15,14 +15,17 @@ class summary_agent extends CI_Model{
 	}
 
 	public function get_summary_case(){
-		$this->db->select("row_date, tenant_id, SUM(case_in) as case_in, SUM(case_out)as case_out, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out");
-		$this->db->from('hsummary');
+		// $this->db->select("row_date, tenant_id, SUM(case_in) as case_in, SUM(case_out)as case_out, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out");
+		// $this->db->from('hsummary');
 
-		// where
+		// // where
 		
-		$this->db->group_by('row_date');
-		$this->db->order_by('row_date', 'ASC');
-		$this->db->order_by('tenant_id', 'ASC');
+		// $this->db->group_by('row_date');
+		// $this->db->order_by('row_date', 'ASC');
+		// $this->db->order_by('tenant_id', 'ASC');
+		$this->db->select('*');
+		$this->db->from('agent_perform');
+		$this->db->limit(10);
 		$query = $this->db->get();
     	return $query->result(); 
 	}
