@@ -35,21 +35,17 @@
 		<!-- Custom scroll bar Js-->
 		<script src="<?= base_url()?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 		
-		<!-- Datepicker js -->
-		<script src="<?=base_url()?>assets/plugins/date-picker/date-picker.js"></script>
-		<script src="<?=base_url()?>assets/plugins/date-picker/jquery-ui.js"></script>
-		<script src="<?=base_url()?>assets/plugins/jquery.mask/jquery.maskedinput.js"></script>
-		
+			
 		<!-- Side menu js -->
 		<script src="<?= base_url()?>assets/plugins/sidemenu/js/sidemenu.js"></script>
-		<script src="<?= base_url()?>assets/plugins/side-menu/js/side-menu.js"></script>
+		<!-- Comment date : 12/2/2019 <script src="<?= base_url()?>assets/plugins/side-menu/js/side-menu.js"></script> -->
 
 		<!-- Sidemenu-responsive-tabs js-->
 		<script src="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/js/sidemenu-responsive-tabs.js"></script>
 		<script src="<?=base_url()?>assets/js/left-menu.js"></script>
 		
 		<!-- Inline js -->
-		<script src="<?base_url()?>assets/js/select2.js"></script>
+		<!-- Comment date : 12/2/2019 <script src="<?=base_url('assets/js/select2.js')?>"></script> -->
 		<!--Select2 js -->	
 		<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
 		
@@ -57,8 +53,23 @@
 		<script src="<?=base_url()?>assets/plugins/p-scroll/p-scroll.js"></script>
 		<script src="<?=base_url()?>assets/plugins/p-scroll/p-scroll-leftmenu.js"></script>
 
+		<!--Select2 js -->
+		<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
+
 		<!-- peitychart -->
 		<script src="<?= base_url()?>assets/plugins/peitychart/jquery.peity.min.js"></script>
+
+		<!-- Timepicker js -->
+		<script src="<?=base_url()?>assets/plugins/jquery.timepicker/jquery.timepicker.js"></script>
+		<script src="<?base_url()?>assets/plugins/jquery.timepicker/toggles.min.js"></script>
+
+		<!-- Datepicker js -->
+		<script src="<?=base_url()?>assets/plugins/date-picker/date-picker.js"></script>
+		<script src="<?=base_url()?>assets/plugins/date-picker/jquery-ui.js"></script>
+		<script src="<?=base_url()?>assets/plugins/jquery.mask/jquery.maskedinput.js"></script>
+
+		<!-- Inline js -->
+		<script src="<?=base_url()?>assets/js/select2.js"></script>
 
 		<!-- Input Mask Plugin -->
 		<script src="<?= base_url()?>assets/plugins/jquery.mask/jquery.mask.min.js"></script>

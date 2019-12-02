@@ -1,0 +1,24 @@
+.icon-resize {
+    font-size: 20px !important;
+}
+
+.label-icon-resize {
+    font-size: 15px !important;
+    padding-top: 5px !important;
+}
+
+.legend-con ul {
+    display: inline-block;
+    padding: 10px;
+}
+.chart-legend {
+    display: flex;
+    align-items: center;
+}
+
+.box-legend {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+}

@@ -1,116 +1,142 @@
-(function($) {
-    "use strict";
+(function ($) {
+	"use strict";
 
 	$(".sparkline_bar1").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#089e60'
 	});
-	
+
 	$(".sparkline_bar2").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#1396cc'
 	});
-	
+
 	$(".sparkline_bar3").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#cc66ff'
 	});
-	
+
 	$(".sparkline_bar4").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#ff9933'
 	});
-	
+
 
 
 	//pie chart
-    var ctx = document.getElementById( "pieChart" );
-    ctx.height = 335;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-				labels:[ '85', '48', '59', '37', '12', '16', '18', '30', '40', '10', '40', '12'],
-                data: [ 85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12 ],
-                backgroundColor: [
-                                    "#31a550 ",
-									"#45aaf2",
-                                    "#316cbe",
-                                    "#e41313",
-                                    "#343a40",
-									"#31a550",
-									"#ff9933",
-									"#fbc0d5",
-									"#3866a6",
-									"#6574cd",
-									"#42265e",
-									"#1c3353"
-                                ],
-                hoverBackgroundColor: [
-                                    "#31a550",
-									"#45aaf2",
-                                    "#316cbe",
-                                    "#e41313",
-                                    "#343a40",
-									"#31a550",
-									"#ff9933",
-									"#fbc0d5",
-									"#3866a6",
-									"#6574cd",
-									"#42265e",
-									"#1c3353"
-                                ]
+	var ctx = document.getElementById("pieChart");
+	ctx.height = 323;
+	var myChart = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			datasets: [{
+				labels: ['85', '48', '59', '37', '12', '16', '18', '30', '40', '10', '40', '12'],
+				data: [85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12],
+				backgroundColor: [
+					"#31a550 ",
+					"#45aaf2",
+					"#316cbe",
+					"#e41313",
+					"#343a40",
+					"#31a550",
+					"#ff9933",
+					"#fbc0d5",
+					"#3866a6",
+					"#6574cd",
+					"#42265e",
+					"#1c3353"
+				],
+				hoverBackgroundColor: [
+					"#31a550",
+					"#45aaf2",
+					"#316cbe",
+					"#e41313",
+					"#343a40",
+					"#31a550",
+					"#ff9933",
+					"#fbc0d5",
+					"#3866a6",
+					"#6574cd",
+					"#42265e",
+					"#1c3353"
+				]
 
-                            } ],
-            labels: [
-                            "Whatsapp",
-                            "Twitter",
-                            "Facebook",
-							"Email",
-							"Telegram",
-							"Line",
-							"Voice",
-							"Instagram",
-							"Messenger",
-							"Twitter DM",
-							"Live Chat",
-							"Insta DM"
-                        ]
-        },
-        options: {
+			}],
+			labels: [
+				"Whatsapp",
+				"Twitter",
+				"Facebook",
+				"Email",
+				"Telegram",
+				"Line",
+				"Voice",
+				"Instagram",
+				"Messenger",
+				"Twitter DM",
+				"Live Chat",
+				"Insta DM"
+			]
+		},
+		options: {
 			maintainAspectRatio: false,
-            responsive: true,
-			legend:{
-				position:'bottom'
-			}
-        }
-    } );
+			responsive: true,
+			legend: {
+				display: false
+			},
+			legendCallback: function (chart, index) {
+				var allData = chart.data.datasets[0].data;
+				var legendHtml = [];
+				legendHtml.push('<ul><div class="row">');
+				allData.forEach(function (data, index) {
+					var label = chart.data.labels[index];
+					var dataLabel = allData[index];
+					var background = chart.data.datasets[0].backgroundColor[index]
+					var total = 0;
+					for (var i in allData) {
+						total += allData[i];
+					}
+					var percentage = Math.round((dataLabel / total) * 100);
+					legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+					legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
+					legendHtml.push('</li>');
+				})
+				legendHtml.push('</ul></div>');
+				return legendHtml.join("");
+			},
+		}
+	});
+	var myLegendContainer = document.getElementById("legend");
+	myLegendContainer.innerHTML = myChart.generateLegend();
+
+	//document.getElementById('legend').innerHTML = myChart.generateLegend();
 
 	/*---Morris (#graph5)---*/
+	/*
+	Comment date : 12/2/2019
 	Morris.Bar({
 		barGap:4,
 		barSizeRatio:0.33,
@@ -154,4 +180,3 @@
 	/*---Morris (#graph5) closed---*/
 
 })(jQuery);
-
