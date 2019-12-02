@@ -142,4 +142,29 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
+
+	public function getTotInteraction()
+	{
+		$this->db->select('SUM(total) total_interaction');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function getTotUniqueCustomer()
+	{
+		$this->db->select('SUM(total_unique) total_unique_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function getAverageCustomer()
+	{
+		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
 }
