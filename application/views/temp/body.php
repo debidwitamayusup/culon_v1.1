@@ -63,8 +63,8 @@
 									<h3 class="card-title">Total Interaction</h3>
 								</div>
 								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
+									<h2 class="mb-1 num-font" id="total-interaction"></h2>
+									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -80,7 +80,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -90,8 +90,8 @@
 									<h3 class="text-center card-title">Unique Customer</h3>
 								</div>
 								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
+									<h2 class="mb-1 num-font" id="unique-customer"></h2>
+									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -107,7 +107,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -117,8 +117,8 @@
 									<h3 class="card-title">Average Customer</h3>
 								</div>
 								<div class="card-body">
-									<h2 class="mb-1 num-font">$1,87,595</h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
+									<h2 class="mb-1 num-font" id="avg-customer"></h2>
+									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -134,7 +134,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -148,116 +148,8 @@
 								<div class="box-footer">
 									<div class="row">
 										<div class="col-md-12">
-											<div class="row">
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<i class="fab fa-whatsapp text-primary plan-icon"></i>
-														<div class="dash3">
-															<h5 class="text-muted">Whatsapp</h5>
-															<h4 class="counter text-primary num-font">3,628</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-twitter text-info plan-icon"></i>
-															<h5 class="text-muted">Twitter</h5>
-															<h4 class="counter text-info num-font">593</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-facebook text-blue plan-icon"></i>
-															<h5 class="text-muted">Facebook</h5>
-															<h4 class="counter text-blue num-font">168</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-envelope text-warning plan-icon"></i>
-															<h5 class="text-muted">Email</h5>
-															<h4 class="counter text-warning num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-telegram text-dark plan-icon"></i>
-															<h5 class="text-muted">Telegram</h5>
-															<h4 class="counter text-dark num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-instagram text-pink plan-icon"></i>
-															<h5 class="text-muted">Instagram</h5>
-															<h4 class="counter text-pink num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-md-12 border-top"></div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-microphone text-primary plan-icon"></i>
-															<h5 class="text-muted">Voice</h5>
-															<h4 class="counter text-primary num-font">3,628</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-mail-bulk text-info plan-icon"></i>
-															<h5 class="text-muted">Twitter DM</h5>
-															<h4 class="counter text-info num-font">593</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-facebook-messenger text-blue plan-icon"></i>
-															<h5 class="text-muted">Messenger</h5>
-															<h4 class="counter text-blue num-font">168</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fab fa-line text-warning plan-icon"></i>
-															<h5 class="text-muted">Line</h5>
-															<h4 class="counter text-warning num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-comments text-dark plan-icon"></i>
-															<h5 class="text-muted">Live Chat</h5>
-															<h4 class="counter text-dark num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
-												<div class="col-xl-2 border-right">
-													<div class="card-body text-center">
-														<div class="dash3">
-															<i class="fa fa-comments text-dark plan-icon"></i>
-															<h5 class="text-muted">Live Chat</h5>
-															<h4 class="counter text-dark num-font">7,945</h4>
-														</div>
-													</div>
-												</div>
+											<div class="row" id="retres-unique">
+												
 											</div>
 										</div>
 									</div>

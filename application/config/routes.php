@@ -59,6 +59,7 @@ $route['left_menu'] = 'main/left_menu';
 
 //Summary Trafic Channel
 $route['Summary-Traffic/cardMain'] = 'api/SummaryTraffic/SummaryTrafficChannel/cardMain';
+$route['Summary-Traffic/uniqueCustomerPerChannel'] = 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel';
 // $route['Traffic-Channel'] = 'TrafficInterval/index';
 // $route['Average-Time'] = 'AverageTime/index';
 // $route['Case-I-O'] = 'CaseInOut/index';
