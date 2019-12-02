@@ -1,58 +1,77 @@
-( function ( $ ) {
-    "use strict";
-	var chartdata = [{
-		name: 'Insta DM',
-		type: 'bar',
-		data: [10]
-	}, {
-		name: 'Live Chat',
-		type: 'bar',
-		data: [7]
-	}];
-	
-	/*----Echart3----*/
-	var option3 = {
-		grid: {
-			top: '6',
-			right: '30',
-			bottom: '17',
-			left: '60',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
+(function ($) {
+	"use strict";
+	//bar chart
+	var ctx = document.getElementById("echartVertical");
+	ctx.height = 500;
+	var myChart = new Chart(ctx, {
+		type: 'horizontalBar',
+		data: {
+			labels: [
+				"Whatsapp",
+				"Twitter",
+				"Facebook",
+				"Email",
+				"Telegram",
+				"Line",
+				"Voice",
+				"Instagram",
+				"Messenger",
+				"Twitter DM",
+				"Live Chat",
+				"Insta DM"
+			],
+			datasets: [{
+					label: "Data awal",
+					data: [85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12],
+					borderColor: [
+						"#31a550 ",
+						"#45aaf2",
+						"#316cbe",
+						"#e41313",
+						"#343a40",
+						"#31a550",
+						"#ff9933",
+						"#fbc0d5",
+						"#3866a6",
+						"#6574cd",
+						"#42265e",
+						"#1c3353"
+					],
+					borderWidth: "0",
+					backgroundColor: [
+						"#31a550",
+						"#45aaf2",
+						"#316cbe",
+						"#e41313",
+						"#343a40",
+						"#31a550",
+						"#ff9933",
+						"#fbc0d5",
+						"#3866a6",
+						"#6574cd",
+						"#42265e",
+						"#1c3353"
+					]
+				},
+				{
+					label: "Data akhir",
+					data: [65, 59, 80,65, 59, 80,65, 59, 80,65, 59, 80],
+					borderColor: ["#000", "#000", "#000","#000", "#000", "#000","#000", "#000", "#000","#000", "#000", "#000"],
+					borderWidth: "0",
+					backgroundColor: ["#000", "#000", "#000","#000", "#000", "#000","#000", "#000", "#000","#000", "#000", "#000"]
 				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
+			]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
 			}
-		},
-		yAxis: {
-			type: 'category',
-			data: ['Whatsapp', 'Twitter', 'Facebook', 'Email', 'Telegram', 'Line', 'Voice', 'Instagram', 'Messenger', 'Twitter DM', 'Live Chat','Pesan'],
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLine: {
-				lineStyle: {
-					color: '#1396cc'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		series: chartdata,
-		color: ['#1c3353', '#42265e']
-	};
-	var chart3 = document.getElementById('echartVertical');
-	var barChart3 = echarts.init(chart3);
-	barChart3.setOption(option3);
-	
-} )( jQuery );
+		}
+	});
+})(jQuery);

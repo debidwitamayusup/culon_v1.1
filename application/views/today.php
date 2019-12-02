@@ -145,11 +145,11 @@
 									<h4 class="card-title">Summary Interval Today</h4>
 								</div>
 								<div class="card-body">
-									<div id="echartVertical" class="chartsh overflow-hidden"></div>
+									<canvas id="echartVertical"></canvas>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-lg-6">
+						<div class="col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">Average Interval</h3>
