@@ -10,50 +10,46 @@
 		<meta name="keywords" content="bootstrap panel, bootstrap admin template, dashboard template, bootstrap dashboard, dashboard design, best dashboard, html css admin template, html admin template, admin panel template, admin dashbaord template, bootstrap dashbaord template, it dashbaord, hr dashbaord, marketing dashbaord, sales dashbaord, dashboard ui, admin portal, bootstrap 4 admin template, bootstrap 4 admin"/>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>assets/images/brand/favicon.ico" />
 
 		<!-- Title -->
 		<title>Spaner - Simple light Bootstrap Nice Admin Panel Dashboard Design Responsive HTML5 Template</title>
 
 		<!--Bootstrap.min css-->
-		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?=base_url()?>assets/plugins/bootstrap/css/bootstrap.min.css">
 
         <!--Font Awesome-->
-		<link href="<?php echo base_url();?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
+		<link href="<?=base_url()?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
 
 		<!-- Dashboard Css -->
-		<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
-		<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/css/style.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/css/color-styles.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/css/skin-modes.css" rel="stylesheet" />
 
 		<!-- Custom scroll bar css-->
-		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 		<!--Sidemenu css-->
-		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/side-menu/side-menu.css">
+		<link rel="stylesheet" href="<?=base_url()?>assets/plugins/side-menu/side-menu.css">
 
 		<!--Sidemenu-responsive-tabs  css -->
-		<link href="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
+		<link href="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
 
 		<!-- P-scroll css -->
-		<link href="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
-
-		<!-- Morris.js Charts Plugin -->
-		<link href="<?php echo base_url();?>assets/plugins/morris/morris.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
 
 		<!---Font icons-->
-		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+		<link href="<?=base_url()?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
 
 		<!-- Sidebar css -->
-		<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+		<link href="<?=base_url()?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
 
 	</head>
 
 	<body class="app">
 
 		<!-- Global Loader-->
-		<div id="global-loader"><img src="<?php echo base_url();?>assets/images/svgs/loader.svg" alt="loader"></div>
-
+		
 		<div class="page">
 			<div class="page-main">
 
@@ -63,8 +59,8 @@
 					<div class="container-fluid">
 						<div class="d-flex">
 							<a class="header-brand" href="index.html">
-								<img alt="logo" class="header-brand-img main-logo" src="<?php echo base_url();?>assets/images/brand/logo1.png">
-								<img alt="logo" class="header-brand-img mobile-logo" src="<?php echo base_url();?>assets/images/brand/icon.png">
+								<img alt="logo" class="header-brand-img main-logo" src="<?=base_url()?>assets/images/brand/logo1.png">
+								<img alt="logo" class="header-brand-img mobile-logo" src="<?=base_url()?>assets/images/brand/icon.png">
 							</a>
 							<!-- Sidebar toggle button-->
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
@@ -105,38 +101,38 @@
 								</div>
 								<div class="dropdown d-none d-md-flex">
 									<a href="#" class="d-flex nav-link pr-0 country-flag" data-toggle="dropdown">
-										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/french_flag.jpg"></span>
+										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/french_flag.jpg"></span>
 										<div>
 											<span class="text-white mr-3 mt-0">English</span>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a href="#" class="dropdown-item d-flex pb-3">
-											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/french_flag.jpg"></span>
+											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/french_flag.jpg"></span>
 											<div class="d-flex">
 												<span class="">French</span>
 											</div>
 										</a>
 										<a href="#" class="dropdown-item d-flex pb-3">
-											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/germany_flag.jpg"></span>
+											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/germany_flag.jpg"></span>
 											<div class="d-flex">
 												<span class="">Germany</span>
 											</div>
 										</a>
 										<a href="#" class="dropdown-item d-flex pb-3">
-											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/italy_flag.jpg"></span>
+											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/italy_flag.jpg"></span>
 											<div class="d-flex">
 												<span class="">Italy</span>
 											</div>
 										</a>
 										<a href="#" class="dropdown-item d-flex pb-3">
-											<span class="avatar country-Flag  mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/russia_flag.jpg"></span>
+											<span class="avatar country-Flag  mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/russia_flag.jpg"></span>
 											<div class="d-flex">
 												<span class="">Russia</span>
 											</div>
 										</a>
 										<a href="#" class="dropdown-item d-flex pb-3">
-											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/spain_flag.jpg"></span>
+											<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/spain_flag.jpg"></span>
 											<div class="d-flex">
 												<span class="">spain</span>
 											</div>
@@ -152,7 +148,7 @@
 										<a class="dropdown-item text-center" href="#">2 New Messages</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item d-flex pb-3" href="#">
-											<span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/7.jpg"></span>
+											<span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/7.jpg"></span>
 											<div>
 												<strong>Madeleine</strong> Hey! there I' am available....
 												<div class="small text-muted">
@@ -160,7 +156,7 @@
 												</div>
 											</div>
 										</a>
-										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/3.jpg"></span>
+										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/3.jpg"></span>
 											<div>
 												<strong>Anthony</strong> New product Launching...
 												<div class="small text-muted">
@@ -168,7 +164,7 @@
 												</div>
 											</div>
 										</a>
-										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/8.jpg"></span>
+										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/8.jpg"></span>
 											<div>
 												<strong>Olivia</strong> New Schedule Realease......
 												<div class="small text-muted">
@@ -176,7 +172,7 @@
 												</div>
 											</div>
 										</a>
-										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/9.jpg"></span>
+										<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/9.jpg"></span>
 											<div>
 												<strong>Sanderson</strong> New Schedule Realease......
 												<div class="small text-muted">
@@ -264,7 +260,7 @@
 								<!--Navbar -->
 								<div class="dropdown">
 									<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
-										<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/5.jpg"></span>
+										<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/5.jpg"></span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="drop-heading">
@@ -327,31 +323,31 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 									<a href="#" class="dropdown-item d-flex pb-3">
-										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/french_flag.jpg"></span>
+										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/french_flag.jpg"></span>
 										<div class="d-flex">
 											<span class="">French</span>
 										</div>
 									</a>
 									<a href="#" class="dropdown-item d-flex pb-3">
-										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/germany_flag.jpg"></span>
+										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/germany_flag.jpg"></span>
 										<div class="d-flex">
 											<span class="">Germany</span>
 										</div>
 									</a>
 									<a href="#" class="dropdown-item d-flex pb-3">
-										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/italy_flag.jpg"></span>
+										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/italy_flag.jpg"></span>
 										<div class="d-flex">
 											<span class="">Italy</span>
 										</div>
 									</a>
 									<a href="#" class="dropdown-item d-flex pb-3">
-										<span class="avatar country-Flag  mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/russia_flag.jpg"></span>
+										<span class="avatar country-Flag  mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/russia_flag.jpg"></span>
 										<div class="d-flex">
 											<span class="">Russia</span>
 										</div>
 									</a>
 									<a href="#" class="dropdown-item d-flex pb-3">
-										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/svgs/flags/spain_flag.jpg"></span>
+										<span class="avatar country-Flag mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/svgs/flags/spain_flag.jpg"></span>
 										<div class="d-flex">
 											<span class="">spain</span>
 										</div>
@@ -366,7 +362,7 @@
 									<a class="dropdown-item text-center" href="#">2 New Messages</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item d-flex pb-3" href="#">
-										<span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/7.jpg"></span>
+										<span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/7.jpg"></span>
 										<div>
 											<strong>Madeleine</strong> Hey! there I' am available....
 											<div class="small text-muted">
@@ -374,7 +370,7 @@
 											</div>
 										</div>
 									</a>
-									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/3.jpg"></span>
+									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/3.jpg"></span>
 										<div>
 											<strong>Anthony</strong> New product Launching...
 											<div class="small text-muted">
@@ -382,7 +378,7 @@
 											</div>
 										</div>
 									</a>
-									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/8.jpg"></span>
+									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/8.jpg"></span>
 										<div>
 											<strong>Olivia</strong> New Schedule Realease......
 											<div class="small text-muted">
@@ -390,7 +386,7 @@
 											</div>
 										</div>
 									</a>
-									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?php echo base_url();?>assets/images/users/9.jpg"></span>
+									<a class="dropdown-item d-flex pb-3" href="#"><span class="avatar avatar-md brround mr-3 align-self-center cover-image" data-image-src="<?=base_url()?>assets/images/users/9.jpg"></span>
 										<div>
 											<strong>Sanderson</strong> New Schedule Realease......
 											<div class="small text-muted">
@@ -494,7 +490,7 @@
 					<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
 						<div class="first-sidemenu">
 							<ul class="resp-tabs-list hor_1">
-								<li class="resp-tab-active active" data-toggle="tooltip" data-placement="right" title="Home">
+								<li data-toggle="tooltip" data-placement="right" title="Home">
 									<div class="side-menutext"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span><span class="badge badge-primary nav-badge badge-pill">5</span></div>
 								</li>
 								<li data-toggle="tooltip" data-placement="right" title="widgets">
@@ -503,7 +499,7 @@
 								<li data-toggle="tooltip" data-placement="right" title="Components">
 									<div class="side-menutext"><i class="side-menu__icon fe fe-layers"></i><span class="side-menu__label">Components</span></div>
 								</li>
-								<li data-toggle="tooltip" data-placement="right" title="Charts">
+								<li class="resp-tab-active active" data-toggle="tooltip" data-placement="right" title="Charts">
 									<div class="side-menutext"><i class="side-menu__icon fe fe-pie-chart"></i><span class="side-menu__label">Charts</span><span class="badge badge-info nav-badge badge-pill">7</span></div>
 								</li>
 								<li data-toggle="tooltip" data-placement="right" title="Elements">
@@ -528,7 +524,7 @@
 						</div>
 						<div class="second-sidemenu">
 							<div class="resp-tabs-container hor_1">
-								<div class="resp-tab-content-active">
+								<div>
 									<div class="row">
 										<div class="col-md-12">
 											<h5 class="mt-3 mb-4">Dashboard</h5>
@@ -739,7 +735,7 @@
 										</div>
 									</div>
 								</div>
-								<div>
+								<div class="resp-tab-content-active">
 									<div class="row">
 										<div class="col-md-12">
 											<h5 class="mt-3 mb-4">Charts</h5>
@@ -911,375 +907,108 @@
 
 						<!--Page Header-->
 						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i> Dashboard 02</h4>
+							<h4 class="page-title"><i class="fe fe-pie-chart mr-1"></i>Charts JS</h4>
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Dashboard 02</li>
+								<li class="breadcrumb-item"><a href="#">Ui design</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Charts JS</li>
 							</ol>
 						</div>
 						<!--page header-->
 
 						<div class="row">
-							<div class="col-md-12">
-								<div class="card welcome-image">
-									<div class="card-body text-center overflow-hidden">
-										<span class="avatar avatar-xl brround text-center cover-image mb-3" data-image-src="<?php echo base_url();?>assets/images/users/5.jpg"></span>
-										<h3 class="text-white mb-1">Congratulations! Vanessa Dyer</h3>
-										<p class="text-white mt-2 mb-4">You Have Done More Profit Today ....Check Your Profit Details</p>
-										<a Href="#" class="btn btn-pink">View Profile</a>
+							<div class="col-lg-6 col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Line Chart</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="sales-chart" class="h-300"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Area Chart</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="team-chart" class="h-300"></canvas>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-xl-4 col-lg-4 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Bar chart</h3>
+									</div>
 									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Orders</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2"><span class="counter font-weight-extrabold num-font">89,385</span></h2>
-													<span class="text-muted"><span class="font-weight-bold "><i class="fas fa-arrow-circle-up text-success"></i> 10%</span>  Orders Incresed </span>
-												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar1"></span>
-											</div>
-										</div>
+										<canvas id="barChart" class="h-300"></canvas>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="card">
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Income</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2">$<span class="counter font-weight-extrabold num-font">92,254</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 15%</span>  Income Incresed</span>
-												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar2"></span>
-											</div>
-										</div>
+									<div class="card-header">
+										<h3 class="card-title">Rader chart</h3>
 									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card">
 									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Expenses</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2">$<span class="counter font-weight-extrabold num-font">83,547</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-up text-success"></i> 5%</span>  Expences Decresed</span>
-												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar3"></span>
-											</div>
-										</div>
+										<canvas id="radarChart" class="h-300"></canvas>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Website Activities</h3>
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Day</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Month</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Year</span>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-xl-12">
-												<div class="card-body overflow-hidden">
-													<canvas id="lineChart" class="chart-dropshadow h-350 overflow-hidden"></canvas>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row website-section">
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Daily Visitors</p>
-												<h2 class=" mb-3 font-weight-extrabold num-font">6,254</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Returning Visitors</p>
-												<h2 class=" mb-3 font-weight-extrabold num-font">1254</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center mb-5 mb-lg-0">
-												<p class="mb-1 text-muted">Page Views</p>
-												<h2 class="mb-3 font-weight-extrabold num-font">24,325</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-pink w-70"></div>
-												</div>
-											</div>
-											<div class="col-xl-3 text-center ">
-												<p class="mb-1 text-muted">Today Subscribers</p>
-												<h2 class="mb-3 font-weight-extrabold num-font">357</h2>
-												<div class="progress progress-md h-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning w-70"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Web Traffic</h3>
-										<div class="card-options">
-											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
-												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
-												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
-												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body">
-										<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-header">
-										<h3 class="card-title">Yearly Earnings</h3>
-										<div class="card-options">
-											<span class="dropdown-toggle fs-16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fe fe-more-vertical " ></i></span>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li><a href="#"><i class="si si-plus mr-2"></i>Add</a></li>
-												<li><a href="#"><i class="si si-trash mr-2"></i>Remove</a></li>
-												<li><a href="#"><i class="si si-eye mr-2"></i>View</a></li>
-												<li><a href="#"><i class="si si-settings mr-2"></i>More</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="card-body">
-										<div id="graph5" class="chart-dropshadow chartwidget"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 col-lg-4 col-md-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Product Sales</h3>
-										<div class="card-options">
-											<a class="btn btn-white border btn-sm btn-icon mr-2" href="#"><i class="fas fa-chevron-left"></i></a>
-											<a class="btn btn-white border btn-sm btn-icon" href="#"><i class="fas fa-chevron-right"></i></a>
-										</div>
+										<h3 class="card-title">Line Chart</h3>
 									</div>
 									<div class="card-body">
-										<h2 class="mb-1 num-font">$1,87,595</h2>
-										<span class="text-muted">15% Higher Of Previous Month</span>
-										<div class="row mt-5">
-											<div class="col-sm-12">
-												<div class="mb-0">
-													<h4 class="mb-2 d-block">
-														<span class="fs-16">Total Expences</span>
-														<span class="float-right num-font">$1587</span>
-													</h4>
-													<div class="progress progress-md h-1 mb-1">
-														<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
-													</div>
-													<span>12% of your Goals</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-body">
-										<div class="row mb-3">
-											<div class="col">
-												<h6 class="text-muted mb-0 mt-1">Total Net Profit</h6>
-											</div>
-											<div class="col col-auto">
-												<a class="btn btn-sm btn-white border">View Details</a>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col">
-												<div class="dash-2">
-													<h2 class="mb-2">$<span class="counter font-weight-extrabold num-font">99,425</span></h2>
-													<span class="text-muted"><span class="font-weight-bold"><i class="fas fa-arrow-circle-down text-danger"></i> 13%</span>  Net Profit Incresed </span>
-												</div>
-											</div>
-											<div class="col col-auto">
-												<span class="sparkline_bar4"></span>
-											</div>
-										</div>
+										<canvas id="lineChart" class="h-300"></canvas>
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-xl-12">
+							<div class="col-lg-6 col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Invoice List</h3>
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Day</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Month</span>
-												</button>
-												<button type="button" class="btn btn-light btn-sm">
-													<span class="">Year</span>
-												</button>
-											</div>
-										</div>
+										<h3 class="card-title">Doughut Chart</h3>
 									</div>
 									<div class="card-body">
-										<div class="table-responsive border-top mb-0">
-											<table class="table table-bordered table-hover mb-0 text-nowrap">
-												<thead>
-													<tr>
-														<th>Invoice ID</th>
-														<th>Category</th>
-														<th>Purchase Date</th>
-														<th>Price</th>
-														<th>Due Date</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>#INV-<span class="num-font">348</span></td>
-														<td>Resturant</td>
-														<td class="num-font">07-12-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$89</td>
-														<td class="num-font">17-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">186</span></td>
-														<td>Rela Estate</td>
-														<td class="num-font">02-12-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$14,276</td>
-														<td class="num-font">14-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">831</span></td>
-														<td>Jobs</td>
-														<td class="num-font">30-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$25,000</td>
-														<td class="num-font">04-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">672</span></td>
-														<td>Education</td>
-														<td class="num-font">25-18-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$50.00</td>
-														<td class="num-font">07-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">428</span></td>
-														<td>Electornics</td>
-														<td class="num-font">24-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$99.99</td>
-														<td class="num-font">11-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">543</span></td>
-														<td>Vechicle</td>
-														<td class="num-font">22-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$145</td>
-														<td class="num-font">12-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-													<tr>
-														<td>#INV-<span class="num-font">986</span></td>
-														<td>Pet &amp; Animals</td>
-														<td class="num-font">18-11-2019</td>
-														<td class="font-weight-semibold fs-16 num-font">$378</td>
-														<td class="num-font">07-12-2019</td>
-														<td>
-															<a class="btn btn-primary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="View"><i class="fas fa-eye"></i></a>
-															<a class="btn btn-secondary btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="far fa-trash-alt"></i></a><br>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+										<canvas id="doughutChart" class="h-300"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Pie Chart</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="pieChart" class="h-300"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Polar Chart</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="polarChart" class="h-300"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Single Bar Chart</h3>
+									</div>
+									<div class="card-body">
+										<canvas id="singelBarChart" class="h-300"></canvas>
 									</div>
 								</div>
 							</div>
@@ -1308,7 +1037,7 @@
 										<div class="list-group list-group-flush ">
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div>
 													<strong>Madeleine</strong> Hey! there I' am available....
@@ -1319,7 +1048,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/4.jpg"></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/4.jpg"></span>
 												</div>
 												<div>
 													<strong>Anthony</strong> New product Launching...
@@ -1330,7 +1059,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div>
 													<strong>Olivia</strong> New Schedule Realease......
@@ -1341,7 +1070,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div>
 													<strong>Madeleine</strong> Hey! there I' am available....
@@ -1352,7 +1081,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/1.jpg"></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/1.jpg"></span>
 												</div>
 												<div>
 													<strong>Anthony</strong> New product Launching...
@@ -1363,7 +1092,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-3">
-													<span class="avatar avatar-lg brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-lg brround cover-image" data-image-src="<?=base_url()?>assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div>
 													<strong>Olivia</strong> New Schedule Realease......
@@ -1524,7 +1253,7 @@
 											</form>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Mozelle Belt</div>
@@ -1535,7 +1264,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/1.jpg"></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/1.jpg"></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Florinda Carasco</div>
@@ -1546,7 +1275,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Alina Bernier</div>
@@ -1557,7 +1286,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Zula Mclaughin</div>
@@ -1568,7 +1297,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/4.jpg"></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/4.jpg"></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Isidro Heide</div>
@@ -1579,7 +1308,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Mozelle Belt</div>
@@ -1590,7 +1319,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/6.jpg"></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/6.jpg"></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Florinda Carasco</div>
@@ -1601,7 +1330,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/8.jpg"></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/8.jpg"></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Alina Bernier</div>
@@ -1612,7 +1341,7 @@
 											</div>
 											<div class="list-group-item d-flex  align-items-center">
 												<div class="mr-2">
-													<span class="avatar avatar-md brround cover-image" data-image-src="<?php echo base_url();?>assets/images/users/7.jpg"></span>
+													<span class="avatar avatar-md brround cover-image" data-image-src="<?=base_url()?>assets/images/users/7.jpg"></span>
 												</div>
 												<div class="">
 													<div class="font-weight-semibold">Isidro Heide</div>
@@ -1640,7 +1369,6 @@
 						</div>
 					</footer>
 					<!-- End Footer-->
-
 				</div>
 			</div>
 		</div>
@@ -1649,59 +1377,53 @@
 		<a href="#top" id="back-to-top"><i class="fas fa-angle-up "></i></a>
 
 		<!--Jquery js -->
-		<script src="<?php echo base_url();?>assets/js/vendors/jquery-3.2.1.min.js"></script>
+		<script src="<?=base_url()?>assets/js/vendors/jquery-3.2.1.min.js"></script>
 
 		<!--Jquery.Sparkline js -->
-		<script src="<?php echo base_url();?>assets/js/vendors/jquery.sparkline.min.js"></script>
+		<script src="<?=base_url()?>assets/js/vendors/jquery.sparkline.min.js"></script>
 
 		<!--Circle-Progress js -->
-		<script src="<?php echo base_url();?>assets/js/vendors/circle-progress.min.js"></script>
+		<script src="<?=base_url()?>assets/js/vendors/circle-progress.min.js"></script>
 
 		<!--Jquery.rating js -->
-		<script src="<?php echo base_url();?>assets/plugins/jquery.rating/jquery.rating-stars.js"></script>
+		<script src="<?=base_url()?>assets/plugins/jquery.rating/jquery.rating-stars.js"></script>
 
 		<!--Bootstrap.min js-->
-		<script src="<?php echo base_url();?>assets/plugins/bootstrap/popper.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?=base_url()?>assets/plugins/bootstrap/popper.min.js"></script>
+		<script src="<?=base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Custom scroll bar Js-->
+		<script src="<?=base_url()?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 		<!--Sidemenu js-->
-		<script src="<?php echo base_url();?>assets/plugins/side-menu/side-menu.js"></script>
+		<script src="<?=base_url()?>assets/plugins/side-menu/side-menu.js"></script>
 
 		<!-- Sidemenu-responsive-tabs js-->
-		<script src="<?php echo base_url();?>assets/plugins/sidemenu-responsive-tabs/js/sidemenu-responsive-tabs.js"></script>
-		<script src="<?php echo base_url();?>assets/js/left-menu.js"></script>
+		<script src="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/js/sidemenu-responsive-tabs.js"></script>
+		<script src="<?=base_url()?>assets/js/left-menu.js"></script>
 
 		<!-- P-scroll js -->
-		<script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/p-scroll/p-scroll-leftmenu.js"></script>
+		<script src="<?php echo base_url();?>/plugins/p-scroll/p-scroll.js"></script>
+		<script src="<?php echo base_url();?>/plugins/p-scroll/p-scroll-leftmenu.js"></script>
 
-		<!-- Custom scroll bar js-->
-		<script src="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<!-- peitychart -->
+		<script src="<?php echo base_url();?>/plugins/peitychart/jquery.peity.min.js"></script>
 
-		<!-- Input Mask js -->
-		<script src="<?php echo base_url();?>assets/plugins/jquery.mask/jquery.mask.min.js"></script>
+		<!-- Input Mask Plugin -->
+		<script src="<?=base_url()?>assets/plugins/jquery.mask/jquery.mask.min.js"></script>
 
-		<!--Morris Charts js-->
-		<script src="<?php echo base_url();?>assets/plugins/morris/morris.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/morris/raphael.min.js"></script>
-
-		<!-- Peitychart js-->
-		<script src="<?php echo base_url();?>assets/plugins/peitychart/jquery.peity.min.js"></script>
+		<!--Counters -->
+		<script src="<?=base_url()?>assets/plugins/counters/counterup.min.js"></script>
+		<script src="<?=base_url()?>assets/plugins/counters/waypoints.min.js"></script>
 
 		<!--  Chart js -->
-		<script src="<?php echo base_url();?>assets/plugins/chart/chart.bundle.js"></script>
-
-		<!--Counters js-->
-		<script src="<?php echo base_url();?>assets/plugins/counters/counterup.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/counters/waypoints.min.js"></script>
+		<script src="<?=base_url()?>assets/plugins/chart/chart.bundle.js"></script>
+		<script src="<?=base_url()?>assets/js/chart.js"></script>
 
 		<!-- Sidebar js -->
-		<script src="<?php echo base_url();?>assets/plugins/sidebar/sidebar.js"></script>
-
-		<!-- index2 js -->
-		<script src="<?php echo base_url();?>assets/js/index2.js"></script>
+		<script src="<?=base_url()?>assets/plugins/sidebar/sidebar.js"></script>
 
 		<!-- Custom js -->
-		<script src="<?php echo base_url();?>assets/js/custom.js"></script>
+		<script src="<?=base_url()?>assets/js/custom.js"></script>
 	</body>
 </html>

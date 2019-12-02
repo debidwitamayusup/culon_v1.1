@@ -45,79 +45,68 @@
 		barColor: '#ff9933'
 	});
 	
-	
-	//line chart
-    var ctx = document.getElementById( "lineChart" );
-    var myChart = new Chart( ctx, {
-        type: 'line',
-        data: {
-            labels: [ "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" ],
-            datasets: [
-                {
-                    label: "Visitors",
-                    borderColor: "rgb(8,158,96,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(8,158,96,0.5)",
-                    data: [ 10, 60, 30, 90, 120, 76, 35]
-                            },
-                {
-                    label: "Returning Visitors",
-                    borderColor: "rgb(19, 150, 204,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(19, 150, 204,0.5)",
-                    pointHighlightStroke: "rgb(19, 150, 204)",
-                    data: [22, 88, 68, 140, 60, 80, 95]
-                            }
-                        ]
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            }
-
-        }
-    } );
 
 
 	//pie chart
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 290;
+    ctx.height = 335;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
             datasets: [ {
-                data: [ 85, 48, 59, 37 ],
+				labels:[ '85', '48', '59', '37', '12', '16', '18', '30', '40', '10', '40', '12'],
+                data: [ 85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12 ],
                 backgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933"
+                                    "#31a550 ",
+									"#45aaf2",
+                                    "#316cbe",
+                                    "#e41313",
+                                    "#343a40",
+									"#31a550",
+									"#ff9933",
+									"#fbc0d5",
+									"#3866a6",
+									"#6574cd",
+									"#42265e",
+									"#1c3353"
                                 ],
                 hoverBackgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933"
+                                    "#31a550",
+									"#45aaf2",
+                                    "#316cbe",
+                                    "#e41313",
+                                    "#343a40",
+									"#31a550",
+									"#ff9933",
+									"#fbc0d5",
+									"#3866a6",
+									"#6574cd",
+									"#42265e",
+									"#1c3353"
                                 ]
 
                             } ],
             labels: [
-                            "Google",
-                            "IE",
-                            "Firefox",
-							"Opera"
+                            "Whatsapp",
+                            "Twitter",
+                            "Facebook",
+							"Email",
+							"Telegram",
+							"Line",
+							"Voice",
+							"Instagram",
+							"Messenger",
+							"Twitter DM",
+							"Live Chat",
+							"Insta DM"
                         ]
         },
         options: {
-            responsive: true,
 			maintainAspectRatio: false,
+            responsive: true,
+			legend:{
+				position:'bottom'
+			}
         }
     } );
 
