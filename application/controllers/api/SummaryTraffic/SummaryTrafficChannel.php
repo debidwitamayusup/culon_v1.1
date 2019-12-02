@@ -156,7 +156,24 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cGraphMain()
 	{
+		$data = array();
 		$circle_main = $this->Stc_Model->getCGraph();
+
+		$channel = array();
+		$total = array();
+		$persen = array();
+
+		foreach ($circle_main as $key) {
+			array_push($channel, $key->channel);
+			array_push($total, $key->total);
+			array_push($persen, $key->persen);
+		}
+
+		$data = [
+			'channel' => $channel,
+			'total' => $total,
+			'persen' => $persen
+		];
 
 		if($circle_main)
 		{

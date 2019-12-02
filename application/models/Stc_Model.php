@@ -175,7 +175,11 @@ class Stc_Model extends CI_Model
 
 	public function getCGraph()
 	{
-		$query = $this->db->query('');
+		$this->db->select('channel_name channel, SUM(total) total, (SUM(total)* 100 / (SELECT SUM(total) FROM summary_channel)) persen');
+		$this->db->from('summary_channel');
+		$this->db->group_by('channel_name');
+
+		$query = $this->db->get();
 
 		return $query->result();
 	}
