@@ -37,7 +37,7 @@
 
 		<!-- Sidemenu Css -->
 		<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
-		<link href="<?php echo base_url();?>assets/plugins/side-menu/css/side-menu.css" rel="stylesheet">
+		<!-- Comment date : 12/2/2019 <link href="<?php echo base_url();?>assets/plugins/side-menu/css/side-menu.css" rel="stylesheet"> -->
 
 		<!--Sidemenu-responsive-tabs  css -->
 		<link href="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css" rel="stylesheet">
@@ -60,6 +60,7 @@
 		<!--Chartist css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist-plugin-tooltip.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
 		
 		
 	</head>
