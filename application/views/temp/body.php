@@ -27,108 +27,125 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-4 col-lg-4 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Summary Traffic Channel</h3>
 								</div>
 								<div class="card-body">
-									<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
+									<div class="canvas-con">
+										<div class="canvas-con-inner">
+											<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>
+										</div>
+										<div id="legend" class="legend-con"></div>
+									</div>
 								</div>
 							</div>
 						</div>
-							
+
 						<!---! Kolom Channel--->
-						<div class="col-xl-8 col-lg-4 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Interaction</h3>
 								</div>
 								<div class="card-body">
-								<div class="row">
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-primary rounded">
-											<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Whatsapp
+									<div class="row">
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-primary rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-whatsapp text-primary"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Whatsapp
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-twitter text-info"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-blue rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-facebook text-blue"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Facebook
+												</div>
+											</div>
+
+										</div>
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-danger rounded">
+												<span class="mini-stat-icon"><i
+														class="fa fa-envelope text-danger"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Email
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-dark rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-telegram text-dark"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Telegram
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-success rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-line text-success"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Line
+												</div>
 											</div>
 										</div>
-										<div class="mini-stat clearfix bg-info rounded">
-											<span class="mini-stat-icon"><i class="fab fa-twitter text-info"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Twitter
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-warning rounded">
+												<span class="mini-stat-icon"><i
+														class="fa fa-microphone text-warning"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Voice
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-pink rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-instagram text-pink"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Instagram
+												</div>
+											</div>
+											<div class="mini-stat clearfix bg-blue-dark rounded">
+												<span class="mini-stat-icon"><i
+														class="fab fa-facebook-messenger text-blue"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Messenger
+												</div>
 											</div>
 										</div>
-										<div class="mini-stat clearfix bg-blue rounded">
-											<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Facebook
+										<div class="col-xl-3 col-lg-2">
+											<div class="mini-stat clearfix bg-indigo rounded">
+												<span class="mini-stat-icon"><i
+														class="fa fa-mail-bulk text-indigo"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Twitter DM
+												</div>
 											</div>
-										</div>
-										
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-danger rounded">
-											<span class="mini-stat-icon"><i class="fa fa-envelope text-danger"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Email
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-dark rounded">
-											<span class="mini-stat-icon"><i class="fab fa-telegram text-dark"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Telegram
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-success rounded">
-											<span class="mini-stat-icon"><i class="fab fa-line text-success"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Line
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-warning rounded">
-											<span class="mini-stat-icon"><i class="fa fa-microphone text-warning"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Voice
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-pink rounded">
-											<span class="mini-stat-icon"><i class="fab fa-instagram text-pink"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Instagram
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-blue-dark rounded">
-											<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Messenger
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-3 col-lg-2">
-										<div class="mini-stat clearfix bg-indigo rounded">
-											<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-indigo"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Twitter DM 
-											</div>
-										</div>
-										<div class="mini-stat clearfix bg-indigo-dark rounded">
-											<span class="mini-stat-icon"><i class="fa fa-comments text-indigo"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Live Chat
+											<div class="mini-stat clearfix bg-indigo-dark rounded">
+												<span class="mini-stat-icon"><i
+														class="fa fa-comments text-indigo"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Live Chat
+												</div>
 											</div>
 										</div>
 										<div class="mini-stat clearfix bg-indigo-darker rounded">
@@ -139,12 +156,11 @@
 											</div>
 										</div>
 									</div>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-						
+
 					<!---Baris Kedua!-->
 					<div class="row">
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
@@ -163,7 +179,9 @@
 													<span class="float-right num-font">$1587</span>
 												</h4>
 												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													<div
+														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
+													</div>
 												</div>
 												<span>12% of your Goals</span>
 											</div>
@@ -188,7 +206,9 @@
 													<span class="float-right num-font">$1587</span>
 												</h4>
 												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													<div
+														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
+													</div>
 												</div>
 												<span>12% of your Goals</span>
 											</div>
@@ -213,7 +233,9 @@
 													<span class="float-right num-font">$1587</span>
 												</h4>
 												<div class="progress progress-md h-1 mb-1">
-													<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30"></div>
+													<div
+														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
+													</div>
 												</div>
 												<span>12% of your Goals</span>
 											</div>
@@ -353,16 +375,19 @@
 				<!--Sidebar-right-->
 				<div class="sidebar sidebar-right sidebar-animate">
 					<div class="p-2 mb-4">
-						<a href="#" class="text-right float-right" data-toggle="sidebar-right" data-target=".sidebar-right"><i class="fe fe-x"></i></a>
+						<a href="#" class="text-right float-right" data-toggle="sidebar-right"
+							data-target=".sidebar-right"><i class="fe fe-x"></i></a>
 					</div>
 					<div class="panel panel-primary">
 						<div class="tab-menu-heading border-0">
 							<div class="tabs-menu ">
 								<!-- Tabs -->
 								<ul class="nav panel-tabs">
-									<li class=""><a href="#side1" class="active" data-toggle="tab"><i class="fas fa-bell"></i> Notifications</a></li>
+									<li class=""><a href="#side1" class="active" data-toggle="tab"><i
+												class="fas fa-bell"></i> Notifications</a></li>
 									<li><a href="#side2" data-toggle="tab"><i class="fas fa-comments"></i> Chat</a></li>
-									<li><a href="#side3" data-toggle="tab"><i class="fas fa-user-friends"></i> Friends</a></li>
+									<li><a href="#side3" data-toggle="tab"><i class="fas fa-user-friends"></i> Friends</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -372,7 +397,9 @@
 									<div class="list-group list-group-flush ">
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/5.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div>
 												<strong>Madeleine</strong> Hey! there I' am available....
@@ -383,7 +410,8 @@
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/4.jpg"></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/4.jpg"></span>
 											</div>
 											<div>
 												<strong>Anthony</strong> New product Launching...
@@ -394,7 +422,9 @@
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/3.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div>
 												<strong>Olivia</strong> New Schedule Realease......
@@ -405,7 +435,9 @@
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/2.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div>
 												<strong>Madeleine</strong> Hey! there I' am available....
@@ -416,7 +448,8 @@
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/1.jpg"></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/1.jpg"></span>
 											</div>
 											<div>
 												<strong>Anthony</strong> New product Launching...
@@ -427,7 +460,9 @@
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-3">
-												<span class="avatar avatar-lg brround cover-image" data-image-src="../assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-lg brround cover-image"
+													data-image-src="../assets/images/users/9.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div>
 												<strong>Olivia</strong> New Schedule Realease......
@@ -583,106 +618,129 @@
 									<div class="list-group list-group-flush ">
 										<form class="form-inline p-4">
 											<div class="search-element">
-												<input class="form-control header-search" type="search" placeholder="Search..." aria-label="Search">
+												<input class="form-control header-search" type="search"
+													placeholder="Search..." aria-label="Search">
 											</div>
 										</form>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/2.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/2.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Mozelle Belt</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/1.jpg"></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/1.jpg"></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Florinda Carasco</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/9.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/9.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Alina Bernier</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/3.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/3.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Zula Mclaughin</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/4.jpg"></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/4.jpg"></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Isidro Heide</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/5.jpg"><span class="avatar-status bg-green"></span></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/5.jpg"><span
+														class="avatar-status bg-green"></span></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Mozelle Belt</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/6.jpg"></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/6.jpg"></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Florinda Carasco</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/8.jpg"></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/8.jpg"></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Alina Bernier</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 										<div class="list-group-item d-flex  align-items-center">
 											<div class="mr-2">
-												<span class="avatar avatar-md brround cover-image" data-image-src="../assets/images/users/7.jpg"></span>
+												<span class="avatar avatar-md brround cover-image"
+													data-image-src="../assets/images/users/7.jpg"></span>
 											</div>
 											<div class="">
 												<div class="font-weight-semibold">Isidro Heide</div>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-sm btn-light"><i class="fab fa-facebook-messenger"></i></a>
+												<a href="#" class="btn btn-sm btn-light"><i
+														class="fab fa-facebook-messenger"></i></a>
 											</div>
 										</div>
 									</div>
