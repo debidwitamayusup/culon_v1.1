@@ -96,7 +96,7 @@
 									<h4 class="card-title">Summary Interval Year</h4>
 								</div>
 								<div class="card-body">
-									<div id="echartVertical" class="chartsh overflow-hidden"></div>
+									<canvas id="echartVerticalYear"></canvas>
 								</div>
 							</div>
 						</div>
