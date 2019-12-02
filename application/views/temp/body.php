@@ -147,12 +147,12 @@
 													Live Chat
 												</div>
 											</div>
-										</div>
-										<div class="mini-stat clearfix bg-indigo-darker rounded">
-											<span class="mini-stat-icon"><i class="fa fa-envelope-open text-indigo"></i></span>
-											<div class="mini-stat-info text-white float-right">
-												<h3>1,142</h3>
-												Pesan
+											<div class="mini-stat clearfix bg-indigo-darker rounded">
+												<span class="mini-stat-icon"><i class="fa fa-envelope-open text-indigo"></i></span>
+												<div class="mini-stat-info text-white float-right">
+													<h3>1,142</h3>
+													Pesan
+												</div>
 											</div>
 										</div>
 									</div>
@@ -358,9 +358,9 @@
 												<div class="col-xl-2 border-right">
 													<div class="card-body text-center">
 														<div class="dash3">
-															<i class="fa fa-envelope-open text-pink plan-icon"></i>
-															<h5 class="text-muted">Pesan</h5>
-															<h4 class="counter text-pink num-font">7,945</h4>
+															<i class="fa fa-comments text-dark plan-icon"></i>
+															<h5 class="text-muted">Live Chat</h5>
+															<h4 class="counter text-dark num-font">7,945</h4>
 														</div>
 													</div>
 												</div>
