@@ -14,13 +14,7 @@ class Stc_Model extends CI_Model
 	{
 		$query = $this->db->query('SELECT channel, SUM(tot_pickup) + SUM(antrian) + SUM(chat_in_progress) AS summary_traffic FROM hsummary_copy WHERE date(lup) = CURRENT_DATE GROUP BY channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$today[] = $data;
-			}
-			return $today;
-		}
+		return $query->result();
 	}
 
 	//controller SummaryTrafficChannel function stc_month
@@ -29,13 +23,7 @@ class Stc_Model extends CI_Model
 		$query = $this->db->query('SELECT channel, SUM(tot_pickup) + SUM(antrian) + SUM(chat_in_progress) AS summary_traffic
 				FROM hsummary_copy WHERE MONTH(lup) = MONTH(CURRENT_TIME) AND YEAR(lup) = YEAR(CURRENT_TIME) group by channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$month[] = $data;
-			}
-			return $month;
-		}
+		return $query->result();
 	}
 
 	//controller SummaryTrafficChannel function stc_year
@@ -44,13 +32,7 @@ class Stc_Model extends CI_Model
 		$query = $this->db->query('SELECT channel, sum(tot_pickup) + sum(antrian) + sum(chat_in_progress) AS summary_traffic
 				FROM hsummary_copy WHERE YEAR(lup) = YEAR(CURRENT_TIME) group by channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$year[] = $data;
-			}
-			return $year;
-		}
+		return $query->result();
 	}
 
 	//controller TrafficInterval function stc_interval15
@@ -59,63 +41,42 @@ class Stc_Model extends CI_Model
 		$query = $this->db->query('SELECT DATE(lup),TIME(lup), SUM(tot_pickup), SUM(antrian), SUM(chat_in_progress)
 				FROM hsummary_copy
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
-				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
 		
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$interval15[] = $data;
-			}
-			return $interval15;
-		}
+		return $query;
 	}
 
+	//controller TrafficInterval function stc_interval30//
 	public function getInterval30()
 	{
 		$query = $this->db->query('SELECT DATE(lup),TIME(lup), SUM(tot_pickup), SUM(antrian), SUM(chat_in_progress)
 				FROM hsummary_copy
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
-				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 1800;');
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 1800 AND channel;');
 		
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$interval30[] = $data;
-			}
-			return $interval30;
-		}
+		return $query;
 	}
 
+	//controller CaseInOut function case_in_interval
 	public function getCaseIn()
 	{
 		$query = $this->db->query('SELECT lup, case_in
 				FROM hsummary
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
-				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$casein[] = $data;
-			}
-			return $casein;
-		}
+		return $query;
 	}
 
+	//controller CaseInOut function case_out_interval
 	public function getCaseOut()
 	{
 		$query = $this->db->query('SELECT lup, case_out
 				FROM hsummary
 				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
-				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900;');
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
 
-		if($query->num_rows() > 0)
-		{
-			foreach ($query->result() as $data) {
-				$caseout[] = $data;
-			}
-			return $caseout;
-		}
+		return $query;
 	}
 
 	public function get_all_unique_customer_per_channel()
@@ -127,4 +88,92 @@ class Stc_Model extends CI_Model
 		$query = $this->db->get();
     	return $query->result();
 	}
+	//controller AverageTime function stc_art
+	public function getArt()
+	{
+		$query = $this->db->query('SELECT DATE(lup), TIME(lup), AVG(response_time) avg_handle
+				FROM hsummary_copy
+				WHERE TIME(lup) BETWEEN "00:00:00" AND "23:59:59"
+				GROUP BY DATE(lup), UNIX_TIMESTAMP(lup) DIV 900 AND channel;');
+
+		return $query;
+	}
+
+	//controller AverageTime function stc_aht
+	public function getAht()
+	{
+		$this->db->select('channel, DATE(lup) lup_date, TIME(lup) lup_interval, CAST(AVG(handling_time)AS DECIMAL(10,0)) avg_handling_time');
+		$this->db->from('hsummary');
+
+		//where
+		$this->db->where('TIME(lup) BETWEEN "00:00:00" AND "23:59:59"');
+		$this->db->group_by('DATE(lup)');
+		$this->db->group_by('UNIX_TIMESTAMP(lup) DIV 900');
+		$this->db->group_by('channel');
+		$this->db->order_by('channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	//controller AverageTime function stc_ast
+	public function getAst()
+	{
+		$this->db->select('channel, DATE(lup) lup_date, TIME(lup) lup_time, CAST(AVG(conversation_time)AS DECIMAL(10,0)) avg_service');
+		$this->db->from('hsummary_copy');
+
+		//where
+		$this->db->where('TIME(lup) BETWEEN "00:00:00" AND "23:59:59"');
+		$this->db->group_by('channel');
+		$this->db->group_by('DATE(lup)');
+		$this->db->group_by('UNIX_TIMESTAMP(lup) DIV 900');
+		$this->db->order_by('channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function getCardMain()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
+
+	public function getCGraph()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
+
+	public function getBGraph()
+	{
+		$query = $this->db->query('');
+
+		return $query->result();
+	}
+
+	public function getTotInteraction()
+	{
+		$this->db->select('SUM(total) total_interaction');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function getTotUniqueCustomer()
+	{
+		$this->db->select('SUM(total_unique) total_unique_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	public function getAverageCustomer()
+	{
+		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
+		$this->db->from('summary_channel');
+		$query = $this->db->get();
+		return $query;
+	}
+
 }
