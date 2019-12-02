@@ -42,14 +42,14 @@
 		
 		<!-- Side menu js -->
 		<script src="<?= base_url()?>assets/plugins/sidemenu/js/sidemenu.js"></script>
-		<script src="<?= base_url()?>assets/plugins/side-menu/js/side-menu.js"></script>
+		<!-- Comment date : 12/2/2019 <script src="<?= base_url()?>assets/plugins/side-menu/js/side-menu.js"></script> -->
 
 		<!-- Sidemenu-responsive-tabs js-->
 		<script src="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/js/sidemenu-responsive-tabs.js"></script>
 		<script src="<?=base_url()?>assets/js/left-menu.js"></script>
 		
 		<!-- Inline js -->
-		<script src="<?base_url()?>assets/js/select2.js"></script>
+		<!-- Comment date : 12/2/2019 <script src="<?=base_url('assets/js/select2.js')?>"></script> -->
 		<!--Select2 js -->	
 		<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
 		
