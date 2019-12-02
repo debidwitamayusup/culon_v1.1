@@ -61,12 +61,32 @@ class ApiAgentPerformance extends CI_Controller {
 
 	public function detailIntervalCall(){
 		// get data agent 
-
+		// collect from db
+		$data = array(
+			[
+				"channel" => 1,
+				"lup_date" => "2019-11-30",
+				"lup_interval" => "20:00:37",
+				"handling_time" => 175
+			],
+			[
+				"channel" => 2,
+				"lup_date" => "2019-11-30",
+				"lup_interval" => "07:15:12",
+				"handling_time" => 165
+			],
+			[
+				"channel" => 2,
+				"lup_date" => "2019-11-30",
+				"lup_interval" => "07:30:46",
+				"handling_time" => 200
+			]
+		);
 		//process
 		$response_data = array(
 			"status" => 200, 
 			"message" => "success", 
-			"data" => "",
+			"data" => $data
 		);
 
 		//output json
