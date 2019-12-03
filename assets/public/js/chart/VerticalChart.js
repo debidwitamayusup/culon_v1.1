@@ -3,7 +3,7 @@
 	//bar chart
 	if (window.location.pathname == "/dashboard_on4/main/this_day") {
 		var ctx = document.getElementById("echartVerticalDay");
-		ctx.height = 573;
+		ctx.height = 538;
 		var myChart = new Chart(ctx, {
 			type: 'horizontalBar',
 			data: {
@@ -73,7 +73,7 @@
 	} else if (window.location.pathname == "/dashboard_on4/main/this_month") {
 		//bar chart
 		var ctxMotnh = document.getElementById("echartVerticalMonth");
-		ctxMotnh.height = 573;
+		ctxMotnh.height = 538;
 		var myChartMotnh = new Chart(ctxMotnh, {
 			type: 'horizontalBar',
 			data: {
@@ -143,7 +143,7 @@
 	} else if (window.location.pathname == "/dashboard_on4/main/this_year") {
 		//bar chart
 		var ctxYear = document.getElementById("echartVerticalYear");
-		ctxYear.height = 573;
+		ctxYear.height = 539;
 		var myChartYear = new Chart(ctxYear, {
 			type: 'horizontalBar',
 			data: {

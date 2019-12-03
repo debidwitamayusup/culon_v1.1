@@ -92,141 +92,142 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-lg-6 col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">Summary Interval Month</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="echartVerticalMonth"></canvas>
-									</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Summary Interval Month</h4>
 								</div>
-							</div>
-							<div class="col-md-12 col-lg-6">
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Average Interval</h3>
-									</div>
-									<div class="table-responsive">
-										<table class="table card-table table-vcenter table-hover">
-											<thead>
-												<tr>
-													<th>No</th>
-													<th>Channel</th>
-													<th>SLA</th>
-													<th>ART</th>
-													<th>AHT</th>
-													<th>AST</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td>Whatsapp</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">2</th>
-													<td>Twitter</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">3</th>
-													<td>Facebook</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">4</th>
-													<td>Email</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">5</th>
-													<td>Telegram</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">6</th>
-													<td>Line</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">7</th>
-													<td>Voice</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">8</th>
-													<td>Instagram</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">9</th>
-													<td>Messenger</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">10</th>
-													<td>Twitter DM</td>
-													<td>70%</td>
-													<t<td>10:00:00</td>
-														<td>10:50:19</td>
-														<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">11</th>
-													<td>Live Chat</td>
-													<td>70%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-												<tr>
-													<th scope="row">12</th>
-													<td>Pesan</td>
-													<td>80%</td>
-													<td>10:00:00</td>
-													<td>10:50:19</td>
-													<td>09:10:10</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<!-- table-responsive -->
+								<div class="card-body">
+									<canvas id="echartVerticalMonth"></canvas>
 								</div>
 							</div>
 						</div>
+						<div class="col-md-12 col-lg-6">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Average Interval</h3>
+								</div>
+								<div class="table-responsive">
+									<table class="table card-table table-vcenter table-hover">
+										<thead>
+											<tr>
+												<th>No</th>
+												<th>Channel</th>
+												<th>SLA</th>
+												<th>ART</th>
+												<th>AHT</th>
+												<th>AST</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">1</th>
+												<td>Whatsapp</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td>Twitter</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>Facebook</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>Email</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>Telegram</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>Line</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>Voice</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>Instagram</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">9</th>
+												<td>Messenger</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>Twitter DM</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">11</th>
+												<td>Live Chat</td>
+												<td>70%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+											<tr>
+												<th scope="row">12</th>
+												<td>Pesan</td>
+												<td>80%</td>
+												<td>10:00:00</td>
+												<td>10:50:19</td>
+												<td>09:10:10</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- table-responsive -->
+							</div>
+						</div>
 					</div>
-					<?php $this->load->view('temp/footer');?>
-					<!--Chart Plugin -->
-					<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
-					<script src="<?=base_url()?>public/js/app/lineChart.js"></script>
-					<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
+				</div>
+				<?php $this->load->view('temp/footer');?>
+				<!--Chart Plugin -->
+				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
+				<script src="<?=base_url()?>assets/public/js/chart/lineChart.js"></script>
+				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>
