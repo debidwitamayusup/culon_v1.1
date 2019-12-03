@@ -110,7 +110,9 @@ class SummaryMonth extends CI_Controller {
 			$response = array(
 				'status' => 200,
 				'message' => 'Data Not Found',
-				'data' => $data);
+				'data' => $data,
+				'data_table' => $avgIntervalTable,
+				'data_for_chart' => $dataForTable);
 		}
 		echo json_encode($response);
 	}
