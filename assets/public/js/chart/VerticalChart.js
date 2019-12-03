@@ -1,7 +1,7 @@
 (function ($) {
 	"use strict";
 	//bar chart
-	if (window.location.pathname == "/dashboard_on4/main/this_day") {
+	if (window.location.pathname.indexOf("/main/this_day") > -1) {
 		var ctx = document.getElementById("echartVerticalDay");
 		ctx.height = 538;
 		var myChart = new Chart(ctx, {
@@ -70,7 +70,7 @@
 				}
 			}
 		});
-	} else if (window.location.pathname == "/dashboard_on4/main/this_month") {
+	} else if (window.location.pathname.indexOf("/main/this_month") > -1) {
 		//bar chart
 		var ctxMotnh = document.getElementById("echartVerticalMonth");
 		ctxMotnh.height = 538;
@@ -140,7 +140,7 @@
 				}
 			}
 		});
-	} else if (window.location.pathname == "/dashboard_on4/main/this_year") {
+	} else if (window.location.pathname.indexOf("/main/this_year") > -1){
 		//bar chart
 		var ctxYear = document.getElementById("echartVerticalYear");
 		ctxYear.height = 539;
