@@ -5,7 +5,7 @@ $(document).ready(function () {
     // console.log(base_url);
     $.ajax({
         type: 'get',
-        url: base_url+'Summary-Traffic/cardMain',
+        url: base_url + 'Summary-Traffic/cardMain',
         data: {},
         success: function (r) {
             var response = JSON.parse(r);
@@ -19,7 +19,7 @@ $(document).ready(function () {
                 $("#retres").append('<div class="col-md-3"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white float-right"><h3> ' + value.total + '</h3> ' + value.channel + '</div></div></div>')
             });
             var ctx = document.getElementById("pieChart");
-            ctx.height = 323;
+            ctx.height = 355;
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -99,7 +99,7 @@ $(document).ready(function () {
     //call total interaction
     $.ajax({
         type: 'get',
-        url: base_url+'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {},
         success: function (r) {
             var response = JSON.parse(r);
@@ -114,7 +114,7 @@ $(document).ready(function () {
     //call total unique customer
     $.ajax({
         type: 'get',
-        url: base_url+'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {},
         success: function (r) {
             var response = JSON.parse(r);
@@ -128,7 +128,7 @@ $(document).ready(function () {
     //call avg customer
     $.ajax({
         type: 'get',
-        url: base_url+'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
         data: {},
         success: function (r) {
             var response = JSON.parse(r);
@@ -140,9 +140,11 @@ $(document).ready(function () {
         },
     });
 
+    //Call Interaction
+
     $.ajax({
         type: 'get',
-        url: base_url+'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
         data: {},
         success: function (r) {
             var response = JSON.parse(r);
@@ -150,7 +152,7 @@ $(document).ready(function () {
                 let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Messenger" ? "text-blue-dark" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-indigo-dark" : value.channel_name == "SMS" ? "text-indigo-darker" : "";
                 let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-indigo plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-indigo plan-icon" : "";
 
-                $("#retres-unique").append('<div class="col-xl-2 border-right"><div class="card-body text-center"><i class="'+classIcon+'"></i><div class="dash3"><h5 class="text-muted">'+value.channel_name+'</h5><h4 class="counter ' + classBg +' num-font">' + value.total_unique + '</h4></div></div></div>')
+                $("#retres-unique").append('<div class="col-xl-3 border-right"><div class="card-body text-center"><i class="' + classIcon + '"></i><div class="dash3"><h5 class="text-muted">' + value.channel_name + '</h5><h4 class="counter ' + classBg + ' num-font">' + value.total_unique + '</h4></div></div></div>')
             });
         },
         error: function (r) {

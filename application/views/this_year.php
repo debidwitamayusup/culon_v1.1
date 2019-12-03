@@ -225,6 +225,6 @@
 				<?php $this->load->view('temp/footer');?>
 				<!--Chart Plugin -->
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
-				<script src="<?=base_url()?>public/js/app/lineChartYear.js"></script>
-				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
-				
+				<!--Chart--->
+				<script src="<?=base_url()?>assets/public/js/chart/lineChartYear.js"></script>
+				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>

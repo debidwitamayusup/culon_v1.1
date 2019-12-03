@@ -27,7 +27,7 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-6 col-lg-6 col-md-12">
+						<div class="col-xl-7 col-lg-7 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Summary Traffic Channel</h3>
@@ -43,7 +43,7 @@
 							</div>
 						</div>
 						<!---! Kolom Channel--->
-						<div class="col-xl-6 col-lg-6 col-md-12">
+						<div class="col-xl-5 col-lg-5 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Interaction</h3>
@@ -64,7 +64,7 @@
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="total-interaction"></h2>
-									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
+									<span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -80,7 +80,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div> -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="unique-customer"></h2>
-									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
+									<span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -107,7 +107,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div> -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -118,7 +118,7 @@
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="avg-customer"></h2>
-									<!-- <span class="text-muted">15% Higher Of Previous Month</span>
+									<span class="text-muted">15% Higher Of Previous Month</span>
 									<div class="row mt-5">
 										<div class="col-sm-12">
 											<div class="mb-0">
@@ -134,7 +134,7 @@
 												<span>12% of your Goals</span>
 											</div>
 										</div>
-									</div> -->
+									</div>
 								</div>
 							</div>
 						</div>

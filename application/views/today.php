@@ -278,5 +278,5 @@
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Highcharts Plugin -->
 				
-				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
-				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
+				<script src="<?=base_url()?>assets/public/js/chart/barChart.js"></script>				
+				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>
