@@ -8,6 +8,15 @@ class Stc_Model extends CI_Model
 		parent:: __construct();
 	}
 
+	public function get_all_channel(){
+		$this->db->select('channel_name');
+		$this->db->from('summary_channel');
+		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name');
+		$query = $this->db->get();
+
+		return $query->result();
+	} 
 	// select data table hsummary
 	//controller SummaryTrafficChannel function stc_today
 	public function getToday()
@@ -243,6 +252,43 @@ class Stc_Model extends CI_Model
 	{
 		$query = $this->db->query('');
 
+		return $query->result();
+	}
+
+	public function get_traffic_interval_today($date, $channel)
+	{
+		$this->db->select('TIME(date_time)as time, channel_name, sum(total) as total');
+		$this->db->from('summary_channel');
+		if($channel){
+			$this->db->where('channel_name', $channel);
+		}
+		$this->db->where('DATE(date_time)', $date);
+		$this->db->group_by('channel_name');
+		$this->db->group_by('UNIX_TIMESTAMP(date_time) DIV 3600');
+		$this->db->order_by('time', 'ASC');
+		$this->db->order_by('channel_name', 'ASC');
+		$query = $this->db->get();
+    	return $query->result();
+	}
+
+	public function getAverageIntervalToday($date){
+		$this->db->select('date_time, channel_id, art, aht, ait as ast, hi, handle, round((hi/handle)*100, 2) as sla');
+		$this->db->from('agent_perform');
+		$this->db->where('DATE(date_time)', $date);
+		$this->db->group_by('channel_id');
+		$this->db->order_by('channel_id', 'ASC');
+		$query = $this->db->get();
+    	return $query->result();
+	}
+
+	public function getPercentageIntervalToday($date){
+		
+		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) 	FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
+			FROM summary_channel 
+			WHERE DATE(date_time) = '$date' 
+			GROUP BY channel_name
+			ORDER BY channel_name
+		");
 		return $query->result();
 	}
 }
