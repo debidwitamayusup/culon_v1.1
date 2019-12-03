@@ -59,8 +59,8 @@
 					<div class="row">
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Total Interaction</h3>
+								<div class="card-header bg-red">
+									<h3 class="card-title text-white">Total Interaction</h3>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="total-interaction"></h2>
@@ -86,8 +86,8 @@
 						</div>
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="text-center card-title">Unique Customer</h3>
+								<div class="card-header bg-red">
+									<h3 class="text-white card-title">Unique Customer</h3>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="unique-customer"></h2>
@@ -113,8 +113,8 @@
 						</div>
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Average Customer</h3>
+								<div class="card-header bg-red">
+									<h3 class="card-title text-white">Average Customer</h3>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="avg-customer"></h2>
@@ -142,8 +142,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card box-widget widget-user">
-								<div class="card-header bg-blue">
-									<h3 class="card-title">Unique Customer per Channel</h3>
+								<div class="card-header bg-red">
+									<h3 class="card-title text-white">Unique Customer per Channel</h3>
 								</div>
 								<div class="box-footer">
 									<div class="row">

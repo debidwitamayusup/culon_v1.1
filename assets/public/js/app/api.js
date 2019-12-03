@@ -64,6 +64,12 @@ $(document).ready(function () {
                     legend: {
                         display: false
                     },
+                    pieceLabel: {
+                        render: 'legend',
+                        fontColor: '#000',
+                        position: 'outside',
+                        segment: true
+                      }, 
                     legendCallback: function (chart, index) {
                         var allData = chart.data.datasets[0].data;
                         console.log(chart)
