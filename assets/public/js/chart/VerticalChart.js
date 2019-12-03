@@ -3,7 +3,7 @@
 	//bar chart
 	if (window.location.pathname == "/dashboard_on4/main/this_day") {
 		var ctx = document.getElementById("echartVerticalDay");
-		ctx.height = 573;
+		ctx.height = 538;
 		var myChart = new Chart(ctx, {
 			type: 'horizontalBar',
 			data: {
