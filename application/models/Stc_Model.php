@@ -335,7 +335,7 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getPercentageIntervalToday($date){
-		
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) 	FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
 			FROM summary_channel 
 			WHERE DATE(date_time) = '$date' 

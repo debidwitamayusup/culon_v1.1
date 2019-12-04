@@ -204,6 +204,18 @@ function drawChartPercentageToday(response){
     });
 }
 
+// function destroy element canvas
+function destroyChartInterval(){
+    // destroy chart interval 
+    $('#customerChartToday').remove(); // this is my <canvas> element
+    $('#chart-interval').append('<canvas id="customerChartToday"  class="h-400"><canvas>');
+}
+
+function destroyChartPercentage(){
+    //destroy chart percentage
+    $('#echartPercentageToday').remove(); // this is my <canvas> element
+    $('#chart-percentage').append('<canvas id="echartPercentageToday"><canvas>');
+}
 
 //jquery
 (function ($) {
@@ -211,10 +223,15 @@ function drawChartPercentageToday(response){
     $('#input-date').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
+            //destroy chart
+            destroyChartInterval();
+            destroyChartPercentage();
             // console.log(this.value);
+            
+            //re draw
             callIntervalTraffic(this.value, []);
             callDataTableAvg(this.value);
-            // callDataPercentage(this.value);
+            callDataPercentage(this.value);
         }
     });
 })(jQuery);

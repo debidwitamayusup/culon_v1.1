@@ -112,27 +112,29 @@ class SummaryToday extends CI_Controller {
         }
 
         $arr_channel = $this->Stc_Model->get_all_channel();
-        // var_dump(($arr_channel));die();
         $arr_data = array();
 
         $query = $this->Stc_Model->getPercentageIntervalToday($date);
-        // var_dump(($query));die();
         $i = 0;
         if($query){
             while($i < sizeof($arr_channel)){
-                for($index = 0;$index<sizeof($query);$index++){
+                $index = 0;
+                $status = 0;
+                while($index<sizeof($query) && $status == 0){
+                    $obj = array();
                     if($arr_channel[$i]->channel_name == $query[$index]->channel_name){
                         $obj = [
                             "channel_name" => $arr_channel[$i]->channel_name,
                             "rate" => $query[$index]->rate
                         ];
-                        $index++;
+                        $status = 1;
                     }else{
                         $obj = [
                             "channel_name" => $arr_channel[$i]->channel_name,
                             "rate" => 0
                         ];
                     }
+                    $index++;
                 }
                 array_push($arr_data, $obj);
                 $i++;
@@ -140,12 +142,12 @@ class SummaryToday extends CI_Controller {
             
             $response = array(
                 'status' => true,
-                'data' => $arr_data
+                'data' => $arr_data, 
             );
         }else{
             $response = array(
                 'status' => false,
-                'data' => 'data not found'
+                'data' => ''
             );
         }
 
