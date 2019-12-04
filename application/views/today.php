@@ -146,7 +146,8 @@
 									<h4 class="card-title">Summary Interval Today</h4>
 								</div>
 								<div class="card-body">
-									<canvas id="echartVerticalDay"></canvas>
+									<!-- <canvas id="echartVerticalDay"></canvas> -->
+									<canvas id="echartPercentageToday"></canvas>
 								</div>
 							</div>
 						</div>

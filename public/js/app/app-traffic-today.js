@@ -4,8 +4,8 @@ $(document).ready(function () {
     // console.log(getToday());
     var data_chart = callIntervalTraffic('2019-05-22', []);
     var data_table_avg = callDataTableAvg('2019-11-02');
+    var data_percentage = callDataPercentage('2019-05-22')
 
-    //
 });
 function getColorChannel(channel){
     var color = [];
@@ -130,5 +130,67 @@ function drawTableToday(response){
         '<td>'+value.ast+'</td>'+
         '<td>'+value.ast+'</td>'+
         '</tr>');
+    });
+}
+
+function callDataPercentage(date){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday',
+        data: {
+            date: date
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            drawChartPercentageToday(response);
+        },
+        error: function (r) {
+            console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawChartPercentageToday(response){
+    var data_label = [];
+    var data_rate = [];
+    var data_color = [];
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
+    var obj = [{
+        label: "data",
+        data: data_rate,
+        borderColor: data_color,
+        borderWidth: "0",
+        backgroundColor: data_color
+    }];
+
+    // draw chart
+    var ctx_percentage = document.getElementById("echartPercentageToday");
+    ctx_percentage.height = 573;
+    var percentageChart = new Chart(ctx_percentage, {
+        type: 'horizontalBar',
+        data: {
+            labels: data_label,
+            datasets: obj,
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
     });
 }
