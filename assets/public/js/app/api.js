@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    console.log(parseInt(new Date().getMonth()) + 1)
+    $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("test");
     var data = "";
     var base_url = $('#base_url').val();
@@ -18,6 +20,8 @@ $(document).ready(function () {
                 arrChannel.push(value.channel);
                 $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white float-right"><h3> ' + value.total + '</h3> ' + value.channel + '</div></div></div>')
             });
+
+
             var ctx = document.getElementById("pieChart");
             ctx.height = 296;
             var myChart = new Chart(ctx, {
@@ -69,7 +73,7 @@ $(document).ready(function () {
                         fontColor: '#000',
                         position: 'outside',
                         segment: true
-                      }, 
+                    },
                     legendCallback: function (chart, index) {
                         var allData = chart.data.datasets[0].data;
                         console.log(chart)
@@ -165,4 +169,88 @@ $(document).ready(function () {
             alert("error");
         },
     });
+
+
+
+    //call traffic per month
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
+        data: {
+            "channel_name": $("#channel_name").val(),
+            "month": 11
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            var chartdata = [{
+                name: 'channel',
+                type: 'bar',
+                data: response.data.total_traffic
+            }];
+            var chart = document.getElementById('echart1');
+            var barChart = echarts.init(chart);
+            var option = {
+                grid: {
+                    top: '6',
+                    right: '0',
+                    bottom: '17',
+                    left: '25',
+                },
+                xAxis: {
+                    data: response.data.param_date,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                tooltip: {
+                    show: true,
+                    showContent: true,
+                    alwaysShowContent: true,
+                    triggerOn: 'mousemove',
+                    trigger: 'axis',
+                    axisPointer: {
+                        label: {
+                            show: false,
+                        }
+                    }
+                },
+                yAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                series: chartdata,
+                color: ['#B22222']
+            };
+            barChart.setOption(option);
+
+            // table average interval
+
+            
+
+
+
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+
 });
