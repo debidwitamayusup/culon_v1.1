@@ -11,6 +11,9 @@ class SummaryToday extends CI_Controller {
 
     public function getIntervalTrafficToday(){
         $date = $this->security->xss_clean($this->input->post('date', true));
+        if(!$date){
+            $date = date("Y-m-d");
+        }
         $arr_channel = $this->security->xss_clean($this->input->post('arr_channel', true));
         if(!$arr_channel){
             $arr_channel = $this->Stc_Model->get_all_channel();
