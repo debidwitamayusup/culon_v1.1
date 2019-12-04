@@ -12,7 +12,7 @@ class SummaryMonth extends CI_Controller {
 	public function lineChartPerMonth()
 	{
 		//date("m")
-		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
+		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Voice";
 		
 		$data = array();
@@ -54,7 +54,7 @@ class SummaryMonth extends CI_Controller {
 		$data = array(
 			'channel_name' => $channel_name,
 			'total_traffic' => $total_traffics,
-			'param_date' => $arrDate
+			'param_date' => $arrDate,
 		);
 
 		// get Average Interval for Data Table
