@@ -13,10 +13,12 @@ class SummaryYear extends CI_Controller {
 	{
 		$year = $this->input->post('year');
 		$channel_name = $this->input->post('channel_name');
+
 		$data = array();
 		$total_traffic = array();
-		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
 		$date = array();
+		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
+		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des');
 
 		if ($year == "") 
 		{
@@ -49,7 +51,8 @@ class SummaryYear extends CI_Controller {
 			$data = ([
 				'channel_name' => $channel_name,
 				'date' => $date,
-				'total_traffic' => $traffic
+				'total_traffic' => $traffic,
+				'month_x_axis' => $month_of_year
 			]);
 
 		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
