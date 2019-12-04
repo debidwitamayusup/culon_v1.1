@@ -35,45 +35,39 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="form-group row">
-											<select class="form-control select2"
-												data-placeholder="Choose one (with optgroup)">
-												<optgroup label="Channel">
-													<option value="1">Show</option>
-													<option value="2">Whatsapp</option>
-													<option value="3">Twitter</option>
-													<option value="4">Facebook</option>
-													<option value="5">Email</option>
-													<option value="6">Telegram</option>
-													<option value="7">Line</option>
-													<option value="8">Voice</option>
-													<option value="9">Instagram</option>
-													<option value="10">Messenger</option>
-													<option value="11">Twitter DM</option>
-													<option value="12">Live Chat</option>
-													<option value="13">Pesan</option>
-												</optgroup>
+											<select class="form-control">
+												<option value="1">Show</option>
+												<option value="2">Whatsapp</option>
+												<option value="3">Twitter</option>
+												<option value="4">Facebook</option>
+												<option value="5">Email</option>
+												<option value="6">Telegram</option>
+												<option value="7">Line</option>
+												<option value="8">Voice</option>
+												<option value="9">Instagram</option>
+												<option value="10">Messenger</option>
+												<option value="11">Twitter DM</option>
+												<option value="12">Live Chat</option>
+												<option value="13">Pesan</option>
 											</select>
 										</div>
 										<div class="d-flex order-lg-2 ml-auto float-right">
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
-														<select class="form-control select2"
-															data-placeholder="Choose one (with optgroup)">
-															<optgroup label="Month">
-																<option value="1">Januari</option>
-																<option value="2">Februari</option>
-																<option value="3">Maret</option>
-																<option value="4">April</option>
-																<option value="5">Mei</option>
-																<option value="6">Juni</option>
-																<option value="7">Juli</option>
-																<option value="8">Agustus</option>
-																<option value="9">September</option>
-																<option value="10">Oktober</option>
-																<option value="11">November</option>
-																<option value="12">Desember</option>
-															</optgroup>
+														<select class="form-control" id="month">
+															<option value="1">Januari</option>
+															<option value="2">Februari</option>
+															<option value="3">Maret</option>
+															<option value="4">April</option>
+															<option value="5">Mei</option>
+															<option value="6">Juni</option>
+															<option value="7">Juli</option>
+															<option value="8">Agustus</option>
+															<option value="9">September</option>
+															<option value="10">Oktober</option>
+															<option value="11">November</option>
+															<option value="12">Desember</option>
 														</select>
 													</div>
 												</div>
@@ -110,7 +104,7 @@
 									<h3 class="card-title">Average Interval</h3>
 								</div>
 								<div class="table-responsive">
-									<table class="table card-table table-vcenter table-hover">
+									<table class="table card-table table-vcenter table-hover id="tabel_average_month"">
 										<thead>
 											<tr>
 												<th>No</th>

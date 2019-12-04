@@ -130,17 +130,10 @@
 										</div>
 									</div>
 								</div>
-<!-- <<<<<<< HEAD
-								<div class="card-body">
-<<<<<<< HEAD
-									<canvas id="graphicToday" class="h-400"></canvas>
-=======
-======= -->
+
 								<div class="card-body" id="chart-interval">
-<!-- >>>>>>> origin/try-dev -->
 									<!-- <canvas id="customerChart" class="h-400"></canvas> -->
 									<canvas id="customerChartToday" class="h-400"></canvas>
-<!-- >>>>>>> origin/try-dev -->
 								</div>
 							</div>
 						</div>
@@ -288,12 +281,6 @@
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Highcharts Plugin -->
 				
-<!-- <<<<<<< HEAD
-				<script src="<?=base_url()?>assets/public/js/chart/barChart.js"></script>				
-				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>			
-				<script src="<?=base_url()?>assets/public/js/chart/GraphicToday.js"></script>
-======= -->
 				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
 				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
-				<script src="<?=base_url()?>public/js/app/app-traffic-today.js"></script>
-<!-- >>>>>>> origin/try-dev -->
+				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>

@@ -11,48 +11,26 @@ class SummaryMonth extends CI_Controller {
 
 	public function lineChartPerMonth()
 	{
-		$month = $this->input->post('month');
-		$channel_name = $this->input->post('channel_name');
+		//date("m")
+		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
+		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Voice";
+		
 		$data = array();
 		
 		$date = array();
 		$total_traffic =array();
 
-		if ($month == "")
-		{
-			$month = date('m');
+		//condition for days of month based on month
+		$query_date = date("Y-m-d");
+ 
+   		$paramDate = date('t', strtotime($query_date));
+		$arrDate = array();
+		$total_traffics = array();
+		for($i=1;$i<=$paramDate;$i++) {
+			array_push($arrDate,$i);
 		}
-
-		if ($channel_name == "")
-		{
-			//sementara
-			$channel_name = "Email";
-		}
-
-		//condition for days of month based on month (for vertical graphic)
-		$getDaysofMonth = cal_days_in_month(CAL_GREGORIAN, $month, date('Y'));
-		if ($getDaysofMonth == 31) 
-		{
-			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			//for x axis in chart
-			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)	;
-		}elseif ($getDaysofMonth == 30) 
-		{
-			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			//for x axis in chart
-			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30);
-		}elseif ($getDaysofMonth == 29) 
-		{
-			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			//for x axis in chart
-			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29);
-		}else
-		{
-			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			//for x axis in chart
-			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28);
-		}
-
+		
+		
 		//get Interval Per Month for Vertical Graphic
 		$ipm = $this->Stc_Model->getIntervalPerMonth($month, $channel_name)->result();
 		foreach ($ipm as $key) 
@@ -60,7 +38,7 @@ class SummaryMonth extends CI_Controller {
 			array_push($total_traffic, $key->total_traffic);
 			array_push($date, $key->date);
 		}
-		for ($i=0; $i < sizeof($total_traffics); $i++) 
+		for ($i=0; $i < sizeof($arrDate); $i++) 
 		{ 
 			for ($j=0; $j < sizeof($date) ; $j++) 
 			{ 
@@ -76,7 +54,7 @@ class SummaryMonth extends CI_Controller {
 		$data = array(
 			'channel_name' => $channel_name,
 			'total_traffic' => $total_traffics,
-			'days_x_axis' => $days_of_month,
+			'param_date' => $arrDate
 		);
 
 		// get Average Interval for Data Table
