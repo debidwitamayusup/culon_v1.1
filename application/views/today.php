@@ -131,7 +131,6 @@
 									</div>
 								</div>
 								<div class="card-body" id="chart-interval">
-									<!-- <canvas id="customerChart" class="h-400"></canvas> -->
 									<canvas id="customerChartToday" class="h-400"></canvas>
 								</div>
 							</div>
