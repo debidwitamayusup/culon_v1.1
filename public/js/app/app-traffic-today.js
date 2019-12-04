@@ -1,12 +1,11 @@
 var base_url = $('#base_url').val();
 $(document).ready(function () {
-    
-    // console.log(getToday());
     var data_chart = callIntervalTraffic('2019-05-22', []);
     var data_table_avg = callDataTableAvg('2019-11-02');
-    var data_percentage = callDataPercentage('2019-05-22')
-
+    var data_percentage = callDataPercentage('2019-05-22');
 });
+
+//function get data and draw
 function getColorChannel(channel){
     var color = [];
     color['Email'] = '#e41313';
@@ -73,6 +72,8 @@ function drawChartToday(response){
         };
         data.push(obj);
     });
+
+    // draw chart
     var ctx = document.getElementById( "customerChartToday" );
     var myChart = new Chart( ctx, {
         type: 'line',
@@ -121,16 +122,24 @@ function callDataTableAvg(date){
 }
 
 function drawTableToday(response){
-    response.data.forEach(function (value, index) {
+    $("#mytbody").empty();
+    if(response.data.length != 0){
+        response.data.forEach(function (value, index) {
+            $('#table-avg-interval').find('tbody').append('<tr>'+
+            '<td>'+(index+1)+'</td>'+
+            '<td>'+value.channel_id+'</td>'+
+            '<td>'+value.sla+'%</td>'+
+            '<td>'+value.art+'</td>'+
+            '<td>'+value.ast+'</td>'+
+            '<td>'+value.ast+'</td>'+
+            '</tr>');
+        });
+    }else{
         $('#table-avg-interval').find('tbody').append('<tr>'+
-        '<td>'+(index+1)+'</td>'+
-        '<td>'+value.channel_id+'</td>'+
-        '<td>'+value.sla+'%</td>'+
-        '<td>'+value.art+'</td>'+
-        '<td>'+value.ast+'</td>'+
-        '<td>'+value.ast+'</td>'+
-        '</tr>');
-    });
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    
 }
 
 function callDataPercentage(date){
@@ -194,3 +203,18 @@ function drawChartPercentageToday(response){
         }
     });
 }
+
+
+//jquery
+(function ($) {
+    // change date picker
+    $('#input-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+            // console.log(this.value);
+            callIntervalTraffic(this.value, []);
+            callDataTableAvg(this.value);
+            // callDataPercentage(this.value);
+        }
+    });
+})(jQuery);

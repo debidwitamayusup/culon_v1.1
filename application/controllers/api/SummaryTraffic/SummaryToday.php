@@ -98,7 +98,7 @@ class SummaryToday extends CI_Controller {
         }else{
             $response = array(
                 'status' => false,
-                'data' => 'data not found'
+                'data' => ''
             );
         }
 

@@ -41,7 +41,7 @@
 													<div class="input-group-text">
 														<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
 													</div>
-												</div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+												</div><input id="input-date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
 											</div>
 										</div>
 									</div>
@@ -168,7 +168,7 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="mytbody">
 										<!-- 	<tr>
 												<th scope="row">1</th>
 												<td>Whatsapp</td>
