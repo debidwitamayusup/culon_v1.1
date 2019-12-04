@@ -18,9 +18,13 @@ class SummaryMonth extends CI_Controller {
 		$date = array();
 		$total_traffic =array();
 
-		if ($month == "" || $channel_name == "")
+		if ($month == "")
 		{
 			$month = date('m');
+		}
+
+		if ($channel_name == "")
+		{
 			//sementara
 			$channel_name = "Email";
 		}
