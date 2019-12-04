@@ -72,9 +72,9 @@
 		});
 	} else if (window.location.pathname.indexOf("/main/this_month") > -1) {
 		//bar chart
-		var ctxMotnh = document.getElementById("echartVerticalMonth");
-		ctxMotnh.height = 575;
-		var myChartMotnh = new Chart(ctxMotnh, {
+		var ctxMonth = document.getElementById("echartVerticalMonth");
+		ctxMonth.height = 575;
+		var myChartMonth= new Chart(ctxMonth, {
 			type: 'horizontalBar',
 			data: {
 				labels: [

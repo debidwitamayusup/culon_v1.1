@@ -27,7 +27,7 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-7 col-lg-7 col-md-12">
+						<div class="col-xl-5 col-lg-5 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Summary Traffic Channel</h3>
@@ -43,7 +43,7 @@
 							</div>
 						</div>
 						<!---! Kolom Channel--->
-						<div class="col-xl-5 col-lg-5 col-md-12">
+						<div class="col-xl-7 col-lg-7 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Interaction</h3>
