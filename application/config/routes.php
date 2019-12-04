@@ -64,6 +64,11 @@ $route['Summary-Traffic/uniqueCustomerPerChannel'] = 'api/SummaryTraffic/Summary
 // $route['Average-Time'] = 'AverageTime/index';
 // $route['Case-I-O'] = 'CaseInOut/index';
 
+//summary today
+$route['Summary-Traffic-Today/IntervalTrafficToday'] = 'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday';
+$route['Summary-Traffic-Today/AverageIntervalToday'] = 'api/SummaryTraffic/SummaryToday/getAverageInterval';
+$route['Summary-Traffic-Today/PercentageTrafficToday'] = 'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday';
+
 //Agent Performance
 $route['Summary_Call_Agent'] = 'AgentPerformance/index';
 //Operation Performance

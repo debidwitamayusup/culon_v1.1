@@ -20,8 +20,6 @@ class SummaryMonth extends CI_Controller {
 		$date = array();
 		$total_traffic =array();
 
-		
-
 		//condition for days of month based on month
 		$query_date = date("Y-m-d");
  

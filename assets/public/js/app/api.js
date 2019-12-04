@@ -242,8 +242,9 @@ $(document).ready(function () {
             barChart.setOption(option);
 
             // table average interval
-
             
+            var table;
+            table = $('$table')
 
 
 

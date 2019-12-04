@@ -41,7 +41,7 @@
 													<div class="input-group-text">
 														<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
 													</div>
-												</div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+												</div><input id="input-date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
 											</div>
 										</div>
 									</div>
@@ -130,8 +130,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="card-body">
-									<canvas id="graphicToday" class="h-400"></canvas>
+								<div class="card-body" id="chart-interval">
+									<!-- <canvas id="customerChart" class="h-400"></canvas> -->
+									<canvas id="customerChartToday" class="h-400"></canvas>
 								</div>
 							</div>
 						</div>
@@ -144,8 +145,9 @@
 								<div class="card-header">
 									<h4 class="card-title">Summary Interval Today</h4>
 								</div>
-								<div class="card-body">
-									<canvas id="echartVerticalDay"></canvas>
+								<div class="card-body" id="chart-percentage">
+									<!-- <canvas id="echartVerticalDay"></canvas> -->
+									<canvas id="echartPercentageToday"></canvas>
 								</div>
 							</div>
 						</div>
@@ -155,7 +157,7 @@
 									<h3 class="card-title">Average Interval</h3>
 								</div>
 								<div class="table-responsive">
-									<table class="table card-table table-vcenter table-hover">
+									<table class="table card-table table-vcenter table-hover" id="table-avg-interval">
 										<thead >
 											<tr>
 												<th>No</th>
@@ -166,8 +168,8 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
+										<tbody id="mytbody">
+										<!-- 	<tr>
 												<th scope="row">1</th>
 												<td>Whatsapp</td>
 												<td>70%</td>
@@ -262,7 +264,7 @@
 												<td>10:00:00</td>
 												<td>10:50:19</td>
 												<td>09:10:10</td> 
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>
 								</div>
@@ -278,6 +280,6 @@
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Highcharts Plugin -->
 				
-				<script src="<?=base_url()?>assets/public/js/chart/barChart.js"></script>				
-				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>			
-				<script src="<?=base_url()?>assets/public/js/chart/GraphicToday.js"></script>
+				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
+				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
+				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>

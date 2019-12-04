@@ -536,3 +536,6 @@
 					</div>
 				</div>
 				<!--/Sidebar-right-->
+
+		<?php $this->load->view('temp/footer');?>
+		<script src="<?= base_url()?>public/js/app/api.js"></script>
