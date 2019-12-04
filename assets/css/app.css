@@ -3,7 +3,7 @@
 }
 
 .label-icon-resize {
-    font-size: 15px !important;
+    font-size: 14px !important;
     padding-top: 5px !important;
 }
 
@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     margin-top: 10px;
+    font-size : 11px;
 }
 
 .box-legend {

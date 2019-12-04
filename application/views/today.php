@@ -131,7 +131,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<canvas id="customerChart" class="h-400"></canvas>
+									<canvas id="graphicToday" class="h-400"></canvas>
 								</div>
 							</div>
 						</div>
@@ -279,4 +279,5 @@
 				<!--Highcharts Plugin -->
 				
 				<script src="<?=base_url()?>assets/public/js/chart/barChart.js"></script>				
-				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>
+				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>			
+				<script src="<?=base_url()?>assets/public/js/chart/GraphicToday.js"></script>

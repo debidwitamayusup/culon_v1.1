@@ -95,3 +95,5 @@
 		<!-- custom js -->
 		<script src="<?= base_url()?>assets/js/custom.js"></script>
 		<script src="<?= base_url()?>assets/public/js/app/api.js"></script>
+
+		<script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
