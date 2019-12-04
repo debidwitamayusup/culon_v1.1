@@ -130,7 +130,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="card-body">
+								<div class="card-body" id="chart-interval">
 									<!-- <canvas id="customerChart" class="h-400"></canvas> -->
 									<canvas id="customerChartToday" class="h-400"></canvas>
 								</div>
@@ -145,7 +145,7 @@
 								<div class="card-header">
 									<h4 class="card-title">Summary Interval Today</h4>
 								</div>
-								<div class="card-body">
+								<div class="card-body" id="chart-percentage">
 									<!-- <canvas id="echartVerticalDay"></canvas> -->
 									<canvas id="echartPercentageToday"></canvas>
 								</div>
