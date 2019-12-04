@@ -130,7 +130,7 @@ function drawTableToday(response){
             '<td>'+value.channel_id+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
-            '<td>'+value.ast+'</td>'+
+            '<td>'+value.aht+'</td>'+
             '<td>'+value.ast+'</td>'+
             '</tr>');
         });

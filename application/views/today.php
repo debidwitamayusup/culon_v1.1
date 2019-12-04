@@ -25,7 +25,7 @@
 						</div>
 						<!--Page Header-->
 					</div>
-					
+
 					<!----First Rows--->
 					<div class="row">
 						<div class="col-md-12">
@@ -41,7 +41,8 @@
 													<div class="input-group-text">
 														<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
 													</div>
-												</div><input id="input-date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+												</div><input id="input-date" class="form-control fc-datepicker"
+													placeholder="MM/DD/YYYY" type="text">
 											</div>
 										</div>
 									</div>
@@ -50,15 +51,18 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox1" value="option1" checked>
 														<span class="custom-control-label">Show All</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Whatsapp</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Twitter</span>
 													</label>
 												</div>
@@ -68,15 +72,18 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" >
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox1" value="option1">
 														<span class="custom-control-label">Facebook</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Email</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Telegram</span>
 													</label>
 												</div>
@@ -86,15 +93,18 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox1" value="option1">
 														<span class="custom-control-label">Line</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Voice</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Instagram</span>
 													</label>
 												</div>
@@ -104,15 +114,18 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox1" value="option1">
 														<span class="custom-control-label">Messenger</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Twitter DM</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Live Chat</span>
 													</label>
 												</div>
@@ -122,7 +135,8 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input"
+															name="example-checkbox2" value="option2">
 														<span class="custom-control-label">Pesan</span>
 													</label>
 												</div>
@@ -137,7 +151,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!---Next Rows---->
 					<div class="row">
 						<div class="col-md-12 col-lg-6">
@@ -158,7 +172,7 @@
 								</div>
 								<div class="table-responsive">
 									<table class="table card-table table-vcenter table-hover" id="table-avg-interval">
-										<thead >
+										<thead>
 											<tr>
 												<th>No</th>
 												<th>Channel</th>
@@ -169,7 +183,7 @@
 											</tr>
 										</thead>
 										<tbody id="mytbody">
-										<!-- 	<tr>
+											<!-- 	<tr>
 												<th scope="row">1</th>
 												<td>Whatsapp</td>
 												<td>70%</td>
@@ -274,12 +288,12 @@
 					</div>
 				</div>
 				<?php $this->load->view('temp/footer');?>
-				
+
 				<!--Plugin -->
 				<script src="<?=base_url()?>assets/js/apexcharts.js"></script>
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Highcharts Plugin -->
-				
-				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
+
+				<script src="<?=base_url()?>public/js/app/barChart.js"></script>
 				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
