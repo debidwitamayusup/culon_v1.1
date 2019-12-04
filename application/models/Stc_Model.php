@@ -269,6 +269,7 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_today($date, $channel)
 	{
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		$this->db->select('TIME(date_time)as time, channel_name, sum(total) as total');
 		$this->db->from('summary_channel');
 		if($channel){
@@ -284,6 +285,7 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getAverageIntervalToday($date){
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		$this->db->select('date_time, channel_id, art, aht, ait as ast, hi, handle, round((hi/handle)*100, 2) as sla');
 		$this->db->from('agent_perform');
 		$this->db->where('DATE(date_time)', $date);
