@@ -200,7 +200,6 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-
 	public function getTotInteraction()
 	{
 		$this->db->select('SUM(total) total_interaction');
@@ -238,36 +237,41 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getIntervalYearAll()
+	public function getIntervalPerMonth($month, $channel_name)
 	{
-		$this->db->select('channel_name channel, MONTH(date_time) date, SUM(total) total_traffic');
-		$this->db->from('summary_channel');
-		$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00" AND "23:00:00" AND channel_name= "'.$channel_name.'"');
-		$this->db->group_by('DATE(date_time)');
+		//solve error sql mode ver. 5.7 = only full group by
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
+		$this->db->select('channel_name, DAY(date_time) date, SUM(total) total_traffic');
+		$this->db->from('summary_channel');
+		$this->db->where('MONTH(date_time) = "'.$month.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
+							AND "23:00:00" AND channel_name= "'.$channel_name.'"');
+		$this->db->group_by('DATE(date_time)');
 		$query = $this->db->get();
-		
 		return $query;
 	}
 
-	public function getInteraction()
+	public function getAvgIntervalTable($month)
 	{
-		$query = $this->db->query('');
+		//solve error sql mode ver. 5.7 = only full group by
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-		return $query->result();
+		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
+		$this->db->from('agent_perform');
+		$this->db->where('MONTH(date_time) = "'.$month.'"');
+		$this->db->group_by('channel_id');
+		$query = $this->db->get();
+		return $query;
 	}
 
-	public function getUniqueCustomer()
+	public function getSumIntervalMonth($month)
 	{
-		$query = $this->db->query('');
-
-		return $query->result();
-	}
-
-	public function getAverageCustom()
-	{
-		$query = $this->db->query('');
-
-		return $query->result();
+		$this->db->select('channel_name channel_name_for_chart, SUM(total) total_by_month, CAST(SUM(total)*100/ 
+		(SELECT SUM(total) FROM summary_channel WHERE MONTH(date_time) = '.$month.' ) AS DECIMAL(10,2)) rate');
+		$this->db->from('summary_channel');
+		$this->db->where('MONTH(date_time) = '.$month.'');
+		$this->db->group_by('channel_name');
+		$query = $this->db->get();
+		return $query;
 	}
 }
