@@ -15,19 +15,27 @@ class SummaryYear extends CI_Controller {
 		$channel_name = $this->input->post('channel_name');
 		$data = array();
 		$total_traffic = array();
-		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
 		$date = array();
+
+		if ($year == "") 
+		{
+			$year = date("Y");
+		}
+
+		if ($channel_name == "") 
+		{
+			$channel_name = "Email";
+		}
 
 		$interval = $this->Stc_Model->getIntervalYear($year,$channel_name)->result();
 
-		if($interval)
-		{
-			foreach ($interval as $key) {
+		foreach ($interval as $key) {
 				array_push($total_traffic,$key->total_traffic);
 				array_push($date,$key->date);
 			}
 
-			for ($i=0; $i < sizeof($total_traffic); $i++)
+			for ($i=0; $i < sizeof($traffic); $i++)
 			{
 				for ($x=0; $x < sizeof($date); $x++)
 				{
@@ -41,33 +49,53 @@ class SummaryYear extends CI_Controller {
 			$data = ([
 				'channel_name' => $channel_name,
 				'date' => $date,
-				'total_traffic' => $total_traffic
+				'total_traffic' => $traffic
 			]);
 
+		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
+
+		$total_channel_peryear = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,);
+		$array_channel = array("Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS");
+		$channel_for_chart = array();
+		$rate = array();
+
+		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
+		foreach ($sumIntervalYear as $key) {
+			array_push($channel_for_chart, $key->channel_for_chart);
+			array_push($rate, $key->rate);
+		}
+
+		for ($i=1; $i < sizeof($total_channel_peryear); $i++)
+		{
+			for ($x=1; $x < sizeof($channel_for_chart); $x++)
+			{
+				if ($array_channel[$i] == $channel_for_chart[$x])
+				{
+					$total_channel_peryear[$i] = (double)$rate[$x];
+				}
+			}
+		}
+
+		$dataForTable = array(
+			'rate' => $total_channel_peryear);
+
+		if($interval || $avgIntervalTable || $sumIntervalYear)
+		{
 			$response = array(
 				'status' => 200,
 				'message' => "Success",
-				'data' => $data);
+				'data' => $data,
+				'data_table' => $avgIntervalTable,
+				'data_chart' => $dataForTable);
 		} else {
 			$response = array(
 				'status' => 200,
 				'message' => "Data Not Found",
-				'data' => $data);
+				'data' => $data,
+				'data_table' => $avgIntervalTable,
+				'data_chart' => $dataForTable);
 		}
 		echo json_encode($response);
 	}
 
-	public function gIntervalAll()
-	{
-		$data = array();
-		$channel_name = array();
-		$year = array();
-
-		$intervalAll = $this->Stc_Model->getIntervalYearAll()->result();
-
-		if ($intervalAll) 
-		{
-			
-		}
-	}
 }

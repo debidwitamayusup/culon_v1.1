@@ -239,10 +239,36 @@ class Stc_Model extends CI_Model
 		$this->db->select('channel_name channel, MONTH(date_time) date, SUM(total) total_traffic');
 		$this->db->from('summary_channel');
 		$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00" AND "23:00:00" AND channel_name= "'.$channel_name.'"');
-		$this->db->group_by('DATE(date_time)');
+		$this->db->group_by('channel_name');
 
 		$query = $this->db->get();
 		
+		return $query;
+	}
+
+	public function getIntervalYearTable($year)
+	{
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
+		$this->db->from('agent_perform');
+		$this->db->where('YEAR(date_time) = "'.$year.'"');
+		$this->db->group_by('channel_id');
+		$this->db->order_by('channel_id');
+
+		$query = $this->db->get();
+		
+		return $query;
+	}
+
+	public function getSumIntervalYear($year)
+	{
+		$this->db->select('channel_name channel_for_chart, SUM(total) total_by_year, CAST(SUM(total)*100/ (SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
+		$this->db->from('summary_channel');
+		$this->db->where('YEAR(date_time) = '.$year.'');
+		$this->db->group_by('channel_name');
+
+		$query = $this->db->get();
+
 		return $query;
 	}
 
@@ -273,12 +299,12 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getAverageCustom()
-	{
-		$query = $this->db->query('');
+	// public function getAverageCustom()
+	// {
+	// 	$query = $this->db->query('');
 
-		return $query->result();
-	}
+	// 	return $query->result();
+	// }
 
 	public function get_traffic_interval_today($date, $channel)
 	{
