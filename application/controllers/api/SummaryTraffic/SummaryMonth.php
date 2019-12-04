@@ -12,7 +12,7 @@ class SummaryMonth extends CI_Controller {
 	public function lineChartPerMonth()
 	{
 		//date("m")
-		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
+		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Voice";
 		
 		$data = array();
@@ -49,18 +49,48 @@ class SummaryMonth extends CI_Controller {
 			}	
 		}
 
-
-	
-		$data = array(
-			'channel_name' => $channel_name,
+		$data = [
+            'channel_name' => $channel_name,
 			'total_traffic' => $total_traffics,
-			'param_date' => $arrDate
-		);
+			'param_date' => $arrDate,
+        ];
+        if($data){
+            $response = array(
+                'status' => true,
+                'data' => $data
+            );
+        }else{
+            $response = array(
+                'status' => false,
+                'data' => 'data not found'
+            );
+        }
 
+        echo json_encode($response);
+	}
+
+	public function averageIntervalTable(){
 		// get Average Interval for Data Table
+		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$avgIntervalTable = $this->Stc_Model->getAvgIntervalTable($month)->result();
 
+		if($avgIntervalTable){
+            $response = array(
+                'status' => true,
+                'data' => $avgIntervalTable
+            );
+        }else{
+            $response = array(
+                'status' => false,
+                'data' => 'data not found'
+            );
+        }
 
+        echo json_encode($response);
+	}
+	
+	public function summaryIntervalMonth(){
+		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$total_channel_per_month = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		$array_channel = array(1=>"Whatsapp", 2=>"Twitter", 3=>"Facebook", 4=>"Email", 5=>"Telegram", 6=>"Line", 7=>"Voice", 8=>"Instagram", 9=>"Messenger", 10=>"Twitter DM", 11=>"Live Chat", 12=>"SMS");
 		$channel_name_for_chart = array();
@@ -88,21 +118,17 @@ class SummaryMonth extends CI_Controller {
 		
 		);
 
-		if ($ipm || $avgIntervalTable || $sumIntervalMonth) 
+		if ($sumIntervalMonth) 
 		{
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data,
-				'data_table' => $avgIntervalTable,
-				'data_for_chart' => $dataForTable);
+				'data' => $dataForTable);
 		} else {
 			$response = array(
 				'status' => 200,
 				'message' => 'Data Not Found',
-				'data' => $data,
-				'data_table' => $avgIntervalTable,
-				'data_for_chart' => $dataForTable);
+				'data' => $dataForTable);
 		}
 		echo json_encode($response);
 	}
