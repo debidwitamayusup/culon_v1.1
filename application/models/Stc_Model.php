@@ -259,4 +259,5 @@ class Stc_Model extends CI_Model
 		$this->db->group_by('channel_name');
 		$query = $this->db->get();
 		return $query;
+	}
 }

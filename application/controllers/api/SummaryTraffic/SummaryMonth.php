@@ -25,20 +25,28 @@ class SummaryMonth extends CI_Controller {
 			$channel_name = "Email";
 		}
 
-		//condition for days of month based on month
+		//condition for days of month based on month (for vertical graphic)
 		$getDaysofMonth = cal_days_in_month(CAL_GREGORIAN, $month, date('Y'));
 		if ($getDaysofMonth == 31) 
 		{
-			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);	
+			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			//for x axis in chart
+			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)	;
 		}elseif ($getDaysofMonth == 30) 
 		{
 			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			//for x axis in chart
+			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30);
 		}elseif ($getDaysofMonth == 29) 
 		{
 			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			//for x axis in chart
+			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29);
 		}else
 		{
 			$total_traffics = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			//for x axis in chart
+			$days_of_month = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28);
 		}
 
 		//get Interval Per Month for Vertical Graphic
@@ -63,8 +71,8 @@ class SummaryMonth extends CI_Controller {
 	
 		$data = array(
 			'channel_name' => $channel_name,
-			'total_traffic' => $total_traffics
-		
+			'total_traffic' => $total_traffics,
+			'days_x_axis' => $days_of_month,
 		);
 
 		// get Average Interval for Data Table
