@@ -131,7 +131,8 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<canvas id="customerChart" class="h-400"></canvas>
+									<!-- <canvas id="customerChart" class="h-400"></canvas> -->
+									<canvas id="customerChartToday" class="h-400"></canvas>
 								</div>
 							</div>
 						</div>
@@ -155,7 +156,7 @@
 									<h3 class="card-title">Average Interval</h3>
 								</div>
 								<div class="table-responsive">
-									<table class="table card-table table-vcenter table-hover">
+									<table class="table card-table table-vcenter table-hover" id="table-avg-interval">
 										<thead >
 											<tr>
 												<th>No</th>
@@ -167,7 +168,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+										<!-- 	<tr>
 												<th scope="row">1</th>
 												<td>Whatsapp</td>
 												<td>70%</td>
@@ -262,7 +263,7 @@
 												<td>10:00:00</td>
 												<td>10:50:19</td>
 												<td>09:10:10</td> 
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>
 								</div>
@@ -280,3 +281,4 @@
 				
 				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
 				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
+				<script src="<?=base_url()?>public/js/app/app-traffic-today.js"></script>

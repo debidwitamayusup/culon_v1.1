@@ -94,4 +94,3 @@
 
 		<!-- custom js -->
 		<script src="<?= base_url()?>assets/js/custom.js"></script>
-		<script src="<?= base_url()?>public/js/app/api.js"></script>

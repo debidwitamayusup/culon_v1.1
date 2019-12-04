@@ -16,7 +16,11 @@ class SummaryToday extends CI_Controller {
         }
         $arr_channel = $this->security->xss_clean($this->input->post('arr_channel', true));
         if(!$arr_channel){
-            $arr_channel = $this->Stc_Model->get_all_channel();
+            $list_channel = $this->Stc_Model->get_all_channel();
+            $arr_channel= array();
+            foreach($list_channel as $key){
+                array_push($arr_channel, $key->channel_name);
+            }
         }
 
         $arr_time = array();
@@ -35,7 +39,6 @@ class SummaryToday extends CI_Controller {
             $query = $this->Stc_Model->get_traffic_interval_today($date, $channel);
             $index = 0;
             for($i = 0; $i<sizeof($query);$i++){
-                
                 $status = 0;
                 while($index < sizeof($arr_time) && $status == 0){
                     if(date('H:i:s', strtotime($arr_time[$index])) == date('H:i:s', strtotime($query[$i]->time)) && $channel == $query[$i]->channel_name && $i < sizeof($query)){
@@ -65,9 +68,9 @@ class SummaryToday extends CI_Controller {
             "label_time" => $arr_time,
             "series" => $data_series
         ];
-        if($query){
+        if($data){
             $response = array(
-                'status' => false,
+                'status' => true,
                 'data' => $data
             );
         }else{
@@ -89,7 +92,7 @@ class SummaryToday extends CI_Controller {
 
         if($query){
             $response = array(
-                'status' => false,
+                'status' => true,
                 'data' => $query
             );
         }else{
@@ -117,20 +120,12 @@ class SummaryToday extends CI_Controller {
         $i = 0;
         if($query){
             while($i < sizeof($arr_channel)){
-                // foreach($query as $key){
                 for($index = 0;$index<sizeof($query);$index++){
-                    // var_dump($arr_channel[$i]->channel_name);die();
-                    // var_dump($arr_channel[$i]->channel_name);
-                    // var_dump($query[$index]->channel_name);
-                    // var_dump("==");
                     if($arr_channel[$i]->channel_name == $query[$index]->channel_name){
                         $obj = [
                             "channel_name" => $arr_channel[$i]->channel_name,
                             "rate" => $query[$index]->rate
                         ];
-                        // var_dump($obj);
-                        // var_dump($query[$index]->rate);
-                        // var_dump("masuk");
                         $index++;
                     }else{
                         $obj = [

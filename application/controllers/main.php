@@ -25,7 +25,7 @@ class main extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
         $this->load->view('temp/body');
-       $this->load->view('temp/footer');
+    //    $this->load->view('temp/footer');
 	}
 	
 	public function this_day(){
