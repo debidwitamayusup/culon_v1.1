@@ -17,6 +17,19 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	} 
+
+	public function get_channel_negation($arr){
+		$this->db->select('channel_name as channel, 0 as total');
+		$this->db->from('summary_channel');
+		foreach($arr as $key){
+			$this->db->where_not_in('channel_name',$key);
+		}
+		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name');
+		$query = $this->db->get();
+
+		return $query->result();
+	}
 	// select data table hsummary
 	//controller SummaryTrafficChannel function stc_today
 	public function getToday()
@@ -199,6 +212,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(date_time)', $index);
 		}
 		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name');
 
 		$query = $this->db->get();
 
