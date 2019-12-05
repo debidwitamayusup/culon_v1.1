@@ -11,8 +11,8 @@ class SummaryYear extends CI_Controller {
 
 	public function gInterval()
 	{
-		$year = $this->input->post('year');
-		$channel_name = $this->input->post('channel_name');
+		$year = $this->input->post('year') ? $this->input->post('month') : date('Y');
+		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Email";
 
 		$data = array();
 		$total_traffic = array();
@@ -55,53 +55,24 @@ class SummaryYear extends CI_Controller {
 				'month_x_axis' => $month_of_year
 			]);
 
-		$total_channel_peryear = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		$array_channel = array("Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS");
-		$channel_for_chart = array();
-		$rate = array();
-
-		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
-		foreach ($sumIntervalYear as $key) {
-			array_push($channel_for_chart, $key->channel_for_chart);
-			array_push($rate, $key->rate);
-		}
-
-		for ($i=1; $i < sizeof($total_channel_peryear); $i++)
-		{
-			for ($x=1; $x < sizeof($channel_for_chart); $x++)
-			{
-				if ($array_channel[$i] == $channel_for_chart[$x])
-				{
-					$total_channel_peryear[$i] = (double)$rate[$x];
-				}
-			}
-		}
-
-		$dataForTable = array(
-			'rate' => $total_channel_peryear);
-
-		if($interval || $avgIntervalTable || $sumIntervalYear)
+		if($interval)
 		{
 			$response = array(
 				'status' => 200,
 				'message' => "Success",
-				'data' => $data,
-				'data_table' => $avgIntervalTable,
-				'data_chart' => $dataForTable);
+				'data' => $data);
 		} else {
 			$response = array(
 				'status' => 200,
 				'message' => "Data Not Found",
-				'data' => $data,
-				'data_table' => $avgIntervalTable,
-				'data_chart' => $dataForTable);
+				'data' => $data);
 		}
 		echo json_encode($response);
 	}
 
 	public function averageInterval()
 	{
-		$year = $this->input->post('year');
+		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
 		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
 
 		$data = array();
@@ -138,6 +109,50 @@ class SummaryYear extends CI_Controller {
 				'message' => "Data Not Found",
 				'data_chart' => $dataForTable);
 		}
+		echo json_encode($response);
+	}
+
+	public function summaryIntervalYear()
+	{
+		$year = $this->input->post('year') ? $this->input->post('month') : date('Y');
+
+		$total_channel_peryear = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		$array_channel = array("Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS");
+		$channel_for_chart = array();
+		$rate = array();
+
+		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
+		foreach ($sumIntervalYear as $key) {
+			array_push($channel_for_chart, $key->channel_for_chart);
+			array_push($rate, $key->rate);
+		}
+
+		for ($i=1; $i < sizeof($total_channel_peryear); $i++)
+		{
+			for ($x=1; $x < sizeof($channel_for_chart); $x++)
+			{
+				if ($array_channel[$i] == $channel_for_chart[$x])
+				{
+					$total_channel_peryear[$i] = (double)$rate[$x];
+				}
+			}
+		}
+
+		$data = array(
+			'rate' => $total_channel_peryear);
+
+		if ($sumIntervalYear) {
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $data);
+		}
+
 		echo json_encode($response);
 	}
 }
