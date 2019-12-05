@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log(parseInt(new Date().getMonth()) + 1)
+    // console.log(parseInt(new Date().getMonth()) + 1)
     $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("test");
     var data = "";
@@ -240,13 +240,6 @@ $(document).ready(function () {
                 color: ['#B22222']
             };
             barChart.setOption(option);
-
-            // table average interval
-            
-            var table;
-            table = $('$table')
-
-
 
         },
         error: function (r) {

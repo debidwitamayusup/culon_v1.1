@@ -104,7 +104,7 @@
 									<h3 class="card-title">Average Interval</h3>
 								</div>
 								<div class="table-responsive">
-									<table class="table card-table table-vcenter table-hover id="tabel_average_month"">
+									<table class="table card-table table-vcenter table-hover id="tabel_average_month">
 										<thead>
 											<tr>
 												<th>No</th>
@@ -115,8 +115,8 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
+										<tbody id="mytbody_month">
+										<!--	<tr>
 												<th scope="row">1</th>
 												<td>Whatsapp</td>
 												<td>70%</td>
@@ -211,7 +211,7 @@
 												<td>10:00:00</td>
 												<td>10:50:19</td>
 												<td>09:10:10</td>
-											</tr>
+											</tr>-->
 										</tbody>
 									</table>
 								</div>

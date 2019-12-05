@@ -17,16 +17,26 @@
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-user icon-resize"></i>
+				<i class="side-menu__icon si si-home icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
 				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
-				<li><a class="slide-item" href="<?= base_url()?>">Traffic Interval</a></li>
+				<li class="slide submenu" id="accordion">
+					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapseOne"> Traffic Channel </a>
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+						style="">
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
+					</div>
+				</li>
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 			</ul>
 		</li>
+
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-briefcase icon-resize"></i>
