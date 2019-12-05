@@ -345,7 +345,7 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 	public function getSumIntervalMonth($month){
-		$this->db->select('channel_name channel_name_for_chart, SUM(total) total_by_month, CAST(SUM(total)*100/ 
+		$this->db->select('channel_name channel_name, SUM(total) total_by_month, CAST(SUM(total)*100/ 
 		(SELECT SUM(total) FROM summary_channel WHERE MONTH(date_time) = '.$month.' ) AS DECIMAL(10,2)) rate');
 		$this->db->from('summary_channel');
 		$this->db->where('MONTH(date_time) = '.$month.'');

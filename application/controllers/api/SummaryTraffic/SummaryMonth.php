@@ -12,7 +12,7 @@ class SummaryMonth extends CI_Controller {
 	public function lineChartPerMonth()
 	{
 		//date("m")
-		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
+		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Voice";
 		
 		$data = array();
@@ -52,7 +52,7 @@ class SummaryMonth extends CI_Controller {
 		$data = [
             'channel_name' => $channel_name,
             'month' => $month,
-			'total_traffic' => $total_traffics,
+			'total_traffic' => $total_traffic,
 			'param_date' => $arrDate,
         ];
         if($data){
@@ -83,7 +83,7 @@ class SummaryMonth extends CI_Controller {
         }else{
             $response = array(
                 'status' => false,
-                'data' => 'data not found'
+                'data' => ''
             );
         }
 
@@ -114,7 +114,7 @@ class SummaryMonth extends CI_Controller {
 		}
 		
 		$dataForTable = array(
-			// 'channel_name_for_chart' => $channel_name_for_chart,
+			'channel_name_for_chart' => $channel_name_for_chart,
 			'rate' => $total_channel_per_month
 		
 		);
@@ -133,5 +133,51 @@ class SummaryMonth extends CI_Controller {
 		}
 		echo json_encode($response);
 	}
+
+	public function getPercentageTrafficMonth(){
+		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
+
+        $arr_channel = $this->Stc_Model->get_all_channel();
+        $arr_data = array();
+
+        $sumIntervalMonth = $this->Stc_Model->getSumIntervalMonth($month)->result();
+        $i = 0;
+        if($sumIntervalMonth){
+            while($i < sizeof($arr_channel)){
+                $index = 0;
+                $status = 0;
+                while($index<sizeof($sumIntervalMonth) && $status == 0){
+                    $obj = array();
+                    if($arr_channel[$i]->channel_name == $sumIntervalMonth[$index]->channel_name){
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "rate" => $sumIntervalMonth[$index]->rate
+                        ];
+                        $status = 1;
+                    }else{
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "rate" => 0
+                        ];
+                    }
+                    $index++;
+                }
+                array_push($arr_data, $obj);
+                $i++;
+            }
+            
+            $response = array(
+                'status' => true,
+                'data' => $arr_data, 
+            );
+        }else{
+            $response = array(
+                'status' => false,
+                'data' => ''
+            );
+        }
+
+        echo json_encode($response);
+    }
 
 }
