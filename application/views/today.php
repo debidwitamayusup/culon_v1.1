@@ -124,7 +124,7 @@
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
 														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="SMS">
-														<span class="custom-control-label">Pesan</span>
+														<span class="custom-control-label">SMS</span>
 													</label>
 												</div>
 											</div>
