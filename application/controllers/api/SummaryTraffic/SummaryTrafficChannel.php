@@ -126,11 +126,19 @@ class SummaryTrafficChannel extends CI_Controller {
 		$index = $this->security->xss_clean($this->input->post('index', true));
 
 		$query = $this->Stc_Model->get_all_unique_customer_per_channel($params, $index);
+		
+		$channel = array();
+		foreach($query as $key){
+			array_push($channel, $key->channel_name);
+		}
+		$channel_empty = $this->Stc_Model->get_channel_negation($channel);
 		if($query)
 		{
 			$response = array(
 				'status' => true,
-				'data' => $query);
+				'data' => $query,
+				'data_empty' => $channel_empty
+			);
 		} else {
 			$response = array(
 				'status' => false,
