@@ -57,6 +57,20 @@ class main extends CI_Controller {
 		$this->load->view('temp/footer');		
 	}
 
+	public function agent_performance(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_agent_performance');
+		$this->load->view('temp/footer');
+	}
+
+	public function agent_interval(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_agent_interval');
+	}
 	//Test
 
 	// public function traffic_channel()

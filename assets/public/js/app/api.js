@@ -135,6 +135,7 @@ $(document).ready(function () {
             alert("error");
         },
     });
+    
     //call avg customer
     $.ajax({
         type: 'get',

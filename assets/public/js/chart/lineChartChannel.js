@@ -5,7 +5,7 @@
 		type: 'bar',
 		data: [10, 15, 9, 18, 10,10, 15, 9, 18, 10,10, 35, 40, 30, 10,20, 15, 9, 48, 60,40, 35, 10, 20, 30,30, 55, 49, 68, 70]
 	}];
-	var chart = document.getElementById('echartChannel');
+	var chart = document.getElementById('barChartMonth');
 	var barChart = echarts.init(chart);
 	var option = {
 		grid: {

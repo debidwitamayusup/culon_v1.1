@@ -36,7 +36,16 @@
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 			</ul>
 		</li>
-
+		<li class="slide">
+			<a class="side-menu__item" data-toggle="slide" href="#">
+				<i class="side-menu__icon si si-user icon-resize"></i>
+				<span class="side-menu__label label-icon-resize">Agent Performance</span>
+				<i class="angle fas fa-angle-right"></i>
+			</a>
+			<ul class="slide-menu">
+				<li><a class="slide-item" href="<?=base_url()?>main/agent_performance">Total Handling Call</a></li>
+			</ul>
+		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-briefcase icon-resize"></i>

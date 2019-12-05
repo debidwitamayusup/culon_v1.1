@@ -678,12 +678,12 @@ a.chip:hover {
 
 /*-----51. Back to Top-----*/
 #back-to-top {
-	background: linear-gradient( 89.1deg,  rgb(8, 158, 96) 0.7%, rgb(19, 150, 204) 88.4% );
+	background:#A9A9A9;
 }
 
 #back-to-top:hover {
-	color: #089e60 ;
-	border: 2px solid #089e60 ;
+	color: #B22222 ;
+	border: 2px solid #B22222 ;
 }
 .tabs-menu ul li .active{
 	background: #089e60 ;
