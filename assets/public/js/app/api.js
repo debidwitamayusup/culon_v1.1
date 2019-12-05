@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log(parseInt(new Date().getMonth()) + 1)
+    // console.log(parseInt(new Date().getMonth()) + 1)
     $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("test");
     var data = "";

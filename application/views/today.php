@@ -50,15 +50,15 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked>
+														<input type="checkbox" class="custom-control-input all-checklist" id="check-all-channel" name="check-all" value="All" >
 														<span class="custom-control-label">Show All</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Whatsapp">
 														<span class="custom-control-label">Whatsapp</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Twitter">
 														<span class="custom-control-label">Twitter</span>
 													</label>
 												</div>
@@ -68,15 +68,15 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" >
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Facebook" >
 														<span class="custom-control-label">Facebook</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Email">
 														<span class="custom-control-label">Email</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Telegram">
 														<span class="custom-control-label">Telegram</span>
 													</label>
 												</div>
@@ -86,15 +86,15 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Line">
 														<span class="custom-control-label">Line</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Voice">
 														<span class="custom-control-label">Voice</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Instagram">
 														<span class="custom-control-label">Instagram</span>
 													</label>
 												</div>
@@ -104,15 +104,15 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Messenger">
 														<span class="custom-control-label">Messenger</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Twitter DM">
 														<span class="custom-control-label">Twitter DM</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Live Chat">
 														<span class="custom-control-label">Live Chat</span>
 													</label>
 												</div>
@@ -122,7 +122,7 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="SMS">
 														<span class="custom-control-label">Pesan</span>
 													</label>
 												</div>
@@ -169,102 +169,6 @@
 											</tr>
 										</thead>
 										<tbody id="mytbody">
-										<!-- 	<tr>
-												<th scope="row">1</th>
-												<td>Whatsapp</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td>Twitter</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td>Facebook</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">4</th>
-												<td>Email</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">5</th>
-												<td>Telegram</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">6</th>
-												<td>Line</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">7</th>
-												<td>Voice</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">8</th>
-												<td>Instagram</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">9</th>
-												<td>Messenger</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">10</th>
-												<td>Twitter DM</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">11</th>
-												<td>Live Chat</td>
-												<td>70%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td>
-											</tr>
-											<tr>
-												<th scope="row">12</th>
-												<td>Pesan</td>
-												<td>80%</td>
-												<td>10:00:00</td>
-												<td>10:50:19</td>
-												<td>09:10:10</td> 
-											</tr> -->
 										</tbody>
 									</table>
 								</div>
