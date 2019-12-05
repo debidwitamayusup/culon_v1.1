@@ -14,11 +14,11 @@
 							</ol>
 							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm">
 										<span class="">Day</a></span>
-									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm">
 										<span class="">Month</a></span>
-									<a href="<?=base_url()?>main/this_year" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm">
 										<span class="">Year</a></span>
 								</div>
 							</div>
@@ -35,7 +35,8 @@
 								<div class="card-body">
 									<div class="canvas-con">
 										<div class="canvas-con-inner">
-											<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>
+											<canvas id="pieChart" height="250px"
+												class="donutShadow overflow-hidden"></canvas>
 										</div>
 										<div id="legend" class="legend-con"></div>
 									</div>
@@ -54,7 +55,7 @@
 							</div>
 						</div>
 					</div>
-						
+
 					<!---Baris Kedua!-->
 					<div class="row">
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
@@ -149,7 +150,7 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="row" id="retres-unique">
-												
+
 											</div>
 										</div>
 									</div>
@@ -537,5 +538,5 @@
 				</div>
 				<!--/Sidebar-right-->
 
-		<?php $this->load->view('temp/footer');?>
-		<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+				<?php $this->load->view('temp/footer');?>
+				<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->

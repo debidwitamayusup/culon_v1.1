@@ -1,5 +1,9 @@
 var base_url = $('#base_url').val();
+var date = '';
+var list_channel= [];
+
 $(document).ready(function () {
+    date = getToday();
     var data_chart = callIntervalTraffic('2019-05-22', []);
     var data_table_avg = callDataTableAvg('2019-11-02');
     var data_percentage = callDataPercentage('2019-05-22');
@@ -130,7 +134,7 @@ function drawTableToday(response){
             '<td>'+value.channel_id+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
-            '<td>'+value.ast+'</td>'+
+            '<td>'+value.aht+'</td>'+
             '<td>'+value.ast+'</td>'+
             '</tr>');
         });
@@ -234,4 +238,26 @@ function destroyChartPercentage(){
             callDataPercentage(this.value);
         }
     });
+
+    // check all channel
+    $('#check-all-channel').click(function(){
+        $("input:checkbox.checklist-channel").prop('checked',this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        console.log(values);
+    });
+
+    $('.checklist-channel').click(function(){
+        $('#check-all-channel').prop( "checked", false );
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        console.log(values);
+    });
+    
 })(jQuery);
