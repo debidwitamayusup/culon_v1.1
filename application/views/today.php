@@ -130,6 +130,7 @@
 										</div>
 									</div>
 								</div>
+
 								<div class="card-body" id="chart-interval">
 									<canvas id="customerChartToday" class="h-400"></canvas>
 								</div>
@@ -282,3 +283,4 @@
 				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
 				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
+
