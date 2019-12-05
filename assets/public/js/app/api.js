@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log(parseInt(new Date().getMonth()) + 1)
+    // console.log(parseInt(new Date().getMonth()) + 1)
     $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("test");
     var data = "";
@@ -173,79 +173,79 @@ $(document).ready(function () {
 
 
 
-    //call traffic per month
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
-        data: {
-            "channel_name": $("#channel_name").val(),
-            "month": 11
-        },
-        success: function (r) {
-            var response = JSON.parse(r);
-            var chartdata = [{
-                name: 'channel',
-                type: 'bar',
-                data: response.data.total_traffic
-            }];
-            var chart = document.getElementById('echart1');
-            var barChart = echarts.init(chart);
-            var option = {
-                grid: {
-                    top: '6',
-                    right: '0',
-                    bottom: '17',
-                    left: '25',
-                },
-                xAxis: {
-                    data: response.data.param_date,
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                tooltip: {
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: true,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: false,
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                series: chartdata,
-                color: ['#B22222']
-            };
-            barChart.setOption(option);
+    // //call traffic per month
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
+    //     data: {
+    //         "channel_name": $("#channel_name").val(),
+    //         "month": 11
+    //     },
+    //     success: function (r) {
+    //         var response = JSON.parse(r);
+    //         var chartdata = [{
+    //             name: 'channel',
+    //             type: 'bar',
+    //             data: response.data.total_traffic
+    //         }];
+    //         var chart = document.getElementById('echart1');
+    //         var barChart = echarts.init(chart);
+    //         var option = {
+    //             grid: {
+    //                 top: '6',
+    //                 right: '0',
+    //                 bottom: '17',
+    //                 left: '25',
+    //             },
+    //             xAxis: {
+    //                 data: response.data.param_date,
+    //                 axisLine: {
+    //                     lineStyle: {
+    //                         color: '#efefff'
+    //                     }
+    //                 },
+    //                 axisLabel: {
+    //                     fontSize: 10,
+    //                     color: '#7886a0'
+    //                 }
+    //             },
+    //             tooltip: {
+    //                 show: true,
+    //                 showContent: true,
+    //                 alwaysShowContent: true,
+    //                 triggerOn: 'mousemove',
+    //                 trigger: 'axis',
+    //                 axisPointer: {
+    //                     label: {
+    //                         show: false,
+    //                     }
+    //                 }
+    //             },
+    //             yAxis: {
+    //                 splitLine: {
+    //                     lineStyle: {
+    //                         color: '#efefff'
+    //                     }
+    //                 },
+    //                 axisLine: {
+    //                     lineStyle: {
+    //                         color: '#efefff'
+    //                     }
+    //                 },
+    //                 axisLabel: {
+    //                     fontSize: 10,
+    //                     color: '#7886a0'
+    //                 }
+    //             },
+    //             series: chartdata,
+    //             color: ['#B22222']
+    //         };
+    //         barChart.setOption(option);
 
-        },
-        error: function (r) {
-            alert("error");
-        },
-    });
+    //     },
+    //     error: function (r) {
+    //         alert("error");
+    //     },
+    // });
 
 });

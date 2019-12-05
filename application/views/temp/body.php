@@ -14,11 +14,11 @@
 							</ol>
 							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
-									<a href="#" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm" id="btn-day">
 										<span class="">Day</a></span>
-									<a href="#" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm" id="btn-month">
 										<span class="">Month</a></span>
-									<a href="#" class="btn btn-light btn-sm">
+									<a href="#" class="btn btn-light btn-sm" id="btn-year">
 										<span class="">Year</a></span>
 								</div>
 							</div>
@@ -34,7 +34,7 @@
 								</div>
 								<div class="card-body">
 									<div class="canvas-con">
-										<div class="canvas-con-inner">
+										<div class="canvas-con-inner" id="canvas-pie">
 											<canvas id="pieChart" height="250px"
 												class="donutShadow overflow-hidden"></canvas>
 										</div>
@@ -49,7 +49,7 @@
 								<div class="card-header">
 									<h3 class="card-title">Interaction</h3>
 								</div>
-								<div class="card-body">
+								<div class="card-body" id="card-interaction-channel">
 									<div id="retres" class="row"></div>
 								</div>
 							</div>
@@ -148,7 +148,7 @@
 								</div>
 								<div class="box-footer">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-12" id="card-unique-customer-per-channel">
 											<div class="row" id="retres-unique">
 
 											</div>
@@ -162,3 +162,4 @@
 
 				<?php $this->load->view('temp/footer');?>
 				<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+				<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>

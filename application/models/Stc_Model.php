@@ -17,6 +17,19 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	} 
+
+	public function get_channel_negation($arr){
+		$this->db->select('channel_name as channel, 0 as total');
+		$this->db->from('summary_channel');
+		foreach($arr as $key){
+			$this->db->where_not_in('channel_name',$key);
+		}
+		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name');
+		$query = $this->db->get();
+
+		return $query->result();
+	}
 	// select data table hsummary
 	//controller SummaryTrafficChannel function stc_today
 	public function getToday()
@@ -121,10 +134,17 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function get_all_unique_customer_per_channel()
+	public function get_all_unique_customer_per_channel($params, $index)
 	{
 		$this->db->select('channel_name, sum(total_unique) as total_unique');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$this->db->group_by('channel_name');
 		$this->db->order_by('channel_name', 'ASC');
 		$query = $this->db->get();
@@ -180,11 +200,19 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getCardMain()
+	public function getCardMain($params, $index)
 	{
 		$this->db->select('channel_name channel, SUM(total) total');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$this->db->group_by('channel_name');
+		$this->db->order_by('channel_name');
 
 		$query = $this->db->get();
 
@@ -209,26 +237,47 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function getTotInteraction()
+	public function getTotInteraction($params, $index)
 	{
 		$this->db->select('SUM(total) total_interaction');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}
 
-	public function getTotUniqueCustomer()
+	public function getTotUniqueCustomer($params, $index)
 	{
 		$this->db->select('SUM(total_unique) total_unique_customer');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}
 
-	public function getAverageCustomer()
+	public function getAverageCustomer($params, $index)
 	{
 		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}
@@ -291,10 +340,10 @@ class Stc_Model extends CI_Model
 		//solve error sql mode ver. 5.7 = only full group by
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
-		$this->db->from('agent_perform');
-		$this->db->where('MONTH(date_time) = "'.$month.'"');
-		$this->db->group_by('channel_id');
+		$this->db->select('b.channel_name, ROUND((a.hi/a.handle),2)*100 SLA, a.art art, a.aht aht, a.ait ast');
+		$this->db->from('agent_perform a, m_channel b');
+		$this->db->where('MONTH(date_time) = "'.$month.'" and b.channel_id = a.channel_id');
+		$this->db->group_by('b.channel_name');
 		$query = $this->db->get();
 		return $query;
 	}
@@ -345,7 +394,7 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 	public function getSumIntervalMonth($month){
-		$this->db->select('channel_name channel_name_for_chart, SUM(total) total_by_month, CAST(SUM(total)*100/ 
+		$this->db->select('channel_name channel_name, SUM(total) total_by_month, CAST(SUM(total)*100/ 
 		(SELECT SUM(total) FROM summary_channel WHERE MONTH(date_time) = '.$month.' ) AS DECIMAL(10,2)) rate');
 		$this->db->from('summary_channel');
 		$this->db->where('MONTH(date_time) = '.$month.'');
