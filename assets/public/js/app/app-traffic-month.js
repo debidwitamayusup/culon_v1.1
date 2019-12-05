@@ -196,7 +196,7 @@ function drawTableMonth(response){
         response.data.forEach(function (value, index) {
             $('#tabel_average_month').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_id+'</td>'+
+            '<td>'+value.channel_name+'</td>'+
             '<td>'+value.SLA+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+

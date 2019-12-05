@@ -291,10 +291,10 @@ class Stc_Model extends CI_Model
 		//solve error sql mode ver. 5.7 = only full group by
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
-		$this->db->from('agent_perform');
-		$this->db->where('MONTH(date_time) = "'.$month.'"');
-		$this->db->group_by('channel_id');
+		$this->db->select('b.channel_name, ROUND((a.hi/a.handle),2)*100 SLA, a.art art, a.aht aht, a.ait ast');
+		$this->db->from('agent_perform a, m_channel b');
+		$this->db->where('MONTH(date_time) = "'.$month.'" and b.channel_id = a.channel_id');
+		$this->db->group_by('b.channel_name');
 		$query = $this->db->get();
 		return $query;
 	}
