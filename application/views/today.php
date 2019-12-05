@@ -25,7 +25,7 @@
 						</div>
 						<!--Page Header-->
 					</div>
-					
+
 					<!----First Rows--->
 					<div class="row">
 						<div class="col-md-12">
@@ -41,7 +41,8 @@
 													<div class="input-group-text">
 														<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
 													</div>
-												</div><input id="input-date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+												</div><input id="input-date" class="form-control fc-datepicker"
+													placeholder="MM/DD/YYYY" type="text">
 											</div>
 										</div>
 									</div>
@@ -137,7 +138,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!---Next Rows---->
 					<div class="row">
 						<div class="col-md-12 col-lg-6">
@@ -158,7 +159,7 @@
 								</div>
 								<div class="table-responsive">
 									<table class="table card-table table-vcenter table-hover" id="table-avg-interval">
-										<thead >
+										<thead>
 											<tr>
 												<th>No</th>
 												<th>Channel</th>
@@ -178,13 +179,13 @@
 					</div>
 				</div>
 				<?php $this->load->view('temp/footer');?>
-				
+
 				<!--Plugin -->
 				<script src="<?=base_url()?>assets/js/apexcharts.js"></script>
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Highcharts Plugin -->
-				
-				<script src="<?=base_url()?>public/js/app/barChart.js"></script>				
+
+				<script src="<?=base_url()?>public/js/app/barChart.js"></script>
 				<script src="<?=base_url()?>public/js/app/VerticalChart.js"></script>
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
 
