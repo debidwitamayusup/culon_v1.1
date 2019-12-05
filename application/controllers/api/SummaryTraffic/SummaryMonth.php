@@ -51,6 +51,7 @@ class SummaryMonth extends CI_Controller {
 
 		$data = [
             'channel_name' => $channel_name,
+            'month' => $month,
 			'total_traffic' => $total_traffics,
 			'param_date' => $arrDate,
         ];

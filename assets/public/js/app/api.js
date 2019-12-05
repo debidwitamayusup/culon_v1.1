@@ -178,7 +178,7 @@ $(document).ready(function () {
         url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
         data: {
             "channel_name": $("#channel_name").val(),
-            "month": 11
+            "month": response.data.month
         },
         success: function (r) {
             var response = JSON.parse(r);
