@@ -122,7 +122,10 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function uniqueCustomerPerChannel(){
 
-		$query = $this->Stc_Model->get_all_unique_customer_per_channel();
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
+
+		$query = $this->Stc_Model->get_all_unique_customer_per_channel($params, $index);
 		if($query)
 		{
 			$response = array(
@@ -139,8 +142,10 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cardMain()
 	{
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
 		$data = array();
-		$card_today = $this->Stc_Model->getCardMain();
+		$card_today = $this->Stc_Model->getCardMain($params, $index);
 
 
 		$channel = array();
@@ -166,7 +171,8 @@ class SummaryTrafficChannel extends CI_Controller {
 			$response = array(
 				'status' => 200,
 				'message' => 'Data Not Found',
-				'data' => $card_today);
+				'data' => $card_today
+			);
 		}
 		echo json_encode($response);
 	}
@@ -285,7 +291,10 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function total_interaction()
 	{
-		$totInteraction = $this->Stc_Model->getTotInteraction()->row();
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
+
+		$totInteraction = $this->Stc_Model->getTotInteraction($params, $index)->row();
 
 		if($totInteraction)
 		{
@@ -304,7 +313,10 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function total_unique_customer()
 	{
-		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer()->row();
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
+
+		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer($params, $index)->row();
 
 		if ($totUniqueCustomer) 
 		{
@@ -322,8 +334,11 @@ class SummaryTrafficChannel extends CI_Controller {
 	}
 
 	public function average_customer()
-	{
-		$averageCustomer = $this->Stc_Model->getAverageCustomer()->row();
+	{	
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
+
+		$averageCustomer = $this->Stc_Model->getAverageCustomer($params, $index)->row();
 
 		if ($averageCustomer) 
 		{

@@ -121,10 +121,17 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function get_all_unique_customer_per_channel()
+	public function get_all_unique_customer_per_channel($params, $index)
 	{
 		$this->db->select('channel_name, sum(total_unique) as total_unique');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$this->db->group_by('channel_name');
 		$this->db->order_by('channel_name', 'ASC');
 		$query = $this->db->get();
@@ -180,10 +187,17 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getCardMain()
+	public function getCardMain($params, $index)
 	{
 		$this->db->select('channel_name channel, SUM(total) total');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$this->db->group_by('channel_name');
 
 		$query = $this->db->get();
@@ -209,26 +223,47 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function getTotInteraction()
+	public function getTotInteraction($params, $index)
 	{
 		$this->db->select('SUM(total) total_interaction');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}
 
-	public function getTotUniqueCustomer()
+	public function getTotUniqueCustomer($params, $index)
 	{
 		$this->db->select('SUM(total_unique) total_unique_customer');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}
 
-	public function getAverageCustomer()
+	public function getAverageCustomer($params, $index)
 	{
 		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
 		$this->db->from('summary_channel');
+		if($params == 'day'){
+			$this->db->where('DATE(date_time)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(date_time)', $index);
+		}else if($params == 'year'){
+			$this->db->where('YEAR(date_time)', $index);
+		}
 		$query = $this->db->get();
 		return $query;
 	}

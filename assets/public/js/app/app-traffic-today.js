@@ -104,8 +104,8 @@ function drawChartToday(response){
                 yAxes: [ {
                     ticks: {
                         beginAtZero: true
-						}
-                    }]
+					}
+                }]
             }
         }
     } );
