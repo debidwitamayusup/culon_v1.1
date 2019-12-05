@@ -1,12 +1,16 @@
 var base_url = $('#base_url').val();
-var date = '';
+var v_date = '';
 var list_channel= [];
 
 $(document).ready(function () {
-    date = getToday();
-    var data_chart = callIntervalTraffic('2019-05-22', []);
-    var data_table_avg = callDataTableAvg('2019-11-02');
-    var data_percentage = callDataPercentage('2019-05-22');
+    v_date = getToday();
+    // var data_chart = callIntervalTraffic('2019-05-22', []);
+    // var data_table_avg = callDataTableAvg('2019-11-02');
+    // var data_percentage = callDataPercentage('2019-05-22');
+    var data_chart = callIntervalTraffic(v_date, []);
+    var data_table_avg = callDataTableAvg(v_date);
+    var data_percentage = callDataPercentage(v_date);
+    
 });
 
 //function get data and draw
@@ -61,6 +65,7 @@ function callIntervalTraffic(date, arr_channel){
 }
 
 function drawChartToday(response){
+    destroyChartInterval();
     var data = [];
     response.data.series.forEach(function (value, index) {
         var obj = {
@@ -99,8 +104,8 @@ function drawChartToday(response){
                 yAxes: [ {
                     ticks: {
                         beginAtZero: true
-						}
-                    }]
+					}
+                }]
             }
         }
     } );
@@ -166,6 +171,7 @@ function callDataPercentage(date){
 }
 
 function drawChartPercentageToday(response){
+    destroyChartPercentage();
     var data_label = [];
     var data_rate = [];
     var data_color = [];
@@ -227,10 +233,8 @@ function destroyChartPercentage(){
     $('#input-date').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
-            //destroy chart
-            destroyChartInterval();
-            destroyChartPercentage();
             // console.log(this.value);
+            v_date = this.value;
             
             //re draw
             callIntervalTraffic(this.value, []);
@@ -239,7 +243,7 @@ function destroyChartPercentage(){
         }
     });
 
-    // check all channel
+    // checked all channel
     $('#check-all-channel').click(function(){
         $("input:checkbox.checklist-channel").prop('checked',this.checked);
         var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
@@ -247,9 +251,14 @@ function destroyChartPercentage(){
             values.push(el.value);
             type.push($(el).data('type'));
         });
-        console.log(values);
+        // console.log(values);
+        list_channel = values;
+
+        // call data
+        callIntervalTraffic(v_date, list_channel);
     });
 
+    //checked channel
     $('.checklist-channel').click(function(){
         $('#check-all-channel').prop( "checked", false );
         var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
@@ -257,7 +266,10 @@ function destroyChartPercentage(){
             values.push(el.value);
             type.push($(el).data('type'));
         });
-        console.log(values);
+        // console.log(values);
+        list_channel = values;
+        // call data
+        callIntervalTraffic(v_date, list_channel);
     });
     
 })(jQuery);
