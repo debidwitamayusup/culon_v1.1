@@ -55,9 +55,7 @@ class SummaryYear extends CI_Controller {
 				'month_x_axis' => $month_of_year
 			]);
 
-		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
-
-		$total_channel_peryear = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,);
+		$total_channel_peryear = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		$array_channel = array("Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS");
 		$channel_for_chart = array();
 		$rate = array();
@@ -101,4 +99,45 @@ class SummaryYear extends CI_Controller {
 		echo json_encode($response);
 	}
 
+	public function averageInterval()
+	{
+		$year = $this->input->post('year');
+		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
+
+		$data = array();
+		$channel_id = array();
+		$SLA = array();
+		$art = array();
+		$aht = array();
+		$ast = array();
+
+		foreach ($avgIntervalTable as $key) {
+			array_push($channel_id, $key->channel_id);
+			array_push($SLA, $key->SLA);
+			array_push($art, $key->art);
+			array_push($aht, $key->aht);
+			array_push($ast, $key->ast);
+		}
+
+		$dataForTable = array(
+			'channel_id' => $channel_id,
+			'SLA' => $SLA,
+			'art' => $art,
+			'aht' => $aht,
+			'ast' => $ast);
+
+		if($avgIntervalTable)
+		{
+			$response = array(
+				'status' => 200,
+				'message' => "Success",
+				'data_chart' => $dataForTable);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => "Data Not Found",
+				'data_chart' => $dataForTable);
+		}
+		echo json_encode($response);
+	}
 }
