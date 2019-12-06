@@ -68,7 +68,7 @@ function drawCard(response){
     response.data.forEach(function (value, index) {
         $('#card-avg').append(''+
         '<div class="col-xl-3 col-md-12 col-lg-6" >'+
-            '<div class="card" >'+
+            '<div class="card" style="background-color:'+value.channel_color+'">'+
                 '<div class="card-body">'+
                     '<div class="d-flex align-items-center justify-content-center">'+
                         '<div class="plan-card mr-3">'+
