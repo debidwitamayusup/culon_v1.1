@@ -25,9 +25,9 @@ function getColorChannel(channel){
     color['Facebook'] = '#467fcf';
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
-    color['Live Chat'] = '#42265e';
+    color['Live Chat'] = '#607d8b';
     color['Messenger'] = '#3866a6';
-    color['SMS'] = '#1c3353';
+    color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';
@@ -111,12 +111,14 @@ function drawChartAndCard(response){
 
     let arrTotal = []
     let arrChannel = []
+    let arrColor = []
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
         drawCardInteraction(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
+        arrColor.push(getColorChannel(value.channel));
     });
     
     // draw card yg datanya 0
@@ -124,6 +126,7 @@ function drawChartAndCard(response){
         drawCardInteraction(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
+        arrColor.push(getColorChannel(value.channel));
     });
 
     // draw chart
@@ -135,35 +138,8 @@ function drawChartAndCard(response){
             datasets: [{
                 labels: arrTotal,
                 data: arrTotal,
-                backgroundColor: [
-                    "#e41313",
-                    "#316cbe",
-                    "#D56DFC",
-                    "#31a550",
-                    "#6574cd",
-                    "#3866a6",
-                    "#1c3353",
-                    "#343a40",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#ff9933",
-                    "#089e60"
-                ],
-                hoverBackgroundColor: [
-                    "#e41313 ",
-                    "#316cbe",
-                    "#D56DFC",
-                    "#31a550",
-                    "#6574cd",
-                    "#3866a6",
-                    "#1c3353",
-                    "#343a40",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#ff9933",
-                    "#089e60"
-                ]
-
+                backgroundColor: arrColor,
+                hoverBackgroundColor: arrColor
             }],
             labels: arrChannel
         },
@@ -291,7 +267,6 @@ function callUniqueCustomerPerChannel(params, index_time){
             });
 
             response.data_empty.forEach(function (value, index) {
-                console.log("amiin");
                 let classBg = value.channel == "Whatsapp" ? "text-primary" : value.channel == "Email" ? "text-danger" : value.channel == "Twitter" ? "text-info" : value.channel == "Facebook" ? "text-blue" : value.channel == "Telegram" ? "text-dark" : value.channel == "Voice" ? "text-warning" : value.channel == "Instagram" ? "text-pink" : value.channel == "Messenger" ? "text-blue" : value.channel== "Twitter DM" ? "text-indigo" : value.channel == "Line" ? "text-success" : value.channel == "Live Chat" ? "text-gray1" : value.channel == "SMS" ? "text-blue-teal" : "";
                 let classIcon = value.channel == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel == "Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel == "Line" ? "fab fa-line text-success plan-icon" : value.channel == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
 

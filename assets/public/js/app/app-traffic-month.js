@@ -1,7 +1,10 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
-    var data_chart = callGraphicInterval('Voice', '11');
+    var d = new Date();
+    var n = d.getMonth();
+    $('#month option[value='+n+']').attr('selected','selected');
+    var data_chart = callGraphicInterval('ShowAll', n);
     var data_table_avg = callDataPercentage('11');
     var data_table_avg = callDataTableAvg('11');
 });
@@ -22,9 +25,9 @@ function callGraphicInterval(channel_name, month){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             var chartdata = [{
-                name: 'channel',
+                name: 'total',
                 type: 'bar',
                 data: response.data.total_traffic
             }];
@@ -96,9 +99,9 @@ function getColorChannel(channel_name){
     color['Facebook'] = '#467fcf';
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
-    color['Live Chat'] = '#42265e';
+    color['Live Chat'] = '#607d8b';
     color['Messenger'] = '#3866a6';
-    color['SMS'] = '#1c3353';
+    color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';

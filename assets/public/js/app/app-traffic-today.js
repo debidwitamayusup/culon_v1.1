@@ -20,9 +20,9 @@ function getColorChannel(channel){
     color['Facebook'] = '#467fcf';
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
-    color['Live Chat'] = '#42265e';
+    color['Live Chat'] = '#607d8b';
     color['Messenger'] = '#3866a6';
-    color['SMS'] = '#1c3353';
+    color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';
@@ -120,7 +120,7 @@ function callDataTableAvg(date){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
+            console.log(response);
             drawTableToday(response);
         },
         error: function (r) {
@@ -136,7 +136,7 @@ function drawTableToday(response){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_id+'</td>'+
+            '<td>'+value.channel_name+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+

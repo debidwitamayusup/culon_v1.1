@@ -323,16 +323,29 @@ class Stc_Model extends CI_Model
 
 	public function getIntervalPerMonth($month, $channel_name)
 	{
-		//solve error sql mode ver. 5.7 = only full group by
-		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		if ($channel_name == "ShowAll") {
+			//solve error sql mode ver. 5.7 = only full group by
+			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-		$this->db->select('channel_name, DAY(date_time) date, SUM(total) total_traffic');
-		$this->db->from('summary_channel');
-		$this->db->where('MONTH(date_time) = "'.$month.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
-							AND "23:00:00" AND channel_name= "'.$channel_name.'"');
-		$this->db->group_by('DATE(date_time)');
-		$query = $this->db->get();
-		return $query;
+			$this->db->select('DAY(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('MONTH(date_time) = "'.$month.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
+								AND "23:00:00"');
+			$this->db->group_by('DATE(date_time)');
+			$query = $this->db->get();
+			return $query;	
+		}else{
+			//solve error sql mode ver. 5.7 = only full group by
+			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+			$this->db->select('channel_name, DAY(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('MONTH(date_time) = "'.$month.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
+								AND "23:00:00" AND channel_name= "'.$channel_name.'"');
+			$this->db->group_by('DATE(date_time)');
+			$query = $this->db->get();
+			return $query;
+		}
 	}
 
 	public function getAvgIntervalTable($month)
@@ -374,11 +387,12 @@ class Stc_Model extends CI_Model
 
 	public function getAverageIntervalToday($date){
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('date_time, channel_id, art, aht, ait as ast, hi, handle, round((hi/handle)*100, 2) as sla');
+		$this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
 		$this->db->from('agent_perform');
-		$this->db->where('DATE(date_time)', $date);
-		$this->db->group_by('channel_id');
-		$this->db->order_by('channel_id', 'ASC');
+		$this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
+		$this->db->where('DATE(agent_perform.date_time)', $date);
+		$this->db->group_by('agent_perform.channel_id');
+		$this->db->order_by('agent_perform.channel_id', 'ASC');
 		$query = $this->db->get();
     	return $query->result();
 	}
