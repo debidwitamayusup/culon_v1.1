@@ -145,7 +145,7 @@ class SummaryYear extends CI_Controller {
 		} else {
 			$response = array(
 				'status' => false,
-				'data' => $arr_data
+				'data' => ''
 			);
 		}
 		// foreach ($sumIntervalYear as $key) {
