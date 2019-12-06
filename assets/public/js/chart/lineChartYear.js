@@ -5,7 +5,7 @@
 		type: 'bar',
 		data: [10, 15, 9, 18, 10,10, 15, 9, 18, 10,10, 35]
 	}];
-	var chart = document.getElementById('echart1');
+	var chart = document.getElementById('echartYear');
 	var barChart = echarts.init(chart);
 	var option = {
 		grid: {
