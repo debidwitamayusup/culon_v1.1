@@ -25,7 +25,7 @@ function callGraphYear(channel_name,year) {
         success: function (r) {
             var response = JSON.parse(r);
             var chartdata = [{
-                name: 'channel',
+                name: 'total',
                 type: 'bar',
                 data: response.data.total_traffic
             }];
@@ -36,9 +36,9 @@ function callGraphYear(channel_name,year) {
         var option = {
             grid: {
                 top: '6',
-                right: '0',
+                right: '5',
                 bottom: '17',
-                left: '25',
+                left: '35',
             },
             xAxis: {
                 data: response.data.month_x_axis,
@@ -76,7 +76,7 @@ function callGraphYear(channel_name,year) {
                     }
                 },
                 axisLabel: {
-                    fontSize: 10,
+                    fontSize: 8,
                     color: '#7886a0'
                 }
             },
