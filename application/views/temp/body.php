@@ -115,7 +115,7 @@
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
 								<div class="card-header bg-red">
-									<h3 class="card-title text-white">Average Customer</h3>
+									<h3 class="card-title text-white">Average Interaction</h3>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="avg-customer"></h2>

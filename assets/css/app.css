@@ -34,3 +34,19 @@
 .ml-3 {
     margin-left: 30px !important;
 }
+
+.bg-gray1{
+    background-color:#607d8b;
+}
+
+.text-gray1{
+    color:#607d8b;
+}
+
+.bg-blue-teal{
+    background-color :#80cbc4;
+}
+
+.text-blue-teal{
+    color:#80cbc4;
+}

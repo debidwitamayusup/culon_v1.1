@@ -10,7 +10,7 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active mr-90" aria-current="page" >ART, AHT, AST</li>
+                            <li class="breadcrumb-item active mr-70" aria-current="page" >ART, AHT, AST</li>
                         </ol>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-12 col-lg-6">
-                        <div class="card bg-indigo-darker">
+                        <div class="card bg-gray1">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="plan-card mr-3">
@@ -214,12 +214,12 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-12 col-lg-6">
-                        <div class="card bg-indigo-darkest">
+                        <div class="card bg-blue-teal">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="plan-card mr-3">
                                         <i class="fa fa-envelope-open text-white text-center plan-icon"></i>
-                                        <h6 class="text-white text-uppercase mt-2">Pesan</h6>
+                                        <h6 class="text-white text-uppercase mt-2">SMS</h6>
                                         <h2 class="mb-2 num-font text-white text-center">678</h2>
                                     </div>
                                     <div class="plan-card ">
