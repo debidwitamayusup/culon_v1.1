@@ -212,7 +212,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(date_time)', $index);
 		}
 		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name');
+		$this->db->order_by('channel_name', 'ASC');
 
 		$query = $this->db->get();
 
@@ -399,19 +399,41 @@ class Stc_Model extends CI_Model
 
 	public function getAverageIntervalToday($date){
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
-		$this->db->from('agent_perform');
-		$this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
-		$this->db->where('DATE(agent_perform.date_time)', $date);
-		$this->db->group_by('agent_perform.channel_id');
-		$this->db->order_by('agent_perform.channel_id', 'ASC');
-		$query = $this->db->get();
+		
+		// $this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
+		// $this->db->from('agent_perform');
+		// $this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
+		// $this->db->where('DATE(agent_perform.date_time)', $date);
+		// $this->db->group_by('agent_perform.channel_id');
+		// $this->db->order_by('agent_perform.channel_id', 'ASC');
+		// $query = $this->db->get();
+
+		$query = $this->db->query("SELECT 
+			m_channel.channel_name 
+			, IFNULL(a.art, 0) as art 
+			, IFNULL(a.aht, 0) as aht 
+			, IFNULL(a.ast, 0) as ast
+			, IFNULL(a.sla, 0) as sla
+			FROM m_channel 
+			LEFT JOIN (
+				SELECT agent_perform.channel_id
+				, agent_perform.art
+				, agent_perform.aht, agent_perform.ait as ast 
+				, agent_perform.hi, agent_perform.handle
+				, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
+				, DATE(agent_perform.date_time)as date 
+				FROM agent_perform 
+				WHERE DATE(agent_perform.date_time) = '$date' 
+				GROUP BY agent_perform.channel_id
+			)as a on a.channel_id = m_channel.channel_id  
+			ORDER BY m_channel.channel_name
+		");
     	return $query->result();
 	}
 
 	public function getPercentageIntervalToday($date){
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) 	FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
+		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
 			FROM summary_channel 
 			WHERE DATE(date_time) = '$date' 
 			GROUP BY channel_name
