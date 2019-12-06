@@ -120,7 +120,7 @@ function callDataTableAvg(date){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
+            console.log(response);
             drawTableToday(response);
         },
         error: function (r) {
@@ -136,7 +136,7 @@ function drawTableToday(response){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_id+'</td>'+
+            '<td>'+value.channel_name+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+

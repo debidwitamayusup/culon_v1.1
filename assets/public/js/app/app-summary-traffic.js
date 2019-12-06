@@ -111,12 +111,14 @@ function drawChartAndCard(response){
 
     let arrTotal = []
     let arrChannel = []
+    let arrColor = []
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
         drawCardInteraction(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
+        arrColor.push(getColorChannel(value.channel));
     });
     
     // draw card yg datanya 0
@@ -124,6 +126,7 @@ function drawChartAndCard(response){
         drawCardInteraction(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
+        arrColor.push(getColorChannel(value.channel));
     });
 
     // draw chart
@@ -135,35 +138,8 @@ function drawChartAndCard(response){
             datasets: [{
                 labels: arrTotal,
                 data: arrTotal,
-                backgroundColor: [
-                    "#e41313",
-                    "#316cbe",
-                    "#D56DFC",
-                    "#31a550",
-                    "#6574cd",
-                    "#3866a6",
-                    "#1c3353",
-                    "#343a40",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#ff9933",
-                    "#089e60"
-                ],
-                hoverBackgroundColor: [
-                    "#e41313 ",
-                    "#316cbe",
-                    "#D56DFC",
-                    "#31a550",
-                    "#6574cd",
-                    "#3866a6",
-                    "#1c3353",
-                    "#343a40",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#ff9933",
-                    "#089e60"
-                ]
-
+                backgroundColor: arrColor,
+                hoverBackgroundColor: arrColor
             }],
             labels: arrChannel
         },
