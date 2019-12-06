@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="content-card">
                     <div class="col-xl-3 col-md-12 col-lg-6">
                         <div class="card bg-primary">
                             <div class="card-body">
