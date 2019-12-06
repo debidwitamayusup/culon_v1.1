@@ -36,7 +36,7 @@
 									<div class="row">
 										<div class="form-group row">
 											<select class="form-control" id="channel_name">
-												<option value="ShowAll">Show</option>
+												<option value="ShowAll">Show All</option>
 												<option value="Whatsapp">Whatsapp</option>
 												<option value="Twitter">Twitter</option>
 												<option value="Facebook">Facebook</option>
