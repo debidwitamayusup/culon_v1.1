@@ -13,7 +13,7 @@ $(document).ready(function () {
     v_month = '11';
     v_year = '2019';
 
-
+    callDataAvg(params_time, v_date);
     // loadContent(params_time, v_date);
 
 });
@@ -38,9 +38,56 @@ function getColorChannel(channel){
 }
 
 function loadContent(){
+
 }
 
+function callDataAvg(params, index){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/AverageTime/getAT',
+        data: {
+            params: params,
+            index: index
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            console.log(response);
+            drawCard(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+function drawCard(response){
+     //destroy div card content
+     $('#card-avg').remove(); // this is my <div> element
+     $('#content-card').append('<div id="card-avg" class="row"></div>');
 
+    //  draw card
+    response.data.forEach(function (value, index) {
+        $('#card-avg').append(''+
+        '<div class="col-xl-3 col-md-12 col-lg-6" >'+
+            '<div class="card" >'+
+                '<div class="card-body">'+
+                    '<div class="d-flex align-items-center justify-content-center">'+
+                        '<div class="plan-card mr-3">'+
+                            '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
+                            '<h6 class="text-drak text-uppercase mt-2">'+ value.channel_name+'</h6>'+
+                            '<h2 class="mb-2 num-font text-center">'+value.total+'</h2>'+
+                        '</div>'+
+                        '<div class="plan-card ">'+
+                            '<h4 class="text-drak text-uppercase ml-5">ART :'+value.art+'</h4>'+
+                            '<h4 class="text-drak text-uppercase ml-5">AHT :'+value.aht+'</h4>'+
+                            '<h4 class="text-drak text-uppercase ml-5">AST :'+value.ast+'</h4>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+        +'');
+    });
+}
 //jquery
 (function ($) {
 
