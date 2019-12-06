@@ -13,7 +13,7 @@ class SummaryMonth extends CI_Controller {
 	{
 		//date("m")
 		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
-		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Voice";
+		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "ShowAll";
 		
 		$data = array();
 		
@@ -22,12 +22,17 @@ class SummaryMonth extends CI_Controller {
 
 		//condition for days of month based on month
 		$query_date = date("Y-m-d");
- 
+
+		//convert number of month to three letter of month
+ 		$dateObj   = DateTime::createFromFormat('!m', $month);
+		$monthName = $dateObj->format('M');
+ 		
+
    		$paramDate = date('t', strtotime($query_date));
 		$arrDate = array();
 		$total_traffics = array();
 		for($i=1;$i<=$paramDate;$i++) {
-			array_push($arrDate,$i);
+			array_push($arrDate,$i.' '.$monthName);
 		}
 		
 		
