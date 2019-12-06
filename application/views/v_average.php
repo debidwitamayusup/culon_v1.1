@@ -43,24 +43,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-xl-3 col-md-12 col-lg-6">
-                        <div class="card bg-primary">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <div class="plan-card mr-3">
-                                        <i class="fab fa-whatsapp text-white text-center plan-icon"></i>
-                                        <h6 class="text-drak text-uppercase mt-2">Whatsapp</h6>
-                                        <h2 class="mb-2 num-font text-center">678</h2>
-                                    </div>
-                                    <div class="plan-card ">
-                                        <h4 class="text-drak text-uppercase ml-5">ART :781</h4>
-                                        <h4 class="text-drak text-uppercase ml-5">AHT :781</h4>
-                                        <h4 class="text-drak text-uppercase ml-5">AST :781</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-xl-3 col-md-12 col-lg-6">
                         <div class="card bg-info">
                             <div class="card-body">
@@ -258,5 +240,5 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
