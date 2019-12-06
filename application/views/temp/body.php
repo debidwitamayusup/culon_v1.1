@@ -61,7 +61,7 @@
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
 								<div class="card-header bg-red">
-									<h3 class="card-title text-white">Total Interaction</h3>
+									<h4 class="text-white card-body">Total Interaction</h4>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="total-interaction"></h2>
@@ -88,7 +88,7 @@
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
 								<div class="card-header bg-red">
-									<h3 class="text-white card-title">Unique Customer</h3>
+									<h4 class="text-white card-body">Unique Customer</h4>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="unique-customer"></h2>
@@ -115,7 +115,7 @@
 						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
 							<div class="card">
 								<div class="card-header bg-red">
-									<h3 class="card-title text-white">Average Interaction</h3>
+									<h4 class="card-body text-white">Average Interaction</h4>
 								</div>
 								<div class="card-body">
 									<h2 class="mb-1 num-font" id="avg-customer"></h2>

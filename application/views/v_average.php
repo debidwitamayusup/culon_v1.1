@@ -10,8 +10,18 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active mr-70" aria-current="page" >ART, AHT, AST</li>
+                            <li class="breadcrumb-item active" aria-current="page" >ART, AHT, AST</li>
                         </ol>
+                        <div class="card-options d-none d-sm-block">
+                            <div class="btn-group btn-sm">
+                                <a href="#" class="btn btn-light btn-sm">
+                                    <span class="">Day</a></span>
+                                <a href="#" class="btn btn-light btn-sm">
+                                    <span class="">Month</a></span>
+                                <a href="#" class="btn btn-light btn-sm">
+                                    <span class="">Year</a></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
