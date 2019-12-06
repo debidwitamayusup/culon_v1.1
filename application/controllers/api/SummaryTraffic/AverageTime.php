@@ -181,7 +181,9 @@ class AverageTime extends CI_Controller {
                             "art" => $getAverageTime[$index]->art,
                             "aht" => $getAverageTime[$index]->aht,
                             "ast" => $getAverageTime[$index]->ast,
-                            "total" => $getTotalInteraction[$index]->total
+                            "total" => $getTotalInteraction[$index]->total,
+                            "channel_icon" => $getAverageTime[$index]->channel_icon,
+                            "channel_color" => $getAverageTime[$index]->channel_color
                         ];
                         $status = 1;
                     }else{
