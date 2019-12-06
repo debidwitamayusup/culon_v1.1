@@ -1,133 +1,6 @@
 (function ($) {
     "use strict";
-    //bar chart year
-    var chartdata = [{
-        name: 'channel',
-        type: 'bar',
-        data: [10, 15, 9, 18, 10, 10, 15, 9, 18, 10, 10, 35]
-    }];
-    var chart = document.getElementById('barChartYear');
-    var barChart = echarts.init(chart);
-    var option = {
-        grid: {
-            top: '6',
-            right: '0',
-            bottom: '17',
-            left: '25',
-        },
-
-        xAxis: {
-            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            title: "axisX Title",
-            gridThickness: 1,
-            tickLength: 10,
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        tooltip: {
-            show: true,
-            showContent: true,
-            alwaysShowContent: true,
-            triggerOn: 'mousemove',
-            trigger: 'axis',
-            axisPointer: {
-                label: {
-                    show: false,
-                }
-            }
-        },
-        yAxis: {
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        series: chartdata,
-        color: ['#B22222']
-    };
-    barChart.setOption(option);
-
-    //Bar Chart Month
-    var chartdata = [{
-        name: 'channel',
-        type: 'bar',
-        data: [10, 15, 9, 18, 10, 10, 15, 9, 18, 10, 10, 35, 40, 30, 10, 20, 15, 9, 48, 60, 40, 35, 10, 20, 30, 30, 55, 49, 68, 70]
-    }];
-    var chart = document.getElementById('barChartMonth');
-    var barChart = echarts.init(chart);
-    var option = {
-        grid: {
-            top: '6',
-            right: '0',
-            bottom: '17',
-            left: '25',
-        },
-        xAxis: {
-            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0',
-
-            }
-        },
-        tooltip: {
-            show: true,
-            showContent: true,
-            alwaysShowContent: true,
-            triggerOn: 'mousemove',
-            trigger: 'axis',
-            axisPointer: {
-                label: {
-                    show: false,
-                }
-            }
-        },
-        yAxis: {
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            },
-
-        },
-        series: chartdata,
-        color: ['#B22222']
-    };
-    barChart.setOption(option);
-
+    
     //line chart agent
     var ctx = document.getElementById("graphicAgent");
     var myChart = new Chart(ctx, {
@@ -238,22 +111,22 @@
                 label: "Live Chat",
                 data: [0, 5, 10, 18, 20, 30, 40, 60, 30, 80, 70, 50, 60, 40, 40, 40, 30, 40, 130, 80, 60, 50, 90, 80, 100],
                 backgroundColor: 'transparent',
-                borderColor: '#42265e',
+                borderColor: '#607d8b',
                 borderWidth: 3,
                 pointStyle: 'circle',
                 pointRadius: 4,
                 pointBorderColor: 'transparent',
-                pointBackgroundColor: '#42265e',
+                pointBackgroundColor: '#607d8b',
             }, {
-                label: "Pesan",
+                label: "SMS",
                 data: [0, 3, 20, 48, 60, 30, 50, 30, 20, 30, 60, 40, 70, 80, 60, 70, 35, 42, 30, 50, 40, 50, 90, 50, 40],
                 backgroundColor: 'transparent',
-                borderColor: '#1c3353',
+                borderColor: '#80cbc4',
                 borderWidth: 2,
                 pointStyle: 'circle',
                 pointRadius: 4,
                 pointBorderColor: 'transparent',
-                pointBackgroundColor: '#1c3353',
+                pointBackgroundColor: '#80cbc4',
             }]
         },
         options: {
@@ -266,35 +139,6 @@
                 }
             },
             barRoundness: 1,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-
-    // single bar chart
-    var ctx = document.getElementById("singelBarChart");
-    ctx.height = 100;
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Sun", "Mon", "Tu", "Wed", "Th", "Fri", "Sat"],
-            datasets: [{
-                label: "My First dataset",
-                data: [40, 55, 75, 81, 56, 55, 40],
-                borderColor: "rgba(19, 150, 204, 0.9)",
-                borderWidth: "0",
-                backgroundColor: "rgba(19, 150, 204, 0.8)"
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
