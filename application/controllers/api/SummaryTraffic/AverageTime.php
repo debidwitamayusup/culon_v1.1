@@ -142,30 +142,62 @@ class AverageTime extends CI_Controller {
 		$aht = array();
 		$channel_name = array();
 		$total = array();
+		$arr_channel = $this->Stc_Model->get_all_channel();
 		$getAverageTime = $this->Stc_Model->getAverageIntervalToday($date);
 		// var_dump($getAverageTime);
 		
 
-		foreach ($getAverageTime as $key) {
-			array_push($art, $key->art);
-			array_push($aht, $key->aht);
-			array_push($ast, $key->aht);
-			array_push($channel_name, $key->channel_name);
-		}
+		// foreach ($getAverageTime as $key) {
+		// 	array_push($art, $key->art);
+		// 	array_push($aht, $key->aht);
+		// 	array_push($ast, $key->aht);
+		// 	array_push($channel_name, $key->channel_name);
+		// }
 
 		$getTotalInteraction = $this->Stc_Model->getCardMain($params, $index);
-		foreach ($getTotalInteraction as $key) {
-			array_push($total, $key->total);
-		}
+		// foreach ($getTotalInteraction as $key) {
+		// 	array_push($total, $key->total);
+		// }
 
 		
-		$data = [
-			'channel_name' => $channel_name,
-			'art' => $art,
-			'aht' => $aht,
-			'ast' => $ast,
-			'total' => $total
-		];
+		// $data = [
+		// 	'channel_name' => $channel_name,
+		// 	'art' => $art,
+		// 	'aht' => $aht,
+		// 	'ast' => $ast,
+		// 	'total' => $total
+		// ];
+
+		$i = 0;
+        if($getAverageTime && $getTotalInteraction){
+            while($i < sizeof($arr_channel)){
+                $index = 0;
+                $status = 0;
+                while($index<sizeof($getAverageTime) && $status == 0){
+                    $obj = array();
+                    if($arr_channel[$i]->channel_name == $getAverageTime[$index]->channel_name){
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "art" => $getAverageTime[$index]->art,
+                            "aht" => $getAverageTime[$index]->aht,
+                            "ast" => $getAverageTime[$index]->ast,
+                            "total" => $getTotalInteraction[$index]->total
+                        ];
+                        $status = 1;
+                    }else{
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "art" => 0,
+                            "aht" => 0,
+                            "ast" => 0
+                        ];
+                    }
+                    $index++;
+                }
+                array_push($data, $obj);
+                $i++;
+            }
+         }
 
 		if ($getAverageTime || $getTotalInteraction) 
 		{
