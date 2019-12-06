@@ -201,22 +201,49 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getCardMain($params, $index)
-	{
-		$this->db->select('channel_name channel, SUM(total) total');
-		$this->db->from('summary_channel');
+	{	
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		// $this->db->select('channel_name channel, SUM(total) total');
+		// $this->db->from('summary_channel');
+		// if($params == 'day'){
+		// 	$this->db->where('DATE(date_time)', $index);
+		// }else if($params == 'month'){
+		// 	$this->db->where('MONTH(date_time)', $index);
+		// }else if($params == 'year'){
+		// 	$this->db->where('YEAR(date_time)', $index);
+		// }
+		// $this->db->group_by('channel_name');
+		// $this->db->order_by('channel_name', 'ASC');
+
+		// $query = $this->db->get();
+		$where = "";
 		if($params == 'day'){
-			$this->db->where('DATE(date_time)', $index);
+			$where = "DATE(date_time)= '".$index."'";
 		}else if($params == 'month'){
-			$this->db->where('MONTH(date_time)', $index);
+			$where = "MONTH(date_time)= '".$index."'";
 		}else if($params == 'year'){
-			$this->db->where('YEAR(date_time)', $index);
+			$where = "YEAR(date_time)= '".$index."'";
 		}
-		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name', 'ASC');
+		$str = "SELECT m_channel.channel_name as channel, IFNULL(a.total, 0) as total
+		FROM m_channel 
+		LEFT JOIN (
+			select summary_channel.channel_id, SUM(summary_channel.total) total
+			from summary_channel
+			where $where
+			GROUP BY summary_channel.channel_name
+			ORDER BY summary_channel.channel_name
+		)as a on a.channel_id = m_channel.channel_id  
+		ORDER BY m_channel.channel_name";
 
-		$query = $this->db->get();
-
+		$query = $this->db->query($str);
+		// $CI = & get_instance();
+        // $times = $CI->db->query_times;
+        // $sql="";
+        // foreach ($CI->db->queries as $key => $query) {
+        //     $sql = $query . " \n Execution Time:" . $times[$key];
+        // }
 		return $query->result();
+		// return $str;
 	}
 
 	public function getCGraph()
