@@ -120,6 +120,5 @@
 				<!--Chart Plugin -->
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Chart--->
-				<script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script>
 				
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>

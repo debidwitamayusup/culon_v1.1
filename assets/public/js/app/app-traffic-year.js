@@ -2,6 +2,8 @@ var base_url = $('#base_url').val();
 
 $(document).ready(function () {
     var data_chart = callGraphYear('Email', '2019');
+    var data_graph = callDataPercentage('2019');
+    var data_table = callDataTableAvg('2019');
 });
 
 function callGraphYear(channel_name,year) {
@@ -24,7 +26,7 @@ function callGraphYear(channel_name,year) {
                 type: 'bar',
                 data: response.data.total_traffic
             }];
-        console.log(response);
+        //console.log(response);
 
         var chart = document.getElementById('echartYear');
         var barChart = echarts.init(chart);
@@ -86,23 +88,154 @@ function callGraphYear(channel_name,year) {
     });    
 }   
 
+//function get data and draw
+function getColorChannel(channel_name){
+    var color = [];
+    color['Email'] = '#e41313';
+    color['Facebook'] = '#467fcf';
+    color['Instagram'] = '#fbc0d5';
+    color['Line'] = '#31a550';
+    color['Live Chat'] = '#42265e';
+    color['Messenger'] = '#3866a6';
+    color['SMS'] = '#1c3353';
+    color['Telegram'] = '#343a40';
+    color['Twitter'] = '#45aaf2';
+    color['Twitter DM'] = '#6574cd';
+    color['Voice'] = '#ff9933';
+    color['Whatsapp'] = '#31a550';
+
+    return color[channel_name];
+}
+
+function callDataPercentage(year){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryYear/summaryIntervalYear',
+        data: {
+            year: year
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            //console.log(response);
+            drawChartPercentageYear(response);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawChartPercentageYear(response){
+    var data_label = [];
+    var data_rate = [];
+    var data_color = [];;
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
+    // console.log(data_color);
+    var obj = [{
+        label: "data",
+        data: data_rate,
+        borderColor: data_color,
+        borderWidth: "0",
+        backgroundColor: data_color
+    }];
+
+    // draw chart
+    var ctx_percentage = document.getElementById("echartVerticalYear");
+    ctx_percentage.height = 573;
+    var percentageChart = new Chart(ctx_percentage, {
+        type: 'horizontalBar',
+        data: {
+            labels: data_label,
+            datasets: obj,
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+}
+
+function callDataTableAvg(year){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryYear/averageInterval',
+        data: {
+            year: year
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            console.log(response);
+            drawTableYear(response);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawTableYear(response){
+    $("#mytbody_year").empty();
+    if(response.data.length != 0){
+        response.data.forEach(function (value, index) {
+            $('#table_avg_year').find('tbody').append('<tr>'+
+            '<td>'+(index+1)+'</td>'+
+            '<td>'+value.channel_name+'</td>'+
+            '<td>'+value.SLA+'%</td>'+
+            '<td>'+value.art+'</td>'+
+            '<td>'+value.aht+'</td>'+
+            '<td>'+value.ast+'</td>'+
+            '</tr>');
+        });
+    }else{
+        $('#table_avg_year').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    
+}
+
 function destroyChartInterval(){
     // destroy chart interval 
     $('#echartYear').remove(); // this is my <canvas> element
     $('#customerChartYear').append('<div id="echartYear"  class="h-400"></div>');
 }
 
+function destroyChartPercentage(){
+    //destroy chart percentage
+    $('#echartVerticalYear').remove(); // this is my <canvas> element
+    $('#chartPercentage').append('<canvas id="echartVerticalYear"></canvas>');
+}
 
 //jquery
 (function ($) {
     // change date picker
     $("select#dateTahun").change(function(){
         destroyChartInterval();
+        destroyChartPercentage();
           var selectedYear = $(this).children("option:selected").val();
 
-          // console.log(selectedYear);
+          //console.log(selectedYear);
           // console.log($("#channel_name").val());
         callGraphYear($("#channel_name").val(), selectedYear);
+        callDataPercentage(selectedYear);
+        callDataTableAvg(selectedYear);
+        // callDataTableAvg(selectedYear);
         });
     $("select#channel_name").change(function(){
           var selectedName = $(this).children("option:selected").val();

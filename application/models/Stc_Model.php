@@ -298,11 +298,10 @@ class Stc_Model extends CI_Model
 	public function getIntervalYearTable($year)
 	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
-		$this->db->from('agent_perform');
-		$this->db->where('YEAR(date_time) = "'.$year.'"');
-		$this->db->group_by('channel_id');
-		$this->db->order_by('channel_id');
+		$this->db->select('b.channel_name, ROUND((a.hi/a.handle),2)*100 SLA, a.art art, a.aht aht, a.ait ast');
+		$this->db->from('agent_perform a, m_channel b');
+		$this->db->where('YEAR(date_time) = "'.$year.'" and b.channel_id = a.channel_id');
+		$this->db->group_by('b.channel_id');
 
 		$query = $this->db->get();
 		
@@ -311,7 +310,8 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-		$this->db->select('channel_name channel_for_chart, SUM(total) total_by_year, CAST(SUM(total)*100/ (SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
+		$this->db->select('channel_name channel_name, SUM(total) total_by_year, CAST(SUM(total)*100/ 
+			(SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
 		$this->db->from('summary_channel');
 		$this->db->where('YEAR(date_time) = '.$year.'');
 		$this->db->group_by('channel_name');

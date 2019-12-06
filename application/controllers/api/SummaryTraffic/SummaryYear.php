@@ -93,19 +93,19 @@ class SummaryYear extends CI_Controller {
 			$response = array(
 				'status' => 200,
 				'message' => "Success",
-				'data_chart' => $avgIntervalTable);
+				'data' => $avgIntervalTable);
 		} else {
 			$response = array(
 				'status' => 200,
 				'message' => "Data Not Found",
-				'data_chart' => $avgIntervalTable);
+				'data' => "");
 		}
 		echo json_encode($response);
 	}
 
 	public function summaryIntervalYear()
 	{
-		$year = $this->input->post('year') ? $this->input->post('month') : date('Y');
+		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
 
 		$array_channel = $this->Stc_Model->get_all_channel();
 		$arr_data = array();
