@@ -71,6 +71,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 
 </head>
 <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
