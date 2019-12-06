@@ -25,7 +25,7 @@
 				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseOne"> Traffic Channel </a>
+						aria-controls="collapseOne"> Traffic Interval </a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
