@@ -170,7 +170,12 @@ function drawChartAndCard(response){
                     }
                     // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
-                    var percentage = parseFloat((dataLabel / total)*100).toFixed(2);
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
+
                     legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
                     legendHtml.push('</li>');
