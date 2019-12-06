@@ -74,7 +74,7 @@ function drawCard(response){
                         '<div class="plan-card mr-3">'+
                             '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
                             '<h6 class="text-white text-uppercase mt-2">'+ value.channel_name+'</h6>'+
-                            '<h2 class="mb-2 num-font text-center">'+value.total+'</h2>'+
+                            '<h2 class="mb-2 num-font text-center text-white">'+value.total+'</h2>'+
                         '</div>'+
                         '<div class="plan-card ">'+
                             '<h4 class="text-white text-uppercase ml-5">ART :'+value.art+'</h4>'+
