@@ -73,13 +73,13 @@ function drawCard(response){
                     '<div class="d-flex align-items-center justify-content-center">'+
                         '<div class="plan-card mr-3">'+
                             '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
-                            '<h6 class="text-drak text-uppercase mt-2">'+ value.channel_name+'</h6>'+
+                            '<h6 class="text-white text-uppercase mt-2">'+ value.channel_name+'</h6>'+
                             '<h2 class="mb-2 num-font text-center">'+value.total+'</h2>'+
                         '</div>'+
                         '<div class="plan-card ">'+
-                            '<h4 class="text-drak text-uppercase ml-5">ART :'+value.art+'</h4>'+
-                            '<h4 class="text-drak text-uppercase ml-5">AHT :'+value.aht+'</h4>'+
-                            '<h4 class="text-drak text-uppercase ml-5">AST :'+value.ast+'</h4>'+
+                            '<h4 class="text-white text-uppercase ml-5">ART :'+value.art+'</h4>'+
+                            '<h4 class="text-white text-uppercase ml-5">AHT :'+value.aht+'</h4>'+
+                            '<h4 class="text-white text-uppercase ml-5">AST :'+value.ast+'</h4>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
