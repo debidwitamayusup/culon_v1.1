@@ -1,7 +1,10 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
-    var data_chart = callGraphYear('Email', '2019');
+    var d = new Date();
+    var n = d.getFullYear();
+    $('#dateTahun option[value = '+n+']').attr('selected','selected');
+    var data_chart = callGraphYear('ShowAll', n);
     var data_graph = callDataPercentage('2019');
     var data_table = callDataTableAvg('2019');
 });
@@ -26,7 +29,7 @@ function callGraphYear(channel_name,year) {
                 type: 'bar',
                 data: response.data.total_traffic
             }];
-        //console.log(response);
+        console.log(response);
 
         var chart = document.getElementById('echartYear');
         var barChart = echarts.init(chart);
@@ -95,9 +98,9 @@ function getColorChannel(channel_name){
     color['Facebook'] = '#467fcf';
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
-    color['Live Chat'] = '#42265e';
+    color['Live Chat'] = '#607d8b';
     color['Messenger'] = '#3866a6';
-    color['SMS'] = '#1c3353';
+    color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';
@@ -135,7 +138,7 @@ function drawChartPercentageYear(response){
         data_rate.push(value.rate);
         data_color.push(getColorChannel(value.channel_name));
     });
-    // console.log(data_color);
+    console.log(data_label);
     var obj = [{
         label: "data",
         data: data_rate,

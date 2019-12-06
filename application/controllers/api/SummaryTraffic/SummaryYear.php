@@ -12,7 +12,7 @@ class SummaryYear extends CI_Controller {
 	public function gInterval()
 	{
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
-		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "Email";
+		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "ShowAll";
 
 		$data = array();
 		$total_traffic = array();
@@ -24,7 +24,7 @@ class SummaryYear extends CI_Controller {
 
 		foreach ($interval as $key) {
 				array_push($total_traffic,$key->total_traffic);
-				array_push($date,$key->month);
+				array_push($date,$key->date);
 			}
 
 			for ($i=0; $i < sizeof($traffic); $i++)
@@ -145,7 +145,7 @@ class SummaryYear extends CI_Controller {
 		} else {
 			$response = array(
 				'status' => false,
-				'data' => ''
+				'data' => $arr_data
 			);
 		}
 		// foreach ($sumIntervalYear as $key) {

@@ -284,15 +284,27 @@ class Stc_Model extends CI_Model
 
 	public function getIntervalYear($year,$channel_name)
 	{
-		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('channel_name, MONTH(date_time) month, SUM(total) total_traffic');
-		$this->db->from('summary_channel');
-		$this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
-		$this->db->group_by('MONTH(date_time)');
+		if ($channel_name == "ShowAll") {
+			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+			$this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
+								AND "23:00:00"');
+			$this->db->group_by('MONTH(date_time)');
 
-		$query = $this->db->get();
+			$query = $this->db->get();
 		
-		return $query;
+			return $query;
+		} else {
+			$this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
+			$this->db->group_by('MONTH(date_time)');
+
+			$query = $this->db->get();
+		
+			return $query;
+		}
 	}
 
 	public function getIntervalYearTable($year)
