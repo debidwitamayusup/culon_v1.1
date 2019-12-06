@@ -84,8 +84,7 @@ function drawCard(response){
                     '</div>'+
                 '</div>'+
             '</div>'+
-        '</div>'+
-        +'');
+        '</div>');
     });
 }
 //jquery
