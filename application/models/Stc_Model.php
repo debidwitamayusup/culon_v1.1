@@ -445,7 +445,7 @@ class Stc_Model extends CI_Model
 		}
 		$query = $this->db->query("SELECT 
 		m_channel.channel_name
-		, m_channel.channel_icon
+		, m_channel.icon_dashboard
 		, m_channel.channel_color 
 		, IFNULL(a.art, 0) as art 
 		, IFNULL(a.aht, 0) as aht 
