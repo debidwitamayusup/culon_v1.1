@@ -100,5 +100,15 @@ function drawCard(response){
         $(this).prop("class","btn btn-danger btn-sm");
     });
 
+    // btn month
+    $('#btn-month').click(function(){
+        params_time = 'month';
+        // console.log(params_time);
+        loadContent(params_time , '11')
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
+
    
 })(jQuery);
