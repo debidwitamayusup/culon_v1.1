@@ -45,7 +45,7 @@ function loadContent($params_time, $index){
 
 function getThisMonth(){
     var date = new Date();
-    var thisMonth = date.getMonth();
+    var thisMonth = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     return thisMonth;
 }
 
@@ -122,7 +122,8 @@ function drawCard(response){
         // console.log(params_time);
         thisMonths = getThisMonth();
         // console.log(thisMonths);
-        loadContent(params_time , ''+thisMonths+'');
+        // loadContent(params_time , thisMonths);
+        loadContent(params_time , '11');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
