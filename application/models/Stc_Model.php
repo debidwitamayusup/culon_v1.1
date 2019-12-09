@@ -349,8 +349,10 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-		$this->db->select('channel_name channel_name, SUM(total) total_by_year, CAST(SUM(total)*100/ 
-			(SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
+		$this->db->select('channel_name channel_name, 
+			SUM(total) total_by_year,
+			IFNULL(CAST(SUM(total)*100/ 
+			(SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)), 0) as rate');
 		$this->db->from('summary_channel');
 		$this->db->where('YEAR(date_time) = '.$year.'');
 		$this->db->group_by('channel_name');
