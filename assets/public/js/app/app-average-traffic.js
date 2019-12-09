@@ -49,6 +49,13 @@ function getThisMonth(){
     return thisMonth;
 }
 
+function getThisYear()
+{
+    var date = new Date();
+    var thisYear = date.getFullYear();
+    return thisYear;
+}
+
 function callDataAvg(params, index){
     $.ajax({
         type: 'post',
@@ -125,7 +132,8 @@ function drawCard(response){
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2019')
+        thisYears = getThisYear();
+        loadContent(params_time , ''+thisYears+'');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");

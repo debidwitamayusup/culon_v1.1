@@ -129,36 +129,6 @@ class SummaryYear extends CI_Controller {
 				'data' => ''
 			);
 		}
-		// foreach ($sumIntervalYear as $key) {
-		// 	array_push($channel_for_chart, $key->channel_for_chart);
-		// 	array_push($rate, $key->rate);
-		// }
-
-		// for ($i=1; $i < sizeof($total_channel_peryear); $i++)
-		// {
-		// 	for ($x=1; $x < sizeof($channel_for_chart); $x++)
-		// 	{
-		// 		if ($array_channel[$i] == $channel_for_chart[$x])
-		// 		{
-		// 			$total_channel_peryear[$i] = (double)$rate[$x];
-		// 		}
-		// 	}
-		// }
-
-		// $data = array(
-		// 	'rate' => $total_channel_peryear);
-
-		// if ($sumIntervalYear) {
-		// 	$response = array(
-		// 		'status' => 200,
-		// 		'message' => 'Success',
-		// 		'data' => $data);
-		// } else {
-		// 	$response = array(
-		// 		'status' => 200,
-		// 		'message' => 'Data Not Found',
-		// 		'data' => $data);
-		// }
 
 		echo json_encode($response);
 	}
