@@ -201,22 +201,49 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getCardMain($params, $index)
-	{
-		$this->db->select('channel_name channel, SUM(total) total');
-		$this->db->from('summary_channel');
+	{	
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		// $this->db->select('channel_name channel, SUM(total) total');
+		// $this->db->from('summary_channel');
+		// if($params == 'day'){
+		// 	$this->db->where('DATE(date_time)', $index);
+		// }else if($params == 'month'){
+		// 	$this->db->where('MONTH(date_time)', $index);
+		// }else if($params == 'year'){
+		// 	$this->db->where('YEAR(date_time)', $index);
+		// }
+		// $this->db->group_by('channel_name');
+		// $this->db->order_by('channel_name', 'ASC');
+
+		// $query = $this->db->get();
+		$where = "";
 		if($params == 'day'){
-			$this->db->where('DATE(date_time)', $index);
+			$where = "DATE(date_time)= '".$index."'";
 		}else if($params == 'month'){
-			$this->db->where('MONTH(date_time)', $index);
+			$where = "MONTH(date_time)= '".$index."'";
 		}else if($params == 'year'){
-			$this->db->where('YEAR(date_time)', $index);
+			$where = "YEAR(date_time)= '".$index."'";
 		}
-		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name');
+		$str = "SELECT m_channel.channel_name as channel, IFNULL(a.total, 0) as total
+		FROM m_channel 
+		LEFT JOIN (
+			select summary_channel.channel_id, SUM(summary_channel.total) total
+			from summary_channel
+			where $where
+			GROUP BY summary_channel.channel_name
+			ORDER BY summary_channel.channel_name
+		)as a on a.channel_id = m_channel.channel_id  
+		ORDER BY m_channel.channel_name";
 
-		$query = $this->db->get();
-
+		$query = $this->db->query($str);
+		// $CI = & get_instance();
+        // $times = $CI->db->query_times;
+        // $sql="";
+        // foreach ($CI->db->queries as $key => $query) {
+        //     $sql = $query . " \n Execution Time:" . $times[$key];
+        // }
 		return $query->result();
+		// return $str;
 	}
 
 	public function getCGraph()
@@ -284,25 +311,36 @@ class Stc_Model extends CI_Model
 
 	public function getIntervalYear($year,$channel_name)
 	{
-		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('channel_name channel, MONTH(date_time) date, SUM(total) total_traffic');
-		$this->db->from('summary_channel');
-		$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00" AND "23:00:00" AND channel_name= "'.$channel_name.'"');
-		$this->db->group_by('channel_name');
+		if ($channel_name == "ShowAll") {
+			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+			$this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
+								AND "23:00:00"');
+			$this->db->group_by('MONTH(date_time)');
 
-		$query = $this->db->get();
+			$query = $this->db->get();
 		
-		return $query;
+			return $query;
+		} else {
+			$this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
+			$this->db->from('summary_channel');
+			$this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
+			$this->db->group_by('MONTH(date_time)');
+
+			$query = $this->db->get();
+		
+			return $query;
+		}
 	}
 
 	public function getIntervalYearTable($year)
 	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('channel_id, ROUND((hi/handle),2)*100 SLA, art art, aht aht, ait ast');
-		$this->db->from('agent_perform');
-		$this->db->where('YEAR(date_time) = "'.$year.'"');
-		$this->db->group_by('channel_id');
-		$this->db->order_by('channel_id');
+		$this->db->select('b.channel_name, ROUND((a.hi/a.handle),2)*100 SLA, a.art art, a.aht aht, a.ait ast');
+		$this->db->from('agent_perform a, m_channel b');
+		$this->db->where('YEAR(date_time) = "'.$year.'" and b.channel_id = a.channel_id');
+		$this->db->group_by('b.channel_id');
 
 		$query = $this->db->get();
 		
@@ -311,7 +349,8 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-		$this->db->select('channel_name channel_for_chart, SUM(total) total_by_year, CAST(SUM(total)*100/ (SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
+		$this->db->select('channel_name channel_name, SUM(total) total_by_year, CAST(SUM(total)*100/ 
+			(SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
 		$this->db->from('summary_channel');
 		$this->db->where('YEAR(date_time) = '.$year.'');
 		$this->db->group_by('channel_name');
@@ -387,19 +426,43 @@ class Stc_Model extends CI_Model
 
 	public function getAverageIntervalToday($date){
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
-		$this->db->from('agent_perform');
-		$this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
-		$this->db->where('DATE(agent_perform.date_time)', $date);
-		$this->db->group_by('agent_perform.channel_id');
-		$this->db->order_by('agent_perform.channel_id', 'ASC');
-		$query = $this->db->get();
+		
+		// $this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
+		// $this->db->from('agent_perform');
+		// $this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
+		// $this->db->where('DATE(agent_perform.date_time)', $date);
+		// $this->db->group_by('agent_perform.channel_id');
+		// $this->db->order_by('agent_perform.channel_id', 'ASC');
+		// $query = $this->db->get();
+
+		$query = $this->db->query("SELECT 
+			m_channel.channel_name
+			, m_channel.channel_icon
+			, m_channel.channel_color 
+			, IFNULL(a.art, 0) as art 
+			, IFNULL(a.aht, 0) as aht 
+			, IFNULL(a.ast, 0) as ast
+			, IFNULL(a.sla, 0) as sla
+			FROM m_channel 
+			LEFT JOIN (
+				SELECT agent_perform.channel_id
+				, agent_perform.art
+				, agent_perform.aht, agent_perform.ait as ast 
+				, agent_perform.hi, agent_perform.handle
+				, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
+				, DATE(agent_perform.date_time)as date 
+				FROM agent_perform 
+				WHERE DATE(agent_perform.date_time) = '$date' 
+				GROUP BY agent_perform.channel_id
+			)as a on a.channel_id = m_channel.channel_id  
+			ORDER BY m_channel.channel_name
+		");
     	return $query->result();
 	}
 
 	public function getPercentageIntervalToday($date){
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) 	FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
+		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
 			FROM summary_channel 
 			WHERE DATE(date_time) = '$date' 
 			GROUP BY channel_name

@@ -89,7 +89,7 @@ class SummaryToday extends CI_Controller {
             $date = date("Y-m-d");
         }
         $query = $this->Stc_Model->getAverageIntervalToday($date);
-
+        
         if($query){
             $response = array(
                 'status' => true,

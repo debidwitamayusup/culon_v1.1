@@ -155,7 +155,6 @@ class SummaryTrafficChannel extends CI_Controller {
 		$data = array();
 		$card_today = $this->Stc_Model->getCardMain($params, $index);
 
-
 		$channel = array();
 		$total = array();
 
@@ -163,7 +162,7 @@ class SummaryTrafficChannel extends CI_Controller {
 			array_push($channel, $key->channel);
 			array_push($total, $key->total);
 		}
-		$channel_empty = $this->Stc_Model->get_channel_negation($channel);
+		// $channel_empty = $this->Stc_Model->get_channel_negation($channel);
 		// if($channel_empty){
 		// 	foreach($channel_empty as $row){
 		// 		array_push($channel, $row->channel_name);
@@ -181,7 +180,7 @@ class SummaryTrafficChannel extends CI_Controller {
 				'status' => 200,
 				'message' => 'Success',
 				'data' => $card_today,
-				'data_empty' => $channel_empty,
+				// 'data_empty' => $channel_empty,
 			);
 		} else {
 			$response = array(
