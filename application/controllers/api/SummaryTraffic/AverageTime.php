@@ -131,10 +131,11 @@ class AverageTime extends CI_Controller {
 	public function getAT()
 	{
 		$index = $this->security->xss_clean($this->input->post('index', true));
-		$params = 'day';
+		$params = $this->security->xss_clean($this->input->post('params', true));
+		// $params = 'day';
 		// $date = date("Y-m-d");
-		$date = "2019-11-02";
-		$index = $date;
+		// $date = "2019-11-02";
+		// $index = $date;
 
 		$data= array();
 		$ast = array();
@@ -143,7 +144,7 @@ class AverageTime extends CI_Controller {
 		$channel_name = array();
 		$total = array();
 		$arr_channel = $this->Stc_Model->get_all_channel();
-		$getAverageTime = $this->Stc_Model->getAverageIntervalToday($date);
+		$getAverageTime = $this->Stc_Model->getAverageIntervalToday($params, $index);
 		// var_dump($getAverageTime);
 		
 
