@@ -15,6 +15,9 @@ $(document).ready(function () {
 
 
     loadContent(params_time, v_date);
+    $("#btn-month").prop("class","btn btn-light btn-sm");
+    $("#btn-year").prop("class","btn btn-light btn-sm");
+    $("#btn-day").prop("class","btn btn-danger btn-sm");
 
 });
 

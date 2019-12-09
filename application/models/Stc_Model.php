@@ -424,7 +424,8 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
-	public function getAverageIntervalToday($date){
+	public function getAverageIntervalToday($params, $index)
+	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		
 		// $this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');
@@ -434,29 +435,36 @@ class Stc_Model extends CI_Model
 		// $this->db->group_by('agent_perform.channel_id');
 		// $this->db->order_by('agent_perform.channel_id', 'ASC');
 		// $query = $this->db->get();
-
+		$where = "";
+		if($params == 'day'){
+			$where = "DATE(agent_perform.date_time)= '".$index."'";
+		}else if($params == 'month'){
+			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= YEAR(CURRENT_DATE)";
+		}else if($params == 'year'){
+			$where = "YEAR(agent_perform.date_time)= '".$index."'";
+		}
 		$query = $this->db->query("SELECT 
-			m_channel.channel_name
-			, m_channel.channel_icon
-			, m_channel.channel_color 
-			, IFNULL(a.art, 0) as art 
-			, IFNULL(a.aht, 0) as aht 
-			, IFNULL(a.ast, 0) as ast
-			, IFNULL(a.sla, 0) as sla
-			FROM m_channel 
-			LEFT JOIN (
-				SELECT agent_perform.channel_id
-				, agent_perform.art
-				, agent_perform.aht, agent_perform.ait as ast 
-				, agent_perform.hi, agent_perform.handle
-				, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
-				, DATE(agent_perform.date_time)as date 
-				FROM agent_perform 
-				WHERE DATE(agent_perform.date_time) = '$date' 
-				GROUP BY agent_perform.channel_id
-			)as a on a.channel_id = m_channel.channel_id  
-			ORDER BY m_channel.channel_name
-		");
+		m_channel.channel_name
+		, m_channel.icon_dashboard
+		, m_channel.channel_color 
+		, IFNULL(a.art, 0) as art 
+		, IFNULL(a.aht, 0) as aht 
+		, IFNULL(a.ast, 0) as ast
+		, IFNULL(a.sla, 0) as sla
+		FROM m_channel 
+		LEFT JOIN (
+			SELECT agent_perform.channel_id
+			, agent_perform.art
+			, agent_perform.aht, agent_perform.ait as ast 
+			, agent_perform.hi, agent_perform.handle
+			, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
+			, DATE(agent_perform.date_time)as date 
+			FROM agent_perform 
+			WHERE $where 
+			GROUP BY agent_perform.channel_id
+		)as a on a.channel_id = m_channel.channel_id  
+		ORDER BY m_channel.channel_name
+		");	
     	return $query->result();
 	}
 
