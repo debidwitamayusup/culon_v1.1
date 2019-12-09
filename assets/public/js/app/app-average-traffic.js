@@ -37,8 +37,8 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function loadContent(){
-
+function loadContent($params_time, $index){
+    callDataAvg(params_time, $index);
 }
 
 function callDataAvg(params, index){
@@ -94,6 +94,7 @@ function drawCard(response){
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
+
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
