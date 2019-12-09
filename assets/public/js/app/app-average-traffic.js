@@ -43,6 +43,12 @@ function loadContent($params_time, $index){
     callDataAvg(params_time, $index);
 }
 
+function getThisMonth(){
+    var date = new Date();
+    var thisMonth = date.getMonth();
+    return thisMonth;
+}
+
 function callDataAvg(params, index){
     $.ajax({
         type: 'post',
@@ -53,7 +59,7 @@ function callDataAvg(params, index){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawCard(response);
         },
         error: function (r) {
@@ -107,7 +113,9 @@ function drawCard(response){
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '11')
+        thisMonths = getThisMonth();
+        // console.log(thisMonths);
+        loadContent(params_time , ''+thisMonths+'');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
