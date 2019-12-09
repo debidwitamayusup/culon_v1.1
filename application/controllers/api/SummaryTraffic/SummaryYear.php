@@ -64,7 +64,10 @@ class SummaryYear extends CI_Controller {
 	public function averageInterval()
 	{
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
-		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
+
+		$params = "year";
+		$index = $year;
+		$avgIntervalTable = $this->Stc_Model->getAverageIntervalToday($params, $index);
 
 		if($avgIntervalTable)
 		{
