@@ -113,5 +113,14 @@ function drawCard(response){
         $(this).prop("class","btn btn-danger btn-sm");
     });
 
+    // btn year
+    $('#btn-year').click(function(){
+        params_time = 'year';
+        // console.log(params_time);
+        loadContent(params_time , '2019')
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
    
 })(jQuery);

@@ -66,28 +66,6 @@ class SummaryYear extends CI_Controller {
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
 		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
 
-		// $data = array();
-		// $channel_id = array();
-		// $SLA = array();
-		// $art = array();
-		// $aht = array();
-		// $ast = array();
-
-		// foreach ($avgIntervalTable as $key) {
-		// 	array_push($channel_id, $key->channel_id);
-		// 	array_push($SLA, $key->SLA);
-		// 	array_push($art, $key->art);
-		// 	array_push($aht, $key->aht);
-		// 	array_push($ast, $key->ast);
-		// }
-
-		// $dataForTable = array(
-		// 	'channel_id' => $channel_id,
-		// 	'SLA' => $SLA,
-		// 	'art' => $art,
-		// 	'aht' => $aht,
-		// 	'ast' => $ast);
-
 		if($avgIntervalTable)
 		{
 			$response = array(
@@ -145,7 +123,7 @@ class SummaryYear extends CI_Controller {
 		} else {
 			$response = array(
 				'status' => false,
-				'data' => $arr_data
+				'data' => ''
 			);
 		}
 		// foreach ($sumIntervalYear as $key) {

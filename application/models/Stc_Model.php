@@ -424,7 +424,8 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
-	public function getAverageIntervalToday($params, $index){
+	public function getAverageIntervalToday($params, $index)
+	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		
 		// $this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla');

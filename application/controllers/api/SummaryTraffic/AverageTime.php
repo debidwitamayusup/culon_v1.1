@@ -13,6 +13,7 @@ class AverageTime extends CI_Controller {
 	// public function stc_art()
 	// {
 	// 	$data = array();
+
 	// 	// $art = $this->Stc_Model->getArt()->result();
 
 	// 	if($art)
@@ -80,7 +81,7 @@ class AverageTime extends CI_Controller {
 	// 			'status' => 200,
 	// 			'massage' => "success",
 	// 			'data' => $data);
-		
+
 	// 	} else {
 	// 		$response = array(
 	// 			'status' => false,
@@ -218,5 +219,4 @@ class AverageTime extends CI_Controller {
 		}
 		echo json_encode($response);
 	}	
-
 }
