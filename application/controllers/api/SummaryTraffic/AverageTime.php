@@ -13,6 +13,7 @@ class AverageTime extends CI_Controller {
 	// public function stc_art()
 	// {
 	// 	$data = array();
+
 	// 	// $art = $this->Stc_Model->getArt()->result();
 
 	// 	if($art)
@@ -80,7 +81,7 @@ class AverageTime extends CI_Controller {
 	// 			'status' => 200,
 	// 			'massage' => "success",
 	// 			'data' => $data);
-		
+
 	// 	} else {
 	// 		$response = array(
 	// 			'status' => false,
@@ -131,10 +132,11 @@ class AverageTime extends CI_Controller {
 	public function getAT()
 	{
 		$index = $this->security->xss_clean($this->input->post('index', true));
-		$params = 'day';
+		$params = $this->security->xss_clean($this->input->post('params', true));
+		// $params = 'day';
 		// $date = date("Y-m-d");
-		$date = "2019-11-02";
-		$index = $date;
+		// $date = "2019-11-02";
+		// $index = $date;
 
 		$data= array();
 		$ast = array();
@@ -143,7 +145,7 @@ class AverageTime extends CI_Controller {
 		$channel_name = array();
 		$total = array();
 		$arr_channel = $this->Stc_Model->get_all_channel();
-		$getAverageTime = $this->Stc_Model->getAverageIntervalToday($date);
+		$getAverageTime = $this->Stc_Model->getAverageIntervalToday($params, $index);
 		// var_dump($getAverageTime);
 		
 
@@ -182,7 +184,7 @@ class AverageTime extends CI_Controller {
                             "aht" => $getAverageTime[$index]->aht,
                             "ast" => $getAverageTime[$index]->ast,
                             "total" => $getTotalInteraction[$index]->total,
-                            "channel_icon" => $getAverageTime[$index]->channel_icon,
+                            "channel_icon" => $getAverageTime[$index]->icon_dashboard,
                             "channel_color" => $getAverageTime[$index]->channel_color
                         ];
                         $status = 1;
@@ -217,5 +219,4 @@ class AverageTime extends CI_Controller {
 		}
 		echo json_encode($response);
 	}	
-
 }

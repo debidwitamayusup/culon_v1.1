@@ -12,7 +12,9 @@ $(document).ready(function () {
     v_date = '2019-11-02';
     v_month = '11';
     v_year = '2019';
-
+    $("#btn-month").prop("class","btn btn-light btn-sm");
+    $("#btn-year").prop("class","btn btn-light btn-sm");
+    $("#btn-day").prop("class","btn btn-danger btn-sm");
     callDataAvg(params_time, v_date);
     // loadContent(params_time, v_date);
 
@@ -37,8 +39,8 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function loadContent(){
-
+function loadContent($params_time, $index){
+    callDataAvg(params_time, $index);
 }
 
 function callDataAvg(params, index){
@@ -94,11 +96,31 @@ function drawCard(response){
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
+
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
     });
 
+    // btn month
+    $('#btn-month').click(function(){
+        params_time = 'month';
+        // console.log(params_time);
+        loadContent(params_time , '11')
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        params_time = 'year';
+        // console.log(params_time);
+        loadContent(params_time , '2019')
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
    
 })(jQuery);
