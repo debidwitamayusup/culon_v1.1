@@ -12,7 +12,9 @@ $(document).ready(function () {
     v_date = '2019-11-02';
     v_month = '11';
     v_year = '2019';
-
+    $("#btn-month").prop("class","btn btn-light btn-sm");
+    $("#btn-year").prop("class","btn btn-light btn-sm");
+    $("#btn-day").prop("class","btn btn-danger btn-sm");
     callDataAvg(params_time, v_date);
     // loadContent(params_time, v_date);
 
