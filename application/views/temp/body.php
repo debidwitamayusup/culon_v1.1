@@ -204,7 +204,8 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12">
 											<div class="mini-stat clearfix bg-blue-dark rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i>
+												<span class="mini-stat-icon"><i
+														class="fab fa-facebook-messenger text-blue"></i>
 													<h6 class="text-white">Messenger</h6>
 												</span>
 												<div class="mini-stat-info text-white text-right">
@@ -259,7 +260,8 @@
 										</div>
 										<div class="col-xl-4 col-lg-6 col-md-12">
 											<div class="mini-stat clearfix bg-blue-teal rounded">
-												<span class="mini-stat-icon"><i class="fa fa-envelope-open text-blue-teal"></i>
+												<span class="mini-stat-icon"><i
+														class="fa fa-envelope-open text-blue-teal"></i>
 													<h6 class="text-white">SMS</h6>
 												</span>
 												<div class="mini-stat-info text-white text-right">
@@ -267,6 +269,19 @@
 													<h6 class="text-white">Total Interaction : 8000</h6>
 													<h6 class="text-white">Case In : 7000</h6>
 													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12  col-xl-4 features">
+											<div class="card feature">
+												<div class="card-body text-center">
+													<h5>Employees</h5>
+													<div class="icon icon-shape bg-pink rounded-circle text-white mb-3">
+														<i class="fas fa-user-circle text-white"></i>
+													</div>
+													<h2 class="counter num-font">2,545,142</h2>
 												</div>
 											</div>
 										</div>
