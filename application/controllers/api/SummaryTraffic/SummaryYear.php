@@ -18,6 +18,7 @@ class SummaryYear extends CI_Controller {
 		$total_traffic = array();
 		$date = array();
 		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
+		// $bulan = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
 		$interval = $this->Stc_Model->getIntervalYear($year,$channel_name)->result();
@@ -91,7 +92,7 @@ class SummaryYear extends CI_Controller {
 		$array_channel = $this->Stc_Model->get_all_channel();
 		$arr_data = array();
 
-		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
+		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year);
 		$i = 0;
 		if($sumIntervalYear)
 		{
