@@ -94,18 +94,20 @@ function drawCardInteractionNew(value){
     // $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
 
     // draw
-    $('#card-baru').append(''+
-        '<div class="mini-stat clearfix bg-blue rounded">'+
-            '<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>'+
-                '<h6 class="text-white">TWIDER</h6>'+
+    $('#row-baru').append(''+
+    '<div class="col-xl-4 col-lg-6 col-md-12">'+
+        '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
+            '<span class="mini-stat-icon"><i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                '<h6 class="text-white">'+value.channel+'</h6>'+
             '</span>'+
             '<div class="mini-stat-info text-white text-right">'+
-                '<h6 class="text-white">Unique Customer : 9000</h6>'+
-               '<h6 class="text-white">Total Interaction : 8000</h6>'+
+                '<h6 class="text-white">Unique Customer : '+value.total_unique+'</h6>'+
+               '<h6 class="text-white">Total Interaction : '+value.total+'</h6>'+
                 '<h6 class="text-white">Case In : 7000</h6>'+
                 '<h6 class="text-white">Case Out : 7000</h6>'+
             '</div>'+
-        '</div>');
+        '</div>'+
+    '</div>');
 
 }
 
@@ -138,8 +140,8 @@ function drawChartAndCard(response){
     // $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
 
     //destroy div card content
-    $('#card-baru').remove(); // this is my <div> element
-    $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
+    $('#row-baru').remove(); // this is my <div> element
+    $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
     let arrTotal = []
     let arrChannel = []

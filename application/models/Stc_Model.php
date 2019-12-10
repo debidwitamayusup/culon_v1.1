@@ -224,10 +224,14 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
 		}
-		$str = "SELECT m_channel.channel_name as channel, IFNULL(a.total, 0) as total
+		$str = "SELECT m_channel.channel_name as channel
+		, IFNULL(a.total, 0) as total
+		, IFNULL(a.total_unique, 0) as total_unique
+		, m_channel.channel_color
+		, m_channel.icon_dashboard
 		FROM m_channel 
 		LEFT JOIN (
-			select summary_channel.channel_id, SUM(summary_channel.total) total
+			select summary_channel.channel_id, SUM(summary_channel.total) total, SUM(summary_channel.total_unique) total_unique
 			from summary_channel
 			where $where
 			GROUP BY summary_channel.channel_name

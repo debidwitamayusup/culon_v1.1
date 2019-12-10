@@ -103,87 +103,8 @@
 						<!---! Kolom Channel--->
 						<div class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-body">
+								<div class="card-body" id="card-baru">
 									<div class="row" id="row-baru">
-										<div class="col-xl-4 col-lg-6 col-md-12" id="card-baru">
-											<div class="mini-stat clearfix bg-blue rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>
-													<h6 class="text-white">Facebook</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<!-- <div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-info rounded">
-												<span class="mini-stat-icon"><i class="fab fa-twitter text-info"></i>
-													<h6 class="text-white">Twitter</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-pink rounded">
-												<span class="mini-stat-icon"><i class="fab fa-instagram text-pink"></i>
-													<h6 class="text-white">Instagram</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-danger rounded">
-												<span class="mini-stat-icon"><i class="fa fa-envelope text-danger"></i>
-
-													<h6 class="text-white">Email</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-primary rounded">
-												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i>
-													<h6 class="text-white">Whatsapp</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-dark rounded">
-												<span class="mini-stat-icon"><i class="fab fa-telegram text-dark"></i>
-													<h6 class="text-white">Telegram</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div> -->
 									</div>
 								</div>
 							</div>
