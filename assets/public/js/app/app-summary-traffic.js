@@ -98,7 +98,7 @@ function callSummaryInteraction(params, index_time){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawChartAndCard(response);
         },
         error: function (r) {
