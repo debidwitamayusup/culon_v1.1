@@ -18,7 +18,7 @@ class SummaryYear extends CI_Controller {
 		$total_traffic = array();
 		$date = array();
 		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
-		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des');
+		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
 		$interval = $this->Stc_Model->getIntervalYear($year,$channel_name)->result();
 
