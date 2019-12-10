@@ -78,7 +78,11 @@ class SummaryMonth extends CI_Controller {
 	public function averageIntervalTable(){
 		// get Average Interval for Data Table
 		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
-		$avgIntervalTable = $this->Stc_Model->getAvgIntervalTable($month)->result();
+		// $avgIntervalTable = $this->Stc_Model->getAvgIntervalTable($month)->result();
+
+		$params= "month";
+        $index = $month;
+        $avgIntervalTable = $this->Stc_Model->getAverageIntervalToday($params, $index);
 
 		if($avgIntervalTable){
             $response = array(

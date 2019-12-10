@@ -436,12 +436,24 @@ class Stc_Model extends CI_Model
 		// $this->db->order_by('agent_perform.channel_id', 'ASC');
 		// $query = $this->db->get();
 		$where = "";
+		$art = "";
+		$aht = "";
+		$ast = "";
 		if($params == 'day'){
 			$where = "DATE(agent_perform.date_time)= '".$index."'";
+			$art = "agent_perform.art";
+			$ast = "agent_perform.ait as ast";
+			$aht = "agent_perform.aht";
 		}else if($params == 'month'){
 			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= YEAR(CURRENT_DATE)";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
 		}else if($params == 'year'){
 			$where = "YEAR(agent_perform.date_time)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
 		}
 		$query = $this->db->query("SELECT 
 		m_channel.channel_name
@@ -454,8 +466,9 @@ class Stc_Model extends CI_Model
 		FROM m_channel 
 		LEFT JOIN (
 			SELECT agent_perform.channel_id
-			, agent_perform.art
-			, agent_perform.aht, agent_perform.ait as ast 
+			, $art
+			, $aht
+			, $ast
 			, agent_perform.hi, agent_perform.handle
 			, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
 			, DATE(agent_perform.date_time)as date 

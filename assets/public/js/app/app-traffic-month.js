@@ -200,7 +200,7 @@ function drawTableMonth(response){
             $('#tabel_average_month').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
             '<td>'+value.channel_name+'</td>'+
-            '<td>'+value.SLA+'%</td>'+
+            '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+
             '<td>'+value.ast+'</td>'+

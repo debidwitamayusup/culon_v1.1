@@ -43,6 +43,19 @@ function loadContent($params_time, $index){
     callDataAvg(params_time, $index);
 }
 
+function getThisMonth(){
+    var date = new Date();
+    var thisMonth = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    return thisMonth;
+}
+
+function getThisYear()
+{
+    var date = new Date();
+    var thisYear = date.getFullYear();
+    return thisYear;
+}
+
 function callDataAvg(params, index){
     $.ajax({
         type: 'post',
@@ -53,7 +66,7 @@ function callDataAvg(params, index){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawCard(response);
         },
         error: function (r) {
@@ -108,7 +121,10 @@ function drawCard(response){
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '11')
+        thisMonths = getThisMonth();
+        // console.log(thisMonths);
+        // loadContent(params_time , thisMonths);
+        loadContent(params_time , '11');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
@@ -118,7 +134,8 @@ function drawCard(response){
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2019')
+        thisYears = getThisYear();
+        loadContent(params_time , ''+thisYears+'');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
