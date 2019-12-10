@@ -1,3 +1,8 @@
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
@@ -9,10 +14,14 @@ $(document).ready(function () {
     var data_table_avg = callDataTableAvg('11');
 });
 
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
 function callGraphicInterval(channel_name, month){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
+    var getMontName = monthNumToName(month);
     var data = "";
     var base_url = $('#base_url').val();
     //call traffic per month
@@ -27,7 +36,7 @@ function callGraphicInterval(channel_name, month){
             var response = JSON.parse(r);
             // console.log(response);
             var chartdata = [{
-                name: 'total',
+                name: getMontName,
                 type: 'bar',
                 data: response.data.total_traffic
             }];
@@ -60,7 +69,8 @@ function callGraphicInterval(channel_name, month){
                     trigger: 'axis',
                     axisPointer: {
                         label: {
-                            show: false,
+                            show: true,
+                            color: '#7886a0'
                         }
                     }
                 },
