@@ -127,14 +127,6 @@ function drawChartAndCard(response){
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
     });
-    
-    // draw card yg datanya 0
-    // response.data_empty.forEach(function (value, index) {
-    //     drawCardInteraction(value);
-    //     arrTotal.push(value.total);
-    //     arrChannel.push(value.channel);
-    //     arrColor.push(getColorChannel(value.channel));
-    // });
 
     // draw chart
     var ctx = document.getElementById("pieChart");
@@ -164,7 +156,6 @@ function drawChartAndCard(response){
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
-                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
@@ -175,7 +166,6 @@ function drawChartAndCard(response){
                     for (var i in allData) {
                         total += parseInt(allData[i]);
                     }
-                    // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
                     if(dataLabel != 0){
                         var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
