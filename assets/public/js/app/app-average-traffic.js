@@ -61,6 +61,7 @@ function callDataAvg(params, index){
         },
     });
 }
+
 function drawCard(response){
      //destroy div card content
      $('#card-avg').remove(); // this is my <div> element
@@ -70,18 +71,18 @@ function drawCard(response){
     response.data.forEach(function (value, index) {
         $('#card-avg').append(''+
         '<div class="col-xl-3 col-md-12 col-lg-6" >'+
-            '<div class="card" style="background-color:'+value.channel_color+'">'+
+            '<div class="card-custom" style="background-color:'+value.channel_color+'">'+
                 '<div class="card-body">'+
-                    '<div class="d-flex align-items-center justify-content-center">'+
-                        '<div class="plan-card mr-3">'+
+                    '<div class="d-flex align-items-center">'+
+                        '<div class="text-center mr-9">'+
                             '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
-                            '<h6 class="text-white text-uppercase mt-2">'+ value.channel_name+'</h6>'+
-                            '<h2 class="mb-2 num-font text-center text-white">'+value.total+'</h2>'+
+                            '<h6 class="text-white">'+ value.channel_name+'</h6>'+
+                            '<h5 class="mb-2 num-font text-white">'+value.total+'</h5>'+
                         '</div>'+
-                        '<div class="plan-card ">'+
-                            '<h4 class="text-white text-uppercase ml-5">ART :'+value.art+'</h4>'+
-                            '<h4 class="text-white text-uppercase ml-5">AHT :'+value.aht+'</h4>'+
-                            '<h4 class="text-white text-uppercase ml-5">AST :'+value.ast+'</h4>'+
+                        '<div class="text-center">'+
+                            '<h6 class="text-white">ART : '+value.art+'</h6>'+
+                            '<h6 class="text-white">AHT : '+value.aht+'</h6>'+
+                            '<h6 class="text-white">AST : '+value.ast+'</h6>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
@@ -124,3 +125,8 @@ function drawCard(response){
     });
    
 })(jQuery);
+
+/*.getContext("2d");
+if(chart){
+    chart.destroy();
+}*/
