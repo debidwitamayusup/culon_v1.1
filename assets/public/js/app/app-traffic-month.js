@@ -50,7 +50,7 @@ function callGraphicInterval(channel_name, month){
                     axisLabel: {
                         fontSize: 10,
                         color: '#7886a0'
-                    }
+                    },
                 },
                 tooltip: {
                     show: true,

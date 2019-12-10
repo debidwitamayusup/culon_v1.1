@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     margin-top: 10px;
-    font-size : 11px;
+    font-size : 10px;
 }
 
 .box-legend {
@@ -49,4 +49,25 @@
 
 .text-blue-teal{
     color:#80cbc4;
+}
+
+.card-custom {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+    min-width: 0;
+    height: 185px;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border:1px solid #cbcee8;
+	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
+}
+.card-custom{
+    position: relative;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    border-radius: 7px;
 }

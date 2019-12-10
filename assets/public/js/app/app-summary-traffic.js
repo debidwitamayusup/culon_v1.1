@@ -85,7 +85,7 @@ function drawCardInteraction(value){
     
     var channel_name = (value.channel==='Facebook Messenger')?'Messenger':value.channel;
     
-    $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white float-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
+    $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white text-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
 }
 
 function callSummaryInteraction(params, index_time){
@@ -96,7 +96,7 @@ function callSummaryInteraction(params, index_time){
             params: params,
             index: index_time
         },
-        success: function (r) {
+        success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
             drawChartAndCard(response);
@@ -130,7 +130,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieChart");
-    ctx.height = 296;
+    ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {

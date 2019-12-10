@@ -10,40 +10,23 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page" >ART, AHT, AST</li>
+                            <li class="breadcrumb-item active" aria-current="page" >ART / AHT / AST</li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
                             <div class="btn-group btn-sm">
                                 <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
+                                    <span class="">Day</a></span> 
                                 <a href="#" class="btn btn-light btn-sm" id="btn-month">
                                     <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
+                                <a href="#" class="btn btn-light btn-sm" id="btn-annual">
+                                    <span class="">Annual</a></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="content-card">
                     <div class="row" id="card-avg">
-                        <!-- <div class="col-xl-3 col-md-12 col-lg-6" >
-                            <div class="card bg-primary">
-                                <div class="card-body" id="card-average">
-                                    <div class="d-flex align-items-center justify-content-center" id="retres">
-                                        <div class="plan-card mr-3">
-                                            <i class="fab fa-whatsapp text-white text-center plan-icon"></i>
-                                            <h6 class="text-drak text-uppercase mt-2">Whatsapp</h6>
-                                            <h2 class="mb-2 num-font text-center">678</h2>
-                                        </div>
-                                        <div class="plan-card ">
-                                            <h4 class="text-drak text-uppercase ml-5">ART :781</h4>
-                                            <h4 class="text-drak text-uppercase ml-5">AHT :781</h4>
-                                            <h4 class="text-drak text-uppercase ml-5">AST :781</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                       
                     </div>
                 </div>
                 <?php $this->load->view('temp/footer');?>
