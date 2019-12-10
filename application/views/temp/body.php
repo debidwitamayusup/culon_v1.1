@@ -50,23 +50,23 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Total Session</h5>
+													<h5 class="text-white card-body">Total Interaction</h5>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Session</span>
+													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Total Interaction</h5>
+													<h5 class="text-white card-body">Unique Customer</h5>
 												</div>
 												<div class="card-body">
 													
-													<h2 class="mb-4 mt-3 num-font" id="total-session">4xxx</h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
+													<span class="text-muted mb-5">Customer</span>
 												</div>
 											</div>
 										</div>
@@ -75,22 +75,22 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Unique Customer</h5>
+													<h5 class="card-body text-white">Case In</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
-													<span class="text-muted mb-5">Customer</span>
+													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
+													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Average  Customer</h5>
+													<h5 class="card-body text-white">Case Out</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="avg-customer"></h2>
-													<span class="text-muted mb-5">Customer</span>
+													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
@@ -118,7 +118,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
+										<!-- <div class="col-xl-4 col-lg-6 col-md-12">
 											<div class="mini-stat clearfix bg-info rounded">
 												<span class="mini-stat-icon"><i class="fab fa-twitter text-info"></i>
 													<h6 class="text-white">Twitter</h6>
@@ -144,8 +144,6 @@
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="row">
 										<div class="col-xl-4 col-lg-6 col-md-12">
 											<div class="mini-stat clearfix bg-danger rounded">
 												<span class="mini-stat-icon"><i class="fa fa-envelope text-danger"></i>
@@ -185,91 +183,7 @@
 													<h6 class="text-white">Case Out : 7000</h6>
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-warning rounded">
-												<span class="mini-stat-icon"><i class="fa fa-microphone text-warning"></i>
-
-													<h6 class="text-white">Voice</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-blue-dark rounded">
-												<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i>
-													<h6 class="text-white">Messenger</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-indigo rounded">
-												<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-indigo"></i>
-													<h6 class="text-white">Twitter DM</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-success rounded">
-												<span class="mini-stat-icon"><i class="fab fa-line text-success"></i>
-
-													<h6 class="text-white">Line</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-gray1 rounded">
-												<span class="mini-stat-icon"><i class="fa fa-comments text-gray1"></i>
-													<h6 class="text-white">Live Chat</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-lg-6 col-md-12">
-											<div class="mini-stat clearfix bg-blue-teal rounded">
-												<span class="mini-stat-icon"><i class="fa fa-envelope-open text-blue-teal"></i>
-													<h6 class="text-white">SMS</h6>
-												</span>
-												<div class="mini-stat-info text-white text-right">
-													<h6 class="text-white">Unique Customer : 9000</h6>
-													<h6 class="text-white">Total Interaction : 8000</h6>
-													<h6 class="text-white">Case In : 7000</h6>
-													<h6 class="text-white">Case Out : 7000</h6>
-												</div>
-											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>

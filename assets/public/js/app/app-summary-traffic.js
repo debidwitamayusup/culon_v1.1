@@ -97,7 +97,7 @@ function drawCardInteractionNew(value){
     $('#card-baru').append(''+
         '<div class="mini-stat clearfix bg-blue rounded">'+
             '<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>'+
-                '<h6 class="text-white">Facebook</h6>'+
+                '<h6 class="text-white">TWIDER</h6>'+
             '</span>'+
             '<div class="mini-stat-info text-white text-right">'+
                 '<h6 class="text-white">Unique Customer : 9000</h6>'+
@@ -105,8 +105,7 @@ function drawCardInteractionNew(value){
                 '<h6 class="text-white">Case In : 7000</h6>'+
                 '<h6 class="text-white">Case Out : 7000</h6>'+
             '</div>'+
-        '</div>'+
-    '</div>');
+        '</div>');
 
 }
 
@@ -148,7 +147,8 @@ function drawChartAndCard(response){
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
-        drawCardInteraction(value);
+        // drawCardInteraction(value);
+        drawCardInteractionNew(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
