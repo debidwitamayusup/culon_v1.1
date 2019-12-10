@@ -122,3 +122,17 @@
 				<!--Chart--->
 				
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>
+
+				<!-- <script type="text/javascript">
+					var dateTahun = $("#dateTahun");
+
+					var currentYear = (new Date()).getFullYear();
+
+			        for (var i = 2000; i <= currentYear; i++)
+			        {
+			            var option = $ ("<option />");
+			            option.html(i);
+			            option.val(i);
+			            dateTahun.append(option);
+			        }
+				</script> -->

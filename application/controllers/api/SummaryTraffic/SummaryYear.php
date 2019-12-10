@@ -91,7 +91,7 @@ class SummaryYear extends CI_Controller {
 		$array_channel = $this->Stc_Model->get_all_channel();
 		$arr_data = array();
 
-		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
+		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year);
 		$i = 0;
 		if($sumIntervalYear)
 		{
