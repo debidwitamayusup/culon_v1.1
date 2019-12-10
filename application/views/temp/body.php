@@ -27,7 +27,7 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-8 col-lg-8 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header">
 									<h3 class="card-title">Summary Traffic Channel</h3>
@@ -43,56 +43,52 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 col-lg-4 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="card">
+									<div class="row mt-6">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h4 class="text-white card-body">Total Interaction</h4>
+													<h5 class="text-white card-body">Total Interaction</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-1 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Total Interaction</span>
+													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
+													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="card">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h4 class="text-white card-body">Unique Customer</h4>
+													<h5 class="text-white card-body">Unique Customer</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-1 num-font" id="unique-customer"></h2>
-													<span class="text-muted mb-5">Unique Customer</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="card">
-												<div class="card-header bg-red">
-													<h4 class="card-body text-white">Average Interaction</h4>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-1 num-font" id="avg-customer"></h2>
+													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="card">
+									<div class="row mt-7 mb-6">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h4 class="card-body text-white">Total Session</h4>
+													<h5 class="card-body text-white">Case In</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-1 num-font" id="total-session">4000</h2>
+													<h2 class="mb-4 mt-3 num-font" id="avg-customer"></h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h5 class="card-body text-white">Case Out</h5>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="total-session">4000</h2>
 													<span class="text-muted mb-5">Session</span>
 												</div>
 											</div>
@@ -103,14 +99,178 @@
 						</div>
 					</div>
 					<div class="row">
-					<!---! Kolom Channel--->
+						<!---! Kolom Channel--->
 						<div class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Interaction</h3>
-								</div>
-								<div class="card-body" id="card-interaction-channel">
-									<div id="retres" class="row"></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-blue rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>
+
+													<h6 class="text-white">Facebook</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-info rounded">
+												<span class="mini-stat-icon"><i class="fab fa-twitter text-info"></i>
+													<h6 class="text-white">Twitter</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-pink rounded">
+												<span class="mini-stat-icon"><i class="fab fa-instagram text-pink"></i>
+													<h6 class="text-white">Instagram</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-danger rounded">
+												<span class="mini-stat-icon"><i class="fa fa-envelope text-danger"></i>
+
+													<h6 class="text-white">Email</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-primary rounded">
+												<span class="mini-stat-icon"><i class="fab fa-whatsapp text-primary"></i>
+													<h6 class="text-white">Whatsapp</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-dark rounded">
+												<span class="mini-stat-icon"><i class="fab fa-telegram text-dark"></i>
+													<h6 class="text-white">Telegram</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-warning rounded">
+												<span class="mini-stat-icon"><i class="fa fa-microphone text-warning"></i>
+
+													<h6 class="text-white">Voice</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-blue-dark rounded">
+												<span class="mini-stat-icon"><i class="fab fa-facebook-messenger text-blue"></i>
+													<h6 class="text-white">Messenger</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-indigo rounded">
+												<span class="mini-stat-icon"><i class="fa fa-mail-bulk text-indigo"></i>
+													<h6 class="text-white">Twitter DM</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-success rounded">
+												<span class="mini-stat-icon"><i class="fab fa-line text-success"></i>
+
+													<h6 class="text-white">Line</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-gray1 rounded">
+												<span class="mini-stat-icon"><i class="fa fa-comments text-gray1"></i>
+													<h6 class="text-white">Live Chat</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-xl-4 col-lg-6 col-md-12">
+											<div class="mini-stat clearfix bg-blue-teal rounded">
+												<span class="mini-stat-icon"><i class="fa fa-envelope-open text-blue-teal"></i>
+													<h6 class="text-white">SMS</h6>
+												</span>
+												<div class="mini-stat-info text-white text-right">
+													<h6 class="text-white">Unique Customer : 9000</h6>
+													<h6 class="text-white">Total Interaction : 8000</h6>
+													<h6 class="text-white">Case In : 7000</h6>
+													<h6 class="text-white">Case Out : 7000</h6>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -136,6 +296,6 @@
 						</div>
 					</div>
 				</div>-->
-				<?php $this->load->view('temp/footer');?>
-				<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-				<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+					<?php $this->load->view('temp/footer');?>
+					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>

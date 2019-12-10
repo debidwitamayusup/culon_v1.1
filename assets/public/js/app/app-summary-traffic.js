@@ -96,7 +96,7 @@ function callSummaryInteraction(params, index_time){
             params: params,
             index: index_time
         },
-        success: function (r) {
+        success: function (r) { 
             var response = JSON.parse(r);
             console.log(response);
             drawChartAndCard(response);
@@ -138,8 +138,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieChart");
-    ctx.height = 354;
-    //ctx.width = 500;
+    ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {

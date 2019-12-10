@@ -3200,7 +3200,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .mini-stat-icon {
-  width: 60px;
+  width: 70px;
   height: 60px;
   display: inline-block;
   line-height: 65px;
@@ -3215,6 +3215,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .mini-stat-info {
   font-size: 12px;
   padding-top: 2px;
+  padding-led
 }
 
 .mini-stat-info span {
@@ -3223,6 +3224,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	font-weight: 400;
 	margin-bottom: 5px;
 	margin-top: -10px;
+	margin-left:10px;
 }
 .bg-facebook {
   background-color: #3b5998 !important;
@@ -22058,7 +22060,9 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-right:610px;
 }
 
-
+.ml-9{
+	margin-left:9px;
+}
 .ml-10{
 	margin-left:10px;
 }
