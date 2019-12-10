@@ -150,7 +150,7 @@ class SummaryMonth extends CI_Controller {
         $arr_channel = $this->Stc_Model->get_all_channel();
         $arr_data = array();
 
-        $sumIntervalMonth = $this->Stc_Model->getSumIntervalMonth($month)->result();
+        $sumIntervalMonth = $this->Stc_Model->getSumIntervalMonth($month);
         $i = 0;
         if($sumIntervalMonth){
             while($i < sizeof($arr_channel)){

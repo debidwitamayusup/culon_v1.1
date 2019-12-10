@@ -18,7 +18,8 @@ class SummaryYear extends CI_Controller {
 		$total_traffic = array();
 		$date = array();
 		$traffic = array(0,0,0,0,0,0,0,0,0,0,0,0);
-		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des');
+		// $bulan = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+		$month_of_year = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
 		$interval = $this->Stc_Model->getIntervalYear($year,$channel_name)->result();
 
@@ -64,7 +65,10 @@ class SummaryYear extends CI_Controller {
 	public function averageInterval()
 	{
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
-		$avgIntervalTable = $this->Stc_Model->getIntervalYearTable($year)->result();
+
+		$params = "year";
+		$index = $year;
+		$avgIntervalTable = $this->Stc_Model->getAverageIntervalToday($params, $index);
 
 		if($avgIntervalTable)
 		{
@@ -88,7 +92,7 @@ class SummaryYear extends CI_Controller {
 		$array_channel = $this->Stc_Model->get_all_channel();
 		$arr_data = array();
 
-		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year)->result();
+		$sumIntervalYear = $this->Stc_Model->getSumIntervalYear($year);
 		$i = 0;
 		if($sumIntervalYear)
 		{
@@ -126,36 +130,6 @@ class SummaryYear extends CI_Controller {
 				'data' => ''
 			);
 		}
-		// foreach ($sumIntervalYear as $key) {
-		// 	array_push($channel_for_chart, $key->channel_for_chart);
-		// 	array_push($rate, $key->rate);
-		// }
-
-		// for ($i=1; $i < sizeof($total_channel_peryear); $i++)
-		// {
-		// 	for ($x=1; $x < sizeof($channel_for_chart); $x++)
-		// 	{
-		// 		if ($array_channel[$i] == $channel_for_chart[$x])
-		// 		{
-		// 			$total_channel_peryear[$i] = (double)$rate[$x];
-		// 		}
-		// 	}
-		// }
-
-		// $data = array(
-		// 	'rate' => $total_channel_peryear);
-
-		// if ($sumIntervalYear) {
-		// 	$response = array(
-		// 		'status' => 200,
-		// 		'message' => 'Success',
-		// 		'data' => $data);
-		// } else {
-		// 	$response = array(
-		// 		'status' => 200,
-		// 		'message' => 'Data Not Found',
-		// 		'data' => $data);
-		// }
 
 		echo json_encode($response);
 	}

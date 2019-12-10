@@ -164,7 +164,13 @@ function drawChartPercentageYear(response){
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0 // Edit the value according to what you need
+                    }
                 }]
+
             },
             legend: {
                 display: false
@@ -199,7 +205,7 @@ function drawTableYear(response){
             $('#table_avg_year').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
             '<td>'+value.channel_name+'</td>'+
-            '<td>'+value.SLA+'%</td>'+
+            '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+
             '<td>'+value.ast+'</td>'+
