@@ -50,21 +50,22 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Total Interaction</h5>
+													<h5 class="text-white card-body">Total Session</h5>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<span class="text-muted mb-5">Session</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Unique Customer</h5>
+													<h5 class="text-white card-body">Total Interaction</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
+													
+													<h2 class="mb-4 mt-3 num-font" id="total-session">4xxx</h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
@@ -74,22 +75,22 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Case In</h5>
+													<h5 class="card-body text-white">Unique Customer</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="avg-customer"></h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
+													<span class="text-muted mb-5">Customer</span>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Case Out</h5>
+													<h5 class="card-body text-white">Average  Customer</h5>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="total-session">4000</h2>
-													<span class="text-muted mb-5">Session</span>
+													<h2 class="mb-4 mt-3 num-font" id="avg-customer"></h2>
+													<span class="text-muted mb-5">Customer</span>
 												</div>
 											</div>
 										</div>
@@ -103,11 +104,10 @@
 						<div class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-xl-4 col-lg-6 col-md-12">
+									<div class="row" id="row-baru">
+										<div class="col-xl-4 col-lg-6 col-md-12" id="card-baru">
 											<div class="mini-stat clearfix bg-blue rounded">
 												<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>
-
 													<h6 class="text-white">Facebook</h6>
 												</span>
 												<div class="mini-stat-info text-white text-right">

@@ -88,6 +88,28 @@ function drawCardInteraction(value){
     $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white text-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
 }
 
+function drawCardInteractionNew(value){
+    //destroy div card content
+    // $('#card-baru').remove(); // this is my <div> element
+    // $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
+
+    // draw
+    $('#card-baru').append(''+
+        '<div class="mini-stat clearfix bg-blue rounded">'+
+            '<span class="mini-stat-icon"><i class="fab fa-facebook text-blue"></i>'+
+                '<h6 class="text-white">Facebook</h6>'+
+            '</span>'+
+            '<div class="mini-stat-info text-white text-right">'+
+                '<h6 class="text-white">Unique Customer : 9000</h6>'+
+               '<h6 class="text-white">Total Interaction : 8000</h6>'+
+                '<h6 class="text-white">Case In : 7000</h6>'+
+                '<h6 class="text-white">Case Out : 7000</h6>'+
+            '</div>'+
+        '</div>'+
+    '</div>');
+
+}
+
 function callSummaryInteraction(params, index_time){
     $.ajax({
         type: 'post',
@@ -113,8 +135,12 @@ function drawChartAndCard(response){
     $('#canvas-pie').append('<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>');
 
     // destroy div card interaction channel
-    $('#retres').remove(); // this is my <canvas> element
-    $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
+    // $('#retres').remove(); // this is my <canvas> element
+    // $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
+
+    //destroy div card content
+    $('#card-baru').remove(); // this is my <div> element
+    $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
 
     let arrTotal = []
     let arrChannel = []
