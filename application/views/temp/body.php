@@ -29,8 +29,8 @@
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Summary Traffic Channel</h3>
+								<div class="card-header" style="background-color:#B22222">
+									<h3 class="card-title text-white">Summary Traffic Channel</h3>
 								</div>
 								<div class="card-body">
 									<div class="canvas-con">
@@ -50,7 +50,7 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Total Interaction</h5>
+													<h6 class="text-white card-body">Total Interaction</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
@@ -61,7 +61,7 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="text-white card-body">Unique Customer</h5>
+													<h6 class="text-white card-body">Unique Customer</h6>
 												</div>
 												<div class="card-body">
 													
@@ -75,7 +75,7 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Case In</h5>
+													<h6 class="card-body text-white">Case In</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
@@ -86,7 +86,7 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h5 class="card-body text-white">Case Out</h5>
+													<h6 class="card-body text-white">Case Out</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
