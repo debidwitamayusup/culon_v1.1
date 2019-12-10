@@ -224,10 +224,14 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
 		}
-		$str = "SELECT m_channel.channel_name as channel, IFNULL(a.total, 0) as total
+		$str = "SELECT m_channel.channel_name as channel
+		, IFNULL(a.total, 0) as total
+		, IFNULL(a.total_unique, 0) as total_unique
+		, m_channel.channel_color
+		, m_channel.icon_dashboard
 		FROM m_channel 
 		LEFT JOIN (
-			select summary_channel.channel_id, SUM(summary_channel.total) total
+			select summary_channel.channel_id, SUM(summary_channel.total) total, SUM(summary_channel.total_unique) total_unique
 			from summary_channel
 			where $where
 			GROUP BY summary_channel.channel_name
@@ -349,15 +353,23 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-		$this->db->select('channel_name channel_name, SUM(total) total_by_year, CAST(SUM(total)*100/ 
-			(SELECT SUM(total) FROM summary_channel WHERE YEAR(date_time) = '.$year.' ) AS DECIMAL(10,2)) rate');
-		$this->db->from('summary_channel');
-		$this->db->where('YEAR(date_time) = '.$year.'');
-		$this->db->group_by('channel_name');
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(SUM(a.total), 0) total_by_year,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(total) total,
+			CAST(SUM(total)*100/
+			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE YEAR(summary_channel.date_time) = '".$year."' ) AS DECIMAL(10,2)) as rate
+			FROM summary_channel
+			WHERE YEAR(summary_channel.date_time) = '".$year."'
+			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name");
 
-		$query = $this->db->get();
-
-		return $query;
+		return $query->result();
 	}
 
 	public function getIntervalPerMonth($month, $channel_name)
@@ -482,22 +494,41 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getPercentageIntervalToday($date){
-		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$query = $this->db->query("SELECT channel_name, SUM(total) as total, CAST(SUM(total)*100/(SELECT SUM(total) FROM summary_channel WHERE DATE(date_time) = '$date' ) AS DECIMAL(10,2)) rate 
-			FROM summary_channel 
-			WHERE DATE(date_time) = '$date' 
-			GROUP BY channel_name
-			ORDER BY channel_name
-		");
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(SUM(a.total), 0) total_by_month,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(total) total,
+			CAST(SUM(total)*100/
+			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE DATE(summary_channel.date_time) = '".$date."' ) AS DECIMAL(10,2)) as rate
+			FROM summary_channel
+			WHERE DATE(summary_channel.date_time) = '".$date."'
+			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name");
+
 		return $query->result();
 	}
 	public function getSumIntervalMonth($month){
-		$this->db->select('channel_name channel_name, SUM(total) total_by_month, CAST(SUM(total)*100/ 
-		(SELECT SUM(total) FROM summary_channel WHERE MONTH(date_time) = '.$month.' ) AS DECIMAL(10,2)) rate');
-		$this->db->from('summary_channel');
-		$this->db->where('MONTH(date_time) = '.$month.'');
-		$this->db->group_by('channel_name');
-		$query = $this->db->get();
-		return $query;
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(SUM(a.total), 0) total_by_month,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(total) total,
+			CAST(SUM(total)*100/
+			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' ) AS DECIMAL(10,2)) as rate
+			FROM summary_channel
+			WHERE MONTH(summary_channel.date_time) = '".$month."'
+			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name");
+
+		return $query->result();
 	}
 }	

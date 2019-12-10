@@ -164,7 +164,13 @@ function drawChartPercentageYear(response){
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0 // Edit the value according to what you need
+                    }
                 }]
+
             },
             legend: {
                 display: false

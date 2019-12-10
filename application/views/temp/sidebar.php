@@ -2,7 +2,7 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
-		<li class="slide">
+		<!-- <li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-chart icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Wallboard</span>
@@ -14,7 +14,7 @@
 				<li><a class="slide-item" href="index3.html">Average Time</a></li>
 				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
 			</ul>
-		</li>
+		</li> -->
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-home icon-resize"></i>
@@ -36,7 +36,7 @@
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 			</ul>
 		</li>
-		<li class="slide">
+		<!-- <li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-user icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Agent Performance</span>
@@ -58,7 +58,7 @@
 				<li><a class="slide-item" href="index3.html">Average Time</a></li>
 				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
 			</ul>
-		</li>
+		</li> -->
 
 	</ul>
 </aside>

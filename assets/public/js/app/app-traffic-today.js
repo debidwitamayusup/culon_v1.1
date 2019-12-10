@@ -27,7 +27,7 @@ function getColorChannel(channel){
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
-    color['Whatsapp'] = '#31a550';
+    color['Whatsapp'] = '#089e60';
 
     return color[channel];
 }
@@ -204,6 +204,11 @@ function drawChartPercentageToday(response){
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0 // Edit the value according to what you need
                     }
                 }]
             },

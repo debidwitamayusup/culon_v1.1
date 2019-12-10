@@ -88,6 +88,29 @@ function drawCardInteraction(value){
     $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white text-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
 }
 
+function drawCardInteractionNew(value){
+    //destroy div card content
+    // $('#card-baru').remove(); // this is my <div> element
+    // $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
+
+    // draw
+    $('#row-baru').append(''+
+    '<div class="col-xl-4 col-lg-6 col-md-12">'+
+        '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
+            '<span class="mini-stat-icon"><i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                '<h6 class="text-white">'+value.channel+'</h6>'+
+            '</span>'+
+            '<div class="mini-stat-info text-white text-right">'+
+                '<h6 class="text-white">Unique Customer : '+value.total_unique+'</h6>'+
+               '<h6 class="text-white">Total Interaction : '+value.total+'</h6>'+
+                '<h6 class="text-white">Case In : 7000</h6>'+
+                '<h6 class="text-white">Case Out : 7000</h6>'+
+            '</div>'+
+        '</div>'+
+    '</div>');
+
+}
+
 function callSummaryInteraction(params, index_time){
     $.ajax({
         type: 'post',
@@ -98,7 +121,7 @@ function callSummaryInteraction(params, index_time){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawChartAndCard(response);
         },
         error: function (r) {
@@ -113,8 +136,12 @@ function drawChartAndCard(response){
     $('#canvas-pie').append('<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>');
 
     // destroy div card interaction channel
-    $('#retres').remove(); // this is my <canvas> element
-    $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
+    // $('#retres').remove(); // this is my <canvas> element
+    // $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
+
+    //destroy div card content
+    $('#row-baru').remove(); // this is my <div> element
+    $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
     let arrTotal = []
     let arrChannel = []
@@ -122,19 +149,12 @@ function drawChartAndCard(response){
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
-        drawCardInteraction(value);
+        // drawCardInteraction(value);
+        drawCardInteractionNew(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
     });
-    
-    // draw card yg datanya 0
-    // response.data_empty.forEach(function (value, index) {
-    //     drawCardInteraction(value);
-    //     arrTotal.push(value.total);
-    //     arrChannel.push(value.channel);
-    //     arrColor.push(getColorChannel(value.channel));
-    // });
 
     // draw chart
     var ctx = document.getElementById("pieChart");
@@ -164,7 +184,6 @@ function drawChartAndCard(response){
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
-                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
@@ -175,7 +194,6 @@ function drawChartAndCard(response){
                     for (var i in allData) {
                         total += parseInt(allData[i]);
                     }
-                    // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
                     if(dataLabel != 0){
                         var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
