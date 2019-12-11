@@ -30,7 +30,7 @@
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header">
-                                <h3 class="card-title">Web Traffic</h3>
+                                <h3 class="card-title">Summary KIP </h3>
                             </div>
                             <div class="card-body">
                                 <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
@@ -40,7 +40,7 @@
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Horizontal Bar Chart</h4>
+                                <h4 class="card-title">KIP per Channel</h4>
                             </div>
                             <div class="card-body">
                                 <div id="echartKIP" class="chartsh overflow-hidden"></div>
