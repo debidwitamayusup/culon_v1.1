@@ -101,7 +101,7 @@ function drawCardInteractionNew(value){
                 '<h6 class="text-white">'+value.channel+'</h6>'+
             '</span>'+
             '<div class="mini-stat-info text-white text-right">'+
-                '<h6 class="text-white">Unique Customer : '+value.total_unique+'</h6>'+
+                '<h6 class="text-white num-font">Unique Customer : '+value.total_unique+'</h6>'+
                '<h6 class="text-white">Total Interaction : '+value.total+'</h6>'+
                 '<h6 class="text-white">Case In : 7000</h6>'+
                 '<h6 class="text-white">Case Out : 7000</h6>'+
