@@ -3161,6 +3161,30 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 /*----- Global Loader -----*/
 
+/*---Filter Loader---*/
+#filter-loader{
+    position:fixed;
+    z-index:50000;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+	background:#fff;
+    margin:0 auto !important;
+	text-align:center;
+	opacity: 0.8;
+}
+
+#filter-loader img{
+    position: absolute;
+    left: 0;
+    right: 0;
+	margin:0 auto !important;
+    text-align: center;
+    top: 45%;
+	text-align:center;
+}
+
 /*----- 7. Custom control -----*/
  .addui-slider .addui-slider-track .addui-slider-handle:hover .addui-slider-value {
      background: rgba(63, 81, 181, 0.5);
@@ -3200,7 +3224,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .mini-stat-icon {
-  width: 60px;
+  width: 70px;
   height: 60px;
   display: inline-block;
   line-height: 65px;
@@ -3215,6 +3239,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .mini-stat-info {
   font-size: 12px;
   padding-top: 2px;
+  padding-led
 }
 
 .mini-stat-info span {
@@ -3223,6 +3248,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	font-weight: 400;
 	margin-bottom: 5px;
 	margin-top: -10px;
+	margin-left:10px;
 }
 .bg-facebook {
   background-color: #3b5998 !important;
@@ -14013,8 +14039,7 @@ a.icon {
 .card-title {
 	font-size: 1.125rem;
     line-height: 1.2;
-	font-weight: 400;
-	text-align:center;
+    font-weight: 400;
 }
 .reg {
 	text-align: center;
@@ -22059,7 +22084,9 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-right:610px;
 }
 
-
+.ml-9{
+	margin-left:9px;
+}
 .ml-10{
 	margin-left:10px;
 }

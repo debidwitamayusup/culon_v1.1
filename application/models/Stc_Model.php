@@ -224,10 +224,14 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
 		}
-		$str = "SELECT m_channel.channel_name as channel, IFNULL(a.total, 0) as total
+		$str = "SELECT m_channel.channel_name as channel
+		, IFNULL(a.total, 0) as total
+		, IFNULL(a.total_unique, 0) as total_unique
+		, m_channel.channel_color
+		, m_channel.icon_dashboard
 		FROM m_channel 
 		LEFT JOIN (
-			select summary_channel.channel_id, SUM(summary_channel.total) total
+			select summary_channel.channel_id, SUM(summary_channel.total) total, SUM(summary_channel.total_unique) total_unique
 			from summary_channel
 			where $where
 			GROUP BY summary_channel.channel_name
@@ -315,18 +319,26 @@ class Stc_Model extends CI_Model
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 			$this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
 			$this->db->from('summary_channel');
-			$this->db->where('YEAR(date_time) = "'.$year.'" AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) BETWEEN "00:00:00"
-								AND "23:00:00"');
+			$this->db->where('YEAR(date_time) = "'.$year.'" ');
 			$this->db->group_by('MONTH(date_time)');
+			$this->db->order_by('MONTH(date_time)');
 
 			$query = $this->db->get();
 		
 			return $query;
 		} else {
-			$this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
-			$this->db->from('summary_channel');
-			$this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
-			$this->db->group_by('MONTH(date_time)');
+			//JANGAN DIAPUS YA BRAY, BACK TO THE UP. BACKUP
+			// $this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
+			// $this->db->from('summary_channel');
+			// $this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
+			// $this->db->group_by('MONTH(date_time)');
+
+			$this->db->select('b.channel_name, MONTH(a.date_time) date, SUM(a.total) total_traffic');
+			$this->db->from('summary_channel a');
+			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
+			$this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
+			$this->db->group_by('MONTH(a.date_time)');
+			$this->db->order_by('MONTH(a.date_time)');
 
 			$query = $this->db->get();
 		
@@ -524,6 +536,20 @@ class Stc_Model extends CI_Model
 			WHERE MONTH(summary_channel.date_time) = '".$month."'
 			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
+
+		return $query->result();
+	}
+
+	public function getOptionYear()
+	{
+		$this->db->select('DATE_FORMAT(date_time,"%Y") AS niceDate'); 
+		$this->db->from('summary_channel');
+		// $this->db->where('YEAR(date_time) = YEAR(CURRENT_TIME)');
+		$this->db->group_by('niceDate');
+		$this->db->order_by('niceDate DESC'); 
+		// $this->db->limit('0,14'); 
+
+		$query = $this->db->get();
 
 		return $query->result();
 	}

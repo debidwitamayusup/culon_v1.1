@@ -40,6 +40,7 @@ function getColorChannel(channel){
 }
 
 function loadContent($params_time, $index){
+    
     callDataAvg(params_time, $index);
 }
 
@@ -57,6 +58,7 @@ function getThisYear()
 }
 
 function callDataAvg(params, index){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/AverageTime/getAT',
@@ -66,14 +68,16 @@ function callDataAvg(params, index){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
+           // console.log(response);
             drawCard(response);
         },
         error: function (r) {
             alert("error");
         },
     });
+    $("#filter-loader").fadeOut("slow");
 }
+
 function drawCard(response){
      //destroy div card content
      $('#card-avg').remove(); // this is my <div> element
@@ -82,26 +86,36 @@ function drawCard(response){
     //  draw card
     response.data.forEach(function (value, index) {
         $('#card-avg').append(''+
-        '<div class="col-xl-3 col-md-12 col-lg-6" >'+
-            '<div class="card" style="background-color:'+value.channel_color+'">'+
-                '<div class="card-body">'+
-                    '<div class="d-flex align-items-center justify-content-center">'+
-                        '<div class="plan-card mr-3">'+
-                            '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
-                            '<h6 class="text-white text-uppercase mt-2">'+ value.channel_name+'</h6>'+
-                            '<h2 class="mb-2 num-font text-center text-white">'+value.total+'</h2>'+
+        '<div class="col-xl-3 col-lg-4 col-md-12">'+
+            '<div class="mini-stat clearfix rounded" style="background-color:'+value.channel_color+'">'+
+                '<div class="row mt-2">'+
+                    '<div class="col col-lg-4">'+
+                        '<div class="card-box text-center">'+
+                            ' <div class="icon icon-shape bg-light rounded-circle">'+
+                                '<i class="'+value.channel_icon+'" style="color: '+value.channel_color+'"></i>'+
+                            '</div>'+
+                            '<h6 class="mt-4 text-white">'+ value.channel_name+'</h6>'+
                         '</div>'+
-                        '<div class="plan-card ">'+
-                            '<h4 class="text-white text-uppercase ml-5">ART :'+value.art+'</h4>'+
-                            '<h4 class="text-white text-uppercase ml-5">AHT :'+value.aht+'</h4>'+
-                            '<h4 class="text-white text-uppercase ml-5">AST :'+value.ast+'</h4>'+
-                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-auto ml-2 mt-2">'+
+                        '<h6 class="text-white">ART</h6>'+
+                        '<h6 class="text-white">AHT</h6>'+
+                        '<h6 class="text-white">AST</h6>'+
+                        '<h4 class="text-white mt-4">Total</h4>'+
+                    '</div>'+
+                    '<div class="col-md-auto mt-2">'+
+                        '<h6 class="text-white">'+value.art+'</h6>'+
+                        '<h6 class="text-white">'+value.aht+'</h6>'+
+                        '<h6 class="text-white">'+value.ast+'</h6>'+
+                        ' <h4 class="text-white mt-4">'+value.total+'</h4>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
         '</div>');
     });
 }
+
+
 //jquery
 (function ($) {
 
@@ -141,3 +155,8 @@ function drawCard(response){
     });
    
 })(jQuery);
+
+/*.getContext("2d");
+if(chart){
+    chart.destroy();
+}*/

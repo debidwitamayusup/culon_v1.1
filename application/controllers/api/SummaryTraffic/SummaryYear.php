@@ -133,4 +133,34 @@ class SummaryYear extends CI_Controller {
 
 		echo json_encode($response);
 	}
+
+	public function optionYear()
+	{
+		$data = array();
+		$niceDate = array();
+
+		$getOption = $this->Stc_Model->getOptionYear();
+
+		foreach ($getOption as $key) {
+			array_push($niceDate, $key->niceDate);
+		}
+
+		$data = ([
+			'niceDate' => $niceDate
+		]);
+
+		if ($data) {
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => '');
+		}
+
+		echo json_encode($response);
+	}
 }

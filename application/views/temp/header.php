@@ -4,6 +4,7 @@
 <head>
 	<!-- Meta data -->
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="Spaner - Simple light Bootstrap Nice Admin Panel Dashboard Design Responsive HTML5 Template"
@@ -69,7 +70,6 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 </head>
 <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">

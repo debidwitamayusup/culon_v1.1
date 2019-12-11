@@ -55,11 +55,11 @@
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
-														<select class="form-control select2" data-placeholder="Choose one (with optgroup)" id="dateTahun">
-															<option value="2019">2019</option>
+														<select class="form-control select2" style="width: 100%;" data-placeholder="Choose one (with optgroup)" id="dateTahun">
+															<!-- <option value="2019">2019</option>
 															<option value="2018">2018</option>
 															<option value="2017">2017</option>
-															<option value="2016">2016</option>
+															<option value="2016">2016</option> -->
 														</select>
 													</div>
 												</div>

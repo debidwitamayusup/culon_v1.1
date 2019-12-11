@@ -63,33 +63,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Performance Agent / Month</h3>
-                                        </div>
-                                        <div class="card-body" height="400px">
-                                            <div id="barChartMonth" class="chartsh overflow-hidden"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Performance Agent / Year</h3>
-                                        </div>
-                                        <div class="card-body" >
-                                         <div id="barChartYear"  class="chartsh overflow-hidden"></div>
-                                         <!--<canvas id="singelBarChart" class="h-300"></canvas>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,5 +72,4 @@
         <?php $this->load->view('temp/footer')?>
         <!-----chart-->
         <script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
-        <script src="<?=base_url()?>assets/plugins/chart/chart.bundle.js"></script>
         <script src="<?= base_url()?>assets/public/js/chart/GraphicAgent.js"></script>

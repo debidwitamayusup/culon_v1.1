@@ -57,6 +57,13 @@ class main extends CI_Controller {
 		// $this->load->view('temp/footer');		
 	}
 
+	public function kip(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_kip');
+	}
+
 	public function agent_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
@@ -68,38 +75,8 @@ class main extends CI_Controller {
 	public function agent_interval(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_agent_interval');
+		$this->load->view('temp/sidebar');	
 	}
-	//Test
-
-	// public function traffic_channel()
-	// {
-	// 	$this->load->view('header');
-	// 	$this->load->view('navbar');
-	// 	$this->load->view('sidebar');
-    //     $this->load->view('Traffic_Channel');
-    //     $this->load->view('footer');
-	// }
-	
-	// public function agent_performance()
-	// {
-	// 	$this->load->view('header');
-	// 	$this->load->view('navbar');
-	// 	$this->load->view('sidebar');
-    //     $this->load->view('Agent_Performance');
-    //     $this->load->view('footer');
-	// }
-	
-	// public function ticket()
-	// {
-	// 	$this->load->view('header');
-	// 	$this->load->view('navbar');
-	// 	$this->load->view('sidebar');
-    //     $this->load->view('Ticket');
-    //     $this->load->view('footer');
-		
-	// }
 
 	public function left_menu()
 	{

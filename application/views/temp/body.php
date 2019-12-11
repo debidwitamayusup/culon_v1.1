@@ -27,15 +27,15 @@
 					</div>
 					<!----Baris Pertama----!-->
 					<div class="row">
-						<div class="col-xl-5 col-lg-5 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Summary Traffic Channel</h3>
+								<div class="card-header" style="background-color:#B22222">
+									<h3 class="card-title text-white">Summary Traffic Channel</h3>
 								</div>
 								<div class="card-body">
 									<div class="canvas-con">
 										<div class="canvas-con-inner" id="canvas-pie">
-											<canvas id="pieChart" height="250px"
+											<canvas id="pieSummary" height="250px"
 												class="donutShadow overflow-hidden"></canvas>
 										</div>
 										<div id="legend" class="legend-con"></div>
@@ -43,96 +43,55 @@
 								</div>
 							</div>
 						</div>
-						<!---! Kolom Channel--->
-						<div class="col-xl-7 col-lg-7 col-md-12">
+						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Interaction</h3>
-								</div>
-								<div class="card-body" id="card-interaction-channel">
-									<div id="retres" class="row"></div>
-								</div>
-							</div>
-						</div>
-					</div>
+								<div class="card-body">
+									<div class="row mt-6">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="text-white card-body">Total Interaction</h6>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="text-white card-body">Unique Customer</h6>
+												</div>
+												<div class="card-body">
 
-					<!---Baris Kedua!-->
-					<div class="row">
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-red">
-									<h4 class="text-white card-body">Total Interaction</h4>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font" id="total-interaction"></h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div
-														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
-													</div>
+													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
+													<span class="text-muted mb-5">Customer</span>
 												</div>
-												<span>12% of your Goals</span>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-red">
-									<h4 class="text-white card-body">Unique Customer</h4>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font" id="unique-customer"></h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div
-														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
-													</div>
+									<div class="row mt-7 mb-6">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">Case In</h6>
 												</div>
-												<span>12% of your Goals</span>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-xl-4 col-lg-6 text-center">
-							<div class="card">
-								<div class="card-header bg-red">
-									<h4 class="card-body text-white">Average Interaction</h4>
-								</div>
-								<div class="card-body">
-									<h2 class="mb-1 num-font" id="avg-customer"></h2>
-									<span class="text-muted">15% Higher Of Previous Month</span>
-									<div class="row mt-5">
-										<div class="col-sm-12">
-											<div class="mb-0">
-												<h4 class="mb-2 d-block">
-													<span class="fs-16">Total Expences</span>
-													<span class="float-right num-font">$1587</span>
-												</h4>
-												<div class="progress progress-md h-1 mb-1">
-													<div
-														class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-30">
-													</div>
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">Case Out</h6>
 												</div>
-												<span>12% of your Goals</span>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -140,6 +99,19 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<!---! Kolom Channel--->
+						<div class="col-xl-12 col-lg-12 col-md-12">
+							<div class="card overflow-hidden">
+								<div class="card-body" id="card-baru">
+									<div class="row" id="row-baru">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!---Baris Kedua!-->
+					<!--
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card box-widget widget-user">
@@ -158,8 +130,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<?php $this->load->view('temp/footer');?>
-				<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-				<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+				</div>-->
+					<?php $this->load->view('temp/footer');?>
+					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>

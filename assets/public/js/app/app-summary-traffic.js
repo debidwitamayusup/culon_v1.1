@@ -71,11 +71,13 @@ function getYear(){
 }
 
 function loadContent(params, index_time){
+    $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time);
     callTotalInteraction(params, index_time);
     callTotalUniqueCustomer(params, index_time);
     callAverageCustomer(params, index_time);
     callUniqueCustomerPerChannel(params, index_time);
+    $("#filter-loader").fadeOut("slow");
 }
 
 function drawCardInteraction(value){
@@ -85,7 +87,39 @@ function drawCardInteraction(value){
     
     var channel_name = (value.channel==='Facebook Messenger')?'Messenger':value.channel;
     
-    $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white float-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
+    $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white text-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
+}
+
+function drawCardInteractionNew(value){
+    // draw
+    $('#row-baru').append(''+
+    '<div class="col-xl-4 col-lg-4 col-md-12">'+
+        '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
+            '<div class="row mt-2">'+
+                '<div class="col col-lg-4">'+
+                    '<div class="card-box text-center">'+
+                        '<div class="icon icon-shape bg-light rounded-circle">'+
+                            '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                        '</div>'+
+                        '<h6 class="mt-4 text-white">'+value.channel+'</h6>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">Unique Customer</h6>'+
+                    '<h6 class="text-white">Total Interaction</h6>'+
+                    '<h6 class="text-white">Case In</h6>'+
+                    '<h6 class="text-white">Case Out</h6>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">'+value.total_unique+'</h6>'+
+                    '<h6 class="text-white">'+value.total+'</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>');
+
 }
 
 function callSummaryInteraction(params, index_time){
@@ -96,9 +130,9 @@ function callSummaryInteraction(params, index_time){
             params: params,
             index: index_time
         },
-        success: function (r) {
+        success: function (r) { 
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawChartAndCard(response);
         },
         error: function (r) {
@@ -109,12 +143,12 @@ function callSummaryInteraction(params, index_time){
 
 function drawChartAndCard(response){
     //destroy div piechart
-    $('#pieChart').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieSummary').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
 
-    // destroy div card interaction channel
-    $('#retres').remove(); // this is my <canvas> element
-    $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
+    //destroy div card content
+    $('#row-baru').remove(); // this is my <div> element
+    $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
     let arrTotal = []
     let arrChannel = []
@@ -122,23 +156,15 @@ function drawChartAndCard(response){
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
-        drawCardInteraction(value);
+        drawCardInteractionNew(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
     });
-    
-    // draw card yg datanya 0
-    // response.data_empty.forEach(function (value, index) {
-    //     drawCardInteraction(value);
-    //     arrTotal.push(value.total);
-    //     arrChannel.push(value.channel);
-    //     arrColor.push(getColorChannel(value.channel));
-    // });
 
     // draw chart
-    var ctx = document.getElementById("pieChart");
-    ctx.height = 296;
+    var ctx = document.getElementById("pieSummary");
+    ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -164,7 +190,6 @@ function drawChartAndCard(response){
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
-                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
@@ -175,7 +200,6 @@ function drawChartAndCard(response){
                     for (var i in allData) {
                         total += parseInt(allData[i]);
                     }
-                    // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
                     if(dataLabel != 0){
                         var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
@@ -298,32 +322,38 @@ function callUniqueCustomerPerChannel(params, index_time){
 
     // btn day
     $('#btn-day').click(function(){
+        // $("#filter-loader").fadeIn("slow");
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
+        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn month
     $('#btn-month').click(function(){
+        // $("#filter-loader").fadeIn("slow");
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
+        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn year
     $('#btn-year').click(function(){
+        // $("#filter-loader").fadeIn("slow");
         params_time = 'year';
         // console.log(params_time);
         loadContent(params_time , '2019')
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
+        // $("#filter-loader").fadeOut("slow");
     });
 
 })(jQuery);
