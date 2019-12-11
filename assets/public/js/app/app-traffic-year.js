@@ -7,7 +7,45 @@ $(document).ready(function () {
     var data_chart = callGraphYear('ShowAll', n);
     var data_graph = callDataPercentage('2019');
     var data_table = callDataTableAvg('2019');
+    var data_year = callYear();
 });
+
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#dateTahun");
+            var response = JSON.parse(r);
+
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#dateTahun').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function callGraphYear(channel_name,year) {
     var data = "";
