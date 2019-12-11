@@ -66,7 +66,7 @@ function callDataAvg(params, index){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
+           // console.log(response);
             drawCard(response);
         },
         error: function (r) {
@@ -83,26 +83,36 @@ function drawCard(response){
     //  draw card
     response.data.forEach(function (value, index) {
         $('#card-avg').append(''+
-        '<div class="col-xl-3 col-md-12 col-lg-6" >'+
-            '<div class="card-custom" style="background-color:'+value.channel_color+'">'+
-                '<div class="card-body">'+
-                    '<div class="d-flex align-items-center">'+
-                        '<div class="text-center mr-9">'+
-                            '<i class="'+value.channel_icon+' text-white text-center plan-icon"></i>'+
-                            '<h6 class="text-white">'+ value.channel_name+'</h6>'+
-                            '<h5 class="mb-2 num-font text-white">'+value.total+'</h5>'+
+        '<div class="col-xl-3 col-lg-4 col-md-12">'+
+            '<div class="mini-stat clearfix rounded" style="background-color:'+value.channel_color+'">'+
+                '<div class="row mt-2">'+
+                    '<div class="col col-lg-4">'+
+                        '<div class="card-box text-center">'+
+                            ' <div class="icon icon-shape bg-light rounded-circle">'+
+                                '<i class="'+value.channel_icon+'" style="color: '+value.channel_color+'"></i>'+
+                            '</div>'+
+                            '<h6 class="mt-4 text-white">'+ value.channel_name+'</h6>'+
                         '</div>'+
-                        '<div class="text-center">'+
-                            '<h6 class="text-white">ART : '+value.art+'</h6>'+
-                            '<h6 class="text-white">AHT : '+value.aht+'</h6>'+
-                            '<h6 class="text-white">AST : '+value.ast+'</h6>'+
-                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-auto ml-2 mt-2">'+
+                        '<h6 class="text-white">ART</h6>'+
+                        '<h6 class="text-white">AHT</h6>'+
+                        '<h6 class="text-white">AST</h6>'+
+                        '<h4 class="text-white mt-4">Total</h4>'+
+                    '</div>'+
+                    '<div class="col-md-auto mt-2">'+
+                        '<h6 class="text-white">'+value.art+'</h6>'+
+                        '<h6 class="text-white">'+value.aht+'</h6>'+
+                        '<h6 class="text-white">'+value.ast+'</h6>'+
+                        ' <h4 class="text-white mt-4">2xx</h4>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
         '</div>');
     });
 }
+
+
 //jquery
 (function ($) {
 

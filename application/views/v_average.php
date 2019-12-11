@@ -10,12 +10,12 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page" >ART / AHT / AST</li>
+                            <li class="breadcrumb-item active" aria-current="page">ART / AHT / AST</li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
                             <div class="btn-group btn-sm">
                                 <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span> 
+                                    <span class="">Day</a></span>
                                 <a href="#" class="btn btn-light btn-sm" id="btn-month">
                                     <span class="">Month</a></span>
                                 <a href="#" class="btn btn-light btn-sm" id="btn-annual">
@@ -26,8 +26,8 @@
                 </div>
                 <div id="content-card">
                     <div class="row" id="card-avg">
-                       
                     </div>
                 </div>
+
                 <?php $this->load->view('temp/footer');?>
-				<script src="<?=base_url()?>assets/public/js/app/app-average-traffic.js"></script>
+                <script src="<?=base_url()?>assets/public/js/app/app-average-traffic.js"></script>

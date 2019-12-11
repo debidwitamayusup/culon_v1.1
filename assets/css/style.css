@@ -3161,6 +3161,30 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 /*----- Global Loader -----*/
 
+/*---Filter Loader---*/
+#filter-loader{
+    position:fixed;
+    z-index:50000;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+	background:#fff;
+    margin:0 auto !important;
+	text-align:center;
+	opacity: 0.2;
+}
+
+#filter-loader img{
+    position: absolute;
+    left: 0;
+    right: 0;
+	margin:0 auto !important;
+    text-align: center;
+    top: 45%;
+	text-align:center;
+}
+
 /*----- 7. Custom control -----*/
  .addui-slider .addui-slider-track .addui-slider-handle:hover .addui-slider-value {
      background: rgba(63, 81, 181, 0.5);
