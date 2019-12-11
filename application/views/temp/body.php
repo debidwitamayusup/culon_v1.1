@@ -29,7 +29,7 @@
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-header" style="background-color:#B22222">
+								<div class="card-header bg-red" >
 									<h3 class="card-title text-white">Summary Traffic Channel</h3>
 								</div>
 								<div class="card-body">
