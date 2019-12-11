@@ -143,8 +143,8 @@ function callSummaryInteraction(params, index_time){
 
 function drawChartAndCard(response){
     //destroy div piechart
-    $('#pieChart').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieSummary').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
 
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
@@ -163,7 +163,7 @@ function drawChartAndCard(response){
     });
 
     // draw chart
-    var ctx = document.getElementById("pieChart");
+    var ctx = document.getElementById("pieSummary");
     ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',

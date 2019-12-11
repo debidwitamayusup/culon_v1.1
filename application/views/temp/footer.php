@@ -78,6 +78,7 @@
 <!--Counters -->
 <script src="<?= base_url()?>assets/plugins/counters/counterup.min.js"></script>
 <script src="<?= base_url()?>assets/plugins/counters/waypoints.min.js"></script>
+
 <!-- Chart js -->
 <script src="<?=base_url()?>assets/plugins/chart/chart.bundle.js"></script>
 <script src="<?=base_url()?>assets/js/chart.js"></script>
@@ -90,8 +91,8 @@
 <script src="<?= base_url()?>assets/plugins/sidebar/sidebar.js"></script>
 
 <!--Index js -->
-<script src="<?= base_url()?>assets/js/index2.js"></script>
-<script src="<?= base_url()?>assets/js/index4.js"></script>
+<!-- <script src="<?= base_url()?>assets/js/index2.js"></script> -->
+<!-- <script src="<?= base_url()?>assets/js/index4.js"></script> -->
 
 <!-- custom js -->
 <script src="<?= base_url()?>assets/js/custom.js"></script>

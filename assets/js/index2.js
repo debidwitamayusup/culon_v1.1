@@ -45,11 +45,6 @@
 		barColor: '#ff9933'
 	});
 
-
-
-	//pie chart
-	
-
 	//document.getElementById('legend').innerHTML = myChart.generateLegend();
 
 	/*---Morris (#graph5)---*/

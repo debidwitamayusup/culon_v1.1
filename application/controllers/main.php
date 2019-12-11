@@ -57,6 +57,13 @@ class main extends CI_Controller {
 		// $this->load->view('temp/footer');		
 	}
 
+	public function kip(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_kip');
+	}
+
 	public function agent_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
