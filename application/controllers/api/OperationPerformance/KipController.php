@@ -138,6 +138,7 @@
 			echo json_encode($response);	
 		}
 
+		//mengambil data request
 		public function getKipReq(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
