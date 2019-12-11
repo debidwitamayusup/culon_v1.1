@@ -34,10 +34,17 @@
 					</div>
 				</li>
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
-				<li><a class="slide-item" href="<?= base_url()?>main/kip">KIP</a></li>
+				<li class="slide submenu" id="accordion">
+					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapseKIP"> Operation Performance </a>
+					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+						style="">
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
+					</div>
+				</li>
 			</ul>
 		</li>
-		<!-- <li class="slide">
+		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-user icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Agent Performance</span>
@@ -59,7 +66,7 @@
 				<li><a class="slide-item" href="index3.html">Average Time</a></li>
 				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
 			</ul>
-		</li> -->
+		</li>
 
 	</ul>
 </aside>
