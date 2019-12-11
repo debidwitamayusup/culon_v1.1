@@ -105,16 +105,16 @@ function drawCardInteractionNew(value){
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mt-2">'+
-                    '<h6 class="text-white">Unique Customer</h6>'+
-                    '<h6 class="text-white">Total Interaction</h6>'+
-                    '<h6 class="text-white">Case In</h6>'+
-                    '<h6 class="text-white">Case Out</h6>'+
+                    '<h6 class="text-white font-13">Unique Customer</h6>'+
+                    '<h6 class="text-white font-13">Total Interaction</h6>'+
+                    '<h6 class="text-white font-13">Case In</h6>'+
+                    '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
                 '<div class="col-md-auto mt-2">'+
-                    '<h6 class="text-white">'+value.total_unique+'</h6>'+
-                    '<h6 class="text-white">'+value.total+'</h6>'+
-                    '<h6 class="text-white">7xxx</h6>'+
-                    '<h6 class="text-white">7xxx</h6>'+
+                    '<h6 class="text-white font-13">'+value.total_unique+'</h6>'+
+                    '<h6 class="text-white font-13">'+value.total+'</h6>'+
+                    '<h6 class="text-white font-13">7xxx</h6>'+
+                    '<h6 class="text-white font-13">7xxx</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
