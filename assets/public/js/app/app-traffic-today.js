@@ -190,7 +190,7 @@ function drawChartPercentageToday(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartPercentageToday");
-    ctx_percentage.height = 573;
+    ctx_percentage.height = 550;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

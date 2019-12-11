@@ -19,9 +19,9 @@
 }
 
 .box-legend {
-    width: 18px;
-    height: 20px;
-    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
 }
 
 .ml-1 {
@@ -70,4 +70,22 @@
     margin-bottom: 0.8rem;
     width: 100%;
     border-radius: 7px;
+}
+.card-pie {
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	padding: 0rem;
+}
+
+.card-pie {
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	margin: 0;
+	padding: 0rem 0rem;
+	position: relative;
+	
+}
+
+.font-13{
+    font-size: 13px !important;
 }

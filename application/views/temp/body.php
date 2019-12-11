@@ -32,7 +32,7 @@
 								<div class="card-header bg-red" >
 									<h3 class="card-title text-white">Summary Traffic Channel</h3>
 								</div>
-								<div class="card-body">
+								<div class="card-pie">
 									<div class="canvas-con">
 										<div class="canvas-con-inner" id="canvas-pie">
 											<canvas id="pieSummary" height="250px"
@@ -46,7 +46,7 @@
 						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-body">
-									<div class="row mt-6">
+									<div class="row mt-5">
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
@@ -71,7 +71,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="row mt-7 mb-6">
+									<div class="row mt-5 mb-6">
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">

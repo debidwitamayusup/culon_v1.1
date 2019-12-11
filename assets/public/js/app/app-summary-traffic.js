@@ -105,16 +105,16 @@ function drawCardInteractionNew(value){
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mt-2">'+
-                    '<h6 class="text-white">Unique Customer</h6>'+
-                    '<h6 class="text-white">Total Interaction</h6>'+
-                    '<h6 class="text-white">Case In</h6>'+
-                    '<h6 class="text-white">Case Out</h6>'+
+                    '<h6 class="text-white font-13">Unique Customer</h6>'+
+                    '<h6 class="text-white font-13">Total Interaction</h6>'+
+                    '<h6 class="text-white font-13">Case In</h6>'+
+                    '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
                 '<div class="col-md-auto mt-2">'+
-                    '<h6 class="text-white">'+value.total_unique+'</h6>'+
-                    '<h6 class="text-white">'+value.total+'</h6>'+
-                    '<h6 class="text-white">7xxx</h6>'+
-                    '<h6 class="text-white">7xxx</h6>'+
+                    '<h6 class="text-white font-13">'+value.total_unique+'</h6>'+
+                    '<h6 class="text-white font-13">'+value.total+'</h6>'+
+                    '<h6 class="text-white font-13">7xxx</h6>'+
+                    '<h6 class="text-white font-13">7xxx</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -164,7 +164,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 300;
+    ctx.height = 304;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -322,38 +322,32 @@ function callUniqueCustomerPerChannel(params, index_time){
 
     // btn day
     $('#btn-day').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn month
     $('#btn-month').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn year
     $('#btn-year').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'year';
         // console.log(params_time);
         loadContent(params_time , '2019')
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
 })(jQuery);
