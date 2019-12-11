@@ -40,6 +40,7 @@ function getColorChannel(channel){
 }
 
 function loadContent($params_time, $index){
+    
     callDataAvg(params_time, $index);
 }
 
@@ -57,6 +58,7 @@ function getThisYear()
 }
 
 function callDataAvg(params, index){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/AverageTime/getAT',
@@ -73,6 +75,7 @@ function callDataAvg(params, index){
             alert("error");
         },
     });
+    $("#filter-loader").fadeOut("slow");
 }
 
 function drawCard(response){

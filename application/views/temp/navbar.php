@@ -298,3 +298,5 @@
 					</div>
 				</div>
 				<!--/.Navbar -->
+				<!-- filter loader -->
+				<div id="filter-loader" style="display:none"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>

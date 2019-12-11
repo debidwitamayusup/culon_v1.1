@@ -3172,7 +3172,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	background:#fff;
     margin:0 auto !important;
 	text-align:center;
-	opacity: 0.2;
+	opacity: 0.8;
 }
 
 #filter-loader img{
