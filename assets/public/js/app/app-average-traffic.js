@@ -70,12 +70,14 @@ function callDataAvg(params, index){
             var response = JSON.parse(r);
            // console.log(response);
             drawCard(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
-    $("#filter-loader").fadeOut("slow");
+    
 }
 
 function drawCard(response){

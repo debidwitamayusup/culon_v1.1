@@ -81,6 +81,7 @@
 
 <!-- Chart js -->
 <script src="<?=base_url()?>assets/plugins/chart/chart.bundle.js"></script>
+<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 <script src="<?=base_url()?>assets/js/chart.js"></script>
 
 <!--Jquery.knob js-->
