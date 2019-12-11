@@ -18,8 +18,8 @@
                                     <span class="">Day</a></span>
                                 <a href="#" class="btn btn-light btn-sm" id="btn-month">
                                     <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-annual">
-                                    <span class="">Annual</a></span>
+                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                                    <span class="">Year</a></span>
                             </div>
                         </div>
                     </div>
