@@ -95,16 +95,29 @@ function drawCardInteractionNew(value){
 
     // draw
     $('#row-baru').append(''+
-    '<div class="col-xl-4 col-lg-6 col-md-12">'+
+    '<div class="col-xl-4 col-lg-4 col-md-12">'+
         '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
-            '<span class="mini-stat-icon"><i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
-                '<h6 class="text-white">'+value.channel+'</h6>'+
-            '</span>'+
-            '<div class="mini-stat-info text-white text-right">'+
-                '<h6 class="text-white">Unique Customer : '+value.total_unique+'</h6>'+
-               '<h6 class="text-white">Total Interaction : '+value.total+'</h6>'+
-                '<h6 class="text-white">Case In : 7000</h6>'+
-                '<h6 class="text-white">Case Out : 7000</h6>'+
+            '<div class="row mt-2">'+
+                '<div class="col col-lg-4">'+
+                    '<div class="card-box text-center">'+
+                        '<div class="icon icon-shape bg-light rounded-circle">'+
+                            '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                        '</div>'+
+                        '<h6 class="mt-4 text-white">'+value.channel+'</h6>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">Unique Customer</h6>'+
+                    '<h6 class="text-white">Total Interaction</h6>'+
+                    '<h6 class="text-white">Case In</h6>'+
+                    '<h6 class="text-white">Case Out</h6>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">'+value.total_unique+'</h6>'+
+                    '<h6 class="text-white">'+value.total+'</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                '</div>'+
             '</div>'+
         '</div>'+
     '</div>');
