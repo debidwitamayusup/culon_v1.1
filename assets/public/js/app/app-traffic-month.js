@@ -74,6 +74,7 @@ function callGraphicInterval(channel_name, month){
                         }
                     }
                 },
+
                 yAxis: {
                     splitLine: {
                         lineStyle: {
@@ -174,11 +175,6 @@ function drawChartPercentageMonth(response){
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        min: 0 // Edit the value according to what you need
                     }
                 }]
             },
