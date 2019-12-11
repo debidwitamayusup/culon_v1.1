@@ -35,9 +35,9 @@
 				</li>
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 				<li class="slide submenu" id="accordion">
-					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseOne"> Operation Performance </a>
-					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapseKIP"> Operation Performance </a>
+					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
 					</div>
