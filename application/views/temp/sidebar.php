@@ -34,6 +34,7 @@
 					</div>
 				</li>
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main/kip">KIP</a></li>
 			</ul>
 		</li>
 		<!-- <li class="slide">
