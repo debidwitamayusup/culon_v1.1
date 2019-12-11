@@ -64,7 +64,7 @@
 													<h6 class="text-white card-body">Unique Customer</h6>
 												</div>
 												<div class="card-body">
-													
+
 													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
 													<span class="text-muted mb-5">Customer</span>
 												</div>
@@ -105,19 +105,6 @@
 							<div class="card overflow-hidden">
 								<div class="card-body" id="card-baru">
 									<div class="row" id="row-baru">
-									</div>
-									<div class="row">
-										<div class="col-md-12  col-xl-4 features">
-											<div class="card feature">
-												<div class="card-body text-center">
-													<h5>Employees</h5>
-													<div class="icon icon-shape bg-pink rounded-circle text-white mb-3">
-														<i class="fas fa-user-circle text-white"></i>
-													</div>
-													<h2 class="counter num-font">2,545,142</h2>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>

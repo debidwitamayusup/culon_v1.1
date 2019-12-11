@@ -89,22 +89,31 @@ function drawCardInteraction(value){
 }
 
 function drawCardInteractionNew(value){
-    //destroy div card content
-    // $('#card-baru').remove(); // this is my <div> element
-    // $('#row-baru').append('<div id="card-baru" class="col-xl-4 col-lg-6 col-md-12"></div>');
-
     // draw
     $('#row-baru').append(''+
-    '<div class="col-xl-4 col-lg-6 col-md-12">'+
+    '<div class="col-xl-4 col-lg-4 col-md-12">'+
         '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
-            '<span class="mini-stat-icon"><i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
-                '<h6 class="text-white">'+value.channel+'</h6>'+
-            '</span>'+
-            '<div class="mini-stat-info text-white text-right">'+
-                '<h6 class="text-white num-font">Unique Customer : '+value.total_unique+'</h6>'+
-               '<h6 class="text-white">Total Interaction : '+value.total+'</h6>'+
-                '<h6 class="text-white">Case In : 7000</h6>'+
-                '<h6 class="text-white">Case Out : 7000</h6>'+
+            '<div class="row mt-2">'+
+                '<div class="col col-lg-4">'+
+                    '<div class="card-box text-center">'+
+                        '<div class="icon icon-shape bg-light rounded-circle">'+
+                            '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                        '</div>'+
+                        '<h6 class="mt-4 text-white">'+value.channel+'</h6>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">Unique Customer</h6>'+
+                    '<h6 class="text-white">Total Interaction</h6>'+
+                    '<h6 class="text-white">Case In</h6>'+
+                    '<h6 class="text-white">Case Out</h6>'+
+                '</div>'+
+                '<div class="col-md-auto mt-2">'+
+                    '<h6 class="text-white">'+value.total_unique+'</h6>'+
+                    '<h6 class="text-white">'+value.total+'</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                    '<h6 class="text-white">7xxx</h6>'+
+                '</div>'+
             '</div>'+
         '</div>'+
     '</div>');
@@ -135,10 +144,6 @@ function drawChartAndCard(response){
     $('#pieChart').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieChart" height="250px" class="donutShadow overflow-hidden"></canvas>');
 
-    // destroy div card interaction channel
-    // $('#retres').remove(); // this is my <canvas> element
-    // $('#card-interaction-channel').append('<div id="retres"  class="row"></div>');
-
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
     $('#card-baru').append('<div id="row-baru" class="row"></div>');
@@ -149,7 +154,6 @@ function drawChartAndCard(response){
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
-        // drawCardInteraction(value);
         drawCardInteractionNew(value);
         arrTotal.push(value.total);
         arrChannel.push(value.channel);
@@ -326,12 +330,14 @@ function callUniqueCustomerPerChannel(params, index_time){
 
     // btn month
     $('#btn-month').click(function(){
+        $("#global-loader").fadeIn("slow");
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
+        $("#global-loader").fadeOut("slow");
     });
 
     // btn year
