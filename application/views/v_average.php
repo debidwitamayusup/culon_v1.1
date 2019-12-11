@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="content-card">
+                <div id="content-card" class="mt-3">
                     <div class="row" id="card-avg">
                     </div>
                 </div>
