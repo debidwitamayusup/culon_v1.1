@@ -40,9 +40,9 @@
                             <div class="body">
                                 <div class="row ml-1 mr-1 mt-1">
                                     <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-light">
+                                        <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title-black">Information</h3>
+                                                <h3 class="expanel-title">Information</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">
@@ -51,9 +51,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-light">
+                                        <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title-black">Complaint</h3>
+                                                <h3 class="expanel-title">Complaint</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">
@@ -62,9 +62,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-light">
+                                        <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title-black">Request</h3>
+                                                <h3 class="expanel-title">Request</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">
