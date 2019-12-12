@@ -10,7 +10,9 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Summary FCR N-FCR </li>
+                            <li class="breadcrumb-item active" aria-current="page">Operation Performance</li>
+                            <li class="breadcrumb-item active" aria-current="page">Average Duration per Interaction /
+                                Channel </li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
                             <!-- <div class="btn-group btn-sm">
@@ -32,32 +34,421 @@
                             <div class="row">
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-secondary">
-                                            <h4 class="widget-user-desc">Instagram</h4>
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-black">Whatsapp</h4>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="icon icon-shape bg-primary rounded-circle text-white mb-3">
-                                                <i class="fas fa-share-alt text-blue plan-icon"></i>
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-whatsapp text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
                                             <div class="row">
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
-                                                        <span class="text-muted">Jumlah Interaksi</span>
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
                                                         <h5 class="description-header num-font">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
-                                                        <span class="text-muted">Rata-rata Durasi</span>
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
                                                         <h5 class="description-header num-font">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
-                                                        <h5 class="description-header num-font">23</h5><span
-                                                            class="text-muted">LOSS</span>
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Facebook</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-facebook"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Twitter</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-twitter"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Instagram</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-instagram"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-black">Telegram</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-telegram text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Email</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Twitter DM</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fa fa-mail-bulk"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc">Voice</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fa fa-microphone"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-black">Messenger</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-facebook-messenger text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Line</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fab fa-line"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc text-white">Live Chat</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fa fa-comments"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="card box-widget widget-user">
+                                        <div class="widget-user-header bg-gray1">
+                                            <h4 class="widget-user-desc">SMS</h4>
+                                        </div>
+                                        <div class="widget-user-image">
+                                            <div class="plan-icon-durasi bg-blue text-center">
+                                                <i class="fa fa-envelope-open"></i>
+                                            </div>
+                                        </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Interaksi</span>
+                                                        <h5 class="description-header num-font">1,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Rata-rata Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>

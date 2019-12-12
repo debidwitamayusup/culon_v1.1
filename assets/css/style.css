@@ -3444,6 +3444,21 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   
 }
 
+/* custom plan-icon */
+.plan-icon-durasi {
+    display: inline-block;
+    font-size: 39px;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    overflow: hidden;
+    border: 1px solid #e4e6f9;
+    border-radius: 50%;
+    box-shadow: 0 1px 15px rgba(199, 199, 199, 0.2), 0 1px 6px rgba(199, 199, 199, 0.2);
+    transition: all .3s;
+  
+}
+
 .icon.icon-shape {
     width: 3rem;
     height: 3rem;
@@ -10837,6 +10852,13 @@ a.text-dark:hover, a.text-dark:focus {
 .text-muted {
 	color: #6c6a8d !important;
 }
+
+/* custom text-muted*/
+.text-muted-durasi {
+	color: #6c6a8d !important;
+	font-size:10px;
+}
+
 .text-black-50 {
 	color: rgba(0, 0, 0, 0.5) !important;
 }
