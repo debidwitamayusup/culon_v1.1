@@ -108,13 +108,13 @@ function drawCardInteractionNew(value){
                         '<div class="mt-2 text-center text-white">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
-                '<div class="col-md-auto ml-1 mb-2">'+
+                '<div class="col-md-auto mb-2">'+
                     '<h6 class="text-white font-13">Unique Customer</h6>'+
                     '<h6 class="text-white font-13">Total Interaction</h6>'+
                     '<h6 class="text-white font-13">Case In</h6>'+
                     '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
-                '<div class="col-md-auto ml-2">'+
+                '<div class="col-md-auto ml-1">'+
                     '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+

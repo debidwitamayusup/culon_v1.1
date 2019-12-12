@@ -22145,7 +22145,7 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .mini-stat-summary{
-	padding: px;
+	padding: 14px 3px 3px 3px;
 	margin-bottom: 20px;
 	height: 135px;
 }
