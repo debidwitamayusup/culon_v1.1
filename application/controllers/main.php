@@ -64,6 +64,13 @@ class main extends CI_Controller {
 		$this->load->view('v_kip');
 	}
 
+	public function nfcr(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_nfcr');
+	}
+
 	public function agent_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
