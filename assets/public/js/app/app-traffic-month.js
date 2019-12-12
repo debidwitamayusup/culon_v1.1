@@ -40,6 +40,7 @@ function callGraphicInterval(channel_name, month){
                 type: 'bar',
                 data: response.data.total_traffic
             }];
+            console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
             var option = {
@@ -92,7 +93,7 @@ function callGraphicInterval(channel_name, month){
                     }
                 },
                 series: chartdata,
-                color: ['#B22222']
+                color: [''+response.data.channel_color+'']
             };
             barChart.setOption(option);
 
