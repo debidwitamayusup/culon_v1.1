@@ -15,7 +15,7 @@
     
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 300;
+    ctx.height = 312;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -49,7 +49,7 @@
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '5',
 			bottom: '20',
 			left: '60',
 		},
@@ -95,7 +95,7 @@
 	var option_comp = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '5',
 			bottom: '20',
 			left: '60',
 		},
@@ -141,7 +141,7 @@
 	var option_req = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '5',
 			bottom: '20',
 			left: '60',
 		},
