@@ -238,26 +238,26 @@ function destroyChartPercentage(){
     $('#chartPercentage').append('<canvas id="echartVerticalMonth"></canvas>');
 }
 
-    (function ($) {
-        $("select#month").change(function(){
-            //destroy chart
-            destroyChartInterval();
-            destroyChartPercentage();
+(function ($) {
+    $("select#month").change(function(){
+        //destroy chart
+        destroyChartInterval();
+        destroyChartPercentage();
 
-          var selectedMonth = $(this).children("option:selected").val();
-          // console.log(selectedMonth);
-          // console.log($("#channel_name").val());
-        callGraphicInterval($("#channel_name").val(), selectedMonth);
-        callDataPercentage(selectedMonth);
-        callDataTableAvg(selectedMonth);
-        });
+      var selectedMonth = $(this).children("option:selected").val();
+      // console.log(selectedMonth);
+      // console.log($("#channel_name").val());
+    callGraphicInterval($("#channel_name").val(), selectedMonth);
+    callDataPercentage(selectedMonth);
+    callDataTableAvg(selectedMonth);
+    });
 
-        $("select#channel_name").change(function(){
+    $("select#channel_name").change(function(){
 
-         // destroyChartInterval();
-          var selectedChannel = $(this).children("option:selected").val();
-          // console.log(selectedMonth);
-          // console.log($("#channel_name").val());
-        callGraphicInterval(selectedChannel, $("#month").val());
-        });
+     // destroyChartInterval();
+      var selectedChannel = $(this).children("option:selected").val();
+      // console.log(selectedMonth);
+      // console.log($("#channel_name").val());
+    callGraphicInterval(selectedChannel, $("#month").val());
+    });
 })(jQuery);
