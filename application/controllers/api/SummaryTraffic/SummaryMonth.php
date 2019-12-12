@@ -24,15 +24,16 @@ class SummaryMonth extends CI_Controller {
 		$query_date = date("Y-m-d");
 
 		//convert number of month to three letter of month
- 		$dateObj   = DateTime::createFromFormat('!m', $month);
-		$monthName = $dateObj->format('M');
+ 	// 	$dateObj   = DateTime::createFromFormat('!m', $month);
+		// $monthName = $dateObj->format('M');
  		
 
    		$paramDate = date('t', strtotime($query_date));
 		$arrDate = array();
-		$total_traffics = array();
+		$total_traffics = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		for($i=1;$i<=$paramDate;$i++) {
-			array_push($arrDate,$i.' '.$monthName);
+			// array_push($arrDate,$i.' '.$monthName);
+			array_push($arrDate, $i);
 		}
 		
 		
@@ -57,7 +58,7 @@ class SummaryMonth extends CI_Controller {
 		$data = [
             'channel_name' => $channel_name,
             'month' => $month,
-			'total_traffic' => $total_traffic,
+			'total_traffic' => $total_traffics,
 			'param_date' => $arrDate,
         ];
         if($data){

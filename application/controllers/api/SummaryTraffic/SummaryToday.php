@@ -16,11 +16,12 @@ class SummaryToday extends CI_Controller {
         }
         $arr_channel = $this->security->xss_clean($this->input->post('arr_channel', true));
         if(!$arr_channel){
-            $list_channel = $this->Stc_Model->get_all_channel();
-            $arr_channel= array();
-            foreach($list_channel as $key){
-                array_push($arr_channel, $key->channel_name);
-            }
+            $response = array(
+                'status' => false,
+                'data' => 'data channel not found'
+            );
+            echo json_encode($response);
+            return;
         }
 
         $arr_time = array();

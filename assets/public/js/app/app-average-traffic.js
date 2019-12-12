@@ -109,7 +109,7 @@ function drawCard(response){
                         '<h6 class="text-white">'+value.art+'</h6>'+
                         '<h6 class="text-white">'+value.aht+'</h6>'+
                         '<h6 class="text-white">'+value.ast+'</h6>'+
-                        ' <h4 class="text-white mt-4 font-weight-bold">'+value.total+'</h4>'+
+                        ' <h4 class="text-white mt-4 font-weight-bold">'+ThousandSeperator(value.total)+'</h4>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
@@ -117,6 +117,9 @@ function drawCard(response){
     });
 }
 
+function ThousandSeperator(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 //jquery
 (function ($) {

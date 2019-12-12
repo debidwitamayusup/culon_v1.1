@@ -115,8 +115,8 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
                 '<div class="col-md-auto ml-2">'+
-                    '<h6 class="text-white font-13">'+value.total_unique+'</h6>'+
-                    '<h6 class="text-white font-13">'+value.total+'</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+
                 '</div>'+
@@ -223,6 +223,19 @@ function drawChartAndCard(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
 function callTotalInteraction(params, index_time){
     //call total interaction
     $.ajax({
@@ -234,8 +247,12 @@ function callTotalInteraction(params, index_time){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            var commas = response.data.total_interaction;
+            var functionCommas = addCommas(commas);
+            // console.log(commas);
             // console.log(response);
-            $("#total-interaction").html(response.data.total_interaction);
+            $("#total-interaction").html(functionCommas);  
+            // console.log(functionCommas);
         },
         error: function (r) {
             // alert("error");
@@ -255,8 +272,10 @@ function callTotalUniqueCustomer(params, index_time){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            var commas2 = response.data.total_unique_customer;
+            var functionCommas2 = addCommas(commas2);
             // console.log(response);
-            $("#unique-customer").html(response.data.total_unique_customer);
+            $("#unique-customer").html(functionCommas2);
         },
         error: function (r) {
             // alert("error");
@@ -325,38 +344,32 @@ function callUniqueCustomerPerChannel(params, index_time){
 
     // btn day
     $('#btn-day').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn month
     $('#btn-month').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
     // btn year
     $('#btn-year').click(function(){
-        // $("#filter-loader").fadeIn("slow");
         params_time = 'year';
         // console.log(params_time);
         loadContent(params_time , '2019')
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-danger btn-sm");
-        // $("#filter-loader").fadeOut("slow");
     });
 
 })(jQuery);
