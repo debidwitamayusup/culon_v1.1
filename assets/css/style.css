@@ -3224,8 +3224,8 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .mini-stat-icon {
-  width: 70px;
-  height: 60px;
+  width: 60px;
+  height: 64px;
   display: inline-block;
   line-height: 65px;
   text-align: center;
@@ -22114,4 +22114,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 .size-chart{
 	width:700px;
 	height:300px;
+}
+
+.mini-stat-summary{
+	padding: 11px;
+	margin-bottom: 20px;
+	height: 135px;
 }
