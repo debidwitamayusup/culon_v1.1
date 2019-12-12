@@ -582,6 +582,15 @@ a.text-secondary:hover, a.text-secondary:focus {
 	background-color: #1396cc  !important;
 	border-color: #1396cc  !important;
 }
+.expanel-light{
+	border : #eaeaf9 !important;
+}
+
+.expanel-light>.expanel-heading{
+	color:#fff !important;
+	background-color :#eaeaf9 !important;
+	border-color: #eaeaf9 !important;
+}
 
 /*----- 38. Avatars -----*/
 
