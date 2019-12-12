@@ -31,6 +31,7 @@ class SummaryMonth extends CI_Controller {
    		$paramDate = date('t', strtotime($query_date));
 		$arrDate = array();
 		$total_traffics = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		// $channel_color = "#B22222";
 		for($i=1;$i<=$paramDate;$i++) {
 			// array_push($arrDate,$i.' '.$monthName);
 			array_push($arrDate, $i);
@@ -39,6 +40,7 @@ class SummaryMonth extends CI_Controller {
 		
 		//get Interval Per Month for Vertical Graphic
 		$ipm = $this->Stc_Model->getIntervalPerMonth($month, $channel_name)->result();
+		// print_r($ipm);
 		foreach ($ipm as $key) 
 		{
 			array_push($total_traffic, $key->total_traffic);
@@ -54,12 +56,17 @@ class SummaryMonth extends CI_Controller {
 				}
 			}	
 		}
-
+		if (!$ipm || $channel_name == "ShowAll"){
+			$channel_color = "#B22222";
+		}else{
+			$channel_color = $ipm[0]->channel_color;
+		}
 		$data = [
             'channel_name' => $channel_name,
             'month' => $month,
 			'total_traffic' => $total_traffics,
 			'param_date' => $arrDate,
+			'channel_color' => $channel_color
         ];
         if($data){
             $response = array(

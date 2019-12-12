@@ -40,6 +40,7 @@ function callGraphicInterval(channel_name, month){
                 type: 'bar',
                 data: response.data.total_traffic
             }];
+            // console.log("sadad"+response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
             var option = {
@@ -92,7 +93,7 @@ function callGraphicInterval(channel_name, month){
                     }
                 },
                 series: chartdata,
-                color: ['#B22222']
+                color: [''+response.data.channel_color+'']
             };
             barChart.setOption(option);
 
@@ -238,26 +239,26 @@ function destroyChartPercentage(){
     $('#chartPercentage').append('<canvas id="echartVerticalMonth"></canvas>');
 }
 
-(function ($) {
-    $("select#month").change(function(){
-        //destroy chart
-        destroyChartInterval();
-        destroyChartPercentage();
+    (function ($) {
+        $("select#month").change(function(){
+            //destroy chart
+            destroyChartInterval();
+            destroyChartPercentage();
 
-      var selectedMonth = $(this).children("option:selected").val();
-      // console.log(selectedMonth);
-      // console.log($("#channel_name").val());
-    callGraphicInterval($("#channel_name").val(), selectedMonth);
-    callDataPercentage(selectedMonth);
-    callDataTableAvg(selectedMonth);
-    });
+          var selectedMonth = $(this).children("option:selected").val();
+          // console.log(selectedMonth);
+          // console.log($("#channel_name").val());
+        callGraphicInterval($("#channel_name").val(), selectedMonth);
+        callDataPercentage(selectedMonth);
+        callDataTableAvg(selectedMonth);
+        });
 
-    $("select#channel_name").change(function(){
+        $("select#channel_name").change(function(){
 
-     // destroyChartInterval();
-      var selectedChannel = $(this).children("option:selected").val();
-      // console.log(selectedMonth);
-      // console.log($("#channel_name").val());
-    callGraphicInterval(selectedChannel, $("#month").val());
-    });
+         // destroyChartInterval();
+          var selectedChannel = $(this).children("option:selected").val();
+          // console.log(selectedMonth);
+          // console.log($("#channel_name").val());
+        callGraphicInterval(selectedChannel, $("#month").val());
+        });
 })(jQuery);
