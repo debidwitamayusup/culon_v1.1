@@ -169,12 +169,13 @@ class SummaryTrafficChannel extends CI_Controller {
 		// 		array_push($total, 0);
 		// 	}
 		// }
+		
 		$data = [
 			'channel' => $channel,
 			'total' => $total
 		];
 
-		if($card_today)
+		if($card_today)	
 		{
 			$response = array(
 				'status' => 200,
