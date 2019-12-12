@@ -29,8 +29,8 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header">
-                                <h5 class="card-title">Summary FCR N-FCR</h5>
+                            <div class="card-header bg-gray2">
+                                <h6 class="card-title">Summary FCR N-FCR</h6>
                             </div>
                             <div class="card-body">
                                 <canvas id="pieNFCR" class="donutShadow overflow-hidden"></canvas>
@@ -43,8 +43,8 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header">
-                                            <h5 class="card-title">Information</h5>
+                                        <div class="card-header bg-gray2">
+                                            <h6 class="card-title">Information</h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-info" class="chartsh overflow-hidden"></div>
@@ -53,8 +53,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Complaint</h3>
+                                        <div class="card-header bg-gray2">
+                                            <h6 class="card-title">Complaint</h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-comp" class="chartsh overflow-hidden"></div>
@@ -63,8 +63,8 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header">
-                                            <h3 class="card-title">Request</h3>
+                                        <div class="card-header bg-gray2">
+                                            <h6 class="card-title">Request</h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-req" class="chartsh overflow-hidden"></div>
@@ -80,8 +80,8 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header">
-                                <h5 class="card-title">Summary Traffic FCR N-FCR by Channel</h5>
+                            <div class="card-header bg-gray2">
+                                <h6 class="card-title">Summary Traffic FCR N-FCR by Channel</h6>
                             </div>
                             <div class="card-body" id="chart-percentage">
                                 <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden"></div>
@@ -90,20 +90,20 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header">
-                                <h5 class="card-title">Average Interval</h5>
+                            <div class="card-header bg-gray2">
+                                <h6 class="card-title">Average Interval</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
                                         <thead class="text-center">
                                             <tr>
-                                                <th rowspan="2" class="vcenter">No</th>
-                                                <th rowspan="2">Channel</th>
-                                                <th colspan="2" class="bg-orange align-content-md-center text-white">
+                                                <th rowspan="2" class="align-middle">No</th>
+                                                <th rowspan="2" class="align-middle">Channel</th>
+                                                <th colspan="2" class="bg-blue-1 align-content-md-center text-white">
                                                     Information</th>
-                                                <th colspan="2" class="bg-red text-white">Complaint</th>
-                                                <th colspan="2" class="bg-blue text-white">Request</th>
+                                                <th colspan="2" class="bg-gray2 text-black">Complaint</th>
+                                                <th colspan="2" class="bg-green-2 text-white">Request</th>
                                             </tr>
                                             <tr>
                                                 <th class="bg-green text-white">FCR</th>

@@ -57,7 +57,7 @@
 			}
 		},
 		series: chartdata3,
-		color: ["#B22222","#316cbe","#ff9933"]
+		color: [ "#A5B0B6","#009E8C","#00436D"]
 	};
 	var chart6 = document.getElementById('echartTraffic');
 	var barChart6 = echarts.init(chart6);
@@ -72,14 +72,14 @@
             datasets: [ {
                 data: [ 85, 48, 59 ],
                 backgroundColor: [
-                                    "#B22222",
-                                    "#316cbe",
-                                    "#ff9933"
+								"#A5B0B6",
+								"#009E8C",
+								"#00436D"
                                 ],
                 hoverBackgroundColor: [
-                                    "#B22222",
-                                    "#316cbe",
-                                    "#ff9933"
+								"#A5B0B6",
+								"#009E8C",
+								"#00436D"
                                 ]
 
                             } ],
@@ -146,7 +146,7 @@
 			}
 		},
 		series: chartdataInfo,
-		color: ["#ff9933"]
+		color: ["#A5B0B6"]
 	};
 	var chartInfo = document.getElementById('echartInfoTraffic');
 	var barChartInfo = echarts.init(chartInfo);
@@ -197,7 +197,7 @@
 			}
 		},
 		series: chartdataComp,
-		color: ["#B22222"]
+		color: ["#009E8C"]
 	};
 	var chartComp = document.getElementById('echartCompTraffic');
 	var barChartComp = echarts.init(chartComp);
@@ -248,7 +248,7 @@
 			}
 		},
 		series: chartdataReq,
-		color: ["#316cbe"]
+		color: ["#00436D"]
 	};
 	var chartReq = document.getElementById('echartReqTraffic');
 	var barChartReq = echarts.init(chartReq);

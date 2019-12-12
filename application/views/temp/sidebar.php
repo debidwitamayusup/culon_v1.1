@@ -42,6 +42,7 @@
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a></div>
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
+						<!-- <div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration per Interaction/Channel</a></div> -->
 					</div>
 				</li>
 			</ul>
