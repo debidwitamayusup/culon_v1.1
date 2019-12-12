@@ -118,14 +118,14 @@ function drawPieChart(response){
             datasets: [ {
                 data: summaryKip,
                 backgroundColor: [
-                                    "#B22222",
-                                    "#316cbe",
-                                    "#ff9933"
+                                    "#A5B0B6",
+                                    "#009E8C",
+                                    "#00436D"
                                 ],
                 hoverBackgroundColor: [
-                                    "#B22222",
-                                    "#316cbe",
-                                    "#ff9933"
+									"#A5B0B6",
+									"#009E8C",
+									"#00436D"
                                 ]
 
                             } ],
@@ -135,7 +135,10 @@ function drawPieChart(response){
             responsive: true,
 			maintainAspectRatio: false,
 			legend :{
-				position : "bottom"
+				position : "bottom",
+				labels:{
+					boxWidth:10
+			   }
 			}
         }
     } );
@@ -198,7 +201,7 @@ function drawKipPerChannelChart(response){
 			}
 		},
 		series: chartdata3,
-		color: ["#B22222","#316cbe","#ff9933"]
+		color: ["#A5B0B6","#009E8C","#00436D"]
 	};
 	var chart6 = document.getElementById('echartKIP');
 	var barChart6 = echarts.init(chart6);
@@ -261,7 +264,7 @@ function drawChartInfo(response){
 			}
 		},
 		series: chartdataInfo,
-		color: ["#ff9933"]
+		color: ["#A5B0B6"]
 	};
 	var chartInfo = document.getElementById('echartInfo');
 	var barChartInfo = echarts.init(chartInfo);
@@ -325,7 +328,7 @@ function drawChartComp(response){
 			}
 		},
 		series: chartdataComp,
-		color: ["#B22222"]
+		color: ["#009E8C"]
 	};
 	var chartComp = document.getElementById('echartComp');
 	var barChartComp = echarts.init(chartComp);
@@ -390,7 +393,7 @@ function drawChartReq(response){
 			}
 		},
 		series: chartdataReq,
-		color: ["#316cbe"]
+		color: ["#00436D"]
 	};
 	var chartReq = document.getElementById('echartReq');
 	var barChartReq = echarts.init(chartReq);

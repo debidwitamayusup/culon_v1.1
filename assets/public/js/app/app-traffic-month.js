@@ -40,7 +40,8 @@ function callGraphicInterval(channel_name, month){
                 type: 'bar',
                 data: response.data.total_traffic
             }];
-            // console.log("sadad"+response.data.channel_color)
+
+            console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
             var option = {
