@@ -119,7 +119,7 @@ function callGraphYear(channel_name,year) {
                 }
             },
             series: chartdata,
-            color: ['#B22222']
+            color: [''+response.data.channel_color+'']
         };
         barChart.setOption(option);
         },

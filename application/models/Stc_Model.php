@@ -317,11 +317,18 @@ class Stc_Model extends CI_Model
 	{
 		if ($channel_name == "ShowAll") {
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			$this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
-			$this->db->from('summary_channel');
-			$this->db->where('YEAR(date_time) = "'.$year.'" ');
-			$this->db->group_by('MONTH(date_time)');
-			$this->db->order_by('MONTH(date_time)');
+			// $this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
+			// $this->db->from('summary_channel');
+			// $this->db->where('YEAR(date_time) = "'.$year.'" ');
+			// $this->db->group_by('MONTH(date_time)');
+			// $this->db->order_by('MONTH(date_time)');
+
+			$this->db->select('b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
+			$this->db->from('summary_channel a');
+			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
+			$this->db->where('YEAR(a.date_time) = "'.$year.'"');
+			$this->db->group_by('MONTH(a.date_time)');
+			$this->db->order_by('MONTH(a.date_time)');
 
 			$query = $this->db->get();
 		
@@ -332,8 +339,8 @@ class Stc_Model extends CI_Model
 			// $this->db->from('summary_channel');
 			// $this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
 			// $this->db->group_by('MONTH(date_time)');
-
-			$this->db->select('b.channel_name, MONTH(a.date_time) date, SUM(a.total) total_traffic');
+			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+			$this->db->select('b.channel_name, b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
 			$this->db->from('summary_channel a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
