@@ -3,11 +3,22 @@ var v_date = '';
 var list_channel= [];
 
 $(document).ready(function () {
+    // set date
     v_date = getToday();
-    // var data_chart = callIntervalTraffic('2019-05-22', []);
-    // var data_table_avg = callDataTableAvg('2019-11-02');
-    // var data_percentage = callDataPercentage('2019-05-22');
-    var data_chart = callIntervalTraffic(v_date, []);
+    $('#input-date').datepicker("setDate", v_date);
+    //set check all channel
+    $('#check-all-channel').prop('checked',true);
+    $("input:checkbox.checklist-channel").prop('checked',true);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        type.push($(el).data('type'));
+    });
+    // console.log(values);
+    list_channel = values;
+
+    // var data_chart = callIntervalTraffic(v_date, []);
+    var data_chart = callIntervalTraffic(v_date, list_channel);
     var data_table_avg = callDataTableAvg(v_date);
     var data_percentage = callDataPercentage(v_date);
     
@@ -45,6 +56,7 @@ function getToday(){
 
 function callIntervalTraffic(date, arr_channel){
     // console.log(+arr_channel);
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday',
@@ -56,10 +68,12 @@ function callIntervalTraffic(date, arr_channel){
             var response = JSON.parse(r);
             // console.log(response);
             drawChartToday(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             console.log(r);
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -67,48 +81,53 @@ function callIntervalTraffic(date, arr_channel){
 function drawChartToday(response){
     destroyChartInterval();
     var data = [];
-    response.data.series.forEach(function (value, index) {
-        var obj = {
-            label: value.label,
-            data: value.data,
-            backgroundColor: 'transparent',
-            borderColor: getColorChannel(value.label),
-            borderWidth: 3,
-            pointStyle: 'circle',
-            pointRadius: 4,
-            pointBorderColor: 'transparent',
-            pointBackgroundColor: getColorChannel(value.label),
-        };
-        data.push(obj);
-    });
+    if(!response.data.series){
+        $('#customerChartToday').remove(); // this is my <canvas> element
+        $('#chart-interval').append('<div id="chart-no-data" class="h-400"><h6>No Data</h6></div>');
+    }else{
+        response.data.series.forEach(function (value, index) {
+            var obj = {
+                label: value.label,
+                data: value.data,
+                backgroundColor: 'transparent',
+                borderColor: getColorChannel(value.label),
+                borderWidth: 3,
+                pointStyle: 'circle',
+                pointRadius: 4,
+                pointBorderColor: 'transparent',
+                pointBackgroundColor: getColorChannel(value.label),
+            };
+            data.push(obj);
+        });
 
-    // draw chart
-    var ctx = document.getElementById( "customerChartToday" );
-    var myChart = new Chart( ctx, {
-        type: 'line',
-        data: {
-            labels: response.data.label_time,
-            datasets: data
-        },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			legend:{
-				position:'bottom',
-                labels:{
-                     boxWidth:10
+        // draw chart
+        var ctx = document.getElementById( "customerChartToday" );
+        var myChart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels: response.data.label_time,
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend:{
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
+                barRoundness:  1,
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
                 }
-			},
-			barRoundness:  1,
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true
-					}
-                }]
             }
-        }
-    } );
+        } );
+    }
 }
 
 function callDataTableAvg(date){
@@ -223,13 +242,14 @@ function drawChartPercentageToday(response){
 function destroyChartInterval(){
     // destroy chart interval 
     $('#customerChartToday').remove(); // this is my <canvas> element
-    $('#chart-interval').append('<canvas id="customerChartToday"  class="h-400"><canvas>');
+    $('#chart-no-data').remove(); // this is my <canvas> element
+    $('#chart-interval').append('<canvas id="customerChartToday"  class="h-400"></canvas>');
 }
 
 function destroyChartPercentage(){
     //destroy chart percentage
     $('#echartPercentageToday').remove(); // this is my <canvas> element
-    $('#chart-percentage').append('<canvas id="echartPercentageToday"><canvas>');
+    $('#chart-percentage').append('<canvas id="echartPercentageToday"></canvas>');
 }
 
 //jquery
@@ -242,7 +262,7 @@ function destroyChartPercentage(){
             v_date = this.value;
             
             //re draw
-            callIntervalTraffic(this.value, []);
+            callIntervalTraffic(this.value, list_channel);
             callDataTableAvg(this.value);
             callDataPercentage(this.value);
         }

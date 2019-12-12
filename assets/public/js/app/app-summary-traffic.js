@@ -93,24 +93,28 @@ function drawCardInteraction(value){
 function drawCardInteractionNew(value){
     // draw
     $('#row-baru').append(''+
-    '<div class="col-xl-4 col-lg-4 col-md-12">'+
-        '<div class="mini-stat clearfix rounded" style="background-color: '+value.channel_color+'">'+
-            '<div class="row mt-2">'+
-                '<div class="col col-lg-4">'+
-                    '<div class="card-box text-center">'+
-                        '<div class="icon icon-shape bg-light rounded-circle">'+
-                            '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+    '<div class="col-xl-4 col-lg-6 col-md-12">'+
+        '<div class="mini-stat-summary clearfix rounded" style="background-color: '+value.channel_color+'">'+
+            '<div class="row">'+
+                '<div class="col-lg-4 ml-1">'+
+                    '<div class="d-flex flex-row text-center">'+
+                        '<div class="bd-highlight">'+
+                            '<span class="mini-stat-icon bg-light">'+
+                                '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
+                            '</span>'+  
                         '</div>'+
-                        '<h6 class="mt-4 text-white">'+value.channel+'</h6>'+
+                    '</div>'+
+                    '<div class="d-flex">'+
+                        '<div class="mt-2 text-center text-white">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
-                '<div class="col-md-auto mt-2">'+
+                '<div class="col-md-auto mb-2">'+
                     '<h6 class="text-white font-13">Unique Customer</h6>'+
                     '<h6 class="text-white font-13">Total Interaction</h6>'+
                     '<h6 class="text-white font-13">Case In</h6>'+
                     '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
-                '<div class="col-md-auto mt-2">'+
+                '<div class="col-md-auto ml-1">'+
                     '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+
@@ -119,7 +123,6 @@ function drawCardInteractionNew(value){
             '</div>'+
         '</div>'+
     '</div>');
-
 }
 
 function callSummaryInteraction(params, index_time){

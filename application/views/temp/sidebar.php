@@ -2,7 +2,7 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
-		<!-- <li class="slide">
+		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-chart icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Wallboard</span>
@@ -14,7 +14,7 @@
 				<li><a class="slide-item" href="index3.html">Average Time</a></li>
 				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
 			</ul>
-		</li> -->
+		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
 				<i class="side-menu__icon si si-home icon-resize"></i>
@@ -40,6 +40,9 @@
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
+						<!-- <div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration per Interaction/Channel</a></div> -->
 					</div>
 				</li>
 			</ul>

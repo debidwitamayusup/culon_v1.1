@@ -1,3 +1,8 @@
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
@@ -9,10 +14,15 @@ $(document).ready(function () {
     var data_table_avg = callDataTableAvg('11');
 });
 
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
 function callGraphicInterval(channel_name, month){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
+     $("#filter-loader").fadeIn("slow");
+    var getMontName = monthNumToName(month);
     var data = "";
     var base_url = $('#base_url').val();
     //call traffic per month
@@ -27,10 +37,12 @@ function callGraphicInterval(channel_name, month){
             var response = JSON.parse(r);
             // console.log(response);
             var chartdata = [{
-                name: 'total',
+                name: getMontName,
                 type: 'bar',
                 data: response.data.total_traffic
             }];
+
+            // console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
             var option = {
@@ -60,10 +72,12 @@ function callGraphicInterval(channel_name, month){
                     trigger: 'axis',
                     axisPointer: {
                         label: {
-                            show: false,
+                            show: true,
+                            color: '#7886a0'
                         }
                     }
                 },
+
                 yAxis: {
                     splitLine: {
                         lineStyle: {
@@ -81,13 +95,14 @@ function callGraphicInterval(channel_name, month){
                     }
                 },
                 series: chartdata,
-                color: ['#B22222']
+                color: [''+response.data.channel_color+'']
             };
             barChart.setOption(option);
-
+        $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+             $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -164,11 +179,6 @@ function drawChartPercentageMonth(response){
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        min: 0 // Edit the value according to what you need
                     }
                 }]
             },

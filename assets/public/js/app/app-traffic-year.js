@@ -48,6 +48,7 @@ function callYear()
 }
 
 function callGraphYear(channel_name,year) {
+    $("#filter-loader").fadeIn("slow");
     var data = "";
     var base_url = $('#base_url').val();
     // console.log(year);
@@ -67,7 +68,7 @@ function callGraphYear(channel_name,year) {
                 type: 'bar',
                 data: response.data.total_traffic
             }];
-        console.log(response);
+        // console.log(response);
 
         var chart = document.getElementById('echartYear');
         var barChart = echarts.init(chart);
@@ -119,12 +120,14 @@ function callGraphYear(channel_name,year) {
                 }
             },
             series: chartdata,
-            color: ['#B22222']
+            color: [''+response.data.channel_color+'']
         };
         barChart.setOption(option);
+        $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });    
 }   
@@ -176,7 +179,7 @@ function drawChartPercentageYear(response){
         data_rate.push(value.rate);
         data_color.push(getColorChannel(value.channel_name));
     });
-    console.log(data_label);
+    // console.log(data_label);
     var obj = [{
         label: "data",
         data: data_rate,
@@ -226,7 +229,7 @@ function callDataTableAvg(year){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawTableYear(response);
         },
         error: function (r) {
