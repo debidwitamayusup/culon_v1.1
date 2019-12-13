@@ -10,51 +10,21 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('Stc_Model');
+			$this->load->model('OperationModel');
 		}
 
 		public function getSummaryKip()
 		{
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$summaryKipName = array(0=> "Information", 1=>"Request", 2=>"Complaint");
-			$summaryKipNames = array(0=> "Information", 1=>"Request", 2=>"Complaint");
-			$sum = array(0,0,0);
-			$totalKip = array(60, 30, 10);
-			$arr_data = array();
-			// var_dump($summaryKip);
-			// $summaryKip = $this->Stc_Model->getSummaryKip($params, $index);
-			// $i = 0;
-			// while($i < sizeof($summaryKipName)){
-   //              $index = 0;
-   //              $status = 0;
-   //              while($index<sizeof($summaryKip) && $status == 0){
-   //                  $obj = array();
-   //                  if($summaryKipName[$i] == $summaryKipNames[$index]){
-   //                      $obj = [
-   //                          "summaryKipName" => $summaryKipName[$i],
-   //                          "summaryKip" => $summaryKip[$index]
-   //                      ];
-   //                      $status = 1;
-   //                  }else{
-   //                      $obj = [
-   //                          "summaryKipName" => $summaryKipName[$i],
-   //                          "summaryKip" => 0
-   //                      ];
-   //                  }
-   //                  $index++;
-   //              }
-   //              array_push($arr_data, $obj);
-   //              $i++;
-   //          }
-
-			$data = array(
-				"summaryKipName" => $summaryKipName,
-				"summaryKip" => $totalKip
-
-			);
-
+			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
+			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
+			// $arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
+			// $arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
+			$arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category);
+			$data = [
+				'summary' => $arr_category,
+				'kip_channel' => $arr_kip
+			];
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
