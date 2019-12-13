@@ -264,6 +264,7 @@ function drawChartInfo(response){
 			}
 		},
 		series: chartdataInfo,
+		show : 'data',
 		color: ["#A5B0B6"]
 	};
 	var chartInfo = document.getElementById('echartInfo');
