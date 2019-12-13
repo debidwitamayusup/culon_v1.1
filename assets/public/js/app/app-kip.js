@@ -165,18 +165,15 @@ function drawKipPerChannelChart(response){
     category.forEach(function (value, index) {
 		var totalKip = []
 		response.data.kip_channel.forEach(function (value) {
-			// var baba = (value.)?value:0;
-			var baba = "";
+			var total = "";
 			if(i == 0){
-				baba = (value.total_1)?value.total_1:0;
+				total = (value.total_1)?value.total_1:0;
 			}else if(i == 1){
-				baba = (value.total_2)?value.total_2:0;
+				total = (value.total_2)?value.total_2:0;
 			}else if(i == 2){
-				baba = (value.total_3)?value.total_3:0;
+				total = (value.total_3)?value.total_3:0;
 			}
-			
-			totalKip.push(baba)
-			// console.log(baba);
+			totalKip.push(total)
 		});
 		var dataKip = {
 			name: value,
