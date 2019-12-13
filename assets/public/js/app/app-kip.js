@@ -151,31 +151,42 @@ function drawKipPerChannelChart(response){
 	let summaryKipName = []
     let summaryKip = []
     let category = []
-
+	var arr_channel = []
+	response.data.kip_channel.forEach(function(value){
+		arr_channel.push(value.channel_name);
+	});
     // draw card yang ada datanya
     // console.log(response.data);
     response.data.summary.forEach(function (value, index) {
 		category.push(value.category);
     });
-    var chartdata3 = []
-    
-   
-    	category.forEach(function (value, index) {
-			var totalKip = []
-			response.data.kip_channel.forEach(function (value) {
-				var baba = (value.)?value:0;
-				totalKip.push(baba)
-			});
-			var dataKip = {
-				name: value,
-				type: 'bar',
-				stack: "stack",
-				data: totalKip
+	var chartdata3 = []
+	var i = 0;
+    category.forEach(function (value, index) {
+		var totalKip = []
+		response.data.kip_channel.forEach(function (value) {
+			// var baba = (value.)?value:0;
+			var baba = "";
+			if(i == 0){
+				baba = (value.total_1)?value.total_1:0;
+			}else if(i == 1){
+				baba = (value.total_2)?value.total_2:0;
+			}else if(i == 2){
+				baba = (value.total_3)?value.total_3:0;
 			}
-
-			chartdata3.push(dataKip);
-    	}
-    );
+			
+			totalKip.push(baba)
+			// console.log(baba);
+		});
+		var dataKip = {
+			name: value,
+			type: 'bar',
+			stack: "stack",
+			data: totalKip
+		}
+		chartdata3.push(dataKip);
+		i++;
+    });
     console.log(chartdata3);
 
  //    var chartdata3 = [{
@@ -216,7 +227,8 @@ function drawKipPerChannelChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			// data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: arr_channel,
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
