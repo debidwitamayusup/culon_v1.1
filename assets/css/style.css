@@ -4803,6 +4803,36 @@ div.dataTables_wrapper div.dataTables_filter input {
 .card-header+.list-group .list-group-item:first-child {
 	border-top: 0;
 }
+
+/* custom card header */
+.card-header-small {
+	padding: 1.5rem 0rem;
+	margin-bottom: 0;
+	background-color: rgba(0, 0, 0, 0.03);
+	border-bottom:1px solid #e4e6f9;
+}
+.card-header-small:first-child {
+	border-radius: calc(3px - 1px) calc(3px - 1px) 0 0;
+}
+.card-header-small+.list-group .list-group-item:first-child {
+	border-top: 0;
+}
+.card-header-small {
+	background: none;
+    padding: 0.5rem 1.5rem;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 3.0rem;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.card-header-small .card-title {
+	margin-bottom: 0;
+}
+.card-header-small.border-0+.card-body {
+	padding-top: 0;
+}
+
 .card-footer {
 	padding: 1.5rem 1.5rem;
 	background-color: rgba(0, 0, 0, 0.03);
@@ -6017,12 +6047,12 @@ ul {
 	overflow:hidden;
 }
 .chartsh-category {
-	height: 31.9rem;
+	height: 30.5rem;
 	overflow:hidden;
 }
 .chartsh-nfcr {
-	height: 37.5rem;
-	width:17em;
+	height: 36.3rem;
+	width:27rem;
 	overflow:hidden;
 }
 
