@@ -1,3 +1,34 @@
+var base_url = $('#base_url').val();
+
+$(document).ready(function () {
+    
+    loadContent();
+
+});
+
+function loadContent(){
+    callSummaryPie();
+    callInfoTraffic();
+    callComplalintTraffic();
+    callRequestTraffic();
+    callSummaryTrafficChannel();
+}
+
+function callNfcrPie(){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/OperationPerformance/TrafficCategory/getNfcrPie',
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // console.log(response);
+            drawPieChart(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
 (function ($) {
     "use strict";
 
