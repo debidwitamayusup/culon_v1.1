@@ -88,28 +88,32 @@ function drawCard(response){
     //  draw card
     response.data.forEach(function (value, index) {
         $('#card-avg').append(''+
-        '<div class="col-xl-3 col-lg-4 col-md-12">'+
-            '<div class="mini-stat clearfix rounded" style="background-color:'+value.channel_color+'">'+
-                '<div class="row mt-2">'+
-                    '<div class="col col-lg-4">'+
-                        '<div class="card-box text-center">'+
-                            ' <div class="icon icon-shape bg-light rounded-circle">'+
-                                '<i class="'+value.channel_icon+'" style="color: '+value.channel_color+'"></i>'+
+        '<div class="col-xl-3 col-lg-3 col-md-12">'+
+            '<div class="mini-stat-summary clearfix rounded" style="background-color: '+value.channel_color+'">'+
+                '<div class="row">'+
+                    '<div class="col-lg-4 ml-2">'+
+                        '<div class="d-flex flex-row text-center">'+
+                            '<div class="bd-highlight">'+
+                                '<span class="mini-stat-icon bg-light">'+
+                                    '<i class="'+value.channel_icon+'" style="color: '+value.channel_color+'"></i>'+
+                                '</span>'+  
                             '</div>'+
-                            '<h6 class="mt-4 text-white">'+ value.channel_name+'</h6>'+
+                        '</div>'+
+                        '<div class="d-flex">'+
+                            '<div class="mt-2 text-center text-white">'+value.channel_name+'</div>'+
                         '</div>'+
                     '</div>'+
-                    '<div class="col-md-auto ml-2 mt-2">'+
+                    '<div class="col-md-auto mb-2">'+
                         '<h6 class="text-white">ART</h6>'+
-                        '<h6 class="text-white">AHT</h6>'+
                         '<h6 class="text-white">AST</h6>'+
-                        '<h4 class="text-white mt-4">Total</h4>'+
+                        '<h6 class="text-white">AHT</h6>'+
+                        '<h4 class="text-white">Total</h6>'+
                     '</div>'+
-                    '<div class="col-md-auto mt-2">'+
+                    '<div class="col-md-auto ml-1">'+
                         '<h6 class="text-white">'+value.art+'</h6>'+
-                        '<h6 class="text-white">'+value.aht+'</h6>'+
                         '<h6 class="text-white">'+value.ast+'</h6>'+
-                        ' <h4 class="text-white mt-4 font-weight-bold">'+ThousandSeperator(value.total)+'</h4>'+
+                        '<h6 class="text-white">'+value.aht+'</h6>'+
+                        '<h4 class="text-white font-weight-bold">'+ThousandSeperator(value.total)+'</h6>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
