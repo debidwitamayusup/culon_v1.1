@@ -4,7 +4,7 @@
 	/**
 	 * 
 	 */
-	class TrafficCategory extends CI_Controller
+	class NfcrController extends CI_Controller
 	{
 		
 		function __construct()
@@ -14,16 +14,16 @@
 		}
 
 		//get data for pie chart
-		public function getSummaryPie(){
+		public function getNfcrPie(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$data = array();
-			$trafficName = array(0=> "Information", 1=>"Request", 2=>"Complaint");
-			$totalTraffic = array(85, 48, 59);
+			$operationName = array(0=> "FCR", 1=>"N-FCR");
+			$totalTraffic = array(75, 25);
 
 			$data = array(
-				"trafficName" => $trafficName,
-				"totalTraffic" => $totalTraffic
+				"operationName" => $operationName,
+				"totalNfcr" => $totalTraffic
 			);
 
 			$response = array(
@@ -34,17 +34,17 @@
 			echo json_encode($response);
 		}
 
-		//get data for barchart information traffic
-		public function getInfoTraffic(){
+		//get data for information NFCR
+		public function getNfcrInfo(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$data = array();
 			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalTraffic = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
+			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
 
 			$data = array(
 				"channelName" => $channelName,
-				"totalTraffic" => $totalTraffic
+				"totalNfcr" => $totalNfcr
 			);
 
 			$response = array(
@@ -55,38 +55,17 @@
 			echo json_encode($response);
 		}
 
-		//get data for barchart complaint traffic
-		public function getComplaintTraffic(){
+		//get data for complaint NFCR
+		public function getNfcrComplaint(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$data = array();
 			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalTraffic = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
+			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
 
 			$data = array(
 				"channelName" => $channelName,
-				"totalTraffic" => $totalTraffic
-			);
-
-			$response = array(
-				'status' => 200,
-				'message' => 'Success',
-				'data' => $data
-			);
-			echo json_encode($response);
-		}		
-
-		//get data for barchart Request traffic
-		public function getRequestTraffic(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalTraffic = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
-
-			$data = array(
-				"channelName" => $channelName,
-				"totalTraffic" => $totalTraffic
+				"totalNfcr" => $totalNfcr
 			);
 
 			$response = array(
@@ -97,24 +76,17 @@
 			echo json_encode($response);
 		}
 
-		//get data for echart summary by channel
-		public function summaryTrafficChannel(){
+		//get data for request NFCR
+		public function getNfcrRequest(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$data = array();
-
-			
-			$trafficName = array(0=> "Information", 1=>"Request", 2=>"Complaint");
 			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalTraffic = array(0=> "14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25", 1=>"12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30", 2=>"10, 12, 13, 60, 16, 13, 30, 40,40,40,70");
-			
-			
-			
-
+			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
 
 			$data = array(
 				"channelName" => $channelName,
-				"totalTraffic" => $totalTraffic
+				"totalNfcr" => $totalNfcr
 			);
 
 			$response = array(
@@ -125,6 +97,27 @@
 			echo json_encode($response);
 		}
 
+		//get data for summary traffic NFCR
+		public function getNfcrSummaryTraffic(){
+			$params = $this->security->xss_clean($this->input->post('params', true)); 
+			$index = $this->security->xss_clean($this->input->post('index', true));
+			$data = array();
+			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
+			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
+
+			$data = array(
+				"channelName" => $channelName,
+				"totalNfcr" => $totalNfcr
+			);
+
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data
+			);
+			echo json_encode($response);
+		}
 
 	}
+
 ?>
