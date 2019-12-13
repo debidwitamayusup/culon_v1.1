@@ -17,14 +17,10 @@
 		{
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
-			// $arr_category = $this->OperationModel->get_top_3_category($params, $index);
-			$arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
-			// echo "<pre>";
-			// var_dump($arr_category);die();
-			$arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
-			// $arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category);
-			// echo "<pre>";
-			// var_dump($arr_kip);die();
+			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
+			// $arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
+			// $arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
+			$arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category);
 			$data = [
 				'summary' => $arr_category,
 				'kip_channel' => $arr_kip
