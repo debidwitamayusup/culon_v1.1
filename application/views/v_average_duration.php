@@ -46,19 +46,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,19 +81,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,19 +116,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -151,19 +151,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,19 +188,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -223,19 +223,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,19 +258,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -293,19 +293,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -330,19 +330,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -365,19 +365,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -400,19 +400,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -435,19 +435,19 @@
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Jumlah Interaksi</span>
-                                                        <h5 class="description-header num-font">1,234</h5>
+                                                        <h5 class="description-header num-font mt-2">1,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
                                                         <span class="text-muted-durasi">Rata-rata Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
-                                                        <span class="text-muted-durasi">Jumlah Durasi</span>
-                                                        <h5 class="description-header num-font">2,234</h5>
+                                                        <span class="text-muted-durasi ">Jumlah Durasi</span>
+                                                        <h5 class="description-header num-font mt-2">2,234</h5>
                                                     </div>
                                                 </div>
                                             </div>
