@@ -1,20 +1,21 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
-    
-    loadContent();
+    params_time = 'day';
+    v_date = '2019-12-01';
+    loadContent(params_time, v_date);
 
 });
 
-function loadContent(){
-    callSummaryInteraction();
+function loadContent(params, index){
+    callSummaryInteraction(params, index);
     callKipPerChannel();
     callChartInfo();
     callChartComp();
     callChartReq();
 }
 
-function callSummaryInteraction(){
+function callSummaryInteraction(params, index){
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -91,12 +92,8 @@ function callChartReq(){
 
 function drawPieChart(response){
 	//destroy div piechart
-    // $('#pieSummary').remove(); // this is my <canvas> element
-    // $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
-
-    // //destroy div card content
-    // $('#row-baru').remove(); // this is my <div> element
-    // $('#card-baru').append('<div id="row-baru" class="row"></div>');
+    $('#pieKIP').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>');
 
     let summaryKipName = []
     let summaryKip = []
@@ -145,7 +142,7 @@ function drawPieChart(response){
 }
 
 function drawKipPerChannelChart(response){
-	
+	 "use strict";
 	let summaryKipName = []
     let summaryKip = []
 
@@ -157,12 +154,24 @@ function drawKipPerChannelChart(response){
     response.data.summaryKipName.forEach(function (value, index) {
 		summaryKipName.push(value);
     });
-     var chartdata3 = {
+    
+
+    var chartdata3 = [{
 		name: 'Information',
 		type: 'bar',
 		stack: 'Stack',
-		data: summaryKip
-	}
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+	}, {
+		name: 'Request',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+    },{
+		name: 'Complaint',
+		type: 'bar',
+		stack: 'Stack',
+		data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+    }];
 	var option6 = {
 		grid: {
 			top: '6',

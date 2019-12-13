@@ -32,7 +32,7 @@
                             <div class="card-header bg-gray1">
                                 <h3 class="card-title text-white">Summary KIP </h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="canvas-pie">
                                 <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
                             </div>
                         </div>
