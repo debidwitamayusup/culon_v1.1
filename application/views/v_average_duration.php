@@ -31,6 +31,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="row">
+
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
                                         <div class="widget-user-header bg-gray1">
@@ -170,9 +171,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
+                                
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
                                         <div class="widget-user-header bg-gray1">
@@ -312,9 +311,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
                                         <div class="widget-user-header bg-gray1">
