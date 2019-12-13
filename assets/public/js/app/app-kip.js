@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 function loadContent(params, index){
     callSummaryInteraction(params, index);
-    callKipPerChannel();
+    // callKipPerChannel();
     callChartInfo();
     callChartComp();
     callChartReq();
@@ -19,24 +19,14 @@ function callSummaryInteraction(params, index){
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
+        data: {
+        	params: params,
+        	index: index
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
-        },
-        error: function (r) {
-            alert("error");
-        },
-    });
-}
-
-function callKipPerChannel(){
-    $.ajax({
-        type: 'post',
-        url: base_url + 'api/OperationPerformance/KipController/getKipPerChannel',
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response);
             drawKipPerChannelChart(response);
         },
         error: function (r) {
@@ -44,6 +34,21 @@ function callKipPerChannel(){
         },
     });
 }
+
+// function callKipPerChannel(){
+//     $.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/KipController/getKipPerChannel',
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawKipPerChannelChart(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//         },
+//     });
+// }
 
 function callChartInfo(){
     $.ajax({
@@ -100,12 +105,12 @@ function drawPieChart(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.summaryKip.forEach(function (value, index) {
-		summaryKip.push(value);
+    response.data.summary.forEach(function (value, index) {
+		summaryKipName.push(value.category);
+		summaryKip.push(value.total_kip);
+
     });
-    response.data.summaryKipName.forEach(function (value, index) {
-		summaryKipName.push(value);
-    });
+    
     //pie chart
     var ctx = document.getElementById( "pieKIP");
     ctx.height = 300;
@@ -145,33 +150,51 @@ function drawKipPerChannelChart(response){
 	 "use strict";
 	let summaryKipName = []
     let summaryKip = []
+    let category = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.summaryKip.forEach(function (value, index) {
-		summaryKip.push(value);
+    response.data.summary.forEach(function (value, index) {
+		category.push(value.category);
     });
-    response.data.summaryKipName.forEach(function (value, index) {
-		summaryKipName.push(value);
-    });
+    var chartdata3 = []
     
+   
+    	category.forEach(function (value, index) {
+			var totalKip = []
+			response.data.kip_channel.forEach(function (value) {
+				var baba = (value.)?value:0;
+				totalKip.push(baba)
+			});
+			var dataKip = {
+				name: value,
+				type: 'bar',
+				stack: "stack",
+				data: totalKip
+			}
 
-    var chartdata3 = [{
-		name: 'Information',
-		type: 'bar',
-		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
-	}, {
-		name: 'Request',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
-    },{
-		name: 'Complaint',
-		type: 'bar',
-		stack: 'Stack',
-		data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
-    }];
+			chartdata3.push(dataKip);
+    	}
+    );
+    console.log(chartdata3);
+
+ //    var chartdata3 = [{
+	// 	name: 'Information',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+	// },
+	//  {
+	// 	name: 'Request',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+ //    },{
+	// 	name: 'Complaint',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+ //    }];
 	var option6 = {
 		grid: {
 			top: '6',
@@ -215,6 +238,7 @@ function drawKipPerChannelChart(response){
 	var chart6 = document.getElementById('echartKIP');
 	var barChart6 = echarts.init(chart6);
     barChart6.setOption(option6);
+
 }
 
 function drawChartInfo(response){
