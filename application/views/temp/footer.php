@@ -100,3 +100,6 @@
 <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
 
 <script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
+
+<!--app js side bar  -->
+<!-- <script src="<?=base_url()?>assets/public/js/app/app-sidebar.js"></script> -->
