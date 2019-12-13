@@ -3323,7 +3323,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 .widget-user .widget-user-header {
     padding: 20px;
-    height: 120px;
+    height: 80px;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
 }
@@ -3344,7 +3344,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .widget-user .widget-user-image {
     position: absolute;
-    top: 65px;
+    top: 38px;
     left: 50%;
     margin-left: -45px;
 }
@@ -3447,7 +3447,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 /* custom plan-icon */
 .plan-icon-durasi {
     display: inline-block;
-    font-size: 39px;
+    font-size: 32px;
     width: 80px;
     height: 80px;
     line-height: 80px;
@@ -6044,15 +6044,15 @@ ul {
 /* custom chart   */
 .chartsh-horizontal {
 	height: 18.7rem;
-	width:12.6rem;
+	width:12.4rem;
 	overflow:hidden;
 }
 .chartsh-category {
-	height: 30.5rem;
+	height: 32.3rem;
 	overflow:hidden;
 }
 .chartsh-nfcr {
-	height: 36.3rem;
+	height: 38.0rem;
 	width:27rem;
 	overflow:hidden;
 }

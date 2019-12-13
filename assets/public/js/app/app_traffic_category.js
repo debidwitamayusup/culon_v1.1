@@ -65,7 +65,7 @@
 
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 359;
+    ctx.height = 358;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -111,7 +111,7 @@
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '12',
 			bottom: '20',
 			left: '60',
 		},
@@ -162,7 +162,7 @@
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '12',
 			bottom: '20',
 			left: '60',
 		},
@@ -213,7 +213,7 @@
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '12',
 			bottom: '20',
 			left: '60',
 		},
