@@ -102,8 +102,15 @@
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$data = array();
+
+			
+			$trafficName = array(0=> "Information", 1=>"Request", 2=>"Complaint");
 			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalTraffic = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
+			$totalTraffic = array(0=> "14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25", 1=>"12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30", 2=>"10, 12, 13, 60, 16, 13, 30, 40,40,40,70");
+			
+			
+			
+
 
 			$data = array(
 				"channelName" => $channelName,

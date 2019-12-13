@@ -357,6 +357,23 @@ function drawSummaryTrafficChannelChart(response){
     });
 
    /*----Echart6----*/
+   var chartdata3 = [{
+		name: 'Information',
+		type: 'bar',
+		stack: 'Stack',
+		data: totalTraffic
+	}, {
+		name: 'Request',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+    },{
+		name: 'Complaint',
+		type: 'bar',
+		stack: 'Stack',
+		data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+	}];
+
 	var option6 = {
 		grid: {
 			top: '6',
@@ -394,11 +411,7 @@ function drawSummaryTrafficChannelChart(response){
 				color: '#7886a0'
 			}
 		},
-		series: {
-			type: 'bar',
-			stack: 'Stack',
-			data: totalTraffic
-		},
+		series: chartdata3,
 		color: [ "#A5B0B6","#009E8C","#00436D"]
 	};
 	var chart6 = document.getElementById('echartTraffic');
