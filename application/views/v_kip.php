@@ -29,8 +29,8 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header bg-gray2">
-                                <h3 class="card-title text-black">Summary KIP </h3>
+                            <div class="card-header bg-gray1">
+                                <h3 class="card-title text-white">Summary KIP </h3>
                             </div>
                             <div class="card-body">
                                 <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
-                            <div class="card-header bg-gray2">
-                                <h4 class="card-title text-black">KIP per Channel</h4>
+                            <div class="card-header bg-gray1">
+                                <h4 class="card-title text-white">KIP per Channel</h4>
                             </div>
                             <div class="card-body">
                                 <div id="echartKIP" class="chartsh overflow-hidden"></div>
@@ -74,8 +74,8 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="card">
-                                            <div class="card-header bg-gray2">
-                                                <h4 class="card-title text-black">Information</h4>
+                                            <div class="card-header bg-gray1">
+                                                <h4 class="card-title text-white">Information</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartInfo" class="chartsh overflow-hidden"></div>
@@ -84,8 +84,8 @@
                                     </div>
                                     <div class="col-lg-4 col-md-12">
                                         <div class="card">
-                                            <div class="card-header bg-gray2">
-                                                <h4 class="card-title text-black">Complaint</h4>
+                                            <div class="card-header bg-gray1">
+                                                <h4 class="card-title text-white">Complaint</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartComp" class="chartsh overflow-hidden"></div>
@@ -94,8 +94,8 @@
                                     </div>
                                     <div class="col-lg-4 col-md-12">
                                         <div class="card">
-                                            <div class="card-header bg-gray2">
-                                                <h4 class="card-title text-black">Request</h4>
+                                            <div class="card-header bg-gray1">
+                                                <h4 class="card-title text-white">Request</h4>
                                             </div>
                                             <div class="card-body">
                                                 <div id="echartReq" class="chartsh overflow-hidden"></div>

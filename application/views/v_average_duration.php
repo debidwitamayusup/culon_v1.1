@@ -11,8 +11,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Operation Performance</li>
-                            <li class="breadcrumb-item active" aria-current="page">Average Duration per Interaction /
-                                Channel </li>
+                            <li class="breadcrumb-item active" aria-current="page">Average Duration per Interaction or Channel </li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
                             <!-- <div class="btn-group btn-sm">
