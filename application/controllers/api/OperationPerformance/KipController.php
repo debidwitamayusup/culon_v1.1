@@ -4,7 +4,7 @@
 	/**
 	 * 
 	 */
-	class KipCOntroller extends CI_Controller
+	class KipController extends CI_Controller
 	{
 		
 		function __construct()

@@ -361,17 +361,17 @@ function drawSummaryTrafficChannelChart(response){
 		name: 'Information',
 		type: 'bar',
 		stack: 'Stack',
-		data: totalTraffic
+       data: [23, 12, 14, 15, 50, 24, 24, 10, 20, 30, 20, 30]
 	}, {
 		name: 'Request',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+		data: [23,12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
     },{
 		name: 'Complaint',
 		type: 'bar',
 		stack: 'Stack',
-		data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+		data: [23,10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
 	}];
 
 	var option6 = {
