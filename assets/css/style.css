@@ -18474,7 +18474,7 @@ svg {
 	content: "\e901";
 }
 .fe-alert-circle:before {
-	content: "\e902";
+		content: "\e902";
 }
 .fe-alert-octagon:before {
 	content: "\e903";
