@@ -42,7 +42,7 @@
                             <div class="card-header bg-red">
                                 <h4 class="card-title text-white">KIP per Channel</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="content-chart-kip">
                                 <div id="echartKIP" class="chartsh overflow-hidden"></div>
                             </div>
                         </div>
@@ -55,19 +55,6 @@
                             <div class="row ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="channel_name">
-                                        <option value="ShowAll">Show All</option>
-                                        <option value="Whatsapp">Whatsapp</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Email">Email</option>
-                                        <option value="Telegram">Telegram</option>
-                                        <option value="Line">Line</option>
-                                        <option value="Voice">Voice</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Messenger">Messenger</option>
-                                        <option value="Twitter DM">Twitter DM</option>
-                                        <option value="Live Chat">Live Chat</option>
-                                        <option value="SMS">SMS</option>
                                     </select>
                                 </div>
                             </div>

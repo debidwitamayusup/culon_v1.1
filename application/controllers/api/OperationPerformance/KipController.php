@@ -13,6 +13,16 @@
 			$this->load->model('OperationModel');
 		}
 
+		public function getAllChannel(){
+			$data = $this->OperationModel->get_all_channel();
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data
+			);
+			echo json_encode($response);
+		}
+
 		public function getSummaryKip()
 		{
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
@@ -28,7 +38,9 @@
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $data,
+				'params' => $params,
+				'index' => $index,
 			);
 			echo json_encode($response);
 

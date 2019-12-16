@@ -7,7 +7,14 @@ class OperationModel extends CI_Model
 	{
 		parent:: __construct();
 	}
+    public function get_all_channel(){
+        $this->db->select('*');
+        $this->db->from('m_channel');
+        $this->db->order_by('channel_name', 'ASC');
+        $query = $this->db->get();
 
+		return $query->result();
+    }
 	public function get_top_3_category($params, $index){
         $this->db->select('category, sum(total_kip) as total_kip');
         $this->db->from('summary_kip');
