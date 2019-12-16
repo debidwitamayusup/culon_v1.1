@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header-small bg-gray1">
+                            <div class="card-header-small bg-red">
                                 <h6 class="card-title-small text-white">Summary Status FCR N-FCR</h6>
                             </div>
                             <div class="card-body">
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-gray1">
+                                        <div class="card-header-small bg-red">
                                             <h6 class="card-title-small text-white">Information</h6>
                                         </div>
                                         <div class="card-body">
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-gray1">
+                                        <div class="card-header-small bg-red">
                                             <h6 class="card-title-small text-white">Complaint</h6>
                                         </div>
                                         <div class="card-body">
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-gray1">
+                                        <div class="card-header-small bg-red">
                                             <h6 class="card-title-small text-white">Request</h6>
                                         </div>
                                         <div class="card-body">
@@ -81,7 +81,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header-small bg-gray1">
+                            <div class="card-header-small bg-red">
                                 <h6 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h6>
                             </div>
                             <div class="card-body" id="chart-percentage">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header-small bg-gray1">
+                            <div class="card-header-small bg-red">
                                 <h6 class="card-title-small text-white">Average Interval</h6>
                             </div>
                             <div class="card-body">

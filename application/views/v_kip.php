@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header bg-gray1">
+                            <div class="card-header bg-red">
                                 <h3 class="card-title text-white">Summary KIP </h3>
                             </div>
                             <div class="card-body" id="canvas-pie">
@@ -39,10 +39,10 @@
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
-                            <div class="card-header bg-gray1">
+                            <div class="card-header bg-red">
                                 <h4 class="card-title text-white">KIP per Channel</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="content-chart-kip">
                                 <div id="echartKIP" class="chartsh overflow-hidden"></div>
                             </div>
                         </div>
@@ -55,52 +55,11 @@
                             <div class="row ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="channel_name">
-                                        <option value="ShowAll">Show All</option>
-                                        <option value="Whatsapp">Whatsapp</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Email">Email</option>
-                                        <option value="Telegram">Telegram</option>
-                                        <option value="Line">Line</option>
-                                        <option value="Voice">Voice</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Messenger">Messenger</option>
-                                        <option value="Twitter DM">Twitter DM</option>
-                                        <option value="Live Chat">Live Chat</option>
-                                        <option value="SMS">SMS</option>
                                     </select>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Information</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartInfo" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Complaint</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartComp" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Request</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartReq" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
+                                <div id="row-sub-category">
+                                    <div class="row" id="content-sub-category">
                                     </div>
                                 </div>
                             </div>
