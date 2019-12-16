@@ -515,11 +515,11 @@ function drawTableData(response){
             '</tr>');
         response.data.traffic_channel.forEach(function (value, index) {
             $('#table_avg_traffic').find('tbody').append('<tr>'+
-            '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
-            '<td>'+value.total_1+'</td>'+
-            '<td>'+value.total_2+'</td>'+
-            '<td>'+value.total_3+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+(index+1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.channel_name+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_1+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_2+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_3+'</td>'+
             '</tr>');
         });
     }else{
