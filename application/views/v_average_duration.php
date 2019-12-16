@@ -33,11 +33,11 @@
                             <div class="row">
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-black">Whatsapp</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
                                                 <i class="fab fa-whatsapp text-white"></i>
                                             </div>
                                         </div>
@@ -68,12 +68,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Facebook</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fab fa-facebook"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fab fa-facebook text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -103,12 +103,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Twitter</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fab fa-twitter"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fab fa-twitter text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -138,12 +138,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Instagram</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fab fa-instagram"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fab fa-instagram text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -175,11 +175,11 @@
                             <div class="row">
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-black">Telegram</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
                                                 <i class="fab fa-telegram text-white"></i>
                                             </div>
                                         </div>
@@ -210,12 +210,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Email</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fa fa-envelope"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fa fa-envelope text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -245,12 +245,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Twitter DM</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fa fa-mail-bulk"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fa fa-mail-bulk text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -280,12 +280,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc">Voice</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fa fa-microphone"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fa fa-microphone text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -317,11 +317,11 @@
                             <div class="row">
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-black">Messenger</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
                                                 <i class="fab fa-facebook-messenger text-white"></i>
                                             </div>
                                         </div>
@@ -352,12 +352,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Line</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fab fa-line"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fab fa-line text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -387,12 +387,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc text-white">Live Chat</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fa fa-comments"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fa fa-comments text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
@@ -422,12 +422,12 @@
 
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
-                                        <div class="widget-user-header bg-gray1">
+                                        <div class="widget-user-header bg-red">
                                             <h5 class="widget-user-desc">SMS</h5>
                                         </div>
                                         <div class="widget-user-image">
-                                            <div class="plan-icon-durasi bg-blue text-center">
-                                                <i class="fa fa-envelope-open"></i>
+                                            <div class="plan-icon-durasi bg-gray1 text-center">
+                                                <i class="fa fa-envelope-open text-white"></i>
                                             </div>
                                         </div>
                                         <div class="box-footer">
