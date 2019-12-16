@@ -16,6 +16,7 @@ function loadContent(params, index){
 }
 
 function callSummaryInteraction(params, index){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -27,10 +28,12 @@ function callSummaryInteraction(params, index){
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
-            drawKipPerChannelChart(response);
+			drawKipPerChannelChart(response);
+			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            alert("error");
+			alert("error");
+			$("#filter-loader").fadeOut("slow");
         },
     });
 }
