@@ -28,23 +28,29 @@
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-12">
+                    <div class="col-xl-4 col-lg-4 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-body">
+                            <div class="card-header-small bg-red">
+                                <h6 class="card-title-small text-white">Summary Category</h6>
+                            </div>
+                            <div class="card-body" id="canvas-pie">
                                 <canvas id="pieTCategory" class="donutShadow overflow-hidden"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-12">
+                    <div class="col-lg-8 col-md-12">
                         <div class="card">
+                            <div class="card-header-small bg-red">
+                                <h6 class="card-title-small text-white">Summary Category per Channel</h6>
+                            </div>
                             <div class="body">
                                 <div class="row ml-1 mr-1 mt-1">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Information</h3>
+                                                <h3 class="expanel-title" id="category1"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat1">
                                                 <div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -53,9 +59,9 @@
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Complaint</h3>
+                                                <h3 class="expanel-title" id="category2"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat2">
                                                 <div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -64,9 +70,9 @@
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Request</h3>
+                                                <h3 class="expanel-title" id="category3"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat3">
                                                 <div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -80,8 +86,8 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Summary by Channel</h3>
+                        <div class="card-header-small bg-red">
+                                <h6 class="card-title-small text-white">Summary by Channel</h6>
                             </div>
                             <div class="card-body">
                                 <div id="echartTraffic" class="chartsh-category overflow-hidden"></div>
@@ -92,101 +98,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table card-table table-vcenter text-nowrap ">
-                                        <thead class="bg-primary text-center">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>CHANNEL</th>
-                                                <th>INFORMATION</th>
-                                                <th>COMPLAINT</th>
-                                                <th>REQUEST</th>
-                                            </tr>
+                                    <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
+                                        <thead class="bg-primary text-center" id="mythead_avg_traffic">
                                         </thead>
-                                        <tbody class="text-center">
-                                            <tr>
-                                                <td>1</td>
-                                                <td class="text-sm font-weight-600">Instagram</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td class="text-sm font-weight-600">Whatsapp</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td class="text-sm font-weight-600">Line</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td class="text-sm font-weight-600">Voice</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td class="text-sm font-weight-600">Facebook</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td class="text-sm font-weight-600">Messenger</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td class="text-sm font-weight-600">Twitter DM</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>8</td>
-                                                <td class="text-sm font-weight-600">Twitter</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>9</td>
-                                                <td class="text-sm font-weight-600">Telegram</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10</td>
-                                                <td class="text-sm font-weight-600">Live Chat</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>11</td>
-                                                <td class="text-sm font-weight-600">Email</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12</td>
-                                                <td class="text-sm font-weight-600">SMS</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                                <td class="text-sm font-weight-600">100</td>
-                                                <td class="text-sm font-weight-600">90</td>
-                                            </tr>
+                                        <tbody class="text-center" id="mytbody_avg_traffic">
                                         </tbody>
                                     </table>
                                 </div>

@@ -4,13 +4,23 @@
 	/**
 	 * 
 	 */
-	class KipCOntroller extends CI_Controller
+	class KipController extends CI_Controller
 	{
 		
 		function __construct()
 		{
 			parent::__construct();
 			$this->load->model('OperationModel');
+		}
+
+		public function getAllChannel(){
+			$data = $this->OperationModel->get_all_channel();
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data
+			);
+			echo json_encode($response);
 		}
 
 		public function getSummaryKip()
@@ -28,36 +38,43 @@
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $data,
+				'params' => $params,
+				'index' => $index,
 			);
 			echo json_encode($response);
 
 		}
 
-
-		public function getKipPerChannel(){
+		public function getDetailKip(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
+			$arr_category = $this->security->xss_clean($this->input->post('category', true));
+			$channel_id = $this->security->xss_clean($this->input->post('channel_id', true));
+			// if(!$arr_category){
+			// 	$response = array(
+			// 		'status' => 502,
+			// 		'message' => 'failed'
+			// 	);
+			// 	echo json_encode($response);
+			// 	return;
+			// }
 			$data = array();
-			$summaryKipName = array('Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS');
-			$summaryKipNames = array(0=> "Information", 1=>"Request", 2=>"Complaint");
-			$sum = array(0,0,0);
-			$summaryKip = array(14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24);
-			$arr_data = array();
 
-			$data = array(
-				"summaryKipName" => $summaryKipName,
-				"summaryKip" => $summaryKip
-
-			);
-
+			$arr_kip = array();
+			foreach($arr_category as $key){
+				$data_category = $this->OperationModel->get_data_sub_category($params, $index, $channel_id, $key);
+				array_push($arr_kip, $data_category);
+				// array_push($arr_kip, $key);
+			}
+			$data = $arr_kip;
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
 				'data' => $data
+				// 'data' => $arr_category
 			);
 			echo json_encode($response);
-			
 		}
 
 		public function getKipInfo(){
