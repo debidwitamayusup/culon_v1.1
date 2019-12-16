@@ -164,7 +164,20 @@ function drawChartSubCategory(response){
 			series: chartdataInfo,
 			show : 'data',
 			// color: ["#A5B0B6"]
-			color: [color[i]]
+			color: [color[i]],
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				}
+			},
 		};
 		var chartInfo = document.getElementById('echart'+value);
 		var barChartInfo = echarts.init(chartInfo);
@@ -300,7 +313,20 @@ function drawKipPerChannelChart(response){
 			}
 		},
 		series: chartdata3,
-		color: ["#A5B0B6","#009E8C","#00436D"]
+		color: ["#A5B0B6","#009E8C","#00436D"],
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 	};
 	var chart6 = document.getElementById('echartKIP');
 	var barChart6 = echarts.init(chart6);
