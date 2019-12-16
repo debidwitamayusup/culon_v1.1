@@ -1,38 +1,56 @@
 var base_url = $('#base_url').val();
+var params_time = '';
 
 $(document).ready(function () {
-    
-    loadContent();
+    params_time = 'day';
+    v_date = '2019-12-01';
+    $("#btn-month").prop("class","btn btn-light btn-sm");
+    $("#btn-year").prop("class","btn btn-light btn-sm");
+    $("#btn-day").prop("class","btn btn-danger btn-sm");
+    loadContent(params_time, v_date);
 
 });
 
-function loadContent(){
-    callSummaryPie();
-    callInfoTraffic();
-    callComplalintTraffic();
-    callRequestTraffic();
-    callSummaryTrafficChannel();
+function loadContent(params, index){
+    callSummaryPie(params, index);
+    callInfoTraffic(params, index);
+    callComplalintTraffic(params, index);
+    callRequestTraffic(params, index);
+    // callSummaryTrafficChannel();
 }
 
-function callSummaryPie(){
+function callSummaryPie(params, index){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/TrafficCategory/getSummaryPie',
+        data: {
+        	params: params,
+        	index: index
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
+            drawSummaryTrafficChannelChart(response);
+            drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callInfoTraffic(){
+function callInfoTraffic(params, index){
 	$.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getInfoTraffic',
+        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory1',
+        data: {
+        	params: params,
+        	index: index
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
@@ -40,14 +58,19 @@ function callInfoTraffic(){
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callComplalintTraffic(){
+function callComplalintTraffic(params, index){
 	$.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getComplaintTraffic',
+        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory2',
+        data: {
+        	params: params,
+        	index: index
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
@@ -55,14 +78,19 @@ function callComplalintTraffic(){
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callRequestTraffic(){
+function callRequestTraffic(params, index){
 	$.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getRequestTraffic',
+        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory3',
+        data: {
+        	params: params,
+        	index: index
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
@@ -70,29 +98,50 @@ function callRequestTraffic(){
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callSummaryTrafficChannel(){
-	$.ajax({
-        type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/summaryTrafficChannel',
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response);
-            drawSummaryTrafficChannelChart(response);
-        },
-        error: function (r) {
-            alert("error");
-        },
-    });
-}
+// function callSummaryTrafficChannel(){
+// 	$.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/TrafficCategory/summaryTrafficChannel',
+
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawSummaryTrafficChannelChart(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//         },
+//     });
+// }
+
+// function callTableData(params, index){
+// 	$.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/TrafficCategory/getTableData',
+//         data: {
+//         	params: params,
+//         	index: index
+//         },
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawTableData(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//         },
+//     });
+// }
 
 function drawPieChart(response){
 	//destroy div piechart
-    // $('#pieSummary').remove(); // this is my <canvas> element
-    // $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieTCategory').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieTCategory" class="donutShadow overflow-hidden"></canvas>');
 
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
@@ -103,13 +152,12 @@ function drawPieChart(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.trafficName.forEach(function (value, index) {
-		trafficName.push(value);
-    });
-    response.data.totalTraffic.forEach(function (value, index) {
-		totalTraffic.push(value);
-    });
+    response.data.summary.forEach(function (value, index) {
+		trafficName.push(value.category);
+		totalTraffic.push(value.total_kip);
 
+    });
+    
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
     ctx.height = 359;
@@ -143,21 +191,28 @@ function drawPieChart(response){
 			}
         }
     } );
+
+    //set header for echart
+    $('#category1').html(trafficName[0]);
+    $('#category2').html(trafficName[1]);
+    $('#category3').html(trafficName[2]);
+    // console.log(trafficName[0]);
 }
 
 function drawInfoChart(response){
+	//destroy div 
+    $('#echartInfoTraffic').remove(); // this is my <canvas> element
+    $('#canvas-cat1').append('<div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">');
+
 	let channelName = []
     let totalTraffic = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalTraffic.push(value.total);
     });
-    response.data.totalTraffic.forEach(function (value, index) {
-		totalTraffic.push(value);
-    });
-
      ///chartInformation
     var chartdataInfo = [{
 		name: 'Information',
@@ -212,16 +267,18 @@ function drawInfoChart(response){
 }
 
 function drawComplaintChart(response){
+	//destroy div chart
+	$('#echartCompTraffic').remove(); // this is my <canvas> element
+    $('#canvas-cat2').append('<div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">');
+
 	let channelName = []
     let totalTraffic = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
-    });
-    response.data.totalTraffic.forEach(function (value, index) {
-		totalTraffic.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalTraffic.push(value.total);
     });
 
     //chartComplaint
@@ -278,16 +335,18 @@ function drawComplaintChart(response){
 }
 
 function drawRequestChart(response){
+	//destroy div chart
+	$('#echartReqTraffic').remove(); // this is my <canvas> element
+    $('#canvas-cat3').append('<div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">');
+
 	let channelName = []
     let totalTraffic = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
-    });
-    response.data.totalTraffic.forEach(function (value, index) {
-		totalTraffic.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalTraffic.push(value.total);
     });
 
     //chartRequest
@@ -344,36 +403,59 @@ function drawRequestChart(response){
 }
 
 function drawSummaryTrafficChannelChart(response){
-	let channelName = []
-    let totalTraffic = []
-
+	"use strict"
+	let category = []
+    let arr_channel = []
+    // console.log(response.data.traffic_channel);
+    response.data.traffic_channel.forEach(function(value){
+		arr_channel.push(value.channel_name);
+	});
     // draw card yang ada datanya
-    // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
-    });
-    response.data.totalTraffic.forEach(function (value, index) {
-		totalTraffic.push(value);
+    response.data.summary.forEach(function (value, index) {
+		category.push(value.category);
     });
 
    /*----Echart6----*/
-   var chartdata3 = [{
-		name: 'Information',
-		type: 'bar',
-		stack: 'Stack',
-       data: [23, 12, 14, 15, 50, 24, 24, 10, 20, 30, 20, 30]
-	}, {
-		name: 'Request',
-		type: 'bar',
-		stack: 'Stack',
-		data: [23,12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
-    },{
-		name: 'Complaint',
-		type: 'bar',
-		stack: 'Stack',
-		data: [23,10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
-	}];
-
+ //   var chartdata3 = [{
+	// 	name: 'Information',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+ //       data: [23, 12, 14, 15, 50, 24, 24, 10, 20, 30, 20, 30]
+	// }, {
+	// 	name: 'Request',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [23,12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+ //    },{
+	// 	name: 'Complaint',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [23,10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+	// }];
+	var chartdata3 = []
+	var i = 0;
+    category.forEach(function (value, index) {
+		var totalKip = []
+		response.data.traffic_channel.forEach(function (value) {
+			var total = "";
+			if(i == 0){
+				total = (value.total_1)?value.total_1:0;
+			}else if(i == 1){
+				total = (value.total_2)?value.total_2:0;
+			}else if(i == 2){
+				total = (value.total_3)?value.total_3:0;
+			}
+			totalKip.push(total)
+		});
+		var dataTraffic = {
+			name: value,
+			type: 'bar',
+			stack: "stack",
+			data: totalKip
+		}
+		chartdata3.push(dataTraffic);
+		i++;
+    });
 	var option6 = {
 		grid: {
 			top: '6',
@@ -395,7 +477,7 @@ function drawSummaryTrafficChannelChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: channelName,
+			data: arr_channel,
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -420,6 +502,72 @@ function drawSummaryTrafficChannelChart(response){
 
 }
 
+function drawTableData(response){
+	$("#mytbody_avg_traffic").empty();
+	$("#mythead_avg_traffic").empty();
+    if(response.data.length != 0){
+    	$('#table_avg_traffic').find('thead').append('<tr>'+
+            '<td>ID</td>'+
+            '<td>CHANNEL</td>'+
+            '<td>'+response.data.summary[0].category+'</td>'+
+            '<td>'+response.data.summary[1].category+'</td>'+
+            '<td>'+response.data.summary[2].category+'</td>'+
+            '</tr>');
+        response.data.traffic_channel.forEach(function (value, index) {
+            $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td>'+(index+1)+'</td>'+
+            '<td>'+value.channel_name+'</td>'+
+            '<td>'+value.total_1+'</td>'+
+            '<td>'+value.total_2+'</td>'+
+            '<td>'+value.total_3+'</td>'+
+            '</tr>');
+        });
+    }else{
+        $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    $("#filter-loader").fadeOut("slow");
+}
+//jquery
+(function ($) {
+
+    // btn day
+    $('#btn-day').click(function(){
+        params_time = 'day';
+        // console.log(params_time);
+
+        loadContent(params_time , '2019-12-01');
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
+
+    // btn month
+    $('#btn-month').click(function(){
+        params_time = 'month';
+        // console.log(params_time);
+        // thisMonths = getThisMonth();
+        // console.log(thisMonths);
+        // loadContent(params_time , thisMonths);
+        loadContent(params_time , '12');
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        params_time = 'year';
+        // console.log(params_time);
+        // thisYears = getThisYear();
+        loadContent(params_time , '2019');
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-danger btn-sm");
+    });
+   
+})(jQuery);
 // (function ($) {
 	// "use strict";
 	// var chartdata3 = [{

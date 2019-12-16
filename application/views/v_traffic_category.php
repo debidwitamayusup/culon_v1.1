@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-body">
+                            <div class="card-body" id="canvas-pie">
                                 <canvas id="pieTCategory" class="donutShadow overflow-hidden"></canvas>
                             </div>
                         </div>
@@ -42,9 +42,9 @@
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Information</h3>
+                                                <h3 class="expanel-title" id="category1"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat1">
                                                 <div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -53,9 +53,9 @@
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Complaint</h3>
+                                                <h3 class="expanel-title" id="category2"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat2">
                                                 <div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -64,9 +64,9 @@
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
-                                                <h3 class="expanel-title">Request</h3>
+                                                <h3 class="expanel-title" id="category3"></h3>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body" id="canvas-cat3">
                                                 <div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
@@ -92,18 +92,18 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table card-table table-vcenter text-nowrap ">
-                                        <thead class="bg-primary text-center">
-                                            <tr>
+                                    <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
+                                        <thead class="bg-primary text-center" id="mythead_avg_traffic">
+                                            <!-- <tr>
                                                 <th>ID</th>
                                                 <th>CHANNEL</th>
                                                 <th>INFORMATION</th>
                                                 <th>COMPLAINT</th>
                                                 <th>REQUEST</th>
-                                            </tr>
+                                            </tr> -->
                                         </thead>
-                                        <tbody class="text-center">
-                                            <tr>
+                                        <tbody class="text-center" id="mytbody_avg_traffic">
+                                           <!--  <tr>
                                                 <td>1</td>
                                                 <td class="text-sm font-weight-600">Instagram</td>
                                                 <td class="text-sm font-weight-600">90</td>
@@ -186,7 +186,7 @@
                                                 <td class="text-sm font-weight-600">90</td>
                                                 <td class="text-sm font-weight-600">100</td>
                                                 <td class="text-sm font-weight-600">90</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
