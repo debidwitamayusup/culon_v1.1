@@ -97,6 +97,7 @@ class main extends CI_Controller {
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');	
+		$this->load->view('v_agent_interval');
 	}
 
 	public function left_menu()
