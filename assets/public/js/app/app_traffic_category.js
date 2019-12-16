@@ -1,5 +1,6 @@
 var base_url = $('#base_url').val();
 var params_time = '';
+var category_kip = [];
 
 $(document).ready(function () {
     params_time = 'day';
@@ -157,7 +158,7 @@ function drawPieChart(response){
 		totalTraffic.push(value.total_kip);
 
     });
-    
+    category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
     ctx.height = 358;
@@ -215,7 +216,7 @@ function drawInfoChart(response){
     });
      ///chartInformation
     var chartdataInfo = [{
-		name: 'Information',
+		name: category_kip[0],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic,
@@ -257,6 +258,19 @@ function drawInfoChart(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdataInfo,
 		color: ["#A5B0B6"]
 	};
@@ -283,7 +297,7 @@ function drawComplaintChart(response){
 
     //chartComplaint
     var chartdataComp = [{
-		name: 'Complaint',
+		name: category_kip[1],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -325,6 +339,19 @@ function drawComplaintChart(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdataComp,
 		color: ["#009E8C"]
 	};
@@ -351,7 +378,7 @@ function drawRequestChart(response){
 
     //chartRequest
     var chartdataReq = [{
-		name: 'Request',
+		name: category_kip[2],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -391,6 +418,19 @@ function drawRequestChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0'
+			}
+		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
 			}
 		},
 		series: chartdataReq,
@@ -491,6 +531,19 @@ function drawSummaryTrafficChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0'
+			}
+		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
 			}
 		},
 		series: chartdata3,
