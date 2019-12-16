@@ -79,7 +79,7 @@ function drawChartSubCategory(response){
 		$('#content-sub-category').append(''+
 		'<div class="col-lg-4 col-md-12">'+
 			'<div class="card">'+
-				'<div class="card-header bg-gray1">'+
+				'<div class="card-header bg-red">'+
 					'<h4 class="card-title text-white">'+value+'</h4>'+
 				'</div>'+
 				'<div class="card-body">'+

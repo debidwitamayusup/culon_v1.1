@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header bg-gray1">
+                            <div class="card-header bg-red">
                                 <h3 class="card-title text-white">Summary KIP </h3>
                             </div>
                             <div class="card-body" id="canvas-pie">
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
-                            <div class="card-header bg-gray1">
+                            <div class="card-header bg-red">
                                 <h4 class="card-title text-white">KIP per Channel</h4>
                             </div>
                             <div class="card-body">

@@ -103,7 +103,7 @@
 						<!---! Kolom Channel--->
 						<div class="col-xl-12 col-lg-12 col-md-12">
 							<div class="card overflow-hidden">
-								<div class="card-body" id="card-baru">
+								<div class="card-body" style="padding:20px;" id="card-baru">
 									<div class="row" id="row-baru">
 										
 									</div>
