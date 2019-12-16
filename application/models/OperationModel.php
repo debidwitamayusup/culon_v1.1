@@ -60,6 +60,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        order by m_channel.channel_name asc
         ");	
 
         return $query->result();
@@ -70,5 +71,41 @@ class OperationModel extends CI_Model
         //     $sql = $query . " \n Execution Time:" . $times[$key];
         // }
         // return $sql;
+    }
+
+    public function get_data_sub_category($params, $index, $channel_id, $category){
+        // return $category;
+        $where= "";
+        if($params == 'day'){
+			$where = 'DATE(date) = "'.$index.'"' ;
+		}else if($params == 'month'){
+			$where = 'MONTH(date) = "'.$index.'"' ;
+		}else if($params == 'year'){
+			$where = 'YEAR(date) = "'.$index.'"' ;
+        }
+
+        $str = "SELECT m_channel.channel_name
+        ,summary_kip.category
+        ,case when summary_kip.sub_category is null then 'None' else summary_kip.sub_category end as sub_category
+        ,sum(summary_kip.total_kip) as total_kip
+        from summary_kip
+        join m_channel on m_channel.channel_id = summary_kip.channel_id
+        where m_channel.channel_id = $channel_id and $where
+        and category = '$category'
+        GROUP BY summary_kip.sub_category
+        ORDER BY total_kip desc
+        limit 5";
+
+        $query = $this->db->query($str);
+        return $query->result();
+
+        // $CI = & get_instance();
+        // $times = $CI->db->query_times;
+        // $sql="";
+        // foreach ($CI->db->queries as $key => $query) {
+        //     $sql = $query . " \n Execution Time:" . $times[$key];
+        // }
+        // return $sql;
+        // return $str;
     }
 }

@@ -71,36 +71,8 @@
                                     </select>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Information</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartInfo" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Complaint</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartComp" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-gray1">
-                                                <h4 class="card-title text-white">Request</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id="echartReq" class="chartsh overflow-hidden"></div>
-                                            </div>
-                                        </div>
+                                <div id="row-sub-category">
+                                    <div class="row" id="content-sub-category">
                                     </div>
                                 </div>
                             </div>
