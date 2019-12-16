@@ -16,6 +16,7 @@ function loadContent(params, index){
 }
 
 function callSummaryInteraction(params, index){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -27,10 +28,12 @@ function callSummaryInteraction(params, index){
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
-            drawKipPerChannelChart(response);
+			drawKipPerChannelChart(response);
+			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            alert("error");
+			alert("error");
+			$("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -148,15 +151,12 @@ function drawPieChart(response){
 
 function drawKipPerChannelChart(response){
 	 "use strict";
-	let summaryKipName = []
-    let summaryKip = []
     let category = []
 	var arr_channel = []
 	response.data.kip_channel.forEach(function(value){
 		arr_channel.push(value.channel_name);
 	});
     // draw card yang ada datanya
-    // console.log(response.data);
     response.data.summary.forEach(function (value, index) {
 		category.push(value.category);
     });
@@ -184,25 +184,6 @@ function drawKipPerChannelChart(response){
 		chartdata3.push(dataKip);
 		i++;
     });
-    console.log(chartdata3);
-
- //    var chartdata3 = [{
-	// 	name: 'Information',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
-	// },
-	//  {
-	// 	name: 'Request',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
- //    },{
-	// 	name: 'Complaint',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
- //    }];
 	var option6 = {
 		grid: {
 			top: '6',
@@ -224,7 +205,6 @@ function drawKipPerChannelChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			// data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
 			data: arr_channel,
 			splitLine: {
 				lineStyle: {
