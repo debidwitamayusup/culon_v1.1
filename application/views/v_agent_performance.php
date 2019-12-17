@@ -430,7 +430,7 @@
                                                                 <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4"><input id="input-date"
+                                                        <div class="col-lg-6"><input id="input-date"
                                                                 class="form-control fc-datepicker"
                                                                 placeholder="MM/DD/YYYY" type="text"></div>
                                                     </div>
@@ -632,3 +632,5 @@
                     </div>
                 </div>
             </div>
+            <?php $this->load->view('temp/footer');?>
+            <script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
