@@ -14,9 +14,7 @@ class SummaryMonth extends CI_Controller {
 		//date("m")
 		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "ShowAll";
-		
 		$data = array();
-		
 		$date = array();
 		$total_traffic =array();
 
@@ -27,7 +25,6 @@ class SummaryMonth extends CI_Controller {
  	// 	$dateObj   = DateTime::createFromFormat('!m', $month);
 		// $monthName = $dateObj->format('M');
  		
-
    		$paramDate = date('t', strtotime($query_date));
 		$arrDate = array();
 		$total_traffics = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -36,8 +33,7 @@ class SummaryMonth extends CI_Controller {
 			// array_push($arrDate,$i.' '.$monthName);
 			array_push($arrDate, $i);
 		}
-		
-		
+				
 		//get Interval Per Month for Vertical Graphic
 		$ipm = $this->Stc_Model->getIntervalPerMonth($month, $channel_name)->result();
 		// print_r($ipm);
@@ -194,7 +190,6 @@ class SummaryMonth extends CI_Controller {
                 'data' => ''
             );
         }
-
         echo json_encode($response);
     }
 
