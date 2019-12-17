@@ -402,7 +402,6 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Summary Agent Performance</h3>
                                     </div>
-                                    
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="p-2 flex-fill bd-highlight">
@@ -628,8 +627,8 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <?php $this->load->view('temp/footer');?>
