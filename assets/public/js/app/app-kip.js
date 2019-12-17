@@ -107,6 +107,7 @@ function drawChartSubCategory(response){
 				'</div>'+
 				'<div class="card-body">'+
 					'<div id="echart'+value+'" class="chartsh overflow-hidden"></div>'+
+					// '<canvas id="echart'+value+'" class="chartsh overflow-hidden"></canvas>'+
 				'</div>'+
 			'</div>'+
 		'</div>'+
@@ -129,7 +130,7 @@ function drawChartSubCategory(response){
 				top: '6',
 				right: '10',
 				bottom: '20',
-				left: '96',
+				left: '58',
 			},
 			xAxis: {
 				type: 'value',
@@ -159,7 +160,23 @@ function drawChartSubCategory(response){
 				axisLabel: {
 					fontSize: 10,
 					color: '#7886a0',
-					// rotate:35, 
+					// rotate:45,
+					formatter: function (value, index) {
+						if (/\s/.test(value)) {
+							var teks = '';
+							console.log(value.length);
+							for(var i=0;i<value.length;i++){
+								if(value[i]==" "){
+									teks = teks + '\n';
+								}else{
+									teks = teks + value[i];
+								}
+							}
+							return teks;
+						}else{
+							return value;
+						} 
+					}
 				},
 			},
 			series: chartdataInfo,
