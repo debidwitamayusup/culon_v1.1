@@ -139,7 +139,7 @@ function callDataTableAvg(date){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawTableToday(response);
         },
         error: function (r) {

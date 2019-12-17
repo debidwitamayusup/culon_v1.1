@@ -21,6 +21,7 @@ function callGraphicInterval(channel_name, month){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
+     $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
     var data = "";
     var base_url = $('#base_url').val();
@@ -40,6 +41,8 @@ function callGraphicInterval(channel_name, month){
                 type: 'bar',
                 data: response.data.total_traffic
             }];
+
+            // console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
             var option = {
@@ -92,13 +95,14 @@ function callGraphicInterval(channel_name, month){
                     }
                 },
                 series: chartdata,
-                color: ['#B22222']
+                color: [''+response.data.channel_color+'']
             };
             barChart.setOption(option);
-
+        $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+             $("#filter-loader").fadeOut("slow");
         },
     });
 }

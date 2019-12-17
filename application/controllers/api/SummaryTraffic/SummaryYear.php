@@ -39,11 +39,18 @@ class SummaryYear extends CI_Controller {
 				}
 			}
 
+			if (!$interval || $channel_name =="ShowAll"){
+				$channel_color = "#B22222";
+			}else{
+				$channel_color = $interval[0]->channel_color;
+			}
+
 			$data = ([
 				'channel_name' => $channel_name,
 				'date' => $date,
 				'total_traffic' => $traffic,
-				'month_x_axis' => $month_of_year
+				'month_x_axis' => $month_of_year,
+				'channel_color' => $channel_color
 			]);
 
 		if($data)
