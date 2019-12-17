@@ -94,7 +94,7 @@ function callGraphYear(channel_name,year) {
             tooltip: {
                 show: true,
                 showContent: true,
-                alwaysShowContent: true,
+                alwaysShowContent: false,
                 triggerOn: 'mousemove',
                 trigger: 'axis',
                 axisPointer: {
