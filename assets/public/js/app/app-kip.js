@@ -159,10 +159,6 @@ function drawChartSubCategory(response){
 				},
 				axisLabel: {
 					fontSize: 10,
-<<<<<<< HEAD
-					color: '#7886a0', 
-					// rotate:35, 
-=======
 					color: '#7886a0',
 					// rotate:45,
 					formatter: function (value, index) {
@@ -180,7 +176,6 @@ function drawChartSubCategory(response){
 							return value;
 						} 
 					}
->>>>>>> origin/try-dev
 				},
 			},
 			series: chartdataInfo,
