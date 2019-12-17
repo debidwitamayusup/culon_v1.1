@@ -7,6 +7,7 @@ class OperationModel extends CI_Model
 	{
 		parent:: __construct();
 	}
+
     public function get_all_channel(){
         $this->db->select('*');
         $this->db->from('m_channel');
@@ -15,6 +16,7 @@ class OperationModel extends CI_Model
 
 		return $query->result();
     }
+    
 	public function get_top_3_category($params, $index){
         $this->db->select('category, sum(total_kip) as total_kip');
         $this->db->from('summary_kip');
@@ -113,6 +115,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        ORDER BY m_channel.channel_name DESC
         "); 
 
         return $query->result();
@@ -170,6 +173,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        ORDER BY m_channel.channel_name DESC
         "); 
 
         return $query->result();
@@ -201,6 +205,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        ORDER BY m_channel.channel_name DESC
         "); 
 
         return $query->result();
@@ -232,6 +237,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        ORDER BY m_channel.channel_name DESC
         "); 
 
         return $query->result();
