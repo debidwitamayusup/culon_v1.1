@@ -22,21 +22,21 @@
                                 <h3 class="card-title">Agent Performance</h3>
                             </div>
                             <div class="card-body">
-                                
+
                                 <div class="row">
-                                <div class="d-flex order-lg-2 ml-auto float-right">
-                                    <div class="form-group">
-                                        <div class="row gutters-xs">
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" placeholder="Search Agent">
+                                    <div class="d-flex order-lg-2 ml-auto float-right">
+                                        <div class="form-group">
+                                            <div class="row gutters-xs">
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" placeholder="Search Agent">
+                                                </div>
+                                                <span class="col-auto">
+                                                    <button class="btn btn-dark" type="button"><i
+                                                            class="fe fe-search text-white"></i></button>
+                                                </span>
                                             </div>
-                                            <span class="col-auto">
-                                                <button class="btn btn-dark" type="button"><i
-                                                        class="fe fe-search text-white"></i></button>
-                                            </span>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="row">
                                     <!-- column 1 -->
@@ -120,7 +120,6 @@
                                                                 </p>
                                                                 <span
                                                                     class="text-secondary font-weight-bold num-font">00:00:00</span>
-
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -403,34 +402,39 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Summary Agent Performance</h3>
                                     </div>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="p-2 flex-fill bd-highlight">
-                                            <div class="wd-100 mb-3">
-                                                <div class="form-group">
-                                                    <div class="row gutters-xs">
-                                                        <div class="col-lg-4">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Search">
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="p-2 flex-fill bd-highlight">
+                                                <div class="wd-100 mb-3 ml-9">
+                                                    <div class="form-group">
+                                                        <div class="row gutters-xs">
+                                                            <div class="col-lg-6">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Search">
+                                                            </div>
+                                                            <span class="col-auto">
+                                                                <button class="btn btn-dark" type="button"><i
+                                                                        class="fe fe-search text-white"></i></button>
+                                                            </span>
                                                         </div>
-                                                        <span class="col-auto">
-                                                            <button class="btn btn-dark" type="button"><i
-                                                                    class="fe fe-search text-white"></i></button>
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="p-2 flex-fill bd-highlight">
-                                            <div class="wd-100 mb-3">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
+                                        <div class="col-lg-6">
+                                            <div class="p-2 flex-fill bd-highlight">
+                                                <div class="wd-100 mb-3 ml-9">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
+                                                            </div>
                                                         </div>
+                                                        <div class="col-lg-4"><input id="input-date"
+                                                                class="form-control fc-datepicker"
+                                                                placeholder="MM/DD/YYYY" type="text"></div>
                                                     </div>
-                                                    <div class="col-lg-4"><input id="input-date"
-                                                            class="form-control fc-datepicker" placeholder="MM/DD/YYYY"
-                                                            type="text"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -624,8 +628,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            <?php $this->load->view('temp/footer');?>
