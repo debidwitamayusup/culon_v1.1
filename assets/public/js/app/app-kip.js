@@ -129,7 +129,7 @@ function drawChartSubCategory(response){
 				top: '6',
 				right: '10',
 				bottom: '20',
-				left: '96',
+				left: '80',
 			},
 			xAxis: {
 				type: 'value',
@@ -139,7 +139,7 @@ function drawChartSubCategory(response){
 					}
 				},
 				axisLabel: {
-					fontSize: 10,
+					fontSize: 9,
 					color: '#7886a0'
 				}
 			},
@@ -158,7 +158,7 @@ function drawChartSubCategory(response){
 				},
 				axisLabel: {
 					fontSize: 10,
-					color: '#7886a0',
+					color: '#7886a0', 
 					// rotate:35, 
 				},
 			},
