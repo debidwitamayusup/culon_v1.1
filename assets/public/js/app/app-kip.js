@@ -158,8 +158,9 @@ function drawChartSubCategory(response){
 				},
 				axisLabel: {
 					fontSize: 10,
-					color: '#7886a0'
-				}
+					color: '#7886a0',
+					// rotate:35, 
+				},
 			},
 			series: chartdataInfo,
 			show : 'data',
