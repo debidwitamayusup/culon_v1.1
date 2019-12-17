@@ -120,30 +120,27 @@ class OperationModel extends CI_Model
     }
 
     public function get_data_sub_category($params, $index, $channel_id, $category){
-        // return $category;
-        $where= "";
+        $this->db->select('m_channel.channel_name
+        , summary_kip.category
+        , sum(summary_kip.total_kip) as total_kip
+        , CASE WHEN summary_kip.sub_category is null THEN "None" ELSE summary_kip.sub_category END as sub_category
+        ', FALSE);
+		$this->db->from('summary_kip');
+        $this->db->join('m_channel', 'm_channel.channel_id = summary_kip.channel_id');
         if($params == 'day'){
-            $where = 'DATE(date) = "'.$index.'"' ;
+            $this->db->where('DATE(date)', $index);
         }else if($params == 'month'){
-            $where = 'MONTH(date) = "'.$index.'"' ;
+            $this->db->where('MONTH(date)', $index);
         }else if($params == 'year'){
-            $where = 'YEAR(date) = "'.$index.'"' ;
+            $this->db->where('YEAR(date)', $index);
         }
-
-        $str = "SELECT m_channel.channel_name
-        ,summary_kip.category
-        ,case when summary_kip.sub_category is null then 'None' else summary_kip.sub_category end as sub_category
-        ,sum(summary_kip.total_kip) as total_kip
-        from summary_kip
-        join m_channel on m_channel.channel_id = summary_kip.channel_id
-        where m_channel.channel_id = $channel_id and $where
-        and category = '$category'
-        GROUP BY summary_kip.sub_category
-        ORDER BY total_kip desc
-        limit 5";
-
-        $query = $this->db->query($str);
-        return $query->result();
+        $this->db->where('m_channel.channel_id', $channel_id);
+        $this->db->where('summary_kip.category', $category);
+		$this->db->group_by('summary_kip.sub_category');
+        $this->db->order_by('total_kip', 'DESC');
+        $this->db->limit(5);
+		$query = $this->db->get();
+    	return $query->result();
     }
     
 
