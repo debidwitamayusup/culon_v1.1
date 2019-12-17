@@ -164,9 +164,8 @@ function drawChartSubCategory(response){
 					formatter: function (value, index) {
 						if (/\s/.test(value)) {
 							var teks = '';
-							console.log(value.length);
 							for(var i=0;i<value.length;i++){
-								if(value[i]==" "){
+								if(value[i] == " "){
 									teks = teks + '\n';
 								}else{
 									teks = teks + value[i];
