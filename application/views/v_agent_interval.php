@@ -50,7 +50,7 @@
                                             <div class="p-2 flex-grow-1 bd-highlight">
                                                 <h5 class="text-muted">Total Call : 1200</h5>
                                                 <div class="row">
-                                                    <div class="col-md-auto">
+                                                    <div class="col-md-3">
                                                         <div class="form-group m-0">
                                                             <div class="custom-controls-stacked">
                                                                 <label class="custom-control custom-checkbox">
@@ -77,7 +77,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-auto">
+                                                    <div class="col-md-3">
                                                         <div class="form-group m-0">
                                                             <div class="custom-controls-stacked">
                                                                 <label class="custom-control custom-checkbox">
@@ -104,7 +104,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-auto">
+                                                    <div class="col-md-3">
                                                         <div class="form-group m-0">
                                                             <div class="custom-controls-stacked">
                                                                 <label class="custom-control custom-checkbox">
@@ -131,7 +131,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-auto">
+                                                    <div class="col-md-3">
                                                         <div class="form-group m-0">
                                                             <div class="custom-controls-stacked">
                                                                 <label class="custom-control custom-checkbox">
@@ -158,7 +158,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-auto">
+                                                    <div class="col-md-3">
                                                         <div class="form-group m-0">
                                                             <div class="custom-controls-stacked">
                                                                 <label class="custom-control custom-checkbox">

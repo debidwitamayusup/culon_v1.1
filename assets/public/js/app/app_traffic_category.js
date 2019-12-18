@@ -9,7 +9,7 @@ $(document).ready(function () {
     //filter button active
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-danger btn-sm");
+    $("#btn-day").prop("class","btn btn-red btn-sm");
     loadContent(params_time, v_date);
 
 });
@@ -594,7 +594,7 @@ function drawTableData(response){
         loadContent(params_time , '2019-12-01');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month
@@ -607,7 +607,7 @@ function drawTableData(response){
         loadContent(params_time , '12');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn year
@@ -618,7 +618,7 @@ function drawTableData(response){
         loadContent(params_time , '2019');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
    
 })(jQuery);

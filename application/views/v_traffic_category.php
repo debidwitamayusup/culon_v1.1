@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="padding:0.5rem !important">
                                 <div class="table-responsive">
                                     <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
                                         <thead class="bg-primary text-center" id="mythead_avg_traffic">
