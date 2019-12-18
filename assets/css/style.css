@@ -22264,6 +22264,15 @@ div[data-acc-step]:not(.open) .badge-primary {
 .ml-10{
 	margin-left:10px;
 }
+.not-absolute {
+	position: inherit !important;
+	margin-left: 5px;
+}
+
+.not-absolute2 {
+	position: inherit !important;
+	margin-left: 69px;
+}
 
 .list-agent{
 	background: #ECECEC;

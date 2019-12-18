@@ -25,7 +25,9 @@
 				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseOne"> Traffic Interval </a>
+						aria-controls="collapseOne"> Traffic Interval 
+						<i class="angle not-absolute2 fas fa-angle-right"></i>
+					</a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
@@ -36,7 +38,8 @@
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseKIP"> Operation Performance </a>
+						aria-controls="collapseKIP"> Operation Performance 
+						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
