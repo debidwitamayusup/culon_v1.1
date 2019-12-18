@@ -94,7 +94,9 @@
 <!--Index js -->
 <!-- <script src="<?= base_url()?>assets/js/index2.js"></script> -->
 <!-- <script src="<?= base_url()?>assets/js/index4.js"></script> -->
-
+<!---Accordion Js-->
+<script src="<?=base_url()?>assets/plugins/accordion/accordion.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/accordion/accordion.js"></script>
 <!-- custom js -->
 <script src="<?= base_url()?>assets/js/custom.js"></script>
 <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->

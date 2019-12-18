@@ -140,7 +140,7 @@ function drawChartSubCategory(response){
 					}
 				},
 				axisLabel: {
-					fontSize: 10,
+					fontSize: 9,
 					color: '#7886a0'
 				}
 			},
