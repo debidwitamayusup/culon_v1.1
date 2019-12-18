@@ -48,6 +48,7 @@
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration</a></div>
 					</div>
 				</li>
+				<li><a class="slide-item" href="#">Summary Ticket</a></li>
 			</ul>
 		</li>
 		<li class="slide">

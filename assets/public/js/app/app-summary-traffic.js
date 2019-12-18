@@ -17,7 +17,7 @@ $(document).ready(function () {
     loadContent(params_time, v_date);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-danger btn-sm");
+    $("#btn-day").prop("class","btn btn-red btn-sm");
 
 });
 
@@ -349,7 +349,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month
@@ -359,7 +359,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn year
@@ -369,7 +369,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '2019')
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
 })(jQuery);

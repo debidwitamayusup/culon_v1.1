@@ -463,7 +463,14 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 .bg-red{
 	background-color:#B22222 !important;
 }
-
+.btn-red{
+	color: #fff;
+	background-color: #B22222;
+	border-color: #B22222;
+}
+.text-red{
+	color:#B22222 !important;
+}
 .bg-primary {
 	background-color: #089e60  !important;
 }

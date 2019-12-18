@@ -8,7 +8,7 @@ $(document).ready(function () {
     params_time = 'day';
 	v_date = '2019-12-01';
 	channel_id= 2; //default channel email
-	$('#btn-day').prop("class","btn btn-danger btn-sm");
+	$('#btn-day').prop("class","btn btn-red btn-sm");
     loadContent(params_time, v_date);
 
 });
@@ -392,7 +392,7 @@ function getYear(){
 		callSummaryInteraction(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month
@@ -403,7 +403,7 @@ function getYear(){
 		callSummaryInteraction(params_time, v_date);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn year
@@ -414,7 +414,7 @@ function getYear(){
 		callSummaryInteraction(params_time, v_date);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
 	});
 	
 	// select channel
