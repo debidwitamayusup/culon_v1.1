@@ -174,7 +174,7 @@
                                                 </div>
                                             </div>
                                             <div class="p-2 bd-highlight">
-                                                <div class="wd-200 mb-3">
+                                                <div class="w-75 mb-3">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
