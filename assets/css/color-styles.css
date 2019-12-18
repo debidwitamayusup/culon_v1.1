@@ -463,7 +463,14 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 .bg-red{
 	background-color:#B22222 !important;
 }
-
+.btn-red{
+	color: #fff;
+	background-color: #B22222;
+	border-color: #B22222;
+}
+.text-red{
+	color:#B22222 !important;
+}
 .bg-primary {
 	background-color: #089e60  !important;
 }
@@ -781,13 +788,13 @@ a.chip:hover {
 	background: linear-gradient( 89.1deg,  rgb(255, 255, 255) 0.7%, rgb(255, 255, 255) 88.4% );
 }
 .side-menu__item.active, .side-menu__item:hover, .side-menu__item:focus {
-	color:#089e60;
+	color:#fff;
 }
 .side-menu__item.active .side-menu__icon, .side-menu__item:hover .side-menu__icon, .side-menu__item:focus .side-menu__icon{
-	color: #000000;
+	color: #fff;
 }
 .slide-menu a.active{
-	color:#089e60;
+	color:#fff;
 }
 .slide-item.active, .slide-item:hover, .slide-item:focus {
 	color:#089e60;

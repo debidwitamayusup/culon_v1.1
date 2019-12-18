@@ -14,7 +14,7 @@ $(document).ready(function () {
     v_year = '2019';
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-danger btn-sm");
+    $("#btn-day").prop("class","btn btn-red btn-sm");
     callDataAvg(params_time, v_date);
     // loadContent(params_time, v_date);
 
@@ -136,7 +136,7 @@ function ThousandSeperator(x) {
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month
@@ -160,7 +160,7 @@ function ThousandSeperator(x) {
         loadContent(params_time , ''+thisYears+'');
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
    
 })(jQuery);
