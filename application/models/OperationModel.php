@@ -260,4 +260,120 @@ class OperationModel extends CI_Model
 
         }
     }
+
+    function get_total_nfcr(){
+        $query =$this->db->query("SELECT v_fcr.fcr, v_nfcr.nfcr
+                    from(
+                        select sum(total) as fcr
+                        from summary
+                        where ticket_action = 1
+                    ) as v_fcr,
+                    (
+                        select sum(total) as nfcr
+                        from summary
+                        where ticket_action = 2
+                    ) as v_nfcr");
+
+        return $query->result();
+    }
+
+    function getNfcrCategory1($arr_category){
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        
+        $query = $this->db->query('SELECT m_channel.channel_name
+            ,fcr.category
+            , fcr.fcr
+            , nfcr.nfcr
+            from m_channel
+            left join (
+                select sum(total) as fcr, channel_id, category
+                from summary
+                where ticket_action = 1
+                and category = "'.$arr_category[0]->category.'"
+                group by channel_id
+                    ) as fcr on fcr.channel_id = m_channel.channel_id
+                    left join (
+                        select sum(total) as nfcr, channel_id, category
+                        from summary
+                        where ticket_action = 2
+                        and category = "'.$arr_category[0]->category.'"
+                    GROUP BY channel_id
+                    ) as nfcr on nfcr.channel_id = m_channel.channel_id
+            ');
+        return $query->result();
+    }
+
+    function getNfcrCategory2($arr_category){
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        
+        $query = $this->db->query('SELECT m_channel.channel_name
+            ,fcr.category
+            , fcr.fcr
+            , nfcr.nfcr
+            from m_channel
+            left join (
+                select sum(total) as fcr, channel_id, category
+                from summary
+                where ticket_action = 1
+                and category = "'.$arr_category[1]->category.'"
+                group by channel_id
+                    ) as fcr on fcr.channel_id = m_channel.channel_id
+                    left join (
+                        select sum(total) as nfcr, channel_id, category
+                        from summary
+                        where ticket_action = 2
+                        and category = "'.$arr_category[0]->category.'"
+                    GROUP BY channel_id
+                    ) as nfcr on nfcr.channel_id = m_channel.channel_id
+            ');
+        return $query->result();
+    }
+
+    function getNfcrCategory3($arr_category){
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        
+        $query = $this->db->query('SELECT m_channel.channel_name
+            ,fcr.category
+            , fcr.fcr
+            , nfcr.nfcr
+            from m_channel
+            left join (
+                select sum(total) as fcr, channel_id, category
+                from summary
+                where ticket_action = 1
+                and category = "'.$arr_category[2]->category.'"
+                group by channel_id
+                    ) as fcr on fcr.channel_id = m_channel.channel_id
+                    left join (
+                        select sum(total) as nfcr, channel_id, category
+                        from summary
+                        where ticket_action = 2
+                        and category = "'.$arr_category[2]->category.'"
+                    GROUP BY channel_id
+                    ) as nfcr on nfcr.channel_id = m_channel.channel_id
+            ');
+        return $query->result();
+    }
+
+    function getSummaryTrafficNfcr(){
+         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        $query = $this->db->query('select m_channel.channel_name
+                    , fcr.fcr
+                    , nfcr.nfcr
+                    from m_channel
+                    left join (
+                        select sum(total) as fcr, channel_id
+                        from summary
+                        where ticket_action = 1
+                        GROUP BY channel_id
+                    ) as fcr on fcr.channel_id = m_channel.channel_id
+                    left join (
+                    select sum(total) as nfcr, channel_id
+                    from summary
+                    where ticket_action = 2
+                    GROUP BY channel_id
+                    ) as nfcr on nfcr.channel_id = m_channel.channel_id
+            ');
+        return $query->result();
+    }
 }

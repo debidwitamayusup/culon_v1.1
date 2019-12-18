@@ -32,7 +32,7 @@ function callNfcrPie(){
 function callNfcrInfo(){
     $.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrInfo',
+        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrCategory1',
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
@@ -47,7 +47,7 @@ function callNfcrInfo(){
 function callNfcrComplaint(){
     $.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrComplaint',
+        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrCategory2',
         success: function (r) { 
             var response = JSON.parse(r);
             console.log(response);
@@ -62,7 +62,7 @@ function callNfcrComplaint(){
 function callNfcrRequest(){
     $.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrRequest',
+        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrCategory3',
         success: function (r) { 
             var response = JSON.parse(r);
             console.log(response);
@@ -77,7 +77,7 @@ function callNfcrRequest(){
 function callNfcrSummaryTraffic(){
     $.ajax({
         type: 'post',
-        url: base_url + 'api/OperationPerformance/NfcrController/getNfcrSummaryTraffic',
+        url: base_url + 'api/OperationPerformance/NfcrController/getSummaryTrafficNfcr',
         success: function (r) { 
             var response = JSON.parse(r);
             console.log(response);
@@ -98,18 +98,14 @@ function drawPieChart(response){
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
-    let operationName = []
+    
     let totalNfcr = []
-
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.operationName.forEach(function (value, index) {
-		operationName.push(value);
-    });
-    response.data.totalNfcr.forEach(function (value, index) {
-		totalNfcr.push(value);
-    });
-
+    
+    
+  //   console.log(z)
+  	console.log(response.data[0].nfcr);
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
     ctx.height = 312;
@@ -117,7 +113,7 @@ function drawPieChart(response){
         type: 'pie',
         data: {
             datasets: [ {
-                data: totalNfcr,
+                data: [response.data[0].fcr, response.data[0].nfcr],
                 backgroundColor: [
                                     "#31A550",
                                     "#3866A6"
@@ -128,7 +124,7 @@ function drawPieChart(response){
                                 ]
 
                             } ],
-            labels: operationName
+            labels: ['FCR', 'N-FCR']
         },
         options: {
             responsive: true,
@@ -151,30 +147,31 @@ function drawInfoChart(response){
 
     let channelName = []
     let totalNfcr = []
+    let totalFcr = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalNfcr.push(value.nfcr);
+		totalFcr.push(value.fcr);
     });
-    response.data.totalNfcr.forEach(function (value, index) {
-		totalNfcr.push(value);
-    });
-
+    // console.log(totalNfcr);
     "use strict";
 
     var chartdata3 = [{
 		name: 'FCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+		data: totalFcr
 	}, {
 		name: 'NFCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+		data: totalNfcr
     }];
    /*----BarChart Information----*/
+   
 	var option_info = {
 		grid: {
 			top: '6',
@@ -196,7 +193,7 @@ function drawInfoChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: channelName,
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -212,6 +209,19 @@ function drawInfoChart(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
 	};
@@ -219,6 +229,8 @@ function drawInfoChart(response){
 	var chart_info = document.getElementById('echartNFCR-info');
 	var barChart6 = echarts.init(chart_info);
     barChart6.setOption(option_info);
+
+    $('#category1').html(response.data[0].category);
 }
 
 function drawComplaintChart(response){
@@ -232,28 +244,28 @@ function drawComplaintChart(response){
 
     let channelName = []
     let totalNfcr = []
+    let totalFcr = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalNfcr.push(value.nfcr);
+		totalFcr.push(value.fcr);
     });
-    response.data.totalNfcr.forEach(function (value, index) {
-		totalNfcr.push(value);
-    });
-
+    // console.log(totalNfcr);
     "use strict";
 
     var chartdata3 = [{
 		name: 'FCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+		data: totalFcr
 	}, {
 		name: 'NFCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+		data: totalNfcr
     }];
    /*----BarChart Information----*/
 	var option_info = {
@@ -293,6 +305,19 @@ function drawComplaintChart(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
 	};
@@ -300,6 +325,8 @@ function drawComplaintChart(response){
 	var chart_info = document.getElementById('echartNFCR-comp');
 	var barChart6 = echarts.init(chart_info);
     barChart6.setOption(option_info);
+
+    $('#category2').html(response.data[0].category);
 }
 
 function drawRequestChart(response){
@@ -311,30 +338,30 @@ function drawRequestChart(response){
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
-    let channelName = []
+   	let channelName = []
     let totalNfcr = []
+    let totalFcr = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalNfcr.push(value.nfcr);
+		totalFcr.push(value.fcr);
     });
-    response.data.totalNfcr.forEach(function (value, index) {
-		totalNfcr.push(value);
-    });
-
+    // console.log(totalNfcr);
     "use strict";
 
     var chartdata3 = [{
 		name: 'FCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+		data: totalFcr
 	}, {
 		name: 'NFCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+		data: totalNfcr
     }];
    /*----BarChart Information----*/
 	var option_info = {
@@ -374,6 +401,19 @@ function drawRequestChart(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
 	};
@@ -381,6 +421,8 @@ function drawRequestChart(response){
 	var chart_info = document.getElementById('echartNFCR-req');
 	var barChart6 = echarts.init(chart_info);
     barChart6.setOption(option_info);
+
+    $('#category3').html(response.data[0].category);
 }
 
 function drawSummaryTrafficNfcr(response){
@@ -394,28 +436,28 @@ function drawSummaryTrafficNfcr(response){
 
     let channelName = []
     let totalNfcr = []
+    let totalFcr = []
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.channelName.forEach(function (value, index) {
-		channelName.push(value);
+    response.data.forEach(function (value, index) {
+		channelName.push(value.channel_name);
+		totalNfcr.push(value.nfcr);
+		totalFcr.push(value.fcr);
     });
-    response.data.totalNfcr.forEach(function (value, index) {
-		totalNfcr.push(value);
-    });
-
+    // console.log(totalNfcr);
     "use strict";
 
     var chartdata3 = [{
 		name: 'FCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
+		data: totalFcr
 	}, {
 		name: 'NFCR',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+		data: totalNfcr
     }];
    var option_summary = {
 		grid: {
@@ -438,7 +480,7 @@ function drawSummaryTrafficNfcr(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: channelName,
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -454,6 +496,19 @@ function drawSummaryTrafficNfcr(response){
 				color: '#7886a0'
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
 	};
@@ -462,6 +517,38 @@ function drawSummaryTrafficNfcr(response){
 	var barChart_summary = echarts.init(chart_summary);
 	barChart_summary.height=800;
 	barChart_summary.setOption(option_summary);	
+}
+
+function drawTableData(response){
+	$("#mytbody_avg_traffic").empty();
+	$("#mythead_avg_traffic").empty();
+    if(response.data.length != 0){
+    	$('#table_avg_traffic').find('thead').append('<tr>'+
+            '<td>No.</td>'+
+            '<td>Channel</td>'+
+            '<td>'+response.data.summary[0].category+'</td>'+
+            '<td>'+response.data.summary[1].category+'</td>'+
+            '<td>'+response.data.summary[2].category+'</td>'+
+            '</tr>');
+
+    	var i = response.data.traffic_channel.length+1;
+        response.data.traffic_channel.forEach(function (value, index) {
+            $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_1+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_2+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+value.total_3+'</td>'+
+            '</tr>');
+            i--;
+        });
+        sortTable();
+    }else{
+        $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    $("#filter-loader").fadeOut("slow");
 }
 
 // (function ($) {

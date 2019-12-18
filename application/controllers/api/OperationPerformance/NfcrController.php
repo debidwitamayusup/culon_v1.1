@@ -10,113 +10,99 @@
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('Stc_Model');
+			$this->load->model('OperationModel');
 		}
 
 		//get data for pie chart
 		public function getNfcrPie(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$operationName = array(0=> "FCR", 1=>"N-FCR");
-			$totalTraffic = array(75, 25);
+			$nfcr = $this->OperationModel->get_total_nfcr();
 
-			$data = array(
-				"operationName" => $operationName,
-				"totalNfcr" => $totalTraffic
-			);
+
+			// $data = array(
+			// 	"fcr" => $fcr,
+			// 	"nfcr" => $
+			// );
 
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $nfcr
 			);
 			echo json_encode($response);
 		}
 
-		//get data for information NFCR
-		public function getNfcrInfo(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
-
-			$data = array(
-				"channelName" => $channelName,
-				"totalNfcr" => $totalNfcr
-			);
+		public function getNfcrCategory1(){
+			$arr_category = $this->OperationModel->get_top_3_category("", "");
+			// var_dump($arr_category);
+			$getCategory1 = $this->OperationModel->getNfcrCategory1($arr_category);
+			
+			// $data = array(
+			// 	"channelName" => $channel_name,
+			// 	"totalTraffic" => $total
+			// );
 
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $getCategory1
 			);
 			echo json_encode($response);
 		}
 
-		//get data for complaint NFCR
-		public function getNfcrComplaint(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
-
-			$data = array(
-				"channelName" => $channelName,
-				"totalNfcr" => $totalNfcr
-			);
+		public function getNfcrCategory2(){
+			$arr_category = $this->OperationModel->get_top_3_category("", "");
+			// var_dump($arr_category);
+			$getCategory2 = $this->OperationModel->getNfcrCategory2($arr_category);
+			
+			// $data = array(
+			// 	"channelName" => $channel_name,
+			// 	"totalTraffic" => $total
+			// );
 
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $getCategory2
 			);
 			echo json_encode($response);
 		}
 
-		//get data for request NFCR
-		public function getNfcrRequest(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
-
-			$data = array(
-				"channelName" => $channelName,
-				"totalNfcr" => $totalNfcr
-			);
+		public function getNfcrCategory3(){
+			$arr_category = $this->OperationModel->get_top_3_category("", "");
+			// var_dump($arr_category);
+			$getCategory3 = $this->OperationModel->getNfcrCategory3($arr_category);
+			
+			// $data = array(
+			// 	"channelName" => $channel_name,
+			// 	"totalTraffic" => $total
+			// );
 
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $getCategory3
 			);
 			echo json_encode($response);
 		}
 
-		//get data for summary traffic NFCR
-		public function getNfcrSummaryTraffic(){
-			$params = $this->security->xss_clean($this->input->post('params', true)); 
-			$index = $this->security->xss_clean($this->input->post('index', true));
-			$data = array();
-			$channelName = array(0=> "Whatsapp", 1=>"Instagram", 2=>"Twitter", 3=>'Facebook', 4=>'Messenger',5=>'Telegram',6=>'Twitter DM',7=>'Voice',8=>'Live Chat',9=>'Line',10=>'SMS', 11=>'Email');
-			$totalNfcr = array(14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25);
-
-			$data = array(
-				"channelName" => $channelName,
-				"totalNfcr" => $totalNfcr
-			);
+		public function getSummaryTrafficNfcr(){
+			// var_dump($arr_category);
+			$summary = $this->OperationModel->getSummaryTrafficNfcr();
+			
+			// $data = array(
+			// 	"channelName" => $channel_name,
+			// 	"totalTraffic" => $total
+			// );
 
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $summary
 			);
 			echo json_encode($response);
 		}
+
+		
 
 	}
 
