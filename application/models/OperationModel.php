@@ -18,8 +18,8 @@ class OperationModel extends CI_Model
     }
     
 	public function get_top_3_category($params, $index){
-        $this->db->select('category, sum(total_kip) as total_kip');
-        $this->db->from('summary_kip');
+        $this->db->select('category, sum(total) as total_kip');
+        $this->db->from('summary');
         if($params == 'day'){
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
@@ -56,7 +56,6 @@ class OperationModel extends CI_Model
         $i =1;
         foreach($arr_category as $key){
             $select .= ", $index_alpha[$i].category_$i, $index_alpha[$i].total_$i";
-
             $left_join .= " LEFT JOIN (
                 SELECT category as category_$i, channel_id, sum(total_kip)as total_$i
                 from summary_kip
@@ -72,14 +71,9 @@ class OperationModel extends CI_Model
         order by m_channel.channel_name asc
         ");	
 
+        // $this->createLogSql();
+
         return $query->result();
-        // $CI = & get_instance();
-        // $times = $CI->db->query_times;
-        // $sql="";
-        // foreach ($CI->db->queries as $key => $query) {
-        //     $sql = $query . " \n Execution Time:" . $times[$key];
-        // }
-        // return $sql;
     }
 
     public function get_traffic_per_channel($params, $index, $arr_category)
@@ -142,7 +136,8 @@ class OperationModel extends CI_Model
 		$this->db->group_by('summary_kip.sub_category');
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(5);
-		$query = $this->db->get();
+        $query = $this->db->get();
+        $this->createLogSql();
     	return $query->result();
     }
     
@@ -242,5 +237,27 @@ class OperationModel extends CI_Model
 
         return $query->result();
         // return $str;
+    }
+
+    function createLogSql(){
+        $this->load->helper('file');
+        $CI = & get_instance();
+        $times = $CI->db->query_times;
+        $sql="";
+        foreach ($CI->db->queries as $key => $query) {
+            $sql = $query . " \n Execution Time:" . $times[$key];
+        }
+        $todate= date('Y-m-d');
+
+        $text = $sql;
+
+        $string = read_file(APPPATH.'/logs/log'.$todate.'.txt');
+        if($string){
+            $text .= "\r\n".$string;
+        }
+
+        if ( ! write_file(APPPATH.'/logs/log'.$todate.'.txt', $text)){
+
+        }
     }
 }
