@@ -149,4 +149,147 @@
         }
     });
 
+    var ctx = document.getElementById("echartVertical");
+		// ctx.height = 600;
+		var myChart = new Chart(ctx, {
+			type: 'horizontalBar',
+			data: {
+				labels: [
+					"Whatsapp",
+					"Twitter",
+					"Facebook",
+					"Email",
+					"Telegram",
+					"Line",
+					"Voice",
+					"Instagram",
+					"Messenger",
+					"Twitter DM",
+					"Live Chat",
+					"Pesan"
+				],
+				datasets: [{
+					// label: data.labels,
+					data: [85, 48, 59, 37, 12, 16, 18, 30, 40, 10, 40, 12],
+					borderColor: [
+						"#31a550 ",
+						"#45aaf2",
+						"#316cbe",
+						"#e41313",
+						"#343a40",
+						"#31a550",
+						"#ff9933",
+						"#fbc0d5",
+						"#3866a6",
+						"#6574cd",
+						"#42265e",
+						"#1c3353"
+					],
+					borderWidth: "0",
+					backgroundColor: [
+						"#31a550",
+						"#45aaf2",
+						"#316cbe",
+						"#e41313",
+						"#343a40",
+						"#31a550",
+						"#ff9933",
+						"#fbc0d5",
+						"#3866a6",
+						"#6574cd",
+						"#42265e",
+						"#1c3353"
+					]
+				}, ]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				},
+				legend: {
+					display: false
+				}
+			}
+		});
+
+        var chartdata = [{
+            name: 'tahun',
+            type: 'bar',
+            data: [10, 15, 9, 18, 10, 15,30,40,30,20,10,40]
+        }];
+        var chart = document.getElementById('echartYear');
+        var barChart = echarts.init(chart);
+        var option = {
+            grid: {
+                top: '6',
+                right: '0',
+                bottom: '17',
+                left: '0',
+            },
+            xAxis: {
+                data: ['Jan','Feb','March','April','May','June','July','Aug','Sept','Oct','Nov','Dec'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0',
+                    formatter: function (value, index) {
+						if (/\s/.test(value)) {
+							var teks = '';
+							for(var i=0;i<value.length;i++){
+								if(value[i] == " "){
+									teks = teks + '\n';
+								}else{
+									teks = teks + value[i];
+								}
+							}
+							return teks;
+						}else{
+							return value;
+						} 
+					}
+                }
+            },
+            tooltip: {
+                show: true,
+                showContent: true,
+                alwaysShowContent: true,
+                triggerOn: 'mousemove',
+                trigger: 'axis',
+                axisPointer: {
+                    label: {
+                        show: false,
+                    }
+                }
+            },
+            yAxis: {
+                splitLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0'
+                }
+            },
+            series: chartdata,
+            color: ['#B22222']
+        };
+        barChart.setOption(option);
+
 })(jQuery);

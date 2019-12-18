@@ -11,17 +11,20 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
                             <li class="breadcrumb-item active" aria-current="page">Operation Performance</li>
-                            <li class="breadcrumb-item active" aria-current="page">Average Duration per Interaction or Channel </li>
+                            <li class="breadcrumb-item active" aria-current="page">Average Duration per Interaction or
+                                Channel </li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
-                            <!-- <div class="btn-group btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                    <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
-                            </div> -->
+                            <div class="card-options d-none d-sm-block">
+                                <div class="btn-group btn-sm">
+                                    <a href="#" class="btn btn-light btn-sm" id="btn-day">
+                                        <span class="">Day</a></span>
+                                    <a href="#" class="btn btn-light btn-sm" id="btn-month">
+                                        <span class="">Month</a></span>
+                                    <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                                        <span class="">Year</a></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--Page Header-->
@@ -171,7 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-xl-3 col-md-12">
                                     <div class="card box-widget widget-user">
                                         <div class="widget-user-header bg-red">

@@ -19,7 +19,7 @@
 				<div class="dropdown">
 					<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
 						<span class="avatar avatar-md brround cover-image"
-							data-image-src="<?= base_url()?>assets/images/users/5.jpg"></span>
+							data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 						<div class="drop-heading">

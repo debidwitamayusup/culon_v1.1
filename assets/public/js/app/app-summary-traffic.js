@@ -17,7 +17,7 @@ $(document).ready(function () {
     loadContent(params_time, v_date);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-danger btn-sm");
+    $("#btn-day").prop("class","btn btn-red btn-sm");
 
 });
 
@@ -105,7 +105,7 @@ function drawCardInteractionNew(value){
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 text-center text-white">'+value.channel+'</div>'+
+                        '<div class="mt-2 ml-1 text-white">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mb-2">'+
@@ -349,7 +349,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '2019-11-02');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month
@@ -359,7 +359,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '11')
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn year
@@ -369,7 +369,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         loadContent(params_time , '2019')
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-danger btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
     });
 
 })(jQuery);

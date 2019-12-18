@@ -6137,8 +6137,11 @@ ul {
 	width:27rem;
 	overflow:hidden;
 }
-
-
+.chartsh-agentYear {
+	height: 23.0rem;
+	width:27rem;
+	overflow:hidden;
+}
 
 .chartwidget {
 	height: 18rem;
@@ -22261,6 +22264,15 @@ div[data-acc-step]:not(.open) .badge-primary {
 .ml-10{
 	margin-left:10px;
 }
+.not-absolute {
+	position: inherit !important;
+	margin-left: 5px;
+}
+
+.not-absolute2 {
+	position: inherit !important;
+	margin-left: 69px;
+}
 
 .list-agent{
 	background: #ECECEC;
@@ -22277,7 +22289,7 @@ div[data-acc-step]:not(.open) .badge-primary {
 	box-shadow: 0 0px 20px 0 rgba(0,0,0, 0.03) !important;
 	border-radius : 10px;
 	min-height : 100px;
-	width:200px;
+	width:175px;
 	margin : 5px 10px 0 0;
 	margin-bottom : 15px;
 }
