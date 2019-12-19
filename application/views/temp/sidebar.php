@@ -25,7 +25,7 @@
 				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseOne"> Traffic Interval 
+						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
@@ -36,29 +36,22 @@
 					</div>
 				</li>
 				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseKIP"> Operation Performance 
+						aria-controls="collapseKIP"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
+						</div>
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration</a></div>
+						<div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration</a>
+						</div>
 					</div>
 				</li>
-				<li><a class="slide-item" href="#">Summary Ticket</a></li>
-			</ul>
-		</li>
-		<li class="slide">
-			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-user icon-resize"></i>
-				<span class="side-menu__label label-icon-resize">Agent Performance</span>
-				<i class="angle fas fa-angle-right"></i>
-			</a>
-			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?=base_url()?>main/agent_performance">Total Handling Call</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></li>
 			</ul>
 		</li>
 		<li class="slide">
