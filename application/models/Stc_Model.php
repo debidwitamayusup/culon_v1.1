@@ -220,7 +220,7 @@ class Stc_Model extends CI_Model
 		if($params == 'day'){
 			$where = "DATE(date_time)= '".$index."'";
 		}else if($params == 'month'){
-			$where = "MONTH(date_time)= '".$index."'";
+			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = YEAR(CURDATE()) ";
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
 		}
