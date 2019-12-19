@@ -85,6 +85,18 @@
 			echo json_encode($response);
 		}
 
+		public function getNfcrPerCategory(){
+			$arr_category = $this->OperationModel->get_top_3_category("","");
+			$nfcrcategory = $this->OperationModel->getNfcrPerCategory($arr_category);
+
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $nfcrcategory,
+			);
+			echo json_encode($response);
+
+		}
 		public function getSummaryTrafficNfcr(){
 			// var_dump($arr_category);
 			$summary = $this->OperationModel->getSummaryTrafficNfcr();
