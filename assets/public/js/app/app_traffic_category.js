@@ -20,6 +20,22 @@ function loadContent(params, index){
     callCategory2(params, index);
     callCategory3(params, index);
     // callSummaryTrafficChannel();
+    console.log(params);
+    console.log(index);
+}
+
+//thausands separator
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }
 
 //fungsi untuk sorting table
@@ -568,9 +584,9 @@ function drawTableData(response){
             $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
             '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_1+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_2+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_3+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_2)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_3)+'</td>'+
             '</tr>');
             i--;
         });
@@ -620,5 +636,4 @@ function drawTableData(response){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
     });
-   
 })(jQuery);

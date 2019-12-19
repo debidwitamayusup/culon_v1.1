@@ -258,20 +258,20 @@ function destroyChartPercentage(){
             destroyChartInterval();
             destroyChartPercentage();
 
-        var selectedMonth = $(this).children("option:selected").val();
-          // console.log(selectedMonth);
-          // console.log($("#channel_name").val());
-        callGraphicInterval($("#channel_name").val(), selectedMonth);
-        callDataPercentage(selectedMonth);
-        callDataTableAvg(selectedMonth);
+            var selectedMonth = $(this).children("option:selected").val();
+              // console.log(selectedMonth);
+              // console.log($("#channel_name").val());
+            callGraphicInterval($("#channel_name").val(), selectedMonth);
+            callDataPercentage(selectedMonth);
+            callDataTableAvg(selectedMonth);
         });
 
         $("select#channel_name").change(function(){
-        destroyChartInterval();
-         // destroyChartInterval();
-        var selectedChannel = $(this).children("option:selected").val();
-          // console.log(selectedMonth);
-          // console.log($("#channel_name").val());
-        callGraphicInterval(selectedChannel, $("#month").val());
+            destroyChartInterval();
+             // destroyChartInterval();
+            var selectedChannel = $(this).children("option:selected").val();
+              // console.log(selectedMonth);
+              // console.log($("#channel_name").val());
+            callGraphicInterval(selectedChannel, $("#month").val());
         });
 })(jQuery);

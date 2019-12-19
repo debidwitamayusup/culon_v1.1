@@ -662,7 +662,6 @@
 .app-sidebar ul li {
 	font-weight: 400;
 }
-.app-sidebar ul li:last-child {}
 .app-sidebar ul li:first-child {
 	border-top: 0;
 	border-bottom: 0;
