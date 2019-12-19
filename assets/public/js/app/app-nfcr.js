@@ -478,6 +478,11 @@ function drawSummaryTrafficNfcr(response){
 }
 
 function drawTableData(response){
+	//for append title on echart
+    $('#category1').html(response.data[0].category_1);
+    $('#category2').html(response.data[0].category_2);
+    $('#category3').html(response.data[0].category_3);
+    
 	$("#mytbody_nfcr").empty();
 	$("#mythead_nfcr").empty();
     if(response.data.length != 0){
@@ -517,10 +522,7 @@ function drawTableData(response){
             '</tr>');
     }
 
-    //for append title on echart
-    $('#category1').html(response.data[0].category_1);
-    $('#category2').html(response.data[0].category_2);
-    $('#category3').html(response.data[0].category_3);
+
 
     //fade out loading
     $("#filter-loader").fadeOut("slow");
