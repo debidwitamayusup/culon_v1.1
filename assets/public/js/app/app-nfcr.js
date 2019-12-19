@@ -1,9 +1,7 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
-    
     loadContent();
-
 });
 
 function loadContent(){
@@ -15,8 +13,8 @@ function loadContent(){
     callNfcrSummaryTraffic();
 }
 
-
 function callNfcrPie(){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/NfcrController/getNfcrPie',
@@ -29,6 +27,19 @@ function callNfcrPie(){
             alert("error");
         },
     });
+}
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }
 
 function callNfcrInfo(){
@@ -417,7 +428,7 @@ function drawSummaryTrafficNfcr(response){
 		stack: 'Stack',
 		data: totalNfcr
     }];
-   var option_summary = {
+	var option_summary = {
 		grid: {
 			top: '6',
 			right: '10',
@@ -482,7 +493,7 @@ function drawTableData(response){
     $('#category1').html(response.data[0].category_1);
     $('#category2').html(response.data[0].category_2);
     $('#category3').html(response.data[0].category_3);
-    
+
 	$("#mytbody_nfcr").empty();
 	$("#mythead_nfcr").empty();
     if(response.data.length != 0){
@@ -507,12 +518,12 @@ function drawTableData(response){
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(i+1)+'</td>'+
             '<td>'+value.channel_name+'</td>'+
-            '<td>'+value.fcr_1+'</td>'+
-            '<td>'+value.nfcr_1+'</td>'+
-            '<td>'+value.fcr_2+'</td>'+
-            '<td>'+value.nfcr_2+'</td>'+
-            '<td>'+value.fcr_3+'</td>'+
-            '<td>'+value.nfcr_3+'</td>'+
+            '<td>'+addCommas(value.fcr_1)+'</td>'+
+            '<td>'+addCommas(value.nfcr_1)+'</td>'+
+            '<td>'+addCommas(value.fcr_2)+'</td>'+
+            '<td>'+addCommas(value.nfcr_2)+'</td>'+
+            '<td>'+addCommas(value.fcr_3)+'</td>'+
+            '<td>'+addCommas(value.nfcr_3)+'</td>'+
             '</tr>');
             i++;
         });
@@ -521,9 +532,6 @@ function drawTableData(response){
             '<td colspan=6> No Data </td>'+
             '</tr>');
     }
-
-
-
     //fade out loading
     $("#filter-loader").fadeOut("slow");
 }
