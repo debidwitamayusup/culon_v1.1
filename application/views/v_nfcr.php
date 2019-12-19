@@ -45,7 +45,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white">Information</h6>
+                                            <h6 class="card-title-small text-white" id="category1"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-info" class="chartsh overflow-hidden"></div>
@@ -55,7 +55,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white">Complaint</h6>
+                                            <h6 class="card-title-small text-white" id="category2"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-comp" class="chartsh overflow-hidden"></div>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white">Request</h6>
+                                            <h6 class="card-title-small text-white" id="category3"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-req" class="chartsh overflow-hidden"></div>
@@ -97,26 +97,26 @@
                             <div class="card-body">
                                 <div class="table-responsive table-bordered">
                                     <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
-                                        <thead class="text-center bg-gray2">
-                                            <tr>
+                                        <thead class="text-center bg-gray2" id="mythead_nfcr">
+                                            <!-- <tr>
                                                 <th rowspan="2" class="align-middle">No</th>
                                                 <th rowspan="2" class="align-middle">Channel</th>
                                                 <th colspan="2" class="bg-blue-1 align-content-md-center text-white">
                                                     Information</th>
                                                 <th colspan="2" class="bg-gray2 text-black">Complaint</th>
                                                 <th colspan="2" class="bg-green-2 text-white">Request</th>
-                                            </tr>
-                                            <tr>
+                                            </tr> -->
+                                            <!-- <tr>
                                                 <th class="bg-green text-white">FCR</th>
                                                 <th class="bg-blue-dark text-white">N-FCR</th>
                                                 <th class="bg-green text-white">FCR</th>
                                                 <th class="bg-blue-dark text-white">N-FCR</th>
                                                 <th class="bg-green text-white">FCR</th>
                                                 <th class="bg-blue-dark text-white">N-FCR</th>
-                                            </tr>
+                                            </tr> -->
                                         </thead>
-                                        <tbody id="mytbody" class="text-center">
-                                            <tr>
+                                        <tbody id="mytbody_nfcr" class="text-center">
+                                            <!-- <tr>
                                                 <td>1</td>
                                                 <td>Instagram</td>
                                                 <td>50</td>
@@ -235,7 +235,7 @@
                                                 <td>50</td>
                                                 <td>50</td>
                                                 <td>50</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
