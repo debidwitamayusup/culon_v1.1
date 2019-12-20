@@ -180,7 +180,7 @@ function drawInfoChart(response){
 			top: '6',
 			right: '5',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',

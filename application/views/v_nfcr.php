@@ -94,7 +94,7 @@
                             <div class="card-header-small bg-red">
                                 <h6 class="card-title-small text-white">Average Interval</h6>
                             </div>
-                            <div class="card-body">
+                            <!-- <div class="card-body"> -->
                                 <div class="table-responsive table-bordered">
                                     <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
                                         <thead class="text-center bg-gray2">
@@ -115,132 +115,132 @@
                                                 <th class="bg-blue-dark text-white">N-FCR</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="mytbody" class="text-center">
+                                        <tbody id="mytbody">
                                             <tr>
-                                                <td>1</td>
+                                                <td class="text-center">1</td>
                                                 <td>Instagram</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>2</td>
+                                                <td class="text-center">2</td>
                                                 <td>Whatsapp</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>3</td>
-                                                <td>Line</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Voice</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
+                                                <td class="text-center">3</td>
                                                 <td>Facebook</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>6</td>
-                                                <td>Messenger</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">4</td>
+                                                <td>Twitter</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>7</td>
+                                                <td class="text-center">5</td>
                                                 <td>Twitter DM</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>8</td>
-                                                <td>Twitter Post</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">6</td>
+                                                <td>Facebook Messenger</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                             <tr>
-                                                <td>9</td>
-                                                <td>Live Chat</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>10</td>
-                                                <td>Telegram</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>11</td>
-                                                <td>SMS</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12</td>
+                                                <td class="text-center">7</td>
                                                 <td>Email</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
-                                                <td>50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">8</td>
+                                                <td>Voice</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">9</td>
+                                                <td>Telegram</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">10</td>
+                                                <td>Line</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">11</td>
+                                                <td>Live Chat</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">12</td>
+                                                <td>SMS</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
+                                                <td class="text-center">50</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <!-- table-responsive -->
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>

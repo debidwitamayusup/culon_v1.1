@@ -6123,17 +6123,22 @@ ul {
 }
 
 /* custom chart   */
+.chartsh-kip {
+	height: 23.6rem;
+	overflow:hidden;
+}
+
 .chartsh-horizontal {
-	height: 18.7rem;
-	width:12.4rem;
+	height: 23.0rem;
+	width:13.7rem;
 	overflow:hidden;
 }
 .chartsh-category {
-	height: 32.3rem;
+	height: 35.6rem;
 	overflow:hidden;
 }
 .chartsh-nfcr {
-	height: 38.0rem;
+	height: 36.8rem;
 	width:27rem;
 	overflow:hidden;
 }

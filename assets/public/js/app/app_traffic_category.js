@@ -160,7 +160,7 @@ function drawPieChart(response){
     
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 358;
+    ctx.height = 429;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -223,7 +223,7 @@ function drawInfoChart(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '10',
 			bottom: '20',
 			left: '60',
 		},
@@ -254,7 +254,22 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdataInfo,
@@ -291,9 +306,9 @@ function drawComplaintChart(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '10',
 			bottom: '20',
-			left: '60',
+			left: '70',
 		},
 		xAxis: {
 			type: 'value',
@@ -322,7 +337,22 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdataComp,
@@ -359,9 +389,9 @@ function drawRequestChart(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '10',
 			bottom: '20',
-			left: '60',
+			left: '70',
 		},
 		xAxis: {
 			type: 'value',
@@ -390,7 +420,22 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdataReq,
@@ -490,7 +535,22 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,
@@ -516,7 +576,7 @@ function drawTableData(response){
         response.data.traffic_channel.forEach(function (value, index) {
             $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td class="text-sm font-weight-600 text-center">'+(index+1)+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.channel_name+'</td>'+
+            '<td class="text-sm font-weight-600">'+value.channel_name+'</td>'+
             '<td class="text-sm font-weight-600 text-center">'+value.total_1+'</td>'+
             '<td class="text-sm font-weight-600 text-center">'+value.total_2+'</td>'+
             '<td class="text-sm font-weight-600 text-center">'+value.total_3+'</td>'+
