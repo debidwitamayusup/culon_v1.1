@@ -28,9 +28,9 @@
                 <!----Baris Pertama----!-->
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
-                        <div class="card overflow-hidden">
-                            <div class="card-header bg-red">
-                                <h3 class="card-title text-white">Summary KIP </h3>
+                        <div class="card">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small mt-1">Summary KIP</h5>
                             </div>
                             <div class="card-body" id="canvas-pie">
                                 <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
@@ -39,11 +39,11 @@
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
-                            <div class="card-header bg-red">
-                                <h4 class="card-title text-white">KIP per Channel</h4>
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small text-white">KIP per Channel</h5>
                             </div>
                             <div class="card-body" id="content-chart-kip">
-                                <div id="echartKIP" class="chartsh overflow-hidden"></div>
+                                <div id="echartKIP"></div>
                             </div>
                         </div>
                     </div>
@@ -52,12 +52,12 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                            <div class="row ml-1">
-                                <div class="form-group row">
-                                    <select class="form-control" id="channel_name">
-                                    </select>
+                                <div class="row ml-1">
+                                    <div class="form-group row">
+                                        <select class="form-control" id="channel_name">
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                                 <div id="row-sub-category">
                                     <div class="row" id="content-sub-category">
                                     </div>

@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 358;
+    ctx.height = 428;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -233,7 +233,7 @@ function drawCategory1(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -272,7 +272,22 @@ function drawCategory1(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -330,7 +345,7 @@ function drawCategory2(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -369,7 +384,22 @@ function drawCategory2(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -427,7 +457,7 @@ function drawCategory3(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -466,7 +496,22 @@ function drawCategory3(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -559,7 +604,7 @@ function drawSummaryTrafficChannelChart(response){
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '20',
 			bottom: '20',
 			left: '60',
 		},
@@ -598,7 +643,22 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {

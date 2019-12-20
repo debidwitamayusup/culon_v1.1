@@ -2643,6 +2643,9 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	vertical-align: top;
 	border-top: 1px solid #e4e6f9;
 }
+.table th{
+	font-size:12px !important;
+}
 .table td {
 	padding: 0.75rem;
 	vertical-align: top;
@@ -6123,17 +6126,26 @@ ul {
 }
 
 /* custom chart   */
+.chartsh-fcr {
+	height: 23.6rem;
+	overflow:hidden;
+}
+
+.chartsh-kip {
+	height: 23.6rem;
+	overflow:hidden;
+}
+
 .chartsh-horizontal {
-	height: 18.7rem;
-	width:12.4rem;
+	height: 23.0rem;
 	overflow:hidden;
 }
 .chartsh-category {
-	height: 32.3rem;
+	height: 36.1rem;
 	overflow:hidden;
 }
 .chartsh-nfcr {
-	height: 38.0rem;
+	height: 38.2rem;
 	width:27rem;
 	overflow:hidden;
 }

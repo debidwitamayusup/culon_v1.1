@@ -28,23 +28,23 @@
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Category</h6>
+                                <h6 class="card-title-small mt-1">Summary Category</h6>
                             </div>
                             <div class="card-body" id="canvas-pie">
-                                <canvas id="pieTCategory" class="donutShadow overflow-hidden"></canvas>
+                                <canvas id="pieTCategory" class="donutShadow overflow-hidden h-200"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 col-md-12">
+                    <div class="col-lg-9 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Category per Channel</h6>
+                                <h6 class="card-title-small mt-1">Summary Category per Channel</h6>
                             </div>
-                            <div class="body">
-                                <div class="row ml-1 mr-1 mt-1">
+                            <!-- <div class="card-body"> -->
+                                <div class="row mt-1">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
@@ -79,29 +79,32 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <div class="card">
-                        <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary by Channel</h6>
+                            <div class="card-header-small bg-red">
+                                <h6 class="card-title-small mt-1">Summary Traffic per Category per Channel</h6>
                             </div>
                             <div class="card-body" id="Summary-channel">
                                 <div id="echartTraffic" class="chartsh-category overflow-hidden"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-7 col-md-12">
                         <div class="card">
-                            <div class="card-body" style="padding:0.5rem !important">
-                                <div class="table-responsive">
+                            <div class="card-header-small bg-red">
+                                <h6 class="card-title-small mt-1">Table per Category per Channel</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive mb-2">
                                     <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
                                         <thead class="bg-primary text-center" id="mythead_avg_traffic">
                                         </thead>
-                                        <tbody class="text-center" id="mytbody_avg_traffic">
+                                        <tbody id="mytbody_avg_traffic">
                                         </tbody>
                                     </table>
                                 </div>

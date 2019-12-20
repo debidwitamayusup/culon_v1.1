@@ -30,7 +30,7 @@
 						<div class="col-xl-6 col-lg-6 col-md-12">
 							<div class="card overflow-hidden">
 								<div class="card-header bg-red">
-									<h3 class="card-title text-white">Summary Traffic Channel</h3>
+									<h4 class="card-title text-white">Summary Traffic Channel</h4>
 								</div>
 								<div class="card-pie">
 									<div class="canvas-con">

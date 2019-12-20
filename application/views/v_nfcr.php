@@ -14,14 +14,6 @@
                             <li class="breadcrumb-item active" aria-current="page">Summary FCR N-FCR </li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
-                            <!-- <div class="btn-group btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                    <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
-                            </div> -->
                         </div>
                     </div>
                     <!--Page Header-->
@@ -31,7 +23,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Status FCR N-FCR</h6>
+                                <h5 class="card-title-small text-white">Summary Status FCR N-FCR</h5>
                             </div>
                             <div class="card-body">
                                 <canvas id="pieNFCR" class="donutShadow overflow-hidden"></canvas>
@@ -48,7 +40,7 @@
                                             <h6 class="card-title-small text-white" id="titleCategory1"></h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-info" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-info" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +50,7 @@
                                             <h6 class="card-title-small text-white" id="titleCategory2"></h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-comp" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-comp" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +60,7 @@
                                             <h6 class="card-title-small text-white" id="titleCategory3"></h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-req" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-req" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -82,20 +74,20 @@
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h6>
+                                <h5 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h5>
                             </div>
                             <div class="card-body" id="chart-percentage">
-                                <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden"></div>
+                                <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden mb-1"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Average Interval</h6>
+                                <h5 class="card-title-small text-white">Average Interval</h5>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive table-bordered">
+                            <!-- <div class="card-body"> -->
+                                <div class="table-responsive table-bordered" style="padding:15px 10px 15px 10px; !important">
                                     <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
                                         <thead class="text-center bg-gray2" id="mythead_nfcr">
                                         </thead>
@@ -104,7 +96,7 @@
                                     </table>
                                 </div>
                                 <!-- table-responsive -->
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
