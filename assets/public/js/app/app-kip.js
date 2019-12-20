@@ -102,8 +102,8 @@ function drawChartSubCategory(response){
 		$('#content-sub-category').append(''+
 		'<div class="col-lg-4 col-md-12">'+
 			'<div class="card">'+
-				'<div class="card-header bg-red">'+
-					'<h4 class="card-title text-white">'+value+'</h4>'+
+				'<div class="card-header-small bg-red">'+
+					'<h6 class="card-title-small mt-1">'+value+'</h6>'+
 				'</div>'+
 				'<div class="card-body">'+
 					'<div id="echart'+value+'" class="chartsh overflow-hidden"></div>'+
@@ -128,9 +128,9 @@ function drawChartSubCategory(response){
 		var optionInfo = {
 			grid: {
 				top: '6',
-				right: '10',
+				right: '20',
 				bottom: '20',
-				left: '58',
+				left: '55',
 			},
 			xAxis: {
 				type: 'value',
@@ -193,7 +193,15 @@ function drawChartSubCategory(response){
 						show: true,
 						color: '#7886a0'
 					}
-				}
+				},
+				position: function (pos, params, dom, rect, size) {
+					// tooltip will be fixed on the right if mouse hovering on the left,
+					// and on the left if hovering on the right.
+					// console.log(pos);
+					var obj = {top: pos[0]};
+					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+					return obj;
+				},
 			},
 		};
 		var chartInfo = document.getElementById('echart'+value);
@@ -220,7 +228,7 @@ function drawPieChart(response){
     category_kip = summaryKipName;
     //pie chart
     var ctx = document.getElementById( "pieKIP");
-    ctx.height = 300;
+    ctx.height = 377;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -257,7 +265,7 @@ function drawKipPerChannelChart(response){
 
 	//destroy div piechart
     $('#echartKIP').remove(); // this is my <canvas> element
-    $('#content-chart-kip').append('<div id="echartKIP" class="chartsh overflow-hidden"></div>');
+    $('#content-chart-kip').append('<div id="echartKIP" class="chartsh-kip overflow-hidden"></div>');
 
     let category = []
 	var arr_channel = []
@@ -295,7 +303,7 @@ function drawKipPerChannelChart(response){
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '23',
 			bottom: '20',
 			left: '60',
 		},
@@ -326,7 +334,22 @@ function drawKipPerChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,

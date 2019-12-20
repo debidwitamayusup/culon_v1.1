@@ -122,7 +122,7 @@ function drawPieChart(response){
 
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 312;
+    ctx.height = 377;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -179,7 +179,7 @@ function drawInfoChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -192,7 +192,15 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -210,7 +218,22 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -224,7 +247,15 @@ function drawInfoChart(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
@@ -262,7 +293,7 @@ function drawComplaintChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -275,7 +306,15 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -293,7 +332,22 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -307,7 +361,15 @@ function drawComplaintChart(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
@@ -346,7 +408,7 @@ function drawRequestChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -359,7 +421,15 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -377,7 +447,22 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -391,7 +476,15 @@ function drawRequestChart(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdata3,
 		color: ["#31A550","#3866A6"]
@@ -431,7 +524,7 @@ function drawSummaryTrafficNfcr(response){
 	var option_summary = {
 		grid: {
 			top: '6',
-			right: '10',
+			right:'46',
 			bottom: '20',
 			left: '60',
 		},
@@ -444,7 +537,15 @@ function drawSummaryTrafficNfcr(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -462,7 +563,22 @@ function drawSummaryTrafficNfcr(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -484,15 +600,15 @@ function drawSummaryTrafficNfcr(response){
 
 	var chart_summary = document.getElementById('echartNFCR-summary');
 	var barChart_summary = echarts.init(chart_summary);
-	barChart_summary.height=800;
+	// barChart_summary.height=800;
 	barChart_summary.setOption(option_summary);	
 }
 
 function drawTableData(response){
 	//for append title on echart
-    $('#category1').html(response.data[0].category_1);
-    $('#category2').html(response.data[0].category_2);
-    $('#category3').html(response.data[0].category_3);
+    $('#titleCategory1').html(response.data[0].category_1);
+    $('#titleCategory2').html(response.data[0].category_2);
+    $('#titleCategory3').html(response.data[0].category_3);
 
 	$("#mytbody_nfcr").empty();
 	$("#mythead_nfcr").empty();
@@ -517,7 +633,7 @@ function drawTableData(response){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(i+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
+            '<td class="text-left">'+value.channel_name+'</td>'+
             '<td>'+addCommas(value.fcr_1)+'</td>'+
             '<td>'+addCommas(value.nfcr_1)+'</td>'+
             '<td>'+addCommas(value.fcr_2)+'</td>'+

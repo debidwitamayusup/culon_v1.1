@@ -149,3 +149,6 @@
       transition: all 0.5s;
       transform: scale(1);
   }
+.p-10{
+    padding:10px;
+}

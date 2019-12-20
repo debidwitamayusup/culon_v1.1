@@ -20,8 +20,8 @@ function loadContent(params, index){
     callCategory2(params, index);
     callCategory3(params, index);
     // callSummaryTrafficChannel();
-    console.log(params);
-    console.log(index);
+    // console.log(params);
+    // console.log(index);
 }
 
 //thausands separator
@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 358;
+    ctx.height = 428;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -233,7 +233,7 @@ function drawCategory1(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -246,7 +246,15 @@ function drawCategory1(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -264,7 +272,22 @@ function drawCategory1(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -278,7 +301,15 @@ function drawCategory1(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataInfo,
 		color: ["#A5B0B6"]
@@ -314,7 +345,7 @@ function drawCategory2(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -327,7 +358,15 @@ function drawCategory2(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -345,7 +384,22 @@ function drawCategory2(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -359,7 +413,15 @@ function drawCategory2(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataComp,
 		color: ["#009E8C"]
@@ -395,7 +457,7 @@ function drawCategory3(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '12',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -408,7 +470,15 @@ function drawCategory3(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -426,7 +496,22 @@ function drawCategory3(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
@@ -440,7 +525,15 @@ function drawCategory3(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataReq,
 		color: ["#00436D"]
@@ -511,7 +604,7 @@ function drawSummaryTrafficChannelChart(response){
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '20',
 			bottom: '20',
 			left: '60',
 		},
@@ -524,7 +617,15 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -542,7 +643,22 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		tooltip: {
