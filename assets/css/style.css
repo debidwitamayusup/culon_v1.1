@@ -6135,7 +6135,7 @@ ul {
 
 .chartsh-horizontal {
 	height: 23.0rem;
-	width:14.0rem;
+	/* width:14.0rem; */
 	overflow:hidden;
 }
 .chartsh-category {

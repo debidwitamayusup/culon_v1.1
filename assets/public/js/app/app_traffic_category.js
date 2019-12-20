@@ -223,7 +223,7 @@ function drawInfoChart(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '13',
+			right: '20',
 			bottom: '20',
 			left: '60',
 		},
@@ -306,7 +306,7 @@ function drawComplaintChart(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '13',
+			right: '20',
 			bottom: '20',
 			left: '60',
 		},
@@ -389,7 +389,7 @@ function drawRequestChart(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '13',
+			right: '15',
 			bottom: '20',
 			left: '60',
 		},
@@ -504,7 +504,7 @@ function drawSummaryTrafficChannelChart(response){
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '20',
 			bottom: '20',
 			left: '60',
 		},
