@@ -490,9 +490,9 @@ function drawSummaryTrafficNfcr(response){
 
 function drawTableData(response){
 	//for append title on echart
-    $('#category1').html(response.data[0].category_1);
-    $('#category2').html(response.data[0].category_2);
-    $('#category3').html(response.data[0].category_3);
+    $('#titleCategory1').html(response.data[0].category_1);
+    $('#titleCategory2').html(response.data[0].category_2);
+    $('#titleCategory3').html(response.data[0].category_3);
 
 	$("#mytbody_nfcr").empty();
 	$("#mythead_nfcr").empty();
