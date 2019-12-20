@@ -45,7 +45,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white" id="category1"></h6>
+                                            <h6 class="card-title-small text-white" id="titleCategory1"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-info" class="chartsh overflow-hidden"></div>
@@ -55,7 +55,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white" id="category2"></h6>
+                                            <h6 class="card-title-small text-white" id="titleCategory2"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-comp" class="chartsh overflow-hidden"></div>
@@ -65,7 +65,7 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="card overflow-hidden border-0">
                                         <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small text-white" id="category3"></h6>
+                                            <h6 class="card-title-small text-white" id="titleCategory3"></h6>
                                         </div>
                                         <div class="card-body">
                                             <div id="echartNFCR-req" class="chartsh overflow-hidden"></div>
