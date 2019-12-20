@@ -31,7 +31,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Status FCR N-FCR</h6>
+                                <h5 class="card-title-small text-white">Summary Status FCR N-FCR</h5>
                             </div>
                             <div class="card-body">
                                 <canvas id="pieNFCR" class="donutShadow overflow-hidden"></canvas>
@@ -82,7 +82,7 @@
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h6>
+                                <h5 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h5>
                             </div>
                             <div class="card-body" id="chart-percentage">
                                 <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden"></div>
@@ -92,7 +92,7 @@
                     <div class="col-lg-7 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h6 class="card-title-small text-white">Average Interval</h6>
+                                <h5 class="card-title-small text-white">Average Interval</h5>
                             </div>
                             <!-- <div class="card-body"> -->
                                 <div class="table-responsive table-bordered">
