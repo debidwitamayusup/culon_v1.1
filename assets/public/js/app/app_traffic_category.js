@@ -20,8 +20,8 @@ function loadContent(params, index){
     callCategory2(params, index);
     callCategory3(params, index);
     // callSummaryTrafficChannel();
-    console.log(params);
-    console.log(index);
+    // console.log(params);
+    // console.log(index);
 }
 
 //thausands separator
