@@ -246,7 +246,15 @@ function drawCategory1(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -327,7 +335,15 @@ function drawCategory2(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -408,7 +424,15 @@ function drawCategory3(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -524,7 +548,15 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
