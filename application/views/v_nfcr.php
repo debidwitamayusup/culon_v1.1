@@ -77,7 +77,7 @@
                                 <h5 class="card-title-small text-white">Summary Traffic FCR N-FCR ALL Channel</h5>
                             </div>
                             <div class="card-body" id="chart-percentage">
-                                <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden"></div>
+                                <div id="echartNFCR-summary" class="chartsh-nfcr overflow-hidden mb-1"></div>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                 <h5 class="card-title-small text-white">Average Interval</h5>
                             </div>
                             <!-- <div class="card-body"> -->
-                                <div class="table-responsive table-bordered">
+                                <div class="table-responsive table-bordered" style="padding:15px 10px 15px 10px; !important">
                                     <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
                                         <thead class="text-center bg-gray2" id="mythead_nfcr">
                                         </thead>

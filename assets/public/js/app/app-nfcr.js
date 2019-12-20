@@ -500,7 +500,7 @@ function drawSummaryTrafficNfcr(response){
 	var option_summary = {
 		grid: {
 			top: '6',
-			right: '10',
+			right:'46',
 			bottom: '20',
 			left: '60',
 		},
@@ -609,7 +609,7 @@ function drawTableData(response){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(i+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
+            '<td class="text-left">'+value.channel_name+'</td>'+
             '<td>'+addCommas(value.fcr_1)+'</td>'+
             '<td>'+addCommas(value.nfcr_1)+'</td>'+
             '<td>'+addCommas(value.fcr_2)+'</td>'+

@@ -43,7 +43,7 @@
                             <div class="card-header-small bg-red">
                                 <h6 class="card-title-small mt-1">Summary Category per Channel</h6>
                             </div>
-                            <div class="body">
+                            <!-- <div class="card-body"> -->
                                 <div class="row mt-1">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
@@ -79,12 +79,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
                                 <h6 class="card-title-small mt-1">Summary Traffic per Category per Channel</h6>
@@ -94,13 +94,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-7 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
                                 <h6 class="card-title-small mt-1">Table per Category per Channel</h6>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive mb-2">
                                     <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
                                         <thead class="bg-primary text-center" id="mythead_avg_traffic">
                                         </thead>

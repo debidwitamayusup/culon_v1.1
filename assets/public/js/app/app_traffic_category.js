@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 429;
+    ctx.height = 428;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -233,7 +233,7 @@ function drawCategory1(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '20',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -337,7 +337,7 @@ function drawCategory2(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '20',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
@@ -441,7 +441,7 @@ function drawCategory3(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '15',
+			right: '11',
 			bottom: '20',
 			left: '60',
 		},
