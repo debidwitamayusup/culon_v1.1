@@ -192,7 +192,15 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -275,7 +283,15 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -359,7 +375,15 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -444,7 +468,15 @@ function drawSummaryTrafficNfcr(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
