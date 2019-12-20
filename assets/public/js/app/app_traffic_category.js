@@ -223,7 +223,7 @@ function drawInfoChart(response){
     var optionInfo = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -306,9 +306,9 @@ function drawComplaintChart(response){
     var optionComp = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '13',
 			bottom: '20',
-			left: '70',
+			left: '60',
 		},
 		xAxis: {
 			type: 'value',
@@ -389,9 +389,9 @@ function drawRequestChart(response){
     var optionReq = {
 		grid: {
 			top: '6',
-			right: '10',
+			right: '13',
 			bottom: '20',
-			left: '70',
+			left: '60',
 		},
 		xAxis: {
 			type: 'value',

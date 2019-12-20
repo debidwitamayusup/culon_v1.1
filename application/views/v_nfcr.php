@@ -14,14 +14,6 @@
                             <li class="breadcrumb-item active" aria-current="page">Summary FCR N-FCR </li>
                         </ol>
                         <div class="card-options d-none d-sm-block">
-                            <!-- <div class="btn-group btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                    <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
-                            </div> -->
                         </div>
                     </div>
                     <!--Page Header-->
@@ -48,7 +40,7 @@
                                             <h6 class="card-title-small text-white">Information</h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-info" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-info" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +50,7 @@
                                             <h6 class="card-title-small text-white">Complaint</h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-comp" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-comp" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +60,7 @@
                                             <h6 class="card-title-small text-white">Request</h6>
                                         </div>
                                         <div class="card-body">
-                                            <div id="echartNFCR-req" class="chartsh overflow-hidden"></div>
+                                            <div id="echartNFCR-req" class="chartsh-fcr overflow-hidden"></div>
                                         </div>
                                     </div>
                                 </div>

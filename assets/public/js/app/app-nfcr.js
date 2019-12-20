@@ -112,7 +112,7 @@ function drawPieChart(response){
 
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 312;
+    ctx.height = 377;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -178,9 +178,9 @@ function drawInfoChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
-			left: '65',
+			left: '60',
 		},
 		xAxis: {
 			type: 'value',
@@ -196,7 +196,7 @@ function drawInfoChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: ['Whatsapp','Instagram','Twitter','Facebook','Facebook Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -209,7 +209,22 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,
@@ -259,7 +274,7 @@ function drawComplaintChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -277,7 +292,7 @@ function drawComplaintChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: ['Whatsapp','Instagram','Twitter','Facebook','Facebook Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -290,7 +305,22 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,
@@ -340,7 +370,7 @@ function drawRequestChart(response){
 	var option_info = {
 		grid: {
 			top: '6',
-			right: '5',
+			right: '13',
 			bottom: '20',
 			left: '60',
 		},
@@ -358,7 +388,7 @@ function drawRequestChart(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: ['Whatsapp','Instagram','Twitter','Facebook','Facebook Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -371,7 +401,22 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,
@@ -438,7 +483,7 @@ function drawSummaryTrafficNfcr(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
+			data: ['Whatsapp','Instagram','Twitter','Facebook','Facebook Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
@@ -451,7 +496,22 @@ function drawSummaryTrafficNfcr(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if (/\s/.test(value)) {
+						var teks = '';
+						for(var i=0;i<value.length;i++){
+							if(value[i] == " "){
+								teks = teks + '\n';
+							}else{
+								teks = teks + value[i];
+							}
+						}
+						return teks;
+					}else{
+						return value;
+					} 
+				}
 			}
 		},
 		series: chartdata3,
@@ -460,7 +520,7 @@ function drawSummaryTrafficNfcr(response){
 
 	var chart_summary = document.getElementById('echartNFCR-summary');
 	var barChart_summary = echarts.init(chart_summary);
-	barChart_summary.height=800;
+	// barChart_summary.height=800;
 	barChart_summary.setOption(option_summary);	
 }
 

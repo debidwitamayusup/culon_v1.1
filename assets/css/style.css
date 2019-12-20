@@ -6123,6 +6123,11 @@ ul {
 }
 
 /* custom chart   */
+.chartsh-fcr {
+	height: 23.6rem;
+	overflow:hidden;
+}
+
 .chartsh-kip {
 	height: 23.6rem;
 	overflow:hidden;
@@ -6130,7 +6135,7 @@ ul {
 
 .chartsh-horizontal {
 	height: 23.0rem;
-	width:13.7rem;
+	width:14.0rem;
 	overflow:hidden;
 }
 .chartsh-category {

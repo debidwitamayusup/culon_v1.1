@@ -44,7 +44,7 @@
                                 <h6 class="card-title-small mt-1">Summary Category per Channel</h6>
                             </div>
                             <div class="body">
-                                <div class="row ml-1 mr-1 mt-1">
+                                <div class="row mt-1">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="expanel expanel-primary">
                                             <div class="expanel-heading">
