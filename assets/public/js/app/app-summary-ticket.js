@@ -51,58 +51,58 @@
     } );
 
     var ctx = document.getElementById("echartTicket");
-		// ctx.height = 600;
-		var myChart = new Chart(ctx, {
-			type: 'horizontalBar',
-			data: {
-				labels: [
-                    "Open",
-                    "Reject",
-                    "Close",
-                    "Return",
-                    "New",
-                    "Resolve",
-                    "Pending"
-				],
-				datasets: [{
-					// label: data.labels,
-					data: [85, 48, 59, 37, 12, 16, 18],
-					borderColor: [
-						"#60D67B",
-                        "#FF2A29",
-                        "#138184",
-                        "#113EBF",
-                        "#808D84",
-                        "#1B64BB",
-                        "#E2E1E6"
-					],
-					borderWidth: "0",
-					backgroundColor: [
-						"#60D67B",
-                        "#FF2A29",
-                        "#138184",
-                        "#113EBF",
-                        "#808D84",
-                        "#1B64BB",
-                        "#E2E1E6"
-					]
-				}, ]
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				scales: {
-					yAxes: [{
-						ticks: {
-							beginAtZero: true
-						}
-					}]
-				},
-				legend: {
-					display: false
-				}
-			}
-		});
+    // ctx.height = 600;
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: [
+                "Open",
+                "Reject",
+                "Close",
+                "Return",
+                "New",
+                "Resolve",
+                "Pending"
+            ],
+            datasets: [{
+                // label: data.labels,
+                data: [85, 48, 59, 37, 12, 16, 18],
+                borderColor: [
+                    "#60D67B",
+                    "#FF2A29",
+                    "#138184",
+                    "#113EBF",
+                    "#808D84",
+                    "#1B64BB",
+                    "#E2E1E6"
+                ],
+                borderWidth: "0",
+                backgroundColor: [
+                    "#60D67B",
+                    "#FF2A29",
+                    "#138184",
+                    "#113EBF",
+                    "#808D84",
+                    "#1B64BB",
+                    "#E2E1E6"
+                ]
+            }, ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
 
          //line chart agent
     var ctx = document.getElementById("graphicTicket");

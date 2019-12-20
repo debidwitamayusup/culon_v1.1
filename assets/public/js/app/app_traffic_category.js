@@ -1,9 +1,12 @@
 var base_url = $('#base_url').val();
 var params_time = '';
+var category_kip = [];
 
 $(document).ready(function () {
     params_time = 'day';
     v_date = '2019-12-01';
+
+    //filter button active
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
@@ -13,10 +16,51 @@ $(document).ready(function () {
 
 function loadContent(params, index){
     callSummaryPie(params, index);
-    callInfoTraffic(params, index);
-    callComplalintTraffic(params, index);
-    callRequestTraffic(params, index);
+    callCategory1(params, index);
+    callCategory2(params, index);
+    callCategory3(params, index);
     // callSummaryTrafficChannel();
+    console.log(params);
+    console.log(index);
+}
+
+//thausands separator
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
+//fungsi untuk sorting table
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("table_avg_traffic");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      //sort berdasarkan index <td>
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
 }
 
 function callSummaryPie(params, index){
@@ -43,7 +87,7 @@ function callSummaryPie(params, index){
     });
 }
 
-function callInfoTraffic(params, index){
+function callCategory1(params, index){
 	$.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory1',
@@ -54,7 +98,7 @@ function callInfoTraffic(params, index){
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
-            drawInfoChart(response);
+            drawCategory1(response);
         },
         error: function (r) {
             alert("error");
@@ -63,7 +107,7 @@ function callInfoTraffic(params, index){
     });
 }
 
-function callComplalintTraffic(params, index){
+function callCategory2(params, index){
 	$.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory2',
@@ -74,7 +118,7 @@ function callComplalintTraffic(params, index){
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
-            drawComplaintChart(response);
+            drawCategory2(response);
         },
         error: function (r) {
             alert("error");
@@ -83,7 +127,7 @@ function callComplalintTraffic(params, index){
     });
 }
 
-function callRequestTraffic(params, index){
+function callCategory3(params, index){
 	$.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory3',
@@ -94,7 +138,7 @@ function callRequestTraffic(params, index){
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
-            drawRequestChart(response);
+            drawCategory3(response);
         },
         error: function (r) {
             alert("error");
@@ -103,40 +147,6 @@ function callRequestTraffic(params, index){
     });
 }
 
-// function callSummaryTrafficChannel(){
-// 	$.ajax({
-//         type: 'post',
-//         url: base_url + 'api/OperationPerformance/TrafficCategory/summaryTrafficChannel',
-
-//         success: function (r) { 
-//             var response = JSON.parse(r);
-//             // console.log(response);
-//             drawSummaryTrafficChannelChart(response);
-//         },
-//         error: function (r) {
-//             alert("error");
-//         },
-//     });
-// }
-
-// function callTableData(params, index){
-// 	$.ajax({
-//         type: 'post',
-//         url: base_url + 'api/OperationPerformance/TrafficCategory/getTableData',
-//         data: {
-//         	params: params,
-//         	index: index
-//         },
-//         success: function (r) { 
-//             var response = JSON.parse(r);
-//             // console.log(response);
-//             drawTableData(response);
-//         },
-//         error: function (r) {
-//             alert("error");
-//         },
-//     });
-// }
 
 function drawPieChart(response){
 	//destroy div piechart
@@ -157,7 +167,7 @@ function drawPieChart(response){
 		totalTraffic.push(value.total_kip);
 
     });
-    
+    category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
     ctx.height = 429;
@@ -199,7 +209,7 @@ function drawPieChart(response){
     // console.log(trafficName[0]);
 }
 
-function drawInfoChart(response){
+function drawCategory1(response){
 	//destroy div 
     $('#echartInfoTraffic').remove(); // this is my <canvas> element
     $('#canvas-cat1').append('<div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">');
@@ -215,7 +225,7 @@ function drawInfoChart(response){
     });
      ///chartInformation
     var chartdataInfo = [{
-		name: 'Information',
+		name: category_kip[0],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic,
@@ -236,7 +246,15 @@ function drawInfoChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -272,6 +290,19 @@ function drawInfoChart(response){
 				}
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdataInfo,
 		color: ["#A5B0B6"]
 	};
@@ -281,7 +312,7 @@ function drawInfoChart(response){
 
 }
 
-function drawComplaintChart(response){
+function drawCategory2(response){
 	//destroy div chart
 	$('#echartCompTraffic').remove(); // this is my <canvas> element
     $('#canvas-cat2').append('<div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">');
@@ -298,7 +329,7 @@ function drawComplaintChart(response){
 
     //chartComplaint
     var chartdataComp = [{
-		name: 'Complaint',
+		name: category_kip[1],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -319,7 +350,15 @@ function drawComplaintChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -355,6 +394,19 @@ function drawComplaintChart(response){
 				}
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdataComp,
 		color: ["#009E8C"]
 	};
@@ -364,7 +416,7 @@ function drawComplaintChart(response){
 
 }
 
-function drawRequestChart(response){
+function drawCategory3(response){
 	//destroy div chart
 	$('#echartReqTraffic').remove(); // this is my <canvas> element
     $('#canvas-cat3').append('<div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">');
@@ -381,7 +433,7 @@ function drawRequestChart(response){
 
     //chartRequest
     var chartdataReq = [{
-		name: 'Request',
+		name: category_kip[2],
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -402,7 +454,15 @@ function drawRequestChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -438,6 +498,19 @@ function drawRequestChart(response){
 				}
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdataReq,
 		color: ["#00436D"]
 	};
@@ -448,6 +521,9 @@ function drawRequestChart(response){
 }
 
 function drawSummaryTrafficChannelChart(response){
+	//destroy div chart
+	$('#echartTraffic').remove(); // this is my <canvas> element
+    $('#Summary-channel').append('<div id="echartTraffic" class="chartsh-category overflow-hidden"></div>');
 	"use strict"
 	let category = []
     let arr_channel = []
@@ -517,7 +593,15 @@ function drawSummaryTrafficChannelChart(response){
 			},
 			axisLabel: {
 				fontSize: 10,
-				color: '#7886a0'
+				color: '#7886a0',
+				formatter: function (value, index) {
+					if(value >= 1000){
+						var res = (value/1000);
+						return res+'K'
+					}else {
+						return value;
+					}
+				}
 			}
 		},
 		yAxis: {
@@ -553,6 +637,19 @@ function drawSummaryTrafficChannelChart(response){
 				}
 			}
 		},
+		tooltip: {
+			show: true,
+			showContent: true,
+			alwaysShowContent: false,
+			triggerOn: 'mousemove',
+			trigger: 'axis',
+			axisPointer: {
+				label: {
+					show: true,
+					color: '#7886a0'
+				}
+			}
+		},
 		series: chartdata3,
 		color: [ "#A5B0B6","#009E8C","#00436D"]
 	};
@@ -567,21 +664,25 @@ function drawTableData(response){
 	$("#mythead_avg_traffic").empty();
     if(response.data.length != 0){
     	$('#table_avg_traffic').find('thead').append('<tr>'+
-            '<td>ID</td>'+
-            '<td>CHANNEL</td>'+
+            '<td>No.</td>'+
+            '<td>Channel</td>'+
             '<td>'+response.data.summary[0].category+'</td>'+
             '<td>'+response.data.summary[1].category+'</td>'+
             '<td>'+response.data.summary[2].category+'</td>'+
             '</tr>');
+
+    	var i = response.data.traffic_channel.length+1;
         response.data.traffic_channel.forEach(function (value, index) {
             $('#table_avg_traffic').find('tbody').append('<tr>'+
-            '<td class="text-sm font-weight-600 text-center">'+(index+1)+'</td>'+
-            '<td class="text-sm font-weight-600">'+value.channel_name+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_1+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_2+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+value.total_3+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_2)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_3)+'</td>'+
             '</tr>');
+            i--;
         });
+        sortTable();
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+
@@ -589,6 +690,7 @@ function drawTableData(response){
     }
     $("#filter-loader").fadeOut("slow");
 }
+
 //jquery
 (function ($) {
 
@@ -626,261 +728,4 @@ function drawTableData(response){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
     });
-   
 })(jQuery);
-// (function ($) {
-	// "use strict";
-	// var chartdata3 = [{
-	// 	name: 'Information',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [14, 18, 20, 14, 29, 21, 25, 14, 24,14, 24]
-	// }, {
-	// 	name: 'Request',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
- //    },{
-	// 	name: 'Complaint',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
-	// }];
-	
-	// /*----Echart6----*/
-	// var option6 = {
-	// 	grid: {
-	// 		top: '6',
-	// 		right: '10',
-	// 		bottom: '20',
-	// 		left: '60',
-	// 	},
-	// 	xAxis: {
-	// 		type: 'value',
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	yAxis: {
-	// 		type: 'category',
-	// 		data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
-	// 		splitLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	series: chartdata3,
-	// 	color: [ "#A5B0B6","#009E8C","#00436D"]
-	// };
-	// var chart6 = document.getElementById('echartTraffic');
-	// var barChart6 = echarts.init(chart6);
- //    barChart6.setOption(option6);
-
-   //  //pie chart
-   //  var ctx = document.getElementById( "pieTCategory");
-   //  ctx.height = 359;
-   //  var myChart = new Chart( ctx, {
-   //      type: 'pie',
-   //      data: {
-   //          datasets: [ {
-   //              data: [ 85, 48, 59 ],
-   //              backgroundColor: [
-			// 					"#A5B0B6",
-			// 					"#009E8C",
-			// 					"#00436D"
-   //                              ],
-   //              hoverBackgroundColor: [
-			// 					"#A5B0B6",
-			// 					"#009E8C",
-			// 					"#00436D"
-   //                              ]
-
-   //                          } ],
-   //          labels: [
-   //                          "Complaint",
-   //                          "Request",
-   //                          "Information"
-   //                      ]
-   //      },
-   //      options: {
-   //          responsive: true,
-			// maintainAspectRatio: false,
-			// legend :{
-			// 	position : 'bottom',
-			// 	labels:{
-			// 		boxWidth:10
-			//    }
-			// }
-   //      }
-   //  } );
-
- //    ///chartInformation
- //    var chartdataInfo = [{
-	// 	name: 'Information',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [14, 18, 20, 14,50,14, 18, 20, 14, 29, 21, 25],
-	// }];
- //    var optionInfo = {
-	// 	grid: {
-	// 		top: '6',
-	// 		right: '10',
-	// 		bottom: '20',
-	// 		left: '60',
-	// 	},
-	// 	xAxis: {
-	// 		type: 'value',
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	yAxis: {
-	// 		type: 'category',
-	// 		data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
-	// 		splitLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	series: chartdataInfo,
-	// 	color: ["#A5B0B6"]
-	// };
-	// var chartInfo = document.getElementById('echartInfoTraffic');
-	// var barChartInfo = echarts.init(chartInfo);
- //    barChartInfo.setOption(optionInfo);
-
- //    //chartComplaint
- //    var chartdataComp = [{
-	// 	name: 'Complaint',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [14, 18, 20, 14,100,14, 18, 20, 14, 29, 21, 25]
-	// }];
- //    var optionComp = {
-	// 	grid: {
-	// 		top: '6',
-	// 		right: '10',
-	// 		bottom: '20',
-	// 		left: '60',
-	// 	},
-	// 	xAxis: {
-	// 		type: 'value',
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	yAxis: {
-	// 		type: 'category',
-	// 		data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
-	// 		splitLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	series: chartdataComp,
-	// 	color: ["#009E8C"]
-	// };
-	// var chartComp = document.getElementById('echartCompTraffic');
-	// var barChartComp = echarts.init(chartComp);
- //    barChartComp.setOption(optionComp);
-
- //    //chartRequest
- //    var chartdataReq = [{
-	// 	name: 'Request',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data:[14, 18, 20, 14,100,14, 18, 20, 14, 29, 21, 25]
-	// }];
- //    var optionReq = {
-	// 	grid: {
-	// 		top: '6',
-	// 		right: '10',
-	// 		bottom: '20',
-	// 		left: '60',
-	// 	},
-	// 	xAxis: {
-	// 		type: 'value',
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	yAxis: {
-	// 		type: 'category',
-	// 		data: ['Whatsapp','Instagram','Twitter','Facebook','Messenger','Telegram','Twitter DM','Voice','Live Chat','Line','SMS'],
-	// 		splitLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLine: {
-	// 			lineStyle: {
-	// 				color: '#efefff'
-	// 			}
-	// 		},
-	// 		axisLabel: {
-	// 			fontSize: 10,
-	// 			color: '#7886a0'
-	// 		}
-	// 	},
-	// 	series: chartdataReq,
-	// 	color: ["#00436D"]
-	// };
-	// var chartReq = document.getElementById('echartReqTraffic');
-	// var barChartReq = echarts.init(chartReq);
- //    barChartReq.setOption(optionReq);
-
-// })(jQuery);

@@ -89,7 +89,7 @@
                             <div class="card-header-small bg-red">
                                 <h6 class="card-title-small mt-1">Summary Traffic per Category per Channel</h6>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" id="Summary-channel">
                                 <div id="echartTraffic" class="chartsh-category overflow-hidden"></div>
                             </div>
                         </div>
