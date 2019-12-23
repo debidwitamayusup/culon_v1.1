@@ -33,7 +33,7 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Category</h5>
                             </div>
-                            <div class="card-body" id="canvas-pie">
+                            <div class="card-body card-ptss mt-7" id="canvas-pie">
                                 <canvas id="pieTCategory" class="donutShadow overflow-hidden h-200"></canvas>
                             </div>
                         </div>

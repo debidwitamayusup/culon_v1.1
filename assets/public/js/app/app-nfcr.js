@@ -122,7 +122,7 @@ function drawPieChart(response){
 
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 371;
+    ctx.height = 300;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -137,7 +137,7 @@ function drawPieChart(response){
                                     "#3866A6"
                                 ]
 
-                            } ],
+                            }],
             labels: ['FCR', 'N-FCR']
         },
         options: {
@@ -145,7 +145,37 @@ function drawPieChart(response){
 			maintainAspectRatio: false,
 			legend :{
 				position : "bottom"
+			},
+			tooltips: {
+			  callbacks: {
+					label: function(tooltipItem, data) {
+						var value = data.datasets[0].data[tooltipItem.index];
+						value = value.toString();
+						value = value.split(/(?=(?:...)*$)/);
+						value = value.join('.');
+						return value;
+					}
+			  }
 			}
+			// ,
+			// plugins: {
+			// 	labels: {
+			// 		// add padding when position is `outside`
+			//         // default is 2
+			//         outsidePadding: 10,
+
+			//         // add margin of text when position is `outside` or `border`
+			//         // default is 2
+   //      			textMargin: 10
+			// 	}
+			// }
+			,
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 }
