@@ -155,15 +155,27 @@ function drawPieChart(response){
 						value = value.join('.');
 						return value;
 					}
-			  } // end callbacks:
-			}, //end tooltips
+			  }
+			}
 			// ,
-			// pieceLabel: {
-   //              render: 'legend',
-   //              fontColor: '#000',
-   //              position: 'outside',
-   //              segment: true
-   //          }
+			// plugins: {
+			// 	labels: {
+			// 		// add padding when position is `outside`
+			//         // default is 2
+			//         outsidePadding: 10,
+
+			//         // add margin of text when position is `outside` or `border`
+			//         // default is 2
+   //      			textMargin: 10
+			// 	}
+			// }
+			,
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 }
