@@ -155,7 +155,7 @@ function drawTableToday(response){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
+            '<td class="text-left">'+value.channel_name+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+
@@ -209,7 +209,7 @@ function drawChartPercentageToday(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartPercentageToday");
-    ctx_percentage.height = 550;
+    ctx_percentage.height = 576;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

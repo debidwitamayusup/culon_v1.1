@@ -91,6 +91,7 @@ function callDataSubCategory(params, index){
 function drawChartSubCategory(response){
 	//destroy div row content
 	$('#content-sub-category').remove(); // this is my <div> element
+	$('#chart-no-data').remove(); 
 	$('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
 	var color = [];
 	color[0] = "#A5B0B6";
@@ -103,7 +104,7 @@ function drawChartSubCategory(response){
 		'<div class="col-lg-4 col-md-12">'+
 			'<div class="card">'+
 				'<div class="card-header-small bg-red">'+
-					'<h6 class="card-title-small mt-1">'+value+'</h6>'+
+					'<h6 class="card-title-small card-pt10">'+value+'</h6>'+
 				'</div>'+
 				'<div class="card-body">'+
 					'<div id="echart'+value+'" class="chartsh overflow-hidden"></div>'+
@@ -204,9 +205,17 @@ function drawChartSubCategory(response){
 				},
 			},
 		};
-		var chartInfo = document.getElementById('echart'+value);
-		var barChartInfo = echarts.init(chartInfo);
-		barChartInfo.setOption(optionInfo);
+
+		if(label.length==0){
+			console.log("kosong")
+			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+		}else {
+			console.log("masuk")
+			var chartInfo = document.getElementById('echart'+value);
+			var barChartInfo = echarts.init(chartInfo);
+			barChartInfo.setOption(optionInfo);
+		}
+
 		i++;
 	});
 }

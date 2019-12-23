@@ -709,11 +709,11 @@ function drawTableData(response){
     	var i = response.data.traffic_channel.length+1;
         response.data.traffic_channel.forEach(function (value, index) {
             $('#table_avg_traffic').find('tbody').append('<tr>'+
-            '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
+            '<td class="text-sm font-weight-600">'+(i-1)+'</td>'+
             '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_1)+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_2)+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_3)+'</td>'+
+            '<td class="text-sm font-weight-600">'+addCommas(value.total_1)+'</td>'+
+            '<td class="text-sm font-weight-600">'+addCommas(value.total_2)+'</td>'+
+            '<td class="text-sm font-weight-600">'+addCommas(value.total_3)+'</td>'+
             '</tr>');
             i--;
         });

@@ -167,7 +167,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 303;
+    ctx.height = 304;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {

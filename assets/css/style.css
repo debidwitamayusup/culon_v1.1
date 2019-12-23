@@ -6141,11 +6141,11 @@ ul {
 	overflow:hidden;
 }
 .chartsh-category {
-	height: 36.1rem;
+	height: 36.5rem;
 	overflow:hidden;
 }
 .chartsh-nfcr {
-	height: 38.2rem;
+	height: 38.0rem;
 	width:27rem;
 	overflow:hidden;
 }
@@ -14243,6 +14243,14 @@ a.icon {
 	margin: -.75rem 0 1rem;
 	line-height: 1.1;
 	font-weight: 400;
+}
+
+.card-pt10{
+	padding-top:10px !important;
+}
+
+.table-pt10{
+	padding:15px 10px 15px 10px !important;
 }
 .card-table {
 	margin-bottom: 0;
