@@ -32,7 +32,7 @@ function getColorChannel(channel){
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
     color['Live Chat'] = '#607d8b';
-    color['Facebook Messenger'] = '#3866a6';
+    color['Messenger'] = '#3866a6';
     color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
