@@ -14,7 +14,7 @@
 							</ol>
 							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-danger btn-sm">
+									<a href="<?=base_url()?>main/this_day" class="btn btn-red btn-sm">
 										<span class="">Day</a></span>
 									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
 										<span class="">Month</a></span>
@@ -29,9 +29,9 @@
 					<!----First Rows--->
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Graphic Interval</h3>
+							<div class="card">
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Graphic Interval</h5>
 								</div>
 								<div class="card-body">
 									<div class="d-flex order-lg-2 ml-auto float-right">
@@ -143,8 +143,8 @@
 					<div class="row">
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Summary Interval Today</h4>
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Summary Interval Today</h5>
 								</div>
 								<div class="card-body" id="chart-percentage">
 									<!-- <canvas id="echartVerticalDay"></canvas> -->
@@ -154,12 +154,12 @@
 						</div>
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Average Interval</h3>
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
-								<div class="table-responsive">
+								<div class="table-responsive table-pt10">
 									<table class="table card-table table-vcenter table-hover" id="table-avg-interval">
-										<thead>
+										<thead class="text-center text-white bg-gray1">
 											<tr>
 												<th>No</th>
 												<th>Channel</th>
@@ -169,7 +169,7 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody id="mytbody">
+										<tbody class="text-center" id="mytbody">
 										</tbody>
 									</table>
 								</div>

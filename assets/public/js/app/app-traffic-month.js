@@ -170,7 +170,7 @@ function drawChartPercentageMonth(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalMonth");
-    ctx_percentage.height = 550;
+    ctx_percentage.height = 577;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {
@@ -224,7 +224,7 @@ function drawTableMonth(response){
         response.data.forEach(function (value, index) {
             $('#tabel_average_month').find('tbody').append('<tr>'+
             '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
+            '<td class="text-left">'+value.channel_name+'</td>'+
             '<td>'+value.sla+'%</td>'+
             '<td>'+value.art+'</td>'+
             '<td>'+value.aht+'</td>'+
