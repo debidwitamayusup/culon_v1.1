@@ -20,8 +20,8 @@ function loadContent(params, index){
     callCategory2(params, index);
     callCategory3(params, index);
     // callSummaryTrafficChannel();
-    console.log(params);
-    console.log(index);
+    // console.log(params);
+    // console.log(index);
 }
 
 //thausands separator
@@ -301,7 +301,15 @@ function drawCategory1(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataInfo,
 		color: ["#A5B0B6"]
@@ -405,7 +413,15 @@ function drawCategory2(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataComp,
 		color: ["#009E8C"]
@@ -509,7 +525,15 @@ function drawCategory3(response){
 					show: true,
 					color: '#7886a0'
 				}
-			}
+			},
+			position: function (pos, params, dom, rect, size) {
+				// tooltip will be fixed on the right if mouse hovering on the left,
+				// and on the left if hovering on the right.
+				// console.log(pos);
+				var obj = {top: pos[0]};
+				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				return obj;
+			},
 		},
 		series: chartdataReq,
 		color: ["#00436D"]

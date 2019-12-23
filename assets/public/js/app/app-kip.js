@@ -193,7 +193,15 @@ function drawChartSubCategory(response){
 						show: true,
 						color: '#7886a0'
 					}
-				}
+				},
+				position: function (pos, params, dom, rect, size) {
+					// tooltip will be fixed on the right if mouse hovering on the left,
+					// and on the left if hovering on the right.
+					// console.log(pos);
+					var obj = {top: pos[0]};
+					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+					return obj;
+				},
 			},
 		};
 		var chartInfo = document.getElementById('echart'+value);

@@ -140,6 +140,7 @@ class OperationModel extends CI_Model
         $this->db->limit(5);
         $query = $this->db->get();
         // $this->createLogSql();
+        
     	return $query->result();
     }
     
