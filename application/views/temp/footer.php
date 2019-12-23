@@ -47,8 +47,6 @@
 
 <!-- Inline js -->
 <!-- Comment date : 12/2/2019 <script src="<?=base_url('assets/js/select2.js')?>"></script> -->
-<!--Select2 js -->
-<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
 
 <!-- P-scroll js -->
 <!-- <script src="<?=base_url()?>assets/plugins/p-scroll/p-scroll.js"></script> -->
