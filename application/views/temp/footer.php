@@ -3,8 +3,7 @@
 	<div class="container">
 		<div class="row align-items-center flex-row-reverse">
 			<div class="col-md-12 col-sm-12 text-center">
-				Copyright © 2019 <a href="#">Spaner</a>. Designed by <a href="https://spruko.com/">Spruko Technologies
-					Pvt.Ltd</a> All rights reserved.
+				Infomedia © 2019
 			</div>
 		</div>
 	</div>
@@ -47,8 +46,6 @@
 
 <!-- Inline js -->
 <!-- Comment date : 12/2/2019 <script src="<?=base_url('assets/js/select2.js')?>"></script> -->
-<!--Select2 js -->
-<script src="<?=base_url()?>assets/plugins/select2/select2.full.min.js"></script>
 
 <!-- P-scroll js -->
 <!-- <script src="<?=base_url()?>assets/plugins/p-scroll/p-scroll.js"></script> -->

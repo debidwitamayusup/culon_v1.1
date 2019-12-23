@@ -32,7 +32,7 @@ function getColorChannel(channel){
     color['Instagram'] = '#fbc0d5';
     color['Line'] = '#31a550';
     color['Live Chat'] = '#607d8b';
-    color['Facebook Messenger'] = '#3866a6';
+    color['Messenger'] = '#3866a6';
     color['SMS'] = '#80cbc4';
     color['Telegram'] = '#343a40';
     color['Twitter'] = '#45aaf2';
@@ -154,12 +154,12 @@ function drawTableToday(response){
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
-            '<td>'+(index+1)+'</td>'+
-            '<td>'+value.channel_name+'</td>'+
-            '<td>'+value.sla+'%</td>'+
-            '<td>'+value.art+'</td>'+
-            '<td>'+value.aht+'</td>'+
-            '<td>'+value.ast+'</td>'+
+            '<td class="text-center">'+(index+1)+'</td>'+
+            '<td class="text-left">'+value.channel_name+'</td>'+
+            '<td class="text-right">'+value.sla+'%</td>'+
+            '<td class="text-right">'+value.art+'</td>'+
+            '<td class="text-right">'+value.aht+'</td>'+
+            '<td class="text-right">'+value.ast+'</td>'+
             '</tr>');
         });
     }else{
@@ -209,7 +209,7 @@ function drawChartPercentageToday(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartPercentageToday");
-    ctx_percentage.height = 550;
+    ctx_percentage.height = 568;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

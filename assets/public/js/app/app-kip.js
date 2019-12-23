@@ -91,6 +91,7 @@ function callDataSubCategory(params, index){
 function drawChartSubCategory(response){
 	//destroy div row content
 	$('#content-sub-category').remove(); // this is my <div> element
+	$('#chart-no-data').remove(); 
 	$('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
 	var color = [];
 	color[0] = "#A5B0B6";
@@ -103,7 +104,7 @@ function drawChartSubCategory(response){
 		'<div class="col-lg-4 col-md-12">'+
 			'<div class="card">'+
 				'<div class="card-header-small bg-red">'+
-					'<h6 class="card-title-small mt-1">'+value+'</h6>'+
+					'<h6 class="card-title-small card-pt10">'+value+'</h6>'+
 				'</div>'+
 				'<div class="card-body">'+
 					'<div id="echart'+value+'" class="chartsh overflow-hidden"></div>'+
@@ -204,9 +205,17 @@ function drawChartSubCategory(response){
 				},
 			},
 		};
-		var chartInfo = document.getElementById('echart'+value);
-		var barChartInfo = echarts.init(chartInfo);
-		barChartInfo.setOption(optionInfo);
+
+		if(label.length==0){
+			console.log("kosong")
+			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+		}else {
+			console.log("masuk")
+			var chartInfo = document.getElementById('echart'+value);
+			var barChartInfo = echarts.init(chartInfo);
+			barChartInfo.setOption(optionInfo);
+		}
+
 		i++;
 	});
 }
@@ -256,7 +265,24 @@ function drawPieChart(response){
 				labels:{
 					boxWidth:10
 			   }
-			}
+			},
+			tooltips: {
+			  callbacks: {
+					label: function(tooltipItem, data) {
+						var value = data.datasets[0].data[tooltipItem.index];
+						value = value.toString();
+						value = value.split(/(?=(?:...)*$)/);
+						value = value.join('.');
+						return value;
+					}
+			  } // end callbacks:
+			}, //end tooltips
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 }
@@ -335,21 +361,21 @@ function drawKipPerChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		series: chartdata3,
@@ -401,6 +427,19 @@ function getYear(){
 
     var year = yyyy;
     return year;
+}
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }
 
 //jquery

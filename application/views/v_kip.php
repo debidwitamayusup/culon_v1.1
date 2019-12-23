@@ -30,7 +30,7 @@
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small mt-1">Summary KIP</h5>
+                                <h5 class="card-title-small card-pt10">Summary KIP</h5>
                             </div>
                             <div class="card-body" id="canvas-pie">
                                 <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
@@ -40,7 +40,7 @@
                     <div class="col-lg-7 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small text-white">KIP per Channel</h5>
+                                <h5 class="card-title-small card-pt10">KIP per Channel</h5>
                             </div>
                             <div class="card-body" id="content-chart-kip">
                                 <div id="echartKIP"></div>

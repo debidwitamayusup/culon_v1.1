@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 428;
+    ctx.height = 322;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -198,7 +198,24 @@ function drawPieChart(response){
 				labels:{
 					boxWidth:10
 			   }
-			}
+			},
+			tooltips: {
+			  callbacks: {
+					label: function(tooltipItem, data) {
+						var value = data.datasets[0].data[tooltipItem.index];
+						value = value.toString();
+						value = value.split(/(?=(?:...)*$)/);
+						value = value.join('.');
+						return value;
+					}
+			  } // end callbacks:
+			}, //end tooltips
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 
@@ -235,7 +252,7 @@ function drawCategory1(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -273,21 +290,21 @@ function drawCategory1(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -347,7 +364,7 @@ function drawCategory2(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -385,21 +402,21 @@ function drawCategory2(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -459,7 +476,7 @@ function drawCategory3(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -497,21 +514,21 @@ function drawCategory3(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -606,7 +623,7 @@ function drawSummaryTrafficChannelChart(response){
 			top: '6',
 			right: '20',
 			bottom: '20',
-			left: '60',
+			left: '70',
 		},
 		xAxis: {
 			type: 'value',
@@ -618,14 +635,6 @@ function drawSummaryTrafficChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if(value >= 1000){
-						var res = (value/1000);
-						return res+'K'
-					}else {
-						return value;
-					}
-				}
 			}
 		},
 		yAxis: {
@@ -644,21 +653,21 @@ function drawSummaryTrafficChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -688,7 +697,7 @@ function drawTableData(response){
 	$("#mythead_avg_traffic").empty();
     if(response.data.length != 0){
     	$('#table_avg_traffic').find('thead').append('<tr>'+
-            '<td>No.</td>'+
+            '<td class="text-center">No.</td>'+
             '<td>Channel</td>'+
             '<td>'+response.data.summary[0].category+'</td>'+
             '<td>'+response.data.summary[1].category+'</td>'+
@@ -700,9 +709,9 @@ function drawTableData(response){
             $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
             '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_1)+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_2)+'</td>'+
-            '<td class="text-sm font-weight-600 text-center">'+addCommas(value.total_3)+'</td>'+
+            '<td class="text-sm font-weight-600 text-right">'+addCommas(value.total_1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-right">'+addCommas(value.total_2)+'</td>'+
+            '<td class="text-sm font-weight-600 text-right">'+addCommas(value.total_3)+'</td>'+
             '</tr>');
             i--;
         });

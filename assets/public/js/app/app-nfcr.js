@@ -122,7 +122,7 @@ function drawPieChart(response){
 
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 377;
+    ctx.height = 374;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -137,7 +137,7 @@ function drawPieChart(response){
                                     "#3866A6"
                                 ]
 
-                            } ],
+                            }],
             labels: ['FCR', 'N-FCR']
         },
         options: {
@@ -145,7 +145,24 @@ function drawPieChart(response){
 			maintainAspectRatio: false,
 			legend :{
 				position : "bottom"
-			}
+			},
+			tooltips: {
+			  callbacks: {
+					label: function(tooltipItem, data) {
+						var value = data.datasets[0].data[tooltipItem.index];
+						value = value.toString();
+						value = value.split(/(?=(?:...)*$)/);
+						value = value.join('.');
+						return value;
+					}
+			  }
+			},
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 }
@@ -181,7 +198,7 @@ function drawInfoChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -219,21 +236,21 @@ function drawInfoChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -295,7 +312,7 @@ function drawComplaintChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -333,21 +350,21 @@ function drawComplaintChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -410,7 +427,7 @@ function drawRequestChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -448,21 +465,21 @@ function drawRequestChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -524,7 +541,7 @@ function drawSummaryTrafficNfcr(response){
 	var option_summary = {
 		grid: {
 			top: '6',
-			right:'46',
+			right:'20',
 			bottom: '20',
 			left: '60',
 		},
@@ -564,21 +581,21 @@ function drawSummaryTrafficNfcr(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -617,8 +634,8 @@ function drawTableData(response){
 	            '<th rowspan="2" class="align-middle">No.</th>'+
 	            '<th rowspan="2" class="align-middle">Channel</th>'+
 	            '<th colspan="2" class="bg-blue-1 align-content-md-center text-white">'+response.data[0].category_1+'</th>'+
-	            '<th colspan="2" class="bg-gray2 text-black">'+response.data[0].category_2+'</th>'+
-	            '<th colspan="2" class="bg-green-2 text-white">'+response.data[0].category_3+'</th>'+
+	            '<th colspan="2" class="bg-dark">'+response.data[0].category_2+'</th>'+
+	            '<th colspan="2" class="bg-primary text-white">'+response.data[0].category_3+'</th>'+
             '</tr>'+
             '<tr>'+
                 '<th class="bg-green text-white">FCR</th>'+
@@ -632,14 +649,14 @@ function drawTableData(response){
     	var i = 0;
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
-            '<td>'+(i+1)+'</td>'+
+            '<td class="text-center">'+(i+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td>'+addCommas(value.fcr_1)+'</td>'+
-            '<td>'+addCommas(value.nfcr_1)+'</td>'+
-            '<td>'+addCommas(value.fcr_2)+'</td>'+
-            '<td>'+addCommas(value.nfcr_2)+'</td>'+
-            '<td>'+addCommas(value.fcr_3)+'</td>'+
-            '<td>'+addCommas(value.nfcr_3)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_1)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_1)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_2)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_2)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
             '</tr>');
             i++;
         });

@@ -28,9 +28,9 @@
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-header">
-									<h3 class="card-title">Graphic Interval</h3>
+							<div class="card">
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Graphic Interval</h5>
 								</div>
 								<div class="card-body">
 									<div class="row">
@@ -82,8 +82,8 @@
 					<div class="row">
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Summary Interval Year</h4>
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Summary Interval Year</h5>
 								</div>
 								<div class="card-body" id="chartPercentage">
 									<canvas id="echartVerticalYear"></canvas>
@@ -92,12 +92,12 @@
 						</div>
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Average Interval</h3>
+								<div class="card-header-small bg-red">
+									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
-								<div class="table-responsive">
-									<table class="table card-table table-vcenter table-hover" id="table_avg_year">
-										<thead >
+								<div class="table-responsive table-bordered table-pt10">
+									<table class="table card-table table-vcenter table-hover table-pt10" id="table_avg_year">
+										<thead class="text-center text-white bg-gray1">
 											<tr>
 												<th>No</th>
 												<th>Channel</th>
@@ -107,7 +107,7 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody id="mytbody_year">
+										<tbody style="font-size:12px !important;" id="mytbody_year">
 										</tbody>
 									</table>
 								</div>
