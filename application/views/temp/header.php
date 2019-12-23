@@ -58,6 +58,11 @@
 	<!-- Date Picker Plugin -->
 	<link href="<?php echo base_url();?>assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
 
+	<!-- DataTables css-->
+	<link href="<?=base_url()?>assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="<?=base_url()?>assets/plugins/Datatable/css/buttons.bootstrap4.min.css">
+	<link href="<?=base_url()?>assets/plugins/datatable/responsive.bootstrap4.min.css" rel="stylesheet" />
+
 	<!---Font icons-->
 	<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
 
