@@ -277,6 +277,12 @@ function drawPieChart(response){
 					}
 			  } // end callbacks:
 			}, //end tooltips
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 }

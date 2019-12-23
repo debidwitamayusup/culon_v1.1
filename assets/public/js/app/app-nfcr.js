@@ -122,7 +122,7 @@ function drawPieChart(response){
 
     //pie chart
     var ctx = document.getElementById( "pieNFCR");
-    ctx.height = 371;
+    ctx.height = 300;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {

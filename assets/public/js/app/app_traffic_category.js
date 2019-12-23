@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 428;
+    ctx.height = 300;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -210,6 +210,12 @@ function drawPieChart(response){
 					}
 			  } // end callbacks:
 			}, //end tooltips
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 
