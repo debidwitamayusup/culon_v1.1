@@ -198,7 +198,7 @@ function drawInfoChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -236,21 +236,21 @@ function drawInfoChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -312,7 +312,7 @@ function drawComplaintChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -350,21 +350,21 @@ function drawComplaintChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -427,7 +427,7 @@ function drawRequestChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -465,21 +465,21 @@ function drawRequestChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
