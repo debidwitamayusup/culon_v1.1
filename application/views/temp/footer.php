@@ -35,7 +35,6 @@
 <!-- Custom scroll bar Js-->
 <script src="<?= base_url()?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
-
 <!-- Side menu js -->
 <script src="<?= base_url()?>assets/plugins/sidemenu/js/sidemenu.js"></script>
 <!-- Comment date : 12/2/2019 <script src="<?= base_url()?>assets/plugins/side-menu/js/side-menu.js"></script> -->
@@ -66,6 +65,12 @@
 <script src="<?=base_url()?>assets/plugins/date-picker/jquery-ui.js"></script>
 <script src="<?=base_url()?>assets/plugins/jquery.mask/jquery.maskedinput.js"></script>
 
+<!-- DataTables -->
+<script src="<?=base_url()?>assets/js/datatable.js"></script>
+<script src="<?=base_url()?>assets/plugins/Datatable/js/jquery.dataTables.js"></script>
+<script src="<?=base_url()?>assets/plugins/Datatable/js/dataTables.bootstrap4.js"></script>
+<script src="<?=base_url()?>assets/plugins/Datatable/js/dataTables.buttons.min.js"></script>
+<script src="<?=base_url()?>assets/plugins/datatable/dataTables.responsive.min.js"></script>
 <!-- Inline js -->
 <!-- <script src="<?=base_url()?>assets/js/select2.js"></script> -->
 

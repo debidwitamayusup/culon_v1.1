@@ -28,7 +28,7 @@
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
-							<div class="card">
+							<div class="card overflow-hidden">
 								<div class="card-header-small bg-red">
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 								</div>
@@ -64,7 +64,6 @@
 													<h6 class="text-white card-body">Unique Customer</h6>
 												</div>
 												<div class="card-body">
-
 													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
 													<span class="text-muted mb-5">Customer</span>
 												</div>
