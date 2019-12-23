@@ -252,7 +252,7 @@ function drawCategory1(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -290,21 +290,21 @@ function drawCategory1(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -364,7 +364,7 @@ function drawCategory2(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -402,21 +402,21 @@ function drawCategory2(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -476,7 +476,7 @@ function drawCategory3(response){
 			top: '6',
 			right: '11',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -514,21 +514,21 @@ function drawCategory3(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {

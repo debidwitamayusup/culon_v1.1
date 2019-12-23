@@ -361,21 +361,21 @@ function drawKipPerChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		series: chartdata3,

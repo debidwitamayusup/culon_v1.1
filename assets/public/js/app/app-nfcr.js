@@ -156,20 +156,7 @@ function drawPieChart(response){
 						return value;
 					}
 			  }
-			}
-			// ,
-			// plugins: {
-			// 	labels: {
-			// 		// add padding when position is `outside`
-			//         // default is 2
-			//         outsidePadding: 10,
-
-			//         // add margin of text when position is `outside` or `border`
-			//         // default is 2
-   //      			textMargin: 10
-			// 	}
-			// }
-			,
+			},
 			pieceLabel: {
                 render: 'legend',
                 fontColor: '#000',
@@ -211,7 +198,7 @@ function drawInfoChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -249,21 +236,21 @@ function drawInfoChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -325,7 +312,7 @@ function drawComplaintChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -363,21 +350,21 @@ function drawComplaintChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -440,7 +427,7 @@ function drawRequestChart(response){
 			top: '6',
 			right: '13',
 			bottom: '20',
-			left: '60',
+			left: '65',
 		},
 		xAxis: {
 			type: 'value',
@@ -478,21 +465,21 @@ function drawRequestChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
