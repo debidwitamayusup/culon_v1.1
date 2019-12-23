@@ -111,6 +111,21 @@
 							</div>
 						</div>
 					</div>
+					<!-- <div class="card">
+					<div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+							<span>Collapsible Group Item #2</span>
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-plus-circle"></i></button>
+						</h2>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
+						</div>
+					</div>
+				</div> -->
 					<!---Baris Kedua!-->
 					<!--
 					<div class="row">

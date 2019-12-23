@@ -20,58 +20,17 @@
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-12">
+                    <div class="col-lg-5 col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Status FCR N-FCR</h5>
                             </div>
-                            <div class="card-body card-ptss mt-7">
+                            <div class="card-body card-ptss">
                                 <canvas id="pieNFCR" class="donutShadow overflow-hidden"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-12">
-                        <div class="card overflow-hidden">
-                            <!-- <div class="card-body"> -->
-                            <div class="row">
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small card-pt 10" id="titleCategory1"></h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="echartNFCR-info" class="chartsh-fcr overflow-hidden"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small card-pt10" id="titleCategory2"></h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="echartNFCR-comp" class="chartsh-fcr overflow-hidden"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="card overflow-hidden border-0">
-                                        <div class="card-header-small bg-red">
-                                            <h6 class="card-title-small card-pt10" id="titleCategory3"></h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div id="echartNFCR-req" class="chartsh-fcr overflow-hidden"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- </div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-5 col-lg-5 col-md-12">
+                    <div class="col-lg-7 col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Traffic FCR N-FCR ALL Channel</h5>
@@ -81,21 +40,60 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-12">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card overflow-hidden border-0">
+                                    <div class="card-header-small bg-red">
+                                        <h6 class="card-title-small card-pt10" id="titleCategory1"></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="echartNFCR-info" class="chartsh-fcr overflow-hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card overflow-hidden border-0">
+                                    <div class="card-header-small bg-red">
+                                        <h6 class="card-title-small card-pt10" id="titleCategory2"></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="echartNFCR-comp" class="chartsh-fcr overflow-hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card overflow-hidden border-0">
+                                    <div class="card-header-small bg-red">
+                                        <h6 class="card-title-small card-pt10" id="titleCategory3"></h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="echartNFCR-req" class="chartsh-fcr overflow-hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Average Interval</h5>
                             </div>
                             <!-- <div class="card-body"> -->
-                                <div class="table-responsive table-pt10">
-                                    <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
-                                        <thead class="text-center bg-gray2" id="mythead_nfcr">
-                                        </thead>
-                                        <tbody id="mytbody_nfcr" class="text-center">
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- table-responsive -->
+                            <div class="table-responsive table-bordered table-pt10">
+                                <table class="table card-table table-vcenter table-hover" id="table-avg-interval">
+                                    <thead class="text-center bg-gray2" id="mythead_nfcr">
+                                    </thead>
+                                    <tbody style="font-size:12px !important;" id="mytbody_nfcr">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- table-responsive -->
                             <!-- </div> -->
                         </div>
                     </div>

@@ -28,7 +28,7 @@
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-12">
+                    <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Category</h5>
@@ -38,53 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-12">
-                        <div class="card">
-                            <div class="card-header-small bg-red">
-                                <h5 class="card-title-small pt-10">Summary Category per Channel</h5>
-                            </div>
-                            <!-- <div class="card-body"> -->
-                                <div class="row mt-1">
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-primary">
-                                            <div class="expanel-heading">
-                                                <h3 class="expanel-title" id="category1"></h3>
-                                            </div>
-                                            <div class="card-body" id="canvas-cat1">
-                                                <div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-primary">
-                                            <div class="expanel-heading">
-                                                <h3 class="expanel-title" id="category2"></h3>
-                                            </div>
-                                            <div class="card-body" id="canvas-cat2">
-                                                <div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12">
-                                        <div class="expanel expanel-primary">
-                                            <div class="expanel-heading">
-                                                <h3 class="expanel-title" id="category3"></h3>
-                                            </div>
-                                            <div class="card-body" id="canvas-cat3">
-                                                <div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-xl-7 col-lg-7 col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Traffic per Category per Channel</h5>
@@ -94,19 +48,74 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <div class="card">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small pt-10">Summary Category per Channel</h5>
+                            </div> -->
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="card overflow-hidden border-0">
+                                                <div class="card-header-small bg-red">
+                                                    <h6 class="card-title-small card-pt10" id="category1"></h6>
+                                                </div>
+                                                <div class="card-body" id="canvas-cat1">
+                                                    <div id="echartInfoTraffic"
+                                                        class="chartsh-horizontal overflow-hidden">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="card overflow-hidden border-0">
+                                                <div class="card-header-small bg-red">
+                                                    <h6 class="card-title-small card-pt10" id="category2"></h6>
+                                                </div>
+                                                <div class="card-body" id="canvas-cat2">
+                                                    <div id="echartCompTraffic"
+                                                        class="chartsh-horizontal overflow-hidden">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="card overflow-hidden border-0">
+                                                <div class="card-header-small bg-red">
+                                                    <h6 class="card-title-small card-pt10" id="category3"></h6>
+                                                </div>
+                                                <div class="card-body" id="canvas-cat3">
+                                                    <div id="echartReqTraffic"
+                                                        class="chartsh-horizontal overflow-hidden">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Table per Category per Channel</h5>
                             </div>
-                                <div class="table-responsive table-pt10">
-                                    <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
-                                        <thead class="bg-gray1 text-white text-center" id="mythead_avg_traffic">
-                                        </thead>
-                                        <tbody class="text-center" id="mytbody_avg_traffic">
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="table-responsive table-bordered table-pt10">
+                                <table class="table card-table table-vcenter text-nowrap" id="table_avg_traffic">
+                                    <thead class="bg-gray1 text-white text-center" id="mythead_avg_traffic">
+                                    </thead>
+                                    <tbody style="font-size:12px !important;" id="mytbody_avg_traffic">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

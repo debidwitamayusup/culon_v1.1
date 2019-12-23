@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 300;
+    ctx.height = 322;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -623,7 +623,7 @@ function drawSummaryTrafficChannelChart(response){
 			top: '6',
 			right: '20',
 			bottom: '20',
-			left: '60',
+			left: '70',
 		},
 		xAxis: {
 			type: 'value',
@@ -635,14 +635,6 @@ function drawSummaryTrafficChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if(value >= 1000){
-						var res = (value/1000);
-						return res+'K'
-					}else {
-						return value;
-					}
-				}
 			}
 		},
 		yAxis: {
@@ -661,21 +653,21 @@ function drawSummaryTrafficChannelChart(response){
 			axisLabel: {
 				fontSize: 10,
 				color: '#7886a0',
-				formatter: function (value, index) {
-					if (/\s/.test(value)) {
-						var teks = '';
-						for(var i=0;i<value.length;i++){
-							if(value[i] == " "){
-								teks = teks + '\n';
-							}else{
-								teks = teks + value[i];
-							}
-						}
-						return teks;
-					}else{
-						return value;
-					} 
-				}
+				// formatter: function (value, index) {
+				// 	if (/\s/.test(value)) {
+				// 		var teks = '';
+				// 		for(var i=0;i<value.length;i++){
+				// 			if(value[i] == " "){
+				// 				teks = teks + '\n';
+				// 			}else{
+				// 				teks = teks + value[i];
+				// 			}
+				// 		}
+				// 		return teks;
+				// 	}else{
+				// 		return value;
+				// 	} 
+				// }
 			}
 		},
 		tooltip: {
@@ -705,7 +697,7 @@ function drawTableData(response){
 	$("#mythead_avg_traffic").empty();
     if(response.data.length != 0){
     	$('#table_avg_traffic').find('thead').append('<tr>'+
-            '<td>No.</td>'+
+            '<td class="text-center">No.</td>'+
             '<td>Channel</td>'+
             '<td>'+response.data.summary[0].category+'</td>'+
             '<td>'+response.data.summary[1].category+'</td>'+
@@ -715,7 +707,7 @@ function drawTableData(response){
     	var i = response.data.traffic_channel.length+1;
         response.data.traffic_channel.forEach(function (value, index) {
             $('#table_avg_traffic').find('tbody').append('<tr>'+
-            '<td class="text-sm font-weight-600">'+(i-1)+'</td>'+
+            '<td class="text-sm font-weight-600 text-center">'+(i-1)+'</td>'+
             '<td class="text-sm font-weight-600 text-left">'+value.channel_name+'</td>'+
             '<td class="text-sm font-weight-600 text-right">'+addCommas(value.total_1)+'</td>'+
             '<td class="text-sm font-weight-600 text-right">'+addCommas(value.total_2)+'</td>'+

@@ -95,7 +95,7 @@
 								<div class="card-header-small bg-red">
 									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
-								<div class="table-responsive table-pt10">
+								<div class="table-responsive table-bordered table-pt10">
 									<table class="table card-table table-vcenter table-hover table-pt10" id="table_avg_year">
 										<thead class="text-center text-white bg-gray1">
 											<tr>
@@ -107,7 +107,7 @@
 												<th>AST</th>
 											</tr>
 										</thead>
-										<tbody class="text-center" id="mytbody_year">
+										<tbody style="font-size:12px !important;" id="mytbody_year">
 										</tbody>
 									</table>
 								</div>
