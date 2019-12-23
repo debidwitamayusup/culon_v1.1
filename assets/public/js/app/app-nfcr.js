@@ -156,20 +156,7 @@ function drawPieChart(response){
 						return value;
 					}
 			  }
-			}
-			// ,
-			// plugins: {
-			// 	labels: {
-			// 		// add padding when position is `outside`
-			//         // default is 2
-			//         outsidePadding: 10,
-
-			//         // add margin of text when position is `outside` or `border`
-			//         // default is 2
-   //      			textMargin: 10
-			// 	}
-			// }
-			,
+			},
 			pieceLabel: {
                 render: 'legend',
                 fontColor: '#000',
@@ -664,12 +651,12 @@ function drawTableData(response){
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td>'+(i+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td>'+addCommas(value.fcr_1)+'</td>'+
-            '<td>'+addCommas(value.nfcr_1)+'</td>'+
-            '<td>'+addCommas(value.fcr_2)+'</td>'+
-            '<td>'+addCommas(value.nfcr_2)+'</td>'+
-            '<td>'+addCommas(value.fcr_3)+'</td>'+
-            '<td>'+addCommas(value.nfcr_3)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_1)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_1)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_2)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_2)+'</td>'+
+            '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
+            '<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
             '</tr>');
             i++;
         });
