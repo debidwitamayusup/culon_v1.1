@@ -170,7 +170,7 @@ function drawPieChart(response){
     category_kip = trafficName;
     //pie chart
     var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 428;
+    ctx.height = 300;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -198,7 +198,24 @@ function drawPieChart(response){
 				labels:{
 					boxWidth:10
 			   }
-			}
+			},
+			tooltips: {
+			  callbacks: {
+					label: function(tooltipItem, data) {
+						var value = data.datasets[0].data[tooltipItem.index];
+						value = value.toString();
+						value = value.split(/(?=(?:...)*$)/);
+						value = value.join('.');
+						return value;
+					}
+			  } // end callbacks:
+			}, //end tooltips
+			pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            }
         }
     } );
 

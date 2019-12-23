@@ -25,7 +25,7 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Status FCR N-FCR</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body card-ptss mt-7">
                                 <canvas id="pieNFCR" class="donutShadow overflow-hidden"></canvas>
                             </div>
                         </div>
