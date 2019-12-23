@@ -10,27 +10,19 @@
                         <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active mr-60" aria-current="page">Summary Ticket Status</li>
+                            <li class="breadcrumb-item active" aria-current="page">Summary Ticket Status</li>
                         </ol>
-                        <!-- <div class="card-options d-none d-sm-block">
-                            <div class="btn-group btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                    <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
-                            </div>
-                        </div> -->
+                        <div class="card-options d-none d-sm-block">
+                        </div>
                     </div>
                     <!--Page Header-->
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12">
-                        <div class="card">
-                            <div class="card-header bg-red">
-                                <h4 class="card-title">Summary Ticket Status Month</h4>
+                        <div class="card overflow-hidden border-0">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Summary Ticket Status Month</h5>
                             </div>
                             <div class="card-body">
                                 <div class="d-flex order-lg-2 ml-auto float-right">
@@ -61,8 +53,8 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header bg-red">
-                                <h3 class="card-title text-white">Proportion Status Ticket</h3>
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Proportion Status Ticket</h5>
                             </div>
 
                             <div class="card-body">
@@ -91,8 +83,8 @@
                     <!---! Kolom Channel--->
                     <div class="col-xl-12 col-lg-12 col-md-12">
                         <div class="card overflow-hidden">
-                            <div class="card-header bg-red">
-                                <h3 class="card-title text-white">Summary Status Daily</h3>
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Summary Status Daily</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
