@@ -109,7 +109,7 @@ function drawCard(response){
                         '<h6 class="text-white">AHT</h6>'+
                         '<h4 class="text-white">Total</h6>'+
                     '</div>'+
-                    '<div class="col-md-auto ml-1">'+
+                    '<div class="col-md-3 ml-1 text-right">'+
                         '<h6 class="text-white">'+value.art+'</h6>'+
                         '<h6 class="text-white">'+value.ast+'</h6>'+
                         '<h6 class="text-white">'+value.aht+'</h6>'+
@@ -118,6 +118,7 @@ function drawCard(response){
                 '</div>'+
             '</div>'+
         '</div>');
+        console.log(value.total);
     });
 }
 
