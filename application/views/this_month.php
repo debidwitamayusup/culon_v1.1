@@ -73,6 +73,18 @@
 												</div>
 											</div>
 										</div>
+										<div class="d-flex order-lg-2 ml-auto float-right">
+											<div class="wd-200 mb-3">
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<select class="form-control select2" id="dropdownYear">
+															<!-- <option value="1">2019</option>
+															<option value="2">2020</option> -->
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">

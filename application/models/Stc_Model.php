@@ -387,7 +387,7 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function getIntervalPerMonth($month, $channel_name)
+	public function getIntervalPerMonth($month, $channel_name, $year)
 	{
 		if ($channel_name == "ShowAll") {
 			//solve error sql mode ver. 5.7 = only full group by
@@ -403,8 +403,8 @@ class Stc_Model extends CI_Model
 				SELECT b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
 				FROM summary_channel a INNER JOIN m_channel b
 				ON a.channel_id = b.channel_id
-				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) 
-				BETWEEN "00:00:00" AND "23:00:00" 
+				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
+				BETWEEN "00:00:00" AND "23:59:59" 
 				GROUP BY DATE(a.date_time)
 				');
 			return $query;	
@@ -422,8 +422,8 @@ class Stc_Model extends CI_Model
 				SELECT a.channel_name, b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
 				FROM summary_channel a INNER JOIN m_channel b
 				ON a.channel_id = b.channel_id
-				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = YEAR(CURRENT_TIME) AND TIME(date_time) 
-				BETWEEN "00:00:00" AND "23:00:00" AND a.channel_name = "'.$channel_name.'"
+				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
+				BETWEEN "00:00:00" AND "23:59:59" AND a.channel_name = "'.$channel_name.'"
 				GROUP BY DATE(a.date_time)
 				');
 			return $query;
