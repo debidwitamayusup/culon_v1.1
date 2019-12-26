@@ -6,14 +6,13 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+						<div class="page-header d-flex p-2 bd-highlight">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 							</ol>
-							<div class="card-options d-none d-sm-block">
-							</div>
 						</div>
 						<!--Page Header-->
 					</div>
