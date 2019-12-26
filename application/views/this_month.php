@@ -24,25 +24,27 @@
 									<h5 class="card-title-small card-pt10">Graphic Interval</h5>
 								</div>
 								<div class="card-body">
-									<div class="row">
-										<div class="form-group row">
-											<select class="form-control" id="channel_name">
-												<option value="ShowAll">Show All</option>
-												<option value="Whatsapp">Whatsapp</option>
-												<option value="Twitter">Twitter</option>
-												<option value="Facebook">Facebook</option>
-												<option value="Email">Email</option>
-												<option value="Telegram">Telegram</option>
-												<option value="Line">Line</option>
-												<option value="Voice">Voice</option>
-												<option value="Instagram">Instagram</option>
-												<option value="Messenger">Messenger</option>
-												<option value="Twitter DM">Twitter DM</option>
-												<option value="Live Chat">Live Chat</option>
-												<option value="SMS">SMS</option>
-											</select>
+									<div class="d-flex bd-highlight">
+										<div class="mr-auto p-2 bd-highlight">
+											<div class="form-group row">
+												<select class="form-control" id="channel_name">
+													<option value="ShowAll">Show All</option>
+													<option value="Whatsapp">Whatsapp</option>
+													<option value="Twitter">Twitter</option>
+													<option value="Facebook">Facebook</option>
+													<option value="Email">Email</option>
+													<option value="Telegram">Telegram</option>
+													<option value="Line">Line</option>
+													<option value="Voice">Voice</option>
+													<option value="Instagram">Instagram</option>
+													<option value="Messenger">Messenger</option>
+													<option value="Twitter DM">Twitter DM</option>
+													<option value="Live Chat">Live Chat</option>
+													<option value="SMS">SMS</option>
+												</select>
+											</div>
 										</div>
-										<div class="d-flex order-lg-2 ml-auto float-right">
+										<div class="p-2 bd-highlight">
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
@@ -64,7 +66,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="d-flex order-lg-2 ml-auto float-right">
+										<div class="p-2 bd-highlight">
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
