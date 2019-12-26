@@ -74,24 +74,8 @@
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist-plugin-tooltip.css">
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
 
+	<!-- add css -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-	
-	<!-- link custom accordion sub  menu -->
-	<!-- <script>
-	$(document).ready(function(){
-		// Add minus icon for collapse element which is open by default
-		$(".collapse.show").each(function(){
-			$(this).siblings(".card-header").find(".btn i").addClass("fas fa-angle-down").removeClass("fas fa-angle-up");
-		});
-		
-		// Toggle plus minus icon on show hide of collapse element
-		$(".collapse").on('show.bs.collapse', function(){
-			$(this).parent().find(".card-header .btn i").removeClass("fas fa-angle-up").addClass("fas fa-angle-down");
-		}).on('hide.bs.collapse', function(){
-			$(this).parent().find(".card-header .btn i").removeClass("fas fa-angle-down").addClass("fas fa-angle-up");
-		});
-	});
-</script> -->
 
 </head>
 <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
