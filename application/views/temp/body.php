@@ -28,14 +28,14 @@
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
-							<div class="card">
+							<div class="card overflow-hidden">
 								<div class="card-header-small bg-red">
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 								</div>
 								<div class="card-pie">
-									<div class="canvas-con">
+									<div class="canvas-con mt-4">
 										<div class="canvas-con-inner" id="canvas-pie">
-											<canvas id="pieSummary" height="250px"
+											<canvas id="pieSummary"
 												class="donutShadow overflow-hidden"></canvas>
 										</div>
 										<div id="legend" class="legend-con"></div>
@@ -50,7 +50,7 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="text-white card-body">Total Interaction</h6>
+													<h6 class="text-white card-body">Total Session</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
@@ -64,18 +64,17 @@
 													<h6 class="text-white card-body">Unique Customer</h6>
 												</div>
 												<div class="card-body">
-
 													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
 													<span class="text-muted mb-5">Customer</span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="row mt-5 mb-6">
+									<div class="row mt-5">
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Case In</h6>
+													<h6 class="card-body text-white">Message In</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
@@ -86,7 +85,31 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Case Out</h6>
+													<h6 class="card-body text-white">Message Out</h6>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row mt-5 mb-6">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">Total Agent</h6>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">SLA</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>

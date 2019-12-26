@@ -9,117 +9,6 @@ class SummaryTrafficChannel extends CI_Controller {
 		$this->load->model('Stc_Model');
 	}
 
-	//tampil perhari
-	// public function stc_today()
-	// {
-	// 	//proses select data
-	// 	$data = array();
-	// 	$rowdate = $this->Stc_Model->getToday()->result();
-
-	// 	if($rowdate)
-	// 	{
-	// 		$channel = array();
-	// 		$summary_traffic = array();
-
-	// 		foreach ($rowdate as $key) {
-	// 			array_push($channel, $key->channel);
-	// 			array_push($summary_traffic, $key->summary_traffic);
-	// 		}
-
-	// 		$data = [
-	// 			"channel" => $channel,
-	// 			"summary_traffic" => $summary_traffic
-	// 		];
-
-	// 	//response true false
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => "Success",
-	// 			'data' => $data);
-	// 	} else {
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => "Data Not Found",
-	// 			'data' => $data);
-	// 	}
-
-	// 	echo json_encode($response);
-	// }
-
-	// //tampil perbulan
-	// public function stc_month()
-	// {
-	// 	//proses select data
-	// 	$data = array();
-	// 	$rowdate = $this->Stc_Model->getMonth()->result();
-
-	// 	$channel = array();
-	// 	$summary_traffic = array();
-
-	// 	foreach ($rowdate as $key) {
-	// 		array_push($channel, $key->channel);
-	// 		array_push($summary_traffic, $key->summary_traffic);
-	// 	}
-
-	// 	$data = [
-	// 		'channel' => $channel,
-	// 		'summary_traffic' => $summary_traffic
-	// 	];
-
-	// 	//response true false
-	// 	if($data)
-	// 	{
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Success',
-	// 			'data' => $data);
-	// 	} else {
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Data Not Found',
-	// 			'data' => $data);
-	// 	}
-
-	// 	echo json_encode($response);
-	// }
-
-	// //tampil pertahun
-	// public function stc_year()
-	// {
-	// 	//proses select data
-	// 	$data = array();
-	// 	$rowdate = $this->Stc_Model->getYear()->result();
-
-	// 	$channel = array();
-	// 	$summary_traffic = array();
-
-	// 	foreach ($rowdate as $key) {
-	// 		array_push($channel, $key->channel);
-	// 		array_push($summary_traffic, $key->summary_traffic);
-	// 	}
-
-	// 	$data = [
-	// 		'channel' => $channel,
-	// 		'summary_traffic' => $summary_traffic
-	// 	];
-
-	// 	//response true false
-	// 	if($data)
-	// 	{
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Success',
-	// 			'data' => $data);
-	// 	} else {
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Data Not Found',
-	// 			'data' => $data);
-	// 	}
-
-	// 	echo json_encode($response);
-	// }
-
 	public function uniqueCustomerPerChannel(){
 
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
@@ -192,61 +81,6 @@ class SummaryTrafficChannel extends CI_Controller {
 		}
 		echo json_encode($response);
 	}
-
-	// public function cGraphMain()
-	// {
-	// 	$data = array();
-	// 	$circle_main = $this->Stc_Model->getCGraph();
-
-	// 	$channel = array();
-	// 	$total = array();
-	// 	$persen = array();
-
-	// 	foreach ($circle_main as $key) {
-	// 		array_push($channel, $key->channel);
-	// 		array_push($total, $key->total);
-	// 		array_push($persen, $key->persen);
-	// 	}
-
-	// 	$data = [
-	// 		'channel' => $channel,
-	// 		'total' => $total,
-	// 		'persen' => $persen
-	// 	];
-
-	// 	if($circle_main)
-	// 	{
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Success',
-	// 			'data' => $circle_main);
-	// 	} else {
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Data Not Found',
-	// 			'data' => $circle_main);
-	// 	}
-	// 	echo json_encode($response);
-	// }
-
-	// public function bGraphMain()
-	// {
-	// 	$batang_main = $this->Stc_Model->getBGraph();
-
-	// 	if($batang_main)
-	// 	{
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Success',
-	// 			'data' => $batang_main);
-	// 	} else {
-	// 		$response = array(
-	// 			'status' => 200,
-	// 			'message' => 'Data Not Found',
-	// 			'data' => $batang_main);
-	// 	}
-	// 	echo json_encode($response);
-	// }
 
 	public function interaction()
 	{
@@ -367,6 +201,27 @@ class SummaryTrafficChannel extends CI_Controller {
 				'status' => 200,
 				'message' => 'Data Not Found',
 				'data' => $averageCustomer);
+		}
+		echo json_encode($response);
+	}
+
+	public function getTotalCaseInCaseOut(){
+		$params = $this->security->xss_clean($this->input->post('params', true)); 
+		$index = $this->security->xss_clean($this->input->post('index', true));
+
+		$data = $this->Stc_Model->getAverageCustomer($params, $index);
+		
+		if ($data) 
+		{
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => $data);
 		}
 		echo json_encode($response);
 	}

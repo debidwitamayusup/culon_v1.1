@@ -35,7 +35,7 @@
 						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
 				</li>
-				<li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li>
+				<!-- <li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li> -->
 				<li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"

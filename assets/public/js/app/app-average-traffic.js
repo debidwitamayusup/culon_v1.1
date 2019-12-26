@@ -104,12 +104,12 @@ function drawCard(response){
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-auto mb-2">'+
-                        '<h6 class="text-white">ART</h6>'+
-                        '<h6 class="text-white">AST</h6>'+
-                        '<h6 class="text-white">AHT</h6>'+
+                        '<h6 class="text-white font-weight-normal">ART</h6>'+
+                        '<h6 class="text-white font-weight-normal">AST</h6>'+
+                        '<h6 class="text-white font-weight-normal">AHT</h6>'+
                         '<h4 class="text-white">Total</h6>'+
                     '</div>'+
-                    '<div class="col-md-auto ml-1">'+
+                    '<div class="col-md-auto text-right">'+
                         '<h6 class="text-white">'+value.art+'</h6>'+
                         '<h6 class="text-white">'+value.ast+'</h6>'+
                         '<h6 class="text-white">'+value.aht+'</h6>'+
@@ -118,6 +118,7 @@ function drawCard(response){
                 '</div>'+
             '</div>'+
         '</div>');
+        console.log(value.total);
     });
 }
 
