@@ -217,16 +217,23 @@ class Stc_Model extends CI_Model
 
 		// $query = $this->db->get();
 		$where = "";
+		$where2 = "";
 		if($params == 'day'){
 			$where = "DATE(date_time)= '".$index."'";
+			$where2 = "DATE(tanggal)= '".$index."'";
 		}else if($params == 'month'){
 			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = YEAR(CURDATE()) ";
+			$where2 = "MONTH(tanggal)= '".$index."' AND YEAR(tanggal) = YEAR(CURDATE()) ";
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
+			$where2 = "YEAR(tanggal)= '".$index."'";
 		}
 		$str = "SELECT m_channel.channel_name as channel
 		, IFNULL(a.total, 0) as total
 		, IFNULL(a.total_unique, 0) as total_unique
+		, IFNULL(b.msg_in, 0) as msg_in
+		, IFNULL(b.msg_out,0) as msg_out
+		, IFNULL(b.sla,0) as sla
 		, m_channel.channel_color
 		, m_channel.icon_dashboard
 		FROM m_channel 
@@ -236,7 +243,13 @@ class Stc_Model extends CI_Model
 			where $where
 			GROUP BY summary_channel.channel_name
 			ORDER BY summary_channel.channel_name
-		)as a on a.channel_id = m_channel.channel_id  
+		)as a on a.channel_id = m_channel.channel_id
+		LEFT JOIN(
+			SELECT channel_id, SUM(case_in) as msg_in, SUM(case_out) as msg_out, AVG(sla) as sla
+			from rpt_summ_interval
+			where $where2
+			GROUP BY channel_id 
+		)as b on b.channel_id = m_channel.channel_id   
 		ORDER BY m_channel.channel_name";
 
 		$query = $this->db->query($str);
@@ -575,5 +588,23 @@ class Stc_Model extends CI_Model
 		$query = $this->db->get();
 
 		return $query->result();
+	}
+
+	public function get_summary_case_tot_agent_sla($params, $index){
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$this->db->select('ifnull(sum(case_in),0) as msg_in, ifnull(sum(case_out), 0) as msg_out, IFNULL(sum(tot_agent),0) as tot_agent, ifnull(avg(sla),0) as sla'); 
+		$this->db->from('rpt_summ_interval');
+		if($params == 'day'){
+			$this->db->where('DATE(tanggal)', $index);
+		}else if($params == 'month'){
+			$this->db->where('MONTH(tanggal)', $index);
+			$this->db->where('YEAR(tanggal)', date("Y"));
+		}else if($params == 'year'){
+			$this->db->where('YEAR(tanggal)', $index);
+		}
+
+		$query = $this->db->get();
+
+		return $query->row();
 	}
 }	

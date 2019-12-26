@@ -77,8 +77,8 @@
 													<h6 class="card-body text-white">Message In</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
+													<span class="text-muted mb-5" >Interaction</span>
 												</div>
 											</div>
 										</div>
@@ -88,7 +88,7 @@
 													<h6 class="card-body text-white">Message Out</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<h2 class="mb-4 mt-3 num-font" id="msg-out"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
@@ -101,7 +101,7 @@
 													<h6 class="card-body text-white">Total Agent</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
+													<h2 class="mb-4 mt-3 num-font" id="tot-agent"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
@@ -112,7 +112,7 @@
 													<h6 class="card-body text-white">SLA</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<h2 class="mb-4 mt-3 num-font" id="sla"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
