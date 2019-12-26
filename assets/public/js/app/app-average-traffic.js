@@ -104,16 +104,16 @@ function drawCard(response){
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-auto mb-2">'+
-                        '<h6 class="text-white font-13">ART</h6>'+
-                        '<h6 class="text-white font-13">AST</h6>'+
-                        '<h6 class="text-white font-13">AHT</h6>'+
+                        '<h6 class="text-white font-weight-normal">ART</h6>'+
+                        '<h6 class="text-white font-weight-normal">AST</h6>'+
+                        '<h6 class="text-white font-weight-normal">AHT</h6>'+
                         '<h4 class="text-white">Total</h6>'+
                     '</div>'+
-                    '<div class="col-md-3 ml-1">'+
-                        '<h6 class="text-white font-13 text-right">'+value.art+'</h6>'+
-                        '<h6 class="text-white font-13 text-right">'+value.ast+'</h6>'+
-                        '<h6 class="text-white font-13 text-right">'+value.aht+'</h6>'+
-                        '<h4 class="text-white font-weight-bold text-right">'+ThousandSeperator(value.total)+'</h6>'+
+                    '<div class="col-md-auto text-right">'+
+                        '<h6 class="text-white">'+value.art+'</h6>'+
+                        '<h6 class="text-white">'+value.ast+'</h6>'+
+                        '<h6 class="text-white">'+value.aht+'</h6>'+
+                        '<h4 class="text-white font-weight-bold">'+ThousandSeperator(value.total)+'</h6>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

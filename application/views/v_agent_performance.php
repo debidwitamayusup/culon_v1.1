@@ -6,236 +6,179 @@
         <div class="page-main">
             <div class=" app-content mt-7">
                 <div class="side-app">
-                    <div class="page-header">
-                        <h4 class="page-title"><i class="fe fe-home mr-1"></i>Agent Performance</h4>
+                    <div class="page-header d-flex p-2 bd-highlight">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Total Handling</li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <h4 class="page-title"><i class="fe fe-user mr-1"></i>Agent Performance</h4>
+                            </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Total Handling</li>
                         </ol>
-                        <div class="card-options d-none d-sm-block">
-                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header-small bg-red">
                                     <h5 class="card-title-small card-pt10">Agent Performance</h5>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="p-2 flex-fill bd-highlight">
-                                            <div class="wd-100 mb-3 ml-9">
-                                                <div class="form-group">
-                                                    <div class="row gutters-xs">
-                                                        <div class="col-lg-6">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Search">
-                                                        </div>
-                                                        <span class="col-auto">
-                                                            <button class="btn btn-dark" type="button"><i
-                                                                    class="fe fe-search text-white"></i></button>
-                                                        </span>
-                                                    </div>
+                                <div class="d-flex p-2 bd-highlight">
+                                    <div class="wd-100 ml-1">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="p-2 flex-fill bd-highlight">
-                                            <div class="wd-100 mb-3 ml-9">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6"><input id="input-date"
-                                                            class="form-control fc-datepicker" placeholder="MM/DD/YYYY"
-                                                            type="text"></div>
-                                                </div>
+                                            <div class="col-lg-6"><input id="input-date"
+                                                    class="form-control fc-datepicker" placeholder="MM/DD/YYYY"
+                                                    type="text">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table card-table table-vcenter text-nowrap ">
-                                                    <thead class="bg-gray1 text-center text-white">
+                                                <table id="example-2" class="table table-striped table-bordered">
+                                                    <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Agent Name</th>
-                                                            <th>SLA</th>
-                                                            <th>Call</th>
-                                                            <th>ART</th>
-                                                            <th>AHT</th>
-                                                            <th>AST</th>
-                                                            <th>Case In</th>
-                                                            <th>Case Out</th>
-                                                            <th>Message In</th>
-                                                            <th>Message Out</th>
+                                                            <th class="wd-15p border-bottom-0">ID</th>
+                                                            <th class="wd-15p border-bottom-0" width="130">Agent Name
+                                                            </th>
+                                                            <th class="wd-15p border-bottom-0">ART</th>
+                                                            <th class="wd-15p border-bottom-0">AHT</th>
+                                                            <th class="wd-15p border-bottom-0">AST</th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Total Session
+                                                            </th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Message In
+                                                            </th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Message Out
+                                                            </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody style="font-size:12px !important;">
                                                         <tr>
                                                             <td class="text-center">1</td>
-                                                            <td class="text-sm font-weight-600 ">Agent Name
+                                                            <td class="text-left">
+                                                                <a href="<?=base_url()?>main/agent_interval">Agent
+                                                                    Name</a>
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center">2</td>
-                                                            <td class="text-sm font-weight-600 ">Agent Name
+                                                            <td class="text-left">
+                                                                <a href="<?=base_url()?>main/agent_interval">Agent
+                                                                    Name</a>
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center">3</td>
-                                                            <td class="text-sm font-weight-600 ">Agent Name
+                                                            <td class="text-left">
+                                                                <a href="<?=base_url()?>main/agent_interval">Agent
+                                                                    Name</a>
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center">4</td>
-                                                            <td class="text-sm font-weight-600 ">Agent Name
+                                                            <td class="text-left">
+                                                                <a href="<?=base_url()?>main/agent_interval">Agent
+                                                                    Name</a>
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-center">5</td>
-                                                            <td class="text-sm font-weight-600 ">Agent Name
+                                                            <td class="text-left">
+                                                                <a href="<?=base_url()?>main/agent_interval">Agent
+                                                                    Name</a>
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
-                                                            <td class="text-sm font-weight-600 text-center">
-                                                                100
-                                                            </td>
-                                                            <td class="text-sm font-weight-600 text-center">
+                                                            <td class="text-right">
                                                                 100
                                                             </td>
                                                         </tr>
@@ -244,6 +187,9 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </div>

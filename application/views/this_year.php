@@ -6,22 +6,13 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+						<div class="page-header d-flex p-2 bd-highlight">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 							</ol>
-							<div class="card-options d-none d-sm-block">
-								<!-- <div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-light btn-sm">
-										<span class="">Day</a></span>
-									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
-										<span class="">Month</a></span>
-									<a href="<?=base_url()?>main/this_year" class="btn btn-red btn-sm">
-										<span class="">Year</a></span>
-								</div> -->
-							</div>
 						</div>
 						<!--Page Header-->
 					</div>
@@ -55,7 +46,8 @@
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
-														<select class="form-control select2" style="width: 100%;" data-placeholder="Choose one (with optgroup)" id="dateTahun">
+														<select class="form-control select2" style="width: 100%;"
+															data-placeholder="Choose one (with optgroup)" id="dateTahun">
 															<!-- <option value="2019">2019</option>
 															<option value="2018">2018</option>
 															<option value="2017">2017</option>
@@ -83,7 +75,7 @@
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Interval Year</h5>
+									<h5 class="card-title-small card-pt10">Summary Channel</h5>
 								</div>
 								<div class="card-body" id="chartPercentage">
 									<canvas id="echartVerticalYear"></canvas>
@@ -96,7 +88,8 @@
 									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
 								<div class="table-responsive table-bordered table-pt10">
-									<table class="table card-table table-vcenter table-hover table-pt10" id="table_avg_year">
+									<table class="table card-table table-vcenter table-hover table-pt10"
+										id="table_avg_year">
 										<thead class="text-center text-white bg-gray1">
 											<tr>
 												<th>No</th>
@@ -120,7 +113,7 @@
 				<!--Chart Plugin -->
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Chart--->
-				
+
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>
 
 				<!-- <script type="text/javascript">

@@ -6,22 +6,13 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+						<div class="page-header d-flex p-2 bd-highlight">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 							</ol>
-							<div class="card-options d-none d-sm-block">
-								<!-- <div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-light btn-sm">
-										<span class="">Day</a></span>
-									<a href="<?=base_url()?>main/this_month" class="btn btn-red btn-sm">
-										<span class="">Month</a></span>
-									<a href="<?=base_url()?>main/this_year" class="btn btn-light btn-sm">
-										<span class="">Year</a></span>
-								</div> -->
-							</div>
 						</div>
 						<!--Page Header-->
 					</div>
@@ -103,7 +94,7 @@
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Interval Month</h5>
+									<h5 class="card-title-small card-pt10">Summary Channel</h5>
 								</div>
 								<div class="card-body" id="chartPercentage">
 									<canvas id="echartVerticalMonth"></canvas>

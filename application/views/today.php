@@ -6,22 +6,13 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+						<div class="page-header d-flex p-2 bd-highlight">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 							</ol>
-							<div class="card-options d-none d-sm-block">
-								<!-- <div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-red btn-sm">
-										<span class="">Day</a></span>
-									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
-										<span class="">Month</a></span>
-									<a href="<?=base_url()?>main/this_year" class="btn btn-light btn-sm">
-										<span class="">Year</a></span>
-								</div> -->
-							</div>
 						</div>
 						<!--Page Header-->
 					</div>
@@ -51,15 +42,20 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input all-checklist" id="check-all-channel" name="check-all" value="All" >
+														<input type="checkbox" class="custom-control-input all-checklist"
+															id="check-all-channel" name="check-all" value="All">
 														<span class="custom-control-label">Show All</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Whatsapp">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Whatsapp">
 														<span class="custom-control-label">Whatsapp</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Twitter">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Twitter">
 														<span class="custom-control-label">Twitter</span>
 													</label>
 												</div>
@@ -69,15 +65,21 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Facebook" >
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Facebook">
 														<span class="custom-control-label">Facebook</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Email">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Email">
 														<span class="custom-control-label">Email</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Telegram">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Telegram">
 														<span class="custom-control-label">Telegram</span>
 													</label>
 												</div>
@@ -87,15 +89,21 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Line">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Line">
 														<span class="custom-control-label">Line</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Voice">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Voice">
 														<span class="custom-control-label">Voice</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Instagram">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Instagram">
 														<span class="custom-control-label">Instagram</span>
 													</label>
 												</div>
@@ -105,15 +113,22 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Messenger">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Messenger">
 														<span class="custom-control-label">Messenger</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Twitter DM">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2"
+															value="Twitter DM">
 														<span class="custom-control-label">Twitter DM</span>
 													</label>
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="Live Chat">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Live Chat">
 														<span class="custom-control-label">Live Chat</span>
 													</label>
 												</div>
@@ -123,7 +138,9 @@
 											<div class="form-group m-0">
 												<div class="custom-controls-stacked">
 													<label class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input checklist-channel" id="list-channel[]" name="example-checkbox2" value="SMS">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="SMS">
 														<span class="custom-control-label">SMS</span>
 													</label>
 												</div>
@@ -144,7 +161,7 @@
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Interval Today</h5>
+									<h5 class="card-title-small card-pt10">Summary Channel</h5>
 								</div>
 								<div class="card-body" id="chart-percentage">
 									<!-- <canvas id="echartVerticalDay"></canvas> -->
@@ -184,4 +201,3 @@
 				<script src="<?=base_url()?>assets/js/apexcharts.js"></script>
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
-
