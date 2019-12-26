@@ -28,7 +28,7 @@
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
-							<div class="card">
+							<div class="card overflow-hidden">
 								<div class="card-header-small bg-red">
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 								</div>
@@ -64,7 +64,6 @@
 													<h6 class="text-white card-body">Unique Customer</h6>
 												</div>
 												<div class="card-body">
-
 													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
 													<span class="text-muted mb-5">Customer</span>
 												</div>
@@ -111,6 +110,21 @@
 							</div>
 						</div>
 					</div>
+					<!-- <div class="card">
+					<div class="card-header" id="headingTwo">
+						<h2 class="mb-0">
+							<span>Collapsible Group Item #2</span>
+							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-plus-circle"></i></button>
+						</h2>
+					</div>
+					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
+							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
+						</div>
+					</div>
+				</div> -->
 					<!---Baris Kedua!-->
 					<!--
 					<div class="row">
