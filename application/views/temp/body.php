@@ -13,6 +13,9 @@
 								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
 							</ol>
 							<div class="card-options d-none d-sm-block">
+								<p id="tag-time"></p>
+							</div>
+							<div class="card-options d-none d-sm-block">
 								<div class="btn-group btn-sm">
 									<a href="#" class="btn btn-light btn-sm" id="btn-day">
 										<span class="">Day</a></span>
