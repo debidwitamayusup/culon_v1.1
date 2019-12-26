@@ -33,7 +33,7 @@
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-edit"></i>Schedule</a>
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-mail"></i> Inbox</a>
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-unlock"></i> Look Screen</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
+						<a class="dropdown-item" href="#" id="btn-logout"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
 						<div class="dropdown-divider"></div>
 						<div class="text-center dropdown-btn pb-3">
 							<div class="btn-list">

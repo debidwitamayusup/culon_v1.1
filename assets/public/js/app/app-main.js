@@ -27,4 +27,23 @@ $(document).ready(function () {
             },
         });
     });
+
+    // btn logout 
+    $('#btn-logout').click(function(){
+        $.ajax({
+            type: 'post',
+            url: base_url+'api/AuthController/doLogout',
+            data: {
+                
+            },
+            success: function (r) {
+                var response = JSON.parse(r);
+                console.log(response);
+            },
+            error: function (r) {
+                console.log(r);
+                alert("error");
+            },
+        });
+    });
 })(jQuery);

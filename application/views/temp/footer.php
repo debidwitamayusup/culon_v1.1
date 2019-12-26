@@ -107,3 +107,4 @@
 
 <!--app js side bar  -->
 <!-- <script src="<?=base_url()?>assets/public/js/app/app-sidebar.js"></script> -->
+<script src="<?=base_url()?>assets/public/js/app/app-main.js"></script>
