@@ -70,7 +70,7 @@
 <script src="<?=base_url()?>assets/plugins/Datatable/js/jquery.dataTables.js"></script>
 <script src="<?=base_url()?>assets/plugins/Datatable/js/dataTables.bootstrap4.js"></script>
 <script src="<?=base_url()?>assets/plugins/Datatable/js/dataTables.buttons.min.js"></script>
-<script src="<?=base_url()?>assets/plugins/datatable/dataTables.responsive.min.js"></script>
+
 <!-- Inline js -->
 <!-- <script src="<?=base_url()?>assets/js/select2.js"></script> -->
 
@@ -103,6 +103,7 @@
 <script src="<?= base_url()?>assets/js/custom.js"></script>
 <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
 
+<!-- Show percentage on piechart-->
 <script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
 
 <!--app js side bar  -->

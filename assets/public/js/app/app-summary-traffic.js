@@ -109,14 +109,16 @@ function drawCardInteractionNew(value){
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mb-2">'+
-                    '<h6 class="text-white font-13">Unique Customer</h6>'+
-                    '<h6 class="text-white font-13">Total Interaction</h6>'+
-                    '<h6 class="text-white font-13">Case In</h6>'+
-                    '<h6 class="text-white font-13">Case Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Unique Customer</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Total Session</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Message In</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Message Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">SLA</h6>'+
                 '</div>'+
-                '<div class="col-md-auto ml-1">'+
+                '<div class="col-md-auto text-right ml-1">'+
                     '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
+                    '<h6 class="text-white font-13">7xxx</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+
                     '<h6 class="text-white font-13">7xxx</h6>'+
                 '</div>'+
@@ -147,7 +149,7 @@ function callSummaryInteraction(params, index_time){
 function drawChartAndCard(response){
     //destroy div piechart
     $('#pieSummary').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
+    $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
 
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
@@ -167,7 +169,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 304;
+    ctx.height = 424;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -194,7 +196,7 @@ function drawChartAndCard(response){
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row">');
+                legendHtml.push('<ul><div class="row mt-6">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

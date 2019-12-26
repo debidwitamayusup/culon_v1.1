@@ -13,14 +13,6 @@
 								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
 							</ol>
 							<div class="card-options d-none d-sm-block">
-								<div class="btn-group btn-sm">
-									<a href="<?=base_url()?>main/this_day" class="btn btn-light btn-sm">
-										<span class="">Day</a></span>
-									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
-										<span class="">Month</a></span>
-									<a href="<?=base_url()?>main/this_year" class="btn btn-red btn-sm">
-										<span class="">Year</a></span>
-								</div>
 							</div>
 						</div>
 						<!--Page Header-->
@@ -83,7 +75,7 @@
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Interval Year</h5>
+									<h5 class="card-title-small card-pt10">Summary Channel</h5>
 								</div>
 								<div class="card-body" id="chartPercentage">
 									<canvas id="echartVerticalYear"></canvas>
