@@ -3,6 +3,11 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 
 $(document).ready(function () {
     // v_date = getToday();
@@ -15,11 +20,17 @@ $(document).ready(function () {
 
 
     loadContent(params_time, v_date);
+    $('#tag-time').html(v_date);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
 
 });
+
+//for convert numeric month to lettering month name
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
 
 //function
 function getColorChannel(channel){
@@ -46,7 +57,7 @@ function getToday(){
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = yyyy  + '-' + mm + '-' + dd;
+    today = yyyy  + '-' + mm + '-' + (dd-1);
     return today;
 }
 
@@ -347,6 +358,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-11-02');
+        $('#tag-time').html(v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -357,6 +369,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
+        $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -367,6 +380,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'year';
         // console.log(params_time);
         loadContent(params_time , '2019')
+        $('#tag-time').html(v_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
