@@ -118,6 +118,7 @@ function drawCard(response){
                 '</div>'+
             '</div>'+
         '</div>');
+        console.log(value.total);
     });
 }
 
