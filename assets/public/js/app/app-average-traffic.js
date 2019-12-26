@@ -104,9 +104,9 @@ function drawCard(response){
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-auto mb-2">'+
-                        '<h6 class="text-white">ART</h6>'+
-                        '<h6 class="text-white">AST</h6>'+
-                        '<h6 class="text-white">AHT</h6>'+
+                        '<h6 class="text-white font-13">ART</h6>'+
+                        '<h6 class="text-white font-13">AST</h6>'+
+                        '<h6 class="text-white font-13">AHT</h6>'+
                         '<h4 class="text-white">Total</h6>'+
                     '</div>'+
                     '<div class="col-md-3 ml-1">'+
