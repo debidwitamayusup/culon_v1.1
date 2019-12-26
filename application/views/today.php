@@ -13,14 +13,14 @@
 								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
 							</ol>
 							<div class="card-options d-none d-sm-block">
-								<div class="btn-group btn-sm">
+								<!-- <div class="btn-group btn-sm">
 									<a href="<?=base_url()?>main/this_day" class="btn btn-red btn-sm">
 										<span class="">Day</a></span>
 									<a href="<?=base_url()?>main/this_month" class="btn btn-light btn-sm">
 										<span class="">Month</a></span>
 									<a href="<?=base_url()?>main/this_year" class="btn btn-light btn-sm">
 										<span class="">Year</a></span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<!--Page Header-->
