@@ -114,11 +114,11 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font-13">Case In</h6>'+
                     '<h6 class="text-white font-13">Case Out</h6>'+
                 '</div>'+
-                '<div class="col-md-auto ml-1">'+
-                    '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
-                    '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
+                '<div class="col-md-2 ml-1">'+
+                    '<h6 class="text-white font-13 text-right">'+addCommas(value.total_unique)+'</h6>'+
+                    '<h6 class="text-white font-13 text-right">'+addCommas(value.total)+'</h6>'+
+                    '<h6 class="text-white font-13 text-right">7xxx</h6>'+
+                    '<h6 class="text-white font-13 text-right">7xxx</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
