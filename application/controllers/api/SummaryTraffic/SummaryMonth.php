@@ -55,7 +55,7 @@ class SummaryMonth extends CI_Controller {
 		}
 
 		if (!$ipm || $channel_name =="ShowAll"){
-			$channel_color = "#B22222";
+			$channel_color = "#5F9EA0";
 		}else{
 			$channel_color = $ipm[0]->channel_color;
 		}
