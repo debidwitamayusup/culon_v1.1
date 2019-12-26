@@ -209,19 +209,21 @@ class SummaryTrafficChannel extends CI_Controller {
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 
-		$data = $this->Stc_Model->getAverageCustomer($params, $index);
+		$data = $this->Stc_Model->get_summary_case_tot_agent_sla($params, $index);
 		
 		if ($data) 
 		{
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data);
+				'data' => $data
+			);
 		} else {
 			$response = array(
 				'status' => 200,
 				'message' => 'Data Not Found',
-				'data' => $data);
+				'data' => $data
+			);
 		}
 		echo json_encode($response);
 	}

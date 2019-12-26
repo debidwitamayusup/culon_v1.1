@@ -6,14 +6,13 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+						<div class="page-header d-flex p-2 bd-highlight">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 							</ol>
-							<div class="card-options d-none d-sm-block">
-							</div>
 						</div>
 						<!--Page Header-->
 					</div>
@@ -28,7 +27,7 @@
 									<div class="row">
 										<div class="form-group row">
 											<select class="form-control" id="channel_name">
-												<option value="ShowAll">Show</option>
+												<option value="ShowAll">Show All</option>
 												<option value="Whatsapp">Whatsapp</option>
 												<option value="Twitter">Twitter</option>
 												<option value="Facebook">Facebook</option>
@@ -47,7 +46,8 @@
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
-														<select class="form-control select2" style="width: 100%;" data-placeholder="Choose one (with optgroup)" id="dateTahun">
+														<select class="form-control select2" style="width: 100%;"
+															data-placeholder="Choose one (with optgroup)" id="dateTahun">
 															<!-- <option value="2019">2019</option>
 															<option value="2018">2018</option>
 															<option value="2017">2017</option>
@@ -88,7 +88,8 @@
 									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
 								<div class="table-responsive table-bordered table-pt10">
-									<table class="table card-table table-vcenter table-hover table-pt10" id="table_avg_year">
+									<table class="table card-table table-vcenter table-hover table-pt10"
+										id="table_avg_year">
 										<thead class="text-center text-white bg-gray1">
 											<tr>
 												<th>No</th>
@@ -112,7 +113,7 @@
 				<!--Chart Plugin -->
 				<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 				<!--Chart--->
-				
+
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>
 
 				<!-- <script type="text/javascript">

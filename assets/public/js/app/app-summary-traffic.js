@@ -88,6 +88,7 @@ function loadContent(params, index_time){
     callTotalUniqueCustomer(params, index_time);
     callAverageCustomer(params, index_time);
     callUniqueCustomerPerChannel(params, index_time);
+    callSummaryCaseTotAgent(params, index_time);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -129,9 +130,9 @@ function drawCardInteractionNew(value){
                 '<div class="col-md-auto text-right ml-1">'+
                     '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
+                    '<h6 class="text-white font-13">'+parseFloat(value.sla).toFixed(2)+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -299,7 +300,7 @@ function callTotalUniqueCustomer(params, index_time){
 
 function callAverageCustomer(params, index_time){
        //call avg customer
-       $.ajax({
+    $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
         data: {
@@ -344,6 +345,30 @@ function callUniqueCustomerPerChannel(params, index_time){
 
                 $("#retres-unique").append('<div class="col-xl-3 border-right"><div class="card-body text-center"><i class="' + classIcon + '"></i><div class="dash3"><h5 class="text-muted">' + value.channel + '</h5><h4 class="counter ' + classBg + ' num-font">' + value.total + '</h4></div></div></div>')
             });
+        },
+        error: function (r) {
+            // alert("error");
+            console.log(r);
+        },
+    });
+}
+
+function callSummaryCaseTotAgent(params, index_time){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
+        data: {
+            params: params,
+            index: index_time
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            $('#msg-in').html(addCommas(response.data.msg_in));
+            $('#msg-out').html(addCommas(response.data.msg_out));
+            $('#tot-agent').html(addCommas(response.data.tot_agent));
+            var sla = parseFloat(response.data.sla);
+            $('#sla').html(sla.toFixed(2)+" %");
         },
         error: function (r) {
             // alert("error");

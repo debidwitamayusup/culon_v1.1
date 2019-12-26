@@ -10,18 +10,20 @@ $(document).ready(function () {
     //for dropdown selected
     var d = new Date();
     var n = d.getMonth()+1;
+    var m = d.getYear();
     $('#month option[value='+n+']').attr('selected','selected');
 
-    callGraphicInterval('ShowAll', n);
+    callGraphicInterval('ShowAll', n, m);
     callDataPercentage(n);
     callDataTableAvg(n);
+    callYear();
 });
 
 function monthNumToName(month) {
     return months[month - 1] || '';
 }
 
-function callGraphicInterval(channel_name, month){
+function callGraphicInterval(channel_name, month, year){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
@@ -36,7 +38,8 @@ function callGraphicInterval(channel_name, month){
         url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
         data: {
             "channel_name": channel_name,
-            "month": month
+            "month": month,
+            "year": year,
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -239,6 +242,45 @@ function drawTableMonth(response){
     
 }
 
+//for dinamic dropdown year value
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryMonth/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#dropdownYear");
+            var response = JSON.parse(r);
+
+            var html = '';
+            var i;
+            console.log(response);
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#dropdownYear').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
 // function destroy element canvas
 function destroyChartInterval(){
     // destroy chart interval 
@@ -260,8 +302,8 @@ function destroyChartPercentage(){
 
             var selectedMonth = $(this).children("option:selected").val();
               // console.log(selectedMonth);
-              // console.log($("#channel_name").val());
-            callGraphicInterval($("#channel_name").val(), selectedMonth);
+              // console.log($("#dropdownYear").val());
+            callGraphicInterval($("#channel_name").val(), selectedMonth, $("#dropdownYear").val());
             callDataPercentage(selectedMonth);
             callDataTableAvg(selectedMonth);
         });
@@ -272,6 +314,16 @@ function destroyChartPercentage(){
             var selectedChannel = $(this).children("option:selected").val();
               // console.log(selectedMonth);
               // console.log($("#channel_name").val());
-            callGraphicInterval(selectedChannel, $("#month").val());
+            callGraphicInterval(selectedChannel, $("#month").val(), $("#dropdownYear").val());
+        });
+
+        // change date picker
+        $("select#dropdownYear").change(function(){
+            destroyChartInterval();
+            destroyChartPercentage();
+              var selectedYear = $(this).children("option:selected").val();
+
+              //console.log(selectedYear);
+             callGraphicInterval($("#channel_name").val(), $("#month").val(), selectedYear);
         });
 })(jQuery);
