@@ -13,6 +13,7 @@ class SummaryMonth extends CI_Controller {
 	{
 		//date("m")
 		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
+		$year = $this->input->post('year') ? $this->input->post('year') :2019 ;
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "ShowAll";
 		$data = array();
 		$date = array();
@@ -35,7 +36,7 @@ class SummaryMonth extends CI_Controller {
 		}
 				
 		//get Interval Per Month for Vertical Graphic
-		$ipm = $this->Stc_Model->getIntervalPerMonth($month, $channel_name)->result();
+		$ipm = $this->Stc_Model->getIntervalPerMonth($month, $channel_name, $year)->result();
 		// print_r($ipm);
 		foreach ($ipm as $key) 
 		{
@@ -54,7 +55,7 @@ class SummaryMonth extends CI_Controller {
 		}
 
 		if (!$ipm || $channel_name =="ShowAll"){
-			$channel_color = "#B22222";
+			$channel_color = "#5F9EA0";
 		}else{
 			$channel_color = $ipm[0]->channel_color;
 		}
@@ -192,5 +193,35 @@ class SummaryMonth extends CI_Controller {
         }
         echo json_encode($response);
     }
+
+    //function for get dinamic year value for dropdown
+    public function optionYear()
+	{
+		$data = array();
+		$niceDate = array();
+
+		$getOption = $this->Stc_Model->getOptionYear();
+
+		foreach ($getOption as $key) {
+			array_push($niceDate, $key->niceDate);
+		}
+
+		$data = ([
+			'niceDate' => $niceDate
+		]);
+
+		if ($data) {
+			$response = array(
+				'status' => 200,
+				'message' => 'Success',
+				'data' => $data);
+		} else {
+			$response = array(
+				'status' => 200,
+				'message' => 'Data Not Found',
+				'data' => '');
+		}
+		echo json_encode($response);
+	}
 
 }

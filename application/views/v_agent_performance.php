@@ -6,16 +6,14 @@
         <div class="page-main">
             <div class=" app-content mt-7">
                 <div class="side-app">
-                    <div class="page-header">
-                        <h4 class="page-title"><i class="fe fe-home mr-1"></i>Agent Performance</h4>
+                    <div class="page-header d-flex p-2 bd-highlight">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Total Handling</li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <h4 class="page-title"><i class="fe fe-user mr-1"></i>Agent Performance</h4>
+                            </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Total Handling</li>
                         </ol>
-                        <div class="card-options d-none d-sm-block">
-                        </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -45,16 +43,17 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="wd-15p border-bottom-0">ID</th>
-                                                            <th class="wd-15p border-bottom-0">Agent Name</th>
-                                                            <th class="wd-15p border-bottom-0">SLA</th>
-                                                            <th class="wd-15p border-bottom-0">Call</th>
+                                                            <th class="wd-15p border-bottom-0" width="130">Agent Name
+                                                            </th>
                                                             <th class="wd-15p border-bottom-0">ART</th>
                                                             <th class="wd-15p border-bottom-0">AHT</th>
                                                             <th class="wd-15p border-bottom-0">AST</th>
-                                                            <th class="wd-15p border-bottom-0">Case In</th>
-                                                            <th class="wd-15p border-bottom-0">Case Out</th>
-                                                            <th class="wd-15p border-bottom-0">Message In</th>
-                                                            <th class="wd-15p border-bottom-0">Message Out</th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Total Session
+                                                            </th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Message In
+                                                            </th>
+                                                            <th class="wd-15p border-bottom-0" width="93">Message Out
+                                                            </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody style="font-size:12px !important;">
@@ -65,12 +64,6 @@
                                                                     Name</a>
                                                             </td>
                                                             <td class="text-right">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
-                                                            </td>
-                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
                                                             <td class="text-right">
@@ -78,9 +71,6 @@
                                                             </td>
                                                             <td class="text-right">
                                                                 00:00:00
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
                                                             </td>
                                                             <td class="text-right">
                                                                 100
@@ -99,12 +89,6 @@
                                                                     Name</a>
                                                             </td>
                                                             <td class="text-right">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
-                                                            </td>
-                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
                                                             <td class="text-right">
@@ -112,9 +96,6 @@
                                                             </td>
                                                             <td class="text-right">
                                                                 00:00:00
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
                                                             </td>
                                                             <td class="text-right">
                                                                 100
@@ -133,12 +114,6 @@
                                                                     Name</a>
                                                             </td>
                                                             <td class="text-right">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
-                                                            </td>
-                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
                                                             <td class="text-right">
@@ -146,9 +121,6 @@
                                                             </td>
                                                             <td class="text-right">
                                                                 00:00:00
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
                                                             </td>
                                                             <td class="text-right">
                                                                 100
@@ -167,12 +139,6 @@
                                                                     Name</a>
                                                             </td>
                                                             <td class="text-right">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
-                                                            </td>
-                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
                                                             <td class="text-right">
@@ -180,9 +146,6 @@
                                                             </td>
                                                             <td class="text-right">
                                                                 00:00:00
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
                                                             </td>
                                                             <td class="text-right">
                                                                 100
@@ -201,12 +164,6 @@
                                                                     Name</a>
                                                             </td>
                                                             <td class="text-right">
-                                                                90%
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
-                                                            </td>
-                                                            <td class="text-right">
                                                                 00:00:00
                                                             </td>
                                                             <td class="text-right">
@@ -214,9 +171,6 @@
                                                             </td>
                                                             <td class="text-right">
                                                                 00:00:00
-                                                            </td>
-                                                            <td class="text-right">
-                                                                100
                                                             </td>
                                                             <td class="text-right">
                                                                 100

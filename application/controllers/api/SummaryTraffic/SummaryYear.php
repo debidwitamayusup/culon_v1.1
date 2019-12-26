@@ -40,7 +40,7 @@ class SummaryYear extends CI_Controller {
 			}
 
 			if (!$interval || $channel_name =="ShowAll"){
-				$channel_color = "#B22222";
+				$channel_color = "#8FBC8F";
 			}else{
 				$channel_color = $interval[0]->channel_color;
 			}
