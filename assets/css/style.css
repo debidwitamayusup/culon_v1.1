@@ -9403,6 +9403,24 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .ml-9, .mx-9 {
 	margin-left: 6rem !important;
 }
+
+/* custom m-10 */
+.m-10 {
+	margin: 8rem !important;
+}
+.mt-10, .my-10 {
+	margin-top: 8rem !important;
+}
+.mr-10, .mx-10 {
+	margin-right: 8rem !important;
+}
+.mb-10, .my-10 {
+	margin-bottom: 8rem !important;
+}
+.ml-10, .mx-10 {
+	margin-left: 8rem !important;
+}
+
 .p-0 {
 	padding: 0 !important;
 }
