@@ -74,6 +74,22 @@
 	<!-- add css -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
+	<script>
+	$(document).ready(function(){
+		// Add minus icon for collapse element which is open by default
+		$(".collapse.show").each(function(){
+			$(this).siblings(".card-header").find(".btn i").addClass("fas fa-angle-down").removeClass("fas fa-angle-right");
+		});
+		
+		// Toggle plus minus icon on show hide of collapse element
+		$(".collapse").on('show.bs.collapse', function(){
+			$(this).parent().find(".card-header .btn i").removeClass("fas fa-angle-right").addClass("fas fa-angle-down");
+		}).on('hide.bs.collapse', function(){
+			$(this).parent().find(".card-header .btn i").removeClass("fas fa-angle-down").addClass("fas fa-angle-right");
+		});
+	});
+	</script>
+
 </head>
 	<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
 
