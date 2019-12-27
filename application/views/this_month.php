@@ -21,7 +21,7 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Graphic Interval</h5>
+									<h5 class="card-title-small card-pt10">Graphic Interval Monthly</h5>
 								</div>
 								<div class="card-body">
 									<div class="d-flex bd-highlight">
