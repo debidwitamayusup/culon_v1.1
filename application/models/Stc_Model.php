@@ -480,7 +480,7 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
-	public function getAverageIntervalToday($params, $index)
+	public function getAverageIntervalToday($params, $index, $year=0)
 	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		
@@ -501,7 +501,7 @@ class Stc_Model extends CI_Model
 			$ast = "agent_perform.ait as ast";
 			$aht = "agent_perform.aht";
 		}else if($params == 'month'){
-			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= YEAR(CURRENT_DATE)";
+			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= '".$year."'";
 			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
 			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
 			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
@@ -556,7 +556,7 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
-	public function getSumIntervalMonth($month){
+	public function getSumIntervalMonth($month, $year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -567,9 +567,9 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(total) total,
 			CAST(SUM(total)*100/
-			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' ) AS DECIMAL(10,2)) as rate
+			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."') AS DECIMAL(10,2)) as rate
 			FROM summary_channel
-			WHERE MONTH(summary_channel.date_time) = '".$month."'
+			WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."'
 			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
