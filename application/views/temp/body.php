@@ -15,7 +15,7 @@
 									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 								</ol>
 							</div>
-							<div class="bd-highlight text-right" id="tag-time"></div>
+							<div class="bd-highlight text-right text-muted" id="tag-time"></div>
 							<div class="bd-highlight text-right">
 								<div class="card-options d-none d-sm-block">
 									<div class="btn-group btn-sm">
