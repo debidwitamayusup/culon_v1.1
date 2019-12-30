@@ -59,7 +59,7 @@
 
 <!-- DataTables -->
 <script src="<?=base_url()?>assets/js/datatables/jquery.dataTables.js"></script>
-<script src="<?=base_url()?>assets/js/datatable.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/datatable.js"></script> -->
 <script src="<?=base_url()?>assets/js/datatables/dataTables.bootstrap4.js"></script>
 <script src="<?=base_url()?>assets/js/datatables/dataTables.buttons.min.js"></script>
 
