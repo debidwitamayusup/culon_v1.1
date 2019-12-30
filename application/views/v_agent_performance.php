@@ -193,4 +193,4 @@
                     </div>
                 </div>
                 <?php $this->load->view('temp/footer');?>
-                <!-- <script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script> -->
+                <script src="<?=base_url()?>assets/public/js/app/app-agent-performance.js"></script>
