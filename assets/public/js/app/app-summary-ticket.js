@@ -2,7 +2,7 @@
     "use strict";
     //pie chart
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 301;
+    ctx.height = 304;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {

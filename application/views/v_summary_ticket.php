@@ -25,25 +25,46 @@
                                 <h5 class="card-title-small card-pt10">Summary Ticket Status Month</h5>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex order-lg-2 ml-auto float-right">
-                                    <div class="wd-200 mb-3">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <select class="form-control" id="month">
-                                                    <option value="1">January</option>
-                                                    <option value="2">February</option>
-                                                    <option value="3">March</option>
-                                                    <option value="4">April</option>
-                                                    <option value="5">May</option>
-                                                    <option value="6">June</option>
-                                                    <option value="7">July</option>
-                                                    <option value="8">August</option>
-                                                    <option value="9">September</option>
-                                                    <option value="10">October</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">December</option>
-                                                </select>
+                                <div class="d-flex flex-row bd-highlight">
+                                    <div class="p-2 bd-highlight">
+                                        <div class="wd-200 mb-3">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <select class="form-control" id="month">
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 bd-highlight">
+                                        <div class="form-group row">
+                                            <select class="form-control" id="channel_name">
+                                                <option value="ShowAll">Show All</option>
+                                                <option value="Whatsapp">Whatsapp</option>
+                                                <option value="Twitter">Twitter</option>
+                                                <option value="Facebook">Facebook</option>
+                                                <option value="Email">Email</option>
+                                                <option value="Telegram">Telegram</option>
+                                                <option value="Line">Line</option>
+                                                <option value="Voice">Voice</option>
+                                                <option value="Instagram">Instagram</option>
+                                                <option value="Messenger">Messenger</option>
+                                                <option value="Twitter DM">Twitter DM</option>
+                                                <option value="Live Chat">Live Chat</option>
+                                                <option value="SMS">SMS</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -58,8 +79,8 @@
                             </div>
 
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="d-flex order-lg-2 ml-auto float-right">
+                                <div class="d-flex flex-row bd-highlight">
+                                    <div class="p-2 bd-highlight">
                                         <div class="w-75 mb-3">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -87,22 +108,22 @@
                                 <h5 class="card-title-small card-pt10">Summary Status Daily</h5>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="d-flex order-lg-2 ml-auto float-right">
+                                <div class="d-flex flex-row bd-highlight">
+                                    <div class="p-2 bd-highlight">
                                         <div class="w-75 mb-3">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
                                                         <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                                     </div>
-                                                </div><input id="input-status" class="form-control fc-datepicker"
+                                                </div><input id="input-date" class="form-control fc-datepicker"
                                                     placeholder="MM/DD/YYYY" type="text">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                <canvas id="graphicTicket" height="300px"></canvas>
+                                    <canvas id="graphicTicket" height="300px"></canvas>
                                 </div>
                             </div>
                         </div>
