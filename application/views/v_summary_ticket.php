@@ -128,6 +128,8 @@
                             </div>
                         </div>
                     </div>
-                    <?php $this->load->view('temp/footer');?>
-                    <!-- <script src="<?=base_url()?>assets/plugins/echart/echart.js"></script> -->
-                    <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket.js"></script>
+                </div>
+
+                <?php $this->load->view('temp/footer');?>
+                <!-- <script src="<?=base_url()?>assets/plugins/echart/echart.js"></script> -->
+                <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket.js"></script>
