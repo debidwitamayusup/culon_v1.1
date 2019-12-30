@@ -30,9 +30,9 @@
 					</a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
 				</li>
 				<!-- <li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li> -->
@@ -43,11 +43,11 @@
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/kip">KIP</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
-						<div class="slide-item ml-3"><a href="<?=base_url()?>main/average_duration">Average Duration</a>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/average_duration">Average Duration</a>
 						</div>
 					</div>
 				</li>

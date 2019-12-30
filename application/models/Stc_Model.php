@@ -220,13 +220,13 @@ class Stc_Model extends CI_Model
 		$where2 = "";
 		if($params == 'day'){
 			$where = "DATE(date_time)= '".$index."'";
-			$where2 = "DATE(tanggal)= '".$index."'";
+			$where2 = "DATE(date)= '".$index."'";
 		}else if($params == 'month'){
 			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = YEAR(CURDATE()) ";
-			$where2 = "MONTH(tanggal)= '".$index."' AND YEAR(tanggal) = YEAR(CURDATE()) ";
+			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = YEAR(CURDATE()) ";
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
-			$where2 = "YEAR(tanggal)= '".$index."'";
+			$where2 = "YEAR(date)= '".$index."'";
 		}
 		$str = "SELECT m_channel.channel_name as channel
 		, IFNULL(a.total, 0) as total
@@ -245,8 +245,8 @@ class Stc_Model extends CI_Model
 			ORDER BY summary_channel.channel_name
 		)as a on a.channel_id = m_channel.channel_id
 		LEFT JOIN(
-			SELECT channel_id, SUM(case_in) as msg_in, SUM(case_out) as msg_out, AVG(sla) as sla
-			from rpt_summ_interval
+			SELECT channel_id, SUM(message_in) as msg_in, SUM(message_out) as msg_out, AVG(sla) as sla
+			from rpt_summary
 			where $where2
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
@@ -480,7 +480,7 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
-	public function getAverageIntervalToday($params, $index)
+	public function getAverageIntervalToday($params, $index, $year=0)
 	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		
@@ -501,7 +501,7 @@ class Stc_Model extends CI_Model
 			$ast = "agent_perform.ait as ast";
 			$aht = "agent_perform.aht";
 		}else if($params == 'month'){
-			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= YEAR(CURRENT_DATE)";
+			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= '".$year."'";
 			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
 			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
 			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
@@ -556,7 +556,7 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
-	public function getSumIntervalMonth($month){
+	public function getSumIntervalMonth($month, $year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -567,9 +567,9 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(total) total,
 			CAST(SUM(total)*100/
-			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' ) AS DECIMAL(10,2)) as rate
+			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."') AS DECIMAL(10,2)) as rate
 			FROM summary_channel
-			WHERE MONTH(summary_channel.date_time) = '".$month."'
+			WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."'
 			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
@@ -592,15 +592,15 @@ class Stc_Model extends CI_Model
 
 	public function get_summary_case_tot_agent_sla($params, $index){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
-		$this->db->select('ifnull(sum(case_in),0) as msg_in, ifnull(sum(case_out), 0) as msg_out, IFNULL(sum(tot_agent),0) as tot_agent, ifnull(avg(sla),0) as sla'); 
-		$this->db->from('rpt_summ_interval');
+		$this->db->select('ifnull(sum(message_in),0) as msg_in, ifnull(sum(message_out), 0) as msg_out, IFNULL(sum(tot_agent),0) as tot_agent'); 
+		$this->db->from('rpt_summary');
 		if($params == 'day'){
-			$this->db->where('DATE(tanggal)', $index);
+			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
-			$this->db->where('MONTH(tanggal)', $index);
-			$this->db->where('YEAR(tanggal)', date("Y"));
+			$this->db->where('MONTH(date)', $index);
+			$this->db->where('YEAR(date)', date("Y"));
 		}else if($params == 'year'){
-			$this->db->where('YEAR(tanggal)', $index);
+			$this->db->where('YEAR(date)', $index);
 		}
 
 		$query = $this->db->get();

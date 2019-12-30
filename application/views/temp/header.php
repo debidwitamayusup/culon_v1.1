@@ -21,63 +21,67 @@
 	<title>Infomedia</title>
 
 	<!--Bootstrap.min css-->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/css/bootstrap.min.css">
 
 	<!--Font Awesome-->
-	<link href="<?php echo base_url();?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>assets/css/fontawesome-free/css/all.css" rel="stylesheet"/>
 
 	<!-- Dashboard Css -->
 	<link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/app.css" rel="stylesheet">
 
 	<!-- vector-map -->
-	<link href="<?php echo base_url();?>assets/plugins/jquery.vmap/jqvmap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>assets/css/plugin/jqvmap.min.css" rel="stylesheet">
 
 	<!-- Custom scroll bar css-->
-	<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css"
-		rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/plugin/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 	<!-- Sidemenu Css -->
-	<link href="<?php echo base_url();?>assets/plugins/sidemenu/css/sidemenu.css" rel="stylesheet">
-	<!-- Comment date : 12/2/2019 <link href="<?php echo base_url();?>assets/plugins/side-menu/css/side-menu.css" rel="stylesheet"> -->
-
+	<link href="<?php echo base_url();?>assets/css/plugin/sidemenu.css" rel="stylesheet">
+	
 	<!--Sidemenu-responsive-tabs  css -->
-	<link href="<?=base_url()?>assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css"
-		rel="stylesheet">
+	<link href="<?php echo base_url()?>assets/css/plugin/sidemenu-responsive-tabs.css" rel="stylesheet">
 
 	<!-- P-scroll css -->
-	<link href="<?=base_url()?>assets/plugins/p-scroll/p-scroll.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url()?>assets/css/plugin/p-scroll.css" rel="stylesheet" type="text/css">
 
 	<!-- select2 Plugin -->
-	<link href="<?php echo base_url();?>/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/plugin/select2.min.css" rel="stylesheet" />
 
 	<!-- Time picker Plugin -->
-	<link href="<?php echo base_url();?>assets/plugins/jquery.timepicker/jquery.timepicker.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/plugin/jquery.timepicker.css" rel="stylesheet" />
 
 	<!-- Date Picker Plugin -->
-	<link href="<?php echo base_url();?>assets/plugins/date-picker/date-picker.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/plugin/date-picker.css" rel="stylesheet" />
 
 	<!-- DataTables css-->
-	<link href="<?=base_url()?>assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="<?=base_url()?>assets/plugins/Datatable/css/buttons.bootstrap4.min.css">
-	<link href="<?=base_url()?>assets/plugins/datatable/responsive.bootstrap4.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url()?>assets/css/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url()?>assets/css/datatables/buttons.bootstrap4.min.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>assets/css/datatables/responsive.bootstrap4.min.css" rel="stylesheet" />
 
 	<!---Font icons-->
-	<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/iconfonts/plugin.css" rel="stylesheet" />
 
 	<!-- Sidebar css -->
-	<link href="<?php echo base_url();?>assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>assets/css/plugin/sidebar.css" rel="stylesheet"/>
 
 	<!--Chartist css-->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/chartist/chartist-plugin-tooltip.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/app.css">
+	<link href="<?php echo base_url();?>assets/css/chart/chartist.css" rel="stylesheet"/>
+	<link href="<?php echo base_url();?>assets/css/chart/chartist-plugin-tooltip.css" rel="stylesheet"/>
 
 	<!-- add css -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-
+	<script>
+		 $(document).ready(function(){
+		$('ul li').click(function(){
+			$('li').removeClass("active");
+			$(this).addClass("active");
+		});
+		});
+	</script>
 </head>
-<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
+	<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
 
 </html>

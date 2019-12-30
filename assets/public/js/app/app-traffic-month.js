@@ -14,8 +14,8 @@ $(document).ready(function () {
     $('#month option[value='+n+']').attr('selected','selected');
 
     callGraphicInterval('ShowAll', n, m);
-    callDataPercentage(n);
-    callDataTableAvg(n);
+    callDataPercentage(n, m);
+    callDataTableAvg(n, m);
     callYear();
 });
 
@@ -134,12 +134,13 @@ function getColorChannel(channel_name){
     return color[channel_name];
 }
 
-function callDataPercentage(month){
+function callDataPercentage(month, year){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
         data: {
-            month: month
+            month: month,
+            year: year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -202,12 +203,13 @@ function drawChartPercentageMonth(response){
     });
 }
 
-function callDataTableAvg(month){
+function callDataTableAvg(month, year){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/averageIntervalTable',
         data: {
-            month: month
+            month: month,
+            year: year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -304,8 +306,8 @@ function destroyChartPercentage(){
               // console.log(selectedMonth);
               // console.log($("#dropdownYear").val());
             callGraphicInterval($("#channel_name").val(), selectedMonth, $("#dropdownYear").val());
-            callDataPercentage(selectedMonth);
-            callDataTableAvg(selectedMonth);
+            callDataPercentage(selectedMonth, $("#dropdownYear").val());
+            callDataTableAvg(selectedMonth, $("#dropdownYear").val());
         });
 
         $("select#channel_name").change(function(){
@@ -323,7 +325,9 @@ function destroyChartPercentage(){
             destroyChartPercentage();
               var selectedYear = $(this).children("option:selected").val();
 
-              //console.log(selectedYear);
-             callGraphicInterval($("#channel_name").val(), $("#month").val(), selectedYear);
+            //console.log(selectedYear);
+            callGraphicInterval($("#channel_name").val(), $("#month").val(), selectedYear);
+            callDataPercentage($("#month").val(), selectedYear);
+            callDataTableAvg($("#month").val(), selectedYear);
         });
 })(jQuery);

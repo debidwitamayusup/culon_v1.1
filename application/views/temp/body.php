@@ -15,7 +15,7 @@
 									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 								</ol>
 							</div>
-							<div class="bd-highlight text-right" id="tag-time"></div>
+							<div class="bd-highlight text-right text-muted" id="tag-time"></div>
 							<div class="bd-highlight text-right">
 								<div class="card-options d-none d-sm-block">
 									<div class="btn-group btn-sm">
@@ -59,7 +59,7 @@
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<span class="text-muted mb-5">Session</span>
 												</div>
 											</div>
 										</div>
@@ -100,7 +100,7 @@
 										</div>
 									</div>
 									<div class="row mt-5 mb-6">
-										<div class="col-md-6 text-center">
+										<div class="col-md-6 ml-10 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
 													<h6 class="card-body text-white">Total Agent</h6>
@@ -111,7 +111,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-6 text-center">
+										<!-- <div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
 													<h6 class="card-body text-white">SLA</h6>
@@ -121,7 +121,7 @@
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>

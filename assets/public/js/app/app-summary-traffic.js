@@ -117,7 +117,7 @@ function drawCardInteractionNew(value){
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 ml-1 text-white">'+value.channel+'</div>'+
+                        '<div class="mt-2 ml-1 text-white font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mb-2">'+
@@ -242,12 +242,16 @@ function addCommas(commas)
     commas += '';
     x = commas.split('.');
     x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
+    x2 = x.length > 1 ? ',' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
     return x1 + x2;
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function callTotalInteraction(params, index_time){
