@@ -7,11 +7,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta content="Spaner - Simple light Bootstrap Nice Admin Panel Dashboard Design Responsive HTML5 Template"
+	<!-- <meta content="Spaner - Simple light Bootstrap Nice Admin Panel Dashboard Design Responsive HTML5 Template"
 		name="description">
 	<meta content="Spruko Technologies Private Limited" name="author">
 	<meta name="keywords"
-		content="bootstrap panel, bootstrap admin template, dashboard template, bootstrap dashboard, dashboard design, best dashboard, html css admin template, html admin template, admin panel template, admin dashbaord template, bootstrap dashbaord template, it dashbaord, hr dashbaord, marketing dashbaord, sales dashbaord, dashboard ui, admin portal, bootstrap 4 admin template, bootstrap 4 admin" />
+		content="bootstrap panel, bootstrap admin template, dashboard template, bootstrap dashboard, dashboard design, best dashboard, html css admin template, html admin template, admin panel template, admin dashbaord template, bootstrap dashbaord template, it dashbaord, hr dashbaord, marketing dashbaord, sales dashbaord, dashboard ui, admin portal, bootstrap 4 admin template, bootstrap 4 admin" /> -->
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon"
@@ -73,14 +73,6 @@
 
 	<!-- add css -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-	<script>
-		 $(document).ready(function(){
-		$('ul li').click(function(){
-			$('li').removeClass("active");
-			$(this).addClass("active");
-		});
-		});
-	</script>
 </head>
 	<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
 
