@@ -181,7 +181,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 424;
+    ctx.height = 296;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -219,7 +219,7 @@ function drawChartAndCard(response){
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mt-6">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

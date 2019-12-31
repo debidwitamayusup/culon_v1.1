@@ -467,6 +467,7 @@ function addCommas(commas)
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
+		setDatePicker().prov("class","datepicker");
     });
 
     // btn month
