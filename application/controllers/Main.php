@@ -107,11 +107,12 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');	
 		$this->load->view('v_summary_ticket');
 	}
-	public function left_menu()
+	public function test()
 	{
-		$this->load->view('left_menu');
-		$this->load->view('footer');
-		
-		
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('test');
+		$this->load->view('temp/footer');
 	}
 }

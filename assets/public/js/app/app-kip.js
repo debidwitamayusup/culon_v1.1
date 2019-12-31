@@ -9,9 +9,13 @@ $(document).ready(function () {
 	v_date = '2019-12-01';
 	channel_id= 2; //default channel email
 	$('#btn-day').prop("class","btn btn-red btn-sm");
-    loadContent(params_time, v_date);
-
+	loadContent(params_time, v_date);
+	// ------datepiker
+	
+	setMonthPicker();
+	setYearPicker();
 });
+
 
 function loadContent(params, index){
 	loadAllChannel();
@@ -272,7 +276,7 @@ function drawPieChart(response){
 						var value = data.datasets[0].data[tooltipItem.index];
 						value = value.toString();
 						value = value.split(/(?=(?:...)*$)/);
-						value = value.join('.');
+						value = value.join(',');
 						return value;
 					}
 			  } // end callbacks:
@@ -429,6 +433,14 @@ function getYear(){
     return year;
 }
 
+function setDatePicker(){
+	$(".datepicker").datepicker({
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		autoclose: true
+	}).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 function addCommas(commas)
 {
     commas += '';
@@ -454,7 +466,7 @@ function addCommas(commas)
 		callSummaryInteraction(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
     });
 
     // btn month

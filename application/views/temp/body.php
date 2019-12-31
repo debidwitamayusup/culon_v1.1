@@ -6,20 +6,34 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<div class="page-header">
-							<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#"></a></li>
-								<li class="breadcrumb-item active" aria-current="page">Summary Traffic Channel</li>
-							</ol>
-							<div class="card-options d-none d-sm-block">
-								<div class="btn-group btn-sm">
-									<a href="#" class="btn btn-light btn-sm" id="btn-day">
-										<span class="">Day</a></span>
-									<a href="#" class="btn btn-light btn-sm" id="btn-month">
-										<span class="">Month</a></span>
-									<a href="#" class="btn btn-light btn-sm" id="btn-year">
-										<span class="">Year</a></span>
+						<div class="page-header d-flex bd-highlight">
+							<div class="flex-grow-1 bd-highlight">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item active" aria-current="page">
+										<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+									</li>
+									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
+								</ol>
+							</div>
+							<div class="bd-highlight text-right">
+								<div class="card-options d-none d-sm-block">
+									<div class="btn-group btn-sm">
+										<a href="#" class="btn btn-light btn-sm" id="btn-day">
+											<span class="">Day</a></span>
+										<a href="#" class="btn btn-light btn-sm" id="btn-month">
+											<span class="">Month</a></span>
+										<a href="#" class="btn btn-light btn-sm" id="btn-year">
+											<span class="">Year</a></span>
+									</div>
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
+									<div class="bd-highlight text-center text-muted tags">
+										<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
+										<<!-- div class="btn-group btn-sm">
+											<div class="btn btn-light btn-sm">
+												<span class="" id="tag-time"></div></span>
+										</div> -->
+									</div>
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
 								</div>
 							</div>
 						</div>
@@ -33,10 +47,9 @@
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 								</div>
 								<div class="card-pie">
-									<div class="canvas-con">
+									<div class="canvas-con mt-4">
 										<div class="canvas-con-inner" id="canvas-pie">
-											<canvas id="pieSummary" height="250px"
-												class="donutShadow overflow-hidden"></canvas>
+											<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 										</div>
 										<div id="legend" class="legend-con"></div>
 									</div>
@@ -50,11 +63,11 @@
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="text-white card-body">Total Interaction</h6>
+													<h6 class="text-white card-body">Total Session</h6>
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Interaction</span>
+													<span class="text-muted mb-5">Session</span>
 												</div>
 											</div>
 										</div>
@@ -70,29 +83,53 @@
 											</div>
 										</div>
 									</div>
+									<div class="row mt-5">
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">Message In</h6>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
+													<span class="text-muted mb-5" >Interaction</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 text-center">
+											<div class="card-custom">
+												<div class="card-header bg-red">
+													<h6 class="card-body text-white">Message Out</h6>
+												</div>
+												<div class="card-body">
+													<h2 class="mb-4 mt-3 num-font" id="msg-out"></h2>
+													<span class="text-muted mb-5">Interaction</span>
+												</div>
+											</div>
+										</div>
+									</div>
 									<div class="row mt-5 mb-6">
-										<div class="col-md-6 text-center">
+										<div class="col-md-6 ml-10 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Case In</h6>
+													<h6 class="card-body text-white">Total Agent</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xxx</h2>
+													<h2 class="mb-4 mt-3 num-font" id="tot-agent"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-6 text-center">
+										<!-- <div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Case Out</h6>
+													<h6 class="card-body text-white">SLA</h6>
 												</div>
 												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="">4xx</h2>
+													<h2 class="mb-4 mt-3 num-font" id="sla"></h2>
 													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -104,7 +141,7 @@
 							<div class="card overflow-hidden">
 								<div class="card-body" style="padding:20px;" id="card-baru">
 									<div class="row" id="row-baru">
-										
+
 									</div>
 								</div>
 							</div>

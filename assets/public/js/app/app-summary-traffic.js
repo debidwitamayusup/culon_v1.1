@@ -3,6 +3,11 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 
 $(document).ready(function () {
     // v_date = getToday();
@@ -15,11 +20,17 @@ $(document).ready(function () {
 
 
     loadContent(params_time, v_date);
+    $('#tag-time').html(v_date);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
 
 });
+
+//for convert numeric month to lettering month name
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
 
 //function
 function getColorChannel(channel){
@@ -46,7 +57,7 @@ function getToday(){
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = yyyy  + '-' + mm + '-' + dd;
+    today = yyyy  + '-' + mm + '-' + (dd-1);
     return today;
 }
 
@@ -77,6 +88,7 @@ function loadContent(params, index_time){
     callTotalUniqueCustomer(params, index_time);
     callAverageCustomer(params, index_time);
     callUniqueCustomerPerChannel(params, index_time);
+    callSummaryCaseTotAgent(params, index_time);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -105,20 +117,22 @@ function drawCardInteractionNew(value){
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 ml-1 text-white">'+value.channel+'</div>'+
+                        '<div class="mt-2 ml-1 text-white font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-auto mb-2">'+
-                    '<h6 class="text-white font-13">Unique Customer</h6>'+
-                    '<h6 class="text-white font-13">Total Interaction</h6>'+
-                    '<h6 class="text-white font-13">Case In</h6>'+
-                    '<h6 class="text-white font-13">Case Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Unique Customer</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Total Session</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Message In</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">Message Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font-13">SLA</h6>'+
                 '</div>'+
-                '<div class="col-md-auto ml-1">'+
+                '<div class="col-md-auto text-right ml-1">'+
                     '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
-                    '<h6 class="text-white font-13">7xxx</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
+                    '<h6 class="text-white font-13">'+parseFloat(value.sla).toFixed(2)+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -147,7 +161,7 @@ function callSummaryInteraction(params, index_time){
 function drawChartAndCard(response){
     //destroy div piechart
     $('#pieSummary').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieSummary" height="250px" class="donutShadow overflow-hidden"></canvas>');
+    $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
 
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
@@ -167,7 +181,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 304;
+    ctx.height = 424;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -185,6 +199,17 @@ function drawChartAndCard(response){
             legend: {
                 display: false
             },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return value;
+                    }
+              } // end callbacks:
+            }, //end tooltips
             pieceLabel: {
                 render: 'legend',
                 fontColor: '#000',
@@ -194,7 +219,7 @@ function drawChartAndCard(response){
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row">');
+                legendHtml.push('<ul><div class="row mt-6">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
@@ -228,12 +253,16 @@ function addCommas(commas)
     commas += '';
     x = commas.split('.');
     x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
+    x2 = x.length > 1 ? ',' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
     return x1 + x2;
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function callTotalInteraction(params, index_time){
@@ -286,7 +315,7 @@ function callTotalUniqueCustomer(params, index_time){
 
 function callAverageCustomer(params, index_time){
        //call avg customer
-       $.ajax({
+    $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
         data: {
@@ -339,6 +368,30 @@ function callUniqueCustomerPerChannel(params, index_time){
     });
 }
 
+function callSummaryCaseTotAgent(params, index_time){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
+        data: {
+            params: params,
+            index: index_time
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            $('#msg-in').html(addCommas(response.data.msg_in));
+            $('#msg-out').html(addCommas(response.data.msg_out));
+            $('#tot-agent').html(addCommas(response.data.tot_agent));
+            var sla = parseFloat(response.data.sla);
+            $('#sla').html(sla.toFixed(2)+" %");
+        },
+        error: function (r) {
+            // alert("error");
+            console.log(r);
+        },
+    });
+}
+
 //jquery
 (function ($) {
 
@@ -347,6 +400,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-11-02');
+        $('#tag-time').html(v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -357,6 +411,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'month';
         // console.log(params_time);
         loadContent(params_time , '11')
+        $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -367,6 +422,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         params_time = 'year';
         // console.log(params_time);
         loadContent(params_time , '2019')
+        $('#tag-time').html(v_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");

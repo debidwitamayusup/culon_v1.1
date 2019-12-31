@@ -4,7 +4,8 @@ var list_channel= [];
 
 $(document).ready(function () {
     // set date
-    v_date = getToday();
+    // v_date = getToday();
+    v_date = getYesterday();
     $('#input-date').datepicker("setDate", v_date);
     //set check all channel
     $('#check-all-channel').prop('checked',true);
@@ -43,6 +44,16 @@ function getColorChannel(channel){
     return color[channel];
 }
 
+function getYesterday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + (dd-1);
+    // today = '2019-05-22';
+    return today;
+}
 function getToday(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
