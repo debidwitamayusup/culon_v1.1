@@ -22346,3 +22346,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-bottom: 20px;
 	height: 135px;
 }
+
+/*box filter time*/
+.box-filter-time{
+	border: 1px solid #80808047;
+	margin-top: 2px;
+	width: 171px;
+}

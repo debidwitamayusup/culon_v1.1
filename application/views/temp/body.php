@@ -15,7 +15,6 @@
 									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
 								</ol>
 							</div>
-							<div class="bd-highlight text-right text-muted" id="tag-time"></div>
 							<div class="bd-highlight text-right">
 								<div class="card-options d-none d-sm-block">
 									<div class="btn-group btn-sm">
@@ -26,6 +25,15 @@
 										<a href="#" class="btn btn-light btn-sm" id="btn-year">
 											<span class="">Year</a></span>
 									</div>
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
+									<div class="bd-highlight text-center text-muted tags">
+										<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
+										<<!-- div class="btn-group btn-sm">
+											<div class="btn btn-light btn-sm">
+												<span class="" id="tag-time"></div></span>
+										</div> -->
+									</div>
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
 								</div>
 							</div>
 						</div>
