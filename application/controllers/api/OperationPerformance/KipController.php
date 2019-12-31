@@ -27,10 +27,11 @@
 		{
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
+			$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
 			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
 			// $arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
 			// $arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
-			$arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category);
+			$arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category, $params_year);
 			$data = [
 				'summary' => $arr_category,
 				'kip_channel' => $arr_kip
@@ -49,21 +50,22 @@
 		public function getDetailKip(){
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
+			$params_year = $this->security->xss_clean($this->input->post('year', true));
 			$arr_category = $this->security->xss_clean($this->input->post('category', true));
-			$channel_id = $this->security->xss_clean($this->input->post('channel_id', true));
-			// if(!$arr_category){
-			// 	$response = array(
-			// 		'status' => 502,
-			// 		'message' => 'failed'
-			// 	);
-			// 	echo json_encode($response);
-			// 	return;
-			// }
+			$channel_id = $this->security->xss_clean($this->input->post('channel_id', true) ? $this->input->post('channel_id', true): "");
+			if(!$arr_category){
+				$response = array(
+					'status' => 502,
+					'message' => 'failed'
+				);
+				echo json_encode($response);
+				return;
+			}
 			$data = array();
 
 			$arr_kip = array();
 			foreach($arr_category as $key){
-				$data_category = $this->OperationModel->get_data_sub_category($params, $index, $channel_id, $key);
+				$data_category = $this->OperationModel->get_data_sub_category($params, $index, $channel_id, $key, $params_year);
 				array_push($arr_kip, $data_category);
 				// array_push($arr_kip, $key);
 			}
@@ -71,7 +73,8 @@
 			$response = array(
 				'status' => 200,
 				'message' => 'Success',
-				'data' => $data
+				'data' => $data,
+				'cat' =>$arr_category
 			);
 			echo json_encode($response);
 		}

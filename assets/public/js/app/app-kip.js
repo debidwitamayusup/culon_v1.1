@@ -3,15 +3,24 @@ var category_kip = [];
 var channel_id = '';
 var params_time= '';
 var v_date='';
+var v_month='';
+var v_year='';
 
 $(document).ready(function () {
-    params_time = 'day';
+	
+	params_time = 'day';
+	v_date = getToday();
+	v_month = getMonth();
+	v_year = getYear();
 	v_date = '2019-12-01';
-	channel_id= 2; //default channel email
+	channel_id= '';
 	$('#btn-day').prop("class","btn btn-red btn-sm");
 	loadContent(params_time, v_date);
 	// ------datepiker
 	
+	$('#filter-date').show();
+	$('#filter-month').hide();
+	$('#filter-year').hide();
 	setMonthPicker();
 	setYearPicker();
 });
@@ -19,7 +28,7 @@ $(document).ready(function () {
 
 function loadContent(params, index){
 	loadAllChannel();
-    callSummaryInteraction(params, index);
+    callSummaryInteraction(params, index,0);
 }
 function loadAllChannel(){
 	$.ajax({
@@ -44,21 +53,22 @@ function loadAllChannel(){
     });
 }
 
-function callSummaryInteraction(params, index){
+function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
         data: {
         	params: params,
-        	index: index
+			index: index,
+			year: year
         },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
 			drawKipPerChannelChart(response);
-			callDataSubCategory(params, index);
+			callDataSubCategory(params, index, year);
 			// $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -68,7 +78,7 @@ function callSummaryInteraction(params, index){
     });
 }
 
-function callDataSubCategory(params, index){
+function callDataSubCategory(params, index,year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
@@ -77,7 +87,8 @@ function callDataSubCategory(params, index){
         	params: params,
 			index: index,
 			channel_id: channel_id,
-			category: category_kip
+			category: category_kip,
+			year: year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -214,7 +225,7 @@ function drawChartSubCategory(response){
 			console.log("kosong")
 			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else {
-			console.log("masuk")
+			// console.log("masuk")
 			var chartInfo = document.getElementById('echart'+value);
 			var barChartInfo = echarts.init(chartInfo);
 			barChartInfo.setOption(optionInfo);
@@ -463,33 +474,45 @@ function addCommas(commas)
 		v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		callSummaryInteraction(params_time, v_date);
+		// callSummaryInteraction(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
-		setDatePicker().prov("class","datepicker");
+
+		$('#filter-date').show();
+		$('#filter-month').hide();
+		$('#filter-year').hide();
     });
 
     // btn month
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-		v_date = getMonth();
-		callSummaryInteraction(params_time, v_date);
+		// v_date = getMonth();
+		// callSummaryInteraction(params_time, v_date);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
+		
+		$('#filter-date').hide();
+		$('#filter-month').show();
+		// $('.ui-datepicker-calendar').css('display','none');
+		$('#filter-year').hide();
     });
 
     // btn year
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-		v_date = getYear();
-		callSummaryInteraction(params_time, v_date);
+		// v_date = getYear();
+		// callSummaryInteraction(params_time, v_date);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
+		
+		$('#filter-date').hide();
+		$('#filter-month').hide();
+		$('#filter-year').show();
 	});
 	
 	// select channel
@@ -499,4 +522,33 @@ function addCommas(commas)
 		callDataSubCategory(params_time, v_date);
 	});
    
+
+	$('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			callSummaryInteraction(params_time, v_date,0);
+        }
+	});
+
+	/*select option month*/ 
+	$('#select-month').change(function(){
+		v_month = $(this).val();
+		// console.log(value);
+		callSummaryInteraction(params_time, v_month,v_year);
+	});
+	$('#select-year-on-month').change(function(){
+		v_year = $(this).val();
+		// console.log(value);
+		callSummaryInteraction(params_time,v_month, v_year);
+	});
+	/**/ 
+
+	// select option year
+	$('#select-year-only').change(function(){
+		v_year = $(this).val();
+		console.log(this.value);
+		callSummaryInteraction(params_time, v_year, 0);
+	});
 })(jQuery);
