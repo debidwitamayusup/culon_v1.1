@@ -132,7 +132,7 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
-                    '<h6 class="text-white font-13">'+parseFloat(value.sla).toFixed(2)+' %</h6>'+
+                    '<h6 class="text-white font-13">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
