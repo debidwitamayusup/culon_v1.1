@@ -659,7 +659,7 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
             '</tr>');
             i++;
-        });
+		});
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+

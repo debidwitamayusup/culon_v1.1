@@ -13,7 +13,7 @@ $(document).ready(function () {
 	v_month = getMonth();
 	v_year = getYear();
 	v_date = '2019-12-01';
-	channel_id= 2; //default channel email
+	channel_id= '';
 	$('#btn-day').prop("class","btn btn-red btn-sm");
 	loadContent(params_time, v_date);
 	// ------datepiker
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 function loadContent(params, index){
 	loadAllChannel();
-    callSummaryInteraction(params, index);
+    callSummaryInteraction(params, index,0);
 }
 function loadAllChannel(){
 	$.ajax({
@@ -53,21 +53,22 @@ function loadAllChannel(){
     });
 }
 
-function callSummaryInteraction(params, index){
+function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
         data: {
         	params: params,
-        	index: index
+			index: index,
+			year: year
         },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
             drawPieChart(response);
 			drawKipPerChannelChart(response);
-			callDataSubCategory(params, index);
+			callDataSubCategory(params, index, year);
 			// $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -77,7 +78,7 @@ function callSummaryInteraction(params, index){
     });
 }
 
-function callDataSubCategory(params, index){
+function callDataSubCategory(params, index,year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
@@ -86,7 +87,8 @@ function callDataSubCategory(params, index){
         	params: params,
 			index: index,
 			channel_id: channel_id,
-			category: category_kip
+			category: category_kip,
+			year: year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -526,7 +528,7 @@ function addCommas(commas)
         onSelect: function(dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			callSummaryInteraction(params_time, v_date);
+			callSummaryInteraction(params_time, v_date,0);
         }
 	});
 
@@ -534,19 +536,19 @@ function addCommas(commas)
 	$('#select-month').change(function(){
 		v_month = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time, v_month);
+		callSummaryInteraction(params_time, v_month,v_year);
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time, v_year);
+		callSummaryInteraction(params_time,v_month, v_year);
 	});
 	/**/ 
 
 	// select option year
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
-		console.log(value);
-		callSummaryInteraction(params_time, v_year);
+		console.log(this.value);
+		callSummaryInteraction(params_time, v_year, 0);
 	});
 })(jQuery);
