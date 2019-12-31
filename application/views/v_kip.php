@@ -69,37 +69,6 @@
                     <!--Page Header-->
                 </div>
                 <!----Baris Pertama----!-->
-                <!-- <div class="row">
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Tanggal (DatePicker)</label>
-                            <input type="text" class="form-control datepicker" />
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Bulan (MonthPicker)</label>
-                            <input type="text" class="form-control monthpicker" />
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Tahun (YearPicker)</label>
-                            <input type="text" class="form-control yearpicker" />
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-xs-3">
-                        <div class="form-group">
-                            <label>Periode Tahun (YearRangePicker)</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control startyear" />
-                                <span class="input-group-addon">s/d</span>
-                                <input type="text" class="form-control endyear" />
-                            </div>
-                        </div>
-                    </div> 
-                </div>-->
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-12">
                         <div class="card">
@@ -141,50 +110,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Tanggal (DatePicker)</label>
-                            <input type="text" class="form-control datepicker" />
-                        </div>
-                    </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label>Periode Tanggal (DateRangePicker)</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control startdate" />
-                                <span class="input-group-addon">s/d</span>
-                                <input type="text" class="form-control enddate" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Bulan (MonthPicker)</label>
-                            <input type="text" class="form-control monthpicker" />
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label>Tahun (YearPicker)</label>
-                            <input type="text" class="form-control yearpicker" />
-                        </div>
-                    </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label>Periode Tahun (YearRangePicker)</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control startyear" />
-                                <span class="input-group-addon">s/d</span>
-                                <input type="text" class="form-control endyear" />
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-
-            <?php $this->load->view('temp/footer');?>
-            <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-            <script src="<?= base_url()?>assets/public/js/app/app-kip.js"></script>
+                <?php $this->load->view('temp/footer');?>
+                <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+                <script src="<?= base_url()?>assets/public/js/app/app-kip.js"></script>
