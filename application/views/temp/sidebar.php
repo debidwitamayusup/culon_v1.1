@@ -17,7 +17,7 @@
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#" aria-expanded="true">
-				<i class="side-menu__icon si si-home icon-resize"></i>
+				<i class="side-menu__icon si si-user icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -44,13 +44,25 @@
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
+						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/average_duration">Average Duration</a>
 						</div>
 					</div>
 				</li>
-				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></li>
+				<!-- <li class="slide submenu" id="accordion">
+					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapseTicket"> Summary Ticket
+						<i class="angle not-absolute fas fa-angle-right"></i></a>
+					<div id="collapseTicket" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+						style="">
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
+						</div>
+					</div>
+				</li> -->
+				<li><a class="slide-item" href="<?= base_url()?>main/summary_ticket">Summary Ticketn</a></li>
 			</ul>
 		</li>
 		<li class="slide">

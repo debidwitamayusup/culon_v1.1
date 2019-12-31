@@ -54,7 +54,8 @@
 	<link href="<?php echo base_url();?>assets/css/plugin/jquery.timepicker.css" rel="stylesheet" />
 
 	<!-- Date Picker Plugin -->
-	<link href="<?php echo base_url();?>assets/css/plugin/date-picker.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/plugin/date-picker.css" rel="stylesheet"/>
+	<link href="<?php echo base_url();?>assets/css/plugin/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
 	<!-- DataTables css-->
 	<link href="<?php echo base_url()?>assets/css/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
