@@ -11340,7 +11340,7 @@ body.fixed-header .page {
     min-height: 50px;
 	background: #fff;
     border-radius: 7px;
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 1rem 1rem;
 	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
 	border:1px solid #cbcee8;
 }

@@ -18,33 +18,24 @@
 							</div>
 							<div class="bd-highlight text-right">
 								<div class="d-flex align-items-end flex-column bd-highlight">
-									<div class="p-2 bd-highlight">
-										<div class="card-options d-none d-sm-block">
-											<div class="btn-group btn-sm">
-												<a href="#" class="btn btn-light btn-sm" id="btn-day">
-													<span class="">Day</a></span>
-												<a href="#" class="btn btn-light btn-sm" id="btn-month">
-													<span class="">Month</a></span>
-												<a href="#" class="btn btn-light btn-sm" id="btn-year">
-													<span class="">Year</a></span>
-											</div>
+									<div class="card-options d-none d-sm-block">
+										<div class="btn-group btn-sm">
+											<a href="#" class="btn btn-light btn-sm" id="btn-day">
+												<span class="">Day</a></span>
+											<a href="#" class="btn btn-light btn-sm" id="btn-month">
+												<span class="">Month</a></span>
+											<a href="#" class="btn btn-light btn-sm" id="btn-year">
+												<span class="">Year</a></span>
+										</div>
+										<div class="bd-highlight text-center text-muted tags">
+											<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
 										</div>
 									</div>
-								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
-									<div class="bd-highlight text-center text-muted tags">
-										<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
-										<<!-- div class="btn-group btn-sm">
-											<div class="btn btn-light btn-sm">
-												<span class="" id="tag-time"></div></span>
-										</div> -->
-									</div>
-								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
 								</div>
-								<!--  -->
 							</div>
 						</div>
 						<!--Page Header-->
-					</div>
+					<!-- </div> -->
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
