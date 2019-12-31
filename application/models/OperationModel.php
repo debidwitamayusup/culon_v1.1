@@ -133,7 +133,9 @@ class OperationModel extends CI_Model
         }else if($params == 'year'){
             $this->db->where('YEAR(date)', $index);
         }
-        $this->db->where('m_channel.channel_id', $channel_id);
+        if (!empty($channel_id)) {
+            $this->db->where('m_channel.channel_id', $channel_id);
+        }
         $this->db->where('summary.category', $category);
 		$this->db->group_by('summary.sub_category');
         $this->db->order_by('total_kip', 'DESC');

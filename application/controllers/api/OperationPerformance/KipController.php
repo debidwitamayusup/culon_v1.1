@@ -50,7 +50,7 @@
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$arr_category = $this->security->xss_clean($this->input->post('category', true));
-			$channel_id = $this->security->xss_clean($this->input->post('channel_id', true));
+			$channel_id = $this->security->xss_clean($this->input->post('channel_id', true) ? $this->input->post('channel_id', true): "");
 			// if(!$arr_category){
 			// 	$response = array(
 			// 		'status' => 502,

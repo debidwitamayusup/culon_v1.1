@@ -55,6 +55,7 @@
                                 <div class="row ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
+                                            <option value="">Show All</option>
                                         </select>
                                     </div>
                                 </div>
