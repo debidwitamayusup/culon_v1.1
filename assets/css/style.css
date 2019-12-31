@@ -22308,12 +22308,12 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 .not-absolute {
 	position: inherit !important;
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .not-absolute2 {
 	position: inherit !important;
-	margin-left: 69px;
+	margin-left: 73px;
 }
 
 .list-agent{

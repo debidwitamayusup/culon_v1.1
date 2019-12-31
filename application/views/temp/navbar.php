@@ -23,18 +23,16 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 						<div class="drop-heading">
-							<div class="text-center">
-								<h5 class="text-dark mb-1">Vanessa Dyer</h5>
-								<small class="text-muted">Web Developer</small>
+							<div class="text-left">
+								<h5 class="text-dark mb-1">Jhon Dyer</h5>
+								<small class="text-muted">Supervisor</small>
 							</div>
 						</div>
 						<div class="dropdown-divider m-0"></div>
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Profile</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-edit"></i>Schedule</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-mail"></i> Inbox</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-unlock"></i> Look Screen</a>
-						<a class="dropdown-item" href="#" id="btn-logout"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
-						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-settings"></i>Setting</a>
+						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
+						<!-- <div class="dropdown-divider"></div>
 						<div class="text-center dropdown-btn pb-3">
 							<div class="btn-list">
 								<a href="#" class="btn btn-icon btn-facebook btn-sm"><i
@@ -44,7 +42,7 @@
 								<a href="#" class="btn btn-icon btn-instagram btn-sm"><i
 										class="si si-social-instagram"></i></a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 

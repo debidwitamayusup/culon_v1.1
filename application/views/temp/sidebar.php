@@ -9,10 +9,9 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="index.html">Summary Traffic</a></li>
-				<li><a class="slide-item" href="index2.html">Traffic Interval</a></li>
-				<li><a class="slide-item" href="index3.html">Average Time</a></li>
-				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li>
 			</ul>
 		</li>
 		<li class="slide">
@@ -22,10 +21,10 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic by Channel</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseOne"> Traffic Channel
+						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
@@ -35,7 +34,6 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
 				</li>
-				<!-- <li><a class="slide-item" href="<?= base_url()?>main/average">ART / AHT / AST</a></li> -->
 				<li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
@@ -47,22 +45,9 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/average_duration">Average Duration</a>
 						</div>
 					</div>
 				</li>
-				<!-- <li class="slide submenu" id="accordion">
-					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseTicket"> Summary Ticket
-						<i class="angle not-absolute fas fa-angle-right"></i></a>
-					<div id="collapseTicket" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
-						style="">
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
-						</div>
-					</div>
-				</li> -->
-				<li><a class="slide-item" href="<?= base_url()?>main/summary_ticket">Summary Ticketn</a></li>
 			</ul>
 		</li>
 		<li class="slide">
