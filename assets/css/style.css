@@ -22308,12 +22308,12 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 .not-absolute {
 	position: inherit !important;
-	margin-left: 5px;
+	margin-left: 15px;
 }
 
 .not-absolute2 {
 	position: inherit !important;
-	margin-left: 69px;
+	margin-left: 73px;
 }
 
 .list-agent{
@@ -22345,4 +22345,11 @@ div[data-acc-step]:not(.open) .badge-primary {
 	padding: 14px 3px 3px 3px;
 	margin-bottom: 20px;
 	height: 135px;
+}
+
+/*box filter time*/
+.box-filter-time{
+	border: 1px solid #80808047;
+	margin-top: 2px;
+	width: 171px;
 }

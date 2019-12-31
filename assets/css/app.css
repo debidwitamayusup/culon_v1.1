@@ -1,9 +1,9 @@
 .icon-resize {
-    font-size: 20px !important;
+    font-size: 17px !important;
 }
 
 .label-icon-resize {
-    font-size: 14px !important;
+    font-size: 13px !important;
     padding-top: 5px !important;
 }
 
@@ -96,7 +96,7 @@
 .card-pie {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	margin: 27px;
+	margin: 0px 0px 0px 27px;
 	padding: 0rem 0rem;
 	position: relative;
 	

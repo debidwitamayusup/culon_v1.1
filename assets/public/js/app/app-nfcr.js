@@ -622,6 +622,7 @@ function drawSummaryTrafficNfcr(response){
 }
 
 function drawTableData(response){
+	var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0;
 	//for append title on echart
     $('#titleCategory1').html(response.data[0].category_1);
     $('#titleCategory2').html(response.data[0].category_2);
@@ -648,6 +649,12 @@ function drawTableData(response){
 
     	var i = 0;
         response.data.forEach(function (value, index) {
+			sum_fcr1=parseInt(sum_fcr1)+parseInt(value.fcr_1);
+			sum_nfcr1=parseInt(sum_nfcr1)+parseInt(value.nfcr_1);
+			sum_fcr2=parseInt(sum_fcr2)+parseInt(value.fcr_2);
+			sum_nfcr2=parseInt(sum_nfcr2)+parseInt(value.nfcr_2);
+			sum_fcr3=parseInt(sum_fcr3)+parseInt(value.fcr_3);
+			sum_nfcr3=parseInt(sum_nfcr3)+parseInt(value.nfcr_3);
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td class="text-center">'+(i+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
@@ -658,8 +665,18 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
             '<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
             '</tr>');
-            i++;
-        });
+			i++;
+			
+		});
+		$('#table-avg-interval').find('tbody').append('<tr class="font-weight-extrabold">'+
+            '<td colspan="2" class="text-right">TOTAL</td>'+
+            '<td class="text-right">'+addCommas(sum_fcr1)+'</td>'+
+            '<td class="text-right">'+addCommas(sum_nfcr1)+'</td>'+
+            '<td class="text-right">'+addCommas(sum_fcr2)+'</td>'+
+            '<td class="text-right">'+addCommas(sum_nfcr2)+'</td>'+
+            '<td class="text-right">'+addCommas(sum_fcr3)+'</td>'+
+            '<td class="text-right">'+addCommas(sum_nfcr3)+'</td>'+
+            '</tr>');
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+

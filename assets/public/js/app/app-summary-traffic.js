@@ -132,7 +132,7 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
-                    '<h6 class="text-white font-13">'+parseFloat(value.sla).toFixed(2)+' %</h6>'+
+                    '<h6 class="text-white font-13">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -181,7 +181,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 424;
+    ctx.height = 296;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -219,7 +219,7 @@ function drawChartAndCard(response){
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mt-6">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

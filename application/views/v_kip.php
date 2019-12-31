@@ -16,10 +16,53 @@
                             <div class="btn-group btn-sm">
                                 <a href="#" class="btn btn-light btn-sm" id="btn-day">
                                     <span class="">Day</a></span>
+                                    
                                 <a href="#" class="btn btn-light btn-sm" id="btn-month">
                                     <span class="">Month</a></span>
                                 <a href="#" class="btn btn-light btn-sm" id="btn-year">
                                     <span class="">Year</a></span>
+                            </div>
+                            <div id="filter-date" class="mt-1">
+                                <input id="input-date-filter" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+                            </div>
+                            <div id="filter-month" class="mt-1">
+                                <!-- <input id="input-month-filter" class="form-control fc-datepicker" placeholder="MM/YYYY" type="text"> -->
+                                <div class="form-group">
+                                    <select name="select-month" id="select-month" class="form-control">
+                                        <option value="1">January</option>
+                                        <option value="2" selected>February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <select name="select-year-on-month" id="select-year-on-month" class="form-control">
+                                        <option value="2020">2020</option>
+                                        <option value="2019" selected>2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="filter-year" class="mt-1">
+                                <div class="form-group">
+                                    <select name="select-year-only" id="select-year-only" class="form-control">
+                                        <option value="2020">2020</option>
+                                        <option value="2019" selected>2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,6 +98,7 @@
                                 <div class="row ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
+                                            <option value="">Show All</option>
                                         </select>
                                     </div>
                                 </div>

@@ -12,25 +12,30 @@
 									<li class="breadcrumb-item active" aria-current="page">
 										<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
 									</li>
-									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel</li>
+									<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel
+									</li>
 								</ol>
 							</div>
-							<div class="bd-highlight text-right text-muted" id="tag-time"></div>
 							<div class="bd-highlight text-right">
-								<div class="card-options d-none d-sm-block">
-									<div class="btn-group btn-sm">
-										<a href="#" class="btn btn-light btn-sm" id="btn-day">
-											<span class="">Day</a></span>
-										<a href="#" class="btn btn-light btn-sm" id="btn-month">
-											<span class="">Month</a></span>
-										<a href="#" class="btn btn-light btn-sm" id="btn-year">
-											<span class="">Year</a></span>
+								<div class="d-flex align-items-end flex-column bd-highlight">
+									<div class="card-options d-none d-sm-block">
+										<div class="btn-group btn-sm">
+											<a href="#" class="btn btn-light btn-sm" id="btn-day">
+												<span class="">Day</a></span>
+											<a href="#" class="btn btn-light btn-sm" id="btn-month">
+												<span class="">Month</a></span>
+											<a href="#" class="btn btn-light btn-sm" id="btn-year">
+												<span class="">Year</a></span>
+										</div>
+										<div class="bd-highlight text-center text-muted tags">
+											<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!--Page Header-->
-					</div>
+					<!-- </div> -->
 					<!----Baris Pertama----!-->
 					<div class="row">
 						<div class="col-xl-6 col-lg-6 col-md-12">
@@ -39,7 +44,7 @@
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 								</div>
 								<div class="card-pie">
-									<div class="canvas-con mt-4">
+									<div class="canvas-con">
 										<div class="canvas-con-inner" id="canvas-pie">
 											<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 										</div>
@@ -75,7 +80,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="row mt-5">
+									<div class="row mt-5 mb-5">
 										<div class="col-md-6 text-center">
 											<div class="card-custom">
 												<div class="card-header bg-red">
@@ -83,7 +88,7 @@
 												</div>
 												<div class="card-body">
 													<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
-													<span class="text-muted mb-5" >Interaction</span>
+													<span class="text-muted mb-5">Interaction</span>
 												</div>
 											</div>
 										</div>
@@ -98,30 +103,6 @@
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="row mt-5 mb-6">
-										<div class="col-md-6 ml-10 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Total Agent</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="tot-agent"></h2>
-													<span class="text-muted mb-5">Interaction</span>
-												</div>
-											</div>
-										</div>
-										<!-- <div class="col-md-6 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="card-body text-white">SLA</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="sla"></h2>
-													<span class="text-muted mb-5">Interaction</span>
-												</div>
-											</div>
-										</div> -->
 									</div>
 								</div>
 							</div>

@@ -37,7 +37,7 @@ class OperationModel extends CI_Model
 		return $query->result();
     }
 
-    public function get_kip_per_channel($params, $index, $arr_category)
+    public function get_kip_per_channel($params, $index, $arr_category, $params_year)
     {
         $index_alpha[1]="a";
         $index_alpha[2]="b";
@@ -47,7 +47,7 @@ class OperationModel extends CI_Model
         if($params == 'day'){
 			$where = 'DATE(date) = "'.$index.'"' ;
 		}else if($params == 'month'){
-			$where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+			$where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'" ' ;
 		}else if($params == 'year'){
 			$where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -117,7 +117,7 @@ class OperationModel extends CI_Model
         //  $CI = & get_instance();
     }
 
-    public function get_data_sub_category($params, $index, $channel_id, $category){
+    public function get_data_sub_category($params, $index, $channel_id, $category, $params_year){
         $this->db->select('m_channel.channel_name
         , summary.category
         , sum(summary.total) as total_kip
@@ -129,11 +129,13 @@ class OperationModel extends CI_Model
             $this->db->where('DATE(date)', $index);
         }else if($params == 'month'){
             $this->db->where('MONTH(date)', $index);
-            $this->db->where('YEAR(date)', date("Y"));
+            $this->db->where('YEAR(date)', $params_year);
         }else if($params == 'year'){
             $this->db->where('YEAR(date)', $index);
         }
-        $this->db->where('m_channel.channel_id', $channel_id);
+        if (!empty($channel_id)) {
+            $this->db->where('m_channel.channel_id', $channel_id);
+        }
         $this->db->where('summary.category', $category);
 		$this->db->group_by('summary.sub_category');
         $this->db->order_by('total_kip', 'DESC');
