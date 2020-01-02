@@ -74,7 +74,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="border-bottom-0">No</th>
-                                                <th class="border-bottom-0" width="130">Departement
+                                                <th class="border-bottom-0 w-25">Departement
                                                 </th>
                                                 <th class="border-bottom-0">New</th>
                                                 <th class="border-bottom-0">Open</th>
