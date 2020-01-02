@@ -31,6 +31,17 @@
 											<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
 										</div>
 									</div>
+
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
+									<div class="bd-highlight text-center text-muted tags">
+										<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
+										<<!-- div class="btn-group btn-sm">
+											<div class="btn btn-light btn-sm">
+												<span class="" id="tag-time"></div></span>
+										</div> -->
+									</div>
+								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
+
 								</div>
 							</div>
 						</div>
