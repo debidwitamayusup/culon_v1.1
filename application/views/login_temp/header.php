@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/infomedia_icon96.ico" />
 
 		<!-- Title -->
-		<title>Log In - Dashboard</title>
+		<title>Sign in</title>
 
 		<!--Bootstrap.min css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
