@@ -73,16 +73,16 @@
                                     <table id="example-2" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th class="border-bottom-0">No</th>
-                                                <th class="border-bottom-0 w-25">Departement
+                                                <th class="wd-15p border-bottom-0">No</th>
+                                                <th class="wd-15p border-bottom-0" width=200>Departement
                                                 </th>
                                                 <th class="border-bottom-0">New</th>
-                                                <th class="border-bottom-0">Open</th>
-                                                <th class="border-bottom-0">On Progress</th>
-                                                <th class="border-bottom-0">Resolve</th>
-                                                <th class="border-bottom-0">Reopen</th>
-                                                <th class="border-bottom-0">Pending</th>
-                                                <th class="border-bottom-0">Close</th>
+                                                <th class="wd-15p border-bottom-0">Open</th>
+                                                <th class="wd-15p border-bottom-0">On Progress</th>
+                                                <th class="wd-15p border-bottom-0">Resolve</th>
+                                                <th class="wd-15p border-bottom-0">Reopen</th>
+                                                <th class="wd-15p border-bottom-0">Pending</th>
+                                                <th class="wd-15p border-bottom-0">Close</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size:12px !important;">
