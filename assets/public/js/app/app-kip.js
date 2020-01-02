@@ -72,9 +72,6 @@ function callSummaryInteraction(params, index, year){
 			drawKipPerChannelChart(response);
 			callDataSubCategory(params, index, year);
 			// $("#filter-loader").fadeOut("slow");
-			console.log(params);
-			console.log(index);
-			console.log(year);
         },
         error: function (r) {
 			alert("error");
@@ -551,7 +548,7 @@ function addCommas(commas)
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time,v_month, v_year);
+		callSummaryInteraction('year', $("#select-year-on-month").val(), v_year);
 	});
 	/**/ 
 
@@ -559,6 +556,6 @@ function addCommas(commas)
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
 		console.log(this.value);
-		callSummaryInteraction(params_time, v_year, 0);
+		callSummaryInteraction('year', v_year, 0);
 	});
 })(jQuery);
