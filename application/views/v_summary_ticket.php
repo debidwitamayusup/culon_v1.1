@@ -19,7 +19,7 @@
                 </div>
                 <!----Baris Pertama----!-->
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-8 col-lg-8 col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Ticket Status Month</h5>
@@ -68,11 +68,141 @@
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="echartTicket" class="h-300"></canvas>
+                                <!-- <canvas id="echartTicket" class="h-300"></canvas> -->
+                                <div class="table-responsive">
+                                    <table id="example-2" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-bottom-0">No</th>
+                                                <th class="border-bottom-0" width="130">Departement
+                                                </th>
+                                                <th class="border-bottom-0">New</th>
+                                                <th class="border-bottom-0">Open</th>
+                                                <th class="border-bottom-0">On Progress</th>
+                                                <th class="border-bottom-0">Resolve</th>
+                                                <th class="border-bottom-0">Reopen</th>
+                                                <th class="border-bottom-0">Pending</th>
+                                                <th class="border-bottom-0">Close</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:12px !important;">
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td class="text-left">Call Center</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">2</td>
+                                                <td class="text-left">CRM</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">3</td>
+                                                <td class="text-left">Credit Control</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">4</td>
+                                                <td class="text-left">Post Link</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">5</td>
+                                                <td class="text-left">Keuangan</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">6</td>
+                                                <td class="text-left">Provider Relation</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">7</td>
+                                                <td class="text-left">Clean Non Health</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">8</td>
+                                                <td class="text-left">Claim Health</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">9</td>
+                                                <td class="text-left">Agency Help Line</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">10</td>
+                                                <td class="text-left">Data Kontrol</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-4 col-lg-4 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Proportion Status Ticket</h5>
@@ -95,35 +225,6 @@
                                 </div>
                                 <div class="row">
                                     <canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!---! Kolom Channel--->
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card overflow-hidden">
-                            <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Summary Status Daily</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex flex-row bd-highlight">
-                                    <div class="p-2 bd-highlight">
-                                        <div class="w-75 mb-3">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
-                                                    </div>
-                                                </div><input id="input-date" class="form-control fc-datepicker"
-                                                    placeholder="MM/DD/YYYY" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <canvas id="graphicTicket" height="300px"></canvas>
                                 </div>
                             </div>
                         </div>
