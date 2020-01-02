@@ -17,6 +17,7 @@ $(document).ready(function () {
 	$('#btn-day').prop("class","btn btn-red btn-sm");
 	loadContent(params_time, v_date);
 	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
 	
 	$('#filter-date').show();
 	$('#filter-month').hide();
@@ -29,6 +30,7 @@ $(document).ready(function () {
 function loadContent(params, index){
 	loadAllChannel();
     callSummaryInteraction(params, index,0);
+    // callSummaryInteraction('month' , '12', '2019');
 }
 function loadAllChannel(){
 	$.ajax({
@@ -70,6 +72,9 @@ function callSummaryInteraction(params, index, year){
 			drawKipPerChannelChart(response);
 			callDataSubCategory(params, index, year);
 			// $("#filter-loader").fadeOut("slow");
+			console.log(params);
+			console.log(index);
+			console.log(year);
         },
         error: function (r) {
 			alert("error");
@@ -471,10 +476,10 @@ function addCommas(commas)
     // btn day
     $('#btn-day').click(function(){
 		params_time = 'day';
-		v_date = getToday();
+		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -490,10 +495,14 @@ function addCommas(commas)
         // console.log(params_time);
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, '12', $("#select-year-on-month").val());
+		// callSummaryInteraction('month', '12', '2019');
+		// console.log($("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
 		
+
 		$('#filter-date').hide();
 		$('#filter-month').show();
 		// $('.ui-datepicker-calendar').css('display','none');
@@ -505,7 +514,7 @@ function addCommas(commas)
         params_time = 'year';
         // console.log(params_time);
 		// v_date = getYear();
-		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, $("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -536,7 +545,8 @@ function addCommas(commas)
 	$('#select-month').change(function(){
 		v_month = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time, v_month,v_year);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		callSummaryInteraction('month', v_month, $("#select-year-on-month").val());
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();

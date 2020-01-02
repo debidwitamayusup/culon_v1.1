@@ -24,7 +24,7 @@ class OperationModel extends CI_Model
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(date)', $index);
-			$this->db->where('YEAR(date)', date("Y"));
+			$this->db->where('YEAR(date)', '2019');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(date)', $index);
         }
@@ -33,6 +33,8 @@ class OperationModel extends CI_Model
         $this->db->limit(3); 
 
         $query = $this->db->get();
+
+        // $this->createLogSql();
 
 		return $query->result();
     }

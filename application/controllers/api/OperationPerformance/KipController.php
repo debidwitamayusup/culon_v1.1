@@ -26,8 +26,10 @@
 		public function getSummaryKip()
 		{
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+			// $params = 'month';
 			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 			$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
+			// $arr_category = $this->OperationModel->get_top_3_category($params, $index);
 			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
 			// $arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
 			// $arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
@@ -42,9 +44,9 @@
 				'data' => $data,
 				'params' => $params,
 				'index' => $index,
+				'year' => $params_year
 			);
 			echo json_encode($response);
-
 		}
 
 		public function getDetailKip(){
