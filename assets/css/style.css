@@ -3543,6 +3543,21 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   
 }
 
+.plan-icon-sign {
+    display: inline-block;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+    border: 1px solid #e4e6f9;
+	border-radius: 50%;
+	background-color : #fb5555;
+    /* box-shadow: 0 1px 15px rgba(199, 199, 199, 0.2), 0 1px 6px rgba(199, 199, 199, 0.2); */
+    transition: all .3s;
+  
+}
+
 .icon.icon-shape {
     width: 3rem;
     height: 3rem;
@@ -11340,7 +11355,7 @@ body.fixed-header .page {
     min-height: 50px;
 	background: #fff;
     border-radius: 7px;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
 	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
 	border:1px solid #cbcee8;
 }
