@@ -21,7 +21,7 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic Channel</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
