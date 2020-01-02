@@ -28,8 +28,11 @@ class main extends CI_Controller {
     //    $this->load->view('temp/footer');
 	}
 	public function login(){
-		$this->load->view('temp/login');
+		$this->load->view('login_temp/header');
+		$this->load->view('v_login');
+		$this->load->view('login_temp/footer');
 	}
+	
 	public function this_day(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
