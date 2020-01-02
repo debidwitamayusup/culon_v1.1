@@ -34,7 +34,10 @@
 .ml-3 {
     margin-left: 30px !important;
 }
-
+/* mr */
+.mr-0{
+    margin-right:0.1rem !important;
+}
 .bg-gray1{
     background-color:#607d8b;
 }

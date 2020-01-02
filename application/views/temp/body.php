@@ -28,115 +28,101 @@
 												<span class="">Year</a></span>
 										</div>
 										<div class="bd-highlight text-center text-muted tags">
-											<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
+											<span class="tag tag-grey justify-content-center box-filter-time"
+												id="tag-time"></span>
 										</div>
 									</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-									<div class="p-2 bd-highlight text-muted" id="tag-time"></div>
-=======
-								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
-									<div class="bd-highlight text-center text-muted tags">
-										<span class="tag tag-grey justify-content-center box-filter-time" id="tag-time"></span>
-										<<!-- div class="btn-group btn-sm">
-											<div class="btn btn-light btn-sm">
-												<span class="" id="tag-time"></div></span>
-										</div> -->
-									</div>
-								<!-- <div class="bd-highlight text-center text-muted" id="tag-time"></div> -->
->>>>>>> origin/try-dev
-=======
->>>>>>> origin/try-dev
+								
 								</div>
 							</div>
 						</div>
 						<!--Page Header-->
-					<!-- </div> -->
-					<!----Baris Pertama----!-->
-					<div class="row">
-						<div class="col-xl-6 col-lg-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
-								</div>
-								<div class="card-pie">
-									<div class="canvas-con">
-										<div class="canvas-con-inner" id="canvas-pie">
-											<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
-										</div>
-										<div id="legend" class="legend-con"></div>
+						<!-- </div> -->
+						<!----Baris Pertama----!-->
+						<div class="row">
+							<div class="col-xl-6 col-lg-6 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-header-small bg-red">
+										<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-6 col-lg-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-body">
-									<div class="row mt-5">
-										<div class="col-md-6 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="text-white card-body">Total Session</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-													<span class="text-muted mb-5">Session</span>
-												</div>
+									<div class="card-pie">
+										<div class="canvas-con">
+											<div class="canvas-con-inner" id="canvas-pie">
+												<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 											</div>
-										</div>
-										<div class="col-md-6 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="text-white card-body">Unique Customer</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
-													<span class="text-muted mb-5">Customer</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="row mt-5 mb-5">
-										<div class="col-md-6 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Message In</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
-													<span class="text-muted mb-5">Interaction</span>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6 text-center">
-											<div class="card-custom">
-												<div class="card-header bg-red">
-													<h6 class="card-body text-white">Message Out</h6>
-												</div>
-												<div class="card-body">
-													<h2 class="mb-4 mt-3 num-font" id="msg-out"></h2>
-													<span class="text-muted mb-5">Interaction</span>
-												</div>
-											</div>
+											<div id="legend" class="legend-con"></div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div class="col-xl-6 col-lg-6 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-body">
+										<div class="row mt-5">
+											<div class="col-md-6 text-center">
+												<div class="card-custom">
+													<div class="card-header bg-red">
+														<h6 class="text-white card-body">Total Session</h6>
+													</div>
+													<div class="card-body">
+														<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
+														<span class="text-muted mb-5">Session</span>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 text-center">
+												<div class="card-custom">
+													<div class="card-header bg-red">
+														<h6 class="text-white card-body">Unique Customer</h6>
+													</div>
+													<div class="card-body">
+														<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
+														<span class="text-muted mb-5">Customer</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row mt-5 mb-5">
+											<div class="col-md-6 text-center">
+												<div class="card-custom">
+													<div class="card-header bg-red">
+														<h6 class="card-body text-white">Message In</h6>
+													</div>
+													<div class="card-body">
+														<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
+														<span class="text-muted mb-5">Interaction</span>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 text-center">
+												<div class="card-custom">
+													<div class="card-header bg-red">
+														<h6 class="card-body text-white">Message Out</h6>
+													</div>
+													<div class="card-body">
+														<h2 class="mb-4 mt-3 num-font" id="msg-out"></h2>
+														<span class="text-muted mb-5">Interaction</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<!---! Kolom Channel--->
-						<div class="col-xl-12 col-lg-12 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-body" style="padding:20px;" id="card-baru">
-									<div class="row" id="row-baru">
+						<div class="row">
+							<!---! Kolom Channel--->
+							<div class="col-xl-12 col-lg-12 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-body" style="padding:20px;" id="card-baru">
+										<div class="row" id="row-baru">
 
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- <div class="card">
+						<!-- <div class="card">
 					<div class="card-header" id="headingTwo">
 						<h2 class="mb-0">
 							<span>Collapsible Group Item #2</span>
@@ -151,8 +137,8 @@
 						</div>
 					</div>
 				</div> -->
-					<!---Baris Kedua!-->
-					<!--
+						<!---Baris Kedua!-->
+						<!--
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card box-widget widget-user">
@@ -172,6 +158,6 @@
 						</div>
 					</div>
 				</div>-->
-					<?php $this->load->view('temp/footer');?>
-					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+						<?php $this->load->view('temp/footer');?>
+						<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+						<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
