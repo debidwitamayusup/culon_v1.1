@@ -1,0 +1,414 @@
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.03961706161499
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.012331008911133
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.38455891609192
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.022346019744873
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.018638134002686
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.031642913818359
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.046482086181641
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.053691864013672
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and YEAR(date) = "2019"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.097147941589355
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.065635919570923
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.082118988037109
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.10110187530518
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and DATE(date) = "2019-12-01"
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.10762000083923
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.14799189567566
+SELECT m_channel.channel_name
+        , a.category_1, a.total_1, b.category_2, b.total_2, c.category_3, c.total_3
+        FROM m_channel
+         LEFT JOIN (
+                SELECT category as category_1, channel_id, sum(total)as total_1
+                from summary
+                where category = 'Informasi' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as a on a.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_2, channel_id, sum(total)as total_2
+                from summary
+                where category = 'Complaint' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as b on b.channel_id = m_channel.channel_id  LEFT JOIN (
+                SELECT category as category_3, channel_id, sum(total)as total_3
+                from summary
+                where category = 'Permintaan' and MONTH(date) = "12" AND YEAR(date) = "2019" 
+                GROUP BY channel_id
+            ) as c on c.channel_id = m_channel.channel_id 
+        order by m_channel.channel_name asc
+         
+ Execution Time:0.10680794715881
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.079038143157959
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.074458122253418
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.10203289985657
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.37300491333008
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.061153888702393
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.09538197517395
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '2019'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.07445502281189
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '2019'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.061162948608398
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '2019'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.13708400726318
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '2'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.046831846237183
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.1012110710144

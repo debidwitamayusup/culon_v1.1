@@ -1,8 +1,9 @@
 (function ($) {
     "use strict";
+    $('#example-2').DataTable();
     //pie chart
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 304;
+    ctx.height = 580;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -218,4 +219,5 @@
         }
     });
 
+    
 })(jQuery);

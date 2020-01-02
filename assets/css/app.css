@@ -34,7 +34,10 @@
 .ml-3 {
     margin-left: 30px !important;
 }
-
+/* mr */
+.mr-0{
+    margin-right:0.1rem !important;
+}
 .bg-gray1{
     background-color:#607d8b;
 }
@@ -177,4 +180,42 @@
 }
 .accordion .card-header button:hover {
     color: #23384e;
+}
+
+/* custom login */
+.card-cust {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+    background-clip: border-box;
+    padding : 20px 50px 10px 50px;
+	/* border:1px solid #cbcee8; */
+	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
+}
+.card-cust {
+	position: relative;
+	margin-bottom: 0.8rem;
+	width: 100%;
+	border-radius:7px;
+}
+
+.btn-icon-red{
+    height: 25px;
+    width: 25px;
+    background-color: #fb5555;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btn-sign{
+    background-color:#fb5555;
+}
+
+.text-sign {
+	color: #ff5555 !important;
 }

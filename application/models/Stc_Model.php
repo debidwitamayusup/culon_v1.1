@@ -8,6 +8,28 @@ class Stc_Model extends CI_Model
 		parent:: __construct();
 	}
 
+	function createLogSql(){
+        $this->load->helper('file');
+        $CI = & get_instance();
+        $times = $CI->db->query_times;
+        $sql="";
+        foreach ($CI->db->queries as $key => $query) {
+            $sql = $query . " \n Execution Time:" . $times[$key];
+        }
+        $todate= date('Y-m-d');
+
+        $text = $sql;
+
+        $string = read_file(APPPATH.'/logs/log'.$todate.'.txt');
+        if($string){
+            $text .= "\r\n".$string;
+        }
+
+        if ( ! write_file(APPPATH.'/logs/log'.$todate.'.txt', $text)){
+
+        }
+    }
+
 	public function get_all_channel(){
 		$this->db->select('channel_name');
 		$this->db->from('summary_channel');
@@ -222,8 +244,12 @@ class Stc_Model extends CI_Model
 			$where = "DATE(date_time)= '".$index."'";
 			$where2 = "DATE(date)= '".$index."'";
 		}else if($params == 'month'){
-			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = YEAR(CURDATE()) ";
-			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = YEAR(CURDATE()) ";
+			// $where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = YEAR(CURDATE()) ";
+			// $where2 = "MONTH(date)= '".$index."' AND YEAR(date) = YEAR(CURDATE())";
+
+			//temporarily hardcode year based on data ready on database
+			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = '2019' ";
+			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = '2019'";
 		}else if($params == 'year'){
 			$where = "YEAR(date_time)= '".$index."'";
 			$where2 = "YEAR(date)= '".$index."'";
@@ -259,6 +285,7 @@ class Stc_Model extends CI_Model
         // foreach ($CI->db->queries as $key => $query) {
         //     $sql = $query . " \n Execution Time:" . $times[$key];
         // }
+        // $this->createLogSql();
 		return $query->result();
 		// return $str;
 	}
@@ -598,7 +625,10 @@ class Stc_Model extends CI_Model
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(date)', $index);
-			$this->db->where('YEAR(date)', date("Y"));
+			// $this->db->where('YEAR(date)', date("Y"));
+
+			//temporarily hardcode year based on data ready on database
+			$this->db->where('YEAR(date)', '2019');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(date)', $index);
 		}
