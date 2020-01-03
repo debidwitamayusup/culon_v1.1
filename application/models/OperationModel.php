@@ -89,7 +89,8 @@ class OperationModel extends CI_Model
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019" ' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -156,7 +157,8 @@ class OperationModel extends CI_Model
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -188,7 +190,8 @@ class OperationModel extends CI_Model
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE())' ;
+            // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE())' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -220,7 +223,8 @@ class OperationModel extends CI_Model
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
