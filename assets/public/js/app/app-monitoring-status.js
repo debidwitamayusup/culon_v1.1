@@ -191,7 +191,7 @@
 			top: '6',
 			right: '10',
 			bottom: '17',
-			left: '95',
+			left: '70',
 		},
 		xAxis: {
 			type: 'value',

@@ -15,7 +15,8 @@ $(document).ready(function () {
     // $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
 	loadContent(params_time, v_date);
-	
+	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
 	$('#filter-date').show();
 	$('#filter-month').hide();
 	$('#filter-year').hide();
@@ -781,11 +782,12 @@ function setDatePicker(){
     // btn day
     $('#btn-day').click(function(){
 		params_time = 'day';
-		v_date = getToday();
+		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
 
-        // loadContent(params_time , '2019-12-01');
+		// loadContent(params_time , '2019-12-01');
+		loadContent(params_time , v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -825,5 +827,14 @@ function setDatePicker(){
 		$('#filter-date').hide();
 		$('#filter-month').hide();
 		$('#filter-year').show();
-    });
+	});
+	
+	$('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			loadContent(params_time, v_date,0);
+        }
+	});
 })(jQuery);
