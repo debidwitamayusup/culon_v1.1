@@ -57,6 +57,9 @@ function loadAllChannel(){
 
 function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
+	console.log(params)
+	console.log(index)
+	console.log(year)
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -224,7 +227,7 @@ function drawChartSubCategory(response){
 		};
 
 		if(label.length==0){
-			console.log("kosong")
+			// console.log("kosong")
 			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else {
 			// console.log("masuk")
