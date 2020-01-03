@@ -12,6 +12,7 @@
 				<!-- <li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li> -->
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket_time">Summary Ticket by Time</a></li>
 			</ul>
 		</li>
 		<li class="slide">

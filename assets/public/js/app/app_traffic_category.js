@@ -773,9 +773,6 @@ function setDatePicker(){
 	}).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
 }
 
-
-
-
 //jquery
 (function ($) {
 

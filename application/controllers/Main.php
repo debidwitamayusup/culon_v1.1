@@ -125,4 +125,11 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_monitoring_status');
 	}
+
+	public function summary_ticket_time(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_ticket_time');
+	}
 }
