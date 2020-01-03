@@ -6,22 +6,79 @@
         <div class="page-main">
             <div class=" app-content mt-7">
                 <div class="side-app">
-                    <div class="page-header">
-                        <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+                    <div class="page-header d-flex bd-highlight">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"></a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Operation Performance</li>
-                            <li class="breadcrumb-item active" aria-current="page">Summary Traffic Category per Channel</li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+                            </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Category per
+                                Channel</li>
                         </ol>
-                        <div class="card-options d-none d-sm-block">
-                            <div class="btn-group btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                    <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                    <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                    <span class="">Year</a></span>
+                        <div class="d-flex align-items-end flex-column bd-highlight">
+                            <div class="bd-highlight">
+                                <div class="card-options d-none d-sm-block">
+                                    <div class="btn-group text-center btn-sm">
+                                        <a href="#" class="btn btn-light btn-sm" id="btn-day">
+                                            <span class="">Day</a></span>
+                                        <a href="#" class="btn btn-light btn-sm" id="btn-month">
+                                            <span class="">Month</a></span>
+                                        <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                                            <span class="">Year</a></span>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="bd-highlight">
+                                <!-- daily -->
+                                <div id="filter-date" class="mt-1 mr-0">
+                                    <input id="input-date-filter" class="w-75 ml-auto form-control fc-datepicker"
+                                        placeholder="MM/DD/YYYY" type="text">
+                                </div>
+
+                                <!-- monthly -->
+                                <div id="filter-month" class="row mt-1 mr-0">
+                                    <div class="col-md-auto">
+                                        <select name="select-month" id="select-month" class="form-control">
+                                            <option value="1">January</option>
+                                            <option value="2" selected>February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="select-year-on-month" id="select-year-on-month"
+                                            class="form-control">
+                                            <option value="2020">2020</option>
+                                            <option value="2019" selected>2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- yearly -->
+                                <div id="filter-year" class="mt-1 mr-0">
+                                    <select name="select-year-only" id="select-year-only" class="form-control">
+                                        <option value="2020">2020</option>
+                                        <option value="2019" selected>2019</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!--Page Header-->
@@ -56,49 +113,46 @@
                                 <h5 class="card-title-small pt-10">Summary Category per Channel</h5>
                             </div> -->
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="card overflow-hidden border-0">
-                                                <div class="card-header-small bg-red">
-                                                    <h6 class="card-title-small card-pt10" id="category1"></h6>
-                                                </div>
-                                                <div class="card-body" id="canvas-cat1">
-                                                    <div id="echartInfoTraffic"
-                                                        class="chartsh-horizontal overflow-hidden">
-                                                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="card overflow-hidden border-0">
+                                            <div class="card-header-small bg-red">
+                                                <h6 class="card-title-small card-pt10" id="category1"></h6>
+                                            </div>
+                                            <div class="card-body" id="canvas-cat1">
+                                                <div id="echartInfoTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="card overflow-hidden border-0">
-                                                <div class="card-header-small bg-red">
-                                                    <h6 class="card-title-small card-pt10" id="category2"></h6>
-                                                </div>
-                                                <div class="card-body" id="canvas-cat2">
-                                                    <div id="echartCompTraffic"
-                                                        class="chartsh-horizontal overflow-hidden">
-                                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="card overflow-hidden border-0">
+                                            <div class="card-header-small bg-red">
+                                                <h6 class="card-title-small card-pt10" id="category2"></h6>
+                                            </div>
+                                            <div class="card-body" id="canvas-cat2">
+                                                <div id="echartCompTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="card overflow-hidden border-0">
-                                                <div class="card-header-small bg-red">
-                                                    <h6 class="card-title-small card-pt10" id="category3"></h6>
-                                                </div>
-                                                <div class="card-body" id="canvas-cat3">
-                                                    <div id="echartReqTraffic"
-                                                        class="chartsh-horizontal overflow-hidden">
-                                                    </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="card overflow-hidden border-0">
+                                            <div class="card-header-small bg-red">
+                                                <h6 class="card-title-small card-pt10" id="category3"></h6>
+                                            </div>
+                                            <div class="card-body" id="canvas-cat3">
+                                                <div id="echartReqTraffic" class="chartsh-horizontal overflow-hidden">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+                        </div>
+
                         <!-- </div> -->
                     </div>
                 </div>

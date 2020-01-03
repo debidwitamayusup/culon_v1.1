@@ -21,7 +21,7 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic</a></li>
+				<li><a class="slide-item" href="<?= base_url()?>main">Summary Traffic Channel</a></li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
@@ -44,7 +44,7 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						</div>
 					</div>
 				</li>
