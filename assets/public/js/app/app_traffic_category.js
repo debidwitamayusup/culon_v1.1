@@ -14,8 +14,10 @@ $(document).ready(function () {
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
-	loadContent(params_time, v_date);
+	loadContent(params_time, v_date, 0);
 	
+	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
 	$('#filter-date').show();
 	$('#filter-month').hide();
 	$('#filter-year').hide();
@@ -23,12 +25,22 @@ $(document).ready(function () {
 	setYearPicker();
 
 });
+	
+$('#input-date-filter').datepicker({
+    dateFormat: 'yy-mm-dd',
+    onSelect: function(dateText) {
+		// console.log(this.value);
+		v_date = this.value;
+		// callSummaryPie(params_time, v_date,0);
+		loadContent(params_time, v_date,0);
+    }
+});
 
-function loadContent(params, index){
-    callSummaryPie(params, index);
-    callCategory1(params, index);
-    callCategory2(params, index);
-    callCategory3(params, index);
+function loadContent(params, index, year){
+    callSummaryPie(params, index, year);
+    // callCategory1(params, index, year);
+    callCategory2(params, index, year);
+    callCategory3(params, index, year);
     // callSummaryTrafficChannel();
     // console.log(params);
     // console.log(index);
@@ -73,14 +85,15 @@ function sortTable() {
   }
 }
 
-function callSummaryPie(params, index){
+function callSummaryPie(params, index, year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/TrafficCategory/getSummaryPie',
         data: {
         	params: params,
-        	index: index
+        	index: index,
+        	year: year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -88,6 +101,9 @@ function callSummaryPie(params, index){
             drawPieChart(response);
             drawSummaryTrafficChannelChart(response);
             drawTableData(response);
+            drawCategory1(response);
+            drawCategory2(response);
+            drawCategory3(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -97,65 +113,70 @@ function callSummaryPie(params, index){
     });
 }
 
-function callCategory1(params, index){
-	$.ajax({
-        type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory1',
-        data: {
-        	params: params,
-        	index: index
-        },
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response);
-            drawCategory1(response);
-        },
-        error: function (r) {
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
+ 
+// function callCategory1(params, index, year){
+// 	$.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory1',
+//         data: {
+//         	params: params,
+//         	index: index,
+//         	year: year
+//         },
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawCategory1(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//             $("#filter-loader").fadeOut("slow");
+//         },
+//     });
+// }
 
-function callCategory2(params, index){
-	$.ajax({
-        type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory2',
-        data: {
-        	params: params,
-        	index: index
-        },
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response);
-            drawCategory2(response);
-        },
-        error: function (r) {
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
+// function callCategory2(params, index, year){
+// 	$.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory2',
+//         data: {
+//         	params: params,
+//         	index: index,
+//         	year: year
+//         },
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawCategory2(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//             $("#filter-loader").fadeOut("slow");
+//         },
+//     });
+// }
 
-function callCategory3(params, index){
-	$.ajax({
-        type: 'post',
-        url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory3',
-        data: {
-        	params: params,
-        	index: index
-        },
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response);
-            drawCategory3(response);
-        },
-        error: function (r) {
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
+// function callCategory3(params, index, year){
+// 	$.ajax({
+//         type: 'post',
+//         url: base_url + 'api/OperationPerformance/TrafficCategory/getCategory3',
+//         data: {
+//         	params: params,
+//         	index: index,
+//         	year: year
+//         },
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response);
+//             drawCategory3(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//             $("#filter-loader").fadeOut("slow");
+//         },
+//     });
+// }
+
 
 
 function drawPieChart(response){
@@ -236,6 +257,8 @@ function drawPieChart(response){
     // console.log(trafficName[0]);
 }
 
+
+
 function drawCategory1(response){
 	//destroy div 
     $('#echartInfoTraffic').remove(); // this is my <canvas> element
@@ -246,13 +269,13 @@ function drawCategory1(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.forEach(function (value, index) {
+    response.data.traffic_channel.forEach(function (value, index) {
 		channelName.push(value.channel_name);
-		totalTraffic.push(value.total);
+		totalTraffic.push(value.total_1);
     });
      ///chartInformation
     var chartdataInfo = [{
-		name: category_kip[0],
+		name: response.data.summary[0].category,
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic,
@@ -357,14 +380,14 @@ function drawCategory2(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.forEach(function (value, index) {
+    response.data.traffic_channel.forEach(function (value, index) {
 		channelName.push(value.channel_name);
-		totalTraffic.push(value.total);
+		totalTraffic.push(value.total_2);
     });
 
     //chartComplaint
     var chartdataComp = [{
-		name: category_kip[1],
+		name: response.data.summary[1].category,
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -469,14 +492,14 @@ function drawCategory3(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.forEach(function (value, index) {
+    response.data.traffic_channel.forEach(function (value, index) {
 		channelName.push(value.channel_name);
-		totalTraffic.push(value.total);
+		totalTraffic.push(value.total_3);
     });
 
     //chartRequest
     var chartdataReq = [{
-		name: category_kip[2],
+		name: response.data.summary[2].category,
 		type: 'bar',
 		stack: 'Stack',
 		data: totalTraffic
@@ -786,6 +809,7 @@ function setDatePicker(){
         // console.log(params_time);
 
         // loadContent(params_time , '2019-12-01');
+		loadContent(params_time, v_date, 0);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -803,6 +827,7 @@ function setDatePicker(){
         // console.log(thisMonths);
         // loadContent(params_time , thisMonths);
         // loadContent(params_time , '12');
+		loadContent(params_time, $("#select-month").val(), $("#select-year-on-month").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -826,4 +851,15 @@ function setDatePicker(){
 		$('#filter-month').hide();
 		$('#filter-year').show();
     });
+
+    /*select option month*/ 
+	$('#select-month').change(function(){
+		v_month = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		// console.log($("#select-year-on-month").val());
+		// console.log(v_month);
+		loadContent('month', v_month, $("#select-year-on-month").val());
+		// loadContent('month', v_month, '2019');
+	});
 })(jQuery);

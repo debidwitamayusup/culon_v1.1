@@ -34,7 +34,7 @@ class OperationModel extends CI_Model
 
         $query = $this->db->get();
 
-        // $this->createLogSql();
+        $this->createLogSql();
 
 		return $query->result();
     }
@@ -79,7 +79,7 @@ class OperationModel extends CI_Model
         return $query->result();
     }
 
-    public function get_traffic_per_channel($params, $index, $arr_category)
+    public function get_traffic_per_channel($params, $index, $arr_category, $params_year)
     {
         $index_alpha[1]="a";
         $index_alpha[2]="b";
@@ -90,7 +90,7 @@ class OperationModel extends CI_Model
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
             // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019" ' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'" ' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -151,14 +151,14 @@ class OperationModel extends CI_Model
     }
     
 
-    public function getCategory1($params, $index, $arr_category)
+    public function getCategory1($params, $index, $arr_category, $params_year)
     {
         $where= "";
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
             // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -184,14 +184,14 @@ class OperationModel extends CI_Model
         return $query->result();
     }
 
-    public function getCategory2($params, $index, $arr_category)
+    public function getCategory2($params, $index, $arr_category, $params_year)
     {
         $where= "";
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
             // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE())' ;
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
@@ -217,14 +217,14 @@ class OperationModel extends CI_Model
         return $query->result();
     }
 
-    public function getCategory3($params, $index, $arr_category)
+    public function getCategory3($params, $index, $arr_category, $params_year)
     {
         $where= "";
         if($params == 'day'){
             $where = 'DATE(date) = "'.$index.'"' ;
         }else if($params == 'month'){
             // $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = YEAR(CURDATE()) ' ;
-            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "2019"' ;
+            $where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'"' ;
         }else if($params == 'year'){
             $where = 'YEAR(date) = "'.$index.'"' ;
         }
