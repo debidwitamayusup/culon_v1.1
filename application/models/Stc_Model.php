@@ -607,6 +607,7 @@ class Stc_Model extends CI_Model
 	{
 		$this->db->select('DATE_FORMAT(date_time,"%Y") AS niceDate'); 
 		$this->db->from('summary_channel');
+		$this->db->where('YEAR(date_time) > 2018'); // reg
 		// $this->db->where('YEAR(date_time) = YEAR(CURRENT_TIME)');
 		$this->db->group_by('niceDate');
 		$this->db->order_by('niceDate DESC'); 

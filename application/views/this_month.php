@@ -1,5 +1,12 @@
 	<body class="app  sidebar-mini">
 
+	<!-- BS -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> -->
+
 		<!-- Global Loader-->
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 		<div class="page">
@@ -70,10 +77,11 @@
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
+														<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
 														<select class="form-control select2" id="dropdownYear">
-															<!-- <option value="1">2019</option>
-															<option value="2">2020</option> -->
-														</select>
+															<option value="1">2019</option>
+															<option value="2">2020</option>
+														</select> 
 													</div>
 												</div>
 											</div>
@@ -135,3 +143,4 @@
 				<script src="<?=base_url()?>assets/public/js/chart/lineChart.js"></script>
 				<!-- <script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script> -->
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-month.js"></script>
+																																			
