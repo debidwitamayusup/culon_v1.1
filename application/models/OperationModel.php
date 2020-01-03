@@ -24,7 +24,7 @@ class OperationModel extends CI_Model
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(date)', $index);
-			$this->db->where('YEAR(date)', date("Y"));
+			$this->db->where('YEAR(date)', '2019');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(date)', $index);
         }
@@ -33,6 +33,8 @@ class OperationModel extends CI_Model
         $this->db->limit(3); 
 
         $query = $this->db->get();
+
+        // $this->createLogSql();
 
 		return $query->result();
     }
@@ -121,8 +123,9 @@ class OperationModel extends CI_Model
         $this->db->select('m_channel.channel_name
         , summary.category
         , sum(summary.total) as total_kip
-        , CASE WHEN summary.sub_category is null THEN "None" ELSE summary.sub_category END as sub_category
-        ', FALSE);
+        , CASE WHEN summary.sub_category is null THEN "None" ELSE LEFT(summary.sub_category,LOCATE("-",summary.sub_category) -1 ) END as sub_category
+        ,  CASE WHEN summary.sub_category is null THEN "None" ELSE summary.sub_category END as sub_category_lng
+        ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
 		$this->db->from('summary');
         $this->db->join('m_channel', 'm_channel.channel_id = summary.channel_id');
         if($params == 'day'){
@@ -142,7 +145,7 @@ class OperationModel extends CI_Model
         $this->db->limit(5);
         $query = $this->db->get();
         // $this->createLogSql();
-        
+    
     	return $query->result();
     }
     

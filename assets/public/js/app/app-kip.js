@@ -17,6 +17,7 @@ $(document).ready(function () {
 	$('#btn-day').prop("class","btn btn-red btn-sm");
 	loadContent(params_time, v_date);
 	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
 	
 	$('#filter-date').show();
 	$('#filter-month').hide();
@@ -29,6 +30,7 @@ $(document).ready(function () {
 function loadContent(params, index){
 	loadAllChannel();
     callSummaryInteraction(params, index,0);
+    // callSummaryInteraction('month' , '12', '2019');
 }
 function loadAllChannel(){
 	$.ajax({
@@ -55,6 +57,9 @@ function loadAllChannel(){
 
 function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
+	console.log(params)
+	console.log(index)
+	console.log(year)
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -129,8 +134,10 @@ function drawChartSubCategory(response){
 		'</div>'+
 		'');
 		var label = [];
+		var label_lng = [];
 		var data = [];
 		response.data[i].forEach(function(value, index){
+			label_lng.push(value.sub_category_lng);
 			label.push(value.sub_category);
 			data.push(value.total_kip);
 		});
@@ -207,7 +214,10 @@ function drawChartSubCategory(response){
 				axisPointer: {
 					label: {
 						show: true,
-						color: '#7886a0'
+						color: '#7886a0',
+						formatter : function (){
+							return label_lng;
+						}
 					}
 				},
 				position: function (pos, params, dom, rect, size) {
@@ -222,7 +232,7 @@ function drawChartSubCategory(response){
 		};
 
 		if(label.length==0){
-			console.log("kosong")
+			// console.log("kosong")
 			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else {
 			// console.log("masuk")
@@ -471,10 +481,10 @@ function addCommas(commas)
     // btn day
     $('#btn-day').click(function(){
 		params_time = 'day';
-		v_date = getToday();
+		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -490,10 +500,14 @@ function addCommas(commas)
         // console.log(params_time);
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, '12', $("#select-year-on-month").val());
+		// callSummaryInteraction('month', '12', '2019');
+		// console.log($("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
 		
+
 		$('#filter-date').hide();
 		$('#filter-month').show();
 		// $('.ui-datepicker-calendar').css('display','none');
@@ -505,7 +519,7 @@ function addCommas(commas)
         params_time = 'year';
         // console.log(params_time);
 		// v_date = getYear();
-		// callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, $("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -536,12 +550,13 @@ function addCommas(commas)
 	$('#select-month').change(function(){
 		v_month = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time, v_month,v_year);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		callSummaryInteraction('month', v_month, $("#select-year-on-month").val());
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
-		callSummaryInteraction(params_time,v_month, v_year);
+		callSummaryInteraction('year', $("#select-year-on-month").val(), v_year);
 	});
 	/**/ 
 
@@ -549,6 +564,6 @@ function addCommas(commas)
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
 		console.log(this.value);
-		callSummaryInteraction(params_time, v_year, 0);
+		callSummaryInteraction('year', v_year, 0);
 	});
 })(jQuery);

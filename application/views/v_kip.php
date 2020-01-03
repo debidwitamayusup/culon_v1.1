@@ -39,7 +39,7 @@
                                     <div class="col-md-auto">
                                         <select name="select-month" id="select-month" class="form-control">
                                             <option value="1">January</option>
-                                            <option value="2" selected>February</option>
+                                            <option value="2">February</option>
                                             <option value="3">March</option>
                                             <option value="4">April</option>
                                             <option value="5">May</option>
@@ -49,7 +49,7 @@
                                             <option value="9">September</option>
                                             <option value="10">October</option>
                                             <option value="11">November</option>
-                                            <option value="12">December</option>
+                                            <option value="12" selected>December</option>
                                         </select>
                                     </div>
                                     <div>
