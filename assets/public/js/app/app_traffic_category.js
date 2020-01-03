@@ -14,8 +14,9 @@ $(document).ready(function () {
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
+
 	loadContent(params_time, v_date, 0);
-	
+
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_date);
 	$('#filter-date').show();
@@ -804,7 +805,7 @@ function setDatePicker(){
     // btn day
     $('#btn-day').click(function(){
 		params_time = 'day';
-		v_date = getToday();
+		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
 
@@ -861,5 +862,14 @@ function setDatePicker(){
 		// console.log(v_month);
 		loadContent('month', v_month, $("#select-year-on-month").val());
 		// loadContent('month', v_month, '2019');
+	});
+	
+	$('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			loadContent(params_time, v_date,0);
+        }
 	});
 })(jQuery);
