@@ -61,7 +61,6 @@
 
 <!-- DataTables -->
 <script src="<?=base_url()?>assets/js/datatables/jquery.dataTables.js"></script>
-<!-- <script src="<?=base_url()?>assets/js/datatable.js"></script> -->
 <script src="<?=base_url()?>assets/js/datatables/dataTables.bootstrap4.js"></script>
 <script src="<?=base_url()?>assets/js/datatables/dataTables.buttons.min.js"></script>
 
@@ -87,7 +86,7 @@
 <script src="<?=base_url()?>assets/js/accordion/accordion.min.js"></script>
 <script src="<?=base_url()?>assets/js/accordion/accordion.js"></script>
 <!-- custom js -->
-<script src="<?= base_url()?>assets/js/custom.js"></script>>
+<script src="<?= base_url()?>assets/js/custom.js"></script>
 
 <!-- Show percentage on piechart-->
 <script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>

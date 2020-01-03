@@ -9,9 +9,9 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket">Summary Ticket</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li>
+				<!-- <li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li> -->
+				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
 			</ul>
 		</li>
 		<li class="slide">
@@ -44,10 +44,12 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						</div>
 					</div>
 				</li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket">Summary Ticket / Unit</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket_category">Summary Status Ticket / Kategori</a></li>
 			</ul>
 		</li>
 		<li class="slide">
