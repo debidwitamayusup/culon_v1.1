@@ -134,8 +134,10 @@ function drawChartSubCategory(response){
 		'</div>'+
 		'');
 		var label = [];
+		var label_lng = [];
 		var data = [];
 		response.data[i].forEach(function(value, index){
+			label_lng.push(value.sub_category_lng);
 			label.push(value.sub_category);
 			data.push(value.total_kip);
 		});
@@ -212,7 +214,10 @@ function drawChartSubCategory(response){
 				axisPointer: {
 					label: {
 						show: true,
-						color: '#7886a0'
+						color: '#7886a0',
+						formatter : function (){
+							return label_lng;
+						}
 					}
 				},
 				position: function (pos, params, dom, rect, size) {
