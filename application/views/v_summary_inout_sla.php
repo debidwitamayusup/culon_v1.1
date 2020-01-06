@@ -16,9 +16,6 @@
                     </div>
                     <!--Page Header-->
                 </div>
-
-                <!----First Rows--->
-
                 <!---Next Rows---->
                 <div class="row">
                     <div class="col-md-12 col-lg-4">
