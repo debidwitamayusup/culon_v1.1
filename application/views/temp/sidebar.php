@@ -4,7 +4,7 @@
 	<ul class="side-menu">
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-chart icon-resize"></i>
+				<i class="side-menu__icon si si-grid icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Wallboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -12,12 +12,13 @@
 				<!-- <li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li> -->
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_ticket_time">Monitoring Ticket by Time</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket_time">Summary Ticket by Time</a></li>
 			</ul>
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#" aria-expanded="true">
-				<i class="side-menu__icon si si-user icon-resize"></i>
+				<i class="side-menu__icon si si-home icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -35,7 +36,18 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
 				</li>
-				<li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li>
+				<!-- <li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li> -->
+				<li class="slide submenu" id="accordion">
+					<a href="#collapseAgent" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapseAgent"> Agent Performance
+						<i class="angle not-absolute2 fas fa-angle-right"></i></a>
+					<div id="collapseAgent" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+						style="">
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_performance">Traffic Performance</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_agent">Summary Agent Performance</a></div>
+						</div>
+					</div>
+				</li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseKIP"> Operation Performance
@@ -55,7 +67,7 @@
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-briefcase icon-resize"></i>
+				<i class="side-menu__icon si si-notebook icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Report</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>

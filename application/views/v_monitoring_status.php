@@ -64,8 +64,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <?php $this->load->view('temp/footer');?>
-        <script src="<?= base_url()?>assets/public/js/app/app-monitoring-status.js"></script>
+                <?php $this->load->view('temp/footer');?>
+                <script src="<?= base_url()?>assets/public/js/app/app-monitoring-status.js"></script>
