@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
     
-     /*----Echart5----*/
+     /*----echart summary ticket category----*/
 	var chartdataTicket= [{
 		name: 'Information',
 		type: 'bar',
@@ -18,7 +18,7 @@
 		stack: 'Stack',
 		data: [12, 14, 15, 50, 24, 24, 10, 20, 30]
 	}];
-	/*----Echart6----*/
+	/*----echart summary ticket category----*/
 	var optionTicket = {
 		grid: {
 			top: '6',

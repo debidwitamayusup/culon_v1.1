@@ -14,7 +14,6 @@
                             <li class="breadcrumb-item active mt-2" aria-current="page">Summary Status / Kategori
                             </li>
                         </ol>
-
                     </div>
                 </div>
                 <!----Baris Pertama----!-->
@@ -95,5 +94,5 @@
             </div>
         </div>
 
-    <?php $this->load->view('temp/footer');?>
-    <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-cat.js"></script>
+        <?php $this->load->view('temp/footer');?>
+        <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-cat.js"></script>
