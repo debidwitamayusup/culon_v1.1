@@ -41,13 +41,14 @@ class Stc_Model extends CI_Model
 	} 
 
 	public function get_channel_negation($arr){
-		$this->db->select('channel_name as channel, 0 as total');
-		$this->db->from('summary_channel');
+		$this->db->select('a.channel_name as channel, 0 as total');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary b', 'a.channel_id=b.channel_id', 'LEFT');
 		foreach($arr as $key){
-			$this->db->where_not_in('channel_name',$key);
+			$this->db->where_not_in('a.channel_name',$key);
 		}
-		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name');
+		$this->db->group_by('a.channel_name');
+		$this->db->order_by('a.channel_name');
 		$query = $this->db->get();
 
 		return $query->result();
@@ -158,17 +159,18 @@ class Stc_Model extends CI_Model
 
 	public function get_all_unique_customer_per_channel($params, $index)
 	{
-		$this->db->select('channel_name, sum(total_unique) as total_unique');
-		$this->db->from('summary_channel');
+		$this->db->select('a.channel_name, sum(b.session) as total_unique');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary b', 'a.channel_id=b.channel_id', 'LEFT');
 		if($params == 'day'){
-			$this->db->where('DATE(date_time)', $index);
+			$this->db->where('DATE(b.date)', $index);
 		}else if($params == 'month'){
-			$this->db->where('MONTH(date_time)', $index);
+			$this->db->where('MONTH(b.date)', $index);
 		}else if($params == 'year'){
-			$this->db->where('YEAR(date_time)', $index);
+			$this->db->where('YEAR(b.date)', $index);
 		}
-		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name', 'ASC');
+		$this->db->group_by('a.channel_name');
+		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
     	return $query->result();
 	}
@@ -248,30 +250,30 @@ class Stc_Model extends CI_Model
 			// $where2 = "MONTH(date)= '".$index."' AND YEAR(date) = YEAR(CURDATE())";
 
 			//temporarily hardcode year based on data ready on database
-			$where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = '2019' ";
+			// $where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = '2019' ";
 			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = '2019'";
 		}else if($params == 'year'){
-			$where = "YEAR(date_time)= '".$index."'";
+			// $where = "YEAR(date_time)= '".$index."'";
 			$where2 = "YEAR(date)= '".$index."'";
 		}
 		$str = "SELECT m_channel.channel_name as channel
-		, IFNULL(a.total, 0) as total
-		, IFNULL(a.total_unique, 0) as total_unique
+		, IFNULL(b.total, 0) as total
+		, IFNULL(b.total_session, 0) as total_session
 		, IFNULL(b.msg_in, 0) as msg_in
 		, IFNULL(b.msg_out,0) as msg_out
 		, IFNULL(b.sla,0) as sla
 		, m_channel.channel_color
 		, m_channel.icon_dashboard
 		FROM m_channel 
-		LEFT JOIN (
-			select summary_channel.channel_id, SUM(summary_channel.total) total, SUM(summary_channel.total_unique) total_unique
-			from summary_channel
-			where $where
-			GROUP BY summary_channel.channel_name
-			ORDER BY summary_channel.channel_name
-		)as a on a.channel_id = m_channel.channel_id
+		-- LEFT JOIN (
+		-- 	select summary_channel.channel_id, SUM(summary_channel.total) total, SUM(summary_channel.total_unique) total_unique
+		-- 	from summary_channel
+		-- 	where $where
+		-- 	GROUP BY summary_channel.channel_name
+		-- 	ORDER BY summary_channel.channel_name
+		-- )as a on a.channel_id = m_channel.channel_id
 		LEFT JOIN(
-			SELECT channel_id, SUM(message_in) as msg_in, SUM(message_out) as msg_out, AVG(sla) as sla
+			SELECT channel_id, SUM(unique_customer) as total, SUM(session) as total_session, SUM(message_in) as msg_in, SUM(message_out) as msg_out, AVG(sla) as sla
 			from rpt_summary
 			where $where2
 			GROUP BY channel_id 
@@ -310,14 +312,14 @@ class Stc_Model extends CI_Model
 
 	public function getTotInteraction($params, $index)
 	{
-		$this->db->select('SUM(total) total_interaction');
-		$this->db->from('summary_channel');
+		$this->db->select('SUM(session) total_interaction');
+		$this->db->from('rpt_summary');
 		if($params == 'day'){
-			$this->db->where('DATE(date_time)', $index);
+			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
-			$this->db->where('MONTH(date_time)', $index);
+			$this->db->where('MONTH(date)', $index);
 		}else if($params == 'year'){
-			$this->db->where('YEAR(date_time)', $index);
+			$this->db->where('YEAR(date)', $index);
 		}
 		$query = $this->db->get();
 		return $query;
@@ -325,14 +327,14 @@ class Stc_Model extends CI_Model
 
 	public function getTotUniqueCustomer($params, $index)
 	{
-		$this->db->select('SUM(total_unique) total_unique_customer');
-		$this->db->from('summary_channel');
+		$this->db->select('SUM(unique_customer) total_unique_customer');
+		$this->db->from('rpt_summary');
 		if($params == 'day'){
-			$this->db->where('DATE(date_time)', $index);
+			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
-			$this->db->where('MONTH(date_time)', $index);
+			$this->db->where('MONTH(date)', $index);
 		}else if($params == 'year'){
-			$this->db->where('YEAR(date_time)', $index);
+			$this->db->where('YEAR(date)', $index);
 		}
 		$query = $this->db->get();
 		return $query;

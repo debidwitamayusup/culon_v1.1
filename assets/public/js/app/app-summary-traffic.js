@@ -14,8 +14,8 @@ $(document).ready(function () {
     // v_month = getMonth();
     // v_year = getYear();
     params_time = 'day';
-    v_date = '2019-11-02';
-    v_month = '11';
+    v_date = '2019-12-02';
+    v_month = '12';
     v_year = '2019';
 
 
@@ -128,8 +128,8 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font-weight-normal font-13">SLA</h6>'+
                 '</div>'+
                 '<div class="col-md-auto text-right ml-1">'+
-                    '<h6 class="text-white font-13">'+addCommas(value.total_unique)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
+                    '<h6 class="text-white font-13">'+addCommas(value.total_session)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
                     '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
                     '<h6 class="text-white font-13">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
@@ -202,6 +202,7 @@ function drawChartAndCard(response){
             tooltips: {
               callbacks: {
                     label: function(tooltipItem, data) {
+                        // var value = data.datasets[0].data[tooltipItem.index];
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
@@ -347,6 +348,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            // console.log(response.data[0].total_unique);
             response.data.forEach(function (value, index) {
                 let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Facebook Messenger" ? "text-blue" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-gray1" : value.channel_name == "SMS" ? "text-blue-teal" : "";
                 let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
@@ -399,7 +401,7 @@ function callSummaryCaseTotAgent(params, index_time){
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time , '2019-11-02');
+        loadContent(params_time , '2019-12-02');
         $('#tag-time').html(v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -410,7 +412,7 @@ function callSummaryCaseTotAgent(params, index_time){
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '11')
+        loadContent(params_time , '12')
         $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
