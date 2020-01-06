@@ -14,6 +14,7 @@
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_ticket_time">Monitoring Ticket by Time</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/summary_ticket_time">Summary Ticket by Time</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_inout_sla">Summary in / out SLA</a></li>
 			</ul>
 		</li>
 		<li class="slide">

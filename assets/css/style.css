@@ -22373,3 +22373,13 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-top: 2px;
 	width: 171px;
 }
+
+
+/*font-agent */
+.font14{
+	font-size:14px !important;
+}
+
+.font10{
+	font-size:11px !important;
+}
