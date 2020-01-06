@@ -161,4 +161,11 @@ class main extends CI_Controller {
 		$this->load->view('v_summary_agent');
 	}
 
+	public function summary_inout_sla(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_inout_sla');
+	}
+
 }
