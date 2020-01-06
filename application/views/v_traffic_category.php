@@ -31,7 +31,7 @@
                             <div class="bd-highlight">
                                 <!-- daily -->
                                 <div id="filter-date" class="mt-1 mr-0">
-                                    <input id="input-date-filter" class="w-75 ml-auto form-control fc-datepicker"
+                                    <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
                                         placeholder="MM/DD/YYYY" type="text">
                                 </div>
 

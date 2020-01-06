@@ -27,8 +27,9 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary SCR / Channel</h5>
                             </div>
-                            <div class="card-body" id="chart-percentage">
-                                <canvas id="chartTrafficPerformance"></canvas>
+                            <div class="card-body">
+                                <canvas id="barChartSummary"></canvas>
+                                <!-- <div id="echart3" class="chartsh overflow-hidden"></div> -->
                             </div>
                         </div>
                     </div>
@@ -48,157 +49,157 @@
                                 <h5 class="card-title-small card-pt10">Summary Service OPS</h5>
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
-                                    <table class="table card-table table-vcenter table-hover"
-                                        style="height:616px !important;">
-                                        <thead class="text-center text-white bg-sign">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Channel</th>
-                                                <th>COF</th>
-                                                <th>ABD</th>
-                                                <th>ART</th>
-                                                <th>AHT</th>
-                                                <th>AST</th>
-                                                <th>SL</th>
-                                                <th>SCR</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody style="font-size:12px !important;">
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td class="text-left">Whatsapp</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">2</td>
-                                                <td class="text-left">Instagram</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">3</td>
-                                                <td class="text-left">Facebook</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">4</td>
-                                                <td class="text-left">Twitter</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">5</td>
-                                                <td class="text-left">Messenger</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">6</td>
-                                                <td class="text-left">Twitter DM</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">7</td>
-                                                <td class="text-left">Email</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">8</td>
-                                                <td class="text-left">Telegram</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">9</td>
-                                                <td class="text-left">Line</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">10</td>
-                                                <td class="text-left">Voice</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">11</td>
-                                                <td class="text-left">SMS</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">12</td>
-                                                <td class="text-left">Live Chat</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table class="table card-table table-vcenter table-hover"
+                                    style="height:616px !important;">
+                                    <thead class="text-center text-white bg-sign">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Channel</th>
+                                            <th>COF</th>
+                                            <th>ABD</th>
+                                            <th>ART</th>
+                                            <th>AHT</th>
+                                            <th>AST</th>
+                                            <th>SL</th>
+                                            <th>SCR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size:12px !important;">
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-left">Whatsapp</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-left">Instagram</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td class="text-left">Facebook</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td class="text-left">Twitter</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td class="text-left">Messenger</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">6</td>
+                                            <td class="text-left">Twitter DM</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">7</td>
+                                            <td class="text-left">Email</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">8</td>
+                                            <td class="text-left">Telegram</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">9</td>
+                                            <td class="text-left">Line</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">10</td>
+                                            <td class="text-left">Voice</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">11</td>
+                                            <td class="text-left">SMS</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">12</td>
+                                            <td class="text-left">Live Chat</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

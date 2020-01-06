@@ -64,88 +64,107 @@
             }
         }
     } );
-    
-	//bar chart
-    var ctx = document.getElementById( "chartTrafficPerformance" );
-    //    ctx.height = 200;
+
+    //bar chart
+    var ctx = document.getElementById( "barChartSummary" );
+       ctx.height = 400;
     var myChart = new Chart( ctx, {
         type: 'horizontalBar',
         data: {
-            labels: [ "Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "Insta DM" ],
+            labels: [ "Whatsapp", "Twitter", "Facebook", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM","SMS","Live Chat"],
             datasets: [
                 {
                     label: "Whatsapp",
-                    data: [ 60],
+                    data: [60],
 					borderColor:"#31a550",
 					borderWidth:"0",
-					backgroundColor:"#31a550",
-					height:"30"},
+                    backgroundColor:"#31a550"
+                },
                 {
                     label: "Twitter",
-                    data: [ 0, 48],
+                    data: [48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
                     backgroundColor: "#45aaf2"},
 				{
                     label: "Facebook",
-                    data: [ 0,0,50],
+                    data: [50],
                     borderColor: "#316cbe",
                     borderWidth: "0",
                     backgroundColor: "#316cbe"},
 				{
                     label: "Email",
-                    data: [ 0,0,0,60],
+                    data: [60],
                     borderColor: "#e41313",
                     borderWidth: "0",
                     backgroundColor: "#e41313"},
 				{
-                    label: "Twitter",
+                    label: "Telegram",
+                    data: [48],
+                    borderColor: "#45aaf2",
+                    borderWidth: "0",
+                    backgroundColor: "#45aaf2"},
+				{
+                    label: "Line",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
                     backgroundColor: "#45aaf2"},
 				{
-                    label: "Twitter",
+                    label: "Voice",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
-                    backgroundColor: "#45aaf2"},
+                    backgroundColor: "#45aaf2"
+                },
 				{
-                    label: "Twitter",
+                    label: "Instagram",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
-                    backgroundColor: "#45aaf2"},
+                    backgroundColor: "#45aaf2"
+                },
 				{
-                    label: "Twitter",
+                    label: "Messenger",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
-                    backgroundColor: "#45aaf2"},
+                    backgroundColor: "#45aaf2"
+                },
 				{
-                    label: "Twitter",
+                    label: "Twitter DM",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
-                    backgroundColor: "#45aaf2"},
+                    backgroundColor: "#45aaf2"
+                },
 				{
-                    label: "Twitter",
+                    label: "Twitter DM",
                     data: [ 0, 48],
                     borderColor: "#45aaf2",
                     borderWidth: "0",
-                    backgroundColor: "#45aaf2"},
-					
+                    backgroundColor: "#45aaf2"
+                },	
                 ]
         },
         options: {
 			responsive: true,
-			maintainAspectRatio: false,
+            maintainAspectRatio: false,
             scales: {
-                yAxes: [ {
+                yAxes: [{
                     ticks: {
                         beginAtZero: true
                     }
-                                } ]
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0 // Edit the value according to what you need
+                    }
+                }]
+
+            },
+            legend: {
+                display: false
             }
         }
     } );
