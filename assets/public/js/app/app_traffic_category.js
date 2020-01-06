@@ -40,8 +40,8 @@ $('#input-date-filter').datepicker({
 function loadContent(params, index, year){
     callSummaryPie(params, index, year);
     // callCategory1(params, index, year);
-    callCategory2(params, index, year);
-    callCategory3(params, index, year);
+    // callCategory2(params, index, year);
+    // callCategory3(params, index, year);
     // callSummaryTrafficChannel();
     // console.log(params);
     // console.log(index);
@@ -194,68 +194,73 @@ function drawPieChart(response){
 
     // draw card yang ada datanya
     // console.log(response.data);
-    response.data.summary.forEach(function (value, index) {
-		trafficName.push(value.category);
-		totalTraffic.push(value.total_kip);
+    if (response.data.length!=0) {
+	    response.data.summary.forEach(function (value, index) {
+			trafficName.push(value.category);
+			totalTraffic.push(value.total_kip);
 
-    });
-    category_kip = trafficName;
-    //pie chart
-    var ctx = document.getElementById( "pieTCategory");
-    ctx.height = 322;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                data: totalTraffic,
-                backgroundColor: [
-								"#A5B0B6",
-								"#009E8C",
-								"#00436D"
-                                ],
-                hoverBackgroundColor: [
-								"#A5B0B6",
-								"#009E8C",
-								"#00436D"
-                                ]
+	    });
+	    category_kip = trafficName;
+	    //pie chart
+    
+	    var ctx = document.getElementById( "pieTCategory");
+	    ctx.height = 322;
+	    var myChart = new Chart( ctx, {
+	        type: 'pie',
+	        data: {
+	            datasets: [ {
+	                data: totalTraffic,
+	                backgroundColor: [
+									"#A5B0B6",
+									"#009E8C",
+									"#00436D"
+	                                ],
+	                hoverBackgroundColor: [
+									"#A5B0B6",
+									"#009E8C",
+									"#00436D"
+	                                ]
 
-                            } ],
-            labels: trafficName
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-			legend :{
-				position : 'bottom',
-				labels:{
-					boxWidth:10
-			   }
-			},
-			tooltips: {
-			  callbacks: {
-					label: function(tooltipItem, data) {
-						var value = data.datasets[0].data[tooltipItem.index];
-						value = value.toString();
-						value = value.split(/(?=(?:...)*$)/);
-						value = value.join('.');
-						return value;
-					}
-			  } // end callbacks:
-			}, //end tooltips
-			pieceLabel: {
-                render: 'legend',
-                fontColor: '#000',
-                position: 'outside',
-                segment: true
-            }
-        }
-    } );
+	                            } ],
+	            labels: trafficName
+	        },
+	        options: {
+	            responsive: true,
+				maintainAspectRatio: false,
+				legend :{
+					position : 'bottom',
+					labels:{
+						boxWidth:10
+				   }
+				},
+				tooltips: {
+				  callbacks: {
+						label: function(tooltipItem, data) {
+							var value = data.datasets[0].data[tooltipItem.index];
+							value = value.toString();
+							value = value.split(/(?=(?:...)*$)/);
+							value = value.join('.');
+							return value;
+						}
+				  } // end callbacks:
+				}, //end tooltips
+				pieceLabel: {
+	                render: 'legend',
+	                fontColor: '#000',
+	                position: 'outside',
+	                segment: true
+	            }
+	        }
+	    } );
 
-    //set header for echart
-    $('#category1').html(trafficName[0]);
-    $('#category2').html(trafficName[1]);
-    $('#category3').html(trafficName[2]);
-    // console.log(trafficName[0]);
+	    //set header for echart
+	    $('#category1').html(trafficName[0]);
+	    $('#category2').html(trafficName[1]);
+	    $('#category3').html(trafficName[2]);
+	    // console.log(trafficName[0]);
+	}else{
+		$('#pieTCategory').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 
 
@@ -268,107 +273,112 @@ function drawCategory1(response){
 	let channelName = []
     let totalTraffic = []
 
-    // draw card yang ada datanya
-    // console.log(response.data);
-    response.data.traffic_channel.forEach(function (value, index) {
-		channelName.push(value.channel_name);
-		totalTraffic.push(value.total_1);
-    });
-     ///chartInformation
-    var chartdataInfo = [{
-		name: response.data.summary[0].category,
-		type: 'bar',
-		stack: 'Stack',
-		data: totalTraffic,
-	}];
-    var optionInfo = {
-		grid: {
-			top: '6',
-			right: '11',
-			bottom: '20',
-			left: '65',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+    if (response.data.length!=0) {
+	    // draw card yang ada datanya
+	    // console.log(response.data);
+	    response.data.traffic_channel.forEach(function (value, index) {
+			channelName.push(value.channel_name);
+			totalTraffic.push(value.total_1);
+	    });
+	     ///chartInformation
+	    var chartdataInfo = [{
+			name: response.data.summary[0].category,
+			type: 'bar',
+			stack: 'Stack',
+			data: totalTraffic,
+		}];
+	    var optionInfo = {
+			grid: {
+				top: '6',
+				right: '11',
+				bottom: '20',
+				left: '65',
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				formatter: function (value, index) {
-					if(value >= 1000){
-						var res = (value/1000);
-						return res+'K'
-					}else {
-						return value;
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					formatter: function (value, index) {
+						if(value >= 1000){
+							var res = (value/1000);
+							return res+'K'
+						}else {
+							return value;
+						}
 					}
 				}
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: channelName,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
+			},
+			yAxis: {
+				type: 'category',
+				data: channelName,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					// formatter: function (value, index) {
+					// 	if (/\s/.test(value)) {
+					// 		var teks = '';
+					// 		for(var i=0;i<value.length;i++){
+					// 			if(value[i] == " "){
+					// 				teks = teks + '\n';
+					// 			}else{
+					// 				teks = teks + value[i];
+					// 			}
+					// 		}
+					// 		return teks;
+					// 	}else{
+					// 		return value;
+					// 	} 
+					// }
 				}
 			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				},
+				position: function (pos, params, dom, rect, size) {
+					// tooltip will be fixed on the right if mouse hovering on the left,
+					// and on the left if hovering on the right.
+					// console.log(pos);
+					var obj = {top: pos[0]};
+					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+					return obj;
+				},
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				// formatter: function (value, index) {
-				// 	if (/\s/.test(value)) {
-				// 		var teks = '';
-				// 		for(var i=0;i<value.length;i++){
-				// 			if(value[i] == " "){
-				// 				teks = teks + '\n';
-				// 			}else{
-				// 				teks = teks + value[i];
-				// 			}
-				// 		}
-				// 		return teks;
-				// 	}else{
-				// 		return value;
-				// 	} 
-				// }
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
-					color: '#7886a0'
-				}
-			},
-			position: function (pos, params, dom, rect, size) {
-				// tooltip will be fixed on the right if mouse hovering on the left,
-				// and on the left if hovering on the right.
-				// console.log(pos);
-				var obj = {top: pos[0]};
-				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-				return obj;
-			},
-		},
-		series: chartdataInfo,
-		color: ["#A5B0B6"]
-	};
-	var chartInfo = document.getElementById('echartInfoTraffic');
-	var barChartInfo = echarts.init(chartInfo);
-    barChartInfo.setOption(optionInfo);
+			series: chartdataInfo,
+			color: ["#A5B0B6"]
+		};
 
+		var chartInfo = document.getElementById('echartInfoTraffic');
+		var barChartInfo = echarts.init(chartInfo);
+	    barChartInfo.setOption(optionInfo);
+	}else{
+		// console.log("kosong")
+		$('#echartInfoTraffic').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 
 function drawCategory2(response){
@@ -379,107 +389,111 @@ function drawCategory2(response){
 	let channelName = []
     let totalTraffic = []
 
-    // draw card yang ada datanya
-    // console.log(response.data);
-    response.data.traffic_channel.forEach(function (value, index) {
-		channelName.push(value.channel_name);
-		totalTraffic.push(value.total_2);
-    });
+    if (response.data.length!=0) {
+	    // draw card yang ada datanya
+	    // console.log(response.data);
+	    response.data.traffic_channel.forEach(function (value, index) {
+			channelName.push(value.channel_name);
+			totalTraffic.push(value.total_2);
+	    });
 
-    //chartComplaint
-    var chartdataComp = [{
-		name: response.data.summary[1].category,
-		type: 'bar',
-		stack: 'Stack',
-		data: totalTraffic
-	}];
-    var optionComp = {
-		grid: {
-			top: '6',
-			right: '11',
-			bottom: '20',
-			left: '65',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+	    //chartComplaint
+	    var chartdataComp = [{
+			name: response.data.summary[1].category,
+			type: 'bar',
+			stack: 'Stack',
+			data: totalTraffic
+		}];
+	    var optionComp = {
+			grid: {
+				top: '6',
+				right: '11',
+				bottom: '20',
+				left: '65',
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				formatter: function (value, index) {
-					if(value >= 1000){
-						var res = (value/1000);
-						return res+'K'
-					}else {
-						return value;
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					formatter: function (value, index) {
+						if(value >= 1000){
+							var res = (value/1000);
+							return res+'K'
+						}else {
+							return value;
+						}
 					}
 				}
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: channelName,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
+			},
+			yAxis: {
+				type: 'category',
+				data: channelName,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					// formatter: function (value, index) {
+					// 	if (/\s/.test(value)) {
+					// 		var teks = '';
+					// 		for(var i=0;i<value.length;i++){
+					// 			if(value[i] == " "){
+					// 				teks = teks + '\n';
+					// 			}else{
+					// 				teks = teks + value[i];
+					// 			}
+					// 		}
+					// 		return teks;
+					// 	}else{
+					// 		return value;
+					// 	} 
+					// }
 				}
 			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				},
+				position: function (pos, params, dom, rect, size) {
+					// tooltip will be fixed on the right if mouse hovering on the left,
+					// and on the left if hovering on the right.
+					// console.log(pos);
+					var obj = {top: pos[0]};
+					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+					return obj;
+				},
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				// formatter: function (value, index) {
-				// 	if (/\s/.test(value)) {
-				// 		var teks = '';
-				// 		for(var i=0;i<value.length;i++){
-				// 			if(value[i] == " "){
-				// 				teks = teks + '\n';
-				// 			}else{
-				// 				teks = teks + value[i];
-				// 			}
-				// 		}
-				// 		return teks;
-				// 	}else{
-				// 		return value;
-				// 	} 
-				// }
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
-					color: '#7886a0'
-				}
-			},
-			position: function (pos, params, dom, rect, size) {
-				// tooltip will be fixed on the right if mouse hovering on the left,
-				// and on the left if hovering on the right.
-				// console.log(pos);
-				var obj = {top: pos[0]};
-				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-				return obj;
-			},
-		},
-		series: chartdataComp,
-		color: ["#009E8C"]
-	};
-	var chartComp = document.getElementById('echartCompTraffic');
-	var barChartComp = echarts.init(chartComp);
-    barChartComp.setOption(optionComp);
+			series: chartdataComp,
+			color: ["#009E8C"]
+		};
+		var chartComp = document.getElementById('echartCompTraffic');
+		var barChartComp = echarts.init(chartComp);
+	    barChartComp.setOption(optionComp);
+	}else{
+		$('#echartCompTraffic').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 
 }
 
@@ -491,107 +505,111 @@ function drawCategory3(response){
 	let channelName = []
     let totalTraffic = []
 
-    // draw card yang ada datanya
-    // console.log(response.data);
-    response.data.traffic_channel.forEach(function (value, index) {
-		channelName.push(value.channel_name);
-		totalTraffic.push(value.total_3);
-    });
+    if (response.data.length!=0) {
+	    // draw card yang ada datanya
+	    // console.log(response.data);
+	    response.data.traffic_channel.forEach(function (value, index) {
+			channelName.push(value.channel_name);
+			totalTraffic.push(value.total_3);
+	    });
 
-    //chartRequest
-    var chartdataReq = [{
-		name: response.data.summary[2].category,
-		type: 'bar',
-		stack: 'Stack',
-		data: totalTraffic
-	}];
-    var optionReq = {
-		grid: {
-			top: '6',
-			right: '11',
-			bottom: '20',
-			left: '65',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+	    //chartRequest
+	    var chartdataReq = [{
+			name: response.data.summary[2].category,
+			type: 'bar',
+			stack: 'Stack',
+			data: totalTraffic
+		}];
+	    var optionReq = {
+			grid: {
+				top: '6',
+				right: '11',
+				bottom: '20',
+				left: '65',
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				formatter: function (value, index) {
-					if(value >= 1000){
-						var res = (value/1000);
-						return res+'K'
-					}else {
-						return value;
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					formatter: function (value, index) {
+						if(value >= 1000){
+							var res = (value/1000);
+							return res+'K'
+						}else {
+							return value;
+						}
 					}
 				}
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: channelName,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
+			},
+			yAxis: {
+				type: 'category',
+				data: channelName,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					// formatter: function (value, index) {
+					// 	if (/\s/.test(value)) {
+					// 		var teks = '';
+					// 		for(var i=0;i<value.length;i++){
+					// 			if(value[i] == " "){
+					// 				teks = teks + '\n';
+					// 			}else{
+					// 				teks = teks + value[i];
+					// 			}
+					// 		}
+					// 		return teks;
+					// 	}else{
+					// 		return value;
+					// 	} 
+					// }
 				}
 			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				},
+				position: function (pos, params, dom, rect, size) {
+					// tooltip will be fixed on the right if mouse hovering on the left,
+					// and on the left if hovering on the right.
+					// console.log(pos);
+					var obj = {top: pos[0]};
+					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+					return obj;
+				},
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				// formatter: function (value, index) {
-				// 	if (/\s/.test(value)) {
-				// 		var teks = '';
-				// 		for(var i=0;i<value.length;i++){
-				// 			if(value[i] == " "){
-				// 				teks = teks + '\n';
-				// 			}else{
-				// 				teks = teks + value[i];
-				// 			}
-				// 		}
-				// 		return teks;
-				// 	}else{
-				// 		return value;
-				// 	} 
-				// }
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
-					color: '#7886a0'
-				}
-			},
-			position: function (pos, params, dom, rect, size) {
-				// tooltip will be fixed on the right if mouse hovering on the left,
-				// and on the left if hovering on the right.
-				// console.log(pos);
-				var obj = {top: pos[0]};
-				obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-				return obj;
-			},
-		},
-		series: chartdataReq,
-		color: ["#00436D"]
-	};
-	var chartReq = document.getElementById('echartReqTraffic');
-	var barChartReq = echarts.init(chartReq);
-    barChartReq.setOption(optionReq);
+			series: chartdataReq,
+			color: ["#00436D"]
+		};
+		var chartReq = document.getElementById('echartReqTraffic');
+		var barChartReq = echarts.init(chartReq);
+	    barChartReq.setOption(optionReq);
+	}else{
+		$('#echartReqTraffic').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 
 }
 
@@ -602,127 +620,132 @@ function drawSummaryTrafficChannelChart(response){
 	"use strict"
 	let category = []
     let arr_channel = []
-    // console.log(response.data.traffic_channel);
-    response.data.traffic_channel.forEach(function(value){
-		arr_channel.push(value.channel_name);
-	});
-    // draw card yang ada datanya
-    response.data.summary.forEach(function (value, index) {
-		category.push(value.category);
-    });
 
-   /*----Echart6----*/
- //   var chartdata3 = [{
-	// 	name: 'Information',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
- //       data: [23, 12, 14, 15, 50, 24, 24, 10, 20, 30, 20, 30]
-	// }, {
-	// 	name: 'Request',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [23,12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
- //    },{
-	// 	name: 'Complaint',
-	// 	type: 'bar',
-	// 	stack: 'Stack',
-	// 	data: [23,10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
-	// }];
-	var chartdata3 = []
-	var i = 0;
-    category.forEach(function (value, index) {
-		var totalKip = []
-		response.data.traffic_channel.forEach(function (value) {
-			var total = "";
-			if(i == 0){
-				total = (value.total_1)?value.total_1:0;
-			}else if(i == 1){
-				total = (value.total_2)?value.total_2:0;
-			}else if(i == 2){
-				total = (value.total_3)?value.total_3:0;
-			}
-			totalKip.push(total)
+    if (response.data.length!=0) {
+	    // console.log(response.data.traffic_channel);
+	    response.data.traffic_channel.forEach(function(value){
+			arr_channel.push(value.channel_name);
 		});
-		var dataTraffic = {
-			name: value,
-			type: 'bar',
-			stack: "stack",
-			data: totalKip
-		}
-		chartdata3.push(dataTraffic);
-		i++;
-    });
-	var option6 = {
-		grid: {
-			top: '6',
-			right: '20',
-			bottom: '20',
-			left: '70',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
+	    // draw card yang ada datanya
+	    response.data.summary.forEach(function (value, index) {
+			category.push(value.category);
+	    });
+
+	   /*----Echart6----*/
+	 //   var chartdata3 = [{
+		// 	name: 'Information',
+		// 	type: 'bar',
+		// 	stack: 'Stack',
+	 //       data: [23, 12, 14, 15, 50, 24, 24, 10, 20, 30, 20, 30]
+		// }, {
+		// 	name: 'Request',
+		// 	type: 'bar',
+		// 	stack: 'Stack',
+		// 	data: [23,12, 14, 15, 50, 24, 24, 10, 20, 30,20, 30]
+	 //    },{
+		// 	name: 'Complaint',
+		// 	type: 'bar',
+		// 	stack: 'Stack',
+		// 	data: [23,10, 12, 13, 60, 16, 13, 30, 40,40,40,70]
+		// }];
+		var chartdata3 = []
+		var i = 0;
+	    category.forEach(function (value, index) {
+			var totalKip = []
+			response.data.traffic_channel.forEach(function (value) {
+				var total = "";
+				if(i == 0){
+					total = (value.total_1)?value.total_1:0;
+				}else if(i == 1){
+					total = (value.total_2)?value.total_2:0;
+				}else if(i == 2){
+					total = (value.total_3)?value.total_3:0;
+				}
+				totalKip.push(total)
+			});
+			var dataTraffic = {
+				name: value,
+				type: 'bar',
+				stack: "stack",
+				data: totalKip
+			}
+			chartdata3.push(dataTraffic);
+			i++;
+	    });
+		var option6 = {
+			grid: {
+				top: '6',
+				right: '20',
+				bottom: '20',
+				left: '70',
+			},
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
 				}
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: arr_channel,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
+			yAxis: {
+				type: 'category',
+				data: arr_channel,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					// formatter: function (value, index) {
+					// 	if (/\s/.test(value)) {
+					// 		var teks = '';
+					// 		for(var i=0;i<value.length;i++){
+					// 			if(value[i] == " "){
+					// 				teks = teks + '\n';
+					// 			}else{
+					// 				teks = teks + value[i];
+					// 			}
+					// 		}
+					// 		return teks;
+					// 	}else{
+					// 		return value;
+					// 	} 
+					// }
 				}
 			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
 				}
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				// formatter: function (value, index) {
-				// 	if (/\s/.test(value)) {
-				// 		var teks = '';
-				// 		for(var i=0;i<value.length;i++){
-				// 			if(value[i] == " "){
-				// 				teks = teks + '\n';
-				// 			}else{
-				// 				teks = teks + value[i];
-				// 			}
-				// 		}
-				// 		return teks;
-				// 	}else{
-				// 		return value;
-				// 	} 
-				// }
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
-					color: '#7886a0'
-				}
-			}
-		},
-		series: chartdata3,
-		color: [ "#A5B0B6","#009E8C","#00436D"]
-	};
-	var chart6 = document.getElementById('echartTraffic');
-	var barChart6 = echarts.init(chart6);
-    barChart6.setOption(option6);
+			series: chartdata3,
+			color: [ "#A5B0B6","#009E8C","#00436D"]
+		};
+		var chart6 = document.getElementById('echartTraffic');
+		var barChart6 = echarts.init(chart6);
+	    barChart6.setOption(option6);
+	}else{
+		$('#echartTraffic').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 
 }
 
@@ -844,6 +867,7 @@ function setDatePicker(){
         // console.log(params_time);
         // thisYears = getThisYear();
         // loadContent(params_time , '2019');
+        loadContent(params_time, $("#select-year-only").val(), 0);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -853,7 +877,7 @@ function setDatePicker(){
 		$('#filter-year').show();
     });
 
-    /*select option month*/ 
+    /*select option month on month*/ 
 	$('#select-month').change(function(){
 		v_month = $(this).val();
 		// console.log(value);
@@ -863,7 +887,29 @@ function setDatePicker(){
 		loadContent('month', v_month, $("#select-year-on-month").val());
 		// loadContent('month', v_month, '2019');
 	});
+
+	/*select option year on month*/ 
+	$('#select-year-on-month').change(function(){
+		v_year_on_month = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		// console.log($("#select-year-on-month").val());
+		// console.log(v_month);
+		loadContent('month', $("#select-month").val(), v_year_on_month);
+		// loadContent('month', v_month, '2019');
+	});
 	
+	/*select option year on year*/ 
+	$('#select-year-only').change(function(){
+		v_year_on_year = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		// console.log($("#select-year-on-month").val());
+		// console.log(v_month);
+		loadContent('year', v_year_on_year, 0);
+		// loadContent('month', v_month, '2019');
+	});
+
 	$('#input-date-filter').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {

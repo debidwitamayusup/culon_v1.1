@@ -18,18 +18,28 @@
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 			$index = $this->security->xss_clean($this->input->post('index', true)); //value params
 			$params_year = $this->security->xss_clean($this->input->post('year', true));
-			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
+			// $arr_category = $this->OperationModel->get_top_3_category($params, $index);
+			$arr_category = $this->OperationModel->get_top_3_category_operation_performance($params, $index, $params_year);
 			$arr_traffic_category = $this->OperationModel->get_traffic_per_channel($params, $index, $arr_category, $params_year);
 			
-			$data = [
+			if ($arr_category && $arr_traffic_category) {
+				$data = [
 				'summary' => $arr_category,
 				'traffic_channel' => $arr_traffic_category
-			];
-			$response = array(
-				'status' => 200,
-				'message' => 'Success',
-				'data' => $data
-			);
+				];
+				$response = array(
+					'status' => 200,
+					'message' => 'Success',
+					'data' => $data
+				);	
+			}else{
+				$response = array(
+					'status' => 200,
+					'massage' => 'Failed',
+					'data' => ''
+				);
+			}
+			
 
 			echo json_encode($response);
 		}
