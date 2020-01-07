@@ -30,22 +30,31 @@
 			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 			$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
 			// $arr_category = $this->OperationModel->get_top_3_category($params, $index);
-			$arr_category = $this->OperationModel->get_top_3_category($params, $index);
+			$arr_category = $this->OperationModel->get_top_3_category_operation_performance($params, $index, $params_year);
 			// $arr_category = $this->OperationModel->get_top_3_category('day', '2019-12-01');
 			// $arr_kip = $this->OperationModel->get_kip_per_channel('day', '2019-12-01', $arr_category);
 			$arr_kip = $this->OperationModel->get_kip_per_channel($params, $index, $arr_category, $params_year);
-			$data = [
-				'summary' => $arr_category,
-				'kip_channel' => $arr_kip
-			];
-			$response = array(
-				'status' => 200,
-				'message' => 'Success',
-				'data' => $data,
-				'params' => $params,
-				'index' => $index,
-				'year' => $params_year
-			);
+			
+			if ($arr_category && $arr_kip){
+				$data = [
+					'summary' => $arr_category,
+					'kip_channel' => $arr_kip
+				];
+				$response = array(
+					'status' => 200,
+					'message' => 'Success',
+					'data' => $data,
+					'params' => $params,
+					'index' => $index,
+					'year' => $params_year
+				);
+			}else{
+				$response = array(
+					'status' => 200,
+					'message' => 'Failed',
+					'data' => ''
+				);
+			}
 			echo json_encode($response);
 		}
 
