@@ -28,7 +28,7 @@
                                 <h5 class="card-title-small card-pt10">Summary SCR / Channel</h5>
                             </div>
                             <div class="card-body">
-                                <canvas id="barChartSummary"></canvas>
+                                <canvas id="MeSeStatusCanvas" class="h-300"></canvas>
                                 <!-- <div id="echart3" class="chartsh overflow-hidden"></div> -->
                             </div>
                         </div>
