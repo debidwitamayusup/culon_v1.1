@@ -239,9 +239,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-            <?php $this->load->view('temp/footer');?>
-            <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-summary-inout-sla.js"></script>
+                <?php $this->load->view('temp/footer');?>
+                <!--Plugin -->
+                <script src="<?=base_url()?>assets/public/js/app/app-summary-inout-sla.js"></script>

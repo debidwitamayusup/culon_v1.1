@@ -11,23 +11,24 @@
                 data: [ 15, 35, 40,20,50,30,15,30 ],
                 backgroundColor: [
                                     "#FEC88C",
-                                    "#FF893A",
-                                    "#FE5163",
+                                    "#FFA07A",
+                                    "#87CEFA",
                                     "#ADD8E6",
-                                    "#5AD87B",
-                                    "#0099FF",
-                                    "#107F80",
-                                    "#8FBC8F"
+                                    "#B0C4DE",
+                                    "#778899",
+                                    "#8FBC8F",
+                                    "#BDB76B",
+                                    
                                 ],
                 hoverBackgroundColor: [
                                     "#FEC88C",
-                                    "#FF893A",
-                                    "#FE5163",
+                                    "#FFA07A",
+                                    "#87CEFA",
                                     "#ADD8E6",
-                                    "#5AD87B",
-                                    "#0099FF",
-                                    "#107F80",
-                                    "#8FBC8F"
+                                    "#B0C4DE",
+                                    "#778899",
+                                    "#8FBC8F",
+                                    "#BDB76B",
                                 ]
             } ],
             labels: [
