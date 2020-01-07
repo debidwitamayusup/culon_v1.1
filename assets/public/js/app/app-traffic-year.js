@@ -4,7 +4,7 @@ $(document).ready(function () {
     var d = new Date();
     var n = d.getFullYear();
     $('#dateTahun option[value = '+n+']').attr('selected','selected');
-    var data_chart = callGraphYear('ShowAll', '2019');
+    var data_chart = callGraphYear('ShowAll', n);
     var data_graph = callDataPercentage('2019');
     var data_table = callDataTableAvg('2019');
     var data_year = callYear();
