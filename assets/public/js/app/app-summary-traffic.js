@@ -224,7 +224,7 @@ function drawChartAndCard(response){
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
+                    var background = chart.data.datasets[0].backgroundColor[index];
                     var total = 0;
                     for (var i in allData) {
                         total += parseInt(allData[i]);
