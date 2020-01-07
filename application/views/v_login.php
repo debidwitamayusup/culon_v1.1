@@ -11,8 +11,8 @@
                         <div class="col-md-4">
                             <div class="card-group mb-0">
                                 <div class="card-cust">
-                                    <div class="text-center mb-5">
-                                        <img src="<?php echo base_url();?>assets/images/brand/infomedia_icon96.ico"
+                                    <div class="text-center mb-2">
+                                        <img src="<?php echo base_url();?>assets/images/brand/logo_info.png"
                                             class="" alt="">
                                     </div>
                                     <div class="card-body">
@@ -66,7 +66,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="text-center text-muted mt-3 mb-3">
+                                        <div class="text-center text-muted mb-3">
                                             Don't have an account?
                                         </div>
                                         <div class="text-center">
