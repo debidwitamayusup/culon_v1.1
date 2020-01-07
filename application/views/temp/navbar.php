@@ -7,7 +7,7 @@
 				href="#"></a>
 			<a class="header-brand">
 				<img alt="logo" class="header-brand-img main-logo float-left"
-					src="<?= base_url()?>assets/images/brand/Infomedia.png">
+					src="<?= base_url()?>assets/images/brand/logo_info.png" style="width: 88px; height: 46px;">
 			</a>
 			<!-- Sidebar toggle button-->
 			<div class="d-flex order-lg-2 ml-auto">
@@ -32,17 +32,6 @@
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Profile</a>
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-settings"></i>Setting</a>
 						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-power"></i> Log Out</a>
-						<!-- <div class="dropdown-divider"></div>
-						<div class="text-center dropdown-btn pb-3">
-							<div class="btn-list">
-								<a href="#" class="btn btn-icon btn-facebook btn-sm"><i
-										class="si si-social-facebook"></i></a>
-								<a href="#" class="btn btn-icon btn-twitter btn-sm"><i
-										class="si si-social-twitter"></i></a>
-								<a href="#" class="btn btn-icon btn-instagram btn-sm"><i
-										class="si si-social-instagram"></i></a>
-							</div>
-						</div> -->
 					</div>
 				</div>
 
@@ -62,4 +51,5 @@
 </div>
 <!--/.Navbar -->
 <!-- filter loarder -->
-<div id="filter-loader" style="display:none"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
+<div id="filter-loader" style="display:none"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader">
+</div>

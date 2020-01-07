@@ -37,12 +37,14 @@
 		type: 'bar',
 		stack: 'Stack',
 		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,30]
-	}, {
-		name: 'Close',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
-	}];
+	}, 
+	// {
+	// 	name: 'Close',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
+	// }
+	];
 	/*----echartTicketUnit----*/
 	var optionTicketUnit = {
 		grid: {
@@ -82,7 +84,8 @@
 			}
 		},
 		series: chartTicketUnit,
-		color: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"]
+		// color: ["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","#107F80","#69EFE2"]
+		color :["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","107F80"]
 	};
 	var chartTicketUnit = document.getElementById('echartTicketUnit');
 	var barChartTicketUnit = echarts.init(chartTicketUnit);
@@ -96,18 +99,33 @@
         data: {
             datasets: [ {
                 data: [ 15, 35, 40,20,50,30,15,30 ],
-                backgroundColor: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"],
-                hoverBackgroundColor: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"]
+                backgroundColor: [
+									"#FEC88C",
+									"#FF893A",
+									"#FE5163",
+									"#69EFE2",
+									"#5AD87B",
+									"#0099FF",
+									"#107F80",
+								],
+                hoverBackgroundColor: [
+										"#FEC88C",
+										"#FF893A",
+										"#FE5163",
+										"#69EFE2",
+										"#5AD87B",
+										"#0099FF",
+										"#107F80",
+									]
 			} ],
             labels: [
-                                "New",
-                                "Open",
-                                "Reject",
-                                "On Progress",
-                                "Pending",
-                                "Reopen",
-                                "Close",
-                                "Resolve"
+						"New",
+						"Open",
+						"Reject",
+						"On Progress",
+						"Pending",
+						"Reopen",
+						"Resolve"
                     ]
         },
         options: {
@@ -133,38 +151,40 @@
 		name: 'Open',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,90,50,40]
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
 	}, {
 		name: 'Reject',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,80,50,60]
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
 	}, {
 		name: 'On Progress',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,60,70,40]
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
 	}, {
 		name: 'Pending',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,40,50,40]
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
 	}, {
 		name: 'Reopen',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20,30,40]
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
 	}, {
 		name: 'Resolve',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,30,40,50]
-	}, {
-		name: 'Close',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10,30,20]
-    }];
+		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+	},
+	//  {
+	// 	name: 'Close',
+	// 	type: 'bar',
+	// 	stack: 'Stack',
+	// 	data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+	// }
+	];
     
 	/*----echartTicketChannel----*/
 	var optionTicketChannel = {
@@ -205,7 +225,7 @@
 			}
 		},
 		series: chartTicketChannel,
-		color: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"]
+		color: ["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","#107F80"]
 	};
 	var chartTicketChannel = document.getElementById('echartTicketChannel');
 	var barChartTicketChannel = echarts.init(chartTicketChannel);

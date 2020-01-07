@@ -9,7 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon"
-		href="<?php echo base_url();?>assets/images/brand/infomedia_icon96.ico" />
+		href="<?php echo base_url();?>assets/images/brand/logo_info_ico.ico" />
 
 	<!-- Title -->
 	<title>Infomedia</title>

@@ -9,8 +9,26 @@
         data: {
             datasets: [ {
                 data: [ 15, 35, 40,20,50,30,15,30 ],
-                backgroundColor: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"],
-                hoverBackgroundColor: ["#778899","#5F9EA0","#87CEFA","#ADD8E6","#8FBC8F","#008B8B","#6495ED","#20B2AA"]
+                backgroundColor: [
+                                    "#FEC88C",
+                                    "#FF893A",
+                                    "#FE5163",
+                                    "#ADD8E6",
+                                    "#5AD87B",
+                                    "#0099FF",
+                                    "#107F80",
+                                    "#8FBC8F"
+                                ],
+                hoverBackgroundColor: [
+                                    "#FEC88C",
+                                    "#FF893A",
+                                    "#FE5163",
+                                    "#ADD8E6",
+                                    "#5AD87B",
+                                    "#0099FF",
+                                    "#107F80",
+                                    "#8FBC8F"
+                                ]
             } ],
             labels: [
                                 "New",
