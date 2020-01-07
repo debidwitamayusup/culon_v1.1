@@ -51,7 +51,7 @@
                             <div class="table-responsive table-bordered table-pt10">
                                 <table class="table card-table table-vcenter table-hover"
                                     style="height:616px !important;">
-                                    <thead class="text-center text-white bg-sign">
+                                    <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th>No</th>
                                             <th>Channel</th>
