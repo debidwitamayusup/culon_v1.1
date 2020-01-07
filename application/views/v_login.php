@@ -33,7 +33,7 @@
                                             </select>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-sign text-white" id="btn-login">Sign
+                                            <button type="submit" class="btn btn-sign text-white" style="border-radius:20px !important;" id="btn-login">Sign
                                                 in</button>
                                         </div>
                                         <div class="text-center text-muted mt-3 mb-3">
