@@ -41,7 +41,7 @@
 
 <!-- Sidemenu-responsive-tabs js-->
 <script src="<?=base_url()?>assets/js/vendors/sidemenu-responsive-tabs.js"></script>
-<script src="<?=base_url()?>assets/js/left-menu.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/left-menu.js"></script> -->
 
 <!--Select2 js -->
 <script src="<?=base_url()?>assets/js/vendors/select2.full.min.js"></script>
