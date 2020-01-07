@@ -11,9 +11,9 @@
                         <div class="col-md-4">
                             <div class="card-group mb-0">
                                 <div class="card-cust">
-                                    <div class="text-center mb-2">
-                                        <img src="<?php echo base_url();?>assets/images/brand/logo_info.png"
-                                            class="" alt="">
+                                    <div class="text-center mb-5">
+                                        <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png"
+                                            class=""style="max-width: 69% !important;" alt="">
                                     </div>
                                     <div class="card-body">
                                         <h6 class="mb-3">Sign in to continue</h6>

@@ -7,7 +7,7 @@
 				href="#"></a>
 			<a class="header-brand">
 				<img alt="logo" class="header-brand-img main-logo float-left"
-					src="<?= base_url()?>assets/images/brand/logo_info.png" style="width: 88px; height: 46px;">
+					src="<?= base_url()?>assets/images/brand/logo_infomedia.png">
 			</a>
 			<!-- Sidebar toggle button-->
 			<div class="d-flex order-lg-2 ml-auto">
