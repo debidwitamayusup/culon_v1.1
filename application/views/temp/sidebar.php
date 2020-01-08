@@ -88,10 +88,14 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="index.html">Summary Traffic</a></li>
-				<li><a class="slide-item" href="index2.html">Traffic Interval</a></li>
-				<li><a class="slide-item" href="index3.html">Average Time</a></li>
-				<li><a class="slide-item" href="index4.html">Case In / Out</a></li>
+				<li><a class="slide-item" href="#">Summary Channel</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_ticket">Summary Ticket</a></li>
+				<li><a class="slide-item" href="#">Summary Interval</a></li>
+				<li><a class="slide-item" href="#">Agent Log</a></li>
+				<li><a class="slide-item" href="#">Agent Performance</a></li>
+				<li><a class="slide-item" href="#">Agent Summary</a></li>
+				<li><a class="slide-item" href="#">Detail Ticket</a></li>
+				<li><a class="slide-item" href="#">Detail CWC</a></li>
 			</ul>
 		</li>
 	</ul>
