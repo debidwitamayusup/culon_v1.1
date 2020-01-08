@@ -637,7 +637,7 @@ function drawTableData(response){
 	            '<th colspan="2" class="bg-blue-1 align-content-md-center text-white">'+response.data[0].category_1+'</th>'+
 	            '<th colspan="2" class="bg-dark">'+response.data[0].category_2+'</th>'+
 				'<th colspan="2" class="bg-primary text-white">'+response.data[0].category_3+'</th>'+
-				'<th rowspan="2" class="align-middle"> TOTAL </th>'+
+				'<th rowspan="2" class="align-middle font-weight-extrabold"> TOTAL </th>'+
 				
             '</tr>'+
             '<tr>'+
@@ -669,12 +669,12 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(value.nfcr_2)+'</td>'+
             '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
 			'<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
-			'<td class="text-right">'+addCommas(summarize)+'</td>'+
+			'<td class="text-right font-weight-extrabold" style="background-color:#F8F8FF !important">'+addCommas(summarize)+'</td>'+
             '</tr>');
 			i++;
 			
 		});
-		$('#table-avg-interval').find('tbody').append('<tr class="font-weight-extrabold">'+
+		$('#table-avg-interval').find('tbody').append('<tr class="font-weight-extrabold" style="background-color:#F8F8FF !important">'+
             '<td colspan="2" class="text-right">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sum_fcr1)+'</td>'+
             '<td class="text-right">'+addCommas(sum_nfcr1)+'</td>'+

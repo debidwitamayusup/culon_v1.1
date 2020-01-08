@@ -13,7 +13,8 @@
                             </li>
                             <li class="breadcrumb-item active mt-2" aria-current="page">Wallboard
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Monitoring Ticket Status (Non Close)
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Monitoring Ticket Status (Non
+                                Close)
                             </li>
                         </ol>
 
@@ -48,8 +49,13 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary Ticket / Channel</h5>
                             </div>
-                            <div class="card-body">
-                                <canvas id="pieChartTicketChannel" class="donutShadow overflow-hidden"></canvas>
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie">
+                                        <canvas id="pieChartTicketChannel" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legend" class="legend-con"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,7 +65,7 @@
                                 <h5 class="card-title-small card-pt10">Summary Status Ticket / Channel</h5>
                             </div>
                             <div class="card-body">
-                                <div id="echartTicketChannel" class="chartsh-monitoring overflow-hidden"></div>
+                                <div id="echartTicketChannel" class="chartsh-status overflow-hidden"></div>
                             </div>
                         </div>
                     </div>

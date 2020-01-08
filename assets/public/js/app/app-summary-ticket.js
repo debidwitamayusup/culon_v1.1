@@ -3,7 +3,7 @@
 
     //pie chart summary status ticket
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 273;
+    ctx.height = 250;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -46,17 +46,41 @@
             responsive: true,
             maintainAspectRatio: false,
             legend:{
-                position:"bottom",
-                labels:{
-					boxWidth:10
-			   }
-            }
+                // position:"bottom",
+                // labels:{
+                // 	boxWidth:10
+                display : false
+            },
+            legendCallback : function (chart,index){
+                var allData = chart.data.datasets[0].data;
+                // console.log(chart)
+                var legendHtml = [];
+                legendHtml.push('<ul><div class="row ml-3">');
+                allData.forEach(function(data,index){
+                    var label = chart.data.labels[index];
+                    var dataLabel = allData[index];
+                    var background = chart.data.datasets[0].backgroundColor[index]
+                    var total = 0;
+                    for (var i in allData){
+                        total += parseInt(allData[i]);
+                    }
+
+                    // console.log(total)
+                    var percentage = Math.round((dataLabel / total)*100);
+                    legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+                })
+                legendHtml.push('</ul></div>');
+                return legendHtml.join("");
+            },
         }
     } );
+    var myLegendContainer = document.getElementById("legend");
+    myLegendContainer.innerHTML = myChart.generateLegend();
 
     //pie chart summary unit
     var ctx = document.getElementById( "pieChartUnit" );
-    ctx.height = 273;
+    ctx.height = 250;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -105,12 +129,37 @@
             responsive: true,
             maintainAspectRatio: false,
             legend:{
-                position:"bottom",
-                labels:{
-					boxWidth:10
-			   }
-            }
+                // position:"bottom",
+                // labels:{
+                // 	boxWidth:10
+                display : false                
+            },
+            legendCallback : function(chart,index){
+                var allData = chart.data.datasets[0].data;
+                // console.log(chart)
+                var legendHtml = [];
+                legendHtml.push('<ul><div class="row ml-2">');
+                allData.forEach(function(data,index){
+                    var label = chart.data.labels[index];
+                    var dataLabel = allData[index];
+                    var background = chart.data.datasets[0].backgroundColor[index]
+                    var total = 0;
+                    for (var i in allData){
+                        total += parseInt(allData[i]);
+                    }
+
+                    // console.log(total)
+                    var percentage = Math.round((dataLabel / total)*100);
+                    legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+                })
+                legendHtml.push('</ul></div>');
+                return legendHtml.join("");
+            },
         }
-    } );
+    
+    });
+    var myLegendContainer = document.getElementById("legendUnit");
+    myLegendContainer.innerHTML = myChart.generateLegend();
 
 })(jQuery);

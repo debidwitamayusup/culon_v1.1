@@ -234,7 +234,7 @@
     
     //pie chart Ticket Channel
     var ctx = document.getElementById( "pieChartTicketChannel" );
-    ctx.height = 287;
+    ctx.height = 250;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -287,13 +287,42 @@
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+			maintainAspectRatio: false,
+			
             legend:{
-                position:"bottom",
-                labels:{
-					boxWidth:10
-			   }
-            }
+					display : false
+			},
+			pieceLabel:{
+				render : 'legend',
+				fontColor : '#000',
+				position : 'outside',
+				segment : true
+			},
+			legendCallback : function (chart, index){
+				var allData = chart.data.datasets[0].data;
+				// console.log(chart)
+				var legendHtml = [];
+				legendHtml.push('<ul><div class="row">');
+				allData.forEach(function(data,index){
+					var label = chart.data.labels[index];
+					var dataLabel = allData[index];
+					var background = chart.data.datasets[0].backgroundColor[index]
+					var total = 0;
+					for (var i in allData){
+						total += parseInt(allData[i]);
+					}
+
+					// console.log(total)
+					var percentage = Math.round((dataLabel / total) * 100);
+					legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+					legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
+				})
+				legendHtml.push('</ul></div>');
+				return legendHtml.join("");
+			},
         }
-    } );
+	});
+	var myLegendContainer = document.getElementById("legend");
+	myLegendContainer.innerHTML = myChart.generateLegend();
+
 })(jQuery);
