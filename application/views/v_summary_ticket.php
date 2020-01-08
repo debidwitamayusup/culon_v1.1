@@ -40,9 +40,12 @@
                                 <h5 class="card-title-small card-pt10">Summary Status Ticket</h5>
                             </div>
 
-                            <div class="card-body">
-                                <div class="row">
-                                    <canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie">
+                                        <canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legend" class="legend-con"></div>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +54,17 @@
                                 <h5 class="card-title-small card-pt10">Summary Unit</h5>
                             </div>
 
-                            <div class="card-body">
+                            <!-- <div class="card-body">
                                 <div class="row">
                                     <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
+                                </div>
+                            </div> -->
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie">
+                                        <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legendUnit" class="legend-con"></div>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +76,7 @@
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
-                                <table class="table card-table table-vcenter table-hover" style="height:616px !important;">
+                                <table class="table card-table table-vcenter table-hover" style="height:829px !important;">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th rowspan="2" class="align-middle">No</th>
