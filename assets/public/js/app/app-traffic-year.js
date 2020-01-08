@@ -5,8 +5,8 @@ $(document).ready(function () {
     var n = d.getFullYear();
     $('#dateTahun option[value = '+n+']').attr('selected','selected');
     var data_chart = callGraphYear('ShowAll', n);
-    var data_graph = callDataPercentage('2019');
-    var data_table = callDataTableAvg('2019');
+    var data_graph = callDataPercentage(n);
+    var data_table = callDataTableAvg(n);
     var data_year = callYear();
 });
 
