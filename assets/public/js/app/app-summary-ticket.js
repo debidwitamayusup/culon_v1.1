@@ -53,7 +53,7 @@
             },
             legendCallback : function (chart,index){
                 var allData = chart.data.datasets[0].data;
-                console.log(chart)
+                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-3">');
                 allData.forEach(function(data,index){
@@ -65,7 +65,7 @@
                         total += parseInt(allData[i]);
                     }
 
-                    console.log(total)
+                    // console.log(total)
                     var percentage = Math.round((dataLabel / total)*100);
                     legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
@@ -136,7 +136,7 @@
             },
             legendCallback : function(chart,index){
                 var allData = chart.data.datasets[0].data;
-                console.log(chart)
+                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-2">');
                 allData.forEach(function(data,index){
@@ -148,7 +148,7 @@
                         total += parseInt(allData[i]);
                     }
 
-                    console.log(total)
+                    // console.log(total)
                     var percentage = Math.round((dataLabel / total)*100);
                     legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')

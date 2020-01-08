@@ -300,7 +300,7 @@
 			},
 			legendCallback : function (chart, index){
 				var allData = chart.data.datasets[0].data;
-				console.log(chart)
+				// console.log(chart)
 				var legendHtml = [];
 				legendHtml.push('<ul><div class="row">');
 				allData.forEach(function(data,index){
@@ -312,7 +312,7 @@
 						total += parseInt(allData[i]);
 					}
 
-					console.log(total)
+					// console.log(total)
 					var percentage = Math.round((dataLabel / total) * 100);
 					legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
 					legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
