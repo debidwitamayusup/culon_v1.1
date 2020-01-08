@@ -54,11 +54,11 @@
 <script src="<?=base_url()?>assets/js/timepicker/toggles.min.js"></script>
 
 <!-- Datepicker js -->
-<script src="<?=base_url()?>assets/js/datepicker/bootstrap-datepicker.min.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/datepicker/bootstrap-datepicker.min.js"></script> -->
 <script src="<?=base_url()?>assets/js/datepicker/date-picker.js"></script>
 <script src="<?=base_url()?>assets/js/datepicker/jquery-ui.js"></script>
 <script src="<?=base_url()?>assets/js/datepicker/jquery.maskedinput.js"></script>
-<script src="<?=base_url()?>assets/js/vendors/custom.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/vendors/custom.js"></script> -->
 
 <!-- DataTables -->
 <script src="<?=base_url()?>assets/js/datatables/jquery.dataTables.js"></script>

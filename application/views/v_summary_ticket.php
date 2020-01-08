@@ -194,7 +194,7 @@
                                             <td class="text-right">10</td>
                                         </tr>
                                     </tbody>
-                                    <tfoot class="font-weight-extrabold text-right bg-sign text-white">
+                                    <tfoot class="font-weight-extrabold text-right bg-gray1 text-white">
                                         <th colspan="2" class="font-weight-extrabold">Total</th>
                                         <th>100</th>
                                         <th>100</th>
