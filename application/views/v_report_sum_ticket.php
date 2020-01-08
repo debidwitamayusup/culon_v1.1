@@ -25,7 +25,7 @@
                                 <h5 class="card-title-small card-pt10">Summary Ticket</h5>
                             </div>
                             <div class="card-body">
-                                <div class="row justify-content-center mb-3">
+                                <div class="row mb-5">
                                     <div class="col-md-3">
                                         <div class="w-75 input-group">
                                             <div class="input-group-prepend">
