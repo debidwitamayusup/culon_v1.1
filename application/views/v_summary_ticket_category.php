@@ -71,7 +71,7 @@
                     <div class="d-flex align-items-end flex-column bd-highlight">
                         <div class="bd-highlight">
                             <div class="card-options d-none d-sm-block">
-                                <div class="btn-group text-center btn-sm">
+                                <div class="btn-group text-center btn-sm mb-2 mt-2">
                                     <a href="#" class="btn btn-light btn-sm" id="btn-day">
                                         <span class="">Day</a></span>
                                     <a href="#" class="btn btn-light btn-sm" id="btn-week">

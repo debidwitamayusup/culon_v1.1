@@ -669,12 +669,12 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(value.nfcr_2)+'</td>'+
             '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
 			'<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
-			'<td class="text-right font-weight-extrabold" style="background-color:#F8F8FF !important">'+addCommas(summarize)+'</td>'+
+			'<td class="text-right font-weight-extrabold bg-total">'+addCommas(summarize)+'</td>'+
             '</tr>');
 			i++;
 			
 		});
-		$('#table-avg-interval').find('tbody').append('<tr class="font-weight-extrabold" style="background-color:#F8F8FF !important">'+
+		$('#table-avg-interval').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
             '<td colspan="2" class="text-right">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sum_fcr1)+'</td>'+
             '<td class="text-right">'+addCommas(sum_nfcr1)+'</td>'+
