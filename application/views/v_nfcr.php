@@ -99,5 +99,4 @@
                     </div>
                 </div>
                 <?php $this->load->view('temp/footer');?>
-                <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
                 <script src="<?= base_url()?>assets/public/js/app/app-nfcr.js"></script>

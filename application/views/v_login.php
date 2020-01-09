@@ -12,8 +12,8 @@
                             <div class="card-group mb-0">
                                 <div class="card-cust">
                                     <div class="text-center mb-5">
-                                        <img src="<?php echo base_url();?>assets/images/brand/infomedia_icon96.ico"
-                                            class="" alt="">
+                                        <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png"
+                                            class=""style="max-width: 69% !important;" alt="">
                                     </div>
                                     <div class="card-body">
                                         <h6 class="mb-3">Sign in to continue</h6>
@@ -33,7 +33,7 @@
                                             </select>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-sign text-white" id="btn-login">Sign
+                                            <button type="submit" class="btn btn-sign text-white" style="border-radius:20px !important;" id="btn-login">Sign
                                                 in</button>
                                         </div>
                                         <div class="text-center text-muted mt-3 mb-3">
@@ -66,7 +66,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="text-center text-muted mt-3 mb-3">
+                                        <div class="text-center text-muted mb-3">
                                             Don't have an account?
                                         </div>
                                         <div class="text-center">

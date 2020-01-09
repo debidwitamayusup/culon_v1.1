@@ -1,0 +1,1338 @@
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0075280666351318
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.034569978713989
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.031163930892944
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.096050024032593
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.1898729801178
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.075659990310669
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.098381996154785
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.085068941116333
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.10099220275879
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.21997809410095
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.07929801940918
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0096039772033691
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.09275484085083
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.064444065093994
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011533975601196
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011069059371948
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016337871551514
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020150899887085
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.017764091491699
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0059189796447754
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011312961578369
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.039929151535034
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.44528698921204
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.57418489456177
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.19849681854248
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.44238185882568
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020932912826538
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0071790218353271
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.050987958908081
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0064330101013184
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.038815975189209
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.062675952911377
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0071611404418945
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024319171905518
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024599075317383
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.1887218952179
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.1486930847168
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.094779968261719
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.049356937408447
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015359163284302
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015274047851562
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0078740119934082
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0082290172576904
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020124912261963
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016486883163452
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.021636009216309
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0074019432067871
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0069100856781006
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020086050033569
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011449098587036
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.050806999206543
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.054946899414062
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.057192087173462
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.11897683143616
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0098278522491455
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.019060134887695
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.046369075775146
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.21762204170227
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016993045806885
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.014837026596069
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012998819351196
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.032548904418945
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.038105964660645
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.010380983352661
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.01021409034729
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020925998687744
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.04339599609375
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.025293827056885
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.035074949264526
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.044411182403564
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.064216136932373
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011636018753052
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '11'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.064783096313477
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:1.091206073761
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.39990592002869
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:1.6764249801636
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.45742607116699
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.00870680809021
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011898994445801
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0095858573913574
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0088589191436768
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0088880062103271
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0081009864807129
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012171983718872
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.01298999786377
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.28035402297974
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.068558931350708
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.49537301063538
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.022783994674683
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.072933197021484
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.064325094223022
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.017197847366333
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011292934417725
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015398025512695
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0085108280181885
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015266895294189
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-20'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0090072154998779
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-18'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.18336892127991
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-18'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.095858097076416
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-18'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.059612989425659
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-18'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.022446870803833
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.020891904830933
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0060899257659912
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0087721347808838
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.014968872070312
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-24'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.068593978881836
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-24'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.38065099716187
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-24'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.14209008216858
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-24'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.13807702064514
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.026741981506348
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.01225209236145
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024096012115479
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.081557989120483
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015102863311768
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.013401031494141
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.33212804794312
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.28405499458313
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.007594108581543
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.019407987594604
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012341976165771
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.01645302772522
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-16'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.034148931503296
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-16'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.037384986877441
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-16'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.036827087402344
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-16'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011147975921631
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-11'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.021420001983643
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-11'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.018744945526123
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-11'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.026509046554565
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-11'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.035303115844727
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.013470888137817
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0086231231689453
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0072050094604492
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.022779941558838
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-19'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015822172164917
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-19'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.027681827545166
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-19'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016739130020142
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-19'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011667966842651
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012864828109741
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.13863396644592
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024569034576416
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.014524936676025
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.050896167755127
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.096911907196045
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.048539876937866
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-12'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.08636999130249
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.027040004730225
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.03028678894043
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.02059006690979
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.034219026565552
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.055172920227051
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.056879043579102
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.13397598266602
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.34381413459778
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016158103942871
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024195909500122
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.023859024047852
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.031148910522461
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-06'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0076620578765869
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-06'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015084981918335
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-06'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0067651271820068
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-06'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.024673938751221
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.014796018600464
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0078699588775635
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012820959091187
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.044708967208862
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-05'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0077319145202637
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-05'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0088210105895996
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-05'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.010497093200684
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-05'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0079779624938965
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.012960910797119
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011566877365112
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0069460868835449
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.015525102615356
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.23718905448914
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.0062229633331299
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.008774995803833
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-11-04'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.054588079452515
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.058944940567017
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.025191068649292
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.03106689453125
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE DATE(date) = '2019-12-01'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.090111970901489
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '11'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.011221170425415
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '11'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.050140857696533
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '11'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.086772918701172
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '11'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.01822304725647
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.034135818481445
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.031927108764648
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.016077041625977
+SELECT `category`, sum(total) as total_kip
+FROM `summary`
+WHERE MONTH(date) = '12'
+AND YEAR(date) = '2019'
+GROUP BY `category`
+ORDER BY `total_kip` DESC
+ LIMIT 3 
+ Execution Time:0.018330097198486

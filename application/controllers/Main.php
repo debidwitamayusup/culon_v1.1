@@ -110,12 +110,62 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');	
 		$this->load->view('v_summary_ticket');
 	}
-	public function test()
+
+	public function summary_ticket_category()
 	{
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('test');
-		$this->load->view('temp/footer');
+		$this->load->view('v_summary_ticket_category');
 	}
+
+	public function monitoring_status(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_monitoring_status');
+	}
+
+	public function summary_ticket_time(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_ticket_time');
+	}
+
+	public function monitoring_ticket_time(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_monitoring_time');
+	}
+
+	public function monitoring_ticket_time_w(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_monitoring_time_week');
+	}
+
+	public function traffic_performance(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_traffic_performance');
+	}
+
+	public function summary_agent(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_agent');
+	}
+
+	public function summary_inout_sla(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_inout_sla');
+	}
+
 }

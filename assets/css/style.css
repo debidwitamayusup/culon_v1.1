@@ -6168,7 +6168,16 @@ ul {
 	width:27rem;
 	overflow:hidden;
 }
+.chartsh-monitoring {
+	height: 18rem;
+	overflow:hidden;
+}
+.chartsh-status{
+	height:23rem;
+	overflow:hidden;
+}
 
+/* ----------------- */
 .chartwidget {
 	height: 18rem;
 	overflow:hidden;
@@ -12996,6 +13005,9 @@ a.icon {
     letter-spacing: .4px;
 	font-size:14px;
 }
+btn-cust{
+	border-radius:20px;
+}
 .btn i {
 	font-size: 1rem;
 }
@@ -16102,7 +16114,7 @@ a.chip:hover {
 
 .tag {
 	font-size: 0.75rem;
-	background-color: #e9eaf3;
+	background-color: rgb(255, 255, 239);
 	border-radius: 3px;
 	padding: 0 .5rem;
 	line-height: 2em;
@@ -22367,4 +22379,14 @@ div[data-acc-step]:not(.open) .badge-primary {
 	border: 1px solid #80808047;
 	margin-top: 2px;
 	width: 171px;
+}
+
+
+/*font-agent */
+.font14{
+	font-size:14px !important;
+}
+
+.font10{
+	font-size:11px !important;
 }

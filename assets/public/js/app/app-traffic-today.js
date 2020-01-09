@@ -15,7 +15,7 @@ $(document).ready(function () {
         values.push(el.value);
         type.push($(el).data('type'));
     });
-    // console.log(values);
+    console.log(values);
     list_channel = values;
 
     // var data_chart = callIntervalTraffic(v_date, []);
@@ -167,7 +167,7 @@ function drawTableToday(response){
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+value.sla+'%</td>'+
+            '<td class="text-right">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+'%</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+

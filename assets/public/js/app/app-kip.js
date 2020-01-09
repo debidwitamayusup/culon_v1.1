@@ -15,7 +15,7 @@ $(document).ready(function () {
 	v_date = '2019-12-01';
 	channel_id= '';
 	$('#btn-day').prop("class","btn btn-red btn-sm");
-	loadContent(params_time, v_date);
+	loadContent(params_time, v_date, 0);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_date);
 	
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 function loadContent(params, index){
 	loadAllChannel();
-    callSummaryInteraction(params, index,0);
+    callSummaryInteraction(params, index, 0);
     // callSummaryInteraction('month' , '12', '2019');
 }
 function loadAllChannel(){
@@ -57,6 +57,9 @@ function loadAllChannel(){
 
 function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
+	console.log(params)
+	console.log(index)
+	console.log(year)
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -131,8 +134,10 @@ function drawChartSubCategory(response){
 		'</div>'+
 		'');
 		var label = [];
+		var label_lng = [];
 		var data = [];
 		response.data[i].forEach(function(value, index){
+			label_lng.push(value.sub_category_lng);
 			label.push(value.sub_category);
 			data.push(value.total_kip);
 		});
@@ -209,7 +214,10 @@ function drawChartSubCategory(response){
 				axisPointer: {
 					label: {
 						show: true,
-						color: '#7886a0'
+						color: '#7886a0',
+						formatter : function (){
+							return label_lng;
+						}
 					}
 				},
 				position: function (pos, params, dom, rect, size) {
@@ -224,7 +232,7 @@ function drawChartSubCategory(response){
 		};
 
 		if(label.length==0){
-			console.log("kosong")
+			// console.log("kosong")
 			$('#echart'+value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else {
 			// console.log("masuk")
@@ -244,64 +252,68 @@ function drawPieChart(response){
     let summaryKipName = []
     let summaryKip = []
 
-    // draw card yang ada datanya
-    // console.log(response.data);
-    response.data.summary.forEach(function (value, index) {
-		summaryKipName.push(value.category);
-		summaryKip.push(value.total_kip);
+    if (response.data.length!=0) {
+	    // draw card yang ada datanya
+	    // console.log(response.data);
+	    response.data.summary.forEach(function (value, index) {
+			summaryKipName.push(value.category);
+			summaryKip.push(value.total_kip);
 
-    });
-    category_kip = summaryKipName;
-    //pie chart
-    var ctx = document.getElementById( "pieKIP");
-    ctx.height = 377;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                data: summaryKip,
-                backgroundColor: [
-                                    "#A5B0B6",
-                                    "#009E8C",
-                                    "#00436D"
-                                ],
-                hoverBackgroundColor: [
-									"#A5B0B6",
-									"#009E8C",
-									"#00436D"
-                                ]
+	    });
+	    category_kip = summaryKipName;
+	    //pie chart
+	    var ctx = document.getElementById( "pieKIP");
+	    ctx.height = 377;
+	    var myChart = new Chart( ctx, {
+	        type: 'pie',
+	        data: {
+	            datasets: [ {
+	                data: summaryKip,
+	                backgroundColor: [
+	                                    "#A5B0B6",
+	                                    "#009E8C",
+	                                    "#00436D"
+	                                ],
+	                hoverBackgroundColor: [
+										"#A5B0B6",
+										"#009E8C",
+										"#00436D"
+	                                ]
 
-                            } ],
-            labels: summaryKipName
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-			legend :{
-				position : "bottom",
-				labels:{
-					boxWidth:10
-			   }
-			},
-			tooltips: {
-			  callbacks: {
-					label: function(tooltipItem, data) {
-						var value = data.datasets[0].data[tooltipItem.index];
-						value = value.toString();
-						value = value.split(/(?=(?:...)*$)/);
-						value = value.join(',');
-						return value;
-					}
-			  } // end callbacks:
-			}, //end tooltips
-			pieceLabel: {
-                render: 'legend',
-                fontColor: '#000',
-                position: 'outside',
-                segment: true
-            }
-        }
-    } );
+	                            } ],
+	            labels: summaryKipName
+	        },
+	        options: {
+	            responsive: true,
+				maintainAspectRatio: false,
+				legend :{
+					position : "bottom",
+					labels:{
+						boxWidth:10
+				   }
+				},
+				tooltips: {
+				  callbacks: {
+						label: function(tooltipItem, data) {
+							var value = data.datasets[0].data[tooltipItem.index];
+							value = value.toString();
+							value = value.split(/(?=(?:...)*$)/);
+							value = value.join(',');
+							return value;
+						}
+				  } // end callbacks:
+				}, //end tooltips
+				pieceLabel: {
+	                render: 'legend',
+	                fontColor: '#000',
+	                position: 'outside',
+	                segment: true
+	            }
+	        }
+	    } );
+	}else{
+		$('#pieKIP').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 
 function drawKipPerChannelChart(response){
@@ -312,108 +324,113 @@ function drawKipPerChannelChart(response){
 
     let category = []
 	var arr_channel = []
-	response.data.kip_channel.forEach(function(value){
-		arr_channel.push(value.channel_name);
-	});
-    // draw card yang ada datanya
-    response.data.summary.forEach(function (value, index) {
-		category.push(value.category);
-    });
-	var chartdata3 = []
-	var i = 0;
-    category.forEach(function (value, index) {
-		var totalKip = []
-		response.data.kip_channel.forEach(function (value) {
-			var total = "";
-			if(i == 0){
-				total = (value.total_1)?value.total_1:0;
-			}else if(i == 1){
-				total = (value.total_2)?value.total_2:0;
-			}else if(i == 2){
-				total = (value.total_3)?value.total_3:0;
-			}
-			totalKip.push(total)
+
+	if (response.data.length!=0) {
+		response.data.kip_channel.forEach(function(value){
+			arr_channel.push(value.channel_name);
 		});
-		var dataKip = {
-			name: value,
-			type: 'bar',
-			stack: "stack",
-			data: totalKip
-		}
-		chartdata3.push(dataKip);
-		i++;
-    });
-	var option6 = {
-		grid: {
-			top: '6',
-			right: '23',
-			bottom: '20',
-			left: '60',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
+	    // draw card yang ada datanya
+	    response.data.summary.forEach(function (value, index) {
+			category.push(value.category);
+	    });
+		var chartdata3 = []
+		var i = 0;
+	    category.forEach(function (value, index) {
+			var totalKip = []
+			response.data.kip_channel.forEach(function (value) {
+				var total = "";
+				if(i == 0){
+					total = (value.total_1)?value.total_1:0;
+				}else if(i == 1){
+					total = (value.total_2)?value.total_2:0;
+				}else if(i == 2){
+					total = (value.total_3)?value.total_3:0;
 				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
+				totalKip.push(total)
+			});
+			var dataKip = {
+				name: value,
+				type: 'bar',
+				stack: "stack",
+				data: totalKip
 			}
-		},
-		yAxis: {
-			type: 'category',
-			data: arr_channel,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+			chartdata3.push(dataKip);
+			i++;
+	    });
+		var option6 = {
+			grid: {
+				top: '6',
+				right: '23',
+				bottom: '20',
+				left: '60',
 			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0',
-				// formatter: function (value, index) {
-				// 	if (/\s/.test(value)) {
-				// 		var teks = '';
-				// 		for(var i=0;i<value.length;i++){
-				// 			if(value[i] == " "){
-				// 				teks = teks + '\n';
-				// 			}else{
-				// 				teks = teks + value[i];
-				// 			}
-				// 		}
-				// 		return teks;
-				// 	}else{
-				// 		return value;
-				// 	} 
-				// }
-			}
-		},
-		series: chartdata3,
-		color: ["#A5B0B6","#009E8C","#00436D"],
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
 					color: '#7886a0'
 				}
-			}
-		},
-	};
-	var chart6 = document.getElementById('echartKIP');
-	var barChart6 = echarts.init(chart6);
-    barChart6.setOption(option6);
+			},
+			yAxis: {
+				type: 'category',
+				data: arr_channel,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0',
+					// formatter: function (value, index) {
+					// 	if (/\s/.test(value)) {
+					// 		var teks = '';
+					// 		for(var i=0;i<value.length;i++){
+					// 			if(value[i] == " "){
+					// 				teks = teks + '\n';
+					// 			}else{
+					// 				teks = teks + value[i];
+					// 			}
+					// 		}
+					// 		return teks;
+					// 	}else{
+					// 		return value;
+					// 	} 
+					// }
+				}
+			},
+			series: chartdata3,
+			color: ["#A5B0B6","#009E8C","#00436D"],
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				}
+			},
+		};
+		var chart6 = document.getElementById('echartKIP');
+		var barChart6 = echarts.init(chart6);
+	    barChart6.setOption(option6);
+	}else{
+		$('#echartKIP').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 
 function getToday(){
@@ -492,7 +509,7 @@ function addCommas(commas)
         // console.log(params_time);
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
-		callSummaryInteraction(params_time, '12', $("#select-year-on-month").val());
+		callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
@@ -511,7 +528,7 @@ function addCommas(commas)
         params_time = 'year';
         // console.log(params_time);
 		// v_date = getYear();
-		callSummaryInteraction(params_time, $("#select-year-only").val());
+		callSummaryInteraction(params_time, $("#select-year-only").val(), 0);
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -548,14 +565,14 @@ function addCommas(commas)
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
-		callSummaryInteraction('year', $("#select-year-on-month").val(), v_year);
+		callSummaryInteraction('month', $("#select-month").val(), v_year);
 	});
 	/**/ 
 
 	// select option year
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
-		console.log(this.value);
+		// console.log(this.value);
 		callSummaryInteraction('year', v_year, 0);
 	});
 })(jQuery);
