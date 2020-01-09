@@ -1,19 +1,10 @@
 $(document).ready(function () {
-    // v_date = getToday();
-    // v_month = getMonth();
-    // v_year = getYear();
-    params_time = 'day';
-    v_date = '2019-12-02';
-    v_month = '12';
-    v_year = '2019';
-
-
-    loadContent(params_time, v_date);
-
+    // loadContent();
+    template();
 });
 
 
-//function
+//function 
 function getColorChannel(channel){
     var color = [];
     color['Email'] = '#e41313';
@@ -35,15 +26,10 @@ function getColorChannel(channel){
 function loadContent(params, index_time){
     $("#filter-loader").fadeIn("slow");
     callSummaryScrCof();
-    callTotalInteraction(params, index_time);
-    callTotalUniqueCustomer(params, index_time);
-    callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time);
-    callSummaryCaseTotAgent(params, index_time);
     $("#filter-loader").fadeOut("slow");
 }
 
-function callSummaryCof(){
+function callSummaryScrCof(){
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/TrafficPerformance/getScrCof',
@@ -63,7 +49,7 @@ function callSummaryCof(){
     });
 }
 
-function drawChart(response){
+function drawPie(response){
     //destroy div piechart
     $('#pieSummary').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
@@ -91,51 +77,11 @@ function drawChart(response){
         type: 'pie',
         data: {
             datasets: [ {
-                data: [ 15,35,40,50,80,90,100,40,50,80,30,40],
-                backgroundColor: [
-                                    "#089e60",
-                                    "#fbc0d5",
-                                    "#467fcf",
-                                    "#45aaf2",
-                                    "#31a550",
-                                    "#3866a6",
-                                    "#6574cd",
-                                    "#343a40",
-                                    "#e41313",
-                                    "#ff9933",
-                                    "#80cbc4",
-                                    "#607d8b"
-                                ],
-                hoverBackgroundColor: [
-                                    "#089e60",
-                                    "#fbc0d5",
-                                    "#467fcf",
-                                    "#45aaf2",
-                                    "#31a550",
-                                    "#3866a6",
-                                    "#6574cd",
-                                    "#343a40",
-                                    "#e41313",
-                                    "#ff9933",
-                                    "#80cbc4",
-                                    "#607d8b"
-                                ]
-
+                data: arrTotal,
+                backgroundColor: arrColor,
+                hoverBackgroundColor: arrColor
                             } ],
-            labels: [
-                                "Whatsapp",
-                                "Instagram",
-                                "Faceboook",
-                                "Twitter",
-                                "Line",
-                                "Messenger",
-                                "Twitter DM",
-                                "Telegram",
-                                "Email",
-                                "Voice",
-                                "SMS",
-                                "Live Chat"
-                    ]
+            labels: arrChannel
         },
         options: {
             responsive: true,
@@ -181,7 +127,60 @@ function drawChart(response){
     mylegendContainer.innerHTML=myChart.generateLegend();
 }
 
-( function ( $ ) {
+function drawBarChart(response){
+    destroyChartPercentage();
+    var data_label = [];
+    var data_rate = [];
+    var data_color = [];
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
+    var obj = [{
+        label: "data",
+        data: data_rate,
+        borderColor: data_color,
+        borderWidth: "0",
+        backgroundColor: data_color
+    }];
+
+    // draw chart
+    var MeSeContext = document.getElementById("MeSeStatusCanvas");
+    MeSeContext.height = 500;
+    var MeSeData = {
+        labels : dataLabel,
+        datasets : [{
+            label : "test",
+            data :data_rate,
+            backgroundColor : data_color,
+            hoverBackgroundColor : data_color
+        }]
+    };
+    var MeSeChart = new Chart(MeSeContext,{
+        type : 'horizontalBar',
+        data : MeSeData,
+        options : {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales : {
+                xAxes : [{
+                    ticks : {
+                        min : 0
+                    }
+                }],
+                yAxes : [{
+                    stacked : true
+                }]
+            },
+            legend: {
+                display: false
+                }
+        }
+    });
+}
+
+function template() {
     "use strict";
     
     var ctx = document.getElementById( "pieTrafficPerformance" );
@@ -354,4 +353,4 @@ function drawChart(response){
     });
 
 
-} )( jQuery );
+}
