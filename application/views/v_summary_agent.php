@@ -326,6 +326,32 @@
                                 <h5 class="card-title-small card-pt10">Summary Service OPS</h5>
                             </div>
                             <div class="card-body">
+                                <div class="row mb-5">
+                                    <div class="col-md-3">
+                                        <div class="w-75 input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="fe fe-activity tx-16 lh-0 op-6"></i>
+                                                </div>
+                                            </div>
+                                            <select name="select-channel" id="select-channel" class="w-75 form-control">
+                                                <option value="#">All Channel</option>
+                                                <option value="1">Whatsapp</option>
+                                                <option value="2">Instagram</option>
+                                                <option value="3">Facebook</option>
+                                                <option value="4">Twitter</option>
+                                                <option value="5">Messenger</option>
+                                                <option value="6">Telegram</option>
+                                                <option value="7">Twitter DM</option>
+                                                <option value="8">Email</option>
+                                                <option value="9">Voice</option>
+                                                <option value="10">Line</option>
+                                                <option value="11">SMS</option>
+                                                <option value="12">Live Chat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="example-2" class="table table-striped table-bordered">
                                         <thead>
@@ -338,8 +364,6 @@
                                                 <th class="wd-15p border-bottom-0">ART</th>
                                                 <th class="wd-15p border-bottom-0">AHT</th>
                                                 <th class="wd-15p border-bottom-0">AST</th>
-                                                <th class="wd-15p border-bottom-0">SL</th>
-                                                <th class="wd-15p border-bottom-0">SCR</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size:12px !important;">
@@ -357,12 +381,6 @@
                                                 </td>
                                                 <td class="text-right">
                                                     90
-                                                </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
-                                                <td class="text-right">
-                                                    100
                                                 </td>
                                                 <td class="text-right">
                                                     100
@@ -392,12 +410,6 @@
                                                 <td class="text-right">
                                                     100
                                                 </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">3</td>
@@ -411,12 +423,6 @@
                                                 </td>
                                                 <td class="text-right">
                                                     90
-                                                </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
-                                                <td class="text-right">
-                                                    100
                                                 </td>
                                                 <td class="text-right">
                                                     100
@@ -444,12 +450,6 @@
                                                 <td class="text-right">
                                                     100
                                                 </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">5</td>
@@ -463,12 +463,6 @@
                                                 </td>
                                                 <td class="text-right">
                                                     90
-                                                </td>
-                                                <td class="text-right">
-                                                    100
-                                                </td>
-                                                <td class="text-right">
-                                                    100
                                                 </td>
                                                 <td class="text-right">
                                                     100

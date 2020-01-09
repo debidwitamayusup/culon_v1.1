@@ -55,7 +55,7 @@
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
                                 <table class="table card-table table-vcenter table-hover"
-                                    style="height:616px !important;">
+                                    style="height:616px !important;" id="table-traffic-performance">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th>No</th>
@@ -69,8 +69,8 @@
                                             <th>SCR</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:12px !important;">
-                                        <tr>
+                                    <tbody style="font-size:12px !important;" id="mytbody">
+                                       <!--  <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-left">Whatsapp</td>
                                             <td class="text-right">10</td>
@@ -201,7 +201,7 @@
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

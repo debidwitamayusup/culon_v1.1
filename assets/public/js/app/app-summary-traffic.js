@@ -215,7 +215,9 @@ function drawChartAndCard(response){
                 render: 'legend',
                 fontColor: '#000',
                 position: 'outside',
-                segment: true
+                segment: true,
+                precision: 0,
+                showActualPercentages: true,
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
