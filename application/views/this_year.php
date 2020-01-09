@@ -12,6 +12,7 @@
 									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
 								</li>
 								<li class="breadcrumb-item active mt-2" aria-current="page">Traffic Channel</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Yearly</li>
 							</ol>
 						</div>
 						<!--Page Header-->
@@ -48,10 +49,6 @@
 													<div class="input-group-prepend">
 														<select class="form-control select2" style="width: 100%;"
 															data-placeholder="Choose one (with optgroup)" id="dateTahun">
-															<!-- <option value="2019">2019</option>
-															<option value="2018">2018</option>
-															<option value="2017">2017</option>
-															<option value="2016">2016</option> -->
 														</select>
 													</div>
 												</div>
@@ -115,17 +112,3 @@
 				<!--Chart--->
 
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>
-
-				<!-- <script type="text/javascript">
-					var dateTahun = $("#dateTahun");
-
-					var currentYear = (new Date()).getFullYear();
-
-			        for (var i = 2000; i <= currentYear; i++)
-			        {
-			            var option = $ ("<option />");
-			            option.html(i);
-			            option.val(i);
-			            dateTahun.append(option);
-			        }
-				</script> -->

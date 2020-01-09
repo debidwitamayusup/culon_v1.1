@@ -1,13 +1,5 @@
 	<body class="app  sidebar-mini">
-
-	<!-- BS -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/> -->
-
-		<!-- Global Loader-->
+	<!-- Global Loader-->
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 		<div class="page">
 			<div class="page-main">
@@ -19,6 +11,7 @@
 									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
 								</li>
 								<li class="breadcrumb-item active mt-2" aria-current="page">Traffic Channel</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Monthly</li>
 							</ol>
 						</div>
 						<!--Page Header-->
