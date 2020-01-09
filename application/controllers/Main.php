@@ -147,6 +147,20 @@ class main extends CI_Controller {
 		$this->load->view('v_monitoring_time_week');
 	}
 
+	public function monitoring_ticket_time_m(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_monitoring_time_month');
+	}
+
+	public function monitoring_ticket_time_y(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_monitoring_time_year');
+	}
+
 	public function traffic_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');

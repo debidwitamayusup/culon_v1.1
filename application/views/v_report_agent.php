@@ -11,7 +11,7 @@
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-book mr-1"></i>Report</h4>
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Channel</li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Agent Performance</li>
                         </ol>
                     </div>
                     <!--Page Header-->
@@ -22,7 +22,7 @@
                     <div class="col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Summary Channel</h5>
+                                <h5 class="card-title-small card-pt10">Agent Performance</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row mb-5">

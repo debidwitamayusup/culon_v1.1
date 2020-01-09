@@ -20,8 +20,8 @@
                             <div class="d-flex align-items-end flex-column bd-highlight">
                                 <div class="card-options d-none d-sm-block">
                                     <div class="btn-group btn-sm">
-                                        <a href="<?=base_url()?>main/monitoring_ticket_time" class="btn btn-red btn-sm"
-                                            id="btn-day">
+                                        <a href="<?=base_url()?>main/monitoring_ticket_time"
+                                            class="btn btn-light btn-sm" id="btn-day">
                                             <span class="">Day</a></span>
                                         <a href="<?=base_url()?>main/monitoring_ticket_time_w"
                                             class="btn btn-light btn-sm" id="btn-week">
@@ -30,7 +30,7 @@
                                             class="btn btn-light btn-sm" id="btn-month">
                                             <span class="">Month</a></span>
                                         <a href="<?=base_url()?>main/monitoring_ticket_time_y"
-                                            class="btn btn-light btn-sm" id="btn-year">
+                                            class="btn btn-red btn-sm" id="btn-year">
                                             <span class="">Year</a></span>
                                     </div>
                                 </div>
@@ -46,38 +46,6 @@
                                     <h5 class="card-title-small card-pt10">Summary Ticket / Unit</h5>
                                 </div>
                                 <div class="card-body">
-                                    <!-- <div class="row mb-3">
-                                        <div class="col-md-3">
-                                            <div class="w-75 input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
-                                                    </div>
-                                                </div><input class="form-control fc-datepicker" placeholder="MM/DD/YYYY"
-                                                type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fe fe-chrome tx-16 lh-0 op-6"></i>
-                                                    </div>
-                                                </div>
-                                                <select name="select-month" id="select-month" class="form-control">
-                                                    <option value="#">All Status</option>
-                                                    <option value="1">New</option>
-                                                    <option value="2">Open</option>
-                                                    <option value="3">Reject</option>
-                                                    <option value="4">On Progress</option>
-                                                    <option value="5">Pending</option>
-                                                    <option value="6">Reopen</option>
-                                                    <option value="7">Resolve</option>
-                                                    <option value="8">Close</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="row mb-3">
                                         <div class="col-md-3">
                                             <div class="w-75 input-group">
@@ -86,8 +54,10 @@
                                                         <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                                     </div>
                                                 </div>
-                                                <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY"
-                                                    type="text">
+                                                <select name="select-year" id="select-year" class="w-75 form-control">
+                                                    <option value="1">2020</option>
+                                                    <option value="2">2019</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -111,7 +81,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <canvas id="TimeLineChart" class="h-400"></canvas>
+                                    <div id="echartMonitoringTimeYear" class="chartsh overflow-hidden"></div>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +94,7 @@
                                     <h5 class="card-title-small card-pt10">Status Ticket / Kategori</h5>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="pieMonitoringTime" class="donutShadow overflow-hidden"></canvas>
+                                    <canvas id="pieTicketTimeYear" class="donutShadow overflow-hidden"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -134,11 +104,11 @@
                                     <h5 class="card-title-small card-pt10">Status Ticket</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div id="echartTicketTime" class="chartsh overflow-hidden"></div>
+                                    <div id="echartTicketTimeYear" class="chartsh overflow-hidden"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php $this->load->view('temp/footer');?>
-                <script src="<?= base_url()?>assets/public/js/app/app-monitoring-time.js"></script>
+                <script src="<?= base_url()?>assets/public/js/app/app-monitoring-time-year.js"></script>
