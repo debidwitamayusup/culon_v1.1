@@ -160,7 +160,7 @@ function drawBarChart(response){
     var MeSeData = {
         labels : data_label,
         datasets : [{
-            label : "test",
+            label : "SCR",
             data :data_scr,
             backgroundColor : data_color,
             hoverBackgroundColor : data_color
