@@ -22,7 +22,8 @@ class AuthController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Stc_Model');
-		$this->load->model('OperationModel');
+        $this->load->model('OperationModel');
+        $this->load->model('AuthModel','module_model');
     }
 
     public function doLogin(){
@@ -50,5 +51,49 @@ class AuthController extends CI_Controller {
 
         echo json_encode($response);
     }
+
+#region Raga
+
+    public function doforgotpassword() {
+
+        if (!$this->input->post()) {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Service Not Found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        if (!$this->module_model->checkId()) {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Nomor handphone anda belum terdaftar di aplikasi kami.'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+        // if ($this->module_model->driverCheckedReset()) {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => 'Anda telah melakukan reset password sebelumnya, silahkan hubungi Admin untuk meminta password baru!'
+        //             ], REST_Controller::HTTP_OK);
+        // }
+
+        $submit = $this->module_model->do_forgotpwd();
+
+        if ($submit) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => ''
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Proses gagal, silahkan coba kembali!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+    
+#Endregion
+
 }
 
