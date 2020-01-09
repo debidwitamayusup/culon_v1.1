@@ -9,21 +9,38 @@ $(document).ready(function () {
 
     // btn login
     $('#btn-login').click(function(){
-        var tenant_id = $('#select-tenant-id').val();
-        // console.log(tenant_id);
+        let username = $("input[name='username']").val();
+        let password = $("input[name='password']").val();
+
+        if(username == '' || password == '') return;
+
+        $("#btn-login").attr('disabled', true);
+        $("#btn-login").html('Sedang memproses...')
         $.ajax({
             type: 'post',
-            url: base_url+'api/AuthController/doLogin',
+            url: base_url+'api/Auth/AuthController/doLogin',
             data: {
-                tenant_id: tenant_id,
+                username: username,
+                password: password
             },
             success: function (r) {
-                var response = JSON.parse(r);
-                console.log(response);
+                if(r.status) {
+                    window.location = base_url
+                    $("#btn-login").attr('disabled', false);
+                    $("#btn-login").html('Sign in')
+                } else {
+                    alert(r.message)
+                }
+            },
+            fail: function (r) {
+                alert("error");
+                $("#btn-login").attr('disabled', false);
+                $("#btn-login").html('Sign in')
             },
             error: function (r) {
-                console.log(r);
                 alert("error");
+                $("#btn-login").attr('disabled', false);
+                $("#btn-login").html('Sign in')
             },
         });
     });

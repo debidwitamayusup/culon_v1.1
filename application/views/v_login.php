@@ -19,11 +19,11 @@
                                         <h6 class="mb-3">Sign in to continue</h6>
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="username"
-                                                placeholder="username">
+                                                placeholder="username" name="username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="password"
-                                                placeholder="Password">
+                                                placeholder="Password" name="password">
                                         </div>
                                         <div class="form-group ">
                                             <select class="form-control select2 custom-select" id="select-tenant-id">

@@ -19,6 +19,28 @@ Class AuthModel extends CI_Model {
         return TRUE;
     }
 
+    public function loginapp($usr,$pwd){
+
+        //query goes here
+
+        if(($usr == 'admin') && ($pwd == 'admin*')) //where clause
+        {
+            $content = array(
+                'USERNAME'          => 'User1',
+                'ACC_NAME'          => 'Harimau-01',
+                'ACC_PREVILAGE'     => 'SUPERADMIN'
+            );
+            return $content;
+        }
+
+        return FALSE;
+    }
+
+    // public function tenant(){
+
+
+    // }
+
     public function do_forgotpwd() {
         // $this->db->select('ID');
         // $this->db->where('*EMAIL/HP/ETC', $this->input->post('*params'));
@@ -50,8 +72,12 @@ Class AuthModel extends CI_Model {
         //         'PASSWORD' => $rand_password
         //     );
         // }
+        $content[] = array(
+            'ID_USER'       => 'User1',
+            'NAMAUSER'      => 'ADMIN1'
+        );
 
-        return FALSE;
+        return $content;
     }
 
 }
