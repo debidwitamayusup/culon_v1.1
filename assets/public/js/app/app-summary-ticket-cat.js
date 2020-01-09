@@ -6,17 +6,17 @@
 		name: 'Information',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24]
+		data: [14, 18, 20, 14, 29, 21, 25, 14]
 	}, {
 		name: 'Respond',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30]
+		data: [12, 14, 15, 50, 24, 24, 10, 20]
 	}, {
 		name: 'Complaint',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30]
+		data: [12, 14, 15, 50, 24, 24, 10, 20]
 	}];
 	/*----echart summary ticket category----*/
 	var optionTicket = {

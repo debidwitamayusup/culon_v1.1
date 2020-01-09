@@ -6172,6 +6172,10 @@ ul {
 	height: 18rem;
 	overflow:hidden;
 }
+.chartsh-status{
+	height:23rem;
+	overflow:hidden;
+}
 
 /* ----------------- */
 .chartwidget {
@@ -13000,6 +13004,9 @@ a.icon {
     padding: 5px 23px;
     letter-spacing: .4px;
 	font-size:14px;
+}
+btn-cust{
+	border-radius:20px;
 }
 .btn i {
 	font-size: 1rem;

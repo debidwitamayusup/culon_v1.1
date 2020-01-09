@@ -220,11 +220,11 @@ function drawChartAndCard(response){
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row">');
+                legendHtml.push('<ul><div class="row ml-2">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
+                    var background = chart.data.datasets[0].backgroundColor[index];
                     var total = 0;
                     for (var i in allData) {
                         total += parseInt(allData[i]);

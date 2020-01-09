@@ -99,7 +99,7 @@
 .card-pie {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	margin: 0px 0px 0px 27px;
+	margin: 0px 0px 0px 6px;
 	padding: 0rem 0rem;
 	position: relative;
 	
@@ -193,7 +193,7 @@
 	word-wrap: break-word;
 	background-color: #fff;
     background-clip: border-box;
-    padding : 20px 50px 10px 50px;
+    padding : 25px 50px 15px 50px;
 	/* border:1px solid #cbcee8; */
 	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
 }

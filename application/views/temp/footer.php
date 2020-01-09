@@ -34,13 +34,14 @@
 
 <!-- Custom scroll bar Js-->
 <script src="<?= base_url()?>assets/js/vendors/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="<?=base_url()?>assets/js/vendors/left-menu.js"></script>
 
 <!-- Side menu js -->
 <script src="<?= base_url()?>assets/js/vendors/sidemenu.js"></script>
 
 <!-- Sidemenu-responsive-tabs js-->
 <script src="<?=base_url()?>assets/js/vendors/sidemenu-responsive-tabs.js"></script>
-<script src="<?=base_url()?>assets/js/left-menu.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/left-menu.js"></script> -->
 
 <!--Select2 js -->
 <script src="<?=base_url()?>assets/js/vendors/select2.full.min.js"></script>

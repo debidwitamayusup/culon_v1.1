@@ -5,8 +5,8 @@ $(document).ready(function () {
     var n = d.getFullYear();
     $('#dateTahun option[value = '+n+']').attr('selected','selected');
     var data_chart = callGraphYear('ShowAll', n);
-    var data_graph = callDataPercentage('2019');
-    var data_table = callDataTableAvg('2019');
+    var data_graph = callDataPercentage(n);
+    var data_table = callDataTableAvg(n);
     var data_year = callYear();
 });
 
@@ -28,7 +28,7 @@ function callYear()
             var dateTahun = $("#dateTahun");
             var response = JSON.parse(r);
 
-            var html = '';
+            var html = '<option value="2020">2020</option>';
             var i;
                 for(i=0; i<response.data.niceDate.length; i++){
                     html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
@@ -246,7 +246,7 @@ function drawTableYear(response){
             $('#table_avg_year').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+value.sla+'%</td>'+
+            '<td class="text-right">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+'%</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+

@@ -31,8 +31,16 @@ class Stc_Model extends CI_Model
     }
 
 	public function get_all_channel(){
-		$this->db->select('channel_name');
-		$this->db->from('summary_channel');
+		//summary_channel
+		// $this->db->select('channel_name');
+		// $this->db->from('summary_channel');
+		// $this->db->group_by('channel_name');
+		// $this->db->order_by('channel_name');
+
+		//rpt_summary
+		$this->db->select('a.channel_name');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary b', 'a.channel_id=b.channel_id', 'LEFT');
 		$this->db->group_by('channel_name');
 		$this->db->order_by('channel_name');
 		$query = $this->db->get();
@@ -372,12 +380,21 @@ class Stc_Model extends CI_Model
 			// $this->db->group_by('MONTH(date_time)');
 			// $this->db->order_by('MONTH(date_time)');
 
-			$this->db->select('b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			$this->db->from('summary_channel a');
+			//summary_channel
+			// $this->db->select('b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
+			// $this->db->from('summary_channel a');
+			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
+			// $this->db->where('YEAR(a.date_time) = "'.$year.'"');
+			// $this->db->group_by('MONTH(a.date_time)');
+			// $this->db->order_by('MONTH(a.date_time)');
+
+			//rpt_summary
+			$this->db->select('b.channel_color, MONTH(a.date) date, SUM(a.session) total_traffic');
+			$this->db->from('rpt_summary a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			$this->db->where('YEAR(a.date_time) = "'.$year.'"');
-			$this->db->group_by('MONTH(a.date_time)');
-			$this->db->order_by('MONTH(a.date_time)');
+			$this->db->where('YEAR(a.date) = "'.$year.'"');
+			$this->db->group_by('MONTH(a.date)');
+			$this->db->order_by('MONTH(a.date)');
 
 			$query = $this->db->get();
 		
@@ -388,13 +405,23 @@ class Stc_Model extends CI_Model
 			// $this->db->from('summary_channel');
 			// $this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
 			// $this->db->group_by('MONTH(date_time)');
+			
+			//summary_channel
+			// $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+			// $this->db->select('b.channel_name, b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
+			// $this->db->from('summary_channel a');
+			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
+			// $this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
+			// $this->db->group_by('MONTH(a.date_time)');
+			// $this->db->order_by('MONTH(a.date_time)');
+
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			$this->db->select('b.channel_name, b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			$this->db->from('summary_channel a');
+			$this->db->select('b.channel_name, b.channel_color, MONTH(a.date) date, SUM(a.session) total_traffic');
+			$this->db->from('rpt_summary a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			$this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
-			$this->db->group_by('MONTH(a.date_time)');
-			$this->db->order_by('MONTH(a.date_time)');
+			$this->db->where('YEAR(a.date) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
+			$this->db->group_by('MONTH(a.date)');
+			$this->db->order_by('MONTH(a.date)');
 
 			$query = $this->db->get();
 		
@@ -425,12 +452,12 @@ class Stc_Model extends CI_Model
 			FROM m_channel
 			LEFT JOIN (
 			SELECT channel_id,
-			SUM(total) total,
-			CAST(SUM(total)*100/
-			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE YEAR(summary_channel.date_time) = '".$year."' ) AS DECIMAL(10,2)) as rate
-			FROM summary_channel
-			WHERE YEAR(summary_channel.date_time) = '".$year."'
-			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			SUM(session) total,
+			CAST(SUM(session)*100/
+			(SELECT SUM(rpt_summary.session) AS total FROM rpt_summary WHERE YEAR(rpt_summary.date) = '".$year."' ) AS DECIMAL(10,2)) as rate
+			FROM rpt_summary
+			WHERE YEAR(rpt_summary.date) = '".$year."'
+			GROUP BY rpt_summary.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
@@ -448,13 +475,25 @@ class Stc_Model extends CI_Model
 			// 					AND "23:00:00"');
 			// $this->db->group_by('DATE(date_time)');
 			// $query = $this->db->get();
+			
+			//summary_channel
+			// $query = $this->db->query('
+			// 	SELECT b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
+			// 	FROM summary_channel a INNER JOIN m_channel b
+			// 	ON a.channel_id = b.channel_id
+			// 	WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
+			// 	BETWEEN "00:00:00" AND "23:59:59" 
+			// 	GROUP BY DATE(a.date_time)
+			// 	');
+
+			//rpt_summary
 			$query = $this->db->query('
-				SELECT b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
-				FROM summary_channel a INNER JOIN m_channel b
+				SELECT b.channel_color, DAY(a.date) date, SUM(a.session) total_traffic
+				FROM rpt_summary a INNER JOIN m_channel b
 				ON a.channel_id = b.channel_id
-				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
+				WHERE  MONTH(date) = '.$month.' AND YEAR(date) = '.$year.' AND TIME(date) 
 				BETWEEN "00:00:00" AND "23:59:59" 
-				GROUP BY DATE(a.date_time)
+				GROUP BY DATE(a.date)
 				');
 			return $query;	
 		}else{
@@ -467,13 +506,25 @@ class Stc_Model extends CI_Model
 			// 					AND "23:00:00" AND channel_name= "'.$channel_name.'"');
 			// $this->db->group_by('DATE(date_time)');
 			// $query = $this->db->get();
+			
+			//summary_channel
+			// $query = $this->db->query('
+			// 	SELECT a.channel_name, b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
+			// 	FROM summary_channel a INNER JOIN m_channel b
+			// 	ON a.channel_id = b.channel_id
+			// 	WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
+			// 	BETWEEN "00:00:00" AND "23:59:59" AND a.channel_name = "'.$channel_name.'"
+			// 	GROUP BY DATE(a.date_time)
+			// 	');
+
+			//rpt_summary
 			$query = $this->db->query('
-				SELECT a.channel_name, b.channel_color, DAY(a.date_time) date, SUM(a.total) total_traffic
-				FROM summary_channel a INNER JOIN m_channel b
+				SELECT b.channel_name, b.channel_color, DAY(a.date) date, SUM(a.session) total_traffic
+				FROM rpt_summary a INNER JOIN m_channel b
 				ON a.channel_id = b.channel_id
-				WHERE  MONTH(date_time) = '.$month.' AND YEAR(date_time) = '.$year.' AND TIME(date_time) 
-				BETWEEN "00:00:00" AND "23:59:59" AND a.channel_name = "'.$channel_name.'"
-				GROUP BY DATE(a.date_time)
+				WHERE  MONTH(date) = '.$month.' AND YEAR(date) = '.$year.' AND TIME(date) 
+				BETWEEN "00:00:00" AND "23:59:59" AND b.channel_name = "'.$channel_name.'"
+				GROUP BY DATE(a.date)
 				');
 			return $query;
 		}
@@ -501,17 +552,31 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_today($date, $channel)
 	{
+		//summary_channel
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-		$this->db->select('TIME(date_time)as time, channel_name, sum(total) as total');
-		$this->db->from('summary_channel');
-		if($channel){
+		// $this->db->select('TIME(date_time)as time, channel_name, sum(total) as total');
+		// $this->db->from('summary_channel');
+		// if($channel){
+		// 	$this->db->where('channel_name', $channel);
+		// }
+		// $this->db->where('DATE(date_time)', $date);
+		// $this->db->group_by('channel_name');
+		// $this->db->group_by('UNIX_TIMESTAMP(date_time) DIV 3600');
+		// $this->db->order_by('time', 'ASC');
+		// $this->db->order_by('channel_name', 'ASC');
+
+		//rpt_summary
+		$this->db->select('TIME(b.date)as time, a.channel_name, sum(b.session) as total');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary b', 'a.channel_id=b.channel_id', 'LEFT');
+		if ($channel) {
 			$this->db->where('channel_name', $channel);
 		}
-		$this->db->where('DATE(date_time)', $date);
+		$this->db->where('DATE(b.date)', $date);
 		$this->db->group_by('channel_name');
-		$this->db->group_by('UNIX_TIMESTAMP(date_time) DIV 3600');
+		$this->db->group_by('UNIX_TIMESTAMP(date) DIV 3600');
 		$this->db->order_by('time', 'ASC');
-		$this->db->order_by('channel_name', 'ASC');
+		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
     	return $query->result();
 	}
@@ -532,22 +597,67 @@ class Stc_Model extends CI_Model
 		$aht = "";
 		$ast = "";
 		if($params == 'day'){
-			$where = "DATE(agent_perform.date_time)= '".$index."'";
-			$art = "agent_perform.art";
-			$ast = "agent_perform.ait as ast";
-			$aht = "agent_perform.aht";
+			//agent_perform
+			// $where = "DATE(agent_perform.date_time)= '".$index."'";
+			// $art = "agent_perform.art";
+			// $ast = "agent_perform.ait as ast";
+			// $aht = "agent_perform.aht";
+
+			//rpt_summary
+			$where = "DATE(rpt_summary.date)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.aht))),2,7) AS aht";
 		}else if($params == 'month'){
-			$where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= '".$year."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
+			//agent_perform
+			// $where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= '".$year."'";
+			// $art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
+			// $ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
+			// $aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
+
+			//rpt_summary
+			$where = "MONTH(rpt_summary.date)= '".$index."' AND YEAR(rpt_summary.date)= '".$year."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.aht))),2,7) AS aht";
 		}else if($params == 'year'){
-			$where = "YEAR(agent_perform.date_time)= '".$index."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
+			//agent_perform
+			// $where = "YEAR(agent_perform.date_time)= '".$index."'";
+			// $art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
+			// $ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
+			// $aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
+
+			//rpt_summary
+			$where = "YEAR(rpt_summary.date)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary.aht))),2,7) AS aht";
 		}
 		$query = $this->db->query("SELECT 
+			-- agent_perform
+		-- m_channel.channel_name
+		-- , m_channel.icon_dashboard
+		-- , m_channel.channel_color 
+		-- , IFNULL(a.art, 0) as art 
+		-- , IFNULL(a.aht, 0) as aht 
+		-- , IFNULL(a.ast, 0) as ast
+		-- , IFNULL(a.sla, 0) as sla
+		-- FROM m_channel 
+		-- LEFT JOIN (
+		-- 	SELECT agent_perform.channel_id
+		-- 	, $art
+		-- 	, $aht
+		-- 	, $ast
+		-- 	, agent_perform.hi, agent_perform.handle
+		-- 	, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
+		-- 	, DATE(agent_perform.date_time)as date 
+		-- 	FROM agent_perform 
+		-- 	WHERE $where 
+		-- 	GROUP BY agent_perform.channel_id
+		-- )as a on a.channel_id = m_channel.channel_id  
+		-- ORDER BY m_channel.channel_name
+
+		-- rpt_summary
 		m_channel.channel_name
 		, m_channel.icon_dashboard
 		, m_channel.channel_color 
@@ -557,16 +667,15 @@ class Stc_Model extends CI_Model
 		, IFNULL(a.sla, 0) as sla
 		FROM m_channel 
 		LEFT JOIN (
-			SELECT agent_perform.channel_id
+			SELECT rpt_summary.channel_id
 			, $art
 			, $aht
 			, $ast
-			, agent_perform.hi, agent_perform.handle
-			, round((agent_perform.hi/agent_perform.handle)*100, 2) as sla 
-			, DATE(agent_perform.date_time)as date 
-			FROM agent_perform 
-			WHERE $where 
-			GROUP BY agent_perform.channel_id
+			, round(AVG(rpt_summary.sla), 2) as sla
+			, DATE(rpt_summary.date)as date 
+			FROM rpt_summary
+			WHERE $where
+			GROUP BY rpt_summary.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	
@@ -582,18 +691,36 @@ class Stc_Model extends CI_Model
 			FROM m_channel
 			LEFT JOIN (
 			SELECT channel_id,
-			SUM(total) total,
-			CAST(SUM(total)*100/
-			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE DATE(summary_channel.date_time) = '".$date."' ) AS DECIMAL(10,2)) as rate
-			FROM summary_channel
-			WHERE DATE(summary_channel.date_time) = '".$date."'
-			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			SUM(session) total,
+			CAST(SUM(session)*100/
+			(SELECT SUM(rpt_summary.session) AS total FROM rpt_summary WHERE DATE(rpt_summary.date) = '".$date."' ) AS DECIMAL(10,2)) as rate
+			FROM rpt_summary
+			WHERE DATE(rpt_summary.date) = '".$date."'
+			GROUP BY rpt_summary.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
 	}
 	public function getSumIntervalMonth($month, $year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		
+		//summary_channel
+		// $query = $this->db->query("SELECT
+		// 	m_channel.channel_name,
+		// 	IFNULL(SUM(a.total), 0) total_by_month,
+		// 	IFNULL(a.rate, 0) rate
+		// 	FROM m_channel
+		// 	LEFT JOIN (
+		// 	SELECT channel_id,
+		// 	SUM(total) total,
+		// 	CAST(SUM(total)*100/
+		// 	(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."') AS DECIMAL(10,2)) as rate
+		// 	FROM summary_channel
+		// 	WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."'
+		// 	GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+		// 	GROUP BY m_channel.channel_name");
+
+		//rpt_sumamary
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
 			IFNULL(SUM(a.total), 0) total_by_month,
@@ -601,27 +728,34 @@ class Stc_Model extends CI_Model
 			FROM m_channel
 			LEFT JOIN (
 			SELECT channel_id,
-			SUM(total) total,
-			CAST(SUM(total)*100/
-			(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."') AS DECIMAL(10,2)) as rate
-			FROM summary_channel
-			WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."'
-			GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			SUM(session) total,
+			CAST(SUM(session)*100/
+			(SELECT SUM(rpt_summary.session) AS total FROM rpt_summary WHERE MONTH(rpt_summary.date) = '".$month."' AND YEAR(date) = '".$year."') AS DECIMAL(10,2)) as rate
+			FROM rpt_summary
+			WHERE MONTH(rpt_summary.date) = '".$month."' AND YEAR(date) = '".$year."'
+			GROUP BY rpt_summary.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
-
 		return $query->result();
 	}
 
 	public function getOptionYear()
 	{
-		$this->db->select('DATE_FORMAT(date_time,"%Y") AS niceDate'); 
-		$this->db->from('summary_channel');
-		$this->db->where('YEAR(date_time) > 2018'); // reg
+		// //summary_channel
+		// $this->db->select('DATE_FORMAT(date_time,"%Y") AS niceDate'); 
+		// $this->db->from('summary_channel');
+		// $this->db->where('YEAR(date_time) > 2018'); // reg
+		// // $this->db->where('YEAR(date_time) = YEAR(CURRENT_TIME)');
+		// $this->db->group_by('niceDate');
+		// $this->db->order_by('niceDate DESC'); 
+		// $this->db->limit('0,14'); 
+
+		//rpt_summary
+		$this->db->select('DATE_FORMAT(date,"%Y") AS niceDate'); 
+		$this->db->from('rpt_summary');
+		$this->db->where('YEAR(date) > 2018'); // reg
 		// $this->db->where('YEAR(date_time) = YEAR(CURRENT_TIME)');
 		$this->db->group_by('niceDate');
 		$this->db->order_by('niceDate DESC'); 
-		// $this->db->limit('0,14'); 
-
 		$query = $this->db->get();
 
 		return $query->result();
