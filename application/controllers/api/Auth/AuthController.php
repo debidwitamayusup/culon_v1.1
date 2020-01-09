@@ -1,7 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AuthController extends CI_Controller {
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+ require (APPPATH.'/libraries/REST_Controller.php');
+
+class AuthController extends REST_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,51 +27,70 @@ class AuthController extends CI_Controller {
 		$this->load->model('Stc_Model');
         $this->load->model('OperationModel');
         $this->load->model('AuthModel','module_model');
+        // $this->load->library('REST_Controller','rest');
     }
 
-    public function doLogin(){
-        $tenant_id = $this->security->xss_clean($this->input->post('tenant_id', true));
-        $this->session->set_userdata('tenant_id', $tenant_id);
+    public function doLogin_post(){
         
-        $response = array(
-            'status' => 200,
-            'message' => "success",
-            'data' => $this->session->userdata('tenant_id')
-        );
+        if(!$this->input->post('username') || !$this->input->post('password'))
+        {
+            $this->response([
+                 'status'  => FALSE,
+                 'message' => 'Lengkapi Kredensial anda.'
+                     ], REST_Controller::HTTP_NOT_FOUND);
+        }
 
-        echo json_encode($response);
+        $user_id = $this->security->xss_clean($this->input->post('username'));
+        $pwd = $this->security->xss_clean($this->input->post('password'));
+
+        $res = $this->module_model->loginapp($user_id,$pwd);
+        
+        if ($res) {
+           // $this->session->set_userdata($res);
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Login sukses!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Login gagal, silahkan coba kembali!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
     }
 
-    public function doLogout(){
-        
+    public function doLogout_post(){
+
         $this->session->sess_destroy();
-        
-        $response = array(
-            'status' => 200,
-            'message' => "success",
-            'data' => ''
-        );
-
-        echo json_encode($response);
+    
+        $this->response([
+             'status'  => TRUE,
+             'message' => 'Logout sukses!',
+               ], REST_Controller::HTTP_OK);
     }
 
 #region Raga
 
-    public function doforgotpassword() {
+    public function doforgotpassword_post() {
 
-        if (!$this->input->post()) {
-            $this->response([
-                'status'  => FALSE,
-                'message' => '404 Service Not Found.'
-                    ], REST_Controller::HTTP_NOT_FOUND);
-        }
+        // print (APPPATH. 'libraries\REST_Controller.php');
+        // exit;
+        // if (!$this->input->post()) {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => '404 Service Not Found.'
+        //             ], REST_Controller::HTTP_NOT_FOUND);
+        // }
 
-        if (!$this->module_model->checkId()) {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'Nomor handphone anda belum terdaftar di aplikasi kami.'
-                    ], REST_Controller::HTTP_OK);
-        }
+        // if (!$this->module_model->checkId()) {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => 'Nomor handphone anda belum terdaftar di aplikasi kami.'
+        //             ], REST_Controller::HTTP_OK);
+        // }
 
         // if ($this->module_model->driverCheckedReset()) {
         //     $this->response([
@@ -82,7 +104,8 @@ class AuthController extends CI_Controller {
         if ($submit) {
             $this->response([
                 'status'  => TRUE,
-                'message' => ''
+                'message' => '',
+                'data'    => $submit
                     ], REST_Controller::HTTP_OK);
         }
         else {
