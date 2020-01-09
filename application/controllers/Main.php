@@ -168,11 +168,28 @@ class main extends CI_Controller {
 		$this->load->view('v_summary_inout_sla');
 	}
 
+
+	// report
+
 	public function report_summary_ticket(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_sum_ticket');
+	}
+
+	public function report_summary_channel(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_sum_channel');
+	}
+
+	public function report_agent_performance(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_agent');
 	}
 
 }

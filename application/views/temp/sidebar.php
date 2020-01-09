@@ -88,11 +88,11 @@
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="#">Summary Channel</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_channel">Summary Channel</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_ticket">Summary Ticket</a></li>
 				<li><a class="slide-item" href="#">Summary Interval</a></li>
 				<li><a class="slide-item" href="#">Agent Log</a></li>
-				<li><a class="slide-item" href="#">Agent Performance</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
 				<li><a class="slide-item" href="#">Agent Summary</a></li>
 				<li><a class="slide-item" href="#">Detail Ticket</a></li>
 				<li><a class="slide-item" href="#">Detail CWC</a></li>
