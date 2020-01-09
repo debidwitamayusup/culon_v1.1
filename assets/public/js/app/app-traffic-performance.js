@@ -1,6 +1,8 @@
+var base_url = $('#base_url').val();
+
 $(document).ready(function () {
-    // loadContent();
-    template();
+    loadContent();
+    // template();
 });
 
 
@@ -32,7 +34,7 @@ function loadContent(params, index_time){
 function callSummaryScrCof(){
     $.ajax({
         type: 'post',
-        url: base_url + 'api/AgentPerformance/TrafficPerformance/getScrCof',
+        url: base_url + 'api/AgentPerformance/AgentPerformController/getscrcof',
         // data: {
         //     params: params,
         //     index: index_time
@@ -42,6 +44,7 @@ function callSummaryScrCof(){
             // console.log(response);
             drawPie(response);
             drawBarChart(response);
+            drawTable(response);
         },
         error: function (r) {
             alert("error");
@@ -51,22 +54,21 @@ function callSummaryScrCof(){
 
 function drawPie(response){
     //destroy div piechart
-    $('#pieSummary').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
+    // $('#pieTrafficPerformance').remove(); // this is my <canvas> element
+    // $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
 
-    //destroy div card content
-    $('#row-baru').remove(); // this is my <div> element
-    $('#card-baru').append('<div id="row-baru" class="row"></div>');
+    // //destroy div card content
+    // $('#row-baru').remove(); // this is my <div> element
+    // $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
-    let arrTotal = []
-    let arrChannel = []
+    let arrCof = []
     let arrColor = []
+    let arrChannel = []
 
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
-        drawCardInteractionNew(value);
-        arrTotal.push(value.total);
-        arrChannel.push(value.channel);
+        arrCof.push(value.cof);
+        arrChannel.push(value.channel)
         arrColor.push(getColorChannel(value.channel));
     });
 
@@ -77,7 +79,8 @@ function drawPie(response){
         type: 'pie',
         data: {
             datasets: [ {
-                data: arrTotal,
+                labels: arrCof,
+                data: arrCof,
                 backgroundColor: arrColor,
                 hoverBackgroundColor: arrColor
                             } ],
@@ -97,7 +100,9 @@ function drawPie(response){
                 render : 'legend',
                 fontColor : '#000',
                 position : 'outside',
-                segment : true
+                segment : true,
+                precision: 0,
+                showActualPercentages: true,                
             },
             legendCallback : function (chart, index){
                 var allData = chart.data.datasets[0].data;
@@ -113,10 +118,14 @@ function drawPie(response){
                         total += parseInt(allData[i]);
                     }
 
-                    // console.log(total)
-                    var percentage = Math.round((dataLabel / total)*100);
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
                     legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+': '+percentage+'%</span>')
+                    legendHtml.push('</li>');
                 })
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");
@@ -128,18 +137,18 @@ function drawPie(response){
 }
 
 function drawBarChart(response){
-    destroyChartPercentage();
+    // destroyChartPercentage();
     var data_label = [];
-    var data_rate = [];
+    var data_scr = [];
     var data_color = [];
     response.data.forEach(function (value, index) {
-        data_label.push(value.channel_name);
-        data_rate.push(value.rate);
-        data_color.push(getColorChannel(value.channel_name));
+        data_label.push(value.channel);
+        data_scr.push(value.scr);
+        data_color.push(getColorChannel(value.channel));
     });
     var obj = [{
         label: "data",
-        data: data_rate,
+        data: data_scr,
         borderColor: data_color,
         borderWidth: "0",
         backgroundColor: data_color
@@ -149,14 +158,15 @@ function drawBarChart(response){
     var MeSeContext = document.getElementById("MeSeStatusCanvas");
     MeSeContext.height = 500;
     var MeSeData = {
-        labels : dataLabel,
+        labels : data_label,
         datasets : [{
             label : "test",
-            data :data_rate,
+            data :data_scr,
             backgroundColor : data_color,
             hoverBackgroundColor : data_color
         }]
     };
+    console.log(data_scr);
     var MeSeChart = new Chart(MeSeContext,{
         type : 'horizontalBar',
         data : MeSeData,
@@ -178,6 +188,29 @@ function drawBarChart(response){
                 }
         }
     });
+}
+
+function drawTable(response){
+    $("#mytbody").empty();
+    if(response.data.length != 0){
+        response.data.forEach(function (value, index) {
+            $('#table-traffic-performance').find('tbody').append('<tr>'+
+            '<td class="text-center">'+(index+1)+'</td>'+
+            '<td class="text-left">'+value.channel+'</td>'+
+            '<td class="text-right">'+value.cof+'</td>'+
+            '<td class="text-right">'+value.abd+'</td>'+
+            '<td class="text-right">'+value.art+'</td>'+
+            '<td class="text-right">'+value.aht+'</td>'+
+            '<td class="text-right">'+value.ast+'</td>'+
+            '<td class="text-right">'+value.sl+'</td>'+
+            '<td class="text-right">'+value.scr+'</td>'+
+            '</tr>');
+        });
+    }else{
+        $('#table-avg-interval').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
 }
 
 function template() {
