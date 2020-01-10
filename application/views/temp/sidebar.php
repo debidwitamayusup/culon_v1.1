@@ -95,7 +95,7 @@
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
 				<li><a class="slide-item" href="#">Agent Summary</a></li>
 				<li><a class="slide-item" href="#">Detail Ticket</a></li>
-				<li><a class="slide-item" href="#">Detail CWC</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">Detail CWC</a></li>
 			</ul>
 		</li>
 	</ul>

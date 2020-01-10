@@ -206,4 +206,11 @@ class main extends CI_Controller {
 		$this->load->view('v_report_agent');
 	}
 
+	public function report_detail_cwc(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_detail_cwc');
+	}
+
 }
