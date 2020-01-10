@@ -21,19 +21,63 @@ Class AuthModel extends CI_Model {
 
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
-        //query goes here
+        $this->db->select('userid AS USERID,nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
+        $this->db->from('m_login');
+        $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
 
-        if(($usr == 'admin') && ($pwd == 'admin*')) //where clause
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) //where clause
         {
+            $data    = $query->row();
             $content = array(
-                'USERNAME'          => 'User1',
-                'ACC_NAME'          => 'Harimau-01',
-                'ACC_PREVILAGE'     => 'SUPERADMIN'
+                'USERID'        => $data->USERID,
+                'NICK'          => $data->NICK,
+                'NAME'          => $data->LONG_NAME,
+                'PREVILAGE'     => $data->PREVILAGE,
+                'PICTURE'       => APPPATH.'public\user'.$data->PICTURE,
+                'UNIT'          => $data->UNIT_ID
+
             );
+
+            $this->db->where('userid', $usr);
+            $this->db->update('m_login', array('is_login' => '1'));
+
             return $content;
         }
 
         return FALSE;
+    }
+
+    public function logoutapp($usr){
+        
+        $this->db->select('userid AS USERID, nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
+        $this->db->from('m_login');
+        $this->db->where('userid', $usr);
+
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) //where clause
+        {
+            $data    = $query->row();
+            $content = array(
+                'USERID'        => $data->USERID,
+                'NICK'          => $data->NICK,
+                'NAME'          => $data->LONG_NAME,
+                'PREVILAGE'     => $data->PREVILAGE,
+                'PICTURE'       => APPPATH.'public\user'.$data->PICTURE,
+                'UNIT'          => $data->UNIT_ID
+
+            );
+
+            $this->db->where('userid', $usr);
+            $this->db->update('m_login', array('is_login' => '0'));
+
+            return $content;
+        }
+
+        return FALSE;
+
     }
 
     // public function tenant(){
