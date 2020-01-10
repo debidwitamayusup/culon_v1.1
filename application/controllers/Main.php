@@ -27,9 +27,16 @@ class main extends CI_Controller {
         $this->load->view('temp/body');
     //    $this->load->view('temp/footer');
 	}
+
 	public function login(){
 		$this->load->view('login_temp/header');
 		$this->load->view('v_login');
+		$this->load->view('login_temp/footer');
+	}
+
+	public function signup(){
+		$this->load->view('login_temp/header');
+		$this->load->view('v_signup');
 		$this->load->view('login_temp/footer');
 	}
 	
@@ -181,8 +188,6 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_summary_inout_sla');
 	}
-
-
 	// report
 
 	public function report_summary_ticket(){
@@ -204,6 +209,13 @@ class main extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_agent');
+	}
+
+	public function report_detail_cwc(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_detail_cwc');
 	}
 
 }
