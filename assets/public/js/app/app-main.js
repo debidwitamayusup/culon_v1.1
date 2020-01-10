@@ -25,11 +25,14 @@ $(document).ready(function () {
             },
             success: function (r) {
                 if(r.status) {
+                    sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
                     window.location = base_url
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
                 } else {
                     alert(r.message)
+                    $("#btn-login").attr('disabled', false);
+                    $("#btn-login").html('Sign in')
                 }
             },
             fail: function (r) {
@@ -45,22 +48,4 @@ $(document).ready(function () {
         });
     });
 
-    // btn logout 
-    $('#btn-logout').click(function(){
-        $.ajax({
-            type: 'post',
-            url: base_url+'api/AuthController/doLogout',
-            data: {
-                
-            },
-            success: function (r) {
-                var response = JSON.parse(r);
-                console.log(response);
-            },
-            error: function (r) {
-                console.log(r);
-                alert("error");
-            },
-        });
-    });
 })(jQuery);
