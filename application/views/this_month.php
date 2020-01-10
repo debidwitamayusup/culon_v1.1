@@ -1,6 +1,5 @@
 	<body class="app  sidebar-mini">
-
-		<!-- Global Loader-->
+	<!-- Global Loader-->
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 		<div class="page">
 			<div class="page-main">
@@ -12,6 +11,7 @@
 									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
 								</li>
 								<li class="breadcrumb-item active mt-2" aria-current="page">Traffic Channel</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Monthly</li>
 							</ol>
 						</div>
 						<!--Page Header-->
@@ -70,10 +70,11 @@
 											<div class="wd-200 mb-3">
 												<div class="input-group">
 													<div class="input-group-prepend">
+														<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
 														<select class="form-control select2" id="dropdownYear">
-															<!-- <option value="1">2019</option>
-															<option value="2">2020</option> -->
-														</select>
+															<option value="1">2019</option>
+															<option value="2">2020</option>
+														</select> 
 													</div>
 												</div>
 											</div>
@@ -135,3 +136,4 @@
 				<script src="<?=base_url()?>assets/public/js/chart/lineChart.js"></script>
 				<!-- <script src="<?=base_url()?>assets/public/js/chart/VerticalChart.js"></script> -->
 				<script src="<?=base_url()?>assets/public/js/app/app-traffic-month.js"></script>
+																																			

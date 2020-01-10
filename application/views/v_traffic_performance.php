@@ -28,7 +28,7 @@
                                 <h5 class="card-title-small card-pt10">Summary SCR / Channel</h5>
                             </div>
                             <div class="card-body">
-                                <canvas id="MeSeStatusCanvas" class="h-300"></canvas>
+                                <canvas id="MeSeStatusCanvas" style="height:417px !important"></canvas>
                                 <!-- <div id="echart3" class="chartsh overflow-hidden"></div> -->
                             </div>
                         </div>
@@ -38,8 +38,13 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Summary COF / Channel</h5>
                             </div>
-                            <div class="card-body">
-                                <canvas id="pieTrafficPerformance" class="donutShadow overflow-hidden"></canvas>
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie">
+                                        <canvas id="pieTrafficPerformance" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legend" class="legend-con"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -50,8 +55,8 @@
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
                                 <table class="table card-table table-vcenter table-hover"
-                                    style="height:616px !important;">
-                                    <thead class="text-center text-white bg-sign">
+                                    style="height:616px !important;" id="table-traffic-performance">
+                                    <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th>No</th>
                                             <th>Channel</th>
@@ -64,8 +69,8 @@
                                             <th>SCR</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:12px !important;">
-                                        <tr>
+                                    <tbody style="font-size:12px !important;" id="mytbody">
+                                       <!--  <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-left">Whatsapp</td>
                                             <td class="text-right">10</td>
@@ -196,14 +201,13 @@
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php $this->load->view('temp/footer');?>
-            <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-traffic-performance.js"></script>
+                <?php $this->load->view('temp/footer');?>
+                <!--Plugin -->
+                <script src="<?=base_url()?>assets/public/js/app/app-traffic-performance.js"></script>

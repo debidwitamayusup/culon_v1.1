@@ -622,7 +622,7 @@ function drawSummaryTrafficNfcr(response){
 }
 
 function drawTableData(response){
-	var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0;
+	var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0,summarize = 0,t_summarize =0;
 	//for append title on echart
     $('#titleCategory1').html(response.data[0].category_1);
     $('#titleCategory2').html(response.data[0].category_2);
@@ -636,7 +636,9 @@ function drawTableData(response){
 	            '<th rowspan="2" class="align-middle">Channel</th>'+
 	            '<th colspan="2" class="bg-blue-1 align-content-md-center text-white">'+response.data[0].category_1+'</th>'+
 	            '<th colspan="2" class="bg-dark">'+response.data[0].category_2+'</th>'+
-	            '<th colspan="2" class="bg-primary text-white">'+response.data[0].category_3+'</th>'+
+				'<th colspan="2" class="bg-primary text-white">'+response.data[0].category_3+'</th>'+
+				'<th rowspan="2" class="align-middle font-weight-extrabold"> TOTAL </th>'+
+				
             '</tr>'+
             '<tr>'+
                 '<th class="bg-green text-white">FCR</th>'+
@@ -644,11 +646,14 @@ function drawTableData(response){
                 '<th class="bg-green text-white">FCR</th>'+
                 '<th class="bg-blue-dark text-white">N-FCR</th>'+
                 '<th class="bg-green text-white">FCR</th>'+
-                '<th class="bg-blue-dark text-white">N-FCR</th>'+
+				'<th class="bg-blue-dark text-white">N-FCR</th>'+
+				
             '</tr>');
 
     	var i = 0;
         response.data.forEach(function (value, index) {
+			summarize = parseInt(value.fcr_1)+parseInt(value.nfcr_1)+parseInt(value.fcr_2)+parseInt(value.nfcr_2)+parseInt(value.fcr_3)+parseInt(value.nfcr_3);
+			t_summarize = parseInt(summarize)+parseInt(t_summarize);
 			sum_fcr1=parseInt(sum_fcr1)+parseInt(value.fcr_1);
 			sum_nfcr1=parseInt(sum_nfcr1)+parseInt(value.nfcr_1);
 			sum_fcr2=parseInt(sum_fcr2)+parseInt(value.fcr_2);
@@ -663,19 +668,21 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(value.fcr_2)+'</td>'+
             '<td class="text-right">'+addCommas(value.nfcr_2)+'</td>'+
             '<td class="text-right">'+addCommas(value.fcr_3)+'</td>'+
-            '<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
+			'<td class="text-right">'+addCommas(value.nfcr_3)+'</td>'+
+			'<td class="text-right font-weight-extrabold bg-total">'+addCommas(summarize)+'</td>'+
             '</tr>');
 			i++;
 			
 		});
-		$('#table-avg-interval').find('tbody').append('<tr class="font-weight-extrabold">'+
+		$('#table-avg-interval').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
             '<td colspan="2" class="text-right">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sum_fcr1)+'</td>'+
             '<td class="text-right">'+addCommas(sum_nfcr1)+'</td>'+
             '<td class="text-right">'+addCommas(sum_fcr2)+'</td>'+
             '<td class="text-right">'+addCommas(sum_nfcr2)+'</td>'+
             '<td class="text-right">'+addCommas(sum_fcr3)+'</td>'+
-            '<td class="text-right">'+addCommas(sum_nfcr3)+'</td>'+
+			'<td class="text-right">'+addCommas(sum_nfcr3)+'</td>'+
+			'<td class="text-right">'+addCommas(t_summarize)+'</td>'+
             '</tr>');
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+

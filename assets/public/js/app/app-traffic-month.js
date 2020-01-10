@@ -14,6 +14,7 @@ $(document).ready(function () {
     $('#month option[value='+n+']').attr('selected','selected');
 
     callGraphicInterval('ShowAll', n, m);
+    // callGraphicInterval('ShowAll', '12', '2019');
     callDataPercentage(n, m);
     callDataTableAvg(n, m);
     callYear();
@@ -230,7 +231,7 @@ function drawTableMonth(response){
             $('#tabel_average_month').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+value.sla+'%</td>'+
+            '<td class="text-right">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+'%</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+
@@ -263,7 +264,7 @@ function callYear()
             var dateTahun = $("#dropdownYear");
             var response = JSON.parse(r);
 
-            var html = '';
+            var html = '<option value="2020">2020</option>';
             var i;
             console.log(response);
                 for(i=0; i<response.data.niceDate.length; i++){

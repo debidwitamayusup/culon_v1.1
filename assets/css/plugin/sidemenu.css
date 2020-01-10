@@ -721,7 +721,7 @@
 	border-bottom:1px solid rgba(255, 255, 255, 0.05);
 }
 .slide-item:before{
-	content: '\e617';
+	content: '\e606';
     margin-right: 10px;
     position: relative;
     font-family: 'simple-line-icons' !important;

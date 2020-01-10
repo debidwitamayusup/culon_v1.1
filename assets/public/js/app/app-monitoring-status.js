@@ -6,37 +6,37 @@
 		name: 'New',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90]
+		data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
 	}, {
 		name: 'Open',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,90]
+		data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
 	}, {
 		name: 'Reject',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,80]
+		data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
 	}, {
 		name: 'On Progress',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,60]
+		data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
 	}, {
 		name: 'Pending',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,40]
+		data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
 	}, {
 		name: 'Reopen',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,20]
+		data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
 	}, {
 		name: 'Resolve',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,30]
+		data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
 	}, 
 	// {
 	// 	name: 'Close',
@@ -84,8 +84,7 @@
 			}
 		},
 		series: chartTicketUnit,
-		// color: ["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","#107F80","#69EFE2"]
-		color :["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","107F80"]
+		color :["#FEC88C","#FFA07A","#87CEFA","#ADD8E6","#B0C4DE","#778899","#BDB76B"]
 	};
 	var chartTicketUnit = document.getElementById('echartTicketUnit');
 	var barChartTicketUnit = echarts.init(chartTicketUnit);
@@ -101,21 +100,23 @@
                 data: [ 15, 35, 40,20,50,30,15,30 ],
                 backgroundColor: [
 									"#FEC88C",
-									"#FF893A",
-									"#FE5163",
-									"#69EFE2",
-									"#5AD87B",
-									"#0099FF",
-									"#107F80",
+									"#FFA07A",
+									"#87CEFA",
+									"#ADD8E6",
+									"#B0C4DE",
+									"#778899",
+									// "#8FBC8F",
+									"#BDB76B"
 								],
                 hoverBackgroundColor: [
-										"#FEC88C",
-										"#FF893A",
-										"#FE5163",
-										"#69EFE2",
-										"#5AD87B",
-										"#0099FF",
-										"#107F80",
+									"#FEC88C",
+									"#FFA07A",
+									"#87CEFA",
+									"#ADD8E6",
+									"#B0C4DE",
+									"#778899",
+									// "#8FBC8F",
+									"#BDB76B"
 									]
 			} ],
             labels: [
@@ -146,37 +147,37 @@
 		name: 'New',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12,12,12]
 	}, {
 		name: 'Open',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25,25,25]
 	}, {
 		name: 'Reject',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [40, 40, 40, 40, 40, 40, 40, 40,40,40,40,40]
 	}, {
 		name: 'On Progress',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60,60,60]
 	}, {
 		name: 'Pending',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80,80,80]
 	}, {
 		name: 'Reopen',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90,90,90]
 	}, {
 		name: 'Resolve',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 24,90,60,80]
+		data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100,100,100]
 	},
 	//  {
 	// 	name: 'Close',
@@ -225,7 +226,7 @@
 			}
 		},
 		series: chartTicketChannel,
-		color: ["#FEC88C","#FF893A","#FE5163","#69EFE2","#5AD87B","#0099FF","#107F80"]
+		color: ["#FEC88C","#FFA07A","#87CEFA","#ADD8E6","#B0C4DE","#778899","#BDB76B"]
 	};
 	var chartTicketChannel = document.getElementById('echartTicketChannel');
 	var barChartTicketChannel = echarts.init(chartTicketChannel);
@@ -233,7 +234,7 @@
     
     //pie chart Ticket Channel
     var ctx = document.getElementById( "pieChartTicketChannel" );
-    ctx.height = 287;
+    ctx.height = 250;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -286,13 +287,42 @@
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+			maintainAspectRatio: false,
+			
             legend:{
-                position:"bottom",
-                labels:{
-					boxWidth:10
-			   }
-            }
+					display : false
+			},
+			pieceLabel:{
+				render : 'legend',
+				fontColor : '#000',
+				position : 'outside',
+				segment : true
+			},
+			legendCallback : function (chart, index){
+				var allData = chart.data.datasets[0].data;
+				// console.log(chart)
+				var legendHtml = [];
+				legendHtml.push('<ul><div class="row">');
+				allData.forEach(function(data,index){
+					var label = chart.data.labels[index];
+					var dataLabel = allData[index];
+					var background = chart.data.datasets[0].backgroundColor[index]
+					var total = 0;
+					for (var i in allData){
+						total += parseInt(allData[i]);
+					}
+
+					// console.log(total)
+					var percentage = Math.round((dataLabel / total) * 100);
+					legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+					legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
+				})
+				legendHtml.push('</ul></div>');
+				return legendHtml.join("");
+			},
         }
-    } );
+	});
+	var myLegendContainer = document.getElementById("legend");
+	myLegendContainer.innerHTML = myChart.generateLegend();
+
 })(jQuery);

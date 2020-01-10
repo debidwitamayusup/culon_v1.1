@@ -11,6 +11,7 @@
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                             </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Ticket</li>
                             <li class="breadcrumb-item active mt-2" aria-current="page">Summary Status / Kategori
                             </li>
                         </ol>
@@ -71,7 +72,7 @@
                     <div class="d-flex align-items-end flex-column bd-highlight">
                         <div class="bd-highlight">
                             <div class="card-options d-none d-sm-block">
-                                <div class="btn-group text-center btn-sm">
+                                <div class="btn-group text-center btn-sm mb-2 mt-2">
                                     <a href="#" class="btn btn-light btn-sm" id="btn-day">
                                         <span class="">Day</a></span>
                                     <a href="#" class="btn btn-light btn-sm" id="btn-week">

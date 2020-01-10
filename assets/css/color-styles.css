@@ -302,9 +302,14 @@ form.convFormDynamic button.submit {
 .page-link:focus {
 	border: 1px solid #089e60;
 }
-.page-item.active .page-link {
+/* .page-item.active .page-link {
 	background-color: #089e60;
 	border: 1px solid #089e60;
+} */
+
+.page-item.active .page-link{
+	background-color : #4682B4;
+	border:1px solid #4682B4;
 }
 
 /*------ 11. Email services -------*/

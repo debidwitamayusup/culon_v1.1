@@ -30,7 +30,7 @@
                             <div class="bd-highlight">
                                 <!-- daily -->
                                 <div id="filter-date" class="mt-1 mr-0">
-                                    <input id="input-date-filter" class="w-75 ml-auto form-control fc-datepicker"
+                                    <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
                                         placeholder="MM/DD/YYYY" type="text">
                                 </div>
 
@@ -57,10 +57,10 @@
                                             class="form-control">
                                             <option value="2020">2020</option>
                                             <option value="2019" selected>2019</option>
-                                            <option value="2018">2018</option>
+                                            <!-- <option value="2018">2018</option>
                                             <option value="2017">2017</option>
                                             <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
+                                            <option value="2015">2015</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -70,10 +70,10 @@
                                 <select name="select-year-only" id="select-year-only" class="form-control">
                                     <option value="2020">2020</option>
                                     <option value="2019" selected>2019</option>
-                                    <option value="2018">2018</option>
+                                    <!-- <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
+                                    <option value="2015">2015</option> -->
                                 </select>
                             </div>
                             </div>
