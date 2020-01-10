@@ -12,9 +12,6 @@
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/logo_info_ico.ico" />
 
-		<!-- Title -->
-		<title>Sign in</title>
-
 		<!--Bootstrap.min css-->
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
 
@@ -32,5 +29,3 @@
 		<!---Font icons css-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-
-	</head>

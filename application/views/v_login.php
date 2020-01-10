@@ -1,3 +1,6 @@
+<!-- Title -->
+<title>Sign in</title>
+</head>
 <body style="background-color : #f6f2f2">
     <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
     <!-- Global Loader-->
@@ -70,7 +73,7 @@
                                             Don't have an account?
                                         </div>
                                         <div class="text-center">
-                                            <a class="text-sign" href="#">Sign up</a>
+                                            <a class="text-sign" href="<?=base_url()?>main/signup">Sign up</a>
                                         </div>
                                     </div>
                                 </div>
