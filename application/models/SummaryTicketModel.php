@@ -22,6 +22,28 @@ class SummaryTicketModel extends CI_Model
 
 		return $query->result();
 	}
+
+	public function getSummUnit(){
+		$this->db->select('unit, (SUM(sNew) + SUM(sOpen) + SUM(sOnProgress) + SUM(sPending) + SUM(sReopen) + SUM(sReject) + SUM(sReject) + SUM(sResolved)) as total');
+		$this->db->from('rpt_summ_ticket_unit');
+		$this->db->group_by('unit');
+
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	public function getSummStatusperUnit(){
+		$this->db->select('unit, sNew as new, sOpen as open, sOnProgress as onProgress, sResolved as Resolved, sReopen as Reopen, sPending as pending, sReturn as '."'return'".'');
+		$this->db->from('rpt_summ_ticket_unit');
+		$this->db->group_by('unit');
+
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+
 }
 
 ?>

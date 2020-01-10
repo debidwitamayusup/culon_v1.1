@@ -29,6 +29,44 @@ class SummaryTicketUnit extends CI_Controller {
 
         echo json_encode($response);
     }
+
+    public function getSummaryUnit(){
+    	$data = $this->module_model->getSummUnit();
+
+    	if ($data) {
+            $response = array(
+				'status' => true,
+				'data' => $data
+			);
+        }
+        else {
+            $response = array(
+				'status' => false,
+                'data' => array(),
+                'message' => 'Unable to fetch Data');
+        }
+
+        echo json_encode($response);
+    }
+
+    public function getSummaryStatusperUnit(){
+    	$data = $this->module_model->getSummStatusperUnit();
+
+    	if ($data) {
+            $response = array(
+				'status' => true,
+				'data' => $data
+			);
+        }
+        else {
+            $response = array(
+				'status' => false,
+                'data' => array(),
+                'message' => 'Unable to fetch Data');
+        }
+
+        echo json_encode($response);
+    }
 }
 
 ?>
