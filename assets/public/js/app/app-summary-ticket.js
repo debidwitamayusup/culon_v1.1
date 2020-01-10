@@ -1,11 +1,12 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function () {
-    loadContent();
+    // loadContent();
+    simmiriStatusTicket();
     ini_finctiiin();
 });
 
-function getColorChannel(channel){
+function getColor(){
     var color = [];
     color['New'] = '#FEC88C';
     color['Open'] = '#FFA07A';
@@ -16,7 +17,7 @@ function getColorChannel(channel){
     color['Close'] = '#8FBC8F';
     color['Resolve'] = '#BDB76B';
 
-    return color[channel];
+    return color[];
 }
 
 // function loadContent(params, index_time){
@@ -35,7 +36,7 @@ function simmiriStatusTicket(){
         // },
         success: function (r) { 
             var response = JSON.parse(r);
-            console.log(response);
+            //console.log(response);
             drawPie(response);
         },
         error: function (r) {
@@ -82,103 +83,9 @@ function drawPie(response){
             responsive: true,
             maintainAspectRatio: false,
             legend:{
-            //     position:"bottom",
-            //     labels:{
-            //      boxWidth:10
-            //    }
-                display : false
-            },
-            pieceLabel : {
-                render : 'legend',
-                fontColor : '#000',
-                position : 'outside',
-                segment : true,
-                precision: 0,
-                showActualPercentages: true,                
-            },
-            legendCallback : function (chart, index){
-                var allData = chart.data.datasets[0].data;
-                // console.log(chart)
-                var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
-                allData.forEach(function(data,index){
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for(var i in allData){
-                        total += parseInt(allData[i]);
-                    }
-
-                    if(dataLabel != 0){
-                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
-                    }else{
-                        var percentage = Math.round((dataLabel / total) * 100);
-                    }
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+': '+percentage+'%</span>')
-                    legendHtml.push('</li>');
-                })
-                legendHtml.push('</ul></div>');
-                return legendHtml.join("");
-            },
-        }
-    } );
-    var mylegendContainer = document.getElementById("legend");
-    mylegendContainer.innerHTML=myChart.generateLegend();
-}
-
-(function ini_finctiiin () {
-    "use strict";
-
-    //pie chart summary status ticket
-    var ctx = document.getElementById( "pieChart" );
-    ctx.height = 250;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                data: [ 15, 35, 40,20,50,30,15,30 ],
-                backgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
-                                    "#B0C4DE",
-                                    "#778899",
-                                    "#8FBC8F",
-                                    "#BDB76B",
-                                    
-                                ],
-                hoverBackgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
-                                    "#B0C4DE",
-                                    "#778899",
-                                    "#8FBC8F",
-                                    "#BDB76B",
-                                ]
-            } ],
-            labels: [
-                                "New",
-                                "Open",
-                                "Reject",
-                                "On Progress",
-                                "Pending",
-                                "Reopen",
-                                "Close",
-                                "Resolve"
-                    ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend:{
                 // position:"bottom",
                 // labels:{
-                // 	boxWidth:10
+                //   boxWidth:10
                 display : false
             },
             legendCallback : function (chart,index){
@@ -207,6 +114,87 @@ function drawPie(response){
     } );
     var myLegendContainer = document.getElementById("legend");
     myLegendContainer.innerHTML = myChart.generateLegend();
+}
+
+function ini_finctiiin () {
+    "use strict";
+
+    //pie chart summary status ticket
+    // var ctx = document.getElementById( "pieChart" );
+    // ctx.height = 250;
+    // var myChart = new Chart( ctx, {
+    //     type: 'pie',
+    //     data: {
+    //         datasets: [ {
+    //             data: [ 15, 35, 40,20,50,30,15,30 ],
+    //             backgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
+    //                                 "#B0C4DE",
+    //                                 "#778899",
+    //                                 "#8FBC8F",
+    //                                 "#BDB76B",
+                                    
+    //                             ],
+    //             hoverBackgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
+    //                                 "#B0C4DE",
+    //                                 "#778899",
+    //                                 "#8FBC8F",
+    //                                 "#BDB76B",
+    //                             ]
+    //         } ],
+    //         labels: [
+    //                             "New",
+    //                             "Open",
+    //                             "Reject",
+    //                             "On Progress",
+    //                             "Pending",
+    //                             "Reopen",
+    //                             "Close",
+    //                             "Resolve"
+    //                 ]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend:{
+    //             // position:"bottom",
+    //             // labels:{
+    //             // 	boxWidth:10
+    //             display : false
+    //         },
+    //         legendCallback : function (chart,index){
+    //             var allData = chart.data.datasets[0].data;
+    //             // console.log(chart)
+    //             var legendHtml = [];
+    //             legendHtml.push('<ul><div class="row ml-3">');
+    //             allData.forEach(function(data,index){
+    //                 var label = chart.data.labels[index];
+    //                 var dataLabel = allData[index];
+    //                 var background = chart.data.datasets[0].backgroundColor[index]
+    //                 var total = 0;
+    //                 for (var i in allData){
+    //                     total += parseInt(allData[i]);
+    //                 }
+
+    //                 // console.log(total)
+    //                 var percentage = Math.round((dataLabel / total)*100);
+    //                 legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
+    //                 legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+    //             })
+    //             legendHtml.push('</ul></div>');
+    //             return legendHtml.join("");
+    //         },
+    //     }
+    // } );
+    // var myLegendContainer = document.getElementById("legend");
+    // myLegendContainer.innerHTML = myChart.generateLegend();
 
     //pie chart summary unit
     var ctx = document.getElementById( "pieChartUnit" );
@@ -292,4 +280,4 @@ function drawPie(response){
     var myLegendContainer = document.getElementById("legendUnit");
     myLegendContainer.innerHTML = myChart.generateLegend();
 
-})(jQuery);
+}
