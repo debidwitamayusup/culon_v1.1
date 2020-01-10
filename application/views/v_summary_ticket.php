@@ -71,7 +71,7 @@
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
-                                <table class="table card-table table-vcenter table-hover" style="height:829px !important;">
+                                <table class="table card-table table-vcenter table-hover" style="height:829px !important;" id="table_summary_ticket">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th rowspan="2" class="align-middle">No</th>
@@ -88,8 +88,8 @@
                                             <th>Close</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="font-size:12px !important;">
-                                        <tr>
+                                    <tbody style="font-size:12px !important;" id="mytbody">
+                                        <!-- <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-left">Call Center</td>
                                             <td class="text-right">10</td>
@@ -198,17 +198,17 @@
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
                                             <td class="text-right">10</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
-                                    <tfoot class="font-weight-extrabold text-right bg-total">
-                                        <th colspan="2" class="font-weight-extrabold">Total</th>
+                                    <tfoot class="font-weight-extrabold text-right bg-total" id="mytfoot">
+                                        <!-- <th colspan="2" class="font-weight-extrabold">Total</th>
                                         <th>100</th>
                                         <th>100</th>
                                         <th>100</th>
                                         <th>100</th>
                                         <th>100</th>
                                         <th>100</th>
-                                        <th>100</th>
+                                        <th>100</th> -->
                                     </tfoot>
                                 </table>
                             </div>

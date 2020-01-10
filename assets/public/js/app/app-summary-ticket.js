@@ -4,7 +4,8 @@ $(document).ready(function () {
     // loadContent();
     simmiriStatusTicket();
     simmiriUnit();
-    ini_finctiiin();
+    summaryStatusTicketPerUnit();
+    // ini_finctiiin();
 });
 
 function getColor(channel){
@@ -21,6 +22,18 @@ function getColor(channel){
     return color[channel];
 }
 
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
 // function loadContent(params, index_time){
 //     $("#filter-loader").fadeIn("slow");
 //     callSummaryScrCof();
@@ -58,6 +71,21 @@ function simmiriUnit(){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawPieUnit(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
+function summaryStatusTicketPerUnit(){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // console.log(response.data[0].new);
+            drawTable(response);
         },
         error: function (r) {
             alert("error");
@@ -264,6 +292,45 @@ function drawPieUnit(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
+function drawTable(response){
+    var sum_new=0, sum_open=0, sum_onProgress=0, sum_resolved=0, sum_reopen=0, sum_pending=0, sum_return=0;
+    $("#mytbody").empty();
+    var i = 0;
+    response.data.forEach(function (value, index) {
+        sum_new = parseInt(sum_new)+parseInt(value.new);
+        sum_open = parseInt(sum_open)+parseInt(value.open);
+        sum_onProgress = parseInt(sum_onProgress)+parseInt(value.onProgress);
+        sum_reopen = parseInt(sum_reopen)+parseInt(value.Reopen);
+        sum_resolved = parseInt(sum_resolved)+parseInt(value.Resolved);
+        sum_pending = parseInt(sum_pending)+parseInt(value.pending);
+        sum_return = parseInt(sum_return)+parseInt(value.return);
+
+        $('#table_summary_ticket').find('tbody').append('<tr>'+
+        '<td class="text-center">'+(i+1)+'</td>'+
+        '<td class="text-left">'+value.unit+'</td>'+
+        '<td class="text-right">'+addCommas(value.new)+'</td>'+
+        '<td class="text-right">'+addCommas(value.open)+'</td>'+
+        '<td class="text-right">'+addCommas(value.onProgress)+'</td>'+
+        '<td class="text-right">'+addCommas(value.Resolved)+'</td>'+
+        '<td class="text-right">'+addCommas(value.Reopen)+'</td>'+
+        '<td class="text-right">'+addCommas(value.pending)+'</td>'+
+        '<td class="text-right">'+addCommas(value.return)+'</td>'+
+        '</tr>');
+
+        i++;
+    });
+
+    $('#table_summary_ticket').find('tfoot').append('<th colspan="2" class="font-weight-extrabold">Total</th>'+
+                                                    '<th>'+sum_new+'</th>'+
+                                                    '<th>'+sum_open+'</th>'+
+                                                    '<th>'+sum_onProgress+'</th>'+
+                                                    '<th>'+sum_resolved+'</th>'+
+                                                    '<th>'+sum_reopen+'</th>'+
+                                                    '<th>'+sum_pending+'</th>'+
+                                                    '<th>'+sum_return+'</th>');
+
+    $("#filter-loader").fadeOut("slow");
+}
 function ini_finctiiin () {
     "use strict";
 
