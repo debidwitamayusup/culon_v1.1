@@ -30,14 +30,27 @@ class AuthController extends REST_Controller {
         // $this->load->library('REST_Controller','rest');
     }
 
+    //not needed
+    public function doLogout_post(){
+
+        $this->session->sess_destroy();
+    
+        $this->response([
+             'status'  => TRUE,
+             'message' => 'Logout sukses!',
+               ], REST_Controller::HTTP_OK);
+    }
+
+#region Raga
+    //login
     public function doLogin_post(){
-        
+            
         if(!$this->input->post('username') || !$this->input->post('password'))
         {
             $this->response([
-                 'status'  => FALSE,
-                 'message' => 'Lengkapi Kredensial anda.'
-                     ], REST_Controller::HTTP_NOT_FOUND);
+                'status'  => FALSE,
+                'message' => 'Lengkapi Kredensial anda.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
         }
 
         $user_id = $this->security->xss_clean($this->input->post('username'));
@@ -46,7 +59,7 @@ class AuthController extends REST_Controller {
         $res = $this->module_model->loginapp($user_id,$pwd);
         
         if ($res) {
-           // $this->session->set_userdata($res);
+        // $this->session->set_userdata($res);
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Login sukses!',
@@ -62,22 +75,9 @@ class AuthController extends REST_Controller {
 
     }
 
-    public function doLogout_post(){
+    //forgotpwd
+    public function doForgotpassword_post() {
 
-        $this->session->sess_destroy();
-    
-        $this->response([
-             'status'  => TRUE,
-             'message' => 'Logout sukses!',
-               ], REST_Controller::HTTP_OK);
-    }
-
-#region Raga
-
-    public function doforgotpassword_post() {
-
-        // print (APPPATH. 'libraries\REST_Controller.php');
-        // exit;
         // if (!$this->input->post()) {
         //     $this->response([
         //         'status'  => FALSE,
@@ -92,12 +92,6 @@ class AuthController extends REST_Controller {
         //             ], REST_Controller::HTTP_OK);
         // }
 
-        // if ($this->module_model->driverCheckedReset()) {
-        //     $this->response([
-        //         'status'  => FALSE,
-        //         'message' => 'Anda telah melakukan reset password sebelumnya, silahkan hubungi Admin untuk meminta password baru!'
-        //             ], REST_Controller::HTTP_OK);
-        // }
 
         $submit = $this->module_model->do_forgotpwd();
 
@@ -115,6 +109,47 @@ class AuthController extends REST_Controller {
                     ], REST_Controller::HTTP_OK);
         }
     }
+
+    //register
+    public function doRegister_post() {
+
+
+        // if (!$this->input->post()) {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => '404 Service Not Found.'
+        //             ], REST_Controller::HTTP_NOT_FOUND);
+        // }
+
+        if ($this->module_model->checkId()) {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Akun yang sama telah terdaftar pada aplikasi kami, silahkan cek kembali!'
+                        ], REST_Controller::HTTP_OK);
+            }
+
+        $usr = $this->security->xss_clean($this->input->post('username'));
+        $pwd = $this->security->xss_clean($this->input->post('password'));
+        
+        $data = $this->module_model->do_registeracc($usr,$pwd); // can use or not use params by directly take post data body requests
+
+        if ($data) {
+            // $this->session->set_userdata($res);
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Registrasi akun sukses!',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Registrasi akun gagal, Periksa kembali data anda!'
+                        ], REST_Controller::HTTP_OK);
+            }
+    }
+
+
     
 #Endregion
 
