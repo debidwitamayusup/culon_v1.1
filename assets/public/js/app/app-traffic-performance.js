@@ -54,8 +54,8 @@ function callSummaryScrCof(){
 
 function drawPie(response){
     //destroy div piechart
-    // $('#pieTrafficPerformance').remove(); // this is my <canvas> element
-    // $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieTrafficPerformance').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieTrafficPerformance" class="donutShadow overflow-hidden"></canvas>');
 
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
