@@ -1,5 +1,5 @@
 <!-- Title -->
-<title>Sign up</title>
+<title>Sign in</title>
 </head>
 <body style="background-color : #f6f2f2">
     <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">

@@ -34,9 +34,9 @@ class main extends CI_Controller {
 		$this->load->view('login_temp/footer');
 	}
 
-	public function signup(){
+	public function forgot(){
 		$this->load->view('login_temp/header');
-		$this->load->view('v_signup');
+		$this->load->view('v_forgot');
 		$this->load->view('login_temp/footer');
 	}
 	
