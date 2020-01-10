@@ -48,12 +48,4 @@ $(document).ready(function () {
         });
     });
 
-    // btn logout 
-    $('#btn-logout').click(function(){
-        sessionStorage.removeItem('Auth-infomedia');
-        window.location = base_url+'login'
-            
-    });
-
-
 })(jQuery);

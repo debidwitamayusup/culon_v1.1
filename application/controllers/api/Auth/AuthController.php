@@ -33,12 +33,34 @@ class AuthController extends REST_Controller {
     //not needed
     public function doLogout_post(){
 
-        $this->session->sess_destroy();
+       // $this->session->sess_destroy();
     
-        $this->response([
-             'status'  => TRUE,
-             'message' => 'Logout sukses!',
-               ], REST_Controller::HTTP_OK);
+       if(!$this->input->post('username'))
+       {
+           $this->response([
+               'status'  => FALSE,
+               'message' => 'Lengkapi Kredensial anda.'
+                   ], REST_Controller::HTTP_NOT_FOUND);
+       }
+
+       $user_id = $this->security->xss_clean($this->input->post('username'));
+
+       $res = $this->module_model->logoutapp($user_id);
+       
+       if ($res) {
+       // $this->session->set_userdata($res);
+           $this->response([
+               'status'  => TRUE,
+               'message' => 'Logout sukses!',
+               'data'    => $res
+                   ], REST_Controller::HTTP_OK);
+       }
+       else {
+           $this->response([
+               'status'  => FALSE,
+               'message' => 'Logout gagal, silahkan coba kembali!'
+                   ], REST_Controller::HTTP_OK);
+       }
     }
 
 #region Raga
@@ -130,7 +152,7 @@ class AuthController extends REST_Controller {
 
         $usr = $this->security->xss_clean($this->input->post('username'));
         $pwd = $this->security->xss_clean($this->input->post('password'));
-        
+
         $data = $this->module_model->do_registeracc($usr,$pwd); // can use or not use params by directly take post data body requests
 
         if ($data) {
