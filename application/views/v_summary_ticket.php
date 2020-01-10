@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-pie">
                                 <div class="canvas-con">
-                                    <div class="canvas-con-inner" id="canvas-pie">
+                                    <div class="canvas-con-inner" id="canvas-pie-unit">
                                         <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
                                     </div>
                                     <div id="legendUnit" class="legend-con"></div>
