@@ -317,6 +317,7 @@ function drawPieUnit(response){
 
 function drawTable(response){
     //destroy div piechart
+    $('#table_summary_ticket').DataTable();
     $('#mytbody').remove();
     $('#mytfoot').remove();
     $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
