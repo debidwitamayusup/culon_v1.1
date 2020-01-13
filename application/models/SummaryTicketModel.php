@@ -31,10 +31,12 @@ class SummaryTicketModel extends CI_Model
 	}
 
 	public function getSummUnit($params, $index, $params_year){
-		$this->db->select('unit, (SUM(sNew) + SUM(sOpen) + SUM(sOnProgress) + SUM(sPending) + SUM(sReopen) + SUM(sReject) + SUM(sReject) + SUM(sResolved)) as total');
+		$this->db->select('unit, (SUM(sNew) + SUM(sOpen) + SUM(sOnProgress) + SUM(sPending) + SUM(sReopen) + SUM(sReject) + SUM(sReturn) + SUM(sResolved)) as total');
 		$this->db->from('rpt_summ_ticket_unit');
 		if ($params == 'day'){
 			$this->db->where('DATE(lup) = "'.$index.'"');
+		}else if ($params == 'week'){
+			$this->db->where('WEEK (lup) = WEEK("'.$index.'") AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'month'){
 			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
 		}else if ($params == 'year'){

@@ -50,6 +50,7 @@ function addCommas(commas)
 // }
 
 function simmiriStatusTicket(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryTicket',
@@ -62,9 +63,11 @@ function simmiriStatusTicket(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawPie(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -528,6 +531,19 @@ function ini_finctiiin () {
         // console.log(params_time);
         loadContent(params_time , '2020-01-10');
         // $('#tag-time').html(v_date);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn day
+    $('#btn-week').click(function(){
+        params_time = 'week';
+        // console.log(params_time);
+        loadContent(params_time , '2020-01-10', v_year);
+        // $('#tag-time').html(v_date);
+        $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -539,6 +555,7 @@ function ini_finctiiin () {
         // console.log(params_time);
         loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -550,6 +567,7 @@ function ini_finctiiin () {
         // console.log(params_time);
         loadContent(params_time , '2020');
         // $('#tag-time').html(v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
