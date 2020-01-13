@@ -40,7 +40,7 @@
                                                 in</button>
                                         </div>
                                         <div class="text-center text-muted mt-3 mb-3">
-                                            Forgot Password?
+                                            <a href="<?=base_url()?>main/forgot">Forgot Password?</a>
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="col-md-3">
@@ -73,7 +73,7 @@
                                             Don't have an account?
                                         </div>
                                         <div class="text-center">
-                                            <a class="text-sign" href="<?=base_url()?>main/signup">Sign up</a>
+                                            <a class="text-sign" href="#">Sign up</a>
                                         </div>
                                     </div>
                                 </div>

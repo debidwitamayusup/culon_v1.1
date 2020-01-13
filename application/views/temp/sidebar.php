@@ -4,7 +4,7 @@
 	<ul class="side-menu">
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-grid icon-resize"></i>
+				<i class="side-menu__icon fe fe-grid icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Wallboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -19,7 +19,7 @@
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#" aria-expanded="true">
-				<i class="side-menu__icon si si-home icon-resize"></i>
+				<i class="side-menu__icon fe fe-home icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -83,7 +83,7 @@
 		</li>
 		<li class="slide">
 			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon si si-notebook icon-resize"></i>
+				<i class="side-menu__icon fe fe-book icon-resize"></i>
 				<span class="side-menu__label label-icon-resize">Report</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
@@ -100,3 +100,4 @@
 		</li>
 	</ul>
 </aside>
+<body class="app sidebar-mini sidenav-toggled">

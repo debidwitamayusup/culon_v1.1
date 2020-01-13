@@ -1,6 +1,4 @@
-<body class="app  sidebar-mini">
-
-    <!-- Global Loader-->
+<!-- Global Loader-->
     <div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
     <div class="page">
         <div class="page-main">
@@ -54,7 +52,7 @@
                                 <h5 class="card-title-small card-pt10">Summary Service OPS</h5>
                             </div>
                             <div class="table-responsive table-bordered table-pt10">
-                                <table class="table card-table table-vcenter table-hover"
+                                <table class="table card-table table-striped table-vcenter table-hover"
                                     style="height:616px !important;" id="table-traffic-performance">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>

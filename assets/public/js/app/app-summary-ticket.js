@@ -11,6 +11,10 @@ $(document).ready(function () {
     $("#btn-day").prop("class","btn btn-red btn-sm");
 });
 
+    //sample datatable	
+	$('#example-2').DataTable();
+
+    //pie chart summary status ticket
 function loadContent(index, params, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
@@ -199,7 +203,7 @@ function drawPie(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-3">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
@@ -211,7 +215,7 @@ function drawPie(response){
 
                     // console.log(total)
                     var percentage = Math.round((dataLabel / total)*100);
-                    legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
+                    legendHtml.push('<li class="col-md-3 col-lg-3 col-sm-12 col-xl-3">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
                 })
                 legendHtml.push('</ul></div>');
@@ -249,6 +253,47 @@ function drawPieUnit(response){
         type: 'pie',
         data: {
             datasets: [ {
+<<<<<<< HEAD
+                data: [ 15, 35, 40,20],
+                backgroundColor: [
+                                    "#2F5596",
+                                    // "#01B0F1",
+                                    // "#F07D2D",
+                                    // "#F3AE8F",
+                                    "#44546B",
+                                    // "#70AC48",
+                                    "#9EC2E4",
+                                    // "#00AF50",
+                                    "#FDC100",
+                                    // "#C20006"
+                                ],
+                hoverBackgroundColor: [
+                                    "#2F5596",
+                                    // "#01B0F1",
+                                    // "#F07D2D",
+                                    // "#F3AE8F",
+                                    "#44546B",
+                                    // "#70AC48",
+                                    "#9EC2E4",
+                                    // "#00AF50",
+                                    "#FDC100",
+                                    // "#C20006"
+                                ]
+
+                            } ],
+            labels: [
+                            "Agency Help Line",
+                            // "Keuangan",
+                            // "CRM",
+                            // "Post Line",
+                            "Provider Relation",
+                            // "Data Control",
+                            "Credit Control",
+                            // "Claim Health",
+                            "Claim Non Health",
+                            // "Call Center"
+                        ]
+=======
                 labels: [arrUnit, arrTotal],
                 data: arrTotal,
                  backgroundColor: [
@@ -266,6 +311,7 @@ function drawPieUnit(response){
                                 ]
             } ],
             labels: arrUnit
+>>>>>>> origin/debi-dev
         },
         options: {
             responsive: true,
@@ -287,7 +333,11 @@ function drawPieUnit(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
+<<<<<<< HEAD
+                legendHtml.push('<ul><div class="row ml-8">');
+=======
                 legendHtml.push('<ul><div class="row ml-3">');
+>>>>>>> origin/debi-dev
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
