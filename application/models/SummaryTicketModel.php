@@ -14,7 +14,7 @@ class SummaryTicketModel extends CI_Model
 						, SUM(sOnProgress) as onProgress
 						, SUM(sPending) as pending
 						, SUM(sReopen) as reOpen
-						, SUM(sReject) as reject
+						, SUM(sReject) as '."'reject'".'
 						, SUM(sResolved) as resolved
 						, SUM(sReturn) as '."'return'".'');
 		$this->db->from('rpt_summ_ticket_unit');
@@ -50,7 +50,7 @@ class SummaryTicketModel extends CI_Model
 	}
 
 	public function getSummStatusperUnit($params, $index, $params_year){
-		$this->db->select('unit, sNew as new, sOpen as open, sOnProgress as onProgress, sResolved as Resolved, sReopen as Reopen, sPending as pending, sReturn as '."'return'".'');
+		$this->db->select('unit, sNew as new, sOpen as open, sOnProgress as onProgress, sResolved as Resolved, sReopen as Reopen, sPending as pending, sReject as reject, sReturn as '."'return'".'');
 		$this->db->from('rpt_summ_ticket_unit');
 		if ($params == 'day'){
 			$this->db->where('DATE(lup) = "'.$index.'"');
