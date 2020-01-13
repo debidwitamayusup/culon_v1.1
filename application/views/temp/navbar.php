@@ -29,9 +29,9 @@
 							</div>
 						</div>
 						<div class="dropdown-divider m-0"></div>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Profile</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-settings"></i>Setting</a>
-						<button class="dropdown-item" id="btn-logout" ><i class="dropdown-icon fe fe-power"></i> Log Out</button>
+						<!-- <a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Profile</a>
+						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-settings"></i>Setting</a> -->
+						<button class="dropdown-item" id="btn-logout" ><i class="dropdown-icon fe fe-power"></i>Log Out</button>
 					</div>
 				</div>
 

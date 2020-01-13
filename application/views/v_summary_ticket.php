@@ -232,6 +232,182 @@
                  </div>
              </div>
 
-             <?php $this->load->view('temp/footer');?>
-             <!-- <script src="<?=base_url()?>assets/plugins/echart/echart.js"></script> -->
-             <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket.js"></script>
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie">
+                                        <canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legend" class="legend-con"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card overflow-hidden">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Summary Unit</h5>
+                            </div>
+                            <div class="card-pie">
+                                <div class="canvas-con">
+                                    <div class="canvas-con-inner" id="canvas-pie-unit">
+                                        <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
+                                    </div>
+                                    <div id="legendUnit" class="legend-con"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-8">
+                        <div class="card overflow-hidden border-0">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
+                            </div>
+                            <div class="table-responsive table-bordered table-pt10" id="div_table_ticket">
+                                <table class="table card-table table-vcenter table-hover" style="height:829px !important;" id="table_summary_ticket">
+                                    <thead class="text-center text-white bg-gray1">
+                                        <tr>
+                                            <th rowspan="2" class="align-middle">No</th>
+                                            <th rowspan="2" class="align-middle">Unit</th>
+                                            <th colspan="7">Status</th>
+                                        </tr>
+                                        <tr>
+                                            <th>New</th>
+                                            <th>Open</th>
+                                            <th>On Progress</th>
+                                            <th>Resolve</th>
+                                            <th>Reopen</th>
+                                            <th>Pending</th>
+                                            <th>Close</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size:12px !important;" id="mytbody">
+                                        <!-- <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-left">Call Center</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-left">CRM</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td class="text-left">Credit Control</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td class="text-left">Post Link</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td class="text-left">Keuangan</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">6</td>
+                                            <td class="text-left">Provider Relation</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">7</td>
+                                            <td class="text-left">Clean Non Health</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">8</td>
+                                            <td class="text-left">Claim Health</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">9</td>
+                                            <td class="text-left">Agency Help Line</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">10</td>
+                                            <td class="text-left">Data Control</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                            <td class="text-right">10</td>
+                                        </tr> -->
+                                    </tbody>
+                                    <tfoot class="font-weight-extrabold text-right bg-total" id="mytfoot">
+                                        <!-- <th colspan="2" class="font-weight-extrabold">Total</th>
+                                        <th>100</th>
+                                        <th>100</th>
+                                        <th>100</th>
+                                        <th>100</th>
+                                        <th>100</th>
+                                        <th>100</th>
+                                        <th>100</th> -->
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- table-responsive -->
+                        </div>
+                    </div>
+                </div>
+
+                <?php $this->load->view('temp/footer');?>
+                <!-- <script src="<?=base_url()?>assets/plugins/echart/echart.js"></script> -->
+                <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket.js"></script>

@@ -85,8 +85,8 @@
                                                 <th class="font-weight-extrabold">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size:12px !important;">
-                                            <tr>
+                                        <tbody style="font-size:12px !important;" id="mytbody">
+                                            <!-- <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">Call Center</td>
                                                 <td class="text-right">10</td>
@@ -205,7 +205,7 @@
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -323,3 +323,5 @@
                 </div>
                 <?php $this->load->view('temp/footer');?>
                 <script src="<?=base_url()?>assets/public/js/app/app-sum-ticket-time.js"></script>
+                    <?php $this->load->view('temp/footer');?>
+                    <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-time.js"></script>
