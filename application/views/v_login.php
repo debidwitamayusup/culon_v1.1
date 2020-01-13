@@ -28,18 +28,18 @@
                                             <input type="password" class="form-control" id="password"
                                                 placeholder="Password" name="password">
                                         </div>
-                                        <div class="form-group ">
+                                        <!-- <div class="form-group ">
                                             <select class="form-control select2 custom-select" id="select-tenant-id">
                                                 <option values="">--Tenant--</option>
                                                 <option value="oct_pegadaian">oct_pegadaian</option>
                                                 <option value="oct_posindo">oct_posindo</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-sign text-white" style="border-radius:20px !important;" id="btn-login">Sign
                                                 in</button>
                                         </div>
-                                        <div class="text-center text-muted mt-3 mb-3">
+                                        <!-- <div class="text-center text-muted mt-3 mb-3">
                                             <a href="<?=base_url()?>main/forgot">Forgot Password?</a>
                                         </div>
                                         <div class="row justify-content-center">
