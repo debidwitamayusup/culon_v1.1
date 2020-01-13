@@ -323,3 +323,4 @@
                         </div>
                     </div>
                     <?php $this->load->view('temp/footer');?>
+                    <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-time.js"></script>

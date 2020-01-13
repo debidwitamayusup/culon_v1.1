@@ -203,7 +203,7 @@ function drawTable(response){
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+
             '<td class="text-right">'+value.sl+'</td>'+
-            '<td class="text-right">'+value.scr+'</td>'+
+            '<td class="text-right">'+value.scr+'%</td>'+
             '</tr>');
         });
     }else{
