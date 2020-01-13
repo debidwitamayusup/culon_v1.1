@@ -25,6 +25,20 @@ function getColorChannel(channel){
     return color[channel];
 }
 
+//thausands separator
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
 function loadContent(params, index_time){
     $("#filter-loader").fadeIn("slow");
     callSummaryScrCof();
@@ -96,6 +110,17 @@ function drawPie(response){
             //    }
                 display : false
             },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return value;
+                    }
+              } // end callbacks:
+            }, //end tooltips
             pieceLabel : {
                 render : 'legend',
                 fontColor : '#000',
@@ -142,7 +167,7 @@ function drawBarChart(response){
     var data_scr = [];
     var data_color = [];
     response.data.forEach(function (value, index) {
-        data_label.push(value.channel)+'%';
+        data_label.push(value.channel);
         data_scr.push(value.scr);
         data_color.push(getColorChannel(value.channel));
     });
@@ -197,7 +222,7 @@ function drawTable(response){
             $('#table-traffic-performance').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel+'</td>'+
-            '<td class="text-right">'+value.cof+'</td>'+
+            '<td class="text-right">'+addCommas(value.cof)+'</td>'+
             '<td class="text-right">'+value.abd+'</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+

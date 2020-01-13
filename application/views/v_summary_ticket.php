@@ -226,14 +226,18 @@
                                      </tfoot>
                                  </table>
                              </div>
-                             <!-- table-responsive -->
+                              table-responsive -->
                          <!-- </div> -->
                      <!-- </div> -->
                  <!-- </div> -->
              <!-- </div> --> 
 
                            
+<<<<<<< HEAD
                     <div class="col-md-12 col-lg-12">
+=======
+                    <div class="col-md-12">
+>>>>>>> origin/debi-dev
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>

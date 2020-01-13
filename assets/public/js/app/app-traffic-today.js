@@ -8,7 +8,7 @@ $(document).ready(function () {
     v_date = getYesterday();
     $('#input-date').datepicker("setDate", v_date);
     //set check all channel
-    $('#check-all-channel').prop('checked',false);
+    $('#check-all-channel').prop('checked',true);
     $("input:checkbox.checklist-channel").prop('checked',true);
     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
     Array.prototype.forEach.call(checkboxes, function(el) {
@@ -297,6 +297,11 @@ function destroyChartPercentage(){
     //checked channel
     $('.checklist-channel').click(function(){
         $('#check-all-channel').prop( "checked", false );
+        
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
         var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
         Array.prototype.forEach.call(checkboxes, function(el) {
             values.push(el.value);
