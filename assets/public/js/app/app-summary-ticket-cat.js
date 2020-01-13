@@ -86,7 +86,7 @@
             labels: [
                                 "Information",
                                 "Respect",
-                                "Compalaint",
+                                "Complaint",
                     ]
         },
         options: {
@@ -123,7 +123,7 @@
             labels: [
                                 "Information",
                                 "Respect",
-                                "Compalaint",
+                                "Complaint",
                     ]
         },
         options: {
@@ -160,7 +160,7 @@
             labels: [
                                 "Information",
                                 "Respect",
-                                "Compalaint",
+                                "Complaint",
                     ]
         },
         options: {
@@ -197,7 +197,7 @@
             labels: [
                                 "Information",
                                 "Respect",
-                                "Compalaint",
+                                "Complaint",
                     ]
         },
         options: {
