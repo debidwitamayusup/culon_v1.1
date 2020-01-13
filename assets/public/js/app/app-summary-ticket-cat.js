@@ -85,11 +85,7 @@
                             } ],
             labels: [
                                 "Information",
-<<<<<<< HEAD
-                                "Respect",
-=======
                                 "Respond",
->>>>>>> origin/elsa-dev
                                 "Complaint",
                     ]
         },
@@ -126,11 +122,7 @@
                             } ],
             labels: [
                                 "Information",
-<<<<<<< HEAD
-                                "Respect",
-=======
                                 "Respond",
->>>>>>> origin/elsa-dev
                                 "Complaint",
                     ]
         },
