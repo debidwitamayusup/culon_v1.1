@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
     //sample datatable	
-	$('#example-2').DataTable();
+	// $('#table_summary_ticket').DataTable();
 
     //pie chart summary status ticket
 function loadContent(index, params, params_year){
@@ -253,47 +253,6 @@ function drawPieUnit(response){
         type: 'pie',
         data: {
             datasets: [ {
-<<<<<<< HEAD
-                data: [ 15, 35, 40,20],
-                backgroundColor: [
-                                    "#2F5596",
-                                    // "#01B0F1",
-                                    // "#F07D2D",
-                                    // "#F3AE8F",
-                                    "#44546B",
-                                    // "#70AC48",
-                                    "#9EC2E4",
-                                    // "#00AF50",
-                                    "#FDC100",
-                                    // "#C20006"
-                                ],
-                hoverBackgroundColor: [
-                                    "#2F5596",
-                                    // "#01B0F1",
-                                    // "#F07D2D",
-                                    // "#F3AE8F",
-                                    "#44546B",
-                                    // "#70AC48",
-                                    "#9EC2E4",
-                                    // "#00AF50",
-                                    "#FDC100",
-                                    // "#C20006"
-                                ]
-
-                            } ],
-            labels: [
-                            "Agency Help Line",
-                            // "Keuangan",
-                            // "CRM",
-                            // "Post Line",
-                            "Provider Relation",
-                            // "Data Control",
-                            "Credit Control",
-                            // "Claim Health",
-                            "Claim Non Health",
-                            // "Call Center"
-                        ]
-=======
                 labels: [arrUnit, arrTotal],
                 data: arrTotal,
                  backgroundColor: [
@@ -311,7 +270,6 @@ function drawPieUnit(response){
                                 ]
             } ],
             labels: arrUnit
->>>>>>> origin/debi-dev
         },
         options: {
             responsive: true,
@@ -333,11 +291,7 @@ function drawPieUnit(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-<<<<<<< HEAD
-                legendHtml.push('<ul><div class="row ml-8">');
-=======
                 legendHtml.push('<ul><div class="row ml-3">');
->>>>>>> origin/debi-dev
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
@@ -368,7 +322,7 @@ function drawTable(response){
     $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
     $('#table_summary_ticket').append('<tfoot class="font-weight-extrabold text-right bg-total" id="mytfoot"></tfoot>');
 
-    var sum_new=0, sum_open=0, sum_onProgress=0, sum_resolved=0, sum_reopen=0, sum_pending=0, sum_return=0;
+    var sum_new=0, sum_open=0, sum_onProgress=0, sum_resolved=0, sum_reopen=0, sum_pending=0, sum_return=0; sum_reject=0;
     $("#mytbody").empty();
     var i = 0;
     response.data.forEach(function (value, index) {
@@ -379,6 +333,7 @@ function drawTable(response){
         sum_resolved = parseInt(sum_resolved)+parseInt(value.Resolved);
         sum_pending = parseInt(sum_pending)+parseInt(value.pending);
         sum_return = parseInt(sum_return)+parseInt(value.return);
+        sum_reject = parseInt(sum_reject)+parseInt(value.reject);
 
         $('#table_summary_ticket').find('tbody').append('<tr>'+
         '<td class="text-center">'+(i+1)+'</td>'+
@@ -390,10 +345,12 @@ function drawTable(response){
         '<td class="text-right">'+addCommas(value.Reopen)+'</td>'+
         '<td class="text-right">'+addCommas(value.pending)+'</td>'+
         '<td class="text-right">'+addCommas(value.return)+'</td>'+
+        '<td class="text-right">'+addCommas(value.reject)+'</td>'+
         '</tr>');
 
         i++;
     });
+    console.log(response.data);
 
     $('#table_summary_ticket').find('tfoot').append('<th colspan="2" class="font-weight-extrabold">Total</th>'+
                                                     '<th>'+sum_new+'</th>'+
@@ -402,7 +359,8 @@ function drawTable(response){
                                                     '<th>'+sum_resolved+'</th>'+
                                                     '<th>'+sum_reopen+'</th>'+
                                                     '<th>'+sum_pending+'</th>'+
-                                                    '<th>'+sum_return+'</th>');
+                                                    '<th>'+sum_return+'</th>'+
+                                                    '<th>'+sum_reject+'</th>');
 
     $("#filter-loader").fadeOut("slow");
 }

@@ -55,7 +55,7 @@
                          </div>
                          <div class="card-pie mt-5">
                              <div class="canvas-con">
-                                 <div class="canvas-con-inner" id="canvas-pie">
+                                 <div class="canvas-con-inner" id="canvas-pie-unit">
                                      <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
                                  </div>
                                  <div id="legendUnit" class="legend-con"></div>
@@ -66,7 +66,7 @@
              </div>
 
              <div class="row">
-                 <div class="col-md-12">
+                <!--  <div class="col-md-12">
                      <div class="card overflow-hidden border-0">
                          <div class="card-header-small bg-red">
                              <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
@@ -227,35 +227,12 @@
                                  </table>
                              </div>
                              <!-- table-responsive -->
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                         <!-- </div> -->
+                     <!-- </div> -->
+                 <!-- </div> -->
+             <!-- </div> --> 
 
-                            <div class="card-pie">
-                                <div class="canvas-con">
-                                    <div class="canvas-con-inner" id="canvas-pie">
-                                        <canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>
-                                    </div>
-                                    <div id="legend" class="legend-con"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card overflow-hidden">
-                            <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Summary Unit</h5>
-                            </div>
-                            <div class="card-pie">
-                                <div class="canvas-con">
-                                    <div class="canvas-con-inner" id="canvas-pie-unit">
-                                        <canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>
-                                    </div>
-                                    <div id="legendUnit" class="legend-con"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                           
                     <div class="col-md-12 col-lg-8">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
@@ -267,7 +244,7 @@
                                         <tr>
                                             <th rowspan="2" class="align-middle">No</th>
                                             <th rowspan="2" class="align-middle">Unit</th>
-                                            <th colspan="7">Status</th>
+                                            <th colspan="8">Status</th>
                                         </tr>
                                         <tr>
                                             <th>New</th>
@@ -277,6 +254,7 @@
                                             <th>Reopen</th>
                                             <th>Pending</th>
                                             <th>Close</th>
+                                            <th>Reject</th>
                                         </tr>
                                     </thead>
                                     <tbody style="font-size:12px !important;" id="mytbody">
