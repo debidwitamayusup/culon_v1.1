@@ -21,11 +21,23 @@ class main extends CI_Controller {
 	public function index()
 	{
 
+		// $this->load->view('temp/header');
+		// $this->load->view('temp/navbar');
+		// $this->load->view('temp/sidebar');
+        // $this->load->view('temp/body');
+    //    $this->load->view('temp/footer');
+		$this->load->view('login_temp/header');
+		$this->load->view('v_login');
+		$this->load->view('login_temp/footer');
+	}
+
+	public function home()
+	{
+
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
         $this->load->view('temp/body');
-    //    $this->load->view('temp/footer');
 	}
 
 	public function login(){

@@ -26,7 +26,7 @@ $(document).ready(function () {
             success: function (r) {
                 if(r.status) {
                     sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
-                    window.location = base_url
+                    window.location = base_url+'main/home'
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
                 } else {

@@ -27,6 +27,7 @@ function addCommas(commas)
 }
 
 function summaryStatusTicketPerUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
@@ -39,9 +40,11 @@ function summaryStatusTicketPerUnit(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawTable(response);
+    		$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+    		$("#filter-loader").fadeOut("slow");
         },
     });
 }
