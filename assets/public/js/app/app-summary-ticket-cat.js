@@ -85,8 +85,12 @@
                             } ],
             labels: [
                                 "Information",
+<<<<<<< HEAD
                                 "Respect",
-                                "Compalaint",
+=======
+                                "Respond",
+>>>>>>> origin/elsa-dev
+                                "Complaint",
                     ]
         },
         options: {
@@ -122,8 +126,12 @@
                             } ],
             labels: [
                                 "Information",
+<<<<<<< HEAD
                                 "Respect",
-                                "Compalaint",
+=======
+                                "Respond",
+>>>>>>> origin/elsa-dev
+                                "Complaint",
                     ]
         },
         options: {
@@ -159,8 +167,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {
@@ -196,8 +204,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {

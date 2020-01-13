@@ -142,7 +142,7 @@ function drawBarChart(response){
     var data_scr = [];
     var data_color = [];
     response.data.forEach(function (value, index) {
-        data_label.push(value.channel);
+        data_label.push(value.channel)+'%';
         data_scr.push(value.scr);
         data_color.push(getColorChannel(value.channel));
     });
@@ -202,8 +202,8 @@ function drawTable(response){
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+
-            '<td class="text-right">'+value.sl+'</td>'+
-            '<td class="text-right">'+value.scr+'</td>'+
+            '<td class="text-right">'+value.sl+'%</td>'+
+            '<td class="text-right">'+value.scr+'%</td>'+
             '</tr>');
         });
     }else{

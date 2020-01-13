@@ -73,8 +73,8 @@
                                             Don't have an account?
                                         </div>
                                         <div class="text-center">
-                                            <a class="text-sign" href="<?=base_url()?>main/signup">Sign up</a>
-                                        </div> -->
+                                            <a class="text-sign" href="#">Sign up</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

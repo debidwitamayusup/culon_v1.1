@@ -21,11 +21,23 @@ class main extends CI_Controller {
 	public function index()
 	{
 
+		// $this->load->view('temp/header');
+		// $this->load->view('temp/navbar');
+		// $this->load->view('temp/sidebar');
+        // $this->load->view('temp/body');
+    //    $this->load->view('temp/footer');
+		$this->load->view('login_temp/header');
+		$this->load->view('v_login');
+		$this->load->view('login_temp/footer');
+	}
+
+	public function home()
+	{
+
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
         $this->load->view('temp/body');
-    //    $this->load->view('temp/footer');
 	}
 
 	public function login(){
@@ -44,21 +56,21 @@ class main extends CI_Controller {
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('today');
+		$this->load->view('v_today');
 	}
 	
 	public function this_month(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('this_month');
+		$this->load->view('v_this_month');
 	}
 	
 	public function this_year(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('this_year');
+		$this->load->view('v_this_year');
 	}
 	
 	public function average(){

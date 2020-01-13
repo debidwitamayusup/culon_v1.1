@@ -24,6 +24,7 @@ Class AuthModel extends CI_Model {
         $this->db->select('userid AS USERID,nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
         $this->db->from('m_login');
         $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
+        $this->db->where('userlevel','Supervisor');
 
         $query = $this->db->get();
 

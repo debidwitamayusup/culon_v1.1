@@ -6,16 +6,17 @@
 	// Toggle Sidebar
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
+		// $('.app').removeClass('sidenav-toggled');
 		$('.app').toggleClass('sidenav-toggled');
 	});
 	
 
-	if ( $(window).width() > 739) {     
-		$('.app-sidebar').on("mouseover", function(event) {
-			event.preventDefault();
-			$('.app').removeClass('sidenav-toggled');
-		});
-	} 
+	// if ( $(window).width() > 739) {     
+	// 	$('.app-sidebar').on("mouseover", function(event) {
+	// 		event.preventDefault();
+	// 		$('.app').removeClass('sidenav-toggled');
+	// 	});
+	// } 
 
 	// Activate sidebar slide toggle
 	$("[data-toggle='slide']").on("click", function(event) {
