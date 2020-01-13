@@ -16,7 +16,7 @@
 		visibility: hidden;
 	}
 	.app-sidebar__toggle {
-		margin-left: 20px;
+		margin-left: 13px;
 	}
 
 }
@@ -148,7 +148,7 @@
 	text-decoration: none;
 }
 .app-sidebar__toggle {
-	padding: 0 15px;
+	padding: 0px 21px 0px 0px;
 	color: #fff;
 	-webkit-transition: background-color 0.3s ease;
 	-o-transition: background-color 0.3s ease;
@@ -396,10 +396,21 @@
 	background: #fff;
 }
 .side-menu__icon {
+	/* -webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	width: 25px; */
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
-	width: 25px;
+	display: inline-block;
+	font-size:1rem;
+	position: relative;
+    width: 25px;
+    /* height: 40px; */
+	line-height:30px;
+	margin:0 auto;
+    border-radius: 7px;
 }
 .side-menu__label {
 	white-space: nowrap;
@@ -530,7 +541,8 @@
 		visibility: visible;
 	}
 	.sidebar-mini.sidenav-toggled .side-menu__label {
-		display: block;
+		/* display: block; */
+		display : none;
 		position: absolute;
 		top: 0;
 		left: 50px;

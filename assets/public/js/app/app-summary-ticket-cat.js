@@ -85,8 +85,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {
@@ -122,8 +122,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {
@@ -159,8 +159,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {
@@ -196,8 +196,8 @@
                             } ],
             labels: [
                                 "Information",
-                                "Respect",
-                                "Compalaint",
+                                "Respond",
+                                "Complaint",
                     ]
         },
         options: {

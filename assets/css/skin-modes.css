@@ -42,7 +42,10 @@
 	color: #089e60;
 }
 .app-sidebar .side-menu .side-menu__item .side-menu__icon{
-	background:none;
+	background: rgba(255,255,255,0.2);
+	width:30px;
+	
+	/* background : none; */
 }
 
 

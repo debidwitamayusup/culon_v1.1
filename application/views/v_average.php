@@ -1,6 +1,4 @@
-<body class="app  sidebar-mini">
-
-    <!-- Global Loader-->
+ <!-- Global Loader-->
     <div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
     <div class="page">
         <div class="page-main">
