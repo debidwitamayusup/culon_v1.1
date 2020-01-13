@@ -109,12 +109,12 @@
 									<h5 class="card-title-small card-pt10">Average Interval</h5>
 								</div>
 								<div class="table-responsive table-bordered table-pt10">
-									<table class="table card-table table-vcenter table-hover" id="tabel_average_month">
+									<table class="table card-table table-striped table-vcenter table-hover" id="tabel_average_month">
 										<thead class="text-center text-white bg-gray1">
 											<tr>
 												<th>No</th>
 												<th>Channel</th>
-												<th>SLA</th>
+												<th>SCR</th>
 												<th>ART</th>
 												<th>AHT</th>
 												<th>AST</th>

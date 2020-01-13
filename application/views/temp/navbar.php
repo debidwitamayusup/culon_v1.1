@@ -3,12 +3,13 @@
 	<!-- Navbar Right Menu-->
 	<div class="container-fluid">
 		<div class="d-flex">
-			<a aria-label="Hide Sidebar" style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar"
-				href="#"></a>
+			
 			<a class="header-brand">
 				<img alt="logo" class="header-brand-img main-logo float-left"
-					src="<?= base_url()?>assets/images/brand/logo_infomedia.png">
+					src="<?= base_url()?>assets/images/brand/logo_logos.png">
 			</a>
+			<a aria-label="Hide Sidebar" style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar"
+				href="#"></a>
 			<!-- Sidebar toggle button-->
 			<div class="d-flex order-lg-2 ml-auto">
 				<div class="d-sm-flex d-none">

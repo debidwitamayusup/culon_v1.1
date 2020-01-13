@@ -32,70 +32,12 @@
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
                                  <div class="col-4">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">COF</h6>
-                                 </div>
-                             </div>
-                             <div class="row mb-2">
-                                 <div class="col">
-                                     <span class="avatar avatar-md brround cover-image"
-                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                 </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
-                                     <h6 class="text-muted font10">Agent Name</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
-                                     <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">COF</h6>
-                                 </div>
-                             </div>
-                             <div class="row mb-2">
-                                 <div class="col">
-                                     <span class="avatar avatar-md brround cover-image"
-                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                 </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
-                                     <h6 class="text-muted font10">Agent Name</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
-                                     <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">COF</h6>
-                                 </div>
-                             </div>
-                             <div class="row mb-2">
-                                 <div class="col">
-                                     <span class="avatar avatar-md brround cover-image"
-                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                 </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
-                                     <h6 class="text-muted font10">Agent Name</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
-                                     <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -104,43 +46,12 @@
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
                                  <div class="col-4">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">COF</h6>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="col-lg-4">
-                     <div class="card">
-                         <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">The Best 5 ART</h5>
-                         </div>
-                         <div class="card-body text-center">
-                             <div class="row mb-2">
-                                 <div class="col">
-                                     <span class="avatar avatar-md brround cover-image"
-                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                 </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
-                                     <h6 class="text-muted font10">Agent Name</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
-                                     <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -148,17 +59,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -166,17 +73,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -184,35 +87,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
-                                 </div>
-                             </div>
-                             <div class="row mb-2">
-                                 <div class="col">
-                                     <span class="avatar avatar-md brround cover-image"
-                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                 </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
-                                     <h6 class="text-muted font10">Agent Name</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
-                                     <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                          </div>
@@ -224,22 +105,18 @@
                              <h5 class="card-title-small card-pt10">The Best 5 AHT</h5>
                          </div>
                          <div class="card-body text-center">
-                             <div class="row mb-2">
+                             <div class="row mb-2 text-center">
                                  <div class="col">
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -247,17 +124,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -265,17 +138,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -283,17 +152,13 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -301,21 +166,97 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
-                                     <h5 class="font14">Jhon Dyer</h5>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
                                      <h6 class="text-muted font10">Handling</h6>
-                                 </div>
-                                 <div class="col">
-                                     <h3 class="font-weight-extrabold">00:00:00</h3>
-                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                          </div>
                      </div>
+                 </div>
+                 <div class="col-lg-4">
+                     <div class="card">
+                         <div class="card-header-small bg-red">
+                             <h5 class="card-title-small card-pt10">The Best 5 ART</h5>
+                         </div>
+                         <div class="card-body text-center">
+                             <div class="row mb-2 text-center">
+                                 <div class="col">
+                                     <span class="avatar avatar-md brround cover-image"
+                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                 </div>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                     <h6 class="text-muted font10">Agent Name</h6>
+                                 </div>
+                                 <div class="col">
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
+                                 </div>
+                             </div>
+                             <div class="row mb-2">
+                                 <div class="col">
+                                     <span class="avatar avatar-md brround cover-image"
+                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                 </div>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                     <h6 class="text-muted font10">Agent Name</h6>
+                                 </div>
+                                 <div class="col">
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
+                                 </div>
+                             </div>
+                             <div class="row mb-2">
+                                 <div class="col">
+                                     <span class="avatar avatar-md brround cover-image"
+                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                 </div>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                     <h6 class="text-muted font10">Agent Name</h6>
+                                 </div>
+                                 <div class="col">
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
+                                 </div>
+                             </div>
+                             <div class="row mb-2">
+                                 <div class="col">
+                                     <span class="avatar avatar-md brround cover-image"
+                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                 </div>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                     <h6 class="text-muted font10">Agent Name</h6>
+                                 </div>
+                                 <div class="col">
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
+                                 </div>
+                             </div>
+                             <div class="row mb-2">
+                                 <div class="col">
+                                     <span class="avatar avatar-md brround cover-image"
+                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                 </div>
+                                 <div class="col-4">
+                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                     <h6 class="text-muted font10">Agent Name</h6>
+                                 </div>
+                                 <div class="col">
+                                     <h3 class="font-weight-extrabold" style="margin-bottom: 0.21em !important">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
                  </div>
              </div>
              <div class="row">

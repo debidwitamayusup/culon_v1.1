@@ -11530,7 +11530,7 @@ body.fixed-header .header {
     font-weight: 600;
     padding: 0;
     transition: .3s opacity;
-    min-width: 200px;
+    min-width: 58px;
     text-align: center;
 	line-height: 2.7rem;
 }
@@ -22388,5 +22388,5 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .font10{
-	font-size:11px !important;
+	font-size:10px !important;
 }
