@@ -11,8 +11,11 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryTicket(){
+    	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
+		$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
 
-    	$data = $this->module_model->getSummTicket();
+    	$data = $this->module_model->getSummTicket($params, $index, $params_year);
 
     	if ($data) {
             $response = array(
@@ -31,7 +34,11 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryUnit(){
-    	$data = $this->module_model->getSummUnit();
+    	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
+		$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
+
+    	$data = $this->module_model->getSummUnit($params, $index, $params_year);
 
     	if ($data) {
             $response = array(
@@ -50,7 +57,11 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryStatusperUnit(){
-    	$data = $this->module_model->getSummStatusperUnit();
+    	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
+		$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
+		
+    	$data = $this->module_model->getSummStatusperUnit($params, $index, $params_year);
 
     	if ($data) {
             $response = array(

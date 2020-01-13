@@ -70,7 +70,7 @@
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
                             </div>
-                            <div class="table-responsive table-bordered table-pt10">
+                            <div class="table-responsive table-bordered table-pt10" id="div_table_ticket">
                                 <table class="table card-table table-vcenter table-hover" style="height:829px !important;" id="table_summary_ticket">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>
