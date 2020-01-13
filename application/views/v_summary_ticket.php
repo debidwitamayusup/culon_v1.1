@@ -226,14 +226,14 @@
                                      </tfoot>
                                  </table>
                              </div>
-                             <!-- table-responsive -->
+                              table-responsive -->
                          <!-- </div> -->
                      <!-- </div> -->
                  <!-- </div> -->
              <!-- </div> --> 
 
                            
-                    <div class="col-md-12 col-lg-8">
+                    <div class="col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>

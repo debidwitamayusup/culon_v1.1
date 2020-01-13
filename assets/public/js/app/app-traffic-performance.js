@@ -167,7 +167,7 @@ function drawBarChart(response){
     var data_scr = [];
     var data_color = [];
     response.data.forEach(function (value, index) {
-        data_label.push(value.channel)+'%';
+        data_label.push(value.channel);
         data_scr.push(value.scr);
         data_color.push(getColorChannel(value.channel));
     });
