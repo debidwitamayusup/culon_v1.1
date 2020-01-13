@@ -31,15 +31,17 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
+                                 <div class="col-4">
                                      <h5 class="font14">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -53,9 +55,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -69,9 +73,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -85,9 +91,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -95,15 +103,17 @@
                                      <span class="avatar avatar-md brround cover-image"
                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                  </div>
-                                 <div class="col-5">
+                                 <div class="col-4">
                                      <h5 class="font14">Jhon Dyer</h5>
                                      <h6 class="text-muted font10">Agent Name</h6>
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">COF</h6>
                                  </div>
                              </div>
                          </div>
@@ -126,9 +136,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -142,9 +154,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -158,9 +172,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -174,9 +190,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -190,9 +208,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                          </div>
@@ -215,9 +235,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -231,9 +253,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -247,9 +271,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">AHT</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -263,9 +289,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                              <div class="row mb-2">
@@ -279,9 +307,11 @@
                                  </div>
                                  <div class="col">
                                      <h3 class="font-weight-extrabold">90</h3>
+                                     <h6 class="text-muted font10">Handling</h6>
                                  </div>
                                  <div class="col">
-                                     <h3 class="font-weight-extrabold">90</h3>
+                                     <h3 class="font-weight-extrabold">00:00:00</h3>
+                                     <h6 class="text-muted font10">ART</h6>
                                  </div>
                              </div>
                          </div>
