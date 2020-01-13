@@ -54,7 +54,7 @@ function drawTable(response){
     $('#mytbody').remove();
     $('#summ_status_ticket_unit').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
 
-    var sum_new=0, sum_open=0, sum_onProgress=0, sum_resolved=0, sum_reopen=0, sum_pending=0, sum_return=0;
+    var sum_new=0, sum_open=0, sum_onProgress=0, sum_resolved=0, sum_reopen=0, sum_pending=0, sum_return=0; sum_reject=0;
     $("#mytbody").empty();
     var i = 0;
     response.data.forEach(function (value, index) {
@@ -65,7 +65,8 @@ function drawTable(response){
         sum_resolved = parseInt(sum_resolved)+parseInt(value.Resolved);
         sum_pending = parseInt(sum_pending)+parseInt(value.pending);
         sum_return = parseInt(sum_return)+parseInt(value.return);
-        summarize = parseInt(value.new)+parseInt(value.open)+parseInt(value.onProgress)+parseInt(value.Resolved)+parseInt(value.Reopen)+parseInt(value.pending)+parseInt(value.return);
+        sum_reject = parseInt(sum_reject)+parseInt(value.reject)
+        summarize = parseInt(value.new)+parseInt(value.open)+parseInt(value.onProgress)+parseInt(value.Resolved)+parseInt(value.Reopen)+parseInt(value.pending)+parseInt(value.return)+parseInt(value.reject);
 
         $('#summ_status_ticket_unit').find('tbody').append('<tr>'+
         '<td class="text-center">'+(i+1)+'</td>'+
@@ -77,6 +78,7 @@ function drawTable(response){
         '<td class="text-right">'+addCommas(value.Reopen)+'</td>'+
         '<td class="text-right">'+addCommas(value.pending)+'</td>'+
         '<td class="text-right">'+addCommas(value.return)+'</td>'+
+        '<td class="text-right">'+addCommas(value.reject)+'</td>'+
         '<td class="text-right font-weight-extrabold">'+addCommas(summarize)+'</td>'+
         '</tr>');
 

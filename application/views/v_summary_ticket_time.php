@@ -67,7 +67,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example-2" class="table table-striped table-bordered">
+                                    <table id="summ_status_ticket_unit" class="table table-striped table-bordered">
                                         <thead class="text-center">
                                             <tr>
                                                 <th rowspan="2" class="align-middle">No</th>
@@ -82,6 +82,7 @@
                                                 <th>Reopen</th>
                                                 <th>Pending</th>
                                                 <th>Close</th>
+                                                <th>Reject</th>
                                                 <th class="font-weight-extrabold">Total</th>
                                             </tr>
                                         </thead>
@@ -321,7 +322,6 @@
                         </div>
                     </div>
                 </div>
-                <?php $this->load->view('temp/footer');?>
-                <script src="<?=base_url()?>assets/public/js/app/app-sum-ticket-time.js"></script>
+                <!-- <script src="<?=base_url()?>assets/public/js/app/app-sum-ticket-time.js"></script> -->
                     <?php $this->load->view('temp/footer');?>
                     <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-time.js"></script>
