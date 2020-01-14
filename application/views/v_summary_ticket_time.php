@@ -20,46 +20,8 @@
                 <!----Baris Pertama----!-->
 
                 <!-- <div class="row"> -->
-                <div class="card overflow-hidden">
-                    <div class="card-body">
-                        <div class="row mt-3">
-                            <div class="col-md-4 text-center">
-                                <div class="card-custom">
-                                    <div class="card-header bg-red">
-                                        <h4 class="text-white card-body">1-2 Hari</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h1 class="mt-6 num-font">20</h1>
-                                        <!-- <span class="text-muted mb-5">Session</span> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="card-custom">
-                                    <div class="card-header bg-red">
-                                        <h4 class="text-white card-body">3-5 Hari</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h1 class="mt-6 num-font">15</h1>
-                                        <!-- <span class="text-muted mb-5">Customer</span> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="card-custom">
-                                    <div class="card-header bg-red">
-                                        <h4 class="text-white card-body">6 < Hari</h4> 
-                                        </div> <div class="card-body">
-                                                <h1 class="mt-6 num-font">30</h1>
-                                                <!-- <span class="text-muted mb-5">Customer</span> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- </div> -->
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
@@ -86,8 +48,8 @@
                                                 <th class="font-weight-extrabold">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size:12px !important;" id="mytbody">
-                                            <!-- <tr>
+                                        <tbody style="font-size:12px !important;" id="mytbody"> -->
+                <!-- <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">Call Center</td>
                                                 <td class="text-right">10</td>
@@ -207,19 +169,31 @@
                                                 <td class="text-right">10</td>
                                                 <td class="text-right font-weight-extrabold">60</td>
                                             </tr> -->
-                                        </tbody>
+                <!-- </tbody>
                                     </table>
+                                </div> -->
+                <!-- table-responsive -->
+                <!-- </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12">
+                        <div class="card overflow-hidden">
+                            <div class="card-header-small bg-red">
+                                <h5 class="card-title-small card-pt10">Month</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <canvas id="pieTicketTime" class="donutShadow overflow-hidden"></canvas>
                                 </div>
-                                <!-- table-responsive -->
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card overflow-hidden border-0">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="card">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Summary Unit by Time</h5>
+                                <h5 class="card-title-small card-pt10">Summary Agent Performance SKill</h5>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -236,14 +210,6 @@
                                         <tbody style="font-size:12px !important;">
                                             <tr>
                                                 <td class="text-center">1</td>
-                                                <td class="text-left">Call Center</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">2</td>
                                                 <td class="text-left">CRM</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
@@ -251,8 +217,16 @@
                                                 <td class="text-right font-weight-extrabold">60</td>
                                             </tr>
                                             <tr>
+                                                <td class="text-center">2</td>
+                                                <td class="text-left">Data Control</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right">10</td>
+                                                <td class="text-right font-weight-extrabold">60</td>
+                                            </tr>
+                                            <tr>
                                                 <td class="text-center">3</td>
-                                                <td class="text-left">Credit Control</td>
+                                                <td class="text-left">Keuangan</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
@@ -268,60 +242,29 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-center">5</td>
-                                                <td class="text-left">Keuangan</td>
+                                                <td class="text-left">Provider</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right font-weight-extrabold">60</td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center">6</td>
-                                                <td class="text-left">Provider Relation</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">7</td>
-                                                <td class="text-left">Clean Non Health</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">8</td>
-                                                <td class="text-left">Claim Health</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">9</td>
-                                                <td class="text-left">Agency Help Line</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">10</td>
-                                                <td class="text-left">Data Control</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right">10</td>
-                                                <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
+
                                         </tbody>
+                                        <tfoot class="text-right font-weight-extrabold bg-total">
+                                            <tr>
+                                                <td colspan="2">Total</td>
+                                                <td>10</td>
+                                                <td>10</td>
+                                                <td>10</td>
+                                                <td>60</td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
-                                <!-- table-responsive -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- <script src="<?=base_url()?>assets/public/js/app/app-sum-ticket-time.js"></script> -->
-                    <?php $this->load->view('temp/footer');?>
-                    <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-time.js"></script>
+                <?php $this->load->view('temp/footer');?>
+                <script src="<?= base_url()?>assets/public/js/app/app-summary-ticket-time.js"></script>

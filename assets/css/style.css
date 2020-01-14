@@ -6172,6 +6172,10 @@ ul {
 	height: 18rem;
 	overflow:hidden;
 }
+.chartsh-unit {
+	height: 23rem;
+	overflow:hidden;
+}
 .chartsh-status{
 	height:23rem;
 	overflow:hidden;

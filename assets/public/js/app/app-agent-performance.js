@@ -1,4 +1,5 @@
 $(function(e) {
     //sample datatable	
-	$('#example-2').DataTable();
+    $('#tableAgent').DataTable();
+    $('#tableSkill').DataTable();
 });
