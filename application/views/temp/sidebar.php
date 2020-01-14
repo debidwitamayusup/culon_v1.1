@@ -62,21 +62,20 @@
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent_performance</a></div>
 					</div>
 					</div>
 				</li>
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseTicket"> Summary Ticket
-						<i class="angle not-absolute2 fas fa-angle-right"></i></a>
+						aria-controls="collapseTicket"> Ticketing
+						<i class="angle not-absolute fas fa-angle-right" style="margin-left:104px"></i></a>
 					<div id="collapseTicket" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket">Summary Ticket /
-								Unit</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_category">Summary
-								Status Ticket / Kategori</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_time">Summary
-								Ticket by Time</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket">Ticketing by Unit</a></div>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_category">Summary
+								Status Ticket / Kategori</a></div> -->
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_time">Ticketing by Time</a></div>
 					</div>
 					</div>
 				</li>

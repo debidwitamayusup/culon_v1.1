@@ -181,7 +181,7 @@ function drawPie(response){
 
     // draw chart
     var ctx = document.getElementById( "pieChart" );
-    ctx.height = 300;
+    ctx.height = 278;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -682,4 +682,153 @@ function ini_finctiiin () {
         $(this).prop("class","btn btn-red btn-sm");
     });
 
+
+    // CHART BARU
+    var chartTicketUnit= [{
+		name: 'New',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
+	}, {
+		name: 'Open',
+		type: 'bar',
+		stack: 'Stack',
+		data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
+	}, {
+		name: 'Reject',
+		type: 'bar',
+		stack: 'Stack',
+		data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
+	}, {
+		name: 'On Progress',
+		type: 'bar',
+		stack: 'Stack',
+		data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
+	}, {
+		name: 'Pending',
+		type: 'bar',
+		stack: 'Stack',
+		data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
+	}, {
+		name: 'Reopen',
+		type: 'bar',
+		stack: 'Stack',
+		data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
+	}, {
+		name: 'Resolve',
+		type: 'bar',
+		stack: 'Stack',
+		data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
+	}, 
+	{
+		name: 'Close',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
+	}
+	];
+	/*----echartTicketUnit----*/
+	var optionTicketUnit = {
+		grid: {
+			top: '6',
+			right: '10',
+			bottom: '17',
+			left: '95',
+		},
+		xAxis: {
+			type: 'value',
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		yAxis: {
+			type: 'category',
+			data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+			splitLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		series: chartTicketUnit,
+		color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+	};
+	var chartTicketUnit = document.getElementById('echartTicketUnit');
+	var barChartTicketUnit = echarts.init(chartTicketUnit);
+    barChartTicketUnit.setOption(optionTicketUnit);
+    
+    // ------CHART BARU
+    var chartdata = [{
+        name: 'Ticket',
+        type: 'bar',
+        data: [10, 15, 9, 18, 10, 15,90,50,40,30,50,40,30,40,60,50,30,80,90,30,40,50,60,40,70,40,70,40,30,30,40]
+    }];
+    var chart = document.getElementById('echartTicketClose');
+    var barChart = echarts.init(chart);
+    var option = {
+        grid: {
+            top: '6',
+            right: '0',
+            bottom: '17',
+            left: '25',
+        },
+        xAxis: {
+            data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        tooltip: {
+            show: true,
+            showContent: true,
+            alwaysShowContent: true,
+            triggerOn: 'mousemove',
+            trigger: 'axis',
+            axisPointer: {
+                label: {
+                    show: false,
+                }
+            }
+        },
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        series: chartdata,
+        color: ['#5F9EA0']
+    };
+    barChart.setOption(option);
 })(jQuery);
