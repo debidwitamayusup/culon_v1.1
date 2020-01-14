@@ -78,6 +78,30 @@ class SummaryTicketUnit extends CI_Controller {
 
         echo json_encode($response);
     }
+
+    public function filterTable(){
+        $search = $_POST['search']['value']; // Ambil data yang di ketik user pada textbox pencarian
+        $limit = $_POST['length']; // Ambil data limit per page
+        $start = $_POST['start']; // Ambil data start
+        $order_index = $_POST['order'][0]['column']; // Untuk mengambil index yg menjadi acuan untuk sorting
+        $order_field = $_POST['columns'][$order_index]['data']; // Untuk mengambil nama field yg menjadi acuan untuk sorting
+        $order_ascdesc = $_POST['order'][0]['dir']; // Untuk menentukan order by "ASC" atau "DESC"
+        $sql_total = $this->module_model->count_all(); // Panggil fungsi count_all pada SiswaModel
+        $sql_data = $this->module_model->filter($search, $limit, $start, $order_field, $order_ascdesc); // Panggil fungsi filter pada SiswaModel
+        $sql_filter = $this->module_model->count_filter($search); // Panggil fungsi count_filter pada SiswaModel
+        $jhjh= array(
+            'a' => $sql_filter,
+            'b' => $sql_data
+        );
+        $callback = array(
+            'draw'=>$_POST['draw'], // Ini dari datatablenya
+            'recordsTotal'=>$sql_total,
+            'recordsFiltered'=>$sql_filter,
+            'data'=>$jhjh
+        );
+        header('Content-Type: application/json');
+        echo json_encode($callback); // Convert array $callback ke json
+    }
 }
 
 ?>

@@ -19,6 +19,42 @@ function loadContent(index, params, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
     summaryStatusTicketPerUnit(params, index, params_year);
+
+    //datatable config
+    // $('#table_summary_ticket thead tr:eq(0) th:eq(2)').html("Status");
+     // Wrap the colspan'ing header cells with a span so they can be positioned
+    // absolutely - filling the available space, and no more.
+    // $('#table_summary_ticket thead th[colspan]').wrapInner( '<span/>' ).append( '&nbsp;' );
+    // $('#table_summary_ticket').DataTable( {
+    //     responsive: true,
+    //     paging: false
+    // } );
+
+    // tabel = $('#table_summary_ticket').DataTable({
+    //         processing: true,
+    //         serverSide: true,
+    //         ordering: true, // Set true agar bisa di sorting
+    //         order: [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+    //         ajax:
+    //         {
+    //             url: base_url+'api/SummaryTicket/SummaryTicketUnit/filterTable', // URL file untuk proses select datanya
+    //             type: "POST"
+    //         },
+    //         deferRender: true,
+    //         aLengthMenu: [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
+    //         columns: [
+    //             { data: "unit" }, // Tampilkan nis
+    //             { data: "sNew" }, // Tampilkan nis
+    //             { data: "sOpen" },  // Tampilkan nama
+    //             { data: "sOnProgress" }, // Tampilkan telepon
+    //             { data: "sResolved" }, // Tampilkan alamat
+    //             { data: "sReopen"},
+    //             { data: "sPending"},
+    //             { data: "sReturn"},
+    //             { data: "sReject"}
+    //         ],
+    //     });
+
 }
 
 function getColor(channel){
@@ -109,6 +145,7 @@ function summaryStatusTicketPerUnit(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawTable(response);
+            // drawDataTable(response);
         },
         error: function (r) {
             alert("error");
@@ -313,6 +350,52 @@ function drawPieUnit(response){
     } );
     var myLegendContainer = document.getElementById("legendUnit");
     myLegendContainer.innerHTML = myChart.generateLegend();
+}
+
+function drawDataTable(response){
+    console.log(response.data);
+     var i = 0;
+     let jkjkj = [];
+    response.data.forEach(function (value, index) {
+        jkjkj.push(i+1);
+    i++;
+    
+    });
+    console.log(jkjkj);
+         tabel = $('#table_summary_ticket').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true, // Set true agar bisa di sorting
+            order: [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            ajax:
+            {
+                url: base_url+'api/SummaryTicket/SummaryTicketUnit/filterTable', // URL file untuk proses select datanya
+                type: "POST"
+            },
+            deferRender: true,
+            aLengthMenu: [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
+            columns: [
+                { render: function (data, type, row){
+                    var html=""
+                     
+                    html = row.a
+
+                    return html;
+
+                    }
+                },
+                { data: "unit"},
+                { data: "sNew" }, // Tampilkan nis
+                { data: "sOpen" }, // Tampilkan nis
+                { data: "sOnProgress" },  // Tampilkan nama
+                { data: "sReopen" }, // Tampilkan telepon
+                { data: "sResolved" }, // Tampilkan alamat
+                { data: "sPending"},
+                { data: "sReturn"},
+                { data: "sReject"}
+            ],
+        });
+
 }
 
 function drawTable(response){

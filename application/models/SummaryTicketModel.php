@@ -66,7 +66,36 @@ class SummaryTicketModel extends CI_Model
 		return $query->result();
 	}
 
+	public function filter($search, $limit, $start, $order_field, $order_ascdesc){
+	    $this->db->like('unit', $search); // Untuk menambahkan query where LIKE
+	    $this->db->or_like('sNew', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sOpen', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sOnProgress', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sPending', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReopen', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReject', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sResolved', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReturn', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->order_by($order_field, $order_ascdesc); // Untuk menambahkan query ORDER BY
+	    $this->db->limit($limit, $start); // Untuk menambahkan query LIMIT
+	    return $this->db->get('rpt_summ_ticket_unit')->result_array(); // Eksekusi query sql sesuai kondisi diatas
+  	}
+  	public function count_all(){
+    	return $this->db->count_all('rpt_summ_ticket_unit'); // Untuk menghitung semua data siswa
+  	}
 
+	public function count_filter($search){
+	  	$this->db->like('unit', $search); // Untuk menambahkan query where LIKE
+	    $this->db->or_like('sNew', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sOpen', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sOnProgress', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sPending', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReopen', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReject', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sResolved', $search); // Untuk menambahkan query where OR LIKE
+	    $this->db->or_like('sReturn', $search); // Untuk menambahkan query where OR or_like
+	    return $this->db->get('rpt_summ_ticket_unit')->num_rows(); // Untuk menghitung jumlah data sesuai dengan filter pada textbox pencarian
+	}
 }
 
 ?>
