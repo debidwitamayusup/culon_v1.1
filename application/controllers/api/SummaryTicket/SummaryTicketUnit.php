@@ -126,6 +126,43 @@ class SummaryTicketUnit extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($sql_data); // Convert array $callback ke json
     }
+
+    public function getStatusperUnit(){
+    	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+        $index = $this->security->xss_clean($this->input->post('index', true)); // value params
+        $params_year = $this->security->xss_clean($this->input->post('year', true));    // value params
+        
+        $data = $this->module_model->getStatusperUnit($params, $index, $params_year);
+
+        $statusData = array();
+        $unitData = array();
+
+        foreach ($data as $key) {
+        	array_push($unitData, $key->unit);
+        	array_push($statusData, $key->new);
+        	array_push($statusData, $key->open);
+        }
+
+        $datas = [
+        	'unit' => $unitData,
+        	'statusData' => $statusData
+        ];
+
+        if ($data) {
+            $response = array(
+				'status' => true,
+				'data' => $data
+			);
+        }
+        else {
+            $response = array(
+				'status' => false,
+                'data' => array(),
+                'message' => 'Unable to fetch Data');
+        }
+
+        echo json_encode($response);
+    }
 }
 
 ?>

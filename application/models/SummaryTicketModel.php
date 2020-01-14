@@ -180,6 +180,22 @@ class SummaryTicketModel extends CI_Model
 	    $this->db->or_like('sReturn', $search); // Untuk menambahkan query where OR or_like
 	    return $this->db->get('rpt_summ_ticket_unit')->num_rows(); // Untuk menghitung jumlah data sesuai dengan filter pada textbox pencarian
 	}
+
+	public function getStatusperUnit($params, $index, $params_year){
+		$this->db->select('unit, sNew as new, sOpen as open, sOnProgress as onProgress, sResolved as Resolved, sReopen as Reopen, sPending as pending, sReject as reject, sReturn as '."'return'".'');
+		$this->db->from('rpt_summ_ticket_unit');
+		if ($params == 'day'){
+			$this->db->where('DATE(lup) = "'.$index.'"');
+		}else if ($params == 'month'){
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+		}else if ($params == 'year'){
+			$this->db->where('YEAR(lup) = "'.$index.'"');
+		}
+		$this->db->group_by('unit');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
 
 ?>

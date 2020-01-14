@@ -5,6 +5,7 @@ var v_month = '1';
 var v_year = '2020';
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
+    fromTemplate();
     // ini_finctiiin();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -152,6 +153,26 @@ function summaryStatusTicketPerUnit(params, index, params_year){
             alert("error");
         },
     });
+}
+
+function ticketStatusUnit(params, index, params_year){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getStatusperUnit',
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // console.log(response.data[0].new);
+            drawChartStatusPerUnit(response);
+            // drawDataTable(response);
+        },
+        error: function (r) {
+            alert("error");
+        }
 }
 
 function drawPie(response){
@@ -530,6 +551,97 @@ function drawTable(response){
 
     $("#filter-loader").fadeOut("slow");
 }
+
+function drawChartStatusPerUnit(response){
+    var chartTicketUnit= [{
+        name: 'New',
+        type: 'bar',
+        stack: 'Stack',
+        data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
+    }, {
+        name: 'Open',
+        type: 'bar',
+        stack: 'Stack',
+        data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
+    }, {
+        name: 'Reject',
+        type: 'bar',
+        stack: 'Stack',
+        data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
+    }, {
+        name: 'On Progress',
+        type: 'bar',
+        stack: 'Stack',
+        data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
+    }, {
+        name: 'Pending',
+        type: 'bar',
+        stack: 'Stack',
+        data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
+    }, {
+        name: 'Reopen',
+        type: 'bar',
+        stack: 'Stack',
+        data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
+    }, {
+        name: 'Resolve',
+        type: 'bar',
+        stack: 'Stack',
+        data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
+    }, 
+    {
+        name: 'Close',
+        type: 'bar',
+        stack: 'Stack',
+        data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
+    }
+    ];
+    /*----echartTicketUnit----*/
+    var optionTicketUnit = {
+        grid: {
+            top: '6',
+            right: '10',
+            bottom: '17',
+            left: '95',
+        },
+        xAxis: {
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        series: chartTicketUnit,
+        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+    };
+    var chartTicketUnit = document.getElementById('echartTicketUnit');
+    var barChartTicketUnit = echarts.init(chartTicketUnit);
+    barChartTicketUnit.setOption(optionTicketUnit);
+}
+
 function ini_finctiiin () {
     "use strict";
 
@@ -696,145 +808,94 @@ function ini_finctiiin () {
 
 }
 
-//jquery
-(function ($) {
-
-    // btn day
-    $('#btn-day').click(function(){
-        params_time = 'day';
-        // console.log(params_time);
-        loadContent(params_time , '2020-01-10');
-        // $('#tag-time').html(v_date);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
-
-    // btn day
-    $('#btn-week').click(function(){
-        params_time = 'week';
-        // console.log(params_time);
-        loadContent(params_time , '2020-01-10', v_year);
-        // $('#tag-time').html(v_date);
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
-
-    // btn month
-    $('#btn-month').click(function(){
-        params_time = 'month';
-        // console.log(params_time);
-        loadContent(params_time , '1', v_year)
-        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
-
-    // btn year
-    $('#btn-year').click(function(){
-        params_time = 'year';
-        // console.log(params_time);
-        loadContent(params_time , '2020');
-        // $('#tag-time').html(v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
-
-
+function fromTemplate(){
     // CHART BARU
     var chartTicketUnit= [{
-		name: 'New',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
-	}, {
-		name: 'Open',
-		type: 'bar',
-		stack: 'Stack',
-		data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
-	}, {
-		name: 'Reject',
-		type: 'bar',
-		stack: 'Stack',
-		data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
-	}, {
-		name: 'On Progress',
-		type: 'bar',
-		stack: 'Stack',
-		data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
-	}, {
-		name: 'Pending',
-		type: 'bar',
-		stack: 'Stack',
-		data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
-	}, {
-		name: 'Reopen',
-		type: 'bar',
-		stack: 'Stack',
-		data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
-	}, {
-		name: 'Resolve',
-		type: 'bar',
-		stack: 'Stack',
-		data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
-	}, 
-	{
-		name: 'Close',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
-	}
-	];
-	/*----echartTicketUnit----*/
-	var optionTicketUnit = {
-		grid: {
-			top: '6',
-			right: '10',
-			bottom: '17',
-			left: '95',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		series: chartTicketUnit,
-		color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
-	};
-	var chartTicketUnit = document.getElementById('echartTicketUnit');
-	var barChartTicketUnit = echarts.init(chartTicketUnit);
+        name: 'New',
+        type: 'bar',
+        stack: 'Stack',
+        data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
+    }, {
+        name: 'Open',
+        type: 'bar',
+        stack: 'Stack',
+        data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
+    }, {
+        name: 'Reject',
+        type: 'bar',
+        stack: 'Stack',
+        data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
+    }, {
+        name: 'On Progress',
+        type: 'bar',
+        stack: 'Stack',
+        data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
+    }, {
+        name: 'Pending',
+        type: 'bar',
+        stack: 'Stack',
+        data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
+    }, {
+        name: 'Reopen',
+        type: 'bar',
+        stack: 'Stack',
+        data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
+    }, {
+        name: 'Resolve',
+        type: 'bar',
+        stack: 'Stack',
+        data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
+    }, 
+    {
+        name: 'Close',
+        type: 'bar',
+        stack: 'Stack',
+        data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
+    }
+    ];
+    /*----echartTicketUnit----*/
+    var optionTicketUnit = {
+        grid: {
+            top: '6',
+            right: '10',
+            bottom: '17',
+            left: '95',
+        },
+        xAxis: {
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        series: chartTicketUnit,
+        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+    };
+    var chartTicketUnit = document.getElementById('echartTicketUnit');
+    var barChartTicketUnit = echarts.init(chartTicketUnit);
     barChartTicketUnit.setOption(optionTicketUnit);
     
     // ------CHART BARU
@@ -896,4 +957,59 @@ function ini_finctiiin () {
         color: ['#5F9EA0']
     };
     barChart.setOption(option);
+}
+
+//jquery
+(function ($) {
+
+    // btn day
+    $('#btn-day').click(function(){
+        params_time = 'day';
+        // console.log(params_time);
+        loadContent(params_time , '2020-01-10');
+        // $('#tag-time').html(v_date);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn day
+    $('#btn-week').click(function(){
+        params_time = 'week';
+        // console.log(params_time);
+        loadContent(params_time , '2020-01-10', v_year);
+        // $('#tag-time').html(v_date);
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn month
+    $('#btn-month').click(function(){
+        params_time = 'month';
+        // console.log(params_time);
+        loadContent(params_time , '1', v_year)
+        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        params_time = 'year';
+        // console.log(params_time);
+        loadContent(params_time , '2020');
+        // $('#tag-time').html(v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+
+    
 })(jQuery);
