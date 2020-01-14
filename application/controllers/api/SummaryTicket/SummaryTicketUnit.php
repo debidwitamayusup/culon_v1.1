@@ -102,23 +102,29 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function filterTable(){
-        $search = $_POST['search']['value']; // Ambil data yang di ketik user pada textbox pencarian
-        $limit = $_POST['length']; // Ambil data limit per page
-        $start = $_POST['start']; // Ambil data start
-        $order_index = $_POST['order'][0]['column']; // Untuk mengambil index yg menjadi acuan untuk sorting
-        $order_field = $_POST['columns'][$order_index]['data']; // Untuk mengambil nama field yg menjadi acuan untuk sorting
-        $order_ascdesc = $_POST['order'][0]['dir']; // Untuk menentukan order by "ASC" atau "DESC"
+
+        $params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+        $index = $this->security->xss_clean($this->input->post('index', true)); // value params
+        $params_year = $this->security->xss_clean($this->input->post('year', true));    // value params
+
+        $search = $this->input->post('search'); // Ambil data yang di ketik user pada textbox pencarian
+        $limit = $this->input->post('limit'); // Ambil data limit per page
+        $start = $this->input->post('start'); // Ambil data start
+        // $order_index = $_POST['order'][0]['column']; // Untuk mengambil index yg menjadi acuan untuk sorting
+        // $order_field = $_POST['columns'][$order_index]['data']; // Untuk mengambil nama field yg menjadi acuan untuk sorting
+        // $order_ascdesc = $_POST['order'][0]['dir']; // Untuk menentukan order by "ASC" atau "DESC"
+        $draw = $this->input->post('draw');
         $sql_total = $this->module_model->count_all(); // Panggil fungsi count_all pada SiswaModel
-        $sql_data = $this->module_model->filter($search, $limit, $start, $order_field, $order_ascdesc); // Panggil fungsi filter pada SiswaModel
+        $sql_data = $this->module_model->filter($search, $limit, $start,  $params, $index, $params_year, $draw); // Panggil fungsi filter pada SiswaModel
         $sql_filter = $this->module_model->count_filter($search); // Panggil fungsi count_filter pada SiswaModel
-        $callback = array(
-            'draw'=>$_POST['draw'], // Ini dari datatablenya
-            'recordsTotal'=>$sql_total,
-            'recordsFiltered'=>$sql_filter,
-            'data'=>$sql_data
-        );
+        // $callback = array(
+        //     'draw'=>$_POST['draw'], // Ini dari datatablenya
+        //     'recordsTotal'=>$sql_total,
+        //     'recordsFiltered'=>$sql_filter,
+        //     'data'=>$sql_data
+        // );
         header('Content-Type: application/json');
-        echo json_encode($callback); // Convert array $callback ke json
+        echo json_encode($sql_data); // Convert array $callback ke json
     }
 }
 

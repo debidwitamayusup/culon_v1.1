@@ -407,8 +407,10 @@ function drawDataTable2(params, index, params_year){
     $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
 
     $('#table_summary_ticket').DataTable({
+        processing : true,
+        serverSide : true,
         ajax: {
-            url : base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
+            url : base_url + 'api/SummaryTicket/SummaryTicketUnit/filterTable',
             type : 'POST'
         },
         data: {
@@ -417,22 +419,63 @@ function drawDataTable2(params, index, params_year){
             params_year: params_year
         },
         destroy: true,
-        footerCallback: function ( row, data, start, end, display ) {
-                var api = this.api();
-                nb_cols = api.columns().nodes().length;
-                var j = 2;
-                while(j < nb_cols){
-                    var pageTotal = api
-                .column( j, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return Number(a) + Number(b);
-                }, 0 );
-          // Update footer
-          $( api.column( j ).footer() ).html(pageTotal);
-                    j++;
-                } 
-            }
+        drawCallback:function(settings)
+        {
+            $('#total_new').html(settings.json.totalnew);
+            console.log(settings.json.totalnew);
+        },
+         // footerCallback: function ( row, data, start, end, display) {
+         //    var api = this.api(), data;
+ 
+         //    // Remove the formatting to get integer data for summation
+         //    var intVal = function ( i ) {
+         //        return typeof i === 'string' ?
+         //            i.replace(/[\$,]/g, '')*1 :
+         //            typeof i === 'number' ?
+         //                i : 0;
+         //    };
+
+         //    // Total over all pages
+         //    total = api
+         //        .column( 2 )
+         //        .data()
+         //        .reduce( function (a, b) {
+         //            return intVal(a) + intVal(b);
+         //        } );
+ 
+         //    // Total over this page
+         //    pageTotal = api
+         //        .column( 2, { page: 'current'} )
+         //        .data()
+         //        .reduce( function (a, b) {
+         //            return intVal(a) + intVal(b);
+         //        }, 0 );
+ 
+         //    // Update footer
+         //    $( api.column( 2 ).footer() ).html(
+         //        total,
+         //        console.log(total)
+
+         //    );
+            // $(api.column(3),footer()).html(total)
+        // },
+        // "footerCallback": function(row, data, start, end, display) {
+        //   var api = this.api();
+         
+        //   api.columns('.sum', {
+        //     page: 'current'
+        //   }).every(function() {
+        //     var sum = this
+        //       .data()
+        //       .reduce(function(a, b) {
+        //         var x = parseFloat(a) || 0;
+        //         var y = parseFloat(b) || 0;
+        //         return x + y;
+        //       }, 0);
+        //     console.log(sum); //alert(sum);
+        //     $(this.footer()).html(sum);
+        //   });
+        // }
     });
 }
 

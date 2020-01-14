@@ -64,6 +64,7 @@ class SummaryTicketModel extends CI_Model
 		$query = $this->db->get();
 
 		$i = 1;
+		$totalnew = 0;
 		foreach ($query->result() as $key) {
 			$cotent[] = array(
 				// 'num' => strval($i),
@@ -86,6 +87,7 @@ class SummaryTicketModel extends CI_Model
 	    		$key->reject,
 	    		$key->Resolved,
 	    		$key->return
+	    		// $totalnew = strval($totalnew + floatval($key->new))
 			);
 			$i++;
 		}
@@ -94,12 +96,22 @@ class SummaryTicketModel extends CI_Model
 		$return = array(
 				'recordsTotal' => $query->num_rows(),
                 'recordsFiltered' => $query->num_rows(),
-                'data' => $cotent
+                'data' => $cotent,
+                // 'totalnew' => number_format($totalnew, 2)
 			);
 		return $return;
 	}
 
-	public function filter($search, $limit, $start, $order_field, $order_ascdesc){
+
+
+	public function filter($search, $limit, $start, $params, $index, $params_year, $draw){
+		if ($params == 'day'){
+			$this->db->where('DATE(lup) = "'.$index.'"');
+		}else if ($params == 'month'){
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+		}else if ($params == 'year'){
+			$this->db->where('YEAR(lup) = "'.$index.'"');
+		}
 	    $this->db->like('unit', $search); // Untuk menambahkan query where LIKE
 	    $this->db->or_like('sNew', $search); // Untuk menambahkan query where OR LIKE
 	    $this->db->or_like('sOpen', $search); // Untuk menambahkan query where OR LIKE
@@ -109,9 +121,48 @@ class SummaryTicketModel extends CI_Model
 	    $this->db->or_like('sReject', $search); // Untuk menambahkan query where OR LIKE
 	    $this->db->or_like('sResolved', $search); // Untuk menambahkan query where OR LIKE
 	    $this->db->or_like('sReturn', $search); // Untuk menambahkan query where OR LIKE
-	    $this->db->order_by($order_field, $order_ascdesc); // Untuk menambahkan query ORDER BY
+	    $this->db->order_by('unit', 'asc'); // Untuk menambahkan query ORDER BY
 	    $this->db->limit($limit, $start); // Untuk menambahkan query LIMIT
-	    return $this->db->get('rpt_summ_ticket_unit')->result_array(); // Eksekusi query sql sesuai kondisi diatas
+	    // return
+	    $query = $this->db->get('rpt_summ_ticket_unit');
+	    // ->result_array(); // Eksekusi query sql sesuai kondisi diatas
+
+	    $i = 1;
+		$totalnew = 0;
+		foreach ($query->result() as $key) {
+			$cotent[] = array(
+				// 'num' => strval($i),
+				// 'unit' => $key->unit,
+				// 'new' => $key->new,
+				// 'open' => $key->open,
+				// 'onProgress' => $key->onProgress,
+				// 'pending' => $key->pending,
+				// 'reOpen' => $key->Reopen,
+				// 'reject' => $key->reject,
+				// 'resolved' => $key->Resolved,
+				// 'return' => $key->return
+				strval($i),
+				$key->unit,
+	    		$key->sNew,
+	    		$key->sOpen,
+	    		$key->sOnProgress,
+	    		$key->sPending,
+	    		$key->sReopen,
+	    		$key->sReject,
+	    		$key->sResolved,
+	    		$key->sReturn
+	    		// $totalnew = strval($totalnew + floatval($key->new))
+			);
+			$i++;
+		}
+		$return = array(
+				// 'draw' => $draw,
+				'recordsTotal' => $query->num_rows(),
+                'recordsFiltered' => $query->num_rows(),
+                'data' => $cotent,
+                'totalnew' => number_format($totalnew, 2)
+			);
+		return $return;
   	}
   	public function count_all(){
     	return $this->db->count_all('rpt_summ_ticket_unit'); // Untuk menghitung semua data siswa
