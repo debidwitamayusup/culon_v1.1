@@ -1,3 +1,42 @@
+var base_url = $('#base_url').val();
+var v_params = 'day';
+var v_index = '2020-01-10';
+var v_month = '1';
+var v_year = '2020';
+
+$(document).ready(function () {
+    loadContent(v_params, v_index, 0);
+    fromTemplate();
+    $("#btn-month").prop("class","btn btn-light btn-sm");
+    $("#btn-year").prop("class","btn btn-light btn-sm");
+    $("#btn-day").prop("class","btn btn-red btn-sm");
+});
+
+function loadContent(index, params, params_year){
+    drawDataTable2(params, index, params_year);
+}
+
+function drawDataTable2(params, index, params_year){
+
+    $('#mytbody').remove();
+    // $('#mytfoot').remove();
+    $('#tablesPerformance').append('<tbody class="text-center" id="mytbody" style="font-size:12px !important;">');
+
+    $('#tablesPerformance').DataTable({
+        processing : true,
+        ajax: {
+            url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
+            type : 'POST'
+        },
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year
+        },
+        destroy: true,
+    });
+}
+
 $(function($) {
     "use strict";
     
@@ -112,6 +151,61 @@ $(function($) {
 
 
 
-    //sample datatable	
-	$('#tablesPerformance').DataTable();
+ //    //sample datatable	
+	// $('#tablesPerformance').DataTable();
 });
+
+//jquery
+(function ($) {
+
+    // btn day
+    $('#btn-day').click(function(){
+        params_time = 'day';
+        // console.log(params_time);
+        loadContent(params_time , '2020-01-10');
+        // $('#tag-time').html(v_date);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn day
+    $('#btn-week').click(function(){
+        params_time = 'week';
+        // console.log(params_time);
+        loadContent(params_time , '2020-01-10', v_year);
+        // $('#tag-time').html(v_date);
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn month
+    $('#btn-month').click(function(){
+        params_time = 'month';
+        // console.log(params_time);
+        loadContent(params_time , '1', v_year)
+        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        params_time = 'year';
+        // console.log(params_time);
+        loadContent(params_time , '2020');
+        // $('#tag-time').html(v_year);
+        $("#btn-week").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+    });
+
+
+    
+})(jQuery);

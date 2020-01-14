@@ -79,8 +79,8 @@
                                             <th class="wd-15p border-bottom-0">Total Session (COF)</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="text-center" style="font-size:12px !important;">
-                                        <tr>
+                                    <tbody class="text-center" id="mytbody" style="font-size:12px !important;">
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>2020-01-30</td>
                                             <td>00:40:00</td>
@@ -196,7 +196,7 @@
                                             <td>00:40:00</td>
                                             <td>00:40:00</td>
                                             <td>00:40:00</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
