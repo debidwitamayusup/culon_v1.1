@@ -137,16 +137,16 @@ class SummaryTicketUnit extends CI_Controller {
         $statusData = array();
         $unitData = array();
 
-        foreach ($data as $key) {
-        	array_push($unitData, $key->unit);
-        	array_push($statusData, $key->new);
-        	array_push($statusData, $key->open);
-        }
+        // foreach ($data as $key) {
+        // 	array_push($unitData, $key->unit);
+        // 	array_push($statusData, $key->new);
+        // 	array_push($statusData, $key->open);
+        // }
 
-        $datas = [
-        	'unit' => $unitData,
-        	'statusData' => $statusData
-        ];
+        // $datas = [
+        // 	'unit' => $unitData,
+        // 	'statusData' => $statusData
+        // ];
 
         if ($data) {
             $response = array(
