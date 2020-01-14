@@ -371,16 +371,18 @@
                                             <td class="text-right">10</td>
                                         </tr> -->
                                     </tbody>
-                                    <tfoot class="font-weight-extrabold text-right bg-total" id="mytfoot">
-                                        <!-- <th colspan="2" class="font-weight-extrabold">Total</th>
-                                        <th>100</th>
-                                        <th>100</th>
-                                        <th>100</th>
-                                        <th>100</th>
-                                        <th>100</th>
-                                        <th>100</th>
-                                        <th>100</th> -->
-                                    </tfoot>
+                                    <!-- <tfoot class="font-weight-extrabold text-right bg-total" id="mytfoot">
+                                        <tr>
+                                            <th colspan="2" class="font-weight-extrabold">Total:</th>
+                                            <th></th> -->
+                                            <!-- <th></th> -->
+                                            <!-- <th>100</th>
+                                            <th>100</th>
+                                            <th>100</th>
+                                            <th>100</th>
+                                            <th>100</th> -->
+                                        <!-- </tr> -->
+                                    <!-- </tfoot> -->
                                 </table>
                             </div>
                             <!-- table-responsive -->
