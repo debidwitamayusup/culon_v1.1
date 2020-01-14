@@ -401,8 +401,13 @@ function drawDataTable(response){
 
 function drawDataTable2(params, index, params_year){
 
+    
+    $('#mytbody').remove();
+    $('#mytfoot').remove();
+    $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
+
     $('#table_summary_ticket').DataTable({
-        "ajax": {
+        ajax: {
             url : base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
             type : 'POST'
         },
@@ -411,6 +416,23 @@ function drawDataTable2(params, index, params_year){
             index: index,
             params_year: params_year
         },
+        destroy: true,
+        footerCallback: function ( row, data, start, end, display ) {
+                var api = this.api();
+                nb_cols = api.columns().nodes().length;
+                var j = 2;
+                while(j < nb_cols){
+                    var pageTotal = api
+                .column( j, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return Number(a) + Number(b);
+                }, 0 );
+          // Update footer
+          $( api.column( j ).footer() ).html(pageTotal);
+                    j++;
+                } 
+            }
     });
 }
 
