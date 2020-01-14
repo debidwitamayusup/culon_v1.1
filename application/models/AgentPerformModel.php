@@ -33,6 +33,66 @@ class AgentPerformModel extends CI_Model
 
 		return $query->result();
 	}
+
+	public function getSSallchannel($src='',$params,$index,$param_year)
+	{
+		$this->db->select('tanggal AS DATE, art AS ART, aht AS AHT, ast as AST, scr AS SCR, cof AS COF');
+		$this->db->from('rpt_summary_scr');
+		if($params=='month')
+		{
+			$this->db->where('MONTH(tanggal)',$index);
+			$this->db->where('YEAR(tanggal)',$param_year);
+		}
+		else if($params=='year')
+		{
+			$this->db->where('YEAR(tanggal)',$index);
+		}
+		else if($params=='day')
+		{
+			$this->db->where('DATE(tanggal)',$index);
+		}
+		if($src)
+		{
+			$this->db->like('tanggal',$src);
+			$this->db->or_like('art',$src);
+			$this->db->or_like('aht',$src);
+			$this->db->or_like('ast',$src);
+			$this->db->or_like('scr',$src);
+			$this->db->or_like('cof',$src);
+		}
+		$query = $this->db->get();
+
+		if($query->num_rows()>0)
+		{
+			$idx = 1;
+			foreach($query->result() as $data)
+			{
+				$content[] = array(
+					strval($idx),
+					strval($data->DATE),
+					strval($data->ART),
+					strval($data->AHT),
+					strval($data->AST),
+					strval($data->SCR),
+					strval($data->COF)
+				);
+				$idx++;
+			}
+
+		}
+		else{
+			$content[] = array();
+		}
+
+		$res = array(
+			'recordsTotal' => $query->num_rows(),
+			'recordsFiltered' => $query->num_rows(),
+			'data' => $content,
+		);
+
+	return $res;
+		
+	}
 }
 
 ?>
