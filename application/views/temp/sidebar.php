@@ -38,7 +38,7 @@
 					</div>
 				</li>
 				<!-- <li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li> -->
-				<li class="slide submenu" id="accordion">
+				<!-- <li class="slide submenu" id="accordion">
 					<a href="#collapseAgent" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseAgent"> Agent Performance
 						<i class="angle not-absolute2 fas fa-angle-right"></i></a>
@@ -50,7 +50,7 @@
 								Performance</a></div>
 					</div>
 					</div>
-				</li>
+				</li> -->
 				<li class="slide submenu" id="accordion">
 					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseKIP"> Operation Performance
@@ -61,6 +61,7 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 					</div>
 					</div>
 				</li>

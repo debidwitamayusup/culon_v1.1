@@ -230,4 +230,11 @@ class main extends CI_Controller {
 		$this->load->view('v_report_detail_cwc');
 	}
 
+	public function performance_channel(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_performance_bychannel');
+	}
+
 }
