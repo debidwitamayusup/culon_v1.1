@@ -18,7 +18,8 @@ $(document).ready(function () {
 function loadContent(index, params, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
-    summaryStatusTicketPerUnit(params, index, params_year);
+    // summaryStatusTicketPerUnit(params, index, params_year);
+    drawDataTable2(params, index, params_year);
 
     //datatable config
     // $('#table_summary_ticket thead tr:eq(0) th:eq(2)').html("Status");
@@ -396,6 +397,21 @@ function drawDataTable(response){
             ],
         });
 
+}
+
+function drawDataTable2(params, index, params_year){
+
+    $('#table_summary_ticket').DataTable({
+        "ajax": {
+            url : base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
+            type : 'POST'
+        },
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year
+        },
+    });
 }
 
 function drawTable(response){

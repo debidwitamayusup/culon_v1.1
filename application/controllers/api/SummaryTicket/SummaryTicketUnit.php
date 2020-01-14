@@ -57,17 +57,39 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryStatusperUnit(){
+
+    	$draw = intval($this->input->get("draw"));
+	    $start = intval($this->input->get("start"));
+	    $length = intval($this->input->get("length"));
+
     	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 		$params_year = $this->security->xss_clean($this->input->post('year', true));	// value params
 		
     	$data = $this->module_model->getSummStatusperUnit($params, $index, $params_year);
-
+    	// $datas = [];
+    	// foreach ($data->result() as $key) {
+    		
+    	// 	$datas [] = array(
+				 //    		$key->unit,
+				 //    		$key->new,
+				 //    		$key->open,
+				 //    		$key->onProgress,
+				 //    		$key->pending,
+				 //    		$key->Reopen,
+				 //    		$key->reject,
+				 //    		$key->Resolved,
+				 //    		$key->return
+				 //    	);
+    	// }
     	if ($data) {
-            $response = array(
-				'status' => true,
-				'data' => $data
-			);
+   //          $response = array(
+			// 	// 'status' => true,
+			// 	// 'recordsTotal' => $data->num_rows(),
+   //  //             'recordsFiltered' => $data->num_rows(),
+			// 	'data' => $data
+			// );
+			$response = $data;
         }
         else {
             $response = array(
@@ -89,15 +111,11 @@ class SummaryTicketUnit extends CI_Controller {
         $sql_total = $this->module_model->count_all(); // Panggil fungsi count_all pada SiswaModel
         $sql_data = $this->module_model->filter($search, $limit, $start, $order_field, $order_ascdesc); // Panggil fungsi filter pada SiswaModel
         $sql_filter = $this->module_model->count_filter($search); // Panggil fungsi count_filter pada SiswaModel
-        $jhjh= array(
-            'a' => $sql_filter,
-            'b' => $sql_data
-        );
         $callback = array(
             'draw'=>$_POST['draw'], // Ini dari datatablenya
             'recordsTotal'=>$sql_total,
             'recordsFiltered'=>$sql_filter,
-            'data'=>$jhjh
+            'data'=>$sql_data
         );
         header('Content-Type: application/json');
         echo json_encode($callback); // Convert array $callback ke json

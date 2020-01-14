@@ -63,7 +63,40 @@ class SummaryTicketModel extends CI_Model
 
 		$query = $this->db->get();
 
-		return $query->result();
+		$i = 1;
+		foreach ($query->result() as $key) {
+			$cotent[] = array(
+				// 'num' => strval($i),
+				// 'unit' => $key->unit,
+				// 'new' => $key->new,
+				// 'open' => $key->open,
+				// 'onProgress' => $key->onProgress,
+				// 'pending' => $key->pending,
+				// 'reOpen' => $key->Reopen,
+				// 'reject' => $key->reject,
+				// 'resolved' => $key->Resolved,
+				// 'return' => $key->return
+				strval($i),
+				$key->unit,
+	    		$key->new,
+	    		$key->open,
+	    		$key->onProgress,
+	    		$key->pending,
+	    		$key->Reopen,
+	    		$key->reject,
+	    		$key->Resolved,
+	    		$key->return
+			);
+			$i++;
+		}
+		// return $query->result();
+		// return $query;
+		$return = array(
+				'recordsTotal' => $query->num_rows(),
+                'recordsFiltered' => $query->num_rows(),
+                'data' => $cotent
+			);
+		return $return;
 	}
 
 	public function filter($search, $limit, $start, $order_field, $order_ascdesc){
