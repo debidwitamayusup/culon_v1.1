@@ -4,6 +4,8 @@ var v_index = '2020-01-10';
 var v_month = '1';
 var v_year = '2020';
 
+$('#tablesummary').DataTable();
+
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
     // ini_finctiiin();
@@ -87,5 +89,46 @@ function drawTable(response){
 
     $("#filter-loader").fadeOut("slow");
 }
+
+//pie chart summary ticket time
+var ctx = document.getElementById( "pieTicketTime" );
+ctx.height = 385;
+var myChart = new Chart( ctx, {
+    type: 'pie',
+    data: {
+        datasets: [ {
+            data: [ 15, 35, 40],
+            backgroundColor: [
+                                "#A5B0B6",
+                                "#009E8C",
+                                "#00436D"
+                            ],
+            hoverBackgroundColor: [
+                                "#A5B0B6",
+                                "#009E8C",
+                                "#00436D"
+                            ]
+
+                        } ],
+        labels: [
+                            "Information",
+                            "Respond",
+                            "Complaint",
+                ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend:{
+            position:"bottom",
+            labels:{
+                boxWidth:10
+           }
+        }
+    }
+} );
+
+
+
 
 (jQuery);
