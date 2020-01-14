@@ -233,13 +233,17 @@
              <!-- </div> --> 
 
                            
+<<<<<<< HEAD
+                    <div class="col-md-12 col-lg-12">
+=======
                     <div class="col-md-12">
+>>>>>>> origin/debi-dev
                         <div class="card overflow-hidden border-0">
                             <div class="card-header-small bg-red">
                                 <h5 class="card-title-small card-pt10">Status Ticket / Unit</h5>
                             </div>
                             <div class="table-responsive table-bordered table-pt10" id="div_table_ticket">
-                                <table class="table card-table table-vcenter table-hover" style="height:829px !important;" id="table_summary_ticket">
+                                <table class="table card-table table-vcenter table-striped table-hover" id="table_summary_ticket">
                                     <thead class="text-center text-white bg-gray1">
                                         <tr>
                                             <th rowspan="2" class="align-middle">No</th>

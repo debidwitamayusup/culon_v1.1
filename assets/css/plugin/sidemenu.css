@@ -16,7 +16,7 @@
 		visibility: hidden;
 	}
 	.app-sidebar__toggle {
-		margin-left: 13px;
+		margin-left: 0px;
 	}
 
 }
@@ -148,7 +148,7 @@
 	text-decoration: none;
 }
 .app-sidebar__toggle {
-	padding: 0px 21px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	color: #fff;
 	-webkit-transition: background-color 0.3s ease;
 	-o-transition: background-color 0.3s ease;

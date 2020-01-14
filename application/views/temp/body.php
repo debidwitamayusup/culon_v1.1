@@ -30,7 +30,7 @@
 												id="tag-time"></span>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
 						</div>
@@ -41,7 +41,7 @@
 							<div class="col-xl-6 col-lg-6 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header-small bg-red">
-										<h5 class="card-title-small card-pt10 text-white">Summary Traffic Channel</h5>
+										<h5 class="card-title-small card-pt10 text-white">Summary Traffic</h5>
 									</div>
 									<div class="card-pie">
 										<div class="canvas-con">
@@ -55,8 +55,11 @@
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12">
 								<div class="card overflow-hidden">
+									<div class="card-header-small bg-red">
+										<h5 class="card-title-small card-pt10 text-white">Summary Interaction</h5>
+									</div>
 									<div class="card-body">
-										<div class="row mt-5">
+										<div class="row mt-2">
 											<div class="col-md-6 text-center">
 												<div class="card-custom">
 													<div class="card-header bg-red">
@@ -80,7 +83,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="row mt-5 mb-5">
+										<div class="row mt-2 mb-2">
 											<div class="col-md-6 text-center">
 												<div class="card-custom">
 													<div class="card-header bg-red">

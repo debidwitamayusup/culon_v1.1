@@ -89,15 +89,11 @@ class SummaryTicketUnit extends CI_Controller {
         $sql_total = $this->module_model->count_all(); // Panggil fungsi count_all pada SiswaModel
         $sql_data = $this->module_model->filter($search, $limit, $start, $order_field, $order_ascdesc); // Panggil fungsi filter pada SiswaModel
         $sql_filter = $this->module_model->count_filter($search); // Panggil fungsi count_filter pada SiswaModel
-        $jhjh= array(
-            'a' => $sql_filter,
-            'b' => $sql_data
-        );
         $callback = array(
             'draw'=>$_POST['draw'], // Ini dari datatablenya
             'recordsTotal'=>$sql_total,
             'recordsFiltered'=>$sql_filter,
-            'data'=>$jhjh
+            'data'=>$sql_data
         );
         header('Content-Type: application/json');
         echo json_encode($callback); // Convert array $callback ke json
