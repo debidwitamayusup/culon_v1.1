@@ -7,7 +7,7 @@ var v_year = '2020';
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
     // fromTemplate();
-    drawChartSumChannel();
+    // drawChartSumChannel();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
@@ -15,7 +15,8 @@ $(document).ready(function () {
 
 function loadContent(index, params, params_year){
     drawDataTable2(params, index, params_year);
-    summaryService(index, params, params_year)
+    summaryService(index, params, params_year);
+    summaryChannel();
 }
 
 function summaryService(params, index, params_year){
@@ -39,6 +40,26 @@ function summaryService(params, index, params_year){
     });
 }
 
+function summaryChannel(params, index, params_year){
+	$.ajax({
+        type: 'post',
+        url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryServiceByChannel',
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year
+        },
+        success: function (response) {
+            // var response = JSON.parse(r);
+            // console.log(response);
+            drawChartSumChannel(response);
+        },
+        error: function (r) {
+            console.log(r);
+            alert("error");
+        },
+    });
+}
 function drawDataTable2(params, index, params_year){
 
     $('#mytbody').remove();
@@ -113,21 +134,34 @@ function drawChartSumService(response){
 }
 
 function drawChartSumChannel(response){
+	console.log(response);
+	let channelName = [];
+	let art = [];
+	let aht = [];
+	let ast = [];
+	response.data.forEach(function (value, index) {
+		channelName.push(value.CHANNEL_NAME);
+		art.push(value.SUM_ART);
+		aht.push(value.SUM_AHT);
+		ast.push(value.SUM_AST);
+
+    });
+    console.log(channelName);
 	var chartdataTicket= [{
 		name: 'ART',
 		type: 'bar',
 		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14,15,15,20,20]
+		data: art
 	}, {
 		name: 'AHT',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20,30,30,30,30]
+		data: aht
 	}, {
 		name: 'AST',
 		type: 'bar',
 		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20,40,40,40,40]
+		data: ast
 	}];
 	/*----echart summary ticket category----*/
 	var optionTicket = {
@@ -151,7 +185,8 @@ function drawChartSumChannel(response){
 		},
 		yAxis: {
 			type: 'category',
-			data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
+			// data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
+			data: channelName,
 			splitLine: {
 				lineStyle: {
 					color: '#efefff'
