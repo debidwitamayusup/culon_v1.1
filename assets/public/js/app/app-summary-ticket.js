@@ -555,34 +555,52 @@ function drawTable(response){
 }
 
 function drawChartStatusPerUnit(response){
-    var dataUnit = [];
-    var dataStatus = [];
 
+    let dataUnit = [];
+    // let dataStatus = [];
+    // console.log(response.data.statusData[0]);
     response.data.forEach(function (value, index) {
         dataUnit.push(value.unit);
-        dataStatus.push(value.statusData);
+    });
+
+    var chartdata = [];
+    var i = 0;
+    response.data.forEach(function (value, index) {
+        var dataS = [];
+        while (i < 8){
+        var dataStatus = "";
+            if (i == 0 ) {
+                dataStatus = (value.new)?value.new:0;
+            }else if (i == 1) {
+               dataStatus = value.open?value.open:0;
+            }else if (i == 2) {
+                dataStatus = value.onProgress?value.onProgress:0;
+            }else if (i == 3) {
+                dataStatus = value.Resolved?value.Resolved:0;
+            }else if (i == 4) {
+                dataStatus = value.Repen?value.Reopen:0;
+            }else if (i == 5) {
+                dataStatus = value.pending?value.pending:0;
+            }else if (i == 6) {
+                dataStatus = value.reject?value.reject:0;
+            }else if (i == 7) {
+                dataStatus = value.return?value.return:0;
+            }
+        dataS.push(dataStatus);
+        i++;
+       }
+        console.log(dataS.length);
+
+        var dataStatusTicket = {
+            name: value.unit,
+            type: 'bar',
+            stack: "stack",
+            data: dataS
+        }
+        chartdata.push(dataStatusTicket);
 
     });
-    var chartdata3 = []
-       response.data.forEach(function (value, index) {
-            var dataUnit = [];
-            var totalKip = []
-            response.data.forEach(function (value) {
-                var total = "";
-                    total = (value.statusData)?value.statusData:0;
-                    dataUnit.push(value.unit);
-                totalKip.push(total);
-            });
-            console.log(totalKip);
-            var dataTraffic = {
-                name: dataUnit,
-                type: 'bar',
-                stack: "stack",
-                data: totalKip
-            }
-            chartdata3.push(dataTraffic);
-        });
-   console.log(response);
+     console.log(chartdata)
    
     
     var chartTicketUnit= [{

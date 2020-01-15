@@ -347,6 +347,8 @@ function drawKipPerChannelChart(response){
 					total = (value.total_3)?value.total_3:0;
 				}
 				totalKip.push(total)
+
+	    // console.log(totalKip);
 			});
 			var dataKip = {
 				name: value,
@@ -356,7 +358,9 @@ function drawKipPerChannelChart(response){
 			}
 			chartdata3.push(dataKip);
 			i++;
+
 	    });
+	    console.log(chartdata3);
 		var option6 = {
 			grid: {
 				top: '6',

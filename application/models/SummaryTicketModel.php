@@ -195,14 +195,14 @@ class SummaryTicketModel extends CI_Model
 
 		$query = $this->db->get();
 
-		foreach ($query->result() as $key) {
-			$cotent[] = array(
-				'unit' => $key->unit,
-				'statusData' => $key->new.','.$key->open.','.$key->onProgress.','.$key->Resolved.','.$key->pending.','.$key->Reopen.','.$key->reject.','.$key->return
-			);
-		}
+		// foreach ($query->result() as $key) {
+		// 	$cotent[] = array(
+		// 		'unit' => $key->unit,
+		// 		'statusData' => $key->new.','.$key->open.','.$key->onProgress.','.$key->Resolved.','.$key->pending.','.$key->Reopen.','.$key->reject.','.$key->return
+		// 	);
+		// }
 
-		return $cotent;
+		return $query->result();
 	}
 }
 ?>
