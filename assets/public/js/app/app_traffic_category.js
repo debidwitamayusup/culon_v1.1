@@ -663,6 +663,8 @@ function drawSummaryTrafficChannelChart(response){
 				}
 				totalKip.push(total)
 			});
+			console.log(response);
+			console.log(totalKip);
 			var dataTraffic = {
 				name: value,
 				type: 'bar',

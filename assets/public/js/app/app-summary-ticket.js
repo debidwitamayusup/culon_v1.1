@@ -20,7 +20,8 @@ function loadContent(index, params, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
     // summaryStatusTicketPerUnit(params, index, params_year);
-    drawDataTable2(params, index, params_year);
+    // drawDataTable2(params, index, params_year);
+    // ticketStatusUnit(params, index, params_year);
 
     //datatable config
     // $('#table_summary_ticket thead tr:eq(0) th:eq(2)').html("Status");
@@ -172,8 +173,9 @@ function ticketStatusUnit(params, index, params_year){
         },
         error: function (r) {
             alert("error");
-        }
-})
+        },
+    });
+}
 
 function drawPie(response){
     //destroy div piechart
@@ -553,6 +555,36 @@ function drawTable(response){
 }
 
 function drawChartStatusPerUnit(response){
+    var dataUnit = [];
+    var dataStatus = [];
+
+    response.data.forEach(function (value, index) {
+        dataUnit.push(value.unit);
+        dataStatus.push(value.statusData);
+
+    });
+    var chartdata3 = []
+       response.data.forEach(function (value, index) {
+            var dataUnit = [];
+            var totalKip = []
+            response.data.forEach(function (value) {
+                var total = "";
+                    total = (value.statusData)?value.statusData:0;
+                    dataUnit.push(value.unit);
+                totalKip.push(total);
+            });
+            console.log(totalKip);
+            var dataTraffic = {
+                name: dataUnit,
+                type: 'bar',
+                stack: "stack",
+                data: totalKip
+            }
+            chartdata3.push(dataTraffic);
+        });
+   console.log(response);
+   
+    
     var chartTicketUnit= [{
         name: 'New',
         type: 'bar',
@@ -618,7 +650,8 @@ function drawChartStatusPerUnit(response){
         },
         yAxis: {
             type: 'category',
-            data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+            // data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+            data: dataUnit,
             splitLine: {
                 lineStyle: {
                     color: '#efefff'
@@ -634,8 +667,9 @@ function drawChartStatusPerUnit(response){
                 color: '#7886a0'
             }
         },
-        series: chartTicketUnit,
-        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+        series: chartdata3,
+        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6"]
+        // color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6"]
     };
     var chartTicketUnit = document.getElementById('echartTicketUnit');
     var barChartTicketUnit = echarts.init(chartTicketUnit);

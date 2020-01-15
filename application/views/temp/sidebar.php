@@ -62,7 +62,7 @@
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent_performance</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>
 					</div>
 				</li>
