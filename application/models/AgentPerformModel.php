@@ -184,7 +184,7 @@ class AgentPerformModel extends CI_Model
 		
 			foreach($query->result() as $data)
 			{
-				$content[] = array(
+				$content = array(
 					'SKILL_ID'=>strval($data->SKILLID),
 					'SKILL_NAME'=>strval($data->SKILLNAME),
 					'AVG_AHT'=>strval($data->AHT),
@@ -207,7 +207,8 @@ class AgentPerformModel extends CI_Model
 			);
 		}
 
-		return $res;
+		// return $res;
+		return $query->result();
 		
 	}
 #endregion

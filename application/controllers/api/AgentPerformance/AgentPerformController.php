@@ -65,7 +65,14 @@ class AgentPerformController extends CI_Controller {
 
         $data = $this->module_model->getSAgentperformByskill();
 
-        echo json_encode($data);
+        $response = array(
+                'status' => 200,
+                'message' => 'Success',
+                'data' => $data
+            );
+            echo json_encode($response);
+
+        // echo json_encode($data);
 
     }
 #endregion
