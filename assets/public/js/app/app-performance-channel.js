@@ -1,6 +1,6 @@
 var base_url = $('#base_url').val();
 var v_params = 'day';
-var v_index = '2020-01-10';
+var v_index = '2020-01-01';
 var v_month = '1';
 var v_year = '2020';
 
@@ -26,8 +26,8 @@ function summaryService(params, index, params_year){
             index: index,
             params_year: params_year
         },
-        success: function (r) {
-            var response = JSON.parse(r);
+        success: function (response) {
+            // var response = JSON.parse(r);
             // console.log(response);
             drawChartSumService(response);
         },
@@ -59,51 +59,56 @@ function drawDataTable2(params, index, params_year){
     });
 }
 function drawChartSumService(response){
+	// console.log(response);
 
-	var MeSeContext = document.getElementById("barService");
-    MeSeContext.height =200;
-    var MeSeData = {
-        labels : [
-                    "ART",
-                    "AHT",
-                    "AST"
-        ],
-        datasets : [{
-            label : "test",
-            data :[response.data.SUMART, response.data.SUM_AHT, response.data.SUM_AST],
-            backgroundColor : [
-                                "#A5B0B6",
-                                "#009E8C",
-                                "#00436D"
-                            ],
-            hoverBackgroundColor : [
-                             "#A5B0B6",
-                             "#009E8C",
-                             "#00436D"
-            ]
-        }]
-    };
-    var MeSeChart = new Chart(MeSeContext,{
-        type : 'horizontalBar',
-        data : MeSeData,
-        options : {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales : {
-                xAxes : [{
-                    ticks : {
-                        min : 0
-                    }
-                }],
-                yAxes : [{
-                    stacked : true
-                }]
-            },
-            legend: {
-                display: false
-                }
-        }
-    });
+	if (response.status != false) {
+		var MeSeContext = document.getElementById("barService");
+	    MeSeContext.height =200;
+	    var MeSeData = {
+	        labels : [
+	                    "ART",
+	                    "AHT",
+	                    "AST"
+	        ],
+	        datasets : [{
+	            label : "test",
+	            data :[response.data.SUM_ART, response.data.SUM_AHT, response.data.SUM_AST],
+	            backgroundColor : [
+	                                "#A5B0B6",
+	                                "#009E8C",
+	                                "#00436D"
+	                            ],
+	            hoverBackgroundColor : [
+	                             "#A5B0B6",
+	                             "#009E8C",
+	                             "#00436D"
+	            ]
+	        }]
+	    };
+	    var MeSeChart = new Chart(MeSeContext,{
+	        type : 'horizontalBar',
+	        data : MeSeData,
+	        options : {
+	            responsive: true,
+	            maintainAspectRatio: false,
+	            scales : {
+	                xAxes : [{
+	                    ticks : {
+	                        min : 0
+	                    }
+	                }],
+	                yAxes : [{
+	                    stacked : true
+	                }]
+	            },
+	            legend: {
+	                display: false
+	                }
+	        }
+	    });
+	}else{
+		$('#barService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 
 function fromTemplate() {
