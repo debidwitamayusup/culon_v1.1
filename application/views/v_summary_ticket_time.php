@@ -204,11 +204,11 @@
                                                 <th>Unit</th>
                                                 <th>1 - 2 Hari</th>
                                                 <th>3 - 5 Hari</th>
-                                                <th>6 < Hari</th>
+                                                <th> > 5 Hari</th>
                                                  <!-- <th class="font-weight-extrabold">Total</th> -->
                                             </tr>
                                         </thead>
-                                        <tbody style="font-size:12px !important;">
+                                        <tbody class="text-center" style="font-size:12px !important;">
                                             <!-- <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">CRM</td>
