@@ -42,7 +42,7 @@ function drawTableSumAgentPeformSkill(){
 			{ className: "text-right", targets: 2 },
 			{ className: "text-right", targets: 3 },
 			{ className: "text-right", targets: 4 },
-			{ className: "text-right", targets: 5 }
+			{ className: "text-right font-weight-extrabold", targets: 5 }
 		],    
         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
