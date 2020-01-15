@@ -63,7 +63,7 @@ class AuthController extends REST_Controller {
        }
     }
 
-#region Raga
+#region :: ragakasih
     //login
     public function doLogin_post(){
             
@@ -96,7 +96,6 @@ class AuthController extends REST_Controller {
         }
 
     }
-
     //forgotpwd
     public function doForgotpassword_post() {
 
@@ -131,7 +130,6 @@ class AuthController extends REST_Controller {
                     ], REST_Controller::HTTP_OK);
         }
     }
-
     //register
     public function doRegister_post() {
 
@@ -170,9 +168,6 @@ class AuthController extends REST_Controller {
                         ], REST_Controller::HTTP_OK);
             }
     }
-
-
-    
 #Endregion
 
 }
