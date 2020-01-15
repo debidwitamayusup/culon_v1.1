@@ -1,7 +1,11 @@
 var base_url = $('#base_url').val();
+var v_src = '';
+var v_params = 'day';
 
 $(document).ready(function () {
     performanceBySkill();
+    drawDataTable();
+    bestOfFive(src, params);
 });
 
 function performanceBySkill(){
@@ -13,6 +17,28 @@ function performanceBySkill(){
             // console.log(response);
             drawTable(response);
             // drawDataTable(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
+function bestOfFive(src, params){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
+        data: {
+        	params: params,
+        	src: src
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // console.log(response);
+            drawCardCOF(response);
+            drawCardAHT(response);
+            drawCardART(response);
+            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
@@ -42,6 +68,21 @@ function drawTable(response){
     // console.log(response.data)
     
 }
+
+function drawDataTable(){
+    $('#mytbody').remove();
+    $('#tableAgent').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
+
+    $('#tableAgent').DataTable({
+        processing : true,
+        ajax: {
+            url : base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
+            type : 'POST'
+        },
+        destroy: true,
+	});
+}
+
 
 $(function(e) {
     //sample datatable	
