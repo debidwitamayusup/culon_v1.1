@@ -486,6 +486,44 @@ class OperationModel extends CI_Model
         }
         return FALSE;
     }
+    public function  getSServicebyChannel($params,$index,$param_year)
+    {
+        $this->db->select('m_channel.channel_id AS CHANNEL_ID,m_channel.channel_name AS CHANNEL_NAME,SUM(rpt_summary_scr.art_num)AS ART, SUM(rpt_summary_scr.aht_num)AS AHT, SUM(rpt_summary_scr.ast_num) AS AST');
+        $this->db->from('rpt_summary_scr');
+        $this->db->join('m_channel','m_channel.channel_id = rpt_summary_scr.channel_id');
+        if($params=='month')
+		{
+			$this->db->where('MONTH(tanggal)',$index);
+			$this->db->where('YEAR(tanggal)',$param_year);
+		}
+		else if($params=='year')
+		{
+			$this->db->where('YEAR(tanggal)',$index);
+		}
+		else if($params=='day')
+		{
+			$this->db->where('DATE(tanggal)',$index);
+        }
+        $this->db->group_by('channel_id','ASC');
+
+        $query = $this->db->get();
+
+        if($query->num_rows()>0)
+        {   
+            foreach($query->result() as $data)
+            {
+                $content[] = array(
+                    'CHANNEL_ID'=> $data->CHANNEL_ID,
+                    'CHANNEL_NAME'=> $data->CHANNEL_NAME,
+                    'SUM_ART'=>strval($data->ART),
+                    'SUM_AHT'=>strval($data->AHT),
+                    'SUM_AST'=>strval($data->AST)
+                );
+            }
+            return $content;                   
+        }
+        return FALSE;
+    }
 #endregion
 
 }
