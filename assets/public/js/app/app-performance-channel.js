@@ -72,11 +72,6 @@ function drawDataTable2(params, index, params_year){
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
             type : 'POST'
         },
-        data: {
-            params: params,
-            index: index,
-            params_year: params_year
-        },
         destroy: true,
     });
 }

@@ -37,6 +37,59 @@ function drawTableSumAgentPeformSkill(){
             url : base_url + 'api/SummaryTicket/SummaryTicketTime/SAgentPerformSkill',
             type : 'POST'
         },
+        
+         // footerCallback: function ( row, data, start, end, display) {
+         //    var api = this.api(), data;
+ 
+         //    // Remove the formatting to get integer data for summation
+         //    var intVal = function ( i ) {
+         //        return typeof i === 'string' ?
+         //            i.replace(/[\$,]/g, '')*1 :
+         //            typeof i === 'number' ?
+         //                i : 0;
+         //    };
+
+         //    // Total over all pages
+         //    total = api
+         //        .column( 2 )
+         //        .data()
+         //        .reduce( function (a, b) {
+         //            return intVal(a) + intVal(b);
+         //        } );
+ 
+         //    // Total over this page
+         //    pageTotal = api
+         //        .column( 2, { page: 'current'} )
+         //        .data()
+         //        .reduce( function (a, b) {
+         //            return intVal(a) + intVal(b);
+         //        }, 0 );
+ 
+         //    // Update footer
+         //    $( api.column( 2 ).footer() ).html(
+         //        total,
+         //        console.log(total)
+
+         //    );
+            // $(api.column(3),footer()).html(total)
+        // },
+        // "footerCallback": function(row, data, start, end, display) {
+        //   var api = this.api();
+         
+        //   api.columns('.sum', {
+        //     page: 'current'
+        //   }).every(function() {
+        //     var sum = this
+        //       .data()
+        //       .reduce(function(a, b) {
+        //         var x = parseFloat(a) || 0;
+        //         var y = parseFloat(b) || 0;
+        //         return x + y;
+        //       }, 0);
+        //     console.log(sum); //alert(sum);
+        //     $(this.footer()).html(sum);
+        //   });
+        // }
         destroy: true
     });
 }

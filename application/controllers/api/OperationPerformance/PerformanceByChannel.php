@@ -42,7 +42,6 @@
 			$params = $this->security->xss_clean($this->input->post('params'));
 			$index = $this->security->xss_clean($this->input->post('index'));
 			$param_year = date('Y');
-	
 			$result = $this->module_model->getSServicebyChannel($params,$index,$param_year);
 			
 			if($result){
