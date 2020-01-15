@@ -8,11 +8,12 @@ $('#tablesummary').DataTable();
 
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
+    drawTableSumAgentPeformSkill();
     // ini_finctiiin();
 });
 
 function loadContent(index, params, params_year){
-    summaryStatusTicketPerUnit(params, index, params_year);
+    // summaryStatusTicketPerUnit(params, index, params_year);
 }
 
 function addCommas(commas)
@@ -26,6 +27,18 @@ function addCommas(commas)
         x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
+}
+
+function drawTableSumAgentPeformSkill(){
+	$('#tablesummary').DataTable({
+        // processing : true,
+        // serverSide : true,
+        ajax: {
+            url : base_url + 'api/SummaryTicket/SummaryTicketTime/SAgentPerformSkill',
+            type : 'POST'
+        },
+        destroy: true
+    });
 }
 
 function summaryStatusTicketPerUnit(params, index, params_year){

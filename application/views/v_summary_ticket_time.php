@@ -204,11 +204,12 @@
                                                 <th>Unit</th>
                                                 <th>1 - 2 Hari</th>
                                                 <th>3 - 5 Hari</th>
-                                                <th>6 < Hari</th> <th class="font-weight-extrabold">Total</th>
+                                                <th>6 < Hari</th>
+                                                 <!-- <th class="font-weight-extrabold">Total</th> -->
                                             </tr>
                                         </thead>
                                         <tbody style="font-size:12px !important;">
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">CRM</td>
                                                 <td class="text-right">10</td>
@@ -247,17 +248,17 @@
                                                 <td class="text-right">10</td>
                                                 <td class="text-right">10</td>
                                                 <td class="text-right font-weight-extrabold">60</td>
-                                            </tr>
+                                            </tr> -->
 
                                         </tbody>
                                         <tfoot class="text-right font-weight-extrabold bg-total">
-                                            <tr>
+                                          <!--   <tr>
                                                 <td colspan="2">Total</td>
                                                 <td>10</td>
                                                 <td>10</td>
                                                 <td>10</td>
                                                 <td>60</td>
-                                            </tr>
+                                            </tr> -->
                                         </tfoot>
                                     </table>
                                 </div>

@@ -7,6 +7,7 @@ var v_year = '2020';
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
     // fromTemplate();
+    drawChartSumChannel();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
@@ -111,6 +112,68 @@ function drawChartSumService(response){
 	}
 }
 
+function drawChartSumChannel(response){
+	var chartdataTicket= [{
+		name: 'ART',
+		type: 'bar',
+		stack: 'Stack',
+		data: [14, 18, 20, 14, 29, 21, 25, 14,15,15,20,20]
+	}, {
+		name: 'AHT',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 14, 15, 50, 24, 24, 10, 20,30,30,30,30]
+	}, {
+		name: 'AST',
+		type: 'bar',
+		stack: 'Stack',
+		data: [12, 14, 15, 50, 24, 24, 10, 20,40,40,40,40]
+	}];
+	/*----echart summary ticket category----*/
+	var optionTicket = {
+		grid: {
+			top: '6',
+			right: '10',
+			bottom: '17',
+			left: '70',
+		},
+		xAxis: {
+			type: 'value',
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		yAxis: {
+			type: 'category',
+			data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
+			splitLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLine: {
+				lineStyle: {
+					color: '#efefff'
+				}
+			},
+			axisLabel: {
+				fontSize: 10,
+				color: '#7886a0'
+			}
+		},
+		series: chartdataTicket,
+		color: ["#A5B0B6","#009E8C","#00436D"]
+	};
+	var chartTicket = document.getElementById('echartService');
+	var barChartTicket = echarts.init(chartTicket);
+    barChartTicket.setOption(optionTicket);
+}
 function fromTemplate() {
     "use strict";
     
