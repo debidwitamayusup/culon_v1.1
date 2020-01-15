@@ -80,7 +80,8 @@ function drawChartSumService(response){
 
 	if (response.status != false) {
 		var MeSeContext = document.getElementById("barService");
-	    MeSeContext.height =200;
+	    MeSeContext.height =180;
+		MeSeContext.width= 450;
 	    var MeSeData = {
 	        labels : [
 	                    "ART",
@@ -106,7 +107,7 @@ function drawChartSumService(response){
 	        type : 'horizontalBar',
 	        data : MeSeData,
 	        options : {
-	            responsive: true,
+	            responsive: false,
 	            maintainAspectRatio: false,
 	            scales : {
 	                xAxes : [{

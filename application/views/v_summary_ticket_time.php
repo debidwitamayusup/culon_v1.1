@@ -10,8 +10,8 @@
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Ticket </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Ticket by Time
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Ticketing </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Ticketing by Time
                             </li>
                         </ol>
                     </div>
@@ -181,7 +181,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12">
                         <div class="card overflow-hidden">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Month</h5>
+                                <h5 class="card-title-small card-pt10">Ticket Non Close</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -193,7 +193,7 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="card">
                             <div class="card-header-small bg-red">
-                                <h5 class="card-title-small card-pt10">Summary Agent Performance SKill</h5>
+                                <h5 class="card-title-small card-pt10">Ticketing by Time</h5>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -253,11 +253,12 @@
                                         </tbody>
                                         <tfoot class="text-right font-weight-extrabold bg-total">
                                             <tr>
-                                                <td colspan="2">Total</td>
-                                                <td id="totHari1">10</td>
+                                                <!-- <td colspan="2">Total</td> -->
+                                                <!-- <td id="totHari1">10</td>
                                                 <td>10</td>
-                                                <td>10</td>
+                                                <td>10</td> -->
                                                 <!-- <td>60</td> -->
+                                                <td></td><td></td><td></td><td></td><td></td>
                                             </tr>
                                         </tfoot>
                                     </table>

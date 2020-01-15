@@ -38,58 +38,48 @@ function drawTableSumAgentPeformSkill(){
             type : 'POST'
         },
         
-         // footerCallback: function ( row, data, start, end, display) {
-         //    var api = this.api(), data;
+         "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
  
-         //    // Remove the formatting to get integer data for summation
-         //    var intVal = function ( i ) {
-         //        return typeof i === 'string' ?
-         //            i.replace(/[\$,]/g, '')*1 :
-         //            typeof i === 'number' ?
-         //                i : 0;
-         //    };
-
-         //    // Total over all pages
-         //    total = api
-         //        .column( 2 )
-         //        .data()
-         //        .reduce( function (a, b) {
-         //            return intVal(a) + intVal(b);
-         //        } );
+            // converting to interger to find total
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
  
-         //    // Total over this page
-         //    pageTotal = api
-         //        .column( 2, { page: 'current'} )
-         //        .data()
-         //        .reduce( function (a, b) {
-         //            return intVal(a) + intVal(b);
-         //        }, 0 );
- 
-         //    // Update footer
-         //    $( api.column( 2 ).footer() ).html(
-         //        total,
-         //        console.log(total)
-
-         //    );
-            // $(api.column(3),footer()).html(total)
-        // },
-        // "footerCallback": function(row, data, start, end, display) {
-        //   var api = this.api();
-         
-        //   api.columns('.sum', {
-        //     page: 'current'
-        //   }).every(function() {
-        //     var sum = this
-        //       .data()
-        //       .reduce(function(a, b) {
-        //         var x = parseFloat(a) || 0;
-        //         var y = parseFloat(b) || 0;
-        //         return x + y;
-        //       }, 0);
-        //     console.log(sum); //alert(sum);
-        //     $(this.footer()).html(sum);
-        //   });
-        // }
+            // computing column Total of the complete result 
+            var hari1 = api
+                .column( 2 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+				
+	    var hari2 = api
+                .column( 3 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+				
+            var hari3 = api
+                .column( 4 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+				
+	    
+			
+				
+            // Update footer by showing the total with the reference of the column index 
+	    	$( api.column( 0 ).footer() ).html('Total');
+            $( api.column( 2 ).footer() ).html(hari1);
+            $( api.column( 3 ).footer() ).html(hari2);
+            $( api.column( 4 ).footer() ).html(hari3);
+        },
         destroy: true
     });
 }
@@ -158,28 +148,28 @@ function drawTable(response){
 
 //pie chart summary ticket time
 var ctx = document.getElementById( "pieTicketTime" );
-ctx.height = 385;
+ctx.height = 255;
 var myChart = new Chart( ctx, {
     type: 'pie',
     data: {
         datasets: [ {
             data: [ 15, 35, 40],
             backgroundColor: [
-                                "#A5B0B6",
                                 "#009E8C",
-                                "#00436D"
+                                "#00436D",
+                                "#A5B0B6",                                
                             ],
             hoverBackgroundColor: [
-                                "#A5B0B6",
                                 "#009E8C",
-                                "#00436D"
+                                "#00436D",
+                                "#A5B0B6",  
                             ]
 
                         } ],
         labels: [
-                            "Information",
-                            "Respond",
-                            "Complaint",
+                            "1-2 Hari",
+                            "3-5 Hari",
+                            " > 5 Hari ",
                 ]
     },
     options: {
