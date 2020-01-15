@@ -39,18 +39,18 @@
 
             <!---Next Rows---->
             <div class="row">
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-5">
                     <div class="card">
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Service</h5>
                         </div>
-                        <div class="card-body">
-                        <canvas id="barService" style="height:300px !important"></canvas>
+                        <div class="card-body" style="margin:60px 0px 60px 0px !important">
+                        <canvas id="barService"></canvas>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-7">
                     <div class="card">
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary by Channel</h5>
@@ -76,7 +76,7 @@
                                             <th class="wd-15p border-bottom-0">AHT</th>
                                             <th class="wd-15p border-bottom-0">AST</th>
                                             <th class="wd-15p border-bottom-0">SCR</th>
-                                            <th class="wd-15p border-bottom-0">Total Session (COF)</th>
+                                            <th class="wd-15p border-bottom-0" width=150>Total Session (COF)</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-center" id="mytbody" style="font-size:12px !important;">

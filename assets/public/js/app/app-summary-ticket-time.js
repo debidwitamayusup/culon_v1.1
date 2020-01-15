@@ -105,28 +105,28 @@ function drawTable(response){
 
 //pie chart summary ticket time
 var ctx = document.getElementById( "pieTicketTime" );
-ctx.height = 385;
+ctx.height = 255;
 var myChart = new Chart( ctx, {
     type: 'pie',
     data: {
         datasets: [ {
             data: [ 15, 35, 40],
             backgroundColor: [
-                                "#A5B0B6",
                                 "#009E8C",
-                                "#00436D"
+                                "#00436D",
+                                "#A5B0B6",                                
                             ],
             hoverBackgroundColor: [
-                                "#A5B0B6",
                                 "#009E8C",
-                                "#00436D"
+                                "#00436D",
+                                "#A5B0B6",  
                             ]
 
                         } ],
         labels: [
-                            "Information",
-                            "Respond",
-                            "Complaint",
+                            "1-2 Hari",
+                            "3-5 Hari",
+                            " > 5 Hari ",
                 ]
     },
     options: {
