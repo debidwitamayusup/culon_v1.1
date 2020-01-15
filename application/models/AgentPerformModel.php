@@ -34,6 +34,7 @@ class AgentPerformModel extends CI_Model
 		return $query->result();
 	}
 
+#region :: ragakasih
 	public function getSSallchannel($src='',$params,$index,$param_year)
 	{
 		$this->db->select('tanggal AS DATE, art AS ART, aht AS AHT, ast as AST, scr AS SCR, cof AS COF');
@@ -96,7 +97,6 @@ class AgentPerformModel extends CI_Model
 		return $res;
 		
 	}
-
 	public function getSAgentperformskills($src='',$param) // table right - bottom
 	{
 		$this->db->select('rpt_summary_agent.art as ART, rpt_summary_agent.aht as AHT, rpt_summary_agent.ast as AST, rpt_summary_agent.session as COF, m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME');
@@ -167,7 +167,6 @@ class AgentPerformModel extends CI_Model
 		return $res;
 
 	}
-
 	public function getSAgentperformByskill()
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) as ART,
@@ -195,16 +194,14 @@ class AgentPerformModel extends CI_Model
 				
 			}
 			$res = array(
-				'status' => true,
+				'status' => TRUE,
 				'message' => 'Data Found!',
 				'data' => $content,
 			);
-
 		}
 		else{
-
 			$res = array(
-				'status' => true,
+				'status' => TRUE,
 				'message' => 'Data  Not Found!',
 				'data' => array(),
 			);
@@ -213,6 +210,8 @@ class AgentPerformModel extends CI_Model
 		return $res;
 		
 	}
+#endregion
+
 }
 
 ?>

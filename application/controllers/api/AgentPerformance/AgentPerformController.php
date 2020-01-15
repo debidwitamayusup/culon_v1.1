@@ -10,6 +10,7 @@ class AgentPerformController extends CI_Controller {
         $this->load->model('AgentPerformModel','module_model');
     }
 
+#region :: Ragakasih
     public function getscrcof() {
 
         // if (!$this->input->post()) {
@@ -35,7 +36,6 @@ class AgentPerformController extends CI_Controller {
 
         echo json_encode($response);
     }
-
     public function getSTsallchannel(){
 
         $src = $this->security->xss_clean($this->input->post('search'));
@@ -48,7 +48,6 @@ class AgentPerformController extends CI_Controller {
         echo json_encode($data);
 
     }
-
     public function getSAgentperformskill(){
 
         $src = $this->security->xss_clean($this->input->post('search'));
@@ -59,7 +58,6 @@ class AgentPerformController extends CI_Controller {
         echo json_encode($data);
 
     }
-
     public function getSAgentperformBYskill(){
 
         $src = $this->security->xss_clean($this->input->post('search'));
@@ -70,4 +68,5 @@ class AgentPerformController extends CI_Controller {
         echo json_encode($data);
 
     }
+#endregion
 }

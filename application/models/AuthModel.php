@@ -7,7 +7,7 @@ Class AuthModel extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-
+#region :: ragakasih
     public function checkId() { //this check if user registered were true
         // $checked_phone = $this->db->get_where('m_users', array(
         //     'USERNAME' => $this->input->post('username')
@@ -18,7 +18,6 @@ Class AuthModel extends CI_Model {
         // return FALSE;
         return FALSE;
     }
-
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
         $this->db->select('userid AS USERID,nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
@@ -49,7 +48,6 @@ Class AuthModel extends CI_Model {
 
         return FALSE;
     }
-
     public function logoutapp($usr){
         
         $this->db->select('userid AS USERID, nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
@@ -80,10 +78,8 @@ Class AuthModel extends CI_Model {
         return FALSE;
 
     }
-
     // public function tenant(){
     // }
-
     public function do_registeracc($usr,$pwd){
 
         //query double checking goes here
@@ -109,7 +105,6 @@ Class AuthModel extends CI_Model {
 
         return FALSE;
     }
-
     public function do_forgotpwd() {
         // $this->db->select('ID');
         // $this->db->where('*EMAIL/HP/ETC', $this->input->post('*params'));
@@ -149,5 +144,6 @@ Class AuthModel extends CI_Model {
 
         return $content;
     }
+#endregion
 
 }

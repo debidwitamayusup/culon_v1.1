@@ -453,4 +453,39 @@ class OperationModel extends CI_Model
 
         return $query->result();
     }
+
+#region :: ragakasih
+    public function  getSService($params,$index,$param_year)
+    {
+        $this->db->select('SUM(art_num)AS ART, SUM(aht_num)AS AHT, SUM(ast_num) AS AST');
+        $this->db->from('rpt_summary_scr');
+        if($params=='month')
+		{
+			$this->db->where('MONTH(tanggal)',$index);
+			$this->db->where('YEAR(tanggal)',$param_year);
+		}
+		else if($params=='year')
+		{
+			$this->db->where('YEAR(tanggal)',$index);
+		}
+		else if($params=='day')
+		{
+			$this->db->where('DATE(tanggal)',$index);
+        }
+        $query = $this->db->get();
+
+        if($query->row()->ART)
+        {   
+            $content = array(
+                'SUM_ART'=>strval($query->row()->ART),
+                'SUM_AHT'=>strval($query->row()->AHT),
+                'SUM_AST'=>strval($query->row()->AST)
+            );
+
+            return $content;                   
+        }
+        return FALSE;
+    }
+#endregion
+
 }
