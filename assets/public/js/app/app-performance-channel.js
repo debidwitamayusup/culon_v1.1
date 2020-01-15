@@ -93,7 +93,7 @@ function drawChartSumService(response){
 	                    "AST"
 	        ],
 	        datasets : [{
-	            label : "test",
+	            label : "data",
 	            data :[response.data.SUM_ART, response.data.SUM_AHT, response.data.SUM_AST],
 	            backgroundColor : [
 	                                "#A5B0B6",
@@ -306,7 +306,7 @@ function fromTemplate() {
                     "AST"
         ],
         datasets : [{
-            label : "test",
+            label : "data",
             data :[50,60,70],
             backgroundColor : [
                                 "#A5B0B6",
