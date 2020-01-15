@@ -204,5 +204,50 @@ class SummaryTicketModel extends CI_Model
 
 		return $cotent;
 	}
+
+	public function getSummaryAgentPerformSkill($src='')
+	{
+		$this->db->select('vunit as UNIT_NAME, hari_1 as DayA, hari_2 as DayB, hari_3 as DayC');
+		$this->db->from('v_summ_kip');
+		if($src)
+		{
+			$this->db->like('UNIT_NAME',$src);
+			$this->db->or_like('DayA',$src);
+			$this->db->or_like('DayB',$src);
+			$this->db->or_like('DayC',$src);
+		}
+
+		$query = $this->db->get();
+
+		if($query->num_rows()>0)
+		{
+			$idx = 1;
+			foreach($query->result() as $data)
+			{
+				$content[] = array(
+					strval($idx),
+					strval($data->UNIT_NAME),
+					strval($data->DayA),
+					strval($data->DayB),
+					strval($data->DayC)
+				);
+				$idx++;
+			}
+
+		}
+		else{
+			$content[] = array();
+		}
+
+		$res = array(
+			'recordsTotal' => $query->num_rows(),
+			'recordsFiltered' => $query->num_rows(),
+			'data' => $content,
+		);
+
+		return $res;
+
+
+	}
 }
 ?>
