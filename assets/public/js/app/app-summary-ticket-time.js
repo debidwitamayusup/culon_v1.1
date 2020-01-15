@@ -187,7 +187,7 @@ function drawTable(response){
 
 //pie chart summary ticket time
 var ctx = document.getElementById( "pieTicketTime" );
-ctx.height = 255;
+ctx.height =300;
 var myChart = new Chart( ctx, {
     type: 'pie',
     data: {
