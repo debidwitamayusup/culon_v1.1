@@ -48,4 +48,26 @@ class AgentPerformController extends CI_Controller {
         echo json_encode($data);
 
     }
+
+    public function getSAgentperformskill(){
+
+        $src = $this->security->xss_clean($this->input->post('search'));
+        $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
+
+        $data = $this->module_model->getSAgentperformskills($src,$params);
+
+        echo json_encode($data);
+
+    }
+
+    public function getSAgentperformBYskill(){
+
+        $src = $this->security->xss_clean($this->input->post('search'));
+        $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
+
+        $data = $this->module_model->getSAgentperformByskill();
+
+        echo json_encode($data);
+
+    }
 }
