@@ -252,13 +252,14 @@
 
                                         </tbody>
                                         <tfoot class="text-right font-weight-extrabold bg-total">
-                                          <!--   <tr>
-                                                <td colspan="2">Total</td>
+                                            <tr>
+                                                <!-- <td colspan="2">Total</td> -->
+                                                <!-- <td id="totHari1">10</td>
                                                 <td>10</td>
-                                                <td>10</td>
-                                                <td>10</td>
-                                                <td>60</td>
-                                            </tr> -->
+                                                <td>10</td> -->
+                                                <!-- <td>60</td> -->
+                                                <td colspan="2"></td><td></td><td></td><td></td><td></td>
+                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>

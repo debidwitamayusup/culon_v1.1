@@ -97,14 +97,15 @@ class AgentPerformModel extends CI_Model
 		return $res;
 		
 	}
-	public function getSAgentperformskills($src='',$param) // table right - bottom
+	public function getSAgentperformskills($src='',$param) // table right - bottom need limit / offset
 	{
-		$this->db->select('rpt_summary_agent.art as ART, rpt_summary_agent.aht as AHT, rpt_summary_agent.ast as AST, rpt_summary_agent.session as COF, m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME');
+		$this->db->select('rpt_summary_agent.art as ART, rpt_summary_agent.aht as AHT, rpt_summary_agent.ast as AST, rpt_summary_agent.session as COF, m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME, ');
 		$this->db->from('m_login');
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
 		if($src)
 		{
+			
 			$this->db->like('ART',$src);
 			$this->db->or_like('AHT',$src);
 			$this->db->or_like('AST',$src);
@@ -137,6 +138,8 @@ class AgentPerformModel extends CI_Model
 		$query = $this->db->get();
 		if($query->num_rows()>0)
 		{
+			// print_r($this->db->last_query());    
+			// exit;
 			$idx = 1;
 			foreach($query->result() as $data)
 			{
@@ -161,7 +164,7 @@ class AgentPerformModel extends CI_Model
 		$res = array(
 			'recordsTotal' => $query->num_rows(),
 			'recordsFiltered' => $query->num_rows(),
-			'data' => $content,
+			'data' => $content
 		);
 
 		return $res;
@@ -211,6 +214,8 @@ class AgentPerformModel extends CI_Model
 		return $query->result();
 		
 	}
+
+
 #endregion
 
 }
