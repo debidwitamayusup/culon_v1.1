@@ -8,8 +8,6 @@ function summaryStatusTicketPerUnit(){
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformBYskill',
-        data: {
-        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
@@ -28,7 +26,6 @@ function drawTable(response){
     $('#tableSkill').DataTable();
     $('#mytbody').remove();
     $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
-
     var skill_id=0, skill_name=0, avg_aht=0, avg_art=0, avg_ast=0;
     $("#mytbody").empty();
     response.data.forEach(function (value, index) {
