@@ -37,8 +37,14 @@ function drawTableSumAgentPeformSkill(){
             url : base_url + 'api/SummaryTicket/SummaryTicketTime/SAgentPerformSkill',
             type : 'POST'
         },
-        
-         "footerCallback": function ( row, data, start, end, display ) {
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-right", targets: 2 },
+			{ className: "text-right", targets: 3 },
+			{ className: "text-right", targets: 4 },
+			{ className: "text-right", targets: 5 }
+		],    
+        "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
             // converting to interger to find total
@@ -48,8 +54,8 @@ function drawTableSumAgentPeformSkill(){
                     typeof i === 'number' ?
                         i : 0;
             };
- 
-            // computing column Total of the complete result 
+ 			            
+	    	// Total over this page
             var hari1 = api
                 .column( 2 )
                 .data()
@@ -57,7 +63,7 @@ function drawTableSumAgentPeformSkill(){
                     return intVal(a) + intVal(b);
                 }, 0 );
 				
-	    var hari2 = api
+	    	var hari2 = api
                 .column( 3 )
                 .data()
                 .reduce( function (a, b) {
@@ -70,15 +76,48 @@ function drawTableSumAgentPeformSkill(){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
+
+            var totalTot = api
+                .column( 5 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
 				
-	    
-			
+            // computing column Total of the complete result 
+            pageTotal1 = api
+                .column( 2, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotal2 = api
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotal3 = api
+                .column( 4, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotalTot = api
+                .column( 5, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
 				
             // Update footer by showing the total with the reference of the column index 
 	    	$( api.column( 0 ).footer() ).html('Total');
-            $( api.column( 2 ).footer() ).html(hari1);
-            $( api.column( 3 ).footer() ).html(hari2);
-            $( api.column( 4 ).footer() ).html(hari3);
+            // $( api.column( 2 ).footer() ).html(
+            // 	'Total Current Page: '+pageTotal1+'(Total All Pages: '+hari1+')');
+            $( api.column( 2 ).footer() ).html(pageTotal1);
+            $( api.column( 3 ).footer() ).html(pageTotal2);
+            $( api.column( 4 ).footer() ).html(pageTotal3);
+            $( api.column( 5 ).footer() ).html(pageTotalTot);
         },
         destroy: true
     });

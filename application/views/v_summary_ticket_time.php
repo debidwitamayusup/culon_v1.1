@@ -205,7 +205,7 @@
                                                 <th>1 - 2 Hari</th>
                                                 <th>3 - 5 Hari</th>
                                                 <th>6 < Hari</th>
-                                                 <!-- <th class="font-weight-extrabold">Total</th> -->
+                                                 <th class="font-weight-extrabold">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size:12px !important;">
@@ -258,7 +258,7 @@
                                                 <td>10</td>
                                                 <td>10</td> -->
                                                 <!-- <td>60</td> -->
-                                                <td></td><td></td><td></td><td></td><td></td>
+                                                <td colspan="2"></td><td></td><td></td><td></td><td></td>
                                             </tr>
                                         </tfoot>
                                     </table>

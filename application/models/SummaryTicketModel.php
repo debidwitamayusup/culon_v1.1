@@ -229,7 +229,8 @@ class SummaryTicketModel extends CI_Model
 					strval($data->UNIT_NAME),
 					strval($data->DayA),
 					strval($data->DayB),
-					strval($data->DayC)
+					strval($data->DayC),
+					strval($data->DayA+$data->DayB+$data->DayC)
 				);
 				$idx++;
 			}
