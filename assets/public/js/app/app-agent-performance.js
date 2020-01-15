@@ -1,11 +1,11 @@
 var base_url = $('#base_url').val();
-var v_src = '';
-var v_params = 'day';
 
 $(document).ready(function () {
     performanceBySkill();
     drawDataTable();
-    bestOfFive(src, params);
+    bestOfFiveCOF();
+    bestOfFiveAHT();
+    bestOfFiveART();
 });
 
 function performanceBySkill(){
@@ -24,21 +24,29 @@ function performanceBySkill(){
     });
 }
 
-function bestOfFive(src, params){
+function bestOfFiveCOF(params){
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
-        	params: params,
-        	src: src
+        	params: 'COF',
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
-            drawCardCOF(response);
-            drawCardAHT(response);
-            drawCardART(response);
-            // $("#filter-loader").fadeOut("slow");
+            // console.log(response.data[0][2]);
+        	// $('#nameAgent').html(response.data[0][2]);
+        	// $('#nilaiAgent').html(response.data[0][5]);
+        	// $('#nameAgent2').html(response.data[1][2]);
+        	// $('#nilaiAgent2').html(response.data[1][5]);
+        	// $('#nameAgent3').html(response.data[2][2]);
+        	// $('#nilaiAgent3').html(response.data[2][5]);
+        	// $('#nameAgent4').html(response.data[3][2]);
+        	// $('#nilaiAgent4').html(response.data[3][5]);
+        	// $('#nameAgent5').html(response.data[4][2]);
+        	// $('#nilaiAgent5').html(response.data[4][5]);
+  			dataCardCOF(response);
+  			// dataCardART(response);
+  			// dataCardAHT(response);
         },
         error: function (r) {
             alert("error");
@@ -46,10 +54,107 @@ function bestOfFive(src, params){
     });
 }
 
+function bestOfFiveAHT(params){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
+        data: {
+        	params: 'AHT',
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+  			dataCardAHT(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
+function bestOfFiveART(params){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
+        data: {
+        	params: 'ART',
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+  			dataCardART(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
+function dataCardCOF(response)
+{
+	console.log(response.data);
+	var i=1;
+	response.data.forEach(function(value,index){
+		$('#dataDrawCOF').append('<div class="col-2 text-center">'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                             '</div>'+
+                             '<div class="col-7 text-center">'+
+                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                             '</div>'+
+                             '<div class="col-3 text-right">'+
+                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[4]+'</h5>'+
+                                 '<h6 class="text-muted font10">Handling</h6>'+
+                             '</div>');
+		i++;
+		console.log(value[2]);
+	});
+}
+
+function dataCardAHT(response)
+{
+	console.log(response.data);
+	var i=1;
+	response.data.forEach(function(value,index){
+		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                             '</div>'+
+                             '<div class="col-7 text-center">'+
+                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                             '</div>'+
+                             '<div class="col-3 text-right">'+
+                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[6]+'</h5>'+
+                                 '<h6 class="text-muted font10">Handling</h6>'+
+                             '</div>');
+		i++;
+		// console.log(value[2]);
+	});
+}
+
+function dataCardART(response)
+{
+	console.log(response.data);
+	var i=1;
+	response.data.forEach(function(value,index){
+		$('#dataDrawART').append('<div class="col-2 text-center">'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                             '</div>'+
+                             '<div class="col-7 text-center">'+
+                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                             '</div>'+
+                             '<div class="col-3 text-right">'+
+                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[5]+'</h5>'+
+                                 '<h6 class="text-muted font10">Handling</h6>'+
+                             '</div>');
+		i++;
+		// console.log(value[2]);
+	});
+}
+
 function drawTable(response){
 	$('#mytbody_skill').remove();
     $('#tableSkill').append('<tbody style="font-size:12px !important;" id="mytbody_skill"></tbody>');
-    console.log(response.data);
+    // console.log(response.data);
     $("#mytbody_skill").empty();
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {

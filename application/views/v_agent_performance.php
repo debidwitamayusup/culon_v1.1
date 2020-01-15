@@ -74,19 +74,67 @@
                                              <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
                                          </div>
                                          <div class="card-body" id="classDrawCOF" style="padding:10px">
-                                            <div class="row mb-2" id="dataDrawART">
+                                            <div class="row mb-2" id="dataDrawCOF">
+                                                 <!-- <div class="col-2 text-center">
+                                                     <span class="avatar avatar-md brround cover-image"
+                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                                 </div>
+                                                 <div class="col-7 text-center">
+                                                     <h5 class="font14 mt-1 mb-3">Agent 1</h5>
+                                                     <h6 class="text-muted font10" id="nameAgent">Agent Name</h6>
+                                                 </div>
+                                                 <div class="col-3 text-right">
+                                                     <h4 class="font-weight-extrabold" id="nilaiAgent">90</h4>
+                                                     <h6 class="text-muted font10">Handling</h6>
+                                                 </div> -->
+                                                 <!-- <div class="col-2 text-center">
+                                                     <span class="avatar avatar-md brround cover-image"
+                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                                 </div>
+                                                 <div class="col-7 text-center">
+                                                     <h5 class="font14 mt-1 mb-3">Agent 2</h5>
+                                                     <h6 class="text-muted font10" id="nameAgent2">Agent Name</h6>
+                                                 </div>
+                                                 <div class="col-3 text-right">
+                                                     <h4 class="font-weight-extrabold" id="nilaiAgent2">90</h4>
+                                                     <h6 class="text-muted font10">Handling</h6>
+                                                 </div>
                                                  <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
                                                  <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
-                                                     <h6 class="text-muted font10">Agent Name</h6>
+                                                     <h5 class="font14 mt-1 mb-3">Agent 3</h5>
+                                                     <h6 class="text-muted font10" id="nameAgent3">Agent Name</h6>
                                                  </div>
                                                  <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold">90</h4>
+                                                     <h4 class="font-weight-extrabold" id="nilaiAgent3">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
                                                  </div>
+                                                 <div class="col-2 text-center">
+                                                     <span class="avatar avatar-md brround cover-image"
+                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                                 </div>
+                                                 <div class="col-7 text-center">
+                                                     <h5 class="font14 mt-1 mb-3">Agent 4</h5>
+                                                     <h6 class="text-muted font10" id="nameAgent4">Agent Name</h6>
+                                                 </div>
+                                                 <div class="col-3 text-right">
+                                                     <h4 class="font-weight-extrabold" id="nilaiAgent4">90</h4>
+                                                     <h6 class="text-muted font10">Handling</h6>
+                                                 </div>
+                                                 <div class="col-2 text-center">
+                                                     <span class="avatar avatar-md brround cover-image"
+                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                                 </div>
+                                                 <div class="col-7 text-center">
+                                                     <h5 class="font14 mt-1 mb-3">Agent 5</h5>
+                                                     <h6 class="text-muted font10" id="nameAgent5">Agent Name</h6>
+                                                 </div>
+                                                 <div class="col-3 text-right">
+                                                     <h4 class="font-weight-extrabold" id="nilaiAgent5">90</h4>
+                                                     <h6 class="text-muted font10">Handling</h6>
+                                                 </div> -->
                                             </div>
                                          </div>
                                      </div>
@@ -99,7 +147,7 @@
                                          </div>
                                          <div class="card-body" id="classDrawAHT" style="padding:10px">
                                              <div class="row mb-2" id="dataDrawAHT">
-                                                 <div class="col-2 text-center">
+                                                 <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
@@ -110,7 +158,7 @@
                                                  <div class="col-3 text-right">
                                                      <h4 class="font-weight-extrabold">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
-                                                 </div>
+                                                 </div> -->
                                              </div>
                                          </div>
                                      </div>
@@ -123,7 +171,7 @@
                                          </div>
                                          <div class="card-body" id="classDrawART" style="padding:10px">
                                              <div class="row mb-2" id="dataDrawART">
-                                                 <div class="col-2 text-center">
+                                                 <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
@@ -134,7 +182,7 @@
                                                  <div class="col-3 text-right">
                                                      <h4 class="font-weight-extrabold">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
-                                                 </div>
+                                                 </div> -->
                                              </div>                                             
                                          </div>
                                      </div>
