@@ -5,7 +5,7 @@ var v_month = '1';
 var v_year = '2020';
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
-    fromTemplate();
+    // fromTemplate();
     // ini_finctiiin();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -19,6 +19,8 @@ $(document).ready(function () {
 function loadContent(index, params, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
+    ticketStatusUnit();
+    drawChartSUmmaryCloseTicket();
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
@@ -556,94 +558,112 @@ function drawTable(response){
 
 function drawChartStatusPerUnit(response){
 
-    let dataUnit = [];
+    let unit = [];
+    let newData = [];
+    let open = [];
+    let onProgress = [];
+    let sumResolved = [];
+    let sumReopen = [];
+    let pending = [];
+    let reject = [];
+    let sumReturn = [];
+
     // let dataStatus = [];
     // console.log(response.data.statusData[0]);
     response.data.forEach(function (value, index) {
-        dataUnit.push(value.unit);
-    });
-
-    var chartdata = [];
-    var i = 0;
-    response.data.forEach(function (value, index) {
-        var dataS = [];
-        while (i < 8){
-        var dataStatus = "";
-            if (i == 0 ) {
-                dataStatus = (value.new)?value.new:0;
-            }else if (i == 1) {
-               dataStatus = value.open?value.open:0;
-            }else if (i == 2) {
-                dataStatus = value.onProgress?value.onProgress:0;
-            }else if (i == 3) {
-                dataStatus = value.Resolved?value.Resolved:0;
-            }else if (i == 4) {
-                dataStatus = value.Repen?value.Reopen:0;
-            }else if (i == 5) {
-                dataStatus = value.pending?value.pending:0;
-            }else if (i == 6) {
-                dataStatus = value.reject?value.reject:0;
-            }else if (i == 7) {
-                dataStatus = value.return?value.return:0;
-            }
-        dataS.push(dataStatus);
-        i++;
-       }
-        console.log(dataS.length);
-
-        var dataStatusTicket = {
-            name: value.unit,
-            type: 'bar',
-            stack: "stack",
-            data: dataS
-        }
-        chartdata.push(dataStatusTicket);
+        unit.push(value.unit);
+        newData.push(value.new);
+        open.push(value.onProgress);
+        onProgress.push(value.Resolved);
+        sumResolved.push(value.Resolved);
+        sumReopen.push(value.Reopn);
+        pending.push(value.pending);
+        reject.push(value.reject);
+        sumReturn.push(value.return);
 
     });
-     console.log(chartdata)
+
+    // var chartdata = [];
+    // var i = 0;
+    // response.data.forEach(function (value, index) {
+    //     var dataS = [];
+    //     while (i < 8){
+    //     var dataStatus = "";
+    //         if (i == 0 ) {
+    //             dataStatus = (value.new)?value.new:0;
+    //         }else if (i == 1) {
+    //            dataStatus = value.open?value.open:0;
+    //         }else if (i == 2) {
+    //             dataStatus = value.onProgress?value.onProgress:0;
+    //         }else if (i == 3) {
+    //             dataStatus = value.Resolved?value.Resolved:0;
+    //         }else if (i == 4) {
+    //             dataStatus = value.Repen?value.Reopen:0;
+    //         }else if (i == 5) {
+    //             dataStatus = value.pending?value.pending:0;
+    //         }else if (i == 6) {
+    //             dataStatus = value.reject?value.reject:0;
+    //         }else if (i == 7) {
+    //             dataStatus = value.return?value.return:0;
+    //         }
+    //     dataS.push(dataStatus);
+    //     i++;
+    //    }
+    //     console.log(dataS.length);
+
+    //     var dataStatusTicket = {
+    //         name: value.unit,
+    //         type: 'bar',
+    //         stack: "stack",
+    //         data: dataS
+    //     }
+    //     chartdata.push(dataStatusTicket);
+
+    // });
+    //  console.log(chartdata)
    
     
     var chartTicketUnit= [{
         name: 'New',
         type: 'bar',
         stack: 'Stack',
-        data: [12, 12, 12, 12, 12, 12, 12, 12, 12,12]
+        data: newData
     }, {
         name: 'Open',
         type: 'bar',
         stack: 'Stack',
-        data: [25, 25, 25, 25, 25, 25, 25, 25, 25,25]
-    }, {
-        name: 'Reject',
-        type: 'bar',
-        stack: 'Stack',
-        data: [40, 40, 40, 40, 40, 40, 40, 40,40,40]
+        data: open
     }, {
         name: 'On Progress',
         type: 'bar',
         stack: 'Stack',
-        data: [60, 60, 60, 60, 60, 60, 60, 60, 60,60]
+        data: onProgress
     }, {
-        name: 'Pending',
+        name: 'Resolved',
         type: 'bar',
         stack: 'Stack',
-        data: [80, 80, 80, 80, 80, 80, 80, 80, 80,80]
+        data: sumResolved
     }, {
         name: 'Reopen',
         type: 'bar',
         stack: 'Stack',
-        data: [90, 90, 90, 90, 90, 90, 90, 90, 90,90]
+        data: sumReopen
     }, {
-        name: 'Resolve',
+        name: 'Pending',
         type: 'bar',
         stack: 'Stack',
-        data: [100, 100, 100, 100, 100, 100, 100, 100, 100,100]
+        data: pending
+    }, {
+        name: 'Reject',
+        type: 'bar',
+        stack: 'Stack',
+        data: reject
     }, 
     {
-        name: 'Close',
+        name: 'Return',
         type: 'bar',
         stack: 'Stack',
-        data: [12, 14, 15, 50, 24, 24, 10, 20, 30,10]
+        data: sumReturn
     }
     ];
     /*----echartTicketUnit----*/
@@ -669,7 +689,7 @@ function drawChartStatusPerUnit(response){
         yAxis: {
             type: 'category',
             // data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
-            data: dataUnit,
+            data: unit,
             splitLine: {
                 lineStyle: {
                     color: '#efefff'
@@ -685,13 +705,126 @@ function drawChartStatusPerUnit(response){
                 color: '#7886a0'
             }
         },
-        series: chartdata3,
-        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6"]
+        series: chartTicketUnit,
+        color :[                    "#FEC88C",
+                                    "#FFA07A",
+                                    "#87CEFA",
+                                    "#ADD8E6",
+                                    "#B0C4DE",
+                                    "#778899",
+                                    "#8FBC8F",
+                                    "#BDB76B"]
         // color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6"]
     };
     var chartTicketUnit = document.getElementById('echartTicketUnit');
     var barChartTicketUnit = echarts.init(chartTicketUnit);
     barChartTicketUnit.setOption(optionTicketUnit);
+}
+
+function drawChartSUmmaryCloseTicket(){
+    var optionTicketUnit = {
+        grid: {
+            top: '6',
+            right: '10',
+            bottom: '17',
+            left: '95',
+        },
+        xAxis: {
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        series: chartTicketUnit,
+        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+    };
+    var chartTicketUnit = document.getElementById('echartTicketUnit');
+    var barChartTicketUnit = echarts.init(chartTicketUnit);
+    barChartTicketUnit.setOption(optionTicketUnit);
+    
+    // ------CHART BARU
+    var chartdata = [{
+        name: 'Ticket',
+        type: 'bar',
+        data: [10, 15, 9, 18, 10, 15,90,50,40,30,50,40,30,40,60,50,30,80,90,30,40,50,60,40,70,40,70,40,30,30,40]
+    }];
+    var chart = document.getElementById('echartTicketClose');
+    var barChart = echarts.init(chart);
+    var option = {
+        grid: {
+            top: '6',
+            right: '0',
+            bottom: '17',
+            left: '25',
+        },
+        xAxis: {
+            data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        tooltip: {
+            show: true,
+            showContent: true,
+            alwaysShowContent: true,
+            triggerOn: 'mousemove',
+            trigger: 'axis',
+            axisPointer: {
+                label: {
+                    show: false,
+                }
+            }
+        },
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        series: chartdata,
+        color: ['#5F9EA0']
+    };
+    barChart.setOption(option);
 }
 
 function ini_finctiiin () {
