@@ -37,4 +37,28 @@
 			}
 		}
 
+		public function BarSummaryServiceByChannel_post()
+		{
+			$params = $this->security->xss_clean($this->input->post('params'));
+			$index = $this->security->xss_clean($this->input->post('index'));
+			$param_year = date('Y');
+	
+			$result = $this->module_model->getSServicebyChannel($params,$index,$param_year);
+			
+			if($result){
+				// $this->session->set_userdata($res);
+					$this->response([
+						'status'  => TRUE,
+						'message' => 'Data Found',
+						'data'    => $result
+							], REST_Controller::HTTP_OK);
+				}
+				else {
+					$this->response([
+						'status'  => FALSE,
+						'message' => 'Data Not Exist!'
+							], REST_Controller::HTTP_OK);
+			}
+		}
+
 	}
