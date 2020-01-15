@@ -27,7 +27,7 @@
                          </div>
                          <div class="table-responsive table-pt10">
                              <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                 style="height:349px">
+                                 style="height:349px" id="tbaleSkill">
                                  <thead class="text-center text-white bg-gray1">
                                      <tr>
                                          <th>Skill</th>
@@ -36,8 +36,8 @@
                                          <th>AST</th>
                                      </tr>
                                  </thead>
-                                 <tbody class="text-center" style="font-size:12px !important;">
-                                     <tr>
+                                 <tbody class="text-center" style="font-size:12px !important;" id="mytbody">
+                                     <!-- <tr>
                                          <td>1</td>
                                          <td>00:00:00</td>
                                          <td>00:00:00</td>
@@ -54,7 +54,7 @@
                                          <td>00:00:00</td>
                                          <td>00:00:00</td>
                                          <td>00:00:00</td>
-                                     </tr>
+                                     </tr> -->
                                  </tbody>
                              </table>
                          </div>
