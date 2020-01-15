@@ -2,6 +2,7 @@ var base_url = $('#base_url').val();
 
 $(document).ready(function () {
     performanceBySkill();
+    drawDataTable();
 });
 
 function performanceBySkill(){
@@ -42,6 +43,21 @@ function drawTable(response){
     // console.log(response.data)
     
 }
+
+function drawDataTable(){
+    $('#mytbody').remove();
+    $('#tableAgent').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
+
+    $('#tableAgent').DataTable({
+        processing : true,
+        ajax: {
+            url : base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
+            type : 'POST'
+        },
+        destroy: true,
+	});
+}
+
 
 $(function(e) {
     //sample datatable	
