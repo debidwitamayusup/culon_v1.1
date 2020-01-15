@@ -6,7 +6,7 @@ var v_year = '2020';
 
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
-    fromTemplate();
+    // fromTemplate();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
@@ -14,6 +14,28 @@ $(document).ready(function () {
 
 function loadContent(index, params, params_year){
     drawDataTable2(params, index, params_year);
+    summaryService(index, params, params_year)
+}
+
+function summaryService(params, index, params_year){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryService',
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            drawChartSumService(response);
+        },
+        error: function (r) {
+            console.log(r);
+            alert("error");
+        },
+    });
 }
 
 function drawDataTable2(params, index, params_year){
@@ -36,8 +58,55 @@ function drawDataTable2(params, index, params_year){
         destroy: true,
     });
 }
+function drawChartSumService(response){
 
-$(function($) {
+	var MeSeContext = document.getElementById("barService");
+    MeSeContext.height =200;
+    var MeSeData = {
+        labels : [
+                    "ART",
+                    "AHT",
+                    "AST"
+        ],
+        datasets : [{
+            label : "test",
+            data :[response.data.SUMART, response.data.SUM_AHT, response.data.SUM_AST],
+            backgroundColor : [
+                                "#A5B0B6",
+                                "#009E8C",
+                                "#00436D"
+                            ],
+            hoverBackgroundColor : [
+                             "#A5B0B6",
+                             "#009E8C",
+                             "#00436D"
+            ]
+        }]
+    };
+    var MeSeChart = new Chart(MeSeContext,{
+        type : 'horizontalBar',
+        data : MeSeData,
+        options : {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales : {
+                xAxes : [{
+                    ticks : {
+                        min : 0
+                    }
+                }],
+                yAxes : [{
+                    stacked : true
+                }]
+            },
+            legend: {
+                display: false
+                }
+        }
+    });
+}
+
+function fromTemplate() {
     "use strict";
     
      /*----echart summary ticket category----*/
@@ -153,7 +222,7 @@ $(function($) {
 
  //    //sample datatable	
 	// $('#tablesPerformance').DataTable();
-});
+}
 
 //jquery
 (function ($) {
