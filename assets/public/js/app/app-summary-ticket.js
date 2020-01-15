@@ -173,7 +173,6 @@ function ticketStatusUnit(params, index, params_year){
         },
         error: function (r) {
             alert("error");
-
         },
     });
 }

@@ -240,16 +240,16 @@ function fromTemplate() {
     });
 
     // btn day
-    $('#btn-week').click(function(){
-        params_time = 'week';
-        // console.log(params_time);
-        loadContent(params_time , '2020-01-10', v_year);
-        // $('#tag-time').html(v_date);
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
+    // $('#btn-week').click(function(){
+    //     params_time = 'week';
+    //     // console.log(params_time);
+    //     loadContent(params_time , '2020-01-10', v_year);
+    //     // $('#tag-time').html(v_date);
+    //     $("#btn-day").prop("class","btn btn-light btn-sm");
+    //     $("#btn-month").prop("class","btn btn-light btn-sm");
+    //     $("#btn-year").prop("class","btn btn-light btn-sm");
+    //     $(this).prop("class","btn btn-red btn-sm");
+    // });
 
     // btn month
     $('#btn-month').click(function(){
