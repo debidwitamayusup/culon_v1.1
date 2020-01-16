@@ -259,7 +259,7 @@ class Stc_Model extends CI_Model
 
 			//temporarily hardcode year based on data ready on database
 			// $where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = '2019' ";
-			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = '2019'";
+			$where2 = "MONTH(date)= '".$index."' AND YEAR(date) = YEAR(CURDATE())";
 		}else if($params == 'year'){
 			// $where = "YEAR(date_time)= '".$index."'";
 			$where2 = "YEAR(date)= '".$index."'";

@@ -6,6 +6,7 @@ var v_year = '2020';
 var z_params = 'day';
 var z_index = '2020-01-10';
 var z_year = '2020';
+
 $(document).ready(function () {
     // loadContent(v_params, '2020-01-10', 0);
     loadContent(z_params, z_index, 0, 0);
