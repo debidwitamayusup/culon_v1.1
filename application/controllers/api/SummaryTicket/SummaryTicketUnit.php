@@ -188,6 +188,13 @@ class SummaryTicketUnit extends CI_Controller {
         echo json_encode($data);
 
     }
+
+    public function getAllunitfilter()
+    {
+        $data = $this->module_model->getallunit();
+        echo json_encode($data);
+    
+    }
 }
 
 ?>
