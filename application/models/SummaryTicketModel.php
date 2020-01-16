@@ -438,5 +438,43 @@ class SummaryTicketModel extends CI_Model
 
 		return 'All';
 	}
+
+	public function getallunit()
+	{
+		$this->db->select('unit_id AS ID, unit AS NAME, unit_desc AS DESC');
+		$this->db->from('m_unit');
+		$query = $this->db->get();
+
+		if($query->num_rows()>0){
+			foreach($query->result() as $data)
+			{
+				$content[] = array(
+					'ID'=>$data->ID,
+					'NAME'=>$data->NAME,
+					'DESC'=> $data->DESC
+				);
+			}
+
+			$result = array(
+				'status' => TRUE,
+				'message' => 'Data Found!',
+				'data' => $content
+			);
+		}
+		else
+		{
+			$result = array(
+				'status' => TRUE,
+				'message' => 'Data Found!',
+				'data' => array()
+			);
+
+		}
+		
+
+		
+
+		return $result;
+	}
 }
 ?>
