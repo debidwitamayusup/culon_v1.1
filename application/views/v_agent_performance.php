@@ -197,7 +197,7 @@
                  <div class="col-md-12 col-lg-12">
                      <div class="card">
                          <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">Summary Agent Performance SKill</h5>
+                             <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
                          </div>
                          <div class="card-body">
                              <!-- <div class="row mb-5">

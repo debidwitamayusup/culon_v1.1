@@ -1,5 +1,5 @@
 <!-- Title -->
-<body style="background-image : url('<?php echo base_url('assets/images/brand/LD_11.JPG');?>');" class="background-sign">
+<body style="background-image : url('<?php echo base_url('assets/images/brand/LD_20.JPG');?>');" class="background-sign">
     <!-- Global Loader-->
 
     <div id="global-loader"><img src="<?php echo base_url();?>assets/images/svgs/loader.svg" alt="loader"></div>
