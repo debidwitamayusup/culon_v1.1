@@ -1248,9 +1248,12 @@ function setDatePicker(){
         params_time = 'day';
         // v_date = '2020-01-10'
         // console.log(params_time);
+
         simmiriStatusTicket(params_time, v_params_this_year, 0);
         ticketStatusUnit(params_time, v_params_this_year, 0);
         summaryTicketClose(params_time, v_params_this_year, 0, 0);
+        
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
