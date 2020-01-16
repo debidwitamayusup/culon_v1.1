@@ -5,24 +5,26 @@ var v_month = '1';
 var v_year = '2020';
 var z_params = 'day';
 var z_index = '2020-01-10';
-var z_year = 
+var z_year = '2020';
 $(document).ready(function () {
     // loadContent(v_params, '2020-01-10', 0);
     loadContent(z_params, z_index, 0, 0);
+    summaryTicketClose(z_params, z_index, 0, 0);
     // fromTemplate();
     // ini_finctiiin();
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
 });
 
 
     //pie chart summary status ticket
-function loadContent(params, index, params_year, params_unit){
+function loadContent(params, index, params_year){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
     ticketStatusUnit();
-    summaryTicketClose(params, index, params_year, params_unit);
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
@@ -139,6 +141,45 @@ function simmiriUnit(params, index, params_year){
     });
 }
 
+function callUnitFilter()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getAllunitfilter',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-unit");
+            var response = JSON.parse(r);
+
+            var html = '<option value="">All Unit</option>';
+            // var html = '';
+            console.log(response.data);
+            var i;
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].ID+'>'+response.data[i].NAME+'</option>';
+                }
+                $('#select-unit').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
 function summaryStatusTicketPerUnit(params, index, params_year){
     $.ajax({
         type: 'post',
@@ -182,10 +223,11 @@ function ticketStatusUnit(params, index, params_year){
 }
 
 function summaryTicketClose(params, index, params_year, params_unit){
-    console.log(params);
-    console.log(params_year);
-    console.log(index);
-    console.log(params_unit);
+    // console.log(params);
+    // console.log(params_year);
+    // console.log(index);
+    // console.log(params_unit);
+    callUnitFilter();
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/SCloseTicket',
@@ -1210,6 +1252,8 @@ function fromTemplate(){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', params_time);
     });
 
     // btn day
@@ -1234,6 +1278,8 @@ function fromTemplate(){
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', params_time);
     });
 
     // btn year
@@ -1246,6 +1292,8 @@ function fromTemplate(){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', params_time);
     });
 
      $("select#select-unit").change(function(){
@@ -1255,7 +1303,9 @@ function fromTemplate(){
         var z_params = 'day';
         var selectedUnit = $(this).children("option:selected").val();
         // console.log(selectedUnit);
-        loadContent(z_params, z_index, z_year, selectedUnit);
+        let fromParams = sessionStorage.getItem('paramsSession');
+        console.log(fromParams);
+        summaryTicketClose(fromParams, z_index, z_year, selectedUnit);
     });
 
 
