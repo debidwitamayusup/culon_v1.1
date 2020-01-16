@@ -265,5 +265,178 @@ class SummaryTicketModel extends CI_Model
 
 
 	}
+
+	public function getSCloseTicketMTH($unit,$params, $index, $params_year)
+	{
+		// print_r($unit.$params.$index.$params_year);
+		 
+		$max_date = date('t', strtotime($params_year.'-'.$index.'-01'));
+		$content = array();
+		$tanggal = array();
+
+		
+		
+		for($i=1;$i<=$max_date;$i++)
+		{
+			$period = $params_year.'-'.$index.'-'.$i;
+				
+			$this->db->select('DATE(date_close) AS TANGGAL, IFNULL(COUNT(ticket_id),0) AS CT');
+			$this->db->from('trans_ticket_today');
+			$this->db->where('ticket_status',8);
+			$this->db->where('DATE(date_close)',$period);
+			if($unit)
+			{
+				$this->db->where('unit_id',$unit);
+			}
+			$this->db->group_by('DATE(date_close)');
+	
+			$query = $this->db->get();
+
+
+			if ($query->num_rows() > 0) {
+				array_push($content,$query->row()->CT);
+				array_push($tanggal ,$i);
+				
+			}
+			else 
+			{
+				array_push($content,'0');
+				array_push($tanggal ,$i);
+			}
+		 
+		}
+
+		$data = array(
+			'unit'=>$this->getunit($unit),
+			'total_ticket'=>$content,
+			'label_time'=> $tanggal,
+			'color'=> ''
+		);
+
+
+		$res = array(
+			'status' => TRUE,
+			'data' => $data
+		);
+
+		return $res;
+	
+	}
+
+	public function getSCloseTicketYR($unit,$params, $index, $params_year)
+	{
+		$content = array();
+		$month = array();
+
+		for($i=1;$i<=12;$i++)
+		{
+			
+				
+			$this->db->select('MONTH(date_close) AS TANGGAL, IFNULL(COUNT(ticket_id),0) AS CT');
+			$this->db->from('trans_ticket_today');
+			$this->db->where('ticket_status',8);
+			$this->db->where('MONTH(date_close)',$i);
+			$this->db->where('YEAR(date_close)',$index);
+			if($unit)
+			{
+				$this->db->where('unit_id',$unit);
+			}
+			$this->db->group_by('MONTH(date_close)');
+	
+			$query = $this->db->get();
+
+
+			if ($query->num_rows() > 0) {
+				array_push($content,$query->row()->CT);
+				array_push($month ,$i);
+			}
+			else 
+			{
+				array_push($content,'0');
+				array_push($month ,$i);
+			}
+		 
+		}
+
+		$data = array(
+			'unit'=>$this->getunit($unit),
+			'total_ticket'=>$content,
+			'label_time'=> $month,
+			'color'=> ''
+		);
+
+		$res = array(
+			'status' => TRUE,
+			'data' => $data
+		);
+
+		return $res;
+	
+	}
+
+	public function getSCloseTicketDY($unit,$params, $index, $params_year)
+	{
+		$content = array();
+		$hour = array();
+
+		for($i=0;$i<=23;$i++)
+		{
+			$this->db->select('HOUR(date_close) AS HOUR, IFNULL(COUNT(ticket_id),0) AS CT');
+			$this->db->from('trans_ticket_today');
+			$this->db->where('ticket_status',8);
+			$this->db->where('HOUR(date_close)',$i);
+			$this->db->where('DATE(date_close)',$index);
+
+			if($unit)
+			{
+				$this->db->where('unit_id',$unit);
+			}
+			$this->db->group_by('MONTH(date_close)');
+	
+			$query = $this->db->get();
+
+
+			if ($query->num_rows() > 0) {
+				array_push($content,$query->row()->CT);
+				array_push($hour ,$i.':00:00');
+			}
+			else 
+			{
+				array_push($content,'0');
+				array_push($hour ,$i.':00:00');
+			}
+		 
+		}
+
+		$data = array(
+			'unit'=>$this->getunit($unit),
+			'total_ticket'=>$content,
+			'label_time'=> $hour,
+			'color'=> ''
+		);
+
+		$res = array(
+			'status' => TRUE,
+			'data' => $data
+		);
+
+		return $res;
+	
+	}
+
+
+	function getunit($unit)
+	{
+		$this->db->select('unit AS UNIT');
+		$this->db->from('m_unit');
+		$this->db->where('unit_id',$unit);
+		$query=$this->db->get();
+
+		if ($query->num_rows() >0) {
+			return $query->row()->UNIT;
+		}
+
+		return 'All';
+	}
 }
 ?>

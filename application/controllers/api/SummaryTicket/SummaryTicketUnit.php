@@ -131,7 +131,7 @@ class SummaryTicketUnit extends CI_Controller {
     	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
         $index = $this->security->xss_clean($this->input->post('index', true)); // value params
         $params_year = $this->security->xss_clean($this->input->post('year', true));    // value params
-        
+
         $data = $this->module_model->getStatusperUnit($params, $index, $params_year);
 
         $statusData = array();
@@ -162,6 +162,31 @@ class SummaryTicketUnit extends CI_Controller {
         }
 
         echo json_encode($response);
+    }
+
+    public function SCloseTicket()
+    {
+        $params = $this->security->xss_clean($this->input->post('params', true)); //day month year
+        $index = $this->security->xss_clean($this->input->post('index', true)); // value params
+        $params_year = $this->security->xss_clean($this->input->post('year', true));    // value params
+        $unit = $this->security->xss_clean($this->input->post('unit', true));
+
+        if($params=='month')
+        {   
+            $data = $this->module_model->getSCloseTicketMTH($unit, $params, $index, $params_year);
+        }
+        elseif($params=='year')
+        {
+            $data = $this->module_model->getSCloseTicketYR($unit, $params, $index, $params_year);
+        }
+        elseif($params=='day')
+        {
+            $data = $this->module_model->getSCloseTicketDY($unit, $params, $index, $params_year);
+        }
+        
+
+        echo json_encode($data);
+
     }
 }
 
