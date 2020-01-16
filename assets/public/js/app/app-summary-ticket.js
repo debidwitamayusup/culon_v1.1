@@ -1,6 +1,6 @@
 var base_url = $('#base_url').val();
 var v_params = '';
-var v_index = '2020-01-10';
+var v_index = '2020-01-01';
 var v_month = '1';
 var v_year = '2020';
 var z_params = 'day';
@@ -477,8 +477,6 @@ function drawDataTable(response){
 }
 
 function drawDataTable2(params, index, params_year){
-
-    
     $('#mytbody').remove();
     $('#mytfoot').remove();
     $('#table_summary_ticket').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
@@ -1224,11 +1222,9 @@ function setDatePicker(){
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-        v_date = '2020-01-10'
+        v_date = '2020-01-01'
         // console.log(params_time);
-        simmiriStatusTicket(params_time, '2020-01-10');
-        // $('#tag-time').html(v_date);
-        // $("#btn-week").prop("class","btn btn-light btn-sm");
+        simmiriStatusTicket(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -1256,6 +1252,7 @@ function setDatePicker(){
     // btn month
     $('#btn-month').click(function(){
         params_time = 'month';
+        // v_month = '1'
         // console.log(params_time);
         // loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
@@ -1284,6 +1281,10 @@ function setDatePicker(){
         $(this).prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', params_time);
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        // $('.ui-datepicker-calendar').css('display','none');
+        $('#filter-year').show();
     });
 
      $("select#select-unit").change(function(){
@@ -1296,9 +1297,9 @@ function setDatePicker(){
         let fromParams = sessionStorage.getItem('paramsSession');
         console.log(fromParams);
         summaryTicketClose(fromParams, z_index, z_year, selectedUnit);
-        $('#filter-date').hide();
+        $('#filter-date').show();
 		$('#filter-month').hide();
-		$('#filter-year').show();
+		$('#filter-year').hide();
     });
 
     $('#input-date-filter').datepicker({
@@ -1307,6 +1308,7 @@ function setDatePicker(){
 			// console.log(this.value);
 			v_date = this.value;
 			simmiriStatusTicket(params_time, v_date,0);
+            simmiriUnit(params_time, v_date,0);
         }
 	});
 
@@ -1316,11 +1318,13 @@ function setDatePicker(){
 		// console.log(value);
 		// callSummaryInteraction(params_time, v_month,v_year);
 		simmiriStatusTicket('month', v_month, $("#select-year-on-month").val());
+        simmiriUnit('month', v_month, $("#select-year-on-month").val());
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
 		simmiriStatusTicket('month', $("#select-month").val(), v_year);
+        simmiriUnit('month', $("#select-month").val(), v_year);
 	});
 	/**/ 
 
@@ -1329,6 +1333,7 @@ function setDatePicker(){
 		v_year = $(this).val();
 		// console.log(this.value);
 		simmiriStatusTicket('year', v_year, 0);
+        simmiriUnit('year', v_year, 0);
 	});
 
     

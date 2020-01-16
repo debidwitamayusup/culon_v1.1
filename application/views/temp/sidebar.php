@@ -57,10 +57,10 @@
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
-						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>
