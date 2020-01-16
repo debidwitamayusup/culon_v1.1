@@ -96,7 +96,6 @@ function simmiriStatusTicket(params, index, params_year){
     });
 }
 
-<<<<<<< HEAD
 function simmiriUnit(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
