@@ -113,6 +113,7 @@ class AgentPerformModel extends CI_Model
 		$this->db->from('m_login');
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
+		$this->db->group_by('AGENTID');
 		if($src)
 		{
 			

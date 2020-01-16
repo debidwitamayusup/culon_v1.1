@@ -6,6 +6,7 @@ var v_year = '2020';
 var z_params = 'day';
 var z_index = '2020-01-10';
 var z_year = '2020';
+
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -17,6 +18,7 @@ if (n < 10) {
   n = '0' + n;
 }
 var v_params_this_year = m + '-' + n + '-' + (o-1);
+
 $(document).ready(function () {
     // loadContent(v_params, '2020-01-10', 0);
     $('#select-month option[value='+n+']').attr('selected','selected');

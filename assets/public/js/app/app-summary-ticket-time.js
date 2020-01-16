@@ -201,7 +201,15 @@ var myChart = new Chart( ctx, {
             labels:{
                 boxWidth:10
            }
-        }
+        },
+        pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true,
+                precision: 0,
+                showActualPercentages: true,
+        },
     }
 } );
 }

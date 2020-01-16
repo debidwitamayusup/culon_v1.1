@@ -52,7 +52,7 @@ Class AuthModel extends CI_Model {
     }
     public function logoutapp($usr){
         
-        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE ');
+        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');
         $this->db->from('m_user');
         $this->db->where('userid', $usr);
 
