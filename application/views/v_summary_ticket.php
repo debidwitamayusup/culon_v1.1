@@ -68,15 +68,13 @@
                                          <option value="9">September</option>
                                          <option value="10">October</option>
                                          <option value="11">November</option>
-                                         <option value="12" selected>December</option>
+                                         <option value="12">December</option>
                                      </select>
                                  </div>
                                  <div>
-                                     <select name="select-year-on-month" id="select-year-on-month" class="form-control" id="dateTahun">
-                                         <!-- <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option> -->
+                                     <select name="select-year-on-month" id="select-year-on-month" class="form-control">
+                                         <option value="2020" selected>2020</option>
+                                            <option value="2019">2019</option>
                                      </select>
                                  </div>
                              </div>
@@ -119,7 +117,7 @@
                          <div class="card-header-small bg-red">
                              <h5 class="card-title-small card-pt10">Ticket Status / Unit</h5>
                          </div>
-                         <div class="card-body">
+                         <div class="card-body" id="card-body-unit">
                              <div id="echartTicketUnit" class="chartsh-unit overflow-hidden"></div>
                          </div>
                      </div>
