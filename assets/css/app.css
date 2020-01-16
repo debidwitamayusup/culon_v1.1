@@ -196,15 +196,15 @@
 	word-wrap: break-word;
 	background-color: #fff;
     background-clip: border-box;
-    padding : 25px 50px 15px 50px;
+    padding : 13px 20px 15px 20px;
 	/* border:1px solid #cbcee8; */
-	box-shadow:0 12px 11px -3px rgba(113,126,195,.25);
+	box-shadow:7px 3px 19px 0px rgba(113,126,195,.25);
 }
 .card-cust {
 	position: relative;
 	margin-bottom: 0.8rem;
 	width: 100%;
-	border-radius:7px;
+	border-radius:28px;
 }
 
 .btn-icon-red{
@@ -216,13 +216,13 @@
 }
 
 .btn-sign{
-    background-color:#fb5555;
+    background-color:#A81616;
 }
 
 .bg-sign{
-    background-color:#fb5555;
+    background-color:#A81616;
 }
 
 .text-sign {
-	color: #ff5555 !important;
+	color: #A81616 !important;
 }
