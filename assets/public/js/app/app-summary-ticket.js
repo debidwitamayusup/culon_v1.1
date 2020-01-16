@@ -1,15 +1,31 @@
 var base_url = $('#base_url').val();
-var v_params = 'day';
+var v_params = '';
 var v_index = '2020-01-10';
-var v_month = '1';
-var v_year = '2020';
+var v_month = '';
+var v_year = '';
+var v_date = '';
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
     // fromTemplate();
     // ini_finctiiin();
-    $("#btn-month").prop("class","btn btn-light btn-sm");
-    $("#btn-year").prop("class","btn btn-light btn-sm");
+
+    params_time = 'day';
+	v_date = getToday();
+	v_month = getMonth();
+	v_year = getYear();
+    v_date = '2020-01-10';
+    
     $("#btn-day").prop("class","btn btn-red btn-sm");
+    loadContent(params_time, v_date, 0);
+	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
+	
+	$('#filter-date').show();
+	$('#filter-month').hide();
+	$('#filter-year').hide();
+	setMonthPicker();
+    setYearPicker();
+
 });
 
     //sample datatable	
@@ -17,8 +33,9 @@ $(document).ready(function () {
 
     //pie chart summary status ticket
 function loadContent(index, params, params_year){
+    // callSummaryTicket(params, index,0);
     simmiriStatusTicket(params, index, params_year);
-    simmiriUnit(params, index, params_year);
+    // simmiriUnit(params, index, params_year);
     ticketStatusUnit();
     drawChartSUmmaryCloseTicket();
     // summaryStatusTicketPerUnit(params, index, params_year);
@@ -117,25 +134,25 @@ function simmiriStatusTicket(params, index, params_year){
     });
 }
 
-function simmiriUnit(params, index, params_year){
-    $.ajax({
-        type: 'post',
-        url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryUnit',
-        data: {
-            params: params,
-            index: index,
-            params_year, params_year
-        },
-        success: function (r) { 
-            var response = JSON.parse(r);
-            // console.log(response.data[0].new);
-            drawPieUnit(response);
-        },
-        error: function (r) {
-            alert("error");
-        },
-    });
-}
+// function simmiriUnit(params, index, params_year){
+//     $.ajax({
+//         type: 'post',
+//         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryUnit',
+//         data: {
+//             params: params,
+//             index: index,
+//             params_year, params_year
+//         },
+//         success: function (r) { 
+//             var response = JSON.parse(r);
+//             // console.log(response.data[0].new);
+//             drawPieUnit(response);
+//         },
+//         error: function (r) {
+//             alert("error");
+//         },
+//     });
+// }
 
 function summaryStatusTicketPerUnit(params, index, params_year){
     $.ajax({
@@ -291,92 +308,93 @@ function drawPie(response){
 }
 
 
-function drawPieUnit(response){
+// function drawPieUnit(response){
     //destroy div piechart
-    $('#pieChartUnit').remove(); // this is my <canvas> element
-    $('#canvas-pie-unit').append('<canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>');
+    // $('#pieChartUnit').remove();
+     // this is my <canvas> element
+    // $('#canvas-pie-unit').append('<canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>');
 
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
-    let arrUnit = [];
-    let arrTotal = [];
+    // let arrUnit = [];
+    // let arrTotal = [];
 
     // draw card yang ada datanya
-    response.data.forEach(function (value, index) {
-        arrUnit.push(value.unit);
-        arrTotal.push(value.total);
-    });
+    // response.data.forEach(function (value, index) {
+    //     arrUnit.push(value.unit);
+    //     arrTotal.push(value.total);
+    // });
 
     // draw chart
-    var ctx = document.getElementById( "pieChartUnit" );
-    ctx.height = 300;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                labels: [arrUnit, arrTotal],
-                data: arrTotal,
-                 backgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
+    // var ctx = document.getElementById( "pieChartUnit" );
+    // ctx.height = 300;
+    // var myChart = new Chart( ctx, {
+    //     type: 'pie',
+    //     data: {
+    //         datasets: [ {
+    //             labels: [arrUnit, arrTotal],
+    //             data: arrTotal,
+    //              backgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
                                     
-                                ],
-                hoverBackgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
-                                ]
-            } ],
-            labels: arrUnit
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend:{
+    //                             ],
+    //             hoverBackgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
+    //                             ]
+    //         } ],
+    //         labels: arrUnit
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend:{
                 // position:"bottom",
                 // labels:{
                 //   boxWidth:10
-                display : false
-            },pieceLabel : {
-                render : 'legend',
-                fontColor : '#000',
-                position : 'outside',
-                segment : true,
-                precision: 0,
-                showActualPercentages: true,                
-            },
-            legendCallback : function (chart,index){
-                var allData = chart.data.datasets[0].data;
-                // console.log(chart)
-                var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-8">');
-                allData.forEach(function(data,index){
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for (var i in allData){
-                        total += parseInt(allData[i]);
-                    }
+            //     display : false
+            // },pieceLabel : {
+            //     render : 'legend',
+            //     fontColor : '#000',
+            //     position : 'outside',
+            //     segment : true,
+            //     precision: 0,
+            //     showActualPercentages: true,                
+            // },
+            // legendCallback : function (chart,index){
+            //     var allData = chart.data.datasets[0].data;
+            //     // console.log(chart)
+            //     var legendHtml = [];
+            //     legendHtml.push('<ul><div class="row ml-8">');
+            //     allData.forEach(function(data,index){
+            //         var label = chart.data.labels[index];
+            //         var dataLabel = allData[index];
+            //         var background = chart.data.datasets[0].backgroundColor[index]
+            //         var total = 0;
+            //         for (var i in allData){
+            //             total += parseInt(allData[i]);
+            //         }
 
                     // console.log(total)
-                    var percentage = Math.round((dataLabel / total)*100);
-                    legendHtml.push('<li class="col-md-6 col-lg-6 col-xl-6 col-12">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
-                })
-                legendHtml.push('</ul></div>');
-                return legendHtml.join("");
-            },
-        }
-    } );
-    var myLegendContainer = document.getElementById("legendUnit");
-    myLegendContainer.innerHTML = myChart.generateLegend();
-}
+//                     var percentage = Math.round((dataLabel / total)*100);
+//                     legendHtml.push('<li class="col-md-6 col-lg-6 col-xl-6 col-12">');
+//                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+//                 })
+//                 legendHtml.push('</ul></div>');
+//                 return legendHtml.join("");
+//             },
+//         }
+//     } );
+//     var myLegendContainer = document.getElementById("legendUnit");
+//     myLegendContainer.innerHTML = myChart.generateLegend();
+// }
 
 function drawDataTable(response){
     console.log(response.data);
@@ -1165,57 +1183,136 @@ function fromTemplate(){
     barChart.setOption(option);
 }
 
+function getToday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + dd;
+    return today;
+}
+
+function getMonth(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var month = mm;
+    return month;
+}
+
+function getYear(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var year = yyyy;
+    return year;
+}
+
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 //jquery
 (function ($) {
 
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
+        v_date = '2020-01-10'
         // console.log(params_time);
-        loadContent(params_time , '2020-01-10');
+        simmiriStatusTicket(params_time, '2020-01-10');
         // $('#tag-time').html(v_date);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        $('#filter-date').show();
+		$('#filter-month').hide();
+		$('#filter-year').hide();
     });
 
     // btn day
-    $('#btn-week').click(function(){
-        params_time = 'week';
-        // console.log(params_time);
-        loadContent(params_time , '2020-01-10', v_year);
-        // $('#tag-time').html(v_date);
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
+    // $('#btn-week').click(function(){
+    //     params_time = 'week';
+    //     // console.log(params_time);
+    //     loadContent(params_time , '2020-01-10', v_year);
+    //     // $('#tag-time').html(v_date);
+    //     $("#btn-day").prop("class","btn btn-light btn-sm");
+    //     $("#btn-month").prop("class","btn btn-light btn-sm");
+    //     $("#btn-year").prop("class","btn btn-light btn-sm");
+    //     $(this).prop("class","btn btn-red btn-sm");
+    // });
 
     // btn month
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '1', v_year)
+        // loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        simmiriStatusTicket(params_time,$("#select-month").val(), $("#select-year-on-month").val());
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        $('#filter-date').hide();
+		$('#filter-month').show();
+		// $('.ui-datepicker-calendar').css('display','none');
+		$('#filter-year').hide();
     });
 
     // btn year
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2020');
+        simmiriStatusTicket(params_time, $("#select-year-only").val(), 0);
         // $('#tag-time').html(v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        $('#filter-date').hide();
+		$('#filter-month').hide();
+		$('#filter-year').show();
     });
 
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			simmiriStatusTicket(params_time, v_date,0);
+        }
+	});
+
+	/*select option month*/ 
+	$('#select-month').change(function(){
+		v_month = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		simmiriStatusTicket('month', v_month, $("#select-year-on-month").val());
+	});
+	$('#select-year-on-month').change(function(){
+		v_year = $(this).val();
+		// console.log(value);
+		simmiriStatusTicket('month', $("#select-month").val(), v_year);
+	});
+	/**/ 
+
+	// select option year
+	$('#select-year-only').change(function(){
+		v_year = $(this).val();
+		// console.log(this.value);
+		simmiriStatusTicket('year', v_year, 0);
+	});
 
     
 })(jQuery);
