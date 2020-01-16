@@ -200,6 +200,12 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_summary_inout_sla');
 	}
+	public function performance_channel(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_performance_bychannel');
+	}
 	// report
 
 	public function report_summary_ticket(){
@@ -229,12 +235,13 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_detail_cwc');
 	}
-
-	public function performance_channel(){
+	
+	public function report_agent_log(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('v_performance_bychannel');
+		$this->load->view('v_report_agent_log');
 	}
+	
 
 }
