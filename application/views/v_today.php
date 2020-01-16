@@ -9,7 +9,7 @@
 								<li class="breadcrumb-item active" aria-current="page">
 									<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
 								</li>
-								<li class="breadcrumb-item active mt-2" aria-current="page">Traffic Channel</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Traffic Interval</li>
 								<li class="breadcrumb-item active mt-2" aria-current="page">Daily</li>
 							</ol>
 						</div>
@@ -160,7 +160,7 @@
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Channel</h5>
+									<h5 class="card-title-small card-pt10">Summary Traffic Interval All Channel</h5>
 								</div>
 								<div class="card-body" id="chart-percentage">
 									<!-- <canvas id="echartVerticalDay"></canvas> -->
@@ -171,7 +171,7 @@
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Average Interval</h5>
+									<h5 class="card-title-small card-pt10">Summary Service All Channel</h5>
 								</div>
 								<div class="table-responsive table-bordered table-pt10">
 									<table class="table card-table table-striped table-vcenter table-hover" id="table-avg-interval">
