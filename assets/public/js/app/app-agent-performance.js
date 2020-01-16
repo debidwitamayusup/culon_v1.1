@@ -131,7 +131,9 @@ function dataCardAHT(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/dashboard_on4/assets/images/brand/user.jpg"></span>'+
+                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 	'<img src='+value[8]+' style="border-radius:75%;">'+
+                                 '</div>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
@@ -152,7 +154,9 @@ function dataCardART(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+value[8]+'"></span>'+
+                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 	'<img src='+value[8]+' style="border-radius:75%;">'+
+                                 '</div>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
