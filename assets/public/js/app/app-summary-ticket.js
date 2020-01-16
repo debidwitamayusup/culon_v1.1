@@ -96,7 +96,6 @@ function simmiriStatusTicket(params, index, params_year){
     });
 }
 
-<<<<<<< HEAD
 function simmiriUnit(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -1297,9 +1296,9 @@ function setDatePicker(){
         let fromParams = sessionStorage.getItem('paramsSession');
         console.log(fromParams);
         summaryTicketClose(fromParams, z_index, z_year, selectedUnit);
-        $('#filter-date').hide();
+        $('#filter-date').show();
 		$('#filter-month').hide();
-		$('#filter-year').show();
+		$('#filter-year').hide();
     });
 
     $('#input-date-filter').datepicker({
