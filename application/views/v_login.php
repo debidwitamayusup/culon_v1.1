@@ -14,7 +14,7 @@
                         <div class="col-md-4">
                             <div class="card-group mb-0">
                                 <div class="card-cust">
-                                    <div class="text-center mb-5">
+                                    <div class="text-center mb-5 mt-8">
                                         <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png"
                                             class=""style="max-width: 69% !important;" alt="">
                                     </div>
@@ -35,7 +35,7 @@
                                                 <option value="oct_posindo">oct_posindo</option>
                                             </select>
                                         </div> -->
-                                        <div class="text-center">
+                                        <div class="text-center mb-8">
                                             <button type="submit" class="btn btn-sign text-white" style="border-radius:20px !important;" id="btn-login">Sign
                                                 in</button>
                                         </div>
