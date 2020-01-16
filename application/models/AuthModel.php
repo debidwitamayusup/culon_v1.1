@@ -52,8 +52,8 @@ Class AuthModel extends CI_Model {
     }
     public function logoutapp($usr){
         
-        $this->db->select('userid AS USERID, nick_name AS NICK, name as LONG_NAME, userlevel AS PREVILAGE ,profile_pic AS PICTURE, unit_id AS UNIT_ID');
-        $this->db->from('m_login');
+        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE ');
+        $this->db->from('m_user');
         $this->db->where('userid', $usr);
 
         $query = $this->db->get();
@@ -63,16 +63,16 @@ Class AuthModel extends CI_Model {
             $data    = $query->row();
             $content = array(
                 'USERID'        => $data->USERID,
-                'NICK'          => $data->NICK,
+                'NICK'          => $data->LONG_NAME,
                 'NAME'          => $data->LONG_NAME,
                 'PREVILAGE'     => $data->PREVILAGE,
-                'PICTURE'       => APPPATH.'public\user'.$data->PICTURE,
-                'UNIT'          => $data->UNIT_ID
+                'PICTURE'       => APPPATH.'public\user\default-avatar.jpg',//APPPATH.'public\user'.$data->PICTURE,
+              //  'UNIT'          => $data->UNIT_ID
 
             );
 
-            $this->db->where('userid', $usr);
-            $this->db->update('m_login', array('is_login' => '0'));
+            // $this->db->where('userid', $usr);
+            // $this->db->update('m_login', array('is_login' => '1'));
 
             return $content;
         }
