@@ -260,7 +260,7 @@
                     </div>
                 </div> -->
                          </div>
-                         <div class="card-body">
+                         <div class="card-body" id="echartTicketCloseDiv">
                              <div id="echartTicketClose" class="chartsh overflow-hidden"></div>
                          </div>
                      </div>

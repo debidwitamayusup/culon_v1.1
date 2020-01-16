@@ -28,42 +28,6 @@ function loadContent(params, index, params_year){
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
-
-    //datatable config
-    // $('#table_summary_ticket thead tr:eq(0) th:eq(2)').html("Status");
-     // Wrap the colspan'ing header cells with a span so they can be positioned
-    // absolutely - filling the available space, and no more.
-    // $('#table_summary_ticket thead th[colspan]').wrapInner( '<span/>' ).append( '&nbsp;' );
-    // $('#table_summary_ticket').DataTable( {
-    //     responsive: true,
-    //     paging: false
-    // } );
-
-    // tabel = $('#table_summary_ticket').DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ordering: true, // Set true agar bisa di sorting
-    //         order: [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
-    //         ajax:
-    //         {
-    //             url: base_url+'api/SummaryTicket/SummaryTicketUnit/filterTable', // URL file untuk proses select datanya
-    //             type: "POST"
-    //         },
-    //         deferRender: true,
-    //         aLengthMenu: [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
-    //         columns: [
-    //             { data: "unit" }, // Tampilkan nis
-    //             { data: "sNew" }, // Tampilkan nis
-    //             { data: "sOpen" },  // Tampilkan nama
-    //             { data: "sOnProgress" }, // Tampilkan telepon
-    //             { data: "sResolved" }, // Tampilkan alamat
-    //             { data: "sReopen"},
-    //             { data: "sPending"},
-    //             { data: "sReturn"},
-    //             { data: "sReject"}
-    //         ],
-    //     });
-
 }
 
 function getColor(channel){
@@ -92,11 +56,6 @@ function addCommas(commas)
     }
     return x1 + x2;
 }
-// function loadContent(params, index_time){
-//     $("#filter-loader").fadeIn("slow");
-//     callSummaryScrCof();
-//     $("#filter-loader").fadeOut("slow");
-// }
 
 function simmiriStatusTicket(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
@@ -122,6 +81,7 @@ function simmiriStatusTicket(params, index, params_year){
 }
 
 function simmiriUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryUnit',
@@ -134,15 +94,18 @@ function simmiriUnit(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawPieUnit(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function callUnitFilter()
 {
+    $("#filter-loader").fadeIn("slow");
     var data = "";
     var base_url = $('#base_url').val();
     // console.log(year);
@@ -150,37 +113,31 @@ function callUnitFilter()
     $.ajax({
         type: 'POST',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getAllunitfilter',
-        // data: {
-        //     "niceDate" : niceDate
-        // },
-
         success: function (r) {
             var data_option = [];
             var dateTahun = $("#select-unit");
             var response = JSON.parse(r);
 
-            var html = '<option value="">All Unit</option>';
+            var html = '<option value="0">All Unit</option>';
             // var html = '';
-            console.log(response.data);
+            // console.log(response.data);
             var i;
-                for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i].ID+'>'+response.data[i].NAME+'</option>';
-                }
-                $('#select-unit').html(html);
-            
-            // var option = $ ("<option />");
-            //     option.html(i);
-            //     option.val(i);
-            //     dateTahun.append(option);
+            for(i=0; i<response.data.length; i++){
+                html += '<option value='+response.data[i].ID+'>'+response.data[i].NAME+'</option>';
+            }
+            $('#select-unit').html(html);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             //console.log(r);
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function summaryStatusTicketPerUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
@@ -194,14 +151,17 @@ function summaryStatusTicketPerUnit(params, index, params_year){
             // console.log(response.data[0].new);
             drawTable(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function ticketStatusUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getStatusperUnit',
@@ -215,9 +175,11 @@ function ticketStatusUnit(params, index, params_year){
             // console.log(response.data[0].new);
             drawChartStatusPerUnit(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -228,6 +190,7 @@ function summaryTicketClose(params, index, params_year, params_unit){
     // console.log(index);
     // console.log(params_unit);
     callUnitFilter();
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/SCloseTicket',
@@ -242,9 +205,11 @@ function summaryTicketClose(params, index, params_year, params_unit){
             // var response = (response);
             drawChartSUmmaryCloseTicket(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -813,53 +778,12 @@ function drawChartStatusPerUnit(response){
 }
 
 function drawChartSUmmaryCloseTicket(response){
-console.log(response);
+    // console.log(response);
+    $('#select-unit option[value='+response.data.ID+']').attr('selected','selected');
 
-    // var optionTicketUnit = {
-    //     grid: {
-    //         top: '6',
-    //         right: '10',
-    //         bottom: '17',
-    //         left: '95',
-    //     },
-    //     xAxis: {
-    //         type: 'value',
-    //         axisLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLabel: {
-    //             fontSize: 10,
-    //             color: '#7886a0'
-    //         }
-    //     },
-    //     yAxis: {
-    //         type: 'category',
-    //         data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
-    //         splitLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLabel: {
-    //             fontSize: 10,
-    //             color: '#7886a0'
-    //         }
-    //     },
-    //     series: chartTicketUnit,
-    //     color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
-    // };
-    // var chartTicketUnit = document.getElementById('echartTicketUnit');
-    // var barChartTicketUnit = echarts.init(chartTicketUnit);
-    // barChartTicketUnit.setOption(optionTicketUnit);
+    $('#echartTicketClose').remove(); // this is my <canvas> element
+    $('#echartTicketCloseDiv').append('<div id="echartTicketClose" class="chartsh overflow-hidden"></div>');
     
-    // ------CHART BARU
     var chartdata = [{
         name: 'Ticket',
         type: 'bar',
