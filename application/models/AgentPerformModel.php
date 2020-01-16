@@ -5,6 +5,7 @@ class AgentPerformModel extends CI_Model
 	public function __construct()
 	{
 		parent:: __construct();
+		$this->load->helper('url');
 	}
 
 	public function getScrCof(){
@@ -37,8 +38,15 @@ class AgentPerformModel extends CI_Model
 #region :: ragakasih
 	public function getSSallchannel($src='',$params,$index,$param_year)
 	{
-		$this->db->select('tanggal AS DATE, art AS ART, aht AS AHT, ast as AST, scr AS SCR, cof AS COF');
+		$this->db->select('tanggal AS DATE,
+		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART,
+		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) AS AHT,
+		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST,
+		AVG(scr) AS SCR,
+		SUM(cof) AS COF');
+
 		$this->db->from('rpt_summary_scr');
+		
 		
 		if($src)//search datatable function 
 		{
@@ -63,9 +71,11 @@ class AgentPerformModel extends CI_Model
 		{
 			$this->db->where('DATE(tanggal)',$index);
 		}
-
+		$this->db->group_by('DATE','ASC');
 		$query = $this->db->get();
 
+		// print_r($this->db->last_query());    
+		//  exit;
 		if($query->num_rows()>0)
 		{
 			$idx = 1;
@@ -77,7 +87,7 @@ class AgentPerformModel extends CI_Model
 					strval($data->ART),
 					strval($data->AHT),
 					strval($data->AST),
-					strval($data->SCR.'%'),
+					strval(round($data->SCR, 2).'%'),
 					strval($data->COF)
 				);
 				$idx++;
@@ -99,7 +109,7 @@ class AgentPerformModel extends CI_Model
 	}
 	public function getSAgentperformskills($src='',$param) // table right - bottom need limit / offset
 	{
-		$this->db->select('rpt_summary_agent.art as ART, rpt_summary_agent.aht as AHT, rpt_summary_agent.ast as AST, rpt_summary_agent.session as COF, m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME, ');
+		$this->db->select('rpt_summary_agent.art as ART, rpt_summary_agent.aht as AHT, rpt_summary_agent.ast as AST, rpt_summary_agent.session as COF, m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME,m_login.profile_pic AS IMAGE,m_login.userlevel as LEVEL ');
 		$this->db->from('m_login');
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
@@ -113,6 +123,7 @@ class AgentPerformModel extends CI_Model
 			$this->db->or_like('AGENTID',$src);
 			$this->db->or_like('NAME',$src);
 			$this->db->or_like('SKILLNAME',$src);
+			$this->db->or_like('LEVEL',$src);
 
 		}
 		if($param == 'AHT')
@@ -152,6 +163,9 @@ class AgentPerformModel extends CI_Model
 					strval($data->ART),
 					strval($data->AHT),
 					strval($data->AST),
+					strval(base_url().'public/user/'.$data->IMAGE),
+					strval($data->LEVEL)
+
 				);
 				$idx++;
 			}

@@ -222,6 +222,9 @@ class SummaryTicketModel extends CI_Model
 		if($query->num_rows()>0)
 		{
 			$idx = 1;
+			$TA =0;
+			$TB = 0;
+			$TC =0;
 			foreach($query->result() as $data)
 			{
 				$content[] = array(
@@ -232,8 +235,19 @@ class SummaryTicketModel extends CI_Model
 					strval($data->DayC),
 					strval($data->DayA+$data->DayB+$data->DayC)
 				);
+				$TA=$TA+$data->DayA;
+				$TB=$TB+$data->DayB;
+				$TC=$TC+$data->DayC;
 				$idx++;
 			}
+
+
+			$total = array(
+				$TA,
+				$TB,
+				$TC
+
+			);
 
 		}
 		else{
@@ -244,6 +258,7 @@ class SummaryTicketModel extends CI_Model
 			'recordsTotal' => $query->num_rows(),
 			'recordsFiltered' => $query->num_rows(),
 			'data' => $content,
+			'total' => $total
 		);
 
 		return $res;

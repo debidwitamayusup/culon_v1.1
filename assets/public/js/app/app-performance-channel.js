@@ -3,9 +3,24 @@ var v_params = 'day';
 var v_index = '2020-01-01';
 var v_month = '1';
 var v_year = '2020';
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+var v_params_this_year = m + '-' + n + '-' + (o-1);
+// console.log(v_params_this_year);
 
+// console.log(d);
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
+    //for current time
+    // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
     // drawChartSumChannel();
     $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -17,6 +32,19 @@ function loadContent(params, index, params_year){
     drawDataTable2(params, index, params_year);
     summaryService(params, index, params_year);
     summaryChannel(params, index, params_year);
+}
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }
 
 function summaryService(params, index, params_year){
@@ -77,11 +105,17 @@ function drawDataTable2(params, index, params_year){
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
             type : 'POST'
         },
+        columnDefs: [
+			{ className: "text-right", targets: 5 },
+			{ className: "text-right", targets: 6 }
+		],   
         destroy: true,
     });
 }
 function drawChartSumService(response){
 	// console.log(response);
+	$('#barService').remove();
+    $('#barServiceDiv').append('<canvas id="barService"></canvas>');
 
 	if (response.status != false) {
 		var MeSeContext = document.getElementById("barService");
@@ -112,6 +146,31 @@ function drawChartSumService(response){
 	        type : 'horizontalBar',
 	        data : MeSeData,
 	        options : {
+	        	tooltips: {
+	        		enabled: false
+	        	},
+	        	hover: {
+	        		animationDuration: 0
+			    },
+			    animation: {
+			        duration: 1,
+			        onComplete: function () {
+			            var chartInstance = this.chart,
+			                ctx = chartInstance.ctx;
+				            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+				            ctx.textAlign = 'center';
+				            ctx.textBaseline = 'middle';
+				            ctx.fillStyle = "#ffffff";
+
+			            this.data.datasets.forEach(function (dataset, i) {
+			                var meta = chartInstance.controller.getDatasetMeta(i);
+			                meta.data.forEach(function (bar, index) {
+			                    var data = addCommas(dataset.data[index])+' seconds';
+			                    ctx.fillText(data, bar._model.x-150, bar._model.y);
+			                });
+			            });
+			        }
+			    },
 	            responsive: false,
 	            maintainAspectRatio: false,
 	            scales : {
@@ -125,8 +184,18 @@ function drawChartSumService(response){
 	                }]
 	            },
 	            legend: {
-	                display: false
+	                display: false,
+	                labels:{
+			        	fontColor: '#666'
 	                }
+	        	},
+	        	plugins: {
+	            		datalabels: {
+	                		formatter: function(value, context) {
+	                    	return context.chart.data.labels[context.dataIndex];
+	                	}
+	            	}
+	        	}
 	        }
 	    });
 	}else{
@@ -135,101 +204,108 @@ function drawChartSumService(response){
 }
 
 function drawChartSumChannel(response){
-	console.log(response);
-	let channelName = [];
-	let art = [];
-	let aht = [];
-	let ast = [];
-	response.data.forEach(function (value, index) {
-		channelName.push(value.CHANNEL_NAME);
-		art.push(value.SUM_ART);
-		aht.push(value.SUM_AHT);
-		ast.push(value.SUM_AST);
 
-    });
-    console.log(channelName);
-	var chartdataTicket= [{
-		name: 'ART',
-		type: 'bar',
-		stack: 'Stack',
-		data: art
-	}, {
-		name: 'AHT',
-		type: 'bar',
-		stack: 'Stack',
-		data: aht
-	}, {
-		name: 'AST',
-		type: 'bar',
-		stack: 'Stack',
-		data: ast
-	}];
-	/*----echart summary ticket category----*/
-	var optionTicket = {
-		grid: {
-			top: '6',
-			right: '10',
-			bottom: '17',
-			left: '70',
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
+		// console.log(response.status);
+	$('#echartService').remove();
+    $('#echartServiceDiv').append('<div id="echartService" class="chartsh overflow-hidden"></div>');
+    if (response.status != false) {
+		let channelName = [];
+		let art = [];
+		let aht = [];
+		let ast = [];
+		response.data.forEach(function (value, index) {
+			channelName.push(value.CHANNEL_NAME);
+			art.push(value.SUM_ART);
+			aht.push(value.SUM_AHT);
+			ast.push(value.SUM_AST);
+
+	    });
+	    console.log(channelName);
+		var chartdataTicket= [{
+			name: 'ART',
+			type: 'bar',
+			stack: 'Stack',
+			data: art
+		}, {
+			name: 'AHT',
+			type: 'bar',
+			stack: 'Stack',
+			data: aht
+		}, {
+			name: 'AST',
+			type: 'bar',
+			stack: 'Stack',
+			data: ast
+		}];
+		/*----echart summary ticket category----*/
+		var optionTicket = {
+			grid: {
+				top: '6',
+				right: '10',
+				bottom: '17',
+				left: '70',
 			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		yAxis: {
-			type: 'category',
-			// data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
-			data: channelName,
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		tooltip: {
-			show: true,
-			showContent: true,
-			alwaysShowContent: false,
-			triggerOn: 'mousemove',
-			trigger: 'axis',
-			axisPointer: {
-				label: {
-					show: true,
+			xAxis: {
+				type: 'value',
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
 					color: '#7886a0'
 				}
 			},
-			// position: function (pos, params, dom, rect, size) {
-			// 	// tooltip will be fixed on the right if mouse hovering on the left,
-			// 	// and on the left if hovering on the right.
-			// 	// console.log(pos);
-			// 	var obj = {top: pos[0]};
-			// 	obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-			// 	return obj;
-			// },
-		},
-		series: chartdataTicket,
-		color: ["#A5B0B6","#009E8C","#00436D"]
-	};
-	var chartTicket = document.getElementById('echartService');
-	var barChartTicket = echarts.init(chartTicket);
-    barChartTicket.setOption(optionTicket);
+			yAxis: {
+				type: 'category',
+				// data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
+				data: channelName,
+				splitLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						color: '#efefff'
+					}
+				},
+				axisLabel: {
+					fontSize: 10,
+					color: '#7886a0'
+				}
+			},
+			tooltip: {
+				show: true,
+				showContent: true,
+				alwaysShowContent: false,
+				triggerOn: 'mousemove',
+				trigger: 'axis',
+				axisPointer: {
+					label: {
+						show: true,
+						color: '#7886a0'
+					}
+				},
+				// position: function (pos, params, dom, rect, size) {
+				// 	// tooltip will be fixed on the right if mouse hovering on the left,
+				// 	// and on the left if hovering on the right.
+				// 	// console.log(pos);
+				// 	var obj = {top: pos[0]};
+				// 	obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+				// 	return obj;
+				// },
+			},
+			series: chartdataTicket,
+			color: ["#A5B0B6","#009E8C","#00436D"]
+		};
+		var chartTicket = document.getElementById('echartService');
+		var barChartTicket = echarts.init(chartTicket);
+	    barChartTicket.setOption(optionTicket);
+	}else{
+		$('#echartService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+	}
 }
 function fromTemplate() {
     "use strict";
@@ -356,7 +432,10 @@ function fromTemplate() {
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time , '2020-01-10', 0);
+        loadContent(params_time ,'2020-01-01', 0);
+
+        //current time
+		// loadContent(v_params, v_params_this_year, 0);     
         // $('#tag-time').html(v_date);
         $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -380,7 +459,10 @@ function fromTemplate() {
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '1', v_year)
+        // loadContent(params_time , '1', v_year);
+
+        //current time
+        loadContent(params_time , n, m)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
@@ -392,7 +474,10 @@ function fromTemplate() {
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2020');
+        // loadContent(params_time , '2020');
+
+        //current time
+		loadContent(params_time , m);        
         // $('#tag-time').html(v_year);
         $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");

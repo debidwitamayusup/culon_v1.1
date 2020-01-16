@@ -116,7 +116,8 @@ function dataCardAHT(response)
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
                                  // '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'../../../images/brand/user.jpg"></span>'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>'+
+                                 '<span class="avatar avatar-md brround cover-image">'+
+                                 '<img  src="'+value[8]+'"></span>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+

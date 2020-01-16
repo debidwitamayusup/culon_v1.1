@@ -28,7 +28,8 @@ function callYear()
             var dateTahun = $("#dateTahun");
             var response = JSON.parse(r);
 
-            var html = '<option value="2020">2020</option>';
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
             var i;
                 for(i=0; i<response.data.niceDate.length; i++){
                     html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';

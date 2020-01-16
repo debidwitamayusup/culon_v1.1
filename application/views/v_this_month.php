@@ -71,8 +71,8 @@
 													<div class="input-group-prepend">
 														<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
 														<select class="form-control select2" id="dropdownYear">
-															<option value="1">2019</option>
-															<option value="2">2020</option>
+															<!-- <option value="1">2019</option>
+															<option value="2">2020</option> -->
 														</select> 
 													</div>
 												</div>
