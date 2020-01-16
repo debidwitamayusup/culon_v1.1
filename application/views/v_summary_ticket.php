@@ -80,8 +80,11 @@
                                                  <i class="fe fe-chrome tx-16 lh-0 op-6"></i>
                                              </div>
                                          </div>
-                                         <select name="select-status" id="select-status" class="w-50 form-control">
-                                             <option value="#">All Unit</option>
+                                         <select name="select-status" id="select-unit" class="w-50 form-control">
+                                            <option value="">All Unit</option>
+                                            <option value="1">CC Agent</option>
+                                            <option value="2">sads</option>
+                                             <!-- <option value="#">All Unit</option>
                                              <option value="1">New</option>
                                              <option value="2">Open</option>
                                              <option value="3">Reject</option>
@@ -89,7 +92,7 @@
                                              <option value="5">Pending</option>
                                              <option value="6">Reopen</option>
                                              <option value="7">Resolve</option>
-                                             <option value="8">Close</option>
+                                             <option value="8">Close</option> -->
                                          </select>
                                      </div>
                                  </div>
