@@ -1,9 +1,7 @@
 <!-- Title -->
-<title>Sign in</title>
-</head>
-<body style="background-color : #f6f2f2">
-    <input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
+<body style="background-image : url('<?php echo base_url('assets/images/brand/LD_11.JPG');?>');" class="background-sign">
     <!-- Global Loader-->
+
     <div id="global-loader"><img src="<?php echo base_url();?>assets/images/svgs/loader.svg" alt="loader"></div>
 
     <div class="page">
@@ -11,15 +9,15 @@
             <div class="row">
                 <div class="col  mx-auto">
                     <div class="row justify-content-center">
-                        <div class="col-md-4">
+                        <div class="col-md-6 col-lg-4 col-xl-4" style="margin-left:584px">
                             <div class="card-group mb-0">
                                 <div class="card-cust">
-                                    <div class="text-center mb-5 mt-8">
+                                    <div class="text-center mb-6 mt-8">
                                         <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png"
                                             class=""style="max-width: 69% !important;" alt="">
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="mb-3">Sign in to continue</h6>
+                                        <h3 class="text-sign text-center font-weight-extrabold mb-3">Sign In</h3>
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="username"
                                                 placeholder="username" name="username">
@@ -35,7 +33,7 @@
                                                 <option value="oct_posindo">oct_posindo</option>
                                             </select>
                                         </div> -->
-                                        <div class="text-center mb-8">
+                                        <div class="text-center mb-8 mt-5">
                                             <button type="submit" class="btn btn-sign text-white" style="border-radius:20px !important;" id="btn-login">Sign
                                                 in</button>
                                         </div>
