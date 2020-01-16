@@ -84,8 +84,8 @@
                              <!-- yearly -->
                              <div id="filter-year" class="mt-1 mr-0">
                                  <select name="select-year-only" id="select-year-only" class="form-control">
-                                     <option value="2020">2020</option>
-                                     <option value="2019" selected>2019</option>
+                                     <option value="2020" selected>2020</option>
+                                     <option value="2019">2019</option>
                                      <!-- <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016">2016</option>

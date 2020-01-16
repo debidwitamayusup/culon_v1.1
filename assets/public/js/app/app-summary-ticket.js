@@ -234,7 +234,7 @@ function drawPie(response){
     //destroy div piechart
     $('#pieChart').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>');
-
+    console.log(response.data);
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
@@ -1225,6 +1225,8 @@ function setDatePicker(){
         v_date = '2020-01-01'
         // console.log(params_time);
         simmiriStatusTicket(params_time, v_date);
+        ticketStatusUnit(params_time, v_date);
+        summaryTicketClose(params_time, v_date);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -1257,6 +1259,8 @@ function setDatePicker(){
         // loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         simmiriStatusTicket(params_time,$("#select-month").val(), $("#select-year-on-month").val());
+        ticketStatusUnit(params_time,$("#select-month").val(), $("#select-year-on-month").val());
+        summaryTicketClose(params_time,$("#select-month").val(), $("#select-year-on-month").val());
         // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -1274,6 +1278,8 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         simmiriStatusTicket(params_time, $("#select-year-only").val(), 0);
+        ticketStatusUnit(params_time, $("#select-year-only").val(), 0);
+        summaryTicketClose(params_time, $("#select-year-only").val(), 0);
         // $('#tag-time').html(v_year);
         // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -1308,7 +1314,11 @@ function setDatePicker(){
 			// console.log(this.value);
 			v_date = this.value;
 			simmiriStatusTicket(params_time, v_date,0);
-            simmiriUnit(params_time, v_date,0);
+            ticketStatusUnit(params_time, v_date,0);
+            summaryTicketClose(params_time, v_date,0);
+            console.log(params_time);
+            console.log(v_date);
+            // simmiriUnit(params_time, v_date,0);
         }
 	});
 
@@ -1318,13 +1328,17 @@ function setDatePicker(){
 		// console.log(value);
 		// callSummaryInteraction(params_time, v_month,v_year);
 		simmiriStatusTicket('month', v_month, $("#select-year-on-month").val());
-        simmiriUnit('month', v_month, $("#select-year-on-month").val());
+        ticketStatusUnit('month', v_month, $("#select-year-on-month").val());
+        summaryTicketClose('month', v_month, $("#select-year-on-month").val());
+        // simmiriUnit('month', v_month, $("#select-year-on-month").val());
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
 		simmiriStatusTicket('month', $("#select-month").val(), v_year);
-        simmiriUnit('month', $("#select-month").val(), v_year);
+        ticketStatusUnit('month', $("#select-month").val(), v_year);
+        summaryTicketClose('month', $("#select-month").val(), v_year);
+        // simmiriUnit('month', $("#select-month").val(), v_year);
 	});
 	/**/ 
 
@@ -1333,7 +1347,9 @@ function setDatePicker(){
 		v_year = $(this).val();
 		// console.log(this.value);
 		simmiriStatusTicket('year', v_year, 0);
-        simmiriUnit('year', v_year, 0);
+        ticketStatusUnit('year', v_year, 0);
+        summaryTicketClose('year', v_year, 0);
+        // simmiriUnit('year', v_year, 0);
 	});
 
     
