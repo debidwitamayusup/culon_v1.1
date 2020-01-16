@@ -284,7 +284,7 @@ class SummaryTicketModel extends CI_Model
 			$this->db->from('trans_ticket_today');
 			$this->db->where('ticket_status',8);
 			$this->db->where('DATE(date_close)',$period);
-			if($unit)
+			if($unit && $unit != 0)
 			{
 				$this->db->where('unit_id',$unit);
 			}
@@ -307,6 +307,7 @@ class SummaryTicketModel extends CI_Model
 		}
 
 		$data = array(
+			'ID'=>$unit,
 			'unit'=>$this->getunit($unit),
 			'total_ticket'=>$content,
 			'label_time'=> $tanggal,
@@ -337,7 +338,7 @@ class SummaryTicketModel extends CI_Model
 			$this->db->where('ticket_status',8);
 			$this->db->where('MONTH(date_close)',$i);
 			$this->db->where('YEAR(date_close)',$index);
-			if($unit)
+			if($unit && $unit != 0)
 			{
 				$this->db->where('unit_id',$unit);
 			}
@@ -359,6 +360,7 @@ class SummaryTicketModel extends CI_Model
 		}
 
 		$data = array(
+			'ID'=>$unit,
 			'unit'=>$this->getunit($unit),
 			'total_ticket'=>$content,
 			'label_time'=> $month,
@@ -387,7 +389,7 @@ class SummaryTicketModel extends CI_Model
 			$this->db->where('HOUR(date_close)',$i);
 			$this->db->where('DATE(date_close)',$index);
 
-			if($unit)
+			if($unit && $unit != 0)
 			{
 				$this->db->where('unit_id',$unit);
 			}
@@ -409,6 +411,7 @@ class SummaryTicketModel extends CI_Model
 		}
 
 		$data = array(
+			'ID'=>$unit,
 			'unit'=>$this->getunit($unit),
 			'total_ticket'=>$content,
 			'label_time'=> $hour,

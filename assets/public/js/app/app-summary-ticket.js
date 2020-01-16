@@ -1,5 +1,5 @@
 var base_url = $('#base_url').val();
-var v_params = 'day';
+var v_params = '';
 var v_index = '2020-01-10';
 var v_month = '1';
 var v_year = '2020';
@@ -12,58 +12,38 @@ $(document).ready(function () {
     summaryTicketClose(z_params, z_index, 0, 0);
     // fromTemplate();
     // ini_finctiiin();
-    $("#btn-month").prop("class","btn btn-light btn-sm");
-    $("#btn-year").prop("class","btn btn-light btn-sm");
+
+    params_time = 'day';
+	v_date = getToday();
+	v_month = getMonth();
+	v_year = getYear();
+    v_date = '2020-01-10';
+    
     $("#btn-day").prop("class","btn btn-red btn-sm");
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
+
+    loadContent(params_time, v_date, 0);
+	// ------datepiker
+	$('#input-date-filter').datepicker("setDate", v_date);
+	
+	$('#filter-date').show();
+	$('#filter-month').hide();
+	$('#filter-year').hide();
+	setMonthPicker();
+    setYearPicker();
+
 });
 
 
     //pie chart summary status ticket
 function loadContent(params, index, params_year){
     simmiriStatusTicket(params, index, params_year);
-    simmiriUnit(params, index, params_year);
+    // simmiriUnit(params, index, params_year);
     ticketStatusUnit();
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
-
-    //datatable config
-    // $('#table_summary_ticket thead tr:eq(0) th:eq(2)').html("Status");
-     // Wrap the colspan'ing header cells with a span so they can be positioned
-    // absolutely - filling the available space, and no more.
-    // $('#table_summary_ticket thead th[colspan]').wrapInner( '<span/>' ).append( '&nbsp;' );
-    // $('#table_summary_ticket').DataTable( {
-    //     responsive: true,
-    //     paging: false
-    // } );
-
-    // tabel = $('#table_summary_ticket').DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ordering: true, // Set true agar bisa di sorting
-    //         order: [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
-    //         ajax:
-    //         {
-    //             url: base_url+'api/SummaryTicket/SummaryTicketUnit/filterTable', // URL file untuk proses select datanya
-    //             type: "POST"
-    //         },
-    //         deferRender: true,
-    //         aLengthMenu: [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
-    //         columns: [
-    //             { data: "unit" }, // Tampilkan nis
-    //             { data: "sNew" }, // Tampilkan nis
-    //             { data: "sOpen" },  // Tampilkan nama
-    //             { data: "sOnProgress" }, // Tampilkan telepon
-    //             { data: "sResolved" }, // Tampilkan alamat
-    //             { data: "sReopen"},
-    //             { data: "sPending"},
-    //             { data: "sReturn"},
-    //             { data: "sReject"}
-    //         ],
-    //     });
-
 }
 
 function getColor(channel){
@@ -92,11 +72,6 @@ function addCommas(commas)
     }
     return x1 + x2;
 }
-// function loadContent(params, index_time){
-//     $("#filter-loader").fadeIn("slow");
-//     callSummaryScrCof();
-//     $("#filter-loader").fadeOut("slow");
-// }
 
 function simmiriStatusTicket(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
@@ -121,7 +96,9 @@ function simmiriStatusTicket(params, index, params_year){
     });
 }
 
+<<<<<<< HEAD
 function simmiriUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryUnit',
@@ -134,15 +111,18 @@ function simmiriUnit(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawPieUnit(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function callUnitFilter()
 {
+    $("#filter-loader").fadeIn("slow");
     var data = "";
     var base_url = $('#base_url').val();
     // console.log(year);
@@ -150,37 +130,31 @@ function callUnitFilter()
     $.ajax({
         type: 'POST',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getAllunitfilter',
-        // data: {
-        //     "niceDate" : niceDate
-        // },
-
         success: function (r) {
             var data_option = [];
             var dateTahun = $("#select-unit");
             var response = JSON.parse(r);
 
-            var html = '<option value="">All Unit</option>';
+            var html = '<option value="0">All Unit</option>';
             // var html = '';
-            console.log(response.data);
+            // console.log(response.data);
             var i;
-                for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i].ID+'>'+response.data[i].NAME+'</option>';
-                }
-                $('#select-unit').html(html);
-            
-            // var option = $ ("<option />");
-            //     option.html(i);
-            //     option.val(i);
-            //     dateTahun.append(option);
+            for(i=0; i<response.data.length; i++){
+                html += '<option value='+response.data[i].ID+'>'+response.data[i].NAME+'</option>';
+            }
+            $('#select-unit').html(html);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             //console.log(r);
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function summaryStatusTicketPerUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryStatusperUnit',
@@ -194,14 +168,17 @@ function summaryStatusTicketPerUnit(params, index, params_year){
             // console.log(response.data[0].new);
             drawTable(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function ticketStatusUnit(params, index, params_year){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getStatusperUnit',
@@ -215,9 +192,11 @@ function ticketStatusUnit(params, index, params_year){
             // console.log(response.data[0].new);
             drawChartStatusPerUnit(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -228,6 +207,7 @@ function summaryTicketClose(params, index, params_year, params_unit){
     // console.log(index);
     // console.log(params_unit);
     callUnitFilter();
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/SCloseTicket',
@@ -242,9 +222,11 @@ function summaryTicketClose(params, index, params_year, params_unit){
             // var response = (response);
             drawChartSUmmaryCloseTicket(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -361,92 +343,93 @@ function drawPie(response){
 }
 
 
-function drawPieUnit(response){
+// function drawPieUnit(response){
     //destroy div piechart
-    $('#pieChartUnit').remove(); // this is my <canvas> element
-    $('#canvas-pie-unit').append('<canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>');
+    // $('#pieChartUnit').remove();
+     // this is my <canvas> element
+    // $('#canvas-pie-unit').append('<canvas id="pieChartUnit" class="donutShadow overflow-hidden"></canvas>');
 
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
 
-    let arrUnit = [];
-    let arrTotal = [];
+    // let arrUnit = [];
+    // let arrTotal = [];
 
     // draw card yang ada datanya
-    response.data.forEach(function (value, index) {
-        arrUnit.push(value.unit);
-        arrTotal.push(value.total);
-    });
+    // response.data.forEach(function (value, index) {
+    //     arrUnit.push(value.unit);
+    //     arrTotal.push(value.total);
+    // });
 
     // draw chart
-    var ctx = document.getElementById( "pieChartUnit" );
-    ctx.height = 300;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                labels: [arrUnit, arrTotal],
-                data: arrTotal,
-                 backgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
+    // var ctx = document.getElementById( "pieChartUnit" );
+    // ctx.height = 300;
+    // var myChart = new Chart( ctx, {
+    //     type: 'pie',
+    //     data: {
+    //         datasets: [ {
+    //             labels: [arrUnit, arrTotal],
+    //             data: arrTotal,
+    //              backgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
                                     
-                                ],
-                hoverBackgroundColor: [
-                                    "#FEC88C",
-                                    "#FFA07A",
-                                    "#87CEFA",
-                                    "#ADD8E6",
-                                ]
-            } ],
-            labels: arrUnit
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend:{
+    //                             ],
+    //             hoverBackgroundColor: [
+    //                                 "#FEC88C",
+    //                                 "#FFA07A",
+    //                                 "#87CEFA",
+    //                                 "#ADD8E6",
+    //                             ]
+    //         } ],
+    //         labels: arrUnit
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         legend:{
                 // position:"bottom",
                 // labels:{
                 //   boxWidth:10
-                display : false
-            },pieceLabel : {
-                render : 'legend',
-                fontColor : '#000',
-                position : 'outside',
-                segment : true,
-                precision: 0,
-                showActualPercentages: true,                
-            },
-            legendCallback : function (chart,index){
-                var allData = chart.data.datasets[0].data;
-                // console.log(chart)
-                var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-8">');
-                allData.forEach(function(data,index){
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for (var i in allData){
-                        total += parseInt(allData[i]);
-                    }
+            //     display : false
+            // },pieceLabel : {
+            //     render : 'legend',
+            //     fontColor : '#000',
+            //     position : 'outside',
+            //     segment : true,
+            //     precision: 0,
+            //     showActualPercentages: true,                
+            // },
+            // legendCallback : function (chart,index){
+            //     var allData = chart.data.datasets[0].data;
+            //     // console.log(chart)
+            //     var legendHtml = [];
+            //     legendHtml.push('<ul><div class="row ml-8">');
+            //     allData.forEach(function(data,index){
+            //         var label = chart.data.labels[index];
+            //         var dataLabel = allData[index];
+            //         var background = chart.data.datasets[0].backgroundColor[index]
+            //         var total = 0;
+            //         for (var i in allData){
+            //             total += parseInt(allData[i]);
+            //         }
 
                     // console.log(total)
-                    var percentage = Math.round((dataLabel / total)*100);
-                    legendHtml.push('<li class="col-md-6 col-lg-6 col-xl-6 col-12">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
-                })
-                legendHtml.push('</ul></div>');
-                return legendHtml.join("");
-            },
-        }
-    } );
-    var myLegendContainer = document.getElementById("legendUnit");
-    myLegendContainer.innerHTML = myChart.generateLegend();
-}
+//                     var percentage = Math.round((dataLabel / total)*100);
+//                     legendHtml.push('<li class="col-md-6 col-lg-6 col-xl-6 col-12">');
+//                     legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+//                 })
+//                 legendHtml.push('</ul></div>');
+//                 return legendHtml.join("");
+//             },
+//         }
+//     } );
+//     var myLegendContainer = document.getElementById("legendUnit");
+//     myLegendContainer.innerHTML = myChart.generateLegend();
+// }
 
 function drawDataTable(response){
     console.log(response.data);
@@ -813,53 +796,12 @@ function drawChartStatusPerUnit(response){
 }
 
 function drawChartSUmmaryCloseTicket(response){
-console.log(response);
+    // console.log(response);
+    $('#select-unit option[value='+response.data.ID+']').attr('selected','selected');
 
-    // var optionTicketUnit = {
-    //     grid: {
-    //         top: '6',
-    //         right: '10',
-    //         bottom: '17',
-    //         left: '95',
-    //     },
-    //     xAxis: {
-    //         type: 'value',
-    //         axisLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLabel: {
-    //             fontSize: 10,
-    //             color: '#7886a0'
-    //         }
-    //     },
-    //     yAxis: {
-    //         type: 'category',
-    //         data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
-    //         splitLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLine: {
-    //             lineStyle: {
-    //                 color: '#efefff'
-    //             }
-    //         },
-    //         axisLabel: {
-    //             fontSize: 10,
-    //             color: '#7886a0'
-    //         }
-    //     },
-    //     series: chartTicketUnit,
-    //     color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
-    // };
-    // var chartTicketUnit = document.getElementById('echartTicketUnit');
-    // var barChartTicketUnit = echarts.init(chartTicketUnit);
-    // barChartTicketUnit.setOption(optionTicketUnit);
+    $('#echartTicketClose').remove(); // this is my <canvas> element
+    $('#echartTicketCloseDiv').append('<div id="echartTicketClose" class="chartsh overflow-hidden"></div>');
     
-    // ------CHART BARU
     var chartdata = [{
         name: 'Ticket',
         type: 'bar',
@@ -1239,56 +1181,105 @@ function fromTemplate(){
     barChart.setOption(option);
 }
 
+function getToday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + dd;
+    return today;
+}
+
+function getMonth(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var month = mm;
+    return month;
+}
+
+function getYear(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var year = yyyy;
+    return year;
+}
+
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 //jquery
 (function ($) {
 
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
+        v_date = '2020-01-10'
         // console.log(params_time);
-        loadContent(params_time , '2020-01-10');
+        simmiriStatusTicket(params_time, '2020-01-10');
         // $('#tag-time').html(v_date);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', params_time);
+
+        $('#filter-date').show();
+		$('#filter-month').hide();
+		$('#filter-year').hide();
     });
 
     // btn day
-    $('#btn-week').click(function(){
-        params_time = 'week';
-        // console.log(params_time);
-        loadContent(params_time , '2020-01-10', v_year);
-        // $('#tag-time').html(v_date);
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-    });
+    // $('#btn-week').click(function(){
+    //     params_time = 'week';
+    //     // console.log(params_time);
+    //     loadContent(params_time , '2020-01-10', v_year);
+    //     // $('#tag-time').html(v_date);
+    //     $("#btn-day").prop("class","btn btn-light btn-sm");
+    //     $("#btn-month").prop("class","btn btn-light btn-sm");
+    //     $("#btn-year").prop("class","btn btn-light btn-sm");
+    //     $(this).prop("class","btn btn-red btn-sm");
+    // });
 
     // btn month
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '1', v_year)
+        // loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        simmiriStatusTicket(params_time,$("#select-month").val(), $("#select-year-on-month").val());
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', params_time);
+        $('#filter-date').hide();
+		$('#filter-month').show();
+		// $('.ui-datepicker-calendar').css('display','none');
+		$('#filter-year').hide();
     });
 
     // btn year
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2020');
+        simmiriStatusTicket(params_time, $("#select-year-only").val(), 0);
         // $('#tag-time').html(v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -1306,8 +1297,40 @@ function fromTemplate(){
         let fromParams = sessionStorage.getItem('paramsSession');
         console.log(fromParams);
         summaryTicketClose(fromParams, z_index, z_year, selectedUnit);
+        $('#filter-date').hide();
+		$('#filter-month').hide();
+		$('#filter-year').show();
     });
 
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			simmiriStatusTicket(params_time, v_date,0);
+        }
+	});
+
+	/*select option month*/ 
+	$('#select-month').change(function(){
+		v_month = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		simmiriStatusTicket('month', v_month, $("#select-year-on-month").val());
+	});
+	$('#select-year-on-month').change(function(){
+		v_year = $(this).val();
+		// console.log(value);
+		simmiriStatusTicket('month', $("#select-month").val(), v_year);
+	});
+	/**/ 
+
+	// select option year
+	$('#select-year-only').change(function(){
+		v_year = $(this).val();
+		// console.log(this.value);
+		simmiriStatusTicket('year', v_year, 0);
+	});
 
     
 })(jQuery);
