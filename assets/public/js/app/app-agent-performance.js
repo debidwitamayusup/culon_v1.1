@@ -102,7 +102,7 @@ function bestOfFiveART(params){
 
 function dataCardCOF(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawCOF').append('<div class="col-2 text-center">'+
@@ -121,13 +121,13 @@ function dataCardCOF(response)
                                  '<h6 class="text-muted font10">Handling</h6>'+
                              '</div>');
 		i++;
-		console.log(value[2]);
+		// console.log(value[2]);
 	});
 }
 
 function dataCardAHT(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
@@ -150,7 +150,7 @@ function dataCardAHT(response)
 
 function dataCardART(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 text-center">'+

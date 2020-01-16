@@ -3,8 +3,12 @@ var v_params = 'day';
 var v_index = '2020-01-10';
 var v_month = '1';
 var v_year = '2020';
+var z_params = 'day';
+var z_index = '2020-01-10';
+var z_year = 
 $(document).ready(function () {
-    loadContent(v_params, v_index, 0);
+    // loadContent(v_params, '2020-01-10', 0);
+    loadContent(z_params, z_index, 0, 0);
     // fromTemplate();
     // ini_finctiiin();
     $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -12,15 +16,13 @@ $(document).ready(function () {
     $("#btn-day").prop("class","btn btn-red btn-sm");
 });
 
-    //sample datatable	
-	// $('#table_summary_ticket').DataTable();
 
     //pie chart summary status ticket
-function loadContent(index, params, params_year){
+function loadContent(params, index, params_year, params_unit){
     simmiriStatusTicket(params, index, params_year);
     simmiriUnit(params, index, params_year);
     ticketStatusUnit();
-    drawChartSUmmaryCloseTicket();
+    summaryTicketClose(params, index, params_year, params_unit);
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
@@ -171,6 +173,32 @@ function ticketStatusUnit(params, index, params_year){
             var response = JSON.parse(r);
             // console.log(response.data[0].new);
             drawChartStatusPerUnit(response);
+            // drawDataTable(response);
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
+
+function summaryTicketClose(params, index, params_year, params_unit){
+    console.log(params);
+    console.log(params_year);
+    console.log(index);
+    console.log(params_unit);
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTicket/SummaryTicketUnit/SCloseTicket',
+        data: {
+            params: params,
+            index: index,
+            year: params_year,
+            unit: params_unit
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // var response = (response);
+            drawChartSUmmaryCloseTicket(response);
             // drawDataTable(response);
         },
         error: function (r) {
@@ -742,56 +770,59 @@ function drawChartStatusPerUnit(response){
     barChartTicketUnit.setOption(optionTicketUnit);
 }
 
-function drawChartSUmmaryCloseTicket(){
-    var optionTicketUnit = {
-        grid: {
-            top: '6',
-            right: '10',
-            bottom: '17',
-            left: '95',
-        },
-        xAxis: {
-            type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        yAxis: {
-            type: 'category',
-            data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        series: chartTicketUnit,
-        color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
-    };
-    var chartTicketUnit = document.getElementById('echartTicketUnit');
-    var barChartTicketUnit = echarts.init(chartTicketUnit);
-    barChartTicketUnit.setOption(optionTicketUnit);
+function drawChartSUmmaryCloseTicket(response){
+console.log(response);
+
+    // var optionTicketUnit = {
+    //     grid: {
+    //         top: '6',
+    //         right: '10',
+    //         bottom: '17',
+    //         left: '95',
+    //     },
+    //     xAxis: {
+    //         type: 'value',
+    //         axisLine: {
+    //             lineStyle: {
+    //                 color: '#efefff'
+    //             }
+    //         },
+    //         axisLabel: {
+    //             fontSize: 10,
+    //             color: '#7886a0'
+    //         }
+    //     },
+    //     yAxis: {
+    //         type: 'category',
+    //         data: ['Agency Help Line','Call Center','Claim Non Health','Claim Health','Credit Control','Provider Relation','Post Link','Keuangan','Data Control','CRM'],
+    //         splitLine: {
+    //             lineStyle: {
+    //                 color: '#efefff'
+    //             }
+    //         },
+    //         axisLine: {
+    //             lineStyle: {
+    //                 color: '#efefff'
+    //             }
+    //         },
+    //         axisLabel: {
+    //             fontSize: 10,
+    //             color: '#7886a0'
+    //         }
+    //     },
+    //     series: chartTicketUnit,
+    //     color :["#FEC88C","#FFA07A","#87CEFA", "#ADD8E6", "#B0C4DE","#778899", "#8FBC8F","#BDB76B"]
+    // };
+    // var chartTicketUnit = document.getElementById('echartTicketUnit');
+    // var barChartTicketUnit = echarts.init(chartTicketUnit);
+    // barChartTicketUnit.setOption(optionTicketUnit);
     
     // ------CHART BARU
     var chartdata = [{
         name: 'Ticket',
         type: 'bar',
-        data: [10, 15, 9, 18, 10, 15,90,50,40,30,50,40,30,40,60,50,30,80,90,30,40,50,60,40,70,40,70,40,30,30,40]
+        // data: [10, 15, 9, 18, 10, 15,90,50,40,30,50,40,30,40,60,50,30,80,90,30,40,50,60,40,70,40,70,40,30,30,40]
+        data: response.data.total_ticket
     }];
     var chart = document.getElementById('echartTicketClose');
     var barChart = echarts.init(chart);
@@ -803,7 +834,8 @@ function drawChartSUmmaryCloseTicket(){
             left: '25',
         },
         xAxis: {
-            data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
+            // data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
+            data: response.data.label_time,
             axisLine: {
                 lineStyle: {
                     color: '#efefff'
@@ -1214,6 +1246,16 @@ function fromTemplate(){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+    });
+
+     $("select#select-unit").change(function(){
+            // //destroy chart
+            // destroyChartInterval();
+            // destroyChartPercentage();
+        var z_params = 'day';
+        var selectedUnit = $(this).children("option:selected").val();
+        // console.log(selectedUnit);
+        loadContent(z_params, z_index, z_year, selectedUnit);
     });
 
 
