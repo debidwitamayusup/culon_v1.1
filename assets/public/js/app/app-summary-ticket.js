@@ -7,10 +7,23 @@ var z_params = 'day';
 var z_index = '2020-01-10';
 var z_year = '2020';
 
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     // loadContent(v_params, '2020-01-10', 0);
-    loadContent(z_params, z_index, 0, 0);
-    summaryTicketClose(z_params, z_index, 0, 0);
+    $('#select-month option[value='+n+']').attr('selected','selected');
+    $('#dateTahun option[value='+m+']').attr('selected','selected');
+    loadContent(z_params, v_params_this_year, 0, 0);
+    summaryTicketClose(z_params, v_params_this_year, 0, 0);
     // fromTemplate();
     // ini_finctiiin();
 
@@ -24,9 +37,9 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, v_date, 0);
+    loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
-	$('#input-date-filter').datepicker("setDate", v_date);
+	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	
 	$('#filter-date').show();
 	$('#filter-month').hide();
@@ -41,7 +54,7 @@ $(document).ready(function () {
 function loadContent(params, index, params_year){
     simmiriStatusTicket(params, index, params_year);
     // simmiriUnit(params, index, params_year);
-    ticketStatusUnit();
+    ticketStatusUnit(params, index, params_year);
     // summaryStatusTicketPerUnit(params, index, params_year);
     // drawDataTable2(params, index, params_year);
     // ticketStatusUnit(params, index, params_year);
@@ -76,6 +89,9 @@ function addCommas(commas)
 
 function simmiriStatusTicket(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
+    console.log(params);
+    console.log(index);
+    console.log(params_year);
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getSummaryTicket',
@@ -179,6 +195,9 @@ function summaryStatusTicketPerUnit(params, index, params_year){
 
 function ticketStatusUnit(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
+    // console.log(params);
+    // console.log(index);
+    // console.log(params_year);
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getStatusperUnit',
@@ -235,7 +254,7 @@ function drawPie(response){
     //destroy div piechart
     $('#pieChart').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieChart" class="donutShadow overflow-hidden"></canvas>');
-    console.log(response.data);
+    // console.log(response.data);
     // //destroy div card content
     // $('#row-baru').remove(); // this is my <div> element
     // $('#card-baru').append('<div id="row-baru" class="row"></div>');
@@ -608,6 +627,9 @@ function drawTable(response){
 }
 
 function drawChartStatusPerUnit(response){
+
+    $('#echartTicketUnit').remove(); // this is my <canvas> element
+    $('#card-body-unit').append('<div id="echartTicketUnit" class="chartsh-unit overflow-hidden"></div>');
 
     let unit = [];
     let newData = [];
@@ -1223,11 +1245,11 @@ function setDatePicker(){
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-        v_date = '2020-01-01'
+        // v_date = '2020-01-10'
         // console.log(params_time);
-        simmiriStatusTicket(params_time, v_date);
-        ticketStatusUnit(params_time, v_date);
-        summaryTicketClose(params_time, v_date);
+        simmiriStatusTicket(params_time, v_params_this_year, 0);
+        ticketStatusUnit(params_time, v_params_this_year, 0);
+        summaryTicketClose(params_time, v_params_this_year, 0, 0);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -1259,15 +1281,18 @@ function setDatePicker(){
         // console.log(params_time);
         // loadContent(params_time , '1', v_year)
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', params_time);
+        let fromParams = sessionStorage.getItem('paramsSession');
+        // console.log(fromParams);
         simmiriStatusTicket(params_time,$("#select-month").val(), $("#select-year-on-month").val());
         ticketStatusUnit(params_time,$("#select-month").val(), $("#select-year-on-month").val());
-        summaryTicketClose(params_time,$("#select-month").val(), $("#select-year-on-month").val());
+        summaryTicketClose(params_time,$("#select-month").val(), $("#select-year-on-month").val(), 0);
         // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
-        sessionStorage.removeItem('paramsSession');
-        sessionStorage.setItem('paramsSession', params_time);
+        
         $('#filter-date').hide();
 		$('#filter-month').show();
 		// $('.ui-datepicker-calendar').css('display','none');
@@ -1301,12 +1326,25 @@ function setDatePicker(){
         var z_params = 'day';
         var selectedUnit = $(this).children("option:selected").val();
         // console.log(selectedUnit);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-        console.log(fromParams);
-        summaryTicketClose(fromParams, z_index, z_year, selectedUnit);
-        $('#filter-date').show();
-		$('#filter-month').hide();
-		$('#filter-year').hide();
+        // console.log(fromParams);
+        summaryTicketClose(fromParams, $('#input-date-filter').val(), z_year, selectedUnit);
+        if (fromParams=='day') {
+            $('#filter-date').show();
+            $('#filter-month').hide();
+            $('#filter-year').hide();
+        }else if(fromParams=='month'){
+            $('#filter-date').hide();
+            $('#filter-month').show();
+            $('#filter-year').hide();
+        }else if(fromParams=='year'){
+            $('#filter-date').hide();
+            $('#filter-month').hide();
+            $('#filter-year').show();
+        }
+        
     });
 
     $('#input-date-filter').datepicker({
@@ -1314,11 +1352,14 @@ function setDatePicker(){
         onSelect: function(dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			simmiriStatusTicket(params_time, v_date,0);
-            ticketStatusUnit(params_time, v_date,0);
-            summaryTicketClose(params_time, v_date,0);
-            console.log(params_time);
-            console.log(v_date);
+            // sessionStorage.removeItem('paramsSession');
+            // sessionStorage.setItem('paramsSession', 'day');
+            let fromParams = sessionStorage.getItem('paramsSession');   
+			simmiriStatusTicket(fromParams, v_date,0);
+            ticketStatusUnit(fromParams, v_date,0);
+            summaryTicketClose(fromParams, v_date, 0, 0);
+            // console.log(params_time);
+            // console.log(v_date);
             // simmiriUnit(params_time, v_date,0);
         }
 	});
@@ -1328,17 +1369,23 @@ function setDatePicker(){
 		v_month = $(this).val();
 		// console.log(value);
 		// callSummaryInteraction(params_time, v_month,v_year);
-		simmiriStatusTicket('month', v_month, $("#select-year-on-month").val());
-        ticketStatusUnit('month', v_month, $("#select-year-on-month").val());
-        summaryTicketClose('month', v_month, $("#select-year-on-month").val());
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+		simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
+        ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
+        summaryTicketClose(fromParams, v_month, $("#select-year-on-month").val(), 0);
         // simmiriUnit('month', v_month, $("#select-year-on-month").val());
 	});
 	$('#select-year-on-month').change(function(){
 		v_year = $(this).val();
 		// console.log(value);
-		simmiriStatusTicket('month', $("#select-month").val(), v_year);
-        ticketStatusUnit('month', $("#select-month").val(), v_year);
-        summaryTicketClose('month', $("#select-month").val(), v_year);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+		simmiriStatusTicket(fromParams, $("#select-month").val(), v_year);
+        ticketStatusUnit(fromParams, $("#select-month").val(), v_year);
+        summaryTicketClose(fromParams, $("#select-month").val(), v_year);
         // simmiriUnit('month', $("#select-month").val(), v_year);
 	});
 	/**/ 
@@ -1347,6 +1394,9 @@ function setDatePicker(){
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
 		// console.log(this.value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        // let fromParams = sessionStorage.getItem('paramsSession');
 		simmiriStatusTicket('year', v_year, 0);
         ticketStatusUnit('year', v_year, 0);
         summaryTicketClose('year', v_year, 0);
