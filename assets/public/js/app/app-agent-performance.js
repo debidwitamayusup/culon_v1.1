@@ -9,6 +9,7 @@ $(document).ready(function () {
 });
 
 function performanceBySkill(){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformBYskill',
@@ -17,14 +18,17 @@ function performanceBySkill(){
             // console.log(response);
             drawTable(response);
             // drawDataTable(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function bestOfFiveCOF(params){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
@@ -47,14 +51,17 @@ function bestOfFiveCOF(params){
   			dataCardCOF(response);
   			// dataCardART(response);
   			// dataCardAHT(response);
+  			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function bestOfFiveAHT(params){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
@@ -64,14 +71,17 @@ function bestOfFiveAHT(params){
         success: function (r) { 
             var response = JSON.parse(r);
   			dataCardAHT(response);
+  			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function bestOfFiveART(params){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
@@ -81,9 +91,11 @@ function bestOfFiveART(params){
         success: function (r) { 
             var response = JSON.parse(r);
   			dataCardART(response);
+  			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -94,7 +106,11 @@ function dataCardCOF(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawCOF').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                                 // '<span class="avatar avatar-md brround cover-image"></span>'+
+                                 	// '<img src="'+value[8]+'" style="border-radius:100%; width: 200px; height: 40px;">'+
+                                 	'<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 		'<img src='+value[8]+' style="border-radius:75%;">'+
+                                 	'</div>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
@@ -115,7 +131,7 @@ function dataCardAHT(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/dashboard_on4/assets/images/brand/user.jpg"></span>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
@@ -136,7 +152,7 @@ function dataCardART(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+value[8]+'"></span>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
@@ -184,6 +200,14 @@ function drawDataTable(){
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
             type : 'POST'
         },
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-right", targets: 4 },
+			{ className: "text-center", targets: 5 },
+			{ className: "text-center", targets: 6 },
+			{ className: "text-center", targets: 7 }
+			// { className: "text-right font-weight-extrabold", targets: 5 }
+		], 
         destroy: true,
 	});
 }
