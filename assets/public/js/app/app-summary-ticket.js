@@ -96,10 +96,6 @@ function simmiriStatusTicket(params, index, params_year){
     });
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/raga-dev
 function simmiriUnit(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
