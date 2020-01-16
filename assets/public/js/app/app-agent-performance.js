@@ -90,7 +90,7 @@ function bestOfFiveART(params){
 
 function dataCardCOF(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawCOF').append('<div class="col-2 text-center">'+
@@ -105,17 +105,18 @@ function dataCardCOF(response)
                                  '<h6 class="text-muted font10">Handling</h6>'+
                              '</div>');
 		i++;
-		console.log(value[2]);
+		// console.log(value[2]);
 	});
 }
 
 function dataCardAHT(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
-                                 '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'/assets/images/brand/user.jpg"></span>'+
+                                 // '<span class="avatar avatar-md brround cover-image" data-image-src="'+window.location.origin+'../../../images/brand/user.jpg"></span>'+
+                                 '<span class="avatar avatar-md brround cover-image" data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>'+
                              '</div>'+
                              '<div class="col-7 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
@@ -132,7 +133,7 @@ function dataCardAHT(response)
 
 function dataCardART(response)
 {
-	console.log(response.data);
+	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 text-center">'+

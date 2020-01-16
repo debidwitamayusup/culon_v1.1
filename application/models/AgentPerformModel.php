@@ -77,7 +77,7 @@ class AgentPerformModel extends CI_Model
 					strval($data->ART),
 					strval($data->AHT),
 					strval($data->AST),
-					strval($data->SCR),
+					strval($data->SCR.'%'),
 					strval($data->COF)
 				);
 				$idx++;

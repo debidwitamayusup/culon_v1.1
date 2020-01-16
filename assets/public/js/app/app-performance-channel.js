@@ -13,13 +13,14 @@ $(document).ready(function () {
     $("#btn-day").prop("class","btn btn-red btn-sm");
 });
 
-function loadContent(index, params, params_year){
+function loadContent(params, index, params_year){
     drawDataTable2(params, index, params_year);
-    summaryService(index, params, params_year);
-    summaryChannel();
+    summaryService(params, index, params_year);
+    summaryChannel(params, index, params_year);
 }
 
 function summaryService(params, index, params_year){
+	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryService',
@@ -32,15 +33,18 @@ function summaryService(params, index, params_year){
             // var response = JSON.parse(r);
             // console.log(response);
             drawChartSumService(response);
+			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             console.log(r);
             alert("error");
+			$("#filter-loader").fadeOut("slow");
         },
     });
 }
 
 function summaryChannel(params, index, params_year){
+	$("#filter-loader").fadeIn("slow");
 	$.ajax({
         type: 'post',
         url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryServiceByChannel',
@@ -61,6 +65,7 @@ function summaryChannel(params, index, params_year){
     });
 }
 function drawDataTable2(params, index, params_year){
+	$("#filter-loader").fadeIn("slow");
 
     $('#mytbody').remove();
     // $('#mytfoot').remove();
@@ -351,7 +356,7 @@ function fromTemplate() {
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time , '2020-01-10');
+        loadContent(params_time , '2020-01-10', 0);
         // $('#tag-time').html(v_date);
         $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
