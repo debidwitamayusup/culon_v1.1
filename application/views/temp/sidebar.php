@@ -1,5 +1,5 @@
 <!-- Sidebar menu-->
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<div class="app sidebar-mini" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
 		<li class="slide">
@@ -23,9 +23,9 @@
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
-			<ul class="slide-menu">
+			<ul class="slide-menu" id="accordion">
 				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
-				<li class="slide submenu" id="accordion">
+				<li class="slide submenu">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
@@ -51,11 +51,11 @@
 					</div>
 					</div>
 				</li> -->
-				<li class="slide submenu" id="accordion">
-					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseKIP"> Operation Performance
+				<li class="slide submenu">
+					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
-					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+					<div id="collapsePerformance" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
@@ -66,7 +66,7 @@
 					</div>
 					</div>
 				</li>
-				<li class="slide submenu" id="accordion">
+				<li class="slide submenu">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseTicket"> Ticketing
 						<i class="angle not-absolute fas fa-angle-right" style="margin-left:104px"></i></a>

@@ -78,7 +78,7 @@ function callGraphYear(channel_name,year) {
                 top: '6',
                 right: '5',
                 bottom: '17',
-                left: '35',
+                left: '45',
             },
             xAxis: {
                 data: response.data.month_x_axis,
@@ -259,7 +259,7 @@ function drawTableYear(response){
             $('#table_avg_year').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+'%</td>'+
+            '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+

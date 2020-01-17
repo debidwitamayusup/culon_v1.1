@@ -105,7 +105,7 @@ function dataCardCOF(response)
 	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
-		$('#dataDrawCOF').append('<div class="col-2 text-center">'+
+		$('#dataDrawCOF').append('<div class="col-2 text-center" style="margin-bottom : 9px">'+
                                  // '<span class="avatar avatar-md brround cover-image"></span>'+
                                  	// '<img src="'+value[8]+'" style="border-radius:100%; width: 200px; height: 40px;">'+
                                  	'<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
@@ -130,16 +130,16 @@ function dataCardAHT(response)
 	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
-		$('#dataDrawAHT').append('<div class="col-2 text-center">'+
+		$('#dataDrawAHT').append('<div class="col-2 mb-2 text-center">'+
                                  '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
-                             '<div class="col-7 text-center">'+
+                             '<div class="col-6 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
                                  '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
                              '</div>'+
-                             '<div class="col-3 text-right">'+
+                             '<div class="col-4 text-right">'+
                                  '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[6]+'</h5>'+
                                  '<h6 class="text-muted font10">Handling</h6>'+
                              '</div>');
@@ -153,16 +153,16 @@ function dataCardART(response)
 	// console.log(response.data);
 	var i=1;
 	response.data.forEach(function(value,index){
-		$('#dataDrawART').append('<div class="col-2 text-center">'+
+		$('#dataDrawART').append('<div class="col-2 mb-2 text-center">'+
                                  '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
-                             '<div class="col-7 text-center">'+
+                             '<div class="col-6 text-center">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
                                  '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
                              '</div>'+
-                             '<div class="col-3 text-right">'+
+                             '<div class="col-4 text-right">'+
                                  '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[5]+'</h5>'+
                                  '<h6 class="text-muted font10">Handling</h6>'+
                              '</div>');

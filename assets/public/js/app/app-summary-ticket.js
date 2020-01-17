@@ -269,7 +269,7 @@ function drawPie(response){
     let arrOnProgress = response.data[0].onProgress;
     let arrPending = response.data[0].pending;
     let arrReopen = response.data[0].reOpen;
-    let arrClose = response.data[0].close;
+    let arrReturn = response.data[0].return;
     let arrResolved = response.data[0].resolved;
 
     // console.log(response.data[0].new);
@@ -287,8 +287,8 @@ function drawPie(response){
         type: 'pie',
         data: {
             datasets: [ {
-                labels: [ arrNew, arrOpen, arrReject, arrOnProgress, arrPending, arrReopen, arrClose, arrResolved],
-                data: [arrNew, arrOpen, arrReject, arrOnProgress, arrPending, arrReopen, arrClose, arrResolved],
+                labels: [ arrNew, arrOpen, arrReject, arrOnProgress, arrPending, arrReopen, arrReturn, arrResolved],
+                data: [arrNew, arrOpen, arrReject, arrOnProgress, arrPending, arrReopen, arrReturn, arrResolved],
                  backgroundColor: [
                                     "#FEC88C",
                                     "#FFA07A",
@@ -318,7 +318,8 @@ function drawPie(response){
                         "On Progress",
                         "Pending",
                         "Reopen",
-                        "Close",
+                        // "Close",
+                        "Return",
                         "Resolved"
                     ]
         },
@@ -340,7 +341,7 @@ function drawPie(response){
             },
             legendCallback : function (chart,index){
                 var allData = chart.data.datasets[0].data;
-                // console.log(chart)
+                console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row">');
                 allData.forEach(function(data,index){
@@ -352,10 +353,17 @@ function drawPie(response){
                         total += parseInt(allData[i]);
                     }
 
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
+
                     // console.log(total)
                     var percentage = Math.round((dataLabel / total)*100);
                     legendHtml.push('<li class="col-md-3 col-lg-3 col-sm-12 col-xl-3">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
+                    legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+ ' : ' + percentage + '%</span>');
+                    legendHtml.push('</li>');
                 })
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");
