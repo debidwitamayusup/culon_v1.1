@@ -772,12 +772,14 @@ class Stc_Model extends CI_Model
 			// $this->db->where('YEAR(date)', date("Y"));
 
 			//temporarily hardcode year based on data ready on database
-			$this->db->where('YEAR(date)', '2019');
+			$this->db->where('YEAR(date)', date('Y'));
 		}else if($params == 'year'){
 			$this->db->where('YEAR(date)', $index);
 		}
 
 		$query = $this->db->get();
+		// print_r($this->db->last_query());
+		// exit;
 
 		return $query->row();
 	}

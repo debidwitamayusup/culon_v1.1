@@ -183,7 +183,7 @@ function drawChartAndCard(response){
     let arrTotal = []
     let arrChannel = []
     let arrColor = []
-
+    
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
         drawCardInteractionNew(value);
