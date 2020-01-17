@@ -6140,6 +6140,11 @@ ul {
 	overflow:hidden;
 }
 
+.chartsh-vertical{
+	padding-left : 10px;
+	overflow : hidden;
+}
+
 /* custom chart   */
 .chartsh-fcr {
 	height: 23.6rem;

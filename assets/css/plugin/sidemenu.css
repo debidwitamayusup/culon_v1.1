@@ -11,6 +11,7 @@
 	}
 	.app.sidenav-toggled .app-sidebar {
 		left: -230px;
+		display : block;
 	}
 	.app.sidenav-toggled .app-sidebar__overlay {
 		visibility: hidden;
@@ -541,8 +542,8 @@
 		visibility: visible;
 	}
 	.sidebar-mini.sidenav-toggled .side-menu__label {
-		/* display: block; */
-		display : none;
+		display: block;
+		/* display : none; */
 		position: absolute;
 		top: 0;
 		left: 50px;

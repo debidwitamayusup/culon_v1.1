@@ -120,7 +120,7 @@ function drawChartSumService(response){
 	if (response.status != false) {
 		var MeSeContext = document.getElementById("barService");
 	    MeSeContext.height =180;
-		MeSeContext.width= 450;
+		MeSeContext.width= 430;
 	    var MeSeData = {
 	        labels : [
 	                    "ART",
@@ -171,7 +171,7 @@ function drawChartSumService(response){
 			            });
 			        }
 			    },
-	            responsive: false,
+	            responsive: true,
 	            maintainAspectRatio: false,
 	            scales : {
 	                xAxes : [{
@@ -252,7 +252,7 @@ function drawChartSumChannel(response){
 		var optionTicket = {
 			grid: {
 				top: '6',
-				right: '10',
+				right: '20',
 				bottom: '17',
 				left: '70',
 			},
@@ -287,6 +287,8 @@ function drawChartSumChannel(response){
 					color: '#7886a0'
 				}
 			},
+			// responsive: true,
+	        // maintainAspectRatio: false,
 			tooltip: {
 				show: true,
 				showContent: true,

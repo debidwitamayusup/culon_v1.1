@@ -19,8 +19,11 @@
 	// Toggle Sidebar
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
-		// $('.app').removeClass('sidenav-toggled');
 		$('.app').toggleClass('sidenav-toggled');
+		$('.app').removeClass('app-sidebar__overlay');
+		// $('.side-menu').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
+		// 	return false
+		//  });
 	});
 	
 	// delay($('.app-sidebar').(onmouseenter , function(event) {
@@ -28,20 +31,49 @@
 	// 	$('.app').toggleClass('sidenav-toggled');
 	// });
 
+	// if ( $(window).width() > 739) {     
+	// 	$('.app-sidebar').on("mouseenter", function(event) { //"mouseover"
+	// 		event.preventDefault();
+	// 		$('.app').toggleClass('sidenav-toggled');
+	// 	});
+	// } 
+
+	// if ( $(window).width() > 739) {     
+	// 	$('.app-sidebar').on("mouseleave", function(event) { //"mouseover"
+	// 		event.preventDefault();
+	// 		$('.app').toggleClass('sidenav-toggled');
+	// 	});
+	// } 
+
+	// $('.slide_item').on("click", function(event){
+	// 	event.preventDefault();
+	// 	$('.app-sidebar').toggleClass('sidebar__overlay');
+	// })
+	// $('.element').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
+	// 	return false
+	//  });
+
 	if ( $(window).width() > 739) {     
-		$('.app-sidebar').on("mouseenter", function(event) { //"mouseover"
+		$('.app-sidebar').on("mouseover", function(event) {
 			event.preventDefault();
-			$('.app').toggleClass('sidenav-toggled');
+			$('.app').removeClass('sidenav-toggled');
 		});
 	} 
 
 	if ( $(window).width() > 739) {     
-		$('.app-sidebar').on("mouseleave", function(event) { //"mouseover"
-			event.preventDefault();
-			$('.app').toggleClass('sidenav-toggled');
-		});
-	} 
+			$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
+				event.preventDefault();
+				$('.app').toggleClass('sidenav-toggled');
+			});
+		} 
 
+	// $("#div-1").bind('mouseover',function(event){
+    //   $('#div-2').stop(true,true).fadeIn(100);
+    // });
+    // $('#div-2').bind('mouseleave', function(e) {
+    //   $(this).stop(true,true).fadeOut(100);
+	// });
+	
 	// Activate sidebar slide toggle
 	$("[data-toggle='slide']").on("click", function(event) {
 		event.preventDefault();

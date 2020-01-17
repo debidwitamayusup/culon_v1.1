@@ -65,7 +65,7 @@ function callGraphicInterval(channel_name, month, year){
                     top: '6',
                     right: '0',
                     bottom: '17',
-                    left: '25',
+                    left: '45',
                 },
                 xAxis: {
                     data: response.data.param_date,
@@ -182,6 +182,7 @@ function drawChartPercentageMonth(response){
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalMonth");
     ctx_percentage.height = 567;
+    // ctx_percentage.width = 180;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {
@@ -190,7 +191,7 @@ function drawChartPercentageMonth(response){
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 yAxes: [{
                     ticks: {
