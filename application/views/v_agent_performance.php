@@ -27,7 +27,7 @@
                          </div>
                          <div class="table-responsive table-pt10">
                              <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                 style="height:349px" id="tableSkill">
+                                 style="height:345px" id="tableSkill">
                                  <thead class="text-center text-white bg-gray1">
                                      <tr>
                                          <th>Skill</th>
@@ -66,7 +66,7 @@
                          <div class="card-header-small bg-red">
                              <h5 class="card-title-small card-pt10">Best Agent Performance</h5>
                          </div>
-                         <div class="card-body" style="padding:4px;">
+                         <div class="card-body" style="padding:4px 4px 0px 4px;">
                              <div class="row">
                                  <div class="col-md-4">
                                      <div class="card">
@@ -74,7 +74,7 @@
                                              <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
                                          </div>
                                          <div class="card-body" id="classDrawCOF" style="padding:10px">
-                                            <div class="row mb-2" id="dataDrawCOF">
+                                            <div class="row mb-3" id="dataDrawCOF">
                                                  <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
@@ -146,7 +146,7 @@
                                              <h5 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h5>
                                          </div>
                                          <div class="card-body" id="classDrawAHT" style="padding:10px">
-                                             <div class="row mb-2" id="dataDrawAHT">
+                                             <div class="row mb-3" id="dataDrawAHT">
                                                  <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
@@ -170,7 +170,7 @@
                                              <h5 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h5>
                                          </div>
                                          <div class="card-body" id="classDrawART" style="padding:10px">
-                                             <div class="row mb-2" id="dataDrawART">
+                                             <div class="row mb-3" id="dataDrawART">
                                                  <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>

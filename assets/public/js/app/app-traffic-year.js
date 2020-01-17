@@ -78,7 +78,7 @@ function callGraphYear(channel_name,year) {
                 top: '6',
                 right: '5',
                 bottom: '17',
-                left: '35',
+                left: '45',
             },
             xAxis: {
                 data: response.data.month_x_axis,

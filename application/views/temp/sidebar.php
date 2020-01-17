@@ -1,5 +1,5 @@
 <!-- Sidebar menu-->
-<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<div class="app sidebar-mini" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
 		<li class="slide">
@@ -52,10 +52,10 @@
 					</div>
 				</li> -->
 				<li class="slide submenu" id="accordion">
-					<a href="#collapseKIP" class="slide-item" data-toggle="collapse" aria-expanded="true"
-						aria-controls="collapseKIP"> Operation Performance
+					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
+						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
-					<div id="collapseKIP" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+					<div id="collapsePerformance" class="collapse2" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
