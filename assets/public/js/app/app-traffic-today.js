@@ -235,7 +235,25 @@ function drawChartPercentageToday(response){
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
-                    }
+                    },
+                    axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0',
+                    // formatter: function (value, index) {
+                    //  if (/\s/.test(value)) {
+                    //      var teks = '';
+                    //      for(var i=0;i<value.length;i++){
+                    //          // if(value[i] == " "){
+                    //          //     teks = teks + '%';
+                    //          // }else{
+                    //          //     teks = teks + value[i];
+                    //          // }
+                    //          teks = value[i] + '%';
+                    //      }
+                    //      return teks;
+                    //  } 
+                    // }
+                }
                 }],
                 xAxes: [{
                     ticks: {
@@ -245,7 +263,19 @@ function drawChartPercentageToday(response){
             },
             legend: {
                 display: false
-            }
+            },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data_rate[tooltipItem.index];
+                        // value = value.toString();
+                        // value = value.split(/(?=(?:...)*$)/);
+                        // value = value.join(',');
+                        value = value + '%';
+                        return value;
+                    }
+              }
+            },
         }
     });
 }

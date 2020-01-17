@@ -235,7 +235,7 @@
                                              <th class="wd-15p border-bottom-0" width="130">Agent Name
                                              </th>
                                              <th class="wd-15p border-bottom-0">Skill</th>
-                                             <th class="wd-15p border-bottom-0">COF</th>
+                                             <th class="wd-15p border-bottom-0 text-center">COF</th>
                                              <th class="wd-15p border-bottom-0">ART</th>
                                              <th class="wd-15p border-bottom-0">AHT</th>
                                              <th class="wd-15p border-bottom-0">AST</th>
