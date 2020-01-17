@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col  mx-auto">
                     <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-4 col-xl-4" style="margin-left:584px">
+                        <div class="col-md-6 col-lg-4 col-xl-4 box-login">
                             <div class="card-group mb-0">
                                 <div class="card-cust">
                                     <div class="text-center mb-6 mt-8">

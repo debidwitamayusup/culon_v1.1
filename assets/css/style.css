@@ -22419,3 +22419,8 @@ div[data-acc-step]:not(.open) .badge-primary {
 	height:100%;
 	position : fixed;
 }
+
+.box-login{
+	width : 300px;
+	margin-left : 800px;
+}
