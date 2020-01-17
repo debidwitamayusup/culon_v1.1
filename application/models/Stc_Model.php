@@ -568,7 +568,7 @@ class Stc_Model extends CI_Model
 		// $this->db->order_by('channel_name', 'ASC');
 
 		//rpt_summary_scr
-		$this->db->select('TIME(b.tanggal)as time, a.channel_name, sum(b.cof) as total');
+		$this->db->select('SEC_TO_TIME(HOUR(b.lup)*3600) as time, a.channel_name, sum(b.cof) as total');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
 		if ($channel) {
@@ -580,6 +580,8 @@ class Stc_Model extends CI_Model
 		$this->db->order_by('time', 'ASC');
 		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
+		// print_r($this->db->last_query());
+		// exit;
     	return $query->result();
 	}
 
