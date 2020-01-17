@@ -1288,13 +1288,13 @@ function setDatePicker(){
         params_time = 'month';
         // v_month = '1'
         // console.log(params_time);
-        // loadContent(params_time , '1', v_year)
+        // loadContent(params_time , n, v_year);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', params_time);
         let fromParams = sessionStorage.getItem('paramsSession');
         // console.log(fromParams);
-        simmiriStatusTicket('month','1', '2020');
+        simmiriStatusTicket(params_time,$('#select-month').val(), $('#select-year-on-month').val());
         ticketStatusUnit(params_time,$('#select-month').val(), $('#select-year-on-month').val());
         summaryTicketClose(params_time,$('#select-month').val(), $('#select-year-on-month').val(), 0);
         // $("#btn-week").prop("class","btn btn-light btn-sm");
