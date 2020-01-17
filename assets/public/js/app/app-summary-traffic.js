@@ -8,6 +8,19 @@ var months = [
     'June', 'July', 'August', 'September',
     'October', 'November', 'December'
     ];
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+//get yesterday
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
     // v_date = getToday();
@@ -19,8 +32,8 @@ $(document).ready(function () {
     v_year = '2019';
 
 
-    loadContent(params_time, v_date);
-    $('#tag-time').html(v_date);
+    loadContent(params_time, v_params_this_year);
+    $('#tag-time').html(v_params_this_year);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
@@ -390,8 +403,8 @@ function callSummaryCaseTotAgent(params, index_time){
             $('#sla').html(sla.toFixed(2)+" %");
         },
         error: function (r) {
-            // alert("error");
-            console.log(r);
+            alert("error");
+            // console.log(r);
         },
     });
 }
@@ -404,7 +417,8 @@ function callSummaryCaseTotAgent(params, index_time){
         params_time = 'day';
         // console.log(params_time);
         loadContent(params_time , '2019-12-02');
-        $('#tag-time').html(v_date);
+        // loadContent(params_time, v_params_this_year)
+        $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -414,8 +428,11 @@ function callSummaryCaseTotAgent(params, index_time){
     $('#btn-month').click(function(){
         params_time = 'month';
         // console.log(params_time);
-        loadContent(params_time , '12')
-        $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        // loadContent(params_time , '12');
+        loadContent(params_time, n);
+        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        $('#tag-time').html(monthNumToName(n)+' '+m);
+        // console.log(monthNumToName(n));
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -425,8 +442,9 @@ function callSummaryCaseTotAgent(params, index_time){
     $('#btn-year').click(function(){
         params_time = 'year';
         // console.log(params_time);
-        loadContent(params_time , '2019')
-        $('#tag-time').html(v_year);
+        // loadContent(params_time , '2019')
+        loadContent(params_time, m)
+        $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");

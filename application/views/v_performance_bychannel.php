@@ -10,8 +10,6 @@
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Channel
-                            </li>
                             <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li>
                             <li class="breadcrumb-item active mt-2" aria-current="page">Performance by Channel</li>
                         </ol>
@@ -44,7 +42,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Service</h5>
                         </div>
-                        <div class="card-body" style="margin:60px 0px 60px 0px !important">
+                        <div class="card-body" style="margin:60px 0px 60px 0px !important" id="barServiceDiv">
                         <canvas id="barService"></canvas>
 
                         </div>
@@ -55,7 +53,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary by Channel</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="echartServiceDiv">
                         <div id="echartService" class="chartsh overflow-hidden"></div>
                         </div>
                     </div>

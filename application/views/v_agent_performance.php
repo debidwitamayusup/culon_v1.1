@@ -197,7 +197,7 @@
                  <div class="col-md-12 col-lg-12">
                      <div class="card">
                          <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">Summary Agent Performance SKill</h5>
+                             <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
                          </div>
                          <div class="card-body">
                              <!-- <div class="row mb-5">
@@ -235,7 +235,7 @@
                                              <th class="wd-15p border-bottom-0" width="130">Agent Name
                                              </th>
                                              <th class="wd-15p border-bottom-0">Skill</th>
-                                             <th class="wd-15p border-bottom-0">COF</th>
+                                             <th class="wd-15p border-bottom-0 text-center">COF</th>
                                              <th class="wd-15p border-bottom-0">ART</th>
                                              <th class="wd-15p border-bottom-0">AHT</th>
                                              <th class="wd-15p border-bottom-0">AST</th>

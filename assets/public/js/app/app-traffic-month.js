@@ -4,20 +4,24 @@ var months = [
     'October', 'November', 'December'
     ];
 var base_url = $('#base_url').val();
+var d = new Date();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
 
 $(document).ready(function () {
     
     //for dropdown selected
-    var d = new Date();
-    var n = d.getMonth()+1;
-    var m = d.getYear();
-    $('#month option[value='+n+']').attr('selected','selected');
-
-    callGraphicInterval('ShowAll', n, m);
-    // callGraphicInterval('ShowAll', '12', '2019');
-    callDataPercentage(n, m);
-    callDataTableAvg(n, m);
+    destroyChartInterval();
+    destroyChartPercentage();
     callYear();
+    $('#month option[value='+n+']').attr('selected','selected');
+    // $('#dropdownYear option[value='+m+']').attr('selected','selected');
+    // console.log('"'+n+'"');
+    // console.log(m);
+    callGraphicInterval('ShowAll', $("#month").val(), m);
+    // callGraphicInterval('ShowAll', '1', '2020');
+    callDataPercentage($("#month").val(), m);
+    callDataTableAvg($("#month").val(), m);
 });
 
 function monthNumToName(month) {
@@ -28,6 +32,8 @@ function callGraphicInterval(channel_name, month, year){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
+    console.log(month);
+    console.log(year);
     destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -199,7 +205,19 @@ function drawChartPercentageMonth(response){
             },
             legend: {
                 display: false
-            }
+            },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data_rate[tooltipItem.index];
+                        // value = value.toString();
+                        // value = value.split(/(?=(?:...)*$)/);
+                        // value = value.join(',');
+                        value = value + '%';
+                        return value;
+                    }
+              }
+            },
         }
     });
 }
@@ -264,7 +282,8 @@ function callYear()
             var dateTahun = $("#dropdownYear");
             var response = JSON.parse(r);
 
-            var html = '<option value="2020">2020</option>';
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
             var i;
             console.log(response);
                 for(i=0; i<response.data.niceDate.length; i++){

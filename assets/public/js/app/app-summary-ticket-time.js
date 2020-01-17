@@ -9,6 +9,7 @@ $('#tablesummary').DataTable();
 $(document).ready(function () {
     loadContent(v_params, v_index, 0);
     drawTableSumAgentPeformSkill();
+    callPieTicketNonClose();
     // ini_finctiiin();
 });
 
@@ -27,6 +28,24 @@ function addCommas(commas)
         x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
+}
+
+function callPieTicketNonClose(){
+	$("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTicket/SummaryTicketTime/SAgentPerformSkill',
+        success: function (r) { 
+            var response = JSON.parse(r);
+			// console.log(response);
+			drawPieChart(response);
+			$("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+			alert("error");
+			$("#filter-loader").fadeOut("slow");
+        },
+    });
 }
 
 function drawTableSumAgentPeformSkill(){
@@ -146,6 +165,55 @@ function summaryStatusTicketPerUnit(params, index, params_year){
     });
 }
 
+function drawPieChart(response){
+
+//pie chart summary ticket time
+var ctx = document.getElementById( "pieTicketTime" );
+ctx.height =300;
+var myChart = new Chart( ctx, {
+    type: 'pie',
+    data: {
+        datasets: [ {
+            data: response.total,
+            backgroundColor: [
+                                "#009E8C",
+                                "#00436D",
+                                "#A5B0B6",                                
+                            ],
+            hoverBackgroundColor: [
+                                "#009E8C",
+                                "#00436D",
+                                "#A5B0B6",  
+                            ]
+
+                        } ],
+        labels: [
+                            "1-2 Hari",
+                            "3-5 Hari",
+                            " > 5 Hari ",
+                ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend:{
+            position:"bottom",
+            labels:{
+                boxWidth:10
+           }
+        },
+        pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true,
+                precision: 0,
+                showActualPercentages: true,
+        },
+    }
+} );
+}
+
 function drawTable(response){
     //destroy div piechart
     $('#mytbody').remove();
@@ -183,47 +251,4 @@ function drawTable(response){
     });
 
     $("#filter-loader").fadeOut("slow");
-}
-
-//pie chart summary ticket time
-var ctx = document.getElementById( "pieTicketTime" );
-ctx.height =300;
-var myChart = new Chart( ctx, {
-    type: 'pie',
-    data: {
-        datasets: [ {
-            data: [ 15, 35, 40],
-            backgroundColor: [
-                                "#009E8C",
-                                "#00436D",
-                                "#A5B0B6",                                
-                            ],
-            hoverBackgroundColor: [
-                                "#009E8C",
-                                "#00436D",
-                                "#A5B0B6",  
-                            ]
-
-                        } ],
-        labels: [
-                            "1-2 Hari",
-                            "3-5 Hari",
-                            " > 5 Hari ",
-                ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend:{
-            position:"bottom",
-            labels:{
-                boxWidth:10
-           }
-        }
-    }
-} );
-
-
-
-
-(jQuery);
+}(jQuery);

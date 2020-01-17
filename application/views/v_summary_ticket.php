@@ -68,17 +68,13 @@
                                          <option value="9">September</option>
                                          <option value="10">October</option>
                                          <option value="11">November</option>
-                                         <option value="12" selected>December</option>
+                                         <option value="12">December</option>
                                      </select>
                                  </div>
                                  <div>
                                      <select name="select-year-on-month" id="select-year-on-month" class="form-control">
-                                         <option value="2020">2020</option>
-                                         <option value="2019" selected>2019</option>
-                                         <!-- <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option> -->
+                                         <option value="2020" selected>2020</option>
+                                            <option value="2019">2019</option>
                                      </select>
                                  </div>
                              </div>
@@ -86,8 +82,8 @@
                              <!-- yearly -->
                              <div id="filter-year" class="mt-1 mr-0">
                                  <select name="select-year-only" id="select-year-only" class="form-control">
-                                     <option value="2020">2020</option>
-                                     <option value="2019" selected>2019</option>
+                                     <option value="2020" selected>2020</option>
+                                     <option value="2019">2019</option>
                                      <!-- <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016">2016</option>
@@ -121,7 +117,7 @@
                          <div class="card-header-small bg-red">
                              <h5 class="card-title-small card-pt10">Ticket Status / Unit</h5>
                          </div>
-                         <div class="card-body">
+                         <div class="card-body" id="card-body-unit">
                              <div id="echartTicketUnit" class="chartsh-unit overflow-hidden"></div>
                          </div>
                      </div>
@@ -144,8 +140,11 @@
                                                  <i class="fe fe-chrome tx-16 lh-0 op-6"></i>
                                              </div>
                                          </div>
-                                         <select name="select-status" id="select-status" class="w-50 form-control">
-                                             <option value="#">All Unit</option>
+                                         <select name="select-status" id="select-unit" class="w-50 form-control">
+                                            <!-- <option value="">All Unit</option>
+                                            <option value="1">CC Agent</option>
+                                            <option value="2">sads</option> -->
+                                             <!-- <option value="#">All Unit</option>
                                              <option value="1">New</option>
                                              <option value="2">Open</option>
                                              <option value="3">Reject</option>
@@ -153,7 +152,7 @@
                                              <option value="5">Pending</option>
                                              <option value="6">Reopen</option>
                                              <option value="7">Resolve</option>
-                                             <option value="8">Close</option>
+                                             <option value="8">Close</option> -->
                                          </select>
                                      </div>
                                  </div>
@@ -321,7 +320,7 @@
                     </div>
                 </div> -->
                          </div>
-                         <div class="card-body">
+                         <div class="card-body" id="echartTicketCloseDiv">
                              <div id="echartTicketClose" class="chartsh overflow-hidden"></div>
                          </div>
                      </div>
