@@ -176,8 +176,19 @@ function drawChartSumService(response){
 	            scales : {
 	                xAxes : [{
 	                    ticks : {
-	                        min : 0
-	                    }
+	                        min : 0,
+	                        callback: function(value, index, values) {
+						   //      if(parseInt(value) >= 1000){
+						   //          var res = (value/1000);
+									// return res+'K'
+						   //      } else
+						   //      	return value;
+							value = value.toString();
+							value = value.split(/(?=(?:...)*$)/);
+							value = value.join('.');
+							return value;
+						        }
+	                    },
 	                }],
 	                yAxes : [{
 	                    stacked : true
@@ -195,7 +206,7 @@ function drawChartSumService(response){
 	                    	return context.chart.data.labels[context.dataIndex];
 	                	}
 	            	}
-	        	}
+	        	},
 	        }
 	    });
 	}else{

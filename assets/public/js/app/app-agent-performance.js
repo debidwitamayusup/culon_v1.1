@@ -206,6 +206,7 @@ function drawDataTable(){
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
+            { className: "text-center", targets: 1 },
 			{ className: "text-right", targets: 4 },
 			{ className: "text-center", targets: 5 },
 			{ className: "text-center", targets: 6 },
