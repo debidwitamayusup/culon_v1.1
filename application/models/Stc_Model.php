@@ -418,7 +418,7 @@ class Stc_Model extends CI_Model
 			// $this->db->order_by('MONTH(a.date_time)');
 
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			$this->db->select('b.channel_name, b.channel_color, MONTH(a.tanggal) tanggal, SUM(a.cof) total_traffic');
+			$this->db->select('b.channel_name, b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.tanggal) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
@@ -574,9 +574,9 @@ class Stc_Model extends CI_Model
 		if ($channel) {
 			$this->db->where('channel_name', $channel);
 		}
-		$this->db->where('DATE(b.tanggal)', $date);
+		$this->db->where('DATE(b.lup)', $date);
 		$this->db->group_by('channel_name');
-		$this->db->group_by('UNIX_TIMESTAMP(tanggal) DIV 3600');
+		$this->db->group_by('UNIX_TIMESTAMP(b.lup) DIV 3600');
 		$this->db->order_by('time', 'ASC');
 		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
