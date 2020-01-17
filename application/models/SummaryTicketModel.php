@@ -9,24 +9,25 @@ class SummaryTicketModel extends CI_Model
 	}
 
 	public function getSummTicket($params, $index, $params_year){
-		$this->db->select('SUM(sNew) as new
-						, SUM(sOpen) as open
-						, SUM(sOnProgress) as onProgress
-						, SUM(sPending) as pending
-						, SUM(sReopen) as reOpen
-						, SUM(sReject) as '."'reject'".'
-						, SUM(sResolved) as resolved
-						, SUM(sReturn) as '."'return'".'');
+		$this->db->select('IFNULL(SUM(sNew),0) as new
+						, IFNULL(SUM(sOpen),0) as open
+						, IFNULL(SUM(sOnProgress),0) as onProgress
+						, IFNULL(SUM(sPending),0) as pending
+						, IFNULL(SUM(sReopen),0) as reOpen
+						, IFNULL(SUM(sReject),0) as '."'reject'".'
+						, IFNULL(SUM(sResolved),0) as resolved
+						, IFNULL(SUM(sReturn),0) as '."'return'".'');
 		$this->db->from('rpt_summ_ticket_unit');
 		if ($params == 'day'){
 			$this->db->where('DATE(lup) = "'.$index.'"');
 		}else if ($params == 'month'){
-			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'year'){
 			$this->db->where('YEAR(lup) = "'.$index.'"');
 		}
 		$query = $this->db->get();
-
+		// print_r($this->db->last_query());    
+		// exit;
 		return $query->result();
 	}
 
@@ -38,14 +39,13 @@ class SummaryTicketModel extends CI_Model
 		}else if ($params == 'week'){
 			$this->db->where('WEEK (lup) = WEEK("'.$index.'") AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'month'){
-			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'year'){
 			$this->db->where('YEAR(lup) = "'.$index.'"');
 		}
 		$this->db->group_by('unit');
 
 		$query = $this->db->get();
-
 		return $query->result();
 	}
 
@@ -55,7 +55,7 @@ class SummaryTicketModel extends CI_Model
 		if ($params == 'day'){
 			$this->db->where('DATE(lup) = "'.$index.'"');
 		}else if ($params == 'month'){
-			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'year'){
 			$this->db->where('YEAR(lup) = "'.$index.'"');
 		}
@@ -63,6 +63,7 @@ class SummaryTicketModel extends CI_Model
 
 		$query = $this->db->get();
 
+		
 		$i = 1;
 		$totalnew = 0;
 		foreach ($query->result() as $key) {
@@ -187,14 +188,15 @@ class SummaryTicketModel extends CI_Model
 		if ($params == 'day'){
 			$this->db->where('DATE(lup) = "'.$index.'"');
 		}else if ($params == 'month'){
-			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$year.'"');
+			$this->db->where('MONTH(lup) = "'.$index.'" AND YEAR(lup) = "'.$params_year.'"');
 		}else if ($params == 'year'){
 			$this->db->where('YEAR(lup) = "'.$index.'"');
 		}
 		$this->db->group_by('unit');
 
 		$query = $this->db->get();
-
+		// print_r($this->db->last_query());    
+		// exit;
 		// foreach ($query->result() as $key) {
 		// 	$cotent[] = array(
 		// 		'unit' => $key->unit,
@@ -291,7 +293,8 @@ class SummaryTicketModel extends CI_Model
 			$this->db->group_by('DATE(date_close)');
 	
 			$query = $this->db->get();
-
+			// print_r($this->db->last_query());
+			// // exit;
 
 			if ($query->num_rows() > 0) {
 				array_push($content,$query->row()->CT);
