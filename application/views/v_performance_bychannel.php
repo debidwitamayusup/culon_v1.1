@@ -25,6 +25,10 @@
                                     <a href="#" class="btn btn-light btn-sm" id="btn-year">
                                         <span class="">Year</a></span>
                                 </div>
+                                <div class="bd-highlight text-center text-muted tags">
+                                            <span class="tag tag-grey justify-content-center box-filter-time"
+                                                id="tag-time"></span>
+                                </div>
                             </div>
 
                         </div>

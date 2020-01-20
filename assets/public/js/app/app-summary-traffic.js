@@ -272,7 +272,7 @@ function drawChartAndCard(response){
                         }
 
                         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + 'no data' + '</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
                         legendHtml.push('</li>');
                     }
                 })
@@ -438,8 +438,8 @@ function callSummaryCaseTotAgent(params, index_time){
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time , '2019-12-02');
-        // loadContent(params_time, v_params_this_year)
+        // loadContent(params_time , '2019-12-02');
+        loadContent(params_time, v_params_this_year)
         $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");

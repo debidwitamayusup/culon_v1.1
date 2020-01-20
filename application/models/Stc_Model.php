@@ -665,10 +665,10 @@ class Stc_Model extends CI_Model
 		m_channel.channel_name
 		, m_channel.icon_dashboard
 		, m_channel.channel_color 
-		, IFNULL(a.art, 0) as art 
-		, IFNULL(a.aht, 0) as aht 
-		, IFNULL(a.ast, 0) as ast
-		, IFNULL(a.scr, 0) as scr
+		, IFNULL(a.art, '00:00:00') as art 
+		, IFNULL(a.aht, '00:00:00') as aht 
+		, IFNULL(a.ast, '00:00:00') as ast
+		, IFNULL(a.scr, '00:00:00') as scr
 		FROM m_channel 
 		LEFT JOIN (
 			SELECT rpt_summary_scr.channel_id

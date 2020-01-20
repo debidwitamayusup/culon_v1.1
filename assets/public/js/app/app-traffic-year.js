@@ -216,20 +216,20 @@ function drawChartPercentageYear(response){
             },
             legend: {
                 display: false
-            }
-        },
-        tooltips: {
-              callbacks: {
-                    label: function(tooltipItem, data) {
-                        var value = data_rate[tooltipItem.index];
-                        // value = value.toString();
-                        // value = value.split(/(?=(?:...)*$)/);
-                        // value = value.join(',');
-                        value = value + '%';
-                        return value;
-                    }
-              }
             },
+            tooltips: {
+                  callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data_rate[tooltipItem.index];
+                            // value = value.toString();
+                            // value = value.split(/(?=(?:...)*$)/);
+                            // value = value.join(',');
+                            value = value + '%';
+                            return value;
+                        }
+                    }
+            },
+        }
     });
 }
 
