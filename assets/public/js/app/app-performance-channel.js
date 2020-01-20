@@ -165,7 +165,16 @@ function drawChartSumService(response){
 	        data : MeSeData,
 	        options : {
 	        	tooltips: {
-	        		enabled: false
+	        		callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var value = data.datasets[0].data[tooltipItem.index];
+		                    if(parseInt(value) >= 1000){
+		                               return 'seconds: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		                            } else {
+		                               return 'seconds: ' + value;
+		                            }
+		                }
+		          	}
 	        	},
 	        	hover: {
 	        		animationDuration: 0
@@ -209,7 +218,17 @@ function drawChartSumService(response){
 	                    },
 	                }],
 	                yAxes : [{
-	                    stacked : true
+	                    stacked : true,
+	                    ticks: {
+	                        beginAtZero:true,
+	                        callback: function(value, index, values) {
+	                            if(parseInt(value) >= 1000){
+	                               return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	                            } else {
+	                               return value;
+	                            }
+	                       }                            
+	                    }
 	                }]
 	            },
 	            legend: {
@@ -224,7 +243,7 @@ function drawChartSumService(response){
 	                    	return context.chart.data.labels[context.dataIndex];
 	                	}
 	            	}
-	        	},
+	        	}
 	        }
 	    });
 	}else{
@@ -249,7 +268,7 @@ function drawChartSumChannel(response){
 			ast.push(value.SUM_AST);
 
 	    });
-	    console.log(channelName);
+	    // console.log(channelName);
 		var chartdataTicket= [{
 			name: 'ART',
 			type: 'bar',

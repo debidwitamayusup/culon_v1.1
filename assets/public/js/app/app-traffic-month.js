@@ -63,7 +63,7 @@ function callGraphicInterval(channel_name, month, year){
             var option = {
                 grid: {
                     top: '6',
-                    right: '0',
+                    right: '5',
                     bottom: '17',
                     left: '45',
                 },
@@ -105,7 +105,7 @@ function callGraphicInterval(channel_name, month, year){
                         }
                     },
                     axisLabel: {
-                        fontSize: 10,
+                        fontSize: 9,
                         color: '#7886a0'
                     }
                 },
