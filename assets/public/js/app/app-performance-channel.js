@@ -318,6 +318,14 @@ function drawChartSumChannel(response){
 		}];
 		/*----echart summary ticket category----*/
 		var optionTicket = {
+			// options: {
+		 //        legend: {
+		 //            display: true,
+		 //            labels: {
+		 //                fontColor: 'rgb(255, 99, 132)'
+		 //            }
+		 //        }
+		 //    },
 			grid: {
 				top: '6',
 				right: '20',
@@ -369,6 +377,7 @@ function drawChartSumChannel(response){
 						color: '#7886a0'
 					}
 				},
+				
 				// position: function (pos, params, dom, rect, size) {
 				// 	// tooltip will be fixed on the right if mouse hovering on the left,
 				// 	// and on the left if hovering on the right.

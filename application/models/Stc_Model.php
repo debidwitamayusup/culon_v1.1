@@ -285,7 +285,7 @@ class Stc_Model extends CI_Model
 		-- 	ORDER BY summary_channel.channel_name
 		-- )as a on a.channel_id = m_channel.channel_id
 		LEFT JOIN(
-			SELECT channel_id, SUM(cof) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
+			SELECT channel_id, SUM(unique_customer) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
 			where $where2
 			GROUP BY channel_id 
@@ -805,7 +805,32 @@ class Stc_Model extends CI_Model
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	
-    	return $query->result();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				if($data->scr != '-')
+				{
+					$scr = $data->scr.'%';
+				}
+				else{
+					$scr = '-';
+				}
+				
+				$content[] = array(
+					'channel_name'=> $data->channel_name,
+					'icon_dashboard'=> $data->icon_dashboard,
+					'channel_color'=> $data->channel_color,
+					'art'=> $data->art,
+					'aht'=> $data->aht,
+					'ast'=> $data->ast,
+					'scr'=> $scr
+				);
+			}
+		}
+
+    	return $content;
 	}
 
 	public function getPercentageIntervalToday($date){

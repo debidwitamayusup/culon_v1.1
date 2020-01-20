@@ -67,7 +67,7 @@ Sidebar menu-->
 					</div>
 				</li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">CWC</a></li>
-				<li class="slide submenu">
+				<!-- <li class="slide submenu">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseTicket"> Ticketing
 						<i class="angle not-absolute fas fa-angle-right" style="margin-left:104px"></i></a>
@@ -79,7 +79,7 @@ Sidebar menu-->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_time">Ticketing by Time</a></div>
 					</div>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 		</li>
 		<li class="slide">
