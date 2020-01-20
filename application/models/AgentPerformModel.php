@@ -119,7 +119,7 @@ class AgentPerformModel extends CI_Model
 		return $res;
 		
 	}
-	public function getSAgentperformskills($src='',$param) // table right - bottom need limit / offset
+	public function getSAgentperformskills($src='',$param,$params) // table right - bottom need limit / offset
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) AS ART,
 							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7) AS AHT,
@@ -127,6 +127,22 @@ class AgentPerformModel extends CI_Model
 							SUM(rpt_summary_agent.session) as COF,
 							m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME,m_login.profile_pic AS IMAGE,m_login.userlevel as LEVEL ');
 		$this->db->from('m_login');
+
+		if($params=='month')
+		{
+			$this->db->where('MONTH(tanggal)',$index);
+			$this->db->where('YEAR(tanggal)',$param_year);
+		}
+		else if($params=='year')
+		{
+			$this->db->where('YEAR(tanggal)',$index);
+		}
+		else if($params=='day')
+		{
+			$this->db->where('DATE(tanggal)',$index);
+		}
+		$this->db->group_by('DATE','ASC');
+
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
 		$this->db->group_by('AGENTID');
@@ -201,7 +217,7 @@ class AgentPerformModel extends CI_Model
 		return $res;
 
 	}
-	public function getSAgentperformByskill()
+	public function getSAgentperformByskill($params)
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) as ART,
 			SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7) as AHT,
@@ -211,6 +227,20 @@ class AgentPerformModel extends CI_Model
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
 		$this->db->order_by('group_skill.skill_id','ASC');
+		if($params=='month')
+		{
+			$this->db->where('MONTH(tanggal)',$index);
+			$this->db->where('YEAR(tanggal)',$param_year);
+		}
+		else if($params=='year')
+		{
+			$this->db->where('YEAR(tanggal)',$index);
+		}
+		else if($params=='day')
+		{
+			$this->db->where('DATE(tanggal)',$index);
+		}
+		$this->db->group_by('DATE','ASC');
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)

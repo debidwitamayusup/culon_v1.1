@@ -1,17 +1,23 @@
 var base_url = $('#base_url').val();
 <<<<<<< HEAD
+<<<<<<< HEAD
 var v_params = 'day';
 var v_index = '2020-01-16';
 var v_month = '1';
 var v_year = '2020';
-=======
 // var v_params = 'day';
 // var v_index = '2020-01-01';
 var params_time='';
 var v_date='';
 var v_month = '';
 var v_year = '';
->>>>>>> origin/elsa-dev
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
+
+>>>>>>> origin/risyadnew-dev
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -22,42 +28,40 @@ if (o < 10) {
 if (n < 10) {
   n = '0' + n;
 }
+
+//get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
-var months = [
-    'January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September',
-    'October', 'November', 'December'
-    ];
 
 // console.log(v_params_this_year);
 
 // console.log(d);
 $(document).ready(function () {
-<<<<<<< HEAD
     loadContent(v_params, v_index, 0);
     // loadContent(v_params, v_params_this_year, 0);
-=======
+	$('#select-month option[value='+n+']').attr('selected','selected');
+    $('#dateTahun option[value='+m+']').attr('selected','selected');
+
 	params_time = 'day';
 	v_date = getToday();
 	v_month = getMonth();
 	v_year = getYear();
 	v_date = '2019-12-01';
     // loadContent(v_params, v_index, 0);
->>>>>>> origin/elsa-dev
     //for current time
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
     // drawChartSumChannel();
-<<<<<<< HEAD
     $('#tag-time').html(v_params_this_year);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
-=======
-    // $("#btn-month").prop("class","btn btn-light btn-sm");
-    // $("#btn-year").prop("class","btn btn-light btn-sm");
+
+
 	$("#btn-day").prop("class","btn btn-red btn-sm");
-	loadContent(params_time, v_date, 0);
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
+    
+	loadContent(params_time, v_params_this_year, 0);
 	$('#input-date-filter').datepicker("setDate", v_date);
 	
 	$('#filter-date').show();
@@ -65,7 +69,7 @@ $(document).ready(function () {
 	$('#filter-year').hide();
 	setMonthPicker();
 	setYearPicker();
->>>>>>> origin/elsa-dev
+
 });
 
 function loadContent(params, index, params_year){
@@ -559,12 +563,10 @@ function setDatePicker(){
         //current time
 		// loadContent(v_params, v_params_this_year, 0);     
         // $('#tag-time').html(v_date);
-<<<<<<< HEAD
-        $('#tag-time').html(v_params_this_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-=======
+
         // $("#btn-week").prop("class","btn btn-light btn-sm");
->>>>>>> origin/elsa-dev
+
+
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -595,12 +597,10 @@ function setDatePicker(){
 		// loadContent(params_time , n, m);
 		loadContent(params_time , $("#select-month").val(), $("#select-year-on-month").val());
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-<<<<<<< HEAD
-        $('#tag-time').html(monthNumToName(n)+' '+m);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-=======
+
         // $("#btn-week").prop("class","btn btn-light btn-sm");
->>>>>>> origin/elsa-dev
+
+
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -617,17 +617,10 @@ function setDatePicker(){
         // loadContent(params_time , '2020');
 
         //current time
-<<<<<<< HEAD
-		loadContent(params_time , m);        
-        // $('#tag-time').html(v_year);
-        $('#tag-time').html(m);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
-=======
 		// loadContent(params_time , m);        
 		// $('#tag-time').html(v_year);
 		loadContent(params_time ,  $("#select-year-only").val(), 0);
         // $("#btn-week").prop("class","btn btn-light btn-sm");
->>>>>>> origin/elsa-dev
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
