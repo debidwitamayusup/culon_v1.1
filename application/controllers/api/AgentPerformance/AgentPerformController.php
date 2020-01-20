@@ -41,9 +41,10 @@ class AgentPerformController extends CI_Controller {
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// day /month /year
         $index = $this->security->xss_clean($this->input->post('index'));// date / month /year
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));// year
         $param_year = date('Y'); // year-month
-        $data = $this->module_model->getSSallchannel($src,$params,$index,$param_year);
-
+        $data = $this->module_model->getSSallchannel($src,$params,$index,$params_year);
+        
         echo json_encode($data);
 
     }
@@ -52,7 +53,7 @@ class AgentPerformController extends CI_Controller {
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
 
-        $data = $this->module_model->getSAgentperformskills($src,$params);
+        $data = $this->module_model->getSAgentperformskills($src,$param,$params);
 
         echo json_encode($data);
 
