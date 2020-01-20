@@ -232,7 +232,7 @@
                                          <tr>
                                              <th class="wd-15p border-bottom-0">ID</th>
                                              <th class="wd-15p border-bottom-0">Agent ID</th>
-                                             <th class="wd-15p border-bottom-0" width="130">Agent Name
+                                             <th class="wd-15p border-bottom-0" style="width:30%">Agent Name
                                              </th>
                                              <th class="wd-15p border-bottom-0">Skill</th>
                                              <th class="wd-15p border-bottom-0 text-center">COF</th>

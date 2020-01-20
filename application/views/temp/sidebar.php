@@ -25,14 +25,14 @@
 			</a>
 			<ul class="slide-menu" id="accordion">
 				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
-				<li class="slide submenu">
+				<li class="slide">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
-					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
-						style="">
-						<div class="slide-item ml-2" id="submenu"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/this_week">Weekly</a></div> -->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
@@ -51,7 +51,7 @@
 					</div>
 					</div>
 				</li> -->
-				<li class="slide submenu">
+				<li class="slide">
 					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
@@ -60,12 +60,13 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>
 					</div>
 				</li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">CWC</a></li>
 				<li class="slide submenu">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseTicket"> Ticketing
@@ -73,12 +74,12 @@
 					<div id="collapseTicket" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket">Ticketing by Unit</a></div>
-						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_category">Summary
-								Status Ticket / Kategori</a></div> -->
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_category">Summary
+								Status Ticket / Kategori</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_time">Ticketing by Time</a></div>
 					</div>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 		</li>
 		<li class="slide">
@@ -95,9 +96,10 @@
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
 				<li><a class="slide-item" href="#">Agent Summary</a></li>
 				<li><a class="slide-item" href="#">Detail Ticket</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">Detail CWC</a></li>
+				<li><a class="slide-item" href="#">Detail CWC</a></li>
 			</ul>
 		</li>
 	</ul>
 </aside>
-<body class="app sidebar-mini sidenav-toggled">
+<body class="app sidebar-mini">
+<!-- <body class="sidenav-toggled"> -->

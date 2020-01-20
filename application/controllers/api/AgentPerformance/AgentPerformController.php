@@ -52,7 +52,7 @@ class AgentPerformController extends CI_Controller {
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
 
-        $data = $this->module_model->getSAgentperformskills($src,$params);
+        $data = $this->module_model->getSAgentperformskills($src,$param,$params);
 
         echo json_encode($data);
 

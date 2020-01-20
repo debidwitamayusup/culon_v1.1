@@ -3,11 +3,11 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
-var months = [
-    'January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September',
-    'October', 'November', 'December'
-    ];
+// var months = [
+//     'January', 'February', 'March', 'April', 'May',
+//     'June', 'July', 'August', 'September',
+//     'October', 'November', 'December'
+//     ];
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -30,9 +30,10 @@ $(document).ready(function () {
     // v_month = getMonth();
     // v_year = getYear();
     params_time = 'day';
-    v_date = '2019-12-02';
+    v_date = getToday();
     v_month = getMonth();
     v_year = getYear();
+    v_date='2019-12-01';
 
     $("#btn-day").prop("class","btn btn-red btn-sm");
     sessionStorage.removeItem('paramsSession');
@@ -107,6 +108,13 @@ function getYear(){
     return year;
 }
 
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format : "yyyy-mm-dd",
+        todayHiglight : true,
+        autoclose :true
+    }).attr("readonly","readonly").css({"cursor":"pointer","background":"whiter"});
+}
 function loadContent(params, index_time){
     $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time);
@@ -459,9 +467,11 @@ function setDatePicker(){
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time , '2019-12-02');
+        // loadContent(params_time , '2019-12-02');
+        v_date='2019-12-01';
+        callSummaryInteraction(params_time,v_date);
         // loadContent(params_time, v_params_this_year)
-        $('#tag-time').html(v_params_this_year);
+        // $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -476,10 +486,12 @@ function setDatePicker(){
         params_time = 'month';
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n);
+        // loadContent(params_time, n);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $('#tag-time').html(monthNumToName(n)+' '+m);
+        // $('#tag-time').html(monthNumToName(n)+' '+m);
         // console.log(monthNumToName(n));
+        callSummaryInteraction(params_time, $("#select-month").val(),$('#select-year-on-month').val());
+
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -494,8 +506,9 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m)
-        $('#tag-time').html(m);
+        // loadContent(params_time, m)
+        // $('#tag-time').html(m);
+        callSummaryInteraction(params_time, $("#select-year-only").val(),0);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -562,6 +575,10 @@ function setDatePicker(){
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
         // simmiriUnit('year', v_year, 0);
+
+        $("#filter-date").hide();
+        $("#filter-month").hide();
+        $("#filter-year").show();
     });
 
 })(jQuery);
