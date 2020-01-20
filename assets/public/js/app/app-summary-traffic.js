@@ -584,17 +584,21 @@ function setDatePicker(){
 
     $('#select-month').change(function(){
         v_month = $(this).val();
-        callSummaryInteraction('month', v_month, $("select-year-on-month").val());
+        // callSummaryInteraction('month', v_month, $("select-year-on-month").val());
+        loadContent('mont', v_month, $("select-year-on-month").val()); 
     });
 
     $('#select-year-on-month').change(function(){
         v_year=$(this).val();
-        callSummaryInteraction('month', $("select-month").val(),v_year);
+        // callSummaryInteraction('month', $("select-month").val(), v_year);
+
+        loadContent('mont', $("select-month").val(), v_year); 
     });
 
     $('#select-year-only').change(function(){
         v_year=$(this).val();
-        callSummaryInteraction('year', v_year,0);
+        // callSummaryInteraction('year', v_year,0);
+        loadContent('year', v_year, 0);
     });
 
 })(jQuery);
