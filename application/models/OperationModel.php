@@ -455,14 +455,14 @@ class OperationModel extends CI_Model
     }
 
 #region :: ragakasih
-    public function  getSService($params,$index,$param_year)
+    public function  getSService($params,$index,$params_year)
     {
         $this->db->select('AVG(art_num) AS ART, AVG(aht_num)AS AHT, AVG(ast_num) AS AST');
         $this->db->from('rpt_summary_scr');
         if($params=='month')
 		{
 			$this->db->where('MONTH(tanggal)',$index);
-			$this->db->where('YEAR(tanggal)',$param_year);
+			$this->db->where('YEAR(tanggal)',$params_year);
 		}
 		else if($params=='year')
 		{
