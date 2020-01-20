@@ -84,6 +84,26 @@ class SummaryToday extends CI_Controller {
         echo json_encode($response);
     }
 
+    public function getIntervalTrafficToday2(){
+
+        $date =   $this->security->xss_clean($this->input->post('date', true));
+        $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
+
+        $model = $this->Stc_Model->get_traffic_interval_today2($date, $channel);
+        
+        return json_encode($model);
+        // if($query){
+        //     $response = array(
+        //         'status' => true,
+        //         'data' => $query
+        //     );
+        // }else{
+        //     $response = array(
+        //         'status' => false,
+        //         'data' => ''
+        //     );
+        // }
+    }
     public function getAverageInterval(){
         $date = $this->security->xss_clean($this->input->post('date', true));
         if(!$date){

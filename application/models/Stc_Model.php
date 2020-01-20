@@ -585,6 +585,95 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
+	public function get_traffic_interval_today2($date,$channel)
+	{
+
+		$this->db->select('rpt_summ_interval.interval as time');
+		$this->db->from('rpt_summ_interval');
+		//$this->db->where('rpt_summ_interval.tanggal', $date);
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+		$times = array();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($times,substr($data->time,0,5).':00');
+			}
+
+			foreach($channel as $channels)
+			{
+				
+				$serials[] =  array(
+					'label'=>$channels,
+					'data'=>$this->get_availdata($date,$channels)
+				);
+			}
+
+
+			
+			
+			// echo json_encode($times);
+			// exit;
+		}
+
+		$result = array(
+			'status' => true,
+			'data' => array(
+					'label_time' => $times,
+					'series' => $serials
+			)
+		);
+
+		echo json_encode($result);
+		exit;
+
+		//return $result;
+	}
+
+	function get_availdata($date,$channel)
+	{
+		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('rpt_summ_interval.tanggal', $date);
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+		$result = array();
+		
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,$query->row($inx)->total);
+				}
+				else
+				{
+					array_push($result,'0');
+				}
+					
+			}
+
+		}
+		else
+		{
+			$result = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+		
+
+		return $result;
+		
+	}
+
 	public function getAverageIntervalToday($params, $index, $year=0)
 	{
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
