@@ -285,7 +285,7 @@ class Stc_Model extends CI_Model
 		-- 	ORDER BY summary_channel.channel_name
 		-- )as a on a.channel_id = m_channel.channel_id
 		LEFT JOIN(
-			SELECT channel_id, SUM(cof) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
+			SELECT channel_id, SUM(unique_customer) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
 			where $where2
 			GROUP BY channel_id 
@@ -933,8 +933,6 @@ class Stc_Model extends CI_Model
 			// $this->db->where('YEAR(date)', date("Y"));
 
 			//temporarily hardcode year based on data ready on database
-
-			$this->db->where('YEAR(tanggal)', date('Y'));
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
