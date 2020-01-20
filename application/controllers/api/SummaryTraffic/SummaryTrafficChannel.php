@@ -13,6 +13,7 @@ class SummaryTrafficChannel extends CI_Controller {
 
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
+		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
 		$query = $this->Stc_Model->get_all_unique_customer_per_channel($params, $index);
 		
@@ -43,8 +44,9 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
+		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 		$data = array();
-		$card_today = $this->Stc_Model->getCardMain($params, $index);
+		$card_today = $this->Stc_Model->getCardMain($params, $index, $params_year);
 
 		$channel = array();
 		$total = array();
@@ -145,8 +147,9 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
+		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
-		$totInteraction = $this->Stc_Model->getTotInteraction($params, $index)->row();
+		$totInteraction = $this->Stc_Model->getTotInteraction($params, $index, $params_year)->row();
 
 		if($totInteraction)
 		{
@@ -167,6 +170,7 @@ class SummaryTrafficChannel extends CI_Controller {
 	{
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
+		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
 		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer($params, $index)->row();
 
@@ -210,8 +214,9 @@ class SummaryTrafficChannel extends CI_Controller {
 	public function getTotalCaseInCaseOut(){
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
+		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
-		$data = $this->Stc_Model->get_summary_case_tot_agent_sla($params, $index);
+		$data = $this->Stc_Model->get_summary_case_tot_agent_sla($params, $index, $params_year);
 		
 		if ($data) 
 		{

@@ -167,7 +167,7 @@ class Stc_Model extends CI_Model
 	
 	}
 
-	public function get_all_unique_customer_per_channel($params, $index)
+	public function get_all_unique_customer_per_channel($params, $index, $params_year)
 	{
 		$this->db->select('a.channel_name, sum(b.cof) as total_unique');
 		$this->db->from('m_channel a');
@@ -176,6 +176,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('DATE(b.tanggal)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(b.tanggal)', $index);
+			$this->db->where('YEAR(tanggal)',$params_year);
 		}else if($params == 'year'){
 			$this->db->where('YEAR(b.tanggal)', $index);
 		}
@@ -234,7 +235,7 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getCardMain($params, $index)
+	public function getCardMain($params, $index, $params_year)
 	{	
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		// $this->db->select('channel_name channel, SUM(total) total');
@@ -261,7 +262,7 @@ class Stc_Model extends CI_Model
 
 			//temporarily hardcode year based on data ready on database
 			// $where = "MONTH(date_time)= '".$index."' AND YEAR(date_time) = '2019' ";
-			$where2 = "MONTH(tanggal)= '".$index."' AND YEAR(tanggal) = YEAR(CURDATE())";
+			$where2 = "MONTH(tanggal)= '".$index."' AND YEAR(tanggal) = '".$params_year."'";
 		}else if($params == 'year'){
 			// $where = "YEAR(date_time)= '".$index."'";
 			$where2 = "YEAR(tanggal)= '".$index."'";
@@ -327,7 +328,7 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function getTotInteraction($params, $index)
+	public function getTotInteraction($params, $index, $params_year)
 	{
 		$this->db->select('IFNULL(SUM(cof), 0) total_interaction');
 		$this->db->from('rpt_summary_scr');
@@ -335,6 +336,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
+			$this->db->where('YEAR(tanggal)', $params_year);
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
@@ -342,7 +344,7 @@ class Stc_Model extends CI_Model
 		return $query;
 	}
 
-	public function getTotUniqueCustomer($params, $index)
+	public function getTotUniqueCustomer($params, $index, $params_year)
 	{
 		$this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
 		$this->db->from('rpt_summary_scr');
@@ -350,6 +352,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
+			$this->db->where('YEAR(tanggal)', $params_year);
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
@@ -893,7 +896,7 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	}
 
-	public function get_summary_case_tot_agent_sla($params, $index){
+	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent'); 
 		$this->db->from('rpt_summary_scr');
@@ -901,6 +904,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
+			$this->db->where('YEAR(tanggal)', $params_year);
 			// $this->db->where('YEAR(date)', date("Y"));
 
 			//temporarily hardcode year based on data ready on database

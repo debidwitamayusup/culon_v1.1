@@ -38,7 +38,7 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, v_params_this_year);
+    loadContent(params_time, v_params_this_year, 0);
     // $('#tag-time').html(v_params_this_year);
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -169,13 +169,14 @@ function drawCardInteractionNew(value){
     '</div>');
 }
 
-function callSummaryInteraction(params, index_time){
+function callSummaryInteraction(params, index_time, params_year){
     $.ajax({
         type: 'post',
         url: base_url + 'Summary-Traffic/cardMain',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -319,14 +320,15 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function callTotalInteraction(params, index_time){
+function callTotalInteraction(params, index_time, params_year){
     //call total interaction
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -344,14 +346,15 @@ function callTotalInteraction(params, index_time){
     });
 }
 
-function callTotalUniqueCustomer(params, index_time){
+function callTotalUniqueCustomer(params, index_time, params_year){
        //call total unique customer
        $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -367,14 +370,15 @@ function callTotalUniqueCustomer(params, index_time){
     });
 }
 
-function callAverageCustomer(params, index_time){
+function callAverageCustomer(params, index_time, params_year){
        //call avg customer
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -388,7 +392,7 @@ function callAverageCustomer(params, index_time){
     });
 }
 
-function callUniqueCustomerPerChannel(params, index_time){
+function callUniqueCustomerPerChannel(params, index_time, params_year){
     // destroy div card unique customer per channel
     $('#retres-unique').remove(); // this is my <canvas> element
     $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
@@ -397,7 +401,8 @@ function callUniqueCustomerPerChannel(params, index_time){
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -424,13 +429,14 @@ function callUniqueCustomerPerChannel(params, index_time){
     });
 }
 
-function callSummaryCaseTotAgent(params, index_time){
+function callSummaryCaseTotAgent(params, index_time, params_year){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -464,10 +470,10 @@ function setDatePicker(){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year)
+        loadContent(params_time, v_params_this_year, 0)
         $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
-        callSummaryInteraction(params_time,v_date);
+        // callSummaryInteraction(params_time,v_date);
         // loadContent(params_time, v_params_this_year)
         // $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -484,7 +490,7 @@ function setDatePicker(){
         params_time = 'month';
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n);
+        loadContent(params_time, n, m);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         $('#tag-time').html(monthNumToName(n)+' '+m);
         // console.log(monthNumToName(n));
@@ -502,7 +508,7 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m)
+        loadContent(params_time, m, 0)
         $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
@@ -520,7 +526,7 @@ function setDatePicker(){
             // sessionStorage.removeItem('paramsSession');
             // sessionStorage.setItem('paramsSession', 'day');
             // let fromParams = sessionStorage.getItem('paramsSession');   
-            loadContent('day', v_date);
+            loadContent('day', v_date, 0);
             // console.log(params_time);
             // console.log(v_date);
             // simmiriUnit(params_time, v_date,0);
@@ -564,7 +570,7 @@ function setDatePicker(){
         // sessionStorage.removeItem('paramsSession');
         // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-        loadContent('year', v_year);
+        loadContent('year', v_year, 0);
         // simmiriStatusTicket('year', v_year, 0);
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
@@ -582,23 +588,5 @@ function setDatePicker(){
         }
     });
 
-    $('#select-month').change(function(){
-        v_month = $(this).val();
-        // callSummaryInteraction('month', v_month, $("select-year-on-month").val());
-        loadContent('mont', v_month, $("select-year-on-month").val()); 
-    });
-
-    $('#select-year-on-month').change(function(){
-        v_year=$(this).val();
-        // callSummaryInteraction('month', $("select-month").val(), v_year);
-
-        loadContent('mont', $("select-month").val(), v_year); 
-    });
-
-    $('#select-year-only').change(function(){
-        v_year=$(this).val();
-        // callSummaryInteraction('year', v_year,0);
-        loadContent('year', v_year, 0);
-    });
 
 })(jQuery);
