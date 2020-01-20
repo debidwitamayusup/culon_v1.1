@@ -477,9 +477,9 @@ class OperationModel extends CI_Model
         if($query->row()->ART)
         {   
             $content = array(
-                'SUM_ART'=>strval($query->row()->ART),
-                'SUM_AHT'=>strval($query->row()->AHT),
-                'SUM_AST'=>strval($query->row()->AST)
+                'SUM_ART'=>strval(ROUND($query->row()->ART,0)),
+                'SUM_AHT'=>strval(ROUND($query->row()->AHT,0)),
+                'SUM_AST'=>strval(ROUND($query->row()->AST,0))
             );
 
             return $content;                   
