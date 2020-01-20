@@ -777,7 +777,32 @@ class Stc_Model extends CI_Model
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	
-    	return $query->result();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				if($data->scr != '-')
+				{
+					$scr = $data->scr.'%';
+				}
+				else{
+					$scr = '-';
+				}
+				
+				$content[] = array(
+					'channel_name'=> $data->channel_name,
+					'icon_dashboard'=> $data->icon_dashboard,
+					'channel_color'=> $data->channel_color,
+					'art'=> $data->art,
+					'aht'=> $data->aht,
+					'ast'=> $data->ast,
+					'scr'=> $data->scr
+				);
+			}
+		}
+
+    	return $content;
 	}
 
 	public function getPercentageIntervalToday($date){

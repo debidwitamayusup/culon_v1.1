@@ -63,16 +63,19 @@ class AgentPerformModel extends CI_Model
 		{
 			$this->db->where('MONTH(tanggal)',$index);
 			$this->db->where('YEAR(tanggal)',$params_year);
+			$this->db->group_by('DATE','ASC');
 		}
 		else if($params=='year')
 		{
 			$this->db->where('YEAR(tanggal)',$index);
+			$this->db->group_by('MONTH(DATE)','ASC');
 		}
 		else if($params=='day')
 		{
 			$this->db->where('DATE(tanggal)',$index);
+			$this->db->group_by('DATE','ASC');
 		}
-		$this->db->group_by('DATE','ASC');
+		
 		$query = $this->db->get();
 		// print_r($this->db->last_query());    
 		//  exit;
@@ -92,15 +95,30 @@ class AgentPerformModel extends CI_Model
 				$idx = 1;
 				foreach($query->result() as $data)
 				{
-					$content[] = array(
-						strval($idx),
-						strval($data->DATE),
-						strval($data->ART),
-						strval($data->AHT),
-						strval($data->AST),
-						strval(round($data->SCR, 2).'%'),
-						strval($data->COF)
-					);
+					if($params != 'year')
+					{
+						$content[] = array(
+							strval($idx),
+							strval($data->DATE),
+							strval($data->ART),
+							strval($data->AHT),
+							strval($data->AST),
+							strval(round($data->SCR, 2).'%'),
+							strval($data->COF)
+						);
+					}
+					else
+					{
+						$content[] = array(
+							strval($idx),
+							strval(DATE('F',strtotime($data->DATE))),
+							strval($data->ART),
+							strval($data->AHT),
+							strval($data->AST),
+							strval(round($data->SCR, 2).'%'),
+							strval($data->COF)
+						);
+					}
 					$idx++;
 				}
 
