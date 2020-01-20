@@ -1,18 +1,18 @@
 (function () {
 	"use strict";
 
-	var delay = function (elem, callback) {
-		var timeout = null;
-		elem.onmouseover = function() {
-			// Set timeout to be a timer which will invoke callback after 1s
-			timeout = setTimeout(callback, 1000);
-		};
+	// var delay = function (elem, callback) {
+	// 	var timeout = null;
+	// 	elem.onmouseover = function() {
+	// 		// Set timeout to be a timer which will invoke callback after 1s
+	// 		timeout = setTimeout(callback, 1000);
+	// 	};
 	
-		elem.onmouseout = function() {
-			// Clear any timers set to timeout
-			clearTimeout(timeout);
-		}
-	};
+	// 	elem.onmouseout = function() {
+	// 		// Clear any timers set to timeout
+	// 		clearTimeout(timeout);
+	// 	}
+	// };
 
 	var slideMenu = $('.side-menu');
 
@@ -20,7 +20,7 @@
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
-		$('.app').removeClass('app-sidebar__overlay');
+		// $('.app').removeClass('app-sidebar__overlay');
 		// $('.side-menu').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
 		// 	return false
 		//  });
@@ -60,12 +60,12 @@
 		});
 	} 
 
-	if ( $(window).width() > 739) {     
-			$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
-				event.preventDefault();
-				$('.app').toggleClass('sidenav-toggled');
-			});
-		} 
+	// if ( $(window).width() > 739) {     
+	// 		$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
+	// 			event.preventDefault();
+	// 			$('.app').toggleClass('sidenav-toggled');
+	// 		});
+	// 	} 
 
 	// $("#div-1").bind('mouseover',function(event){
     //   $('#div-2').stop(true,true).fadeIn(100);
