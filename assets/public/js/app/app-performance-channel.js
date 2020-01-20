@@ -1,6 +1,6 @@
 var base_url = $('#base_url').val();
 var v_params = 'day';
-var v_index = '2020-01-19';
+var v_index = '2020-01-16';
 var v_month = '1';
 var v_year = '2020';
 var d = new Date();
@@ -24,7 +24,8 @@ var months = [
 
 // console.log(d);
 $(document).ready(function () {
-    loadContent(v_params, v_index, 0);
+    // loadContent(v_params, v_index, 0);
+    loadContent(v_params, v_params_this_year, 0);
     //for current time
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
