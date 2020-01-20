@@ -95,6 +95,8 @@
 	// 		$('slide-item').removeClass('collapse')
 	// 	}
 	// })
+
+	$('div')
 	// Set initial active toggle
 	$("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
 
