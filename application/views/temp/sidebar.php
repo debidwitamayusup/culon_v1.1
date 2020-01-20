@@ -30,10 +30,9 @@
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
-					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
-					style="display :block">
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_week">Weekly</a></div>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/this_week">Weekly</a></div> -->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>

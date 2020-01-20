@@ -1,8 +1,10 @@
 var base_url = $('#base_url').val();
-var v_params = 'day';
-var v_index = '2020-01-01';
-var v_month = '1';
-var v_year = '2020';
+// var v_params = 'day';
+// var v_index = '2020-01-01';
+var params_time='';
+var v_date='';
+var v_month = '';
+var v_year = '';
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -18,20 +20,34 @@ var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 // console.log(d);
 $(document).ready(function () {
-    loadContent(v_params, v_index, 0);
+	params_time = 'day';
+	v_date = getToday();
+	v_month = getMonth();
+	v_year = getYear();
+	v_date = '2019-12-01';
+    // loadContent(v_params, v_index, 0);
     //for current time
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
     // drawChartSumChannel();
-    $("#btn-month").prop("class","btn btn-light btn-sm");
-    $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-red btn-sm");
+    // $("#btn-month").prop("class","btn btn-light btn-sm");
+    // $("#btn-year").prop("class","btn btn-light btn-sm");
+	$("#btn-day").prop("class","btn btn-red btn-sm");
+	loadContent(params_time, v_date, 0);
+	$('#input-date-filter').datepicker("setDate", v_date);
+	
+	$('#filter-date').show();
+	$('#filter-month').hide();
+	$('#filter-year').hide();
+	setMonthPicker();
+	setYearPicker();
 });
 
 function loadContent(params, index, params_year){
     drawDataTable2(params, index, params_year);
     summaryService(params, index, params_year);
-    summaryChannel(params, index, params_year);
+	summaryChannel(params, index, params_year);
+	// callSummaryInteraction(params, index,0);
 }
 
 function addCommas(commas)
@@ -438,6 +454,45 @@ function fromTemplate() {
 	// $('#tablesPerformance').DataTable();
 }
 
+
+function getToday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + dd;
+    return today;
+}
+
+function getMonth(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var month = mm;
+    return month;
+}
+
+function getYear(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var year = yyyy;
+    return year;
+}
+
+function setDatePicker(){
+	$(".datepicker").datepicker({
+		format: "yyyy-mm-dd",
+		todayHighlight: true,
+		autoclose: true
+	}).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 //jquery
 (function ($) {
 
@@ -445,15 +500,18 @@ function fromTemplate() {
     $('#btn-day').click(function(){
         params_time = 'day';
         // console.log(params_time);
-        loadContent(params_time ,'2020-01-01', 0);
-
+        // loadContent(params_time ,'2020-01-01', 0);
+		loadContent(params_time,v_date);
         //current time
 		// loadContent(v_params, v_params_this_year, 0);     
         // $('#tag-time').html(v_date);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
+		$('#filter-date').show();
+		$('#filter-month').hide();
+		$('#filter-year').hide();
     });
 
     // btn day
@@ -475,12 +533,17 @@ function fromTemplate() {
         // loadContent(params_time , '1', v_year);
 
         //current time
-        loadContent(params_time , n, m)
+		// loadContent(params_time , n, m);
+		loadContent(params_time , $("#select-month").val(), $("#select-year-on-month").val());
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
+		
+		$('#filter-date').hide();
+		$('#filter-month').show();
+		$('#filter-year').hide();
     });
 
     // btn year
@@ -490,14 +553,48 @@ function fromTemplate() {
         // loadContent(params_time , '2020');
 
         //current time
-		loadContent(params_time , m);        
-        // $('#tag-time').html(v_year);
-        $("#btn-week").prop("class","btn btn-light btn-sm");
+		// loadContent(params_time , m);        
+		// $('#tag-time').html(v_year);
+		loadContent(params_time ,  $("#select-year-only").val(), 0);
+        // $("#btn-week").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
+		
+		$('#filter-date').hide();
+		$('#filter-month').hide();
+		$('#filter-year').show();
     });
 
+	$('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+			// console.log(this.value);
+			v_date = this.value;
+			callSummaryInteraction(params_time, v_date,0);
+        }
+	});
+
+	/*select option month*/ 
+	$('#select-month').change(function(){
+		v_month = $(this).val();
+		// console.log(value);
+		// callSummaryInteraction(params_time, v_month,v_year);
+		loadContent('month', v_month, $("#select-year-on-month").val());
+	});
+	$('#select-year-on-month').change(function(){
+		v_year = $(this).val();
+		// console.log(value);
+		loadContent('month', $("#select-month").val(), v_year);
+	});
+	/**/ 
+
+	// select option year
+	$('#select-year-only').change(function(){
+		v_year = $(this).val();
+		// console.log(this.value);
+		loadContent('year', v_year, 0);
+	});
 
     
 })(jQuery);
