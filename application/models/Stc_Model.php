@@ -330,8 +330,9 @@ class Stc_Model extends CI_Model
 
 	public function getTotInteraction($params, $index, $params_year)
 	{
-		$this->db->select('IFNULL(SUM(cof), 0) total_interaction');
-		$this->db->from('rpt_summary_scr');
+		$this->db->select('IFNULL(SUM(b.cof), 0) total_interaction');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -341,13 +342,27 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(tanggal)', $index);
 		}
 		$query = $this->db->get();
-		return $query;
+    	return $query;
+
+		// $this->db->select('IFNULL(SUM(cof), 0) total_interaction');
+		// $this->db->from('rpt_summary_scr');
+		// if($params == 'day'){
+		// 	$this->db->where('tanggal', $index);
+		// }else if($params == 'month'){
+		// 	$this->db->where('MONTH(tanggal)', $index);
+		// 	$this->db->where('YEAR(tanggal)', $params_year);
+		// }else if($params == 'year'){
+		// 	$this->db->where('YEAR(tanggal)', $index);
+		// }
+		// $query = $this->db->get();
+		// return $query;
 	}
 
 	public function getTotUniqueCustomer($params, $index, $params_year)
 	{
 		$this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
-		$this->db->from('rpt_summary_scr');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -357,7 +372,20 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(tanggal)', $index);
 		}
 		$query = $this->db->get();
-		return $query;
+    	return $query;
+
+		// $this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
+		// $this->db->from('rpt_summary_scr');
+		// if($params == 'day'){
+		// 	$this->db->where('tanggal', $index);
+		// }else if($params == 'month'){
+		// 	$this->db->where('MONTH(tanggal)', $index);
+		// 	$this->db->where('YEAR(tanggal)', $params_year);
+		// }else if($params == 'year'){
+		// 	$this->db->where('YEAR(tanggal)', $index);
+		// }
+		// $query = $this->db->get();
+		// return $query;
 	}
 
 	public function getAverageCustomer($params, $index)
@@ -898,26 +926,40 @@ class Stc_Model extends CI_Model
 
 	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
-		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent'); 
-		$this->db->from('rpt_summary_scr');
+		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			// $this->db->where('YEAR(date)', date("Y"));
-
-			//temporarily hardcode year based on data ready on database
-
-			$this->db->where('YEAR(tanggal)', date('Y'));
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
-
 		$query = $this->db->get();
-		// print_r($this->db->last_query());
-		// exit;
+    	return $query->row();
 
-		return $query->row();
+		// $this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent'); 
+		// $this->db->from('rpt_summary_scr');
+		// if($params == 'day'){
+		// 	$this->db->where('tanggal', $index);
+		// }else if($params == 'month'){
+		// 	$this->db->where('MONTH(tanggal)', $index);
+		// 	$this->db->where('YEAR(tanggal)', $params_year);
+		// 	// $this->db->where('YEAR(date)', date("Y"));
+
+		// 	//temporarily hardcode year based on data ready on database
+
+		// 	$this->db->where('YEAR(tanggal)', date('Y'));
+		// }else if($params == 'year'){
+		// 	$this->db->where('YEAR(tanggal)', $index);
+		// }
+
+		// $query = $this->db->get();
+		// // print_r($this->db->last_query());
+		// // exit;
+
+		// return $query->row();
 	}
 }	
