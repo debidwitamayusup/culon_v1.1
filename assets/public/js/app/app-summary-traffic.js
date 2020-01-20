@@ -99,7 +99,7 @@ function loadContent(params, index_time){
     callSummaryInteraction(params, index_time);
     callTotalInteraction(params, index_time);
     callTotalUniqueCustomer(params, index_time);
-    callAverageCustomer(params, index_time);
+    // callAverageCustomer(params, index_time);
     callUniqueCustomerPerChannel(params, index_time);
     callSummaryCaseTotAgent(params, index_time);
     $("#filter-loader").fadeOut("slow");
@@ -233,27 +233,48 @@ function drawChartAndCard(response){
                 showActualPercentages: true,
             },
             legendCallback: function (chart, index) {
+                console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-2">');
                 allData.forEach(function (data, index) {
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index];
-                    var total = 0;
-                    for (var i in allData) {
-                        total += parseInt(allData[i]);
-                    }
-                    // var percentage = Math.round((dataLabel / total) * 100);
-                    if(dataLabel != 0){
-                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
-                    }else{
-                        var percentage = Math.round((dataLabel / total) * 100);
-                    }
+                    if (allData[index] != 0) {
+                        var label = chart.data.labels[index];
+                        var dataLabel = allData[index];
+                        var background = chart.data.datasets[0].backgroundColor[index];
+                        var total = 0;
+                        for (var i in allData) {
+                            total += parseInt(allData[i]);
+                        }
+                        // var percentage = Math.round((dataLabel / total) * 100);
+                        if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                        }else{
+                            var percentage = Math.round((dataLabel / total) * 100);
+                        }
 
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
-                    legendHtml.push('</li>');
+                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
+                        legendHtml.push('</li>');
+                    }else{
+                        var label = chart.data.labels[index];
+                        var dataLabel = allData[index];
+                        var background = chart.data.datasets[0].backgroundColor[index];
+                        var total = 0;
+                        for (var i in allData) {
+                            total += parseInt(allData[i]);
+                        }
+                        // var percentage = Math.round((dataLabel / total) * 100);
+                        if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                        }else{
+                            var percentage = Math.round((dataLabel / total) * 100);
+                        }
+
+                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + 'no data' + '</span>');
+                        legendHtml.push('</li>');
+                    }
                 })
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");
@@ -364,6 +385,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response.data[0].total_unique);
+            console.log(response.data);
             response.data.forEach(function (value, index) {
                 let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Facebook Messenger" ? "text-blue" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-gray1" : value.channel_name == "SMS" ? "text-blue-teal" : "";
                 let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";

@@ -329,7 +329,7 @@ class Stc_Model extends CI_Model
 
 	public function getTotInteraction($params, $index)
 	{
-		$this->db->select('SUM(cof) total_interaction');
+		$this->db->select('IFNULL(SUM(cof), 0) total_interaction');
 		$this->db->from('rpt_summary_scr');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
@@ -344,7 +344,7 @@ class Stc_Model extends CI_Model
 
 	public function getTotUniqueCustomer($params, $index)
 	{
-		$this->db->select('SUM(cof) total_unique_customer');
+		$this->db->select('IFNULL(SUM(cof),0) total_unique_customer');
 		$this->db->from('rpt_summary_scr');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
