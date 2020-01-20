@@ -83,7 +83,7 @@ function callIntervalTraffic(date, arr_channel){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
             date: date,
             arr_channel: arr_channel
