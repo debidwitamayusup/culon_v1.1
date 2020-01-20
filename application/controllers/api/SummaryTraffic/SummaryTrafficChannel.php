@@ -15,7 +15,7 @@ class SummaryTrafficChannel extends CI_Controller {
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
-		$query = $this->Stc_Model->get_all_unique_customer_per_channel($params, $index);
+		$query = $this->Stc_Model->get_all_unique_customer_per_channel($params, $index, $params_year);
 		
 		$channel = array();
 		foreach($query as $key){
@@ -172,7 +172,7 @@ class SummaryTrafficChannel extends CI_Controller {
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
 
-		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer($params, $index)->row();
+		$totUniqueCustomer = $this->Stc_Model->getTotUniqueCustomer($params, $index, $params_year)->row();
 
 		if ($totUniqueCustomer) 
 		{

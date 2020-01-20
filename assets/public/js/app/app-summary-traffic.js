@@ -111,14 +111,14 @@ function getYear(){
     return year;
 }
 
-function loadContent(params, index_time){
+function loadContent(params, index_time, params_year){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(params, index_time);
-    callTotalInteraction(params, index_time);
-    callTotalUniqueCustomer(params, index_time);
+    callSummaryInteraction(params, index_time, params_year);
+    callTotalInteraction(params, index_time, params_year);
+    callTotalUniqueCustomer(params, index_time, params_year);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time);
-    callSummaryCaseTotAgent(params, index_time);
+    callUniqueCustomerPerChannel(params, index_time, params_year);
+    callSummaryCaseTotAgent(params, index_time, params_year);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -492,7 +492,7 @@ function setDatePicker(){
         // loadContent(params_time , '12');
         loadContent(params_time, n, m);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $('#tag-time').html(monthNumToName(n)+' '+m);
+        // $('#tag-time').html(monthNumToName(n)+' '+m);
         // console.log(monthNumToName(n));
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -579,14 +579,5 @@ function setDatePicker(){
         $("#filter-month").hide();
         $("#filter-year").show();
     });
-
-    $('#input-date-filter').datepicker({
-        dateFormat : 'yy-mm-dd',
-        onSelect : function(dateText){
-            v_date=this.value;
-            callSummaryInteraction(params_time,v_date,0);
-        }
-    });
-
 
 })(jQuery);
