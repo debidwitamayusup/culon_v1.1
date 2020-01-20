@@ -64,7 +64,7 @@ function summaryService(params, index, params_year){
 			$("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
 			$("#filter-loader").fadeOut("slow");
         },
@@ -87,7 +87,7 @@ function summaryChannel(params, index, params_year){
             drawChartSumChannel(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
     });
