@@ -146,9 +146,6 @@ function drawChartSumService(response){
 	        type : 'horizontalBar',
 	        data : MeSeData,
 	        options : {
-	        	tooltips: {
-	        		enabled: false
-	        	},
 	        	hover: {
 	        		animationDuration: 0
 			    },
@@ -194,6 +191,20 @@ function drawChartSumService(response){
 	                    stacked : true
 	                }]
 	            },
+	            tooltips: {
+	        		// enabled: false
+	        		show: true,
+					showContent: true,
+					alwaysShowContent: false,
+					triggerOn: 'mousemove',
+					trigger: 'axis',
+					axisPointer: {
+						label: {
+							show: true,
+							color: '#7886a0'
+						}
+					},
+	        	},
 	            legend: {
 	                display: false,
 	                labels:{
@@ -206,7 +217,7 @@ function drawChartSumService(response){
 	                    	return context.chart.data.labels[context.dataIndex];
 	                	}
 	            	}
-	        	},
+	        	}
 	        }
 	    });
 	}else{
@@ -231,7 +242,7 @@ function drawChartSumChannel(response){
 			ast.push(value.SUM_AST);
 
 	    });
-	    console.log(channelName);
+	    // console.log(channelName);
 		var chartdataTicket= [{
 			name: 'ART',
 			type: 'bar',
