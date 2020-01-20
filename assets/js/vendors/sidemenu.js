@@ -14,13 +14,17 @@
 	// 	}
 	// };
 
+	// if ($('body').hasClass('.sidebar__overlay')){
+	// 	$('.app .sidebar-mini').removeClass('.sidebar__overlay').addClass('sidenav-toggled');
+	// }
+
 	var slideMenu = $('.side-menu');
 
 	// Toggle Sidebar
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
-		// $('.app').removeClass('app-sidebar__overlay');
+		// ('.app.sidebar-mini').removeClass('.sidebar__overlay');
 		// $('.side-menu').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
 		// 	return false
 		//  });
@@ -77,14 +81,24 @@
 	// Activate sidebar slide toggle
 	$("[data-toggle='slide']").on("click", function(event) {
 		event.preventDefault();
-		if(!$(this).parent().hasClass('is-expanded')) {
+		if(!$(this).parent().hasClass('is-expanded' && 'collapse')) {
 			slideMenu.find("[data-toggle='slide']").parent().removeClass('is-expanded');
+			$('.app.sidebar-mini').removeClass('sidenav-toggled').addClass('sidebar__overlay');
 		}
 		$(this).parent().toggleClass('is-expanded');
 	});
 
+	// $("[data-toggle='collapse']").on("click", function(event){
+	// 	event.preventDefault();
+	// 	if(!$(this).parent().hasClass('active')){
+	// 		$("#accordion").find("[data-toggle='collapse']").parent.removeClass('collapse');
+	// 		$('slide-item').removeClass('collapse')
+	// 	}
+	// })
+
+	// $('slide-item').hasClass('active').parent("collapse").css("display","block");
 	// Set initial active toggle
-	// $("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
+	$("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
 
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();

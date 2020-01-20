@@ -3,11 +3,11 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
-var months = [
-    'January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September',
-    'October', 'November', 'December'
-    ];
+// var months = [
+//     'January', 'February', 'March', 'April', 'May',
+//     'June', 'July', 'August', 'September',
+//     'October', 'November', 'December'
+//     ];
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -45,11 +45,17 @@ $(document).ready(function () {
     // $("#btn-day").prop("class","btn btn-red btn-sm");
     $('#input-date-filter').datepicker("setDate", v_params_this_year);
 
+
     $('#filter-date').show();
     $('#filter-month').hide();
     $('#filter-year').hide();
     setMonthPicker();
     setYearPicker();
+    // loadContent(params_time, v_params_this_year);
+    // $('#tag-time').html(v_params_this_year);
+    // $("#btn-month").prop("class","btn btn-light btn-sm");
+    // $("#btn-year").prop("class","btn btn-light btn-sm");
+    // $("#btn-day").prop("class","btn btn-red btn-sm");
 
 });
 
@@ -107,6 +113,13 @@ function getYear(){
     return year;
 }
 
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format : "yyyy-mm-dd",
+        todayHiglight : true,
+        autoclose :true
+    }).attr("readonly","readonly").css({"cursor":"pointer","background":"whiter"});
+}
 function loadContent(params, index_time){
     $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time);
@@ -462,6 +475,10 @@ function setDatePicker(){
         // loadContent(params_time , '2019-12-02');
         loadContent(params_time, v_params_this_year)
         $('#tag-time').html(v_params_this_year);
+        v_date='2019-12-01';
+        callSummaryInteraction(params_time,v_date);
+        // loadContent(params_time, v_params_this_year)
+        // $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -476,10 +493,12 @@ function setDatePicker(){
         params_time = 'month';
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n);
+        // loadContent(params_time, n);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        $('#tag-time').html(monthNumToName(n)+' '+m);
+        // $('#tag-time').html(monthNumToName(n)+' '+m);
         // console.log(monthNumToName(n));
+        callSummaryInteraction(params_time, $("#select-month").val(),$('#select-year-on-month').val());
+
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -494,12 +513,12 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m)
-        $('#tag-time').html(m);
+        // loadContent(params_time, m)
+        // $('#tag-time').html(m);
+        callSummaryInteraction(params_time, $("#select-year-only").val(),0);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
-
         $('#filter-date').hide();
         $('#filter-month').hide();
         $('#filter-year').show();
@@ -562,6 +581,32 @@ function setDatePicker(){
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
         // simmiriUnit('year', v_year, 0);
+        $("#filter-date").hide();
+        $("#filter-month").hide();
+        $("#filter-year").show();
+    });
+
+    $('#input-date-filter').datepicker({
+        dateFormat : 'yy-mm-dd',
+        onSelect : function(dateText){
+            v_date=this.value;
+            callSummaryInteraction(params_time,v_date,0);
+        }
+    });
+
+    $('#select-month').change(function(){
+        v_month = $(this).val();
+        callSummaryInteraction('month', v_month, $("select-year-on-month").val());
+    });
+
+    $('#select-year-on-month').change(function(){
+        v_year=$(this).val();
+        callSummaryInteraction('month', $("select-month").val(),v_year);
+    });
+
+    $('#select-year-only').change(function(){
+        v_year=$(this).val();
+        callSummaryInteraction('year', v_year,0);
     });
 
 })(jQuery);

@@ -70,7 +70,7 @@
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
 								<div class="card-header-small bg-red">
-									<h5 class="card-title-small card-pt10">Summary Traffic Interval All Channel</h5>
+									<h5 class="card-title-small card-pt10">Summary Session All Channel</h5>
 								</div>
 								<div class="card-body" id="chartPercentage">
 									<canvas id="echartVerticalYear"></canvas>
