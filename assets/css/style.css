@@ -22425,5 +22425,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 	background-size: cover;
     background-repeat: no-repeat;
 	position : fixed;
+}
+
+.box-login{
+	width : 300px;
+	margin-left : 800px;
 	background-position: 50% 50%;
 }
