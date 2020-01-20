@@ -150,7 +150,7 @@ class OperationModel extends CI_Model
         $this->db->select('m_channel.channel_name
         , rpt_summ_kip2.category
         , sum(rpt_summ_kip2.jumlah) as total_kip
-        , CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE LEFT(rpt_summ_kip2.sub_category,LOCATE(" ",rpt_summ_kip2.sub_category) -1 ) END as sub_category
+        , CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE LEFT(rpt_summ_kip2.sub_category,LOCATE(" |",rpt_summ_kip2.sub_category) -1 ) END as sub_category
         ,  CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE rpt_summ_kip2.sub_category END as sub_category_lng
         ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
 		$this->db->from('rpt_summ_kip2');
