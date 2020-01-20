@@ -197,7 +197,7 @@ function callDataPercentage(date){
             drawChartPercentageToday(response);
         },
         error: function (r) {
-            // console.log(r);
+            console.log(r);
             alert("error");
         },
     });
