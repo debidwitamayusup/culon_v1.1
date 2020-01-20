@@ -81,7 +81,7 @@
 	// Activate sidebar slide toggle
 	$("[data-toggle='slide']").on("click", function(event) {
 		event.preventDefault();
-		if(!$(this).parent().hasClass('is-expanded')) {
+		if(!$(this).parent().hasClass('is-expanded' && 'collapse')) {
 			slideMenu.find("[data-toggle='slide']").parent().removeClass('is-expanded');
 			$('.app.sidebar-mini').removeClass('sidenav-toggled').addClass('sidebar__overlay');
 		}
@@ -96,7 +96,7 @@
 	// 	}
 	// })
 
-	$('div')
+	// $('slide-item').hasClass('active').parent("collapse").css("display","block");
 	// Set initial active toggle
 	$("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
 
