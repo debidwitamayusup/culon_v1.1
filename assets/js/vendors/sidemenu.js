@@ -14,13 +14,17 @@
 	// 	}
 	// };
 
+	// if ($('body').hasClass('.sidebar__overlay')){
+	// 	$('.app .sidebar-mini').removeClass('.sidebar__overlay').addClass('sidenav-toggled');
+	// }
+
 	var slideMenu = $('.side-menu');
 
 	// Toggle Sidebar
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
-		('.app.sidebar-mini').removeClass('app-sidebar__overlay');
+		// ('.app.sidebar-mini').removeClass('.sidebar__overlay');
 		// $('.side-menu').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
 		// 	return false
 		//  });
@@ -84,8 +88,15 @@
 		$(this).parent().toggleClass('is-expanded');
 	});
 
+	// $("[data-toggle='collapse']").on("click", function(event){
+	// 	event.preventDefault();
+	// 	if(!$(this).parent().hasClass('active')){
+	// 		$("#accordion").find("[data-toggle='collapse']").parent.removeClass('collapse');
+	// 		$('slide-item').removeClass('collapse')
+	// 	}
+	// })
 	// Set initial active toggle
-	// $("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
+	$("[data-toggle='slide.'].is-expanded").parent().toggleClass('is-expanded');
 
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();

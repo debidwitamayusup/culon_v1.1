@@ -51,7 +51,7 @@
                 <div class="col-md-12 col-lg-7">
                     <div class="card">
                         <div class="card-header-small bg-red">
-                            <h5 class="card-title-small card-pt10">Summary by Channel</h5>
+                            <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
                         <div class="card-body" id="echartServiceDiv">
                         <div id="echartService" class="chartsh overflow-hidden"></div>
@@ -61,7 +61,7 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header-small bg-red">
-                            <h5 class="card-title-small card-pt10">Summary Service All Channel</h5>
+                            <h5 class="card-title-small card-pt10">Summary Average Service All Channel</h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

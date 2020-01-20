@@ -33,6 +33,7 @@
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_week">Weekly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
@@ -51,7 +52,7 @@
 					</div>
 					</div>
 				</li> -->
-				<li class="slide submenu">
+				<li class="slide">
 					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
@@ -101,5 +102,5 @@
 		</li>
 	</ul>
 </aside>
-<body class="app sidebar-mini sidenav-toggled">
+<body class="app sidebar-mini">
 <!-- <body class="sidenav-toggled"> -->

@@ -58,6 +58,13 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_today');
 	}
+
+	public function this_week(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_this_week');
+	}
 	
 	public function this_month(){
 		$this->load->view('temp/header');
