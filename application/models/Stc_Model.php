@@ -797,7 +797,7 @@ class Stc_Model extends CI_Model
 					'art'=> $data->art,
 					'aht'=> $data->aht,
 					'ast'=> $data->ast,
-					'scr'=> $data->scr
+					'scr'=> $scr
 				);
 			}
 		}
