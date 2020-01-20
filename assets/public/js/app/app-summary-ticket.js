@@ -1234,7 +1234,6 @@ function setDatePicker(){
         // sessionStorage.removeItem('paramsSession');
         // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-<
 		simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
         ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
         summaryTicketClose(0, fromParams, v_month, $("#select-year-on-month").val());

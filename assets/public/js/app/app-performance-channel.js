@@ -24,8 +24,8 @@ var months = [
 
 // console.log(d);
 $(document).ready(function () {
-    // loadContent(v_params, v_index, 0);
-    loadContent(v_params, v_params_this_year, 0);
+    loadContent(v_params, v_index, 0);
+    // loadContent(v_params, v_params_this_year, 0);
     //for current time
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
@@ -54,7 +54,7 @@ function addCommas(commas)
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
     return x1 + x2;
 }

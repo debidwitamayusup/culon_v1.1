@@ -43,16 +43,16 @@ class OperationModel extends CI_Model
     }
 
     public function get_top_3_category_operation_performance($params, $index, $year){
-        $this->db->select('category, sum(total) as total_kip');
-        $this->db->from('summary');
+        $this->db->select('category, sum(jumlah) as total_kip');
+        $this->db->from('rpt_summ_kip1');
         if($params == 'day'){
-            $this->db->where('DATE(date)', $index);
+            $this->db->where('tanggal', $index);
         }else if($params == 'month'){
-            $this->db->where('MONTH(date)', $index);
-            $this->db->where('YEAR(date)', $year);
+            $this->db->where('MONTH(tanggal)', $index);
+            $this->db->where('YEAR(tanggal)', $year);
             // $this->db->where('YEAR(date)', '2019');
         }else if($params == 'year'){
-            $this->db->where('YEAR(date)', $index);
+            $this->db->where('YEAR(tanggal)', $index);
         }
         $this->db->group_by('category');
         $this->db->order_by('total_kip', 'DESC');
@@ -73,11 +73,11 @@ class OperationModel extends CI_Model
 
         $where= "";
         if($params == 'day'){
-			$where = 'DATE(date) = "'.$index.'"' ;
+			$where = 'tanggal = "'.$index.'"' ;
 		}else if($params == 'month'){
-			$where = 'MONTH(date) = "'.$index.'" AND YEAR(date) = "'.$params_year.'" ' ;
+			$where = 'MONTH(tanggal) = "'.$index.'" AND YEAR(tanggal) = "'.$params_year.'" ' ;
 		}else if($params == 'year'){
-			$where = 'YEAR(date) = "'.$index.'"' ;
+			$where = 'YEAR(tanggal) = "'.$index.'"' ;
         }
 
         $left_join = "";
@@ -86,8 +86,8 @@ class OperationModel extends CI_Model
         foreach($arr_category as $key){
             $select .= ", $index_alpha[$i].category_$i, $index_alpha[$i].total_$i";
             $left_join .= " LEFT JOIN (
-                SELECT category as category_$i, channel_id, sum(total)as total_$i
-                from summary
+                SELECT category as category_$i, channel_id, sum(jumlah) as total_$i
+                from rpt_summ_kip1
                 where category = '".$key->category."' and $where
                 GROUP BY channel_id
             ) as $index_alpha[$i] on $index_alpha[$i].channel_id = m_channel.channel_id ";
@@ -148,26 +148,26 @@ class OperationModel extends CI_Model
 
     public function get_data_sub_category($params, $index, $channel_id, $category, $params_year){
         $this->db->select('m_channel.channel_name
-        , summary.category
-        , sum(summary.total) as total_kip
-        , CASE WHEN summary.sub_category is null THEN "None" ELSE LEFT(summary.sub_category,LOCATE("-",summary.sub_category) -1 ) END as sub_category
-        ,  CASE WHEN summary.sub_category is null THEN "None" ELSE summary.sub_category END as sub_category_lng
+        , rpt_summ_kip2.category
+        , sum(rpt_summ_kip2.jumlah) as total_kip
+        , CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE LEFT(rpt_summ_kip2.sub_category,LOCATE(" ",rpt_summ_kip2.sub_category) -1 ) END as sub_category
+        ,  CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE rpt_summ_kip2.sub_category END as sub_category_lng
         ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
-		$this->db->from('summary');
-        $this->db->join('m_channel', 'm_channel.channel_id = summary.channel_id');
+		$this->db->from('rpt_summ_kip2');
+        $this->db->join('m_channel', 'm_channel.channel_id = rpt_summ_kip2.channel_id');
         if($params == 'day'){
-            $this->db->where('DATE(date)', $index);
+            $this->db->where('tanggal', $index);
         }else if($params == 'month'){
-            $this->db->where('MONTH(date)', $index);
-            $this->db->where('YEAR(date)', $params_year);
+            $this->db->where('MONTH(tanggal)', $index);
+            $this->db->where('YEAR(tanggal)', $params_year);
         }else if($params == 'year'){
-            $this->db->where('YEAR(date)', $index);
+            $this->db->where('YEAR(tanggal)', $index);
         }
         if (!empty($channel_id)) {
             $this->db->where('m_channel.channel_id', $channel_id);
         }
-        $this->db->where('summary.category', $category);
-		$this->db->group_by('summary.sub_category');
+        $this->db->where('rpt_summ_kip2.category', $category);
+		$this->db->group_by('rpt_summ_kip2.sub_category');
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(5);
         $query = $this->db->get();
@@ -457,7 +457,7 @@ class OperationModel extends CI_Model
 #region :: ragakasih
     public function  getSService($params,$index,$param_year)
     {
-        $this->db->select('SUM(art_num)AS ART, SUM(aht_num)AS AHT, SUM(ast_num) AS AST');
+        $this->db->select('AVG(art_num) AS ART, AVG(aht_num)AS AHT, AVG(ast_num) AS AST');
         $this->db->from('rpt_summary_scr');
         if($params=='month')
 		{
