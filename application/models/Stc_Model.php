@@ -446,6 +446,9 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
+
+			// CAST(SUM(cof)*100/
+			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."' ) AS DECIMAL(10,2)) as rate
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -455,8 +458,7 @@ class Stc_Model extends CI_Model
 			LEFT JOIN (
 			SELECT channel_id,
 			SUM(cof) total,
-			CAST(SUM(cof)*100/
-			(SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."' ) AS DECIMAL(10,2)) as rate
+			SUM(cof) rate
 			FROM rpt_summary_scr
 			WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."'
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
@@ -721,6 +723,9 @@ class Stc_Model extends CI_Model
 		// 	exit;
 		// }
 
+			// CAST(SUM(cof)*100/
+			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE DATE(rpt_summary_scr.tanggal) = '".$date."' ) AS DECIMAL(10,2)) as rate
+
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -730,8 +735,7 @@ class Stc_Model extends CI_Model
 			LEFT JOIN (
 			SELECT channel_id,
 			SUM(cof) total,
-			CAST(SUM(cof)*100/
-			(SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE DATE(rpt_summary_scr.tanggal) = '".$date."' ) AS DECIMAL(10,2)) as rate
+			SUM(cof) as rate
 			FROM rpt_summary_scr
 			WHERE DATE(rpt_summary_scr.tanggal) = '".$date."'
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
@@ -758,6 +762,8 @@ class Stc_Model extends CI_Model
 		// 	GROUP BY summary_channel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 		// 	GROUP BY m_channel.channel_name");
 
+			// CAST(SUM(cof)*100/
+			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."') AS DECIMAL(10,2)) as rate
 		//rpt_sumamary
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -767,8 +773,7 @@ class Stc_Model extends CI_Model
 			LEFT JOIN (
 			SELECT channel_id,
 			SUM(cof) total,
-			CAST(SUM(cof)*100/
-			(SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."') AS DECIMAL(10,2)) as rate
+			SUM(cof) rate
 			FROM rpt_summary_scr
 			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."'
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
