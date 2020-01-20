@@ -344,7 +344,7 @@ class Stc_Model extends CI_Model
 
 	public function getTotUniqueCustomer($params, $index)
 	{
-		$this->db->select('IFNULL(SUM(cof),0) total_unique_customer');
+		$this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
 		$this->db->from('rpt_summary_scr');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);

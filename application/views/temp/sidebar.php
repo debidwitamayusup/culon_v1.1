@@ -1,4 +1,4 @@
-<!-- Sidebar menu-->
+Sidebar menu-->
 <div class="app sidebar-mini" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
@@ -60,7 +60,7 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>
@@ -79,7 +79,7 @@
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/summary_ticket_time">Ticketing by Time</a></div>
 					</div>
 					</div>
-				</li> -->
+				</li>
 			</ul>
 		</li>
 		<li class="slide">
@@ -102,4 +102,4 @@
 	</ul>
 </aside>
 <body class="app sidebar-mini">
-<!-- <body class="sidenav-toggled"> -->
+<!-- <body class="sidenav-toggled">
