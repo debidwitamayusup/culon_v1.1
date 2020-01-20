@@ -32,10 +32,8 @@ var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 // console.log(d);
 $(document).ready(function () {
-    loadContent(v_params, v_index, 0);
+    loadContent(v_params, v_params_this_year, 0);
     // loadContent(v_params, v_params_this_year, 0);
-	$('#select-month option[value='+n+']').attr('selected','selected');
-    $('#dateTahun option[value='+m+']').attr('selected','selected');
 
 	params_time = 'day';
 	v_date = getToday();
@@ -47,21 +45,15 @@ $(document).ready(function () {
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
     // drawChartSumChannel();
-    $('#tag-time').html(v_params_this_year);
     $("#btn-month").prop("class","btn btn-light btn-sm");
     $("#btn-year").prop("class","btn btn-light btn-sm");
     $("#btn-day").prop("class","btn btn-red btn-sm");
-
-
-	$("#btn-day").prop("class","btn btn-red btn-sm");
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
-    
-	$('#btn-day').prop("class","btn btn-red btn-sm");
 	// loadContent(params_time, v_date, 0);
 	loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
-	$('#input-date-filter').datepicker("setDate", v_date);
+	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value='+n+']').attr('selected','selected');
 	$('#select-year-on-month option[value='+m+']').attr('selected','selected');
 	$('#select-year-only option[value='+m+']').attr('selected','selected');

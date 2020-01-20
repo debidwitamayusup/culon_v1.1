@@ -183,7 +183,7 @@ function drawChartSubCategory(response){
 			},
 			yAxis: {
 				type: 'category',
-				data: label_lng,
+				data: label,
 				splitLine: {
 					lineStyle: {
 						color: '#efefff'
