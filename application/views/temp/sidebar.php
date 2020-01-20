@@ -57,7 +57,7 @@
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapsePerformance" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div> -->
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
