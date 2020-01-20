@@ -179,7 +179,7 @@ function drawTable(response){
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {
             $('#tableSkill').find('tbody').append('<tr>'+
-            '<td class="text-left">'+value.SKILLNAME+'</td>'+
+            '<td class="text-center">'+value.SKILLNAME+'</td>'+
             '<td class="text-right">'+value.AHT+'</td>'+
             '<td class="text-right">'+value.ART+'</td>'+
             '<td class="text-right">'+value.AST+'</td>'+
@@ -207,7 +207,8 @@ function drawDataTable(){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
             { className: "text-center", targets: 1 },
-			{ className: "text-right", targets: 4 },
+            { className: "text-center", targets: 3 },
+			{ className: "text-center", targets: 4 },
 			{ className: "text-center", targets: 5 },
 			{ className: "text-center", targets: 6 },
 			{ className: "text-center", targets: 7 }
