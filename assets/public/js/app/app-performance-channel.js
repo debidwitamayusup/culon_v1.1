@@ -5,6 +5,7 @@ var params_time='';
 var v_date='';
 var v_month = '';
 var v_year = '';
+
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -16,20 +17,29 @@ if (n < 10) {
   n = '0' + n;
 }
 var v_params_this_year = m + '-' + n + '-' + (o-1);
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
+
 // console.log(v_params_this_year);
 
 // console.log(d);
 $(document).ready(function () {
+
 	params_time = 'day';
 	v_date = getToday();
 	v_month = getMonth();
 	v_year = getYear();
 	v_date = '2019-12-01';
     // loadContent(v_params, v_index, 0);
+
     //for current time
     // loadContent(v_params, v_params_this_year, 0);
     // fromTemplate();
     // drawChartSumChannel();
+
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
 	$("#btn-day").prop("class","btn btn-red btn-sm");
@@ -50,6 +60,10 @@ function loadContent(params, index, params_year){
 	// callSummaryInteraction(params, index,0);
 }
 
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
+
 function addCommas(commas)
 {
     commas += '';
@@ -58,7 +72,7 @@ function addCommas(commas)
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
     return x1 + x2;
 }
@@ -109,6 +123,7 @@ function summaryChannel(params, index, params_year){
     });
 }
 function drawDataTable2(params, index, params_year){
+	// console.log(params);
 	$("#filter-loader").fadeIn("slow");
 
     $('#mytbody').remove();
@@ -119,7 +134,12 @@ function drawDataTable2(params, index, params_year){
         processing : true,
         ajax: {
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
-            type : 'POST'
+            type : 'POST',
+            data: {
+            	params: params,
+            	index: index,
+            	params_year, params_year
+            }
         },
         columnDefs: [
 			{ className: "text-right", targets: 5 },
@@ -524,7 +544,7 @@ function setDatePicker(){
         //current time
 		// loadContent(v_params, v_params_this_year, 0);     
         // $('#tag-time').html(v_date);
-        // $("#btn-week").prop("class","btn btn-light btn-sm");
+
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -555,7 +575,7 @@ function setDatePicker(){
 		// loadContent(params_time , n, m);
 		loadContent(params_time , $("#select-month").val(), $("#select-year-on-month").val());
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        // $("#btn-week").prop("class","btn btn-light btn-sm");
+
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -576,6 +596,7 @@ function setDatePicker(){
 		// $('#tag-time').html(v_year);
 		loadContent(params_time ,  $("#select-year-only").val(), 0);
         // $("#btn-week").prop("class","btn btn-light btn-sm");
+
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");

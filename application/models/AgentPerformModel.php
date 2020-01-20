@@ -36,9 +36,10 @@ class AgentPerformModel extends CI_Model
 	}
 
 #region :: ragakasih
-	public function getSSallchannel($src='',$params,$index,$param_year)
+	public function getSSallchannel($src='',$params,$index,$params_year)
 	{
-		$this->db->select('tanggal AS DATE,
+		$this->db->select('
+		tanggal AS DATE,
 		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART,
 		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) AS AHT,
 		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST,
@@ -61,7 +62,7 @@ class AgentPerformModel extends CI_Model
 		if($params=='month')
 		{
 			$this->db->where('MONTH(tanggal)',$index);
-			$this->db->where('YEAR(tanggal)',$param_year);
+			$this->db->where('YEAR(tanggal)',$params_year);
 		}
 		else if($params=='year')
 		{
@@ -73,29 +74,40 @@ class AgentPerformModel extends CI_Model
 		}
 		$this->db->group_by('DATE','ASC');
 		$query = $this->db->get();
-
 		// print_r($this->db->last_query());    
 		//  exit;
-		if($query->num_rows()>0)
-		{
-			$idx = 1;
-			foreach($query->result() as $data)
+		if (count($query->result()) == 0) {
+			$content[] = array(
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data")
+			);
+		}else{
+			if($query->num_rows()>0)
 			{
-				$content[] = array(
-					strval($idx),
-					strval($data->DATE),
-					strval($data->ART),
-					strval($data->AHT),
-					strval($data->AST),
-					strval(round($data->SCR, 2).'%'),
-					strval($data->COF)
-				);
-				$idx++;
-			}
+				$idx = 1;
+				foreach($query->result() as $data)
+				{
+					$content[] = array(
+						strval($idx),
+						strval($data->DATE),
+						strval($data->ART),
+						strval($data->AHT),
+						strval($data->AST),
+						strval(round($data->SCR, 2).'%'),
+						strval($data->COF)
+					);
+					$idx++;
+				}
 
-		}
-		else{
-			$content[] = array();
+			}
+			else{
+				$content[] = array();
+			}
 		}
 
 		$res = array(

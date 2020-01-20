@@ -62,7 +62,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <!-- yearly -->
                                 <div id="filter-year" class="mt-1 mr-0">
                                 <select name="select-year-only" id="select-year-only" class="form-control">
