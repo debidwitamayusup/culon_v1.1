@@ -5,6 +5,11 @@ var params_time='';
 var v_date='';
 var v_month = '';
 var v_year = '';
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 
 var d = new Date();
 var o = d.getDate();
@@ -16,34 +21,28 @@ if (o < 10) {
 if (n < 10) {
   n = '0' + n;
 }
+
+//get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
-var months = [
-    'January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September',
-    'October', 'November', 'December'
-    ];
 
 // console.log(v_params_this_year);
 
 // console.log(d);
 $(document).ready(function () {
+	$('#select-month option[value='+n+']').attr('selected','selected');
+    $('#dateTahun option[value='+m+']').attr('selected','selected');
 
 	params_time = 'day';
 	v_date = getToday();
 	v_month = getMonth();
 	v_year = getYear();
 	v_date = '2019-12-01';
-    // loadContent(v_params, v_index, 0);
 
-    //for current time
-    // loadContent(v_params, v_params_this_year, 0);
-    // fromTemplate();
-    // drawChartSumChannel();
-
-    // $("#btn-month").prop("class","btn btn-light btn-sm");
-    // $("#btn-year").prop("class","btn btn-light btn-sm");
 	$("#btn-day").prop("class","btn btn-red btn-sm");
-	loadContent(params_time, v_date, 0);
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
+    
+	loadContent(params_time, v_params_this_year, 0);
 	$('#input-date-filter').datepicker("setDate", v_date);
 	
 	$('#filter-date').show();
