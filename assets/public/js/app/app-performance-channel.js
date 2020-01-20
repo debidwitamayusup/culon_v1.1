@@ -146,6 +146,18 @@ function drawChartSumService(response){
 	        type : 'horizontalBar',
 	        data : MeSeData,
 	        options : {
+	        	tooltips: {
+	        		callbacks: {
+		                label: function(tooltipItem, data) {
+		                    var value = data.datasets[0].data[tooltipItem.index];
+		                    if(parseInt(value) >= 1000){
+		                               return 'seconds: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		                            } else {
+		                               return 'seconds: ' + value;
+		                            }
+		                }
+		          	}
+	        	},
 	        	hover: {
 	        		animationDuration: 0
 			    },
@@ -188,23 +200,19 @@ function drawChartSumService(response){
 	                    },
 	                }],
 	                yAxes : [{
-	                    stacked : true
+	                    stacked : true,
+	                    ticks: {
+	                        beginAtZero:true,
+	                        callback: function(value, index, values) {
+	                            if(parseInt(value) >= 1000){
+	                               return '' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	                            } else {
+	                               return '' + value;
+	                            }
+	                       }                            
+	                    }
 	                }]
 	            },
-	            tooltips: {
-	        		// enabled: false
-	        		show: true,
-					showContent: true,
-					alwaysShowContent: false,
-					triggerOn: 'mousemove',
-					trigger: 'axis',
-					axisPointer: {
-						label: {
-							show: true,
-							color: '#7886a0'
-						}
-					},
-	        	},
 	            legend: {
 	                display: false,
 	                labels:{
