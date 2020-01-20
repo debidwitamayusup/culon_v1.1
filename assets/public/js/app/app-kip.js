@@ -57,9 +57,9 @@ function loadAllChannel(){
 
 function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
-	console.log(params)
-	console.log(index)
-	console.log(year)
+	// console.log(params)
+	// console.log(index)
+	// console.log(year)
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -360,7 +360,7 @@ function drawKipPerChannelChart(response){
 			i++;
 
 	    });
-	    console.log(chartdata3);
+	    // console.log(chartdata3);
 		var option6 = {
 			grid: {
 				top: '6',

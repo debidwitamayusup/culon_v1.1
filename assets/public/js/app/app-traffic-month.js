@@ -32,8 +32,8 @@ function callGraphicInterval(channel_name, month, year){
     // console.log(parseInt(new Date().getMonth()) + 1)
     // $("#month").val(parseInt(new Date().getMonth()) + 1)
     // console.log("selectedMonthst");
-    console.log(month);
-    console.log(year);
+    // console.log(month);
+    // console.log(year);
     destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -155,7 +155,7 @@ function callDataPercentage(month, year){
             drawChartPercentageMonth(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
     });
@@ -237,7 +237,7 @@ function callDataTableAvg(month, year){
             drawTableMonth(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
     });
@@ -286,7 +286,7 @@ function callYear()
             // var html = '<option value="2020">2020</option>';
             var html = '';
             var i;
-            console.log(response);
+            // console.log(response);
                 for(i=0; i<response.data.niceDate.length; i++){
                     html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
                 }

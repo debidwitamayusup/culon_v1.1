@@ -15,7 +15,7 @@ $(document).ready(function () {
         values.push(el.value);
         type.push($(el).data('type'));
     });
-    console.log(values);
+    // console.log(values);
     list_channel = values;
 
     // var data_chart = callIntervalTraffic(v_date, []);
@@ -82,7 +82,7 @@ function callIntervalTraffic(date, arr_channel){
             $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
             $("#filter-loader").fadeOut("slow");
         },
@@ -154,7 +154,7 @@ function callDataTableAvg(date){
             drawTableToday(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
 
@@ -163,7 +163,7 @@ function callDataTableAvg(date){
 }
 
 function drawTableToday(response){
-    console.log(response);
+    // console.log(response);
     $("#mytbody").empty();
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {

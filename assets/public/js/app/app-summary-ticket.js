@@ -197,9 +197,9 @@ function summaryStatusTicketPerUnit(params, index, params_year){
 
 function ticketStatusUnit(params, index, params_year){
     $("#filter-loader").fadeIn("slow");
-    console.log(params);
-    console.log(index);
-    console.log(params_year);
+    // console.log(params);
+    // console.log(index);
+    // console.log(params_year);
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTicket/SummaryTicketUnit/getStatusperUnit',
@@ -223,10 +223,10 @@ function ticketStatusUnit(params, index, params_year){
 }
 
 function summaryTicketClose(unit, params, index, params_year){;
-    console.log(unit);
-    console.log(params);
-    console.log(index)
-    console.log(params_year);
+    // console.log(unit);
+    // console.log(params);
+    // console.log(index)
+    // console.log(params_year);
     // callUnitFilter();
     $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -341,7 +341,7 @@ function drawPie(response){
             },
             legendCallback : function (chart,index){
                 var allData = chart.data.datasets[0].data;
-                console.log(chart)
+                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row">');
                 allData.forEach(function(data,index){
@@ -464,7 +464,7 @@ function drawPie(response){
 // }
 
 function drawDataTable(response){
-    console.log(response.data);
+    // console.log(response.data);
      var i = 0;
      let jkjkj = [];
     response.data.forEach(function (value, index) {
@@ -472,7 +472,7 @@ function drawDataTable(response){
     i++;
     
     });
-    console.log(jkjkj);
+    // console.log(jkjkj);
          tabel = $('#table_summary_ticket').DataTable({
             processing: true,
             serverSide: true,
@@ -530,7 +530,7 @@ function drawDataTable2(params, index, params_year){
         drawCallback:function(settings)
         {
             $('#total_new').html(settings.json.totalnew);
-            console.log(settings.json.totalnew);
+            // console.log(settings.json.totalnew);
         },
          // footerCallback: function ( row, data, start, end, display) {
          //    var api = this.api(), data;
@@ -624,7 +624,7 @@ function drawTable(response){
 
         i++;
     });
-    console.log(response.data);
+    // console.log(response.data);
 
     $('#table_summary_ticket').find('tfoot').append('<th colspan="2" class="font-weight-extrabold">Total</th>'+
                                                     '<th>'+sum_new+'</th>'+
@@ -899,172 +899,6 @@ function drawChartSUmmaryCloseTicket(response){
         color: ['#5F9EA0']
     };
     barChart.setOption(option);
-}
-
-function ini_finctiiin () {
-    "use strict";
-
-    //pie chart summary status ticket
-    // var ctx = document.getElementById( "pieChart" );
-    // ctx.height = 250;
-    // var myChart = new Chart( ctx, {
-    //     type: 'pie',
-    //     data: {
-    //         datasets: [ {
-    //             data: [ 15, 35, 40,20,50,30,15,30 ],
-    //             backgroundColor: [
-    //                                 "#FEC88C",
-    //                                 "#FFA07A",
-    //                                 "#87CEFA",
-    //                                 "#ADD8E6",
-    //                                 "#B0C4DE",
-    //                                 "#778899",
-    //                                 "#8FBC8F",
-    //                                 "#BDB76B",
-                                    
-    //                             ],
-    //             hoverBackgroundColor: [
-    //                                 "#FEC88C",
-    //                                 "#FFA07A",
-    //                                 "#87CEFA",
-    //                                 "#ADD8E6",
-    //                                 "#B0C4DE",
-    //                                 "#778899",
-    //                                 "#8FBC8F",
-    //                                 "#BDB76B",
-    //                             ]
-    //         } ],
-    //         labels: [
-    //                             "New",
-    //                             "Open",
-    //                             "Reject",
-    //                             "On Progress",
-    //                             "Pending",
-    //                             "Reopen",
-    //                             "Close",
-    //                             "Resolved"
-    //                 ]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-    //         legend:{
-    //             // position:"bottom",
-    //             // labels:{
-    //             // 	boxWidth:10
-    //             display : false
-    //         },
-    //         legendCallback : function (chart,index){
-    //             var allData = chart.data.datasets[0].data;
-    //             // console.log(chart)
-    //             var legendHtml = [];
-    //             legendHtml.push('<ul><div class="row ml-3">');
-    //             allData.forEach(function(data,index){
-    //                 var label = chart.data.labels[index];
-    //                 var dataLabel = allData[index];
-    //                 var background = chart.data.datasets[0].backgroundColor[index]
-    //                 var total = 0;
-    //                 for (var i in allData){
-    //                     total += parseInt(allData[i]);
-    //                 }
-
-    //                 // console.log(total)
-    //                 var percentage = Math.round((dataLabel / total)*100);
-    //                 legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
-    //                 legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
-    //             })
-    //             legendHtml.push('</ul></div>');
-    //             return legendHtml.join("");
-    //         },
-    //     }
-    // } );
-    // var myLegendContainer = document.getElementById("legend");
-    // myLegendContainer.innerHTML = myChart.generateLegend();
-
-    //pie chart summary unit
-    // var ctx = document.getElementById( "pieChartUnit" );
-    // ctx.height = 250;
-    // var myChart = new Chart( ctx, {
-    //     type: 'pie',
-    //     data: {
-    //         datasets: [ {
-    //             data: [ 15, 35, 40,20,50,30,15,30,90,100 ],
-    //             backgroundColor: [
-    //                                 "#2F5596",
-    //                                 "#01B0F1",
-    //                                 "#F07D2D",
-    //                                 "#F3AE8F",
-    //                                 "#44546B",
-    //                                 "#70AC48",
-    //                                 "#9EC2E4",
-    //                                 "#00AF50",
-    //                                 "#FDC100",
-    //                                 "#C20006"
-    //                             ],
-    //             hoverBackgroundColor: [
-    //                                 "#2F5596",
-    //                                 "#01B0F1",
-    //                                 "#F07D2D",
-    //                                 "#F3AE8F",
-    //                                 "#44546B",
-    //                                 "#70AC48",
-    //                                 "#9EC2E4",
-    //                                 "#00AF50",
-    //                                 "#FDC100",
-    //                                 "#C20006"
-    //                             ]
-
-    //                         } ],
-    //         labels: [
-    //                         "Agency Help Line",
-    //                         "Keuangan",
-    //                         "CRM",
-    //                         "Post Line",
-    //                         "Provider Relation",
-    //                         "Data Control",
-    //                         "Credit Control",
-    //                         "Claim Health",
-    //                         "Claim Non Health",
-    //                         "Call Center"
-    //                     ]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         maintainAspectRatio: false,
-    //         legend:{
-    //             // position:"bottom",
-    //             // labels:{
-    //             // 	boxWidth:10
-    //             display : false                
-    //         },
-    //         legendCallback : function(chart,index){
-    //             var allData = chart.data.datasets[0].data;
-    //             // console.log(chart)
-    //             var legendHtml = [];
-    //             legendHtml.push('<ul><div class="row ml-2">');
-    //             allData.forEach(function(data,index){
-    //                 var label = chart.data.labels[index];
-    //                 var dataLabel = allData[index];
-    //                 var background = chart.data.datasets[0].backgroundColor[index]
-    //                 var total = 0;
-    //                 for (var i in allData){
-    //                     total += parseInt(allData[i]);
-    //                 }
-
-    //                 // console.log(total)
-    //                 var percentage = Math.round((dataLabel / total)*100);
-    //                 legendHtml.push('<li class="col-md-6 col-lg-6 col-sm-12 col-xl-6">');
-    //                 legendHtml.push('<span class="chart-legend"><div style="background-color : '+background+'" class="box-legend"></div>'+label+'</span>')
-    //             })
-    //             legendHtml.push('</ul></div>');
-    //             return legendHtml.join("");
-    //         },
-    //     }
-    
-    // });
-    // var myLegendContainer = document.getElementById("legendUnit");
-    // myLegendContainer.innerHTML = myChart.generateLegend();
-
 }
 
 function fromTemplate(){

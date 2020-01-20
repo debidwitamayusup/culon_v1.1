@@ -23,6 +23,9 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
+    $('#select-month option[value='+n+']').attr('selected','selected');
+    $('#dateTahun option[value='+m+']').attr('selected','selected');
+
     // v_date = getToday();
     // v_month = getMonth();
     // v_year = getYear();
@@ -31,12 +34,22 @@ $(document).ready(function () {
     v_month = '12';
     v_year = '2019';
 
+    $("#btn-day").prop("class","btn btn-red btn-sm");
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
 
     loadContent(params_time, v_params_this_year);
-    $('#tag-time').html(v_params_this_year);
-    $("#btn-month").prop("class","btn btn-light btn-sm");
-    $("#btn-year").prop("class","btn btn-light btn-sm");
-    $("#btn-day").prop("class","btn btn-red btn-sm");
+    // $('#tag-time').html(v_params_this_year);
+    // $("#btn-month").prop("class","btn btn-light btn-sm");
+    // $("#btn-year").prop("class","btn btn-light btn-sm");
+    // $("#btn-day").prop("class","btn btn-red btn-sm");
+    $('#input-date-filter').datepicker("setDate", v_params_this_year);
+
+    $('#filter-date').show();
+    $('#filter-month').hide();
+    $('#filter-year').hide();
+    setMonthPicker();
+    setYearPicker();
 
 });
 
@@ -233,7 +246,7 @@ function drawChartAndCard(response){
                 showActualPercentages: true,
             },
             legendCallback: function (chart, index) {
-                console.log(chart);
+                // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-2">');
@@ -322,7 +335,7 @@ function callTotalInteraction(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
@@ -345,7 +358,7 @@ function callTotalUniqueCustomer(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
@@ -366,7 +379,7 @@ function callAverageCustomer(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
@@ -385,7 +398,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response.data[0].total_unique);
-            console.log(response.data);
+            // console.log(response.data);
             response.data.forEach(function (value, index) {
                 let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Facebook Messenger" ? "text-blue" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-gray1" : value.channel_name == "SMS" ? "text-blue-teal" : "";
                 let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
@@ -402,7 +415,7 @@ function callUniqueCustomerPerChannel(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
@@ -431,6 +444,14 @@ function callSummaryCaseTotAgent(params, index_time){
     });
 }
 
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 //jquery
 (function ($) {
 
@@ -444,6 +465,10 @@ function callSummaryCaseTotAgent(params, index_time){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
     });
 
     // btn month
@@ -458,6 +483,10 @@ function callSummaryCaseTotAgent(params, index_time){
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+
+        $('#filter-date').hide();
+        $('#filter-month').show();
+        $('#filter-year').hide();
     });
 
     // btn year
@@ -470,6 +499,69 @@ function callSummaryCaseTotAgent(params, index_time){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
+    });
+
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+            // console.log(this.value);
+            v_date = this.value;
+            // sessionStorage.removeItem('paramsSession');
+            // sessionStorage.setItem('paramsSession', 'day');
+            let fromParams = sessionStorage.getItem('paramsSession');   
+            loadContent(fromParams, v_date);
+            // console.log(params_time);
+            // console.log(v_date);
+            // simmiriUnit(params_time, v_date,0);
+        }
+    });
+
+    /*select option month*/ 
+    $('select#select-month').change(function(){
+        v_month = $(this).val();
+        // console.log(value);
+        // callSummaryInteraction(params_time, v_month,v_year);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+
+        loadContent(fromParams, v_month, $("#select-year-on-month").val());
+        // simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
+        // ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
+        // summaryTicketClose(0, fromParams, v_month, $("#select-year-on-month").val());
+        // simmiriUnit('month', v_month, $("#select-year-on-month").val());
+    });
+    $('select#select-year-on-month').change(function(){
+        v_year = $(this).val();
+        // console.log(value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+
+        loadContent(fromParams, $("#select-month").val(), v_year);
+        // simmiriStatusTicket(fromParams, $("#select-month").val(), v_year);
+        // ticketStatusUnit(fromParams, $("#select-month").val(), v_year);
+        // summaryTicketClose(0, fromParams, $("#select-month").val(), v_year);
+        // simmiriUnit('month', $("#select-month").val(), v_year);
+    });
+    /**/ 
+
+    // select option year
+    $('#select-year-only').change(function(){
+        v_year = $(this).val();
+        // console.log(this.value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+        loadContent(fromParams, v_year);
+        // simmiriStatusTicket('year', v_year, 0);
+        // ticketStatusUnit('year', v_year, 0);
+        // summaryTicketClose(0, 'year', v_year, 0);
+        // simmiriUnit('year', v_year, 0);
     });
 
 })(jQuery);
