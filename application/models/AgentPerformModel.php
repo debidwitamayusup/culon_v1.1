@@ -138,7 +138,7 @@ class AgentPerformModel extends CI_Model
 		
 	}
 
-	
+
 	public function getSAgentperformskills($src='',$param) // table right - bottom need limit / offset
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) AS ART,
@@ -221,6 +221,7 @@ class AgentPerformModel extends CI_Model
 		return $res;
 
 	}
+	
 	public function getSAgentperformByskill()
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) as ART,
