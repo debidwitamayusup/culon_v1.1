@@ -31,7 +31,9 @@ class SummaryTrafficChannel extends CI_Controller {
 		} else {
 			$response = array(
 				'status' => false,
-				'data' => 'Data Not Found');
+				'massage' => 'Data Not Found',
+				'data' => $query,
+				'data_empty' => $channel_empty);
 		}
 
 		echo json_encode($response);
