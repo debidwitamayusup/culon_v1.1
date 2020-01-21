@@ -90,7 +90,7 @@
                          </div>
                          <div class="table-responsive table-pt10">
                              <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                 style="height:300px" id="tableSkill">
+                                 style="height:310px" id="tableSkill">
                                  <thead class="text-center text-white bg-gray1">
                                      <tr>
                                          <th>Skill</th>

@@ -22435,10 +22435,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 
 .height-agent{
 	padding:4px 4px 0px 4px; 
-	height:330px;
+	height:340px;
 }
 
 .height-card{
 	display:flex;
-	height:320px;
+	height:330px;
 }
