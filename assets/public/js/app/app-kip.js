@@ -219,6 +219,35 @@ function drawChartSubCategory(response){
 			show : 'data',
 			// color: ["#A5B0B6"]
 			color: [color[i]],
+			// tooltip: {
+			// 	callbacks: {
+			//             label: function(tooltipItem) {
+			//                 return tooltipItem.label_lng;
+			//             }
+			//         },
+			// 	show: true,
+			// 	showContent: true,
+			// 	alwaysShowContent: false,
+			// 	triggerOn: 'mousemove',
+			// 	trigger: 'axis',
+			// 	axisPointer: {
+			// 		label: {
+			// 			show: true,
+			// 			color: '#7886a0',
+			// 			formatter : function (){
+			// 				return label_lng;
+			// 			}
+			// 		}
+			// 	},
+			// 	position: function (pos, params, dom, rect, size) {
+			// 		// tooltip will be fixed on the right if mouse hovering on the left,
+			// 		// and on the left if hovering on the right.
+			// 		// console.log(pos);
+			// 		var obj = {top: pos[0]};
+			// 		obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+			// 		return obj;
+			// 	},
+			// },
 			tooltip: {
 				show: true,
 				showContent: true,
@@ -228,21 +257,15 @@ function drawChartSubCategory(response){
 				axisPointer: {
 					label: {
 						show: true,
-						color: '#7886a0',
-						formatter : function (){
-							return label_lng;
-						}
+						color: '#7886a0'
 					}
-				},
-				position: function (pos, params, dom, rect, size) {
-					// tooltip will be fixed on the right if mouse hovering on the left,
-					// and on the left if hovering on the right.
-					// console.log(pos);
-					var obj = {top: pos[0]};
-					obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-					return obj;
-				},
+				}
 			},
+			callbacks: {
+			            label: function(tooltipItem) {
+			                return tooltipItem.label_lng;
+			            }
+			        },
 		};
 
 		if(label.length==0){
