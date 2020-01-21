@@ -152,7 +152,7 @@ function drawChartSubCategory(response){
 		var data = [];
 		response.data[i].forEach(function(value, index){
 			label_lng.push(value.sub_category_lng);
-			label.push(value.sub_category);
+			label.push(value.sub_category_lng);
 			data.push(value.total_kip);
 		});
 		// draw chart
@@ -160,7 +160,8 @@ function drawChartSubCategory(response){
 			name: value,
 			type: 'bar',
 			stack: 'Stack',
-			data: data
+			data: data,
+			label_lng: label_lng
 		}];
 		var optionInfo = {
 			grid: {
@@ -204,8 +205,19 @@ function drawChartSubCategory(response){
 							for(var i=0;i<value.length;i++){
 								if(value[i] == " "){
 									teks = teks + '\n';
-								}else{
+									
+								}
+								else if(value[i] == "|")
+								{
+									break;
+
+								}
+								else{
 									teks = teks + value[i];
+								}
+								if(i==11)
+								{
+									break;
 								}
 							}
 							return teks;
@@ -225,14 +237,19 @@ function drawChartSubCategory(response){
 				alwaysShowContent: false,
 				triggerOn: 'mousemove',
 				trigger: 'axis',
+				// formatter : function (){
+				// 			return label_lng[index];
+				// 		},
 				axisPointer: {
-					label: {
-						show: true,
-						color: '#7886a0',
-						formatter : function (){
-							return label_lng;
-						}
-					}
+					 label: {
+					 	show: false,
+					 	color: '#7886a0',
+						formatter : function (label, index){
+							//var item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+							return label.value;//label_lng[data.index];
+					 		// return label_lng[value[index]];
+					 	}
+					 }
 				},
 				position: function (pos, params, dom, rect, size) {
 					// tooltip will be fixed on the right if mouse hovering on the left,
