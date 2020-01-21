@@ -28,7 +28,7 @@ $(document).ready(function () {
 	// loadContent(params_time, v_date, 0);
 	loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
-	$('#input-date-filter').datepicker("setDate", v_date);
+	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value='+n+']').attr('selected','selected');
 	$('#select-year-on-month option[value='+m+']').attr('selected','selected');
 	$('#select-year-only option[value='+m+']').attr('selected','selected');
@@ -534,7 +534,8 @@ function addCommas(commas)
 		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, v_params_this_year);
+		$('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
