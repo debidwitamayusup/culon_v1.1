@@ -1,4 +1,4 @@
-<!-- Sidebar menu-->
+Sidebar menu-->
 <div class="app sidebar-mini" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 	<ul class="side-menu">
@@ -32,9 +32,9 @@
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
-					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
+						style="">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
-						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/this_week">Weekly</a></div> -->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
@@ -53,16 +53,16 @@
 					</div>
 					</div>
 				</li> -->
-				<li class="slide">
+				<li class="slide submenu">
 					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapsePerformance" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
 						style="">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div>
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>

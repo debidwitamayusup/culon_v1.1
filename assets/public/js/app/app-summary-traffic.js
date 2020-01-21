@@ -3,11 +3,11 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
-// var months = [
-//     'January', 'February', 'March', 'April', 'May',
-//     'June', 'July', 'August', 'September',
-//     'October', 'November', 'December'
-//     ];
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -23,26 +23,32 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
+    $('#select-month option[value='+n+']').attr('selected','selected');
+    $('#dateTahun option[value='+m+']').attr('selected','selected');
+
     // v_date = getToday();
     // v_month = getMonth();
     // v_year = getYear();
     params_time = 'day';
-    v_date = getToday();
+    v_date = '2019-12-02';
     v_month = getMonth();
     v_year = getYear();
-    v_date='2019-12-01';
-    $('#btn-day').prop("class","btn btn-red btn-sm");
-    loadContent(params_time,v_date,0);
 
-    // datepicker
-    $('#input-date-filter').datepicker("setDate", v_date);
+    $("#btn-day").prop("class","btn btn-red btn-sm");
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
 
+    loadContent(params_time, v_params_this_year, 0);
+    // $('#tag-time').html(v_params_this_year);
+    // $("#btn-month").prop("class","btn btn-light btn-sm");
+    // $("#btn-year").prop("class","btn btn-light btn-sm");
+    // $("#btn-day").prop("class","btn btn-red btn-sm");
+    $('#input-date-filter').datepicker("setDate", v_params_this_year);
     $('#filter-date').show();
     $('#filter-month').hide();
     $('#filter-year').hide();
     setMonthPicker();
     setYearPicker();
-
     // loadContent(params_time, v_params_this_year);
     // $('#tag-time').html(v_params_this_year);
     // $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -105,21 +111,14 @@ function getYear(){
     return year;
 }
 
-function setDatePicker(){
-    $(".datepicker").datepicker({
-        format : "yyyy-mm-dd",
-        todayHiglight : true,
-        autoclose :true
-    }).attr("readonly","readonly").css({"cursor":"pointer","background":"whiter"});
-}
-function loadContent(params, index_time){
+function loadContent(params, index_time, params_year){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(params, index_time);
-    callTotalInteraction(params, index_time);
-    callTotalUniqueCustomer(params, index_time);
+    callSummaryInteraction(params, index_time, params_year);
+    callTotalInteraction(params, index_time, params_year);
+    callTotalUniqueCustomer(params, index_time, params_year);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time);
-    callSummaryCaseTotAgent(params, index_time);
+    callUniqueCustomerPerChannel(params, index_time, params_year);
+    callSummaryCaseTotAgent(params, index_time, params_year);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -170,13 +169,14 @@ function drawCardInteractionNew(value){
     '</div>');
 }
 
-function callSummaryInteraction(params, index_time){
+function callSummaryInteraction(params, index_time, params_year){
     $.ajax({
         type: 'post',
         url: base_url + 'Summary-Traffic/cardMain',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -205,7 +205,7 @@ function drawChartAndCard(response){
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
         drawCardInteractionNew(value);
-        arrTotal.push(value.total);
+        arrTotal.push(value.total_session);
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
     });
@@ -251,7 +251,7 @@ function drawChartAndCard(response){
                 showActualPercentages: true,
             },
             legendCallback: function (chart, index) {
-                console.log(chart);
+                // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-2">');
@@ -290,7 +290,7 @@ function drawChartAndCard(response){
                         }
 
                         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + 'no data' + '</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
                         legendHtml.push('</li>');
                     }
                 })
@@ -320,14 +320,15 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function callTotalInteraction(params, index_time){
+function callTotalInteraction(params, index_time, params_year){
     //call total interaction
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -340,19 +341,20 @@ function callTotalInteraction(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
 
-function callTotalUniqueCustomer(params, index_time){
+function callTotalUniqueCustomer(params, index_time, params_year){
        //call total unique customer
        $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -363,19 +365,20 @@ function callTotalUniqueCustomer(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
 
-function callAverageCustomer(params, index_time){
+function callAverageCustomer(params, index_time, params_year){
        //call avg customer
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year: params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -384,12 +387,12 @@ function callAverageCustomer(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
 
-function callUniqueCustomerPerChannel(params, index_time){
+function callUniqueCustomerPerChannel(params, index_time, params_year){
     // destroy div card unique customer per channel
     $('#retres-unique').remove(); // this is my <canvas> element
     $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
@@ -398,12 +401,13 @@ function callUniqueCustomerPerChannel(params, index_time){
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response.data[0].total_unique);
-            console.log(response.data);
+            // console.log(response.data);
             response.data.forEach(function (value, index) {
                 let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Facebook Messenger" ? "text-blue" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-gray1" : value.channel_name == "SMS" ? "text-blue-teal" : "";
                 let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
@@ -420,18 +424,19 @@ function callUniqueCustomerPerChannel(params, index_time){
         },
         error: function (r) {
             // alert("error");
-            console.log(r);
+            // console.log(r);
         },
     });
 }
 
-function callSummaryCaseTotAgent(params, index_time){
+function callSummaryCaseTotAgent(params, index_time, params_year){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
         data: {
             params: params,
-            index: index_time
+            index: index_time,
+            params_year
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -449,6 +454,14 @@ function callSummaryCaseTotAgent(params, index_time){
     });
 }
 
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
 //jquery
 (function ($) {
 
@@ -457,8 +470,10 @@ function callSummaryCaseTotAgent(params, index_time){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
+        loadContent(params_time, v_params_this_year, 0)
+        $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
-        callSummaryInteraction(params_time,v_date);
+        // callSummaryInteraction(params_time,v_date);
         // loadContent(params_time, v_params_this_year)
         // $('#tag-time').html(v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -475,12 +490,10 @@ function callSummaryCaseTotAgent(params, index_time){
         params_time = 'month';
         // console.log(params_time);
         // loadContent(params_time , '12');
-        // loadContent(params_time, n);
+        loadContent(params_time, n, m);
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
         // console.log(monthNumToName(n));
-        callSummaryInteraction(params_time, $("#select-month").val(),$('#select-year-on-month').val());
-
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -495,39 +508,76 @@ function callSummaryCaseTotAgent(params, index_time){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        // loadContent(params_time, m)
-        // $('#tag-time').html(m);
-        callSummaryInteraction(params_time, $("#select-year-only").val(),0);
+        loadContent(params_time, m, 0)
+        $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
-
-        $("#filter-date").hide();
-        $("#filter-month").hide();
-        $("#filter-year").show();
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
     });
 
     $('#input-date-filter').datepicker({
-        dateFormat : 'yy-mm-dd',
-        onSelect : function(dateText){
-            v_date=this.value;
-            callSummaryInteraction(params_time,v_date,0);
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+            // console.log(this.value);
+            v_date = this.value;
+            // sessionStorage.removeItem('paramsSession');
+            // sessionStorage.setItem('paramsSession', 'day');
+            // let fromParams = sessionStorage.getItem('paramsSession');   
+            loadContent('day', v_date, 0);
+            // console.log(params_time);
+            // console.log(v_date);
+            // simmiriUnit(params_time, v_date,0);
         }
     });
 
-    $('#select-month').change(function(){
+    /*select option month*/ 
+    $('select#select-month').change(function(){
         v_month = $(this).val();
-        callSummaryInteraction('month', v_month, $("select-year-on-month").val());
-    });
+        // console.log(value);
+        // callSummaryInteraction(params_time, v_month,v_year);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        // let fromParams = sessionStorage.getItem('paramsSession');
 
-    $('#select-year-on-month').change(function(){
-        v_year=$(this).val();
-        callSummaryInteraction('month', $("select-month").val(),v_year);
+        loadContent('month', v_month, $("#select-year-on-month").val());
+        // simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
+        // ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
+        // summaryTicketClose(0, fromParams, v_month, $("#select-year-on-month").val());
+        // simmiriUnit('month', v_month, $("#select-year-on-month").val());
     });
+    $('select#select-year-on-month').change(function(){
+        v_year = $(this).val();
+        // console.log(value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        // let fromParams = sessionStorage.getItem('paramsSession');
 
+        loadContent('month', $("#select-month").val(), v_year);
+        // simmiriStatusTicket(fromParams, $("#select-month").val(), v_year);
+        // ticketStatusUnit(fromParams, $("#select-month").val(), v_year);
+        // summaryTicketClose(0, fromParams, $("#select-month").val(), v_year);
+        // simmiriUnit('month', $("#select-month").val(), v_year);
+    });
+    /**/ 
+
+    // select option year
     $('#select-year-only').change(function(){
-        v_year=$(this).val();
-        callSummaryInteraction('year', v_year,0);
+        v_year = $(this).val();
+        // console.log(this.value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+        loadContent('year', v_year, 0);
+        // simmiriStatusTicket('year', v_year, 0);
+        // ticketStatusUnit('year', v_year, 0);
+        // summaryTicketClose(0, 'year', v_year, 0);
+        // simmiriUnit('year', v_year, 0);
+        $("#filter-date").hide();
+        $("#filter-month").hide();
+        $("#filter-year").show();
     });
 
 })(jQuery);

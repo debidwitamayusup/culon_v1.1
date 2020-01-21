@@ -15,7 +15,7 @@ $(document).ready(function () {
         values.push(el.value);
         type.push($(el).data('type'));
     });
-    console.log(values);
+    // console.log(values);
     list_channel = values;
 
     // var data_chart = callIntervalTraffic(v_date, []);
@@ -24,6 +24,19 @@ $(document).ready(function () {
     var data_percentage = callDataPercentage(v_date);
     
 });
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
 //function get data and draw
 function getColorChannel(channel){
@@ -70,7 +83,7 @@ function callIntervalTraffic(date, arr_channel){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
             date: date,
             arr_channel: arr_channel
@@ -82,7 +95,7 @@ function callIntervalTraffic(date, arr_channel){
             $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
             $("#filter-loader").fadeOut("slow");
         },
@@ -154,7 +167,7 @@ function callDataTableAvg(date){
             drawTableToday(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
 
@@ -163,14 +176,15 @@ function callDataTableAvg(date){
 }
 
 function drawTableToday(response){
-    console.log(response);
+    // console.log(response);
     $("#mytbody").empty();
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {
             $('#table-avg-interval').find('tbody').append('<tr>'+
             '<td class="text-center">'+(index+1)+'</td>'+
             '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
+            // '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
+            '<td class="text-right">'+value.scr+'</td>'+
             '<td class="text-right">'+value.art+'</td>'+
             '<td class="text-right">'+value.aht+'</td>'+
             '<td class="text-right">'+value.ast+'</td>'+
@@ -260,7 +274,18 @@ function drawChartPercentageToday(response){
                 }],
                 xAxes: [{
                     ticks: {
-                        min: 0 // Edit the value according to what you need
+                        min: 0, // Edit the value according to what you need
+                        callback: function(value, index, values) {
+                           //      if(parseInt(value) >= 1000){
+                           //          var res = (value/1000);
+                                    // return res+'K'
+                           //      } else
+                           //       return value;
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join(',');
+                            return value;
+                        }
                     }
                 }]
             },
@@ -274,7 +299,7 @@ function drawChartPercentageToday(response){
                         // value = value.toString();
                         // value = value.split(/(?=(?:...)*$)/);
                         // value = value.join(',');
-                        value = value + '%';
+                        value = addCommas(value);
                         return value;
                     }
               }

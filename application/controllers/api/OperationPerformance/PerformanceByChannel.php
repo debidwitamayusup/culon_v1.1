@@ -17,9 +17,9 @@
 		{
 			$params = $this->security->xss_clean($this->input->post('params'));
 			$index = $this->security->xss_clean($this->input->post('index'));
-			$param_year = date('Y');
+			$params_year =  $this->security->xss_clean($this->input->post('params_year'));
 	
-			$result = $this->module_model->getSService($params,$index,$param_year);
+			$result = $this->module_model->getSService($params,$index,$params_year);
 			
 			if($result){
 				// $this->session->set_userdata($res);
@@ -41,8 +41,8 @@
 		{
 			$params = $this->security->xss_clean($this->input->post('params'));
 			$index = $this->security->xss_clean($this->input->post('index'));
-			$param_year = date('Y');
-			$result = $this->module_model->getSServicebyChannel($params,$index,$param_year);
+			$params_year =  $this->security->xss_clean($this->input->post('params_year'));
+			$result = $this->module_model->getSServicebyChannel($params,$index,$params_year);
 			
 			if($result){
 				// $this->session->set_userdata($res);

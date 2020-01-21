@@ -191,7 +191,7 @@ function drawBarChart(response){
             hoverBackgroundColor : data_color
         }]
     };
-    console.log(data_scr);
+    // console.log(data_scr);
     var MeSeChart = new Chart(MeSeContext,{
         type : 'horizontalBar',
         data : MeSeData,

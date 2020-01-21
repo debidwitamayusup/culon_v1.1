@@ -5,19 +5,33 @@ var params_time= '';
 var v_date='';
 var v_month='';
 var v_year='';
-
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
 	
 	params_time = 'day';
 	v_date = getToday();
 	v_month = getMonth();
 	v_year = getYear();
-	v_date = '2019-12-01';
+	v_date = '2020-01-16';
 	channel_id= '';
 	$('#btn-day').prop("class","btn btn-red btn-sm");
-	loadContent(params_time, v_date, 0);
+	// loadContent(params_time, v_date, 0);
+	loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_date);
+	$('#select-month option[value='+n+']').attr('selected','selected');
+	$('#select-year-on-month option[value='+m+']').attr('selected','selected');
+	$('#select-year-only option[value='+m+']').attr('selected','selected');
 	
 	$('#filter-date').show();
 	$('#filter-month').hide();
@@ -57,9 +71,9 @@ function loadAllChannel(){
 
 function callSummaryInteraction(params, index, year){
 	$("#filter-loader").fadeIn("slow");
-	console.log(params)
-	console.log(index)
-	console.log(year)
+	// console.log(params)
+	// console.log(index)
+	// console.log(year)
     $.ajax({
         type: 'post',
         url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
@@ -360,7 +374,7 @@ function drawKipPerChannelChart(response){
 			i++;
 
 	    });
-	    console.log(chartdata3);
+	    // console.log(chartdata3);
 		var option6 = {
 			grid: {
 				top: '6',
@@ -513,7 +527,8 @@ function addCommas(commas)
         // console.log(params_time);
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
-		callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
+		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
+		callSummaryInteraction(params_time, n, m);
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
         $("#btn-day").prop("class","btn btn-light btn-sm");
