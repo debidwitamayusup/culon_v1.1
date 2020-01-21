@@ -635,14 +635,25 @@ class Stc_Model extends CI_Model
 				array_push($times,substr($data->time,0,5).':00');
 			}
 
-			foreach($channel as $channels)
+			if($channel)
 			{
-				
+				foreach($channel as $channels)
+				{
+					$serials[] =  array(
+						'label'=>$channels,
+						'data'=>$this->get_availdata($date,$channels)
+					);
+				}
+			}
+			else 
+			{
 				$serials[] =  array(
-					'label'=>$channels,
-					'data'=>$this->get_availdata($date,$channels)
+					'label'=>'Facebook',
+					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 				);
 			}
+			
+			
 
 
 			
@@ -667,6 +678,11 @@ class Stc_Model extends CI_Model
 
 	function get_availdata($date,$channel)
 	{
+		if(!$channel)
+		{
+			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
@@ -959,8 +975,6 @@ class Stc_Model extends CI_Model
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			// $this->db->where('YEAR(date)', date("Y"));
-			//temporarily hardcode year based on data ready on database
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}

@@ -263,7 +263,7 @@ function drawChartSumService(response){
 	                }]
 	            },
 	            legend: {
-	                display: true,
+	                display: false,
 	                labels:{
 			        	fontColor: '#666'
 	                }
@@ -318,6 +318,14 @@ function drawChartSumChannel(response){
 		}];
 		/*----echart summary ticket category----*/
 		var optionTicket = {
+			// options: {
+		 //        legend: {
+		 //            display: true,
+		 //            labels: {
+		 //                fontColor: 'rgb(255, 99, 132)'
+		 //            }
+		 //        }
+		 //    },
 			grid: {
 				top: '6',
 				right: '20',
@@ -355,8 +363,6 @@ function drawChartSumChannel(response){
 					color: '#7886a0'
 				}
 			},
-			// responsive: true,
-	        // maintainAspectRatio: false,
 			tooltip: {
 				show: true,
 				showContent: true,
@@ -379,12 +385,10 @@ function drawChartSumChannel(response){
 				// 	return obj;
 				// },
 			},
-			legend: {
-	                display: true,
-	                labels:{
-			        	fontColor: '#666'
-	                }
-	        	},
+			legend:{
+				data: ['ART','AHT','AST'],
+				top: 'auto'
+			},
 			series: chartdataTicket,
 			color: ["#A5B0B6","#009E8C","#00436D"]
 		};
