@@ -22344,12 +22344,12 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 .not-absolute {
 	position: inherit !important;
-	margin-left: 15px;
+	margin-left: auto;
 }
 
 .not-absolute2 {
 	position: inherit !important;
-	margin-left: 73px;
+	margin-left: auto;
 }
 
 .list-agent{

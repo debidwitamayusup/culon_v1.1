@@ -61,15 +61,16 @@
 		$('.app-sidebar').on("mouseover", function(event) {
 			event.preventDefault();
 			$('.app').removeClass('sidenav-toggled');
+			
 		});
 	} 
 
-	// if ( $(window).width() > 739) {     
-	// 		$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
-	// 			event.preventDefault();
-	// 			$('.app').toggleClass('sidenav-toggled');
-	// 		});
-	// 	} 
+	if ( $(window).width() > 739) {     
+			$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
+				event.preventDefault();
+				$('.app').toggleClass('sidenav-toggled');
+			});
+		} 
 
 	// $("#div-1").bind('mouseover',function(event){
     //   $('#div-2').stop(true,true).fadeIn(100);
@@ -81,20 +82,27 @@
 	// Activate sidebar slide toggle
 	$("[data-toggle='slide']").on("click", function(event) {
 		event.preventDefault();
-		if(!$(this).parent().hasClass('is-expanded' && 'collapse')) {
+		if(!$(this).parent().hasClass('is-expanded')) {
 			slideMenu.find("[data-toggle='slide']").parent().removeClass('is-expanded');
+			// $('.slide').hasClass('is-expanded');
+			// $('a .slide-item .active').parent('.slide').addClass('.is-expanded');
 			$('.app.sidebar-mini').removeClass('sidenav-toggled').addClass('sidebar__overlay');
 		}
 		$(this).parent().toggleClass('is-expanded');
 	});
 
-	// $("[data-toggle='collapse']").on("click", function(event){
-	// 	event.preventDefault();
-	// 	if(!$(this).parent().hasClass('active')){
-	// 		$("#accordion").find("[data-toggle='collapse']").parent.removeClass('collapse');
-	// 		$('slide-item').removeClass('collapse')
-	// 	}
-	// })
+	$("[data-toggle='collapse']").on("click", function(event){
+		event.preventDefault();
+		if(!$(this).parent().hasClass('collapse')){
+			// if($('a .slide-item').parent('li .slide')){
+			// 	$('li .slide').addClass('is expanded').css('display','block');
+			// }
+			$('.slide-item.active.collapsed').removeClass('collapsed').parent('div .collapse.show');
+			$('.app.sidebar-mini').removeClass('sidenav-toggled').addClass('sidebar__overlay');
+			
+		}
+		
+	});
 
 	// $('slide-item').hasClass('active').parent("collapse").css("display","block");
 	// Set initial active toggle
@@ -103,4 +111,14 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
+	function activateMenu(prefixUrl) {
+		let href = $("#ul-menu > a > div");
+		let urlHref = window.location.href;		
+		for(let i = 0;i < href.length;i++) {
+			if(urlHref == href[i].href) {
+				href[i].setAttribute('class','active');
+				$("#ul-menu").attr('style','display: block');
+			}
+		}
+	}	
 })();

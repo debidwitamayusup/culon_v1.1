@@ -4,37 +4,6 @@
 			<div class="page-main">
 				<div class=" app-content mt-7">
 					<div class="side-app">
-						<!-- <div class="page-header d-flex bd-highlight">
-							<div class="flex-grow-1 bd-highlight">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item active" aria-current="page">
-										<h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
-									</li>
-									<li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel
-									</li>
-								</ol>
-							</div>
-							<div class="bd-highlight text-right">
-								<div class="d-flex align-items-end flex-column bd-highlight">
-									<div class="card-options d-none d-sm-block">
-										<div class="btn-group btn-sm">
-											<a href="#" class="btn btn-light btn-sm" id="btn-day">
-												<span class="">Day</a></span>
-											<a href="#" class="btn btn-light btn-sm" id="btn-month">
-												<span class="">Month</a></span>
-											<a href="#" class="btn btn-light btn-sm" id="btn-year">
-												<span class="">Year</a></span>
-										</div>
-										<div class="bd-highlight text-center text-muted tags">
-											<span class="tag tag-grey justify-content-center box-filter-time"
-												id="tag-time"></span>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div> -->
-
 						<div class="page-header d-flex bd-highlight">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active" aria-current="page">

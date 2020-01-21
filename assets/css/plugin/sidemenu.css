@@ -70,7 +70,7 @@
 }
 @media (min-width: 768px) {
 	.app-content {
-		margin-left: 255px;
+		margin-left: 245px;
 	}
 }
 @media (max-width: 767px) {
@@ -308,7 +308,7 @@
 	bottom: 0;
 	left: 0;
 	padding-top: 66px;
-    width: 255px;
+    width: 248px;
 	z-index: 10;
 	-webkit-transition: left 0.1s ease, width 0.1s ease;
 	-o-transition: left 0.1s ease, width 0.1s ease;
@@ -435,11 +435,11 @@
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
 	position: absolute;
-	right: 35px;
+	right: 33px;
 }
 .slide .angle {
 	position: absolute;
-	right: 35px;
+	right: 32px;
 }
 .slide-menu {
 	max-height: 0;
@@ -455,8 +455,8 @@
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	padding: 10px 33px 10px 35px;
-	font-size: 12px;
+	padding: 10px 33px 10px 28px;
+	font-size: 11.5px;
 	color: rgba(204, 202, 202, 0.5);
 }
 /* slide menu active accordion */
@@ -523,7 +523,7 @@
 		height: 30px;
 	}
 	.sidebar-mini.sidenav-toggled .app-content {
-		margin-left: 91px;
+		margin-left: 66px;
 	}
 	.sidebar-mini.sidenav-toggled .app-sidebar {
 		left: 0;
