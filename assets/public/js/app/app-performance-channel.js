@@ -263,7 +263,7 @@ function drawChartSumService(response){
 	                }]
 	            },
 	            legend: {
-	                display: true,
+	                display: false,
 	                labels:{
 			        	fontColor: '#666'
 	                }

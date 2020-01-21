@@ -812,7 +812,7 @@ class Stc_Model extends CI_Model
 			{
 				if($data->scr != '-')
 				{
-					$scr = $data->scr.'%';
+					$scr = round($data->scr,0,PHP_ROUND_HALF_UP).'%';
 				}
 				else{
 					$scr = '-';
