@@ -112,7 +112,7 @@
 	$("[data-toggle='tooltip']").tooltip();
 
 	function activateMenu(prefixUrl) {
-		let href = $("#ul-menu > a > div");
+		let href = $("#ul-menu > div > a");
 		let urlHref = window.location.href;		
 		for(let i = 0;i < href.length;i++) {
 			if(urlHref == href[i].href) {
