@@ -327,7 +327,7 @@ function drawChartSumChannel(response){
 		 //        }
 		 //    },
 			grid: {
-				top: '6',
+				top: '30',
 				right: '20',
 				bottom: '17',
 				left: '70',
