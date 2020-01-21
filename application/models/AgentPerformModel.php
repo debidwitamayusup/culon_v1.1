@@ -127,7 +127,7 @@ class AgentPerformModel extends CI_Model
 				$content[] = array();
 			}
 		}
-//fixing 123
+	
 		$res = array(
 			'recordsTotal' => $query->num_rows(),
 			'recordsFiltered' => $query->num_rows(),
