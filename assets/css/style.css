@@ -365,7 +365,7 @@ hr {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border: 0;
-	border-top: 1px solid rgba(0, 40, 100, 0.12);
+	border-top: 1px solid rgba(206, 206, 206, 0.12);
 }
 small, .small {
 	font-size: 87.5%;
@@ -11197,8 +11197,8 @@ pre code {
 	background: none;
 }
 hr {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+	margin-top: 0rem;
+	margin-bottom: 0rem;
 }
 pre {
 	color: #343a40;
@@ -22441,4 +22441,22 @@ div[data-acc-step]:not(.open) .badge-primary {
 .height-card{
 	display:flex;
 	height:330px;
+}
+
+/* .sidebar hr.sidebar-divider {
+	margin: 0rem;
+}
+
+.sidebar-dark hr.sidebar-divider {
+	border-top:1px solid rgba(0, 40, 100, 0.12);
+} */
+
+.sidebar .sidebar-heading {
+	text-align: center;
+	padding: 0 1rem;
+	font-weight: 800;
+	font-size: .65rem
+}
+.sidebar-dark .sidebar-heading {
+	color: rgba(255, 255, 255, .4);
 }

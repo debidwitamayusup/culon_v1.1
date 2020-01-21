@@ -145,6 +145,28 @@ class main extends CI_Controller {
 		$this->load->view('v_summary_ticket_category');
 	}
 
+		public function traffic_performance(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_traffic_performance');
+	}
+
+	public function summary_agent(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_agent');
+	}
+
+	public function performance_channel(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_performance_bychannel');
+	}
+
+	// Wallboard 
 	public function monitoring_status(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
@@ -187,32 +209,20 @@ class main extends CI_Controller {
 		$this->load->view('v_monitoring_time_year');
 	}
 
-	public function traffic_performance(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_traffic_performance');
-	}
-
-	public function summary_agent(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_summary_agent');
-	}
-
 	public function summary_inout_sla(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_summary_inout_sla');
 	}
-	public function performance_channel(){
+
+	public function wall_summary_traffic(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('v_performance_bychannel');
+		$this->load->view('v_wall_summary_traffic');
 	}
+
 	// report
 
 	public function report_summary_ticket(){

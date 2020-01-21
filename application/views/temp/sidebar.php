@@ -11,6 +11,7 @@ Sidebar menu-->
 			<ul class="slide-menu">
 				<!-- <li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li> -->
+				<!-- <li><a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Channel</li> -->
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_ticket_time">Monitoring Ticket by
 						Time</a></li>
@@ -26,19 +27,25 @@ Sidebar menu-->
 			
 			<ul class="slide-menu" id="accordion">
 				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
+				<hr>
+				<!-- <div class="sidebar-heading">Traffic Interval</div> -->
+				<li><a class="slide-item" href="<?=base_url()?>main/this_day">Traffic Interval Daily</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/this_month">Traffic Interval Monthly</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/this_year">Traffic Interval Yearly</a></li>
+				<hr>
 				<!-- sub menu accordion -->
-				<li class="slide" id="ul-menu">
+				<!-- <li class="slide">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
 					</a>
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
-						style="">
+						style="" id="ul-menu">
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_day">Daily</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
 					</div>
-				</li>
+				</li> -->
 				<!-- <li><a class="slide-item" href="<?= base_url()?>main/agent_performance">Agent Performance</a></li> -->
 				<!-- <li class="slide submenu" id="accordion">
 					<a href="#collapseAgent" class="slide-item" data-toggle="collapse" aria-expanded="true"
@@ -53,21 +60,25 @@ Sidebar menu-->
 					</div>
 					</div>
 				</li> -->
-				<li class="slide" id="ul-menu">
+				<!-- <li class="slide">
 					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>
 					<div id="collapsePerformance" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"
-						style="">
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div>
+						style="" id="ul-menu">
+						<div class="slide-item ml-2"><a href="<?=base_url()?>main/kip">KIP</a></div> -->
 						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/traffic_category">Traffic Category</a>
 						</div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/nfcr">FCR / N-FCR</a></div> -->
-						<div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
+						<!-- <div class="slide-item ml-2"><a href="<?=base_url()?>main/performance_channel">Performance by Channel</a></div>
 						<div class="slide-item ml-2"><a href="<?=base_url()?>main/agent_performance">Agent Performance</a></div>
 					</div>
 					</div>
-				</li>
+				</li> -->
+				<li><a class="slide-item" href="<?=base_url()?>main/kip">KIP</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/performance_channel">Performance by Channel</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/agent_performance">Agent Performance</a></li>
+				<hr>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">CWC</a></li>
 				<!-- <li class="slide submenu">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
