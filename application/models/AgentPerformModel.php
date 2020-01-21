@@ -95,12 +95,20 @@ class AgentPerformModel extends CI_Model
 				$idx = 1;
 				foreach($query->result() as $data)
 				{
+					if($data->ART)
+					{
+						$ART = $data->ART;
+					}
+					else{
+						$ART = '-';
+					}
+
 					if($params != 'year')
 					{
 						$content[] = array(
 							strval($idx),
 							strval($data->DATE),
-							strval($data->ART),
+							strval($ART),
 							strval($data->AHT),
 							strval($data->AST),
 							strval(round($data->SCR, 2).'%'),
@@ -112,7 +120,7 @@ class AgentPerformModel extends CI_Model
 						$content[] = array(
 							strval($idx),
 							strval(DATE('F',strtotime($data->DATE))),
-							strval($data->ART),
+							strval($ART),
 							strval($data->AHT),
 							strval($data->AST),
 							strval(round($data->SCR, 2).'%'),

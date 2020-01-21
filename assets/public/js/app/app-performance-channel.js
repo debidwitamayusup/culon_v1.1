@@ -318,6 +318,14 @@ function drawChartSumChannel(response){
 		}];
 		/*----echart summary ticket category----*/
 		var optionTicket = {
+			// options: {
+		 //        legend: {
+		 //            display: true,
+		 //            labels: {
+		 //                fontColor: 'rgb(255, 99, 132)'
+		 //            }
+		 //        }
+		 //    },
 			grid: {
 				top: '6',
 				right: '20',
@@ -379,12 +387,6 @@ function drawChartSumChannel(response){
 				// 	return obj;
 				// },
 			},
-			legend: {
-	                display: true,
-	                labels:{
-			        	fontColor: '#666'
-	                }
-	        	},
 			series: chartdataTicket,
 			color: ["#A5B0B6","#009E8C","#00436D"]
 		};

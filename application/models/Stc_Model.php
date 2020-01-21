@@ -975,8 +975,6 @@ class Stc_Model extends CI_Model
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			// $this->db->where('YEAR(date)', date("Y"));
-			//temporarily hardcode year based on data ready on database
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
