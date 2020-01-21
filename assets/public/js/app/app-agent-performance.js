@@ -179,7 +179,7 @@ function dataCardAHT(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 mb-2 text-center">'+
-                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
@@ -204,7 +204,7 @@ function dataCardART(response)
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 mb-2 text-center">'+
-                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
