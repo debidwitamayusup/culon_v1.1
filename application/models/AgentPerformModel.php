@@ -81,13 +81,13 @@ class AgentPerformModel extends CI_Model
 		//  exit;
 		if (count($query->result()) == 0) {
 			$content[] = array(
-				strval("no data"),
-				strval("no data"),
-				strval("no data"),
-				strval("no data"),
-				strval("no data"),
-				strval("no data"),
-				strval("no data")
+				strval("-"),
+				strval("-"),
+				strval("-"),
+				strval("-"),
+				strval("-"),
+				strval("-"),
+				strval("-")
 			);
 		}else{
 			if($query->num_rows()>0)
