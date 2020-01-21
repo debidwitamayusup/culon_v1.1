@@ -53,7 +53,7 @@ Sidebar menu-->
 					</div>
 					</div>
 				</li> -->
-				<li class="slide submenu">
+				<li class="slide" id="ul-menu">
 					<a href="#collapsePerformance" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapsePerformance"> Operation Performance
 						<i class="angle not-absolute fas fa-angle-right"></i></a>

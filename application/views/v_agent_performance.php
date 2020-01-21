@@ -90,7 +90,7 @@
                          </div>
                          <div class="table-responsive table-pt10">
                              <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                 style="height:345px" id="tableSkill">
+                                 style="height:300px" id="tableSkill">
                                  <thead class="text-center text-white bg-gray1">
                                      <tr>
                                          <th>Skill</th>
@@ -129,10 +129,10 @@
                          <div class="card-header-small bg-red">
                              <h5 class="card-title-small card-pt10">Best Agent Performance</h5>
                          </div>
-                         <div class="card-body" style="padding:4px 4px 0px 4px;">
+                         <div class="card-body height-agent">
                              <div class="row">
                                  <div class="col-md-4">
-                                     <div class="card">
+                                     <div class="card height-card">
                                          <div class="card-header-small bg-red">
                                              <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
                                          </div>
@@ -204,7 +204,7 @@
                                  </div>
 
                                  <div class="col-md-4">
-                                     <div class="card">
+                                     <div class="card height-card">
                                          <div class="card-header-small bg-red">
                                              <h5 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h5>
                                          </div>
@@ -228,7 +228,7 @@
                                  </div>
 
                                  <div class="col-md-4">
-                                     <div class="card">
+                                     <div class="card height-card">
                                          <div class="card-header-small bg-red">
                                              <h5 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h5>
                                          </div>
@@ -290,23 +290,23 @@
                                  </div>
                              </div> -->
                              <div class="table-responsive">
-                                 <table id="tableAgent" class="table table-striped table-bordered">
+                                 <table id="tableAgent" class="table-responsive table table-striped table-bordered" style="width:100%">
                                      <thead class="text-center">
                                          <tr>
                                              <th class="wd-15p border-bottom-0">ID</th>
                                              <th class="wd-15p border-bottom-0">Agent ID</th>
-                                             <th class="wd-15p border-bottom-0" style="width:30%">Agent Name
+                                             <th class="wd-15p border-bottom-0" style="width:40%">Agent Name
                                              </th>
-                                             <th class="wd-15p border-bottom-0">Skill</th>
-                                             <th class="wd-15p border-bottom-0 text-center">COF</th>
-                                             <th class="wd-15p border-bottom-0">ART</th>
-                                             <th class="wd-15p border-bottom-0">AHT</th>
-                                             <th class="wd-15p border-bottom-0">AST</th>
+                                             <th class="wd-15p border-bottom-0"style="width:30%">Skill</th>
+                                             <th class="wd-15p border-bottom-0 text-center" style="width:30%">COF</th>
+                                             <th class="wd-15p border-bottom-0" style="width:35%">ART</th>
+                                             <th class="wd-15p border-bottom-0" style="width:35%">AHT</th>
+                                             <th class="wd-15p border-bottom-0" style="width:35%">AST</th>
                                          </tr>
                                      </thead>
                                      <tbody style="font-size:12px !important;" id="mytbody">
                                          <!-- <tr>
-                                             <td class="text-center">1</td>
+                                             <td class="text-center">1</td> 
                                              <td class="text-center">A28921</td>
                                              <td class="text-left">
                                                  <a href="<?=base_url()?>main/agent_interval">Agent
