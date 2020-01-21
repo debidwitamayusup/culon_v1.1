@@ -160,7 +160,16 @@ class OperationModel extends CI_Model
         THEN LEFT(rpt_summ_kip2.sub_category, LOCATE(" -", rpt_summ_kip2.sub_category) -1 )
         ELSE rpt_summ_kip2.sub_category
         END as sub_category
-        ,  CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE rpt_summ_kip2.sub_category END as sub_category_lng
+        ,  CASE 
+        WHEN rpt_summ_kip2.sub_category is null THEN "None"
+        WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",3) != ""
+        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",3)
+        WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",2) != ""
+        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",2)
+        WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",1) != ""
+        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",1)
+        ELSE rpt_summ_kip2.sub_category
+        END as sub_category_lng
         ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
 		$this->db->from('rpt_summ_kip2');
         $this->db->join('m_channel', 'm_channel.channel_id = rpt_summ_kip2.channel_id');
