@@ -23,9 +23,11 @@ Sidebar menu-->
 				<span class="side-menu__label label-icon-resize">Dashboard</span>
 				<i class="angle fas fa-angle-right"></i>
 			</a>
+			
 			<ul class="slide-menu" id="accordion">
 				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
-				<li class="slide">
+				<!-- sub menu accordion -->
+				<li class="slide" id="ul-menu">
 					<a href="#collapseOne" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseOne"> Traffic Interval
 						<i class="angle not-absolute2 fas fa-angle-right"></i>
@@ -96,13 +98,10 @@ Sidebar menu-->
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
 				<li><a class="slide-item" href="#">Agent Summary</a></li>
 				<li><a class="slide-item" href="#">Detail Ticket</a></li>
-				<li><a class="slide-item" href="#">Detail CWC</a></li>
+				<li class="slide"><a class="slide-item" href="#">Detail CWC</a></li>
 			</ul>
 		</li>
 	</ul>
 </aside>
 <body class="app sidebar-mini sidenav-toggled">
 <!-- <body class="sidenav-toggled"> -->
-
-<!-- <body class="sidenav-toggled">
->>>>>>> origin/risyadnew-dev
