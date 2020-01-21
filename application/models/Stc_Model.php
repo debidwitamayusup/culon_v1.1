@@ -169,7 +169,7 @@ class Stc_Model extends CI_Model
 
 	public function get_all_unique_customer_per_channel($params, $index, $params_year)
 	{
-		$this->db->select('a.channel_name, sum(b.cof) as total_unique');
+		$this->db->select('a.channel_name, sum(b.unik) as total_unique');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
 		if($params == 'day'){
@@ -285,7 +285,7 @@ class Stc_Model extends CI_Model
 		-- 	ORDER BY summary_channel.channel_name
 		-- )as a on a.channel_id = m_channel.channel_id
 		LEFT JOIN(
-			SELECT channel_id, SUM(unique_customer) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
+			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
 			where $where2
 			GROUP BY channel_id 
@@ -360,7 +360,7 @@ class Stc_Model extends CI_Model
 
 	public function getTotUniqueCustomer($params, $index, $params_year)
 	{
-		$this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
+		$this->db->select('IFNULL(SUM(unik),0) total_unique_customer');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
