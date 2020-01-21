@@ -9,7 +9,6 @@ $(document).ready(function () {
     $('#input-date').datepicker("setDate", v_date);
     //set check all channel
     $('#check-all-channel').prop('checked',true);
-    console.log($('#check-all-channel').prop('checked',true));
     $("input:checkbox.checklist-channel").prop('checked',true);
     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
     Array.prototype.forEach.call(checkboxes, function(el) {
@@ -212,7 +211,7 @@ function callDataPercentage(date){
             drawChartPercentageToday(response);
         },
         error: function (r) {
-            console.log(r);
+            // console.log(r);
             alert("error");
         },
     });
@@ -235,7 +234,7 @@ function drawChartPercentageToday(response){
         borderWidth: "0",
         backgroundColor: data_color
     }];
-    console.log(data_rate);
+    // console.log(data_rate);
 
     // draw chart
     var ctx_percentage = document.getElementById("echartPercentageToday");
