@@ -1,18 +1,53 @@
 var base_url = $('#base_url').val();
+v_date='';
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
-    performanceBySkill();
-    drawDataTable();
-    bestOfFiveCOF();
-    bestOfFiveAHT();
-    bestOfFiveART();
+    performanceBySkill('day', v_params_this_year, 0);
+    drawDataTable('day', v_params_this_year, 0);
+    bestOfFiveCOF('COF','day', v_params_this_year, 0);
+    bestOfFiveAHT('AHT','day', v_params_this_year, 0);
+    bestOfFiveART('ART','day', v_params_this_year, 0);
+    $('#btn-day').prop("class","btn btn-red btn-sm");
+    $('#input-date-filter').datepicker("setDate", v_params_this_year);
+    $('#select-month option[value='+n+']').attr('selected','selected');
+    $('#select-year-on-month option[value='+m+']').attr('selected','selected');
+    $('#select-year-only option[value='+m+']').attr('selected','selected');
+    $('#filter-date').show();
+    $('#filter-month').hide();
+    $('#filter-year').hide();
+    setMonthPicker();
+    setYearPicker();
 });
 
-function performanceBySkill(){
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
+function performanceBySkill(params, index, params_year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformBYskill',
+        data: {
+            params: params,
+            index, index,
+            params_year: params_year
+        },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
@@ -27,13 +62,16 @@ function performanceBySkill(){
     });
 }
 
-function bestOfFiveCOF(params){
+function bestOfFiveCOF(params, params_time, index, params_year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
         	params: 'COF',
+            params_time: params_time,
+            index: index,
+            params_year: params_year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -60,13 +98,16 @@ function bestOfFiveCOF(params){
     });
 }
 
-function bestOfFiveAHT(params){
+function bestOfFiveAHT(params,  params_time, index, params_year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
         	params: 'AHT',
+            params_time: params_time,
+            index: index,
+            params_year: params_year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -80,13 +121,16 @@ function bestOfFiveAHT(params){
     });
 }
 
-function bestOfFiveART(params){
+function bestOfFiveART(params,  params_time, index, params_year){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
         	params: 'ART',
+            params_time: params_time,
+            index: index,
+            params_year: params_year
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -103,6 +147,8 @@ function bestOfFiveART(params){
 function dataCardCOF(response)
 {
 	// console.log(response.data);
+    $('#dataDrawCOF').remove(); 
+    $('#classDrawCOF').append(' <div class="row mb-3" id="dataDrawCOF"></div>');
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawCOF').append('<div class="col-2 text-center" style="margin-bottom : 9px">'+
@@ -128,6 +174,8 @@ function dataCardCOF(response)
 function dataCardAHT(response)
 {
 	// console.log(response.data);
+    $('#dataDrawAHT').remove(); 
+    $('#classDrawAHT').append(' <div class="row mb-3" id="dataDrawAHT"></div>');
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawAHT').append('<div class="col-2 mb-2 text-center">'+
@@ -151,6 +199,8 @@ function dataCardAHT(response)
 function dataCardART(response)
 {
 	// console.log(response.data);
+    $('#dataDrawART').remove(); 
+    $('#classDrawART').append(' <div class="row mb-3" id="dataDrawART"></div>');
 	var i=1;
 	response.data.forEach(function(value,index){
 		$('#dataDrawART').append('<div class="col-2 mb-2 text-center">'+
@@ -194,7 +244,7 @@ function drawTable(response){
     
 }
 
-function drawDataTable(){
+function drawDataTable(params_time, index, params_year){
     $('#mytbody').remove();
     $('#tableAgent').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
 
@@ -202,7 +252,12 @@ function drawDataTable(){
         processing : true,
         ajax: {
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
-            type : 'POST'
+            type : 'POST',
+            data: {
+                params_time: params_time,
+                index: index,
+                params_year: params_year
+            }
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
@@ -219,8 +274,125 @@ function drawDataTable(){
 }
 
 
-$(function(e) {
-    //sample datatable	
-    $('#tableAgent').DataTable();
-    // $('#tableSkill').DataTable();
-});
+// $(function(e) {
+//     //sample datatable	
+//     $('#tableAgent').DataTable();
+//     // $('#tableSkill').DataTable();
+// });
+
+//jquery
+(function ($) {
+
+    // btn day
+    $('#btn-day').click(function(){
+        v_params_time = 'day';
+        // v_date = getToday();
+        v_date = '2019-12-01';
+        // console.log(params_time);
+        performanceBySkill('day', v_params_this_year, 0);
+        drawDataTable('day', v_params_this_year, 0);
+        bestOfFiveCOF('COF','day', v_params_this_year, 0);
+        bestOfFiveAHT('AHT','day', v_params_this_year, 0);
+        bestOfFiveART('ART','day', v_params_this_year, 0);
+
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+    });
+
+    // btn month
+    $('#btn-month').click(function(){
+        v_params_time = 'month';
+        // console.log(params_time);
+        // v_date = getMonth();
+        // callSummaryInteraction(params_time, v_date);
+        // callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
+        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val());
+        drawDataTable('month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveCOF('COF','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveAHT('AHT','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveART('ART','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        // callSummaryInteraction('month', '12', '2019');
+        // console.log($("#select-year-only").val());
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+        
+
+        $('#filter-date').hide();
+        $('#filter-month').show();
+        // $('.ui-datepicker-calendar').css('display','none');
+        $('#filter-year').hide();
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        v_params_time = 'year';
+        // console.log(params_time);
+        // v_date = getYear();
+        performanceBySkill('year', $("#select-year-only").val(), 0);
+        drawDataTable('year',  $("#select-year-only").val(), 0);
+        bestOfFiveCOF('COF','year',  $("#select-year-only").val(), 0);
+        bestOfFiveAHT('AHT','year', $("#select-year-only").val(), 0);
+        bestOfFiveART('ART','year',  $("#select-year-only").val(), 0);
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+        
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
+    });
+       
+
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(dateText) {
+            // console.log(this.value);
+            v_date = this.value;
+            performanceBySkill('day', v_date, 0);
+            drawDataTable('day',  v_date, 0);
+            bestOfFiveCOF('COF','day',  v_date, 0);
+            bestOfFiveAHT('AHT','day', v_date, 0);
+            bestOfFiveART('ART','day',  v_date, 0);
+        }
+    });
+
+    /*select option month*/ 
+    $('#select-month').change(function(){
+        v_month = $(this).val();
+        // console.log(value);
+        // callSummaryInteraction(params_time, v_month,v_year);
+        performanceBySkill('month', v_month, $("#select-year-on-month").val());
+        drawDataTable('month',  v_month, $("#select-year-on-month").val());
+        bestOfFiveCOF('COF','month', v_month, $("#select-year-on-month").val());
+        bestOfFiveAHT('AHT','month',  v_month, $("#select-year-on-month").val());
+        bestOfFiveART('ART','month',  v_month, $("#select-year-on-month").val());
+    });
+    $('#select-year-on-month').change(function(){
+        v_year = $(this).val();
+        // console.log(value);
+        performanceBySkill('month', $("#select-month").val(), v_year);
+        drawDataTable('month',  $("#select-month").val(),v_year);
+        bestOfFiveCOF('COF','month',  $("#select-month").val(), v_year);
+        bestOfFiveAHT('AHT','month',  $("#select-month").val(), v_year);
+        bestOfFiveART('ART','month',  $("#select-month").val(), v_year);
+
+    });
+    /**/ 
+
+    // select option year
+    $('#select-year-only').change(function(){
+        v_year = $(this).val();
+        // console.log(this.value);
+        performanceBySkill('year',v_year, 0);
+        drawDataTable('year',  v_year, 0);
+        bestOfFiveCOF('COF','year',  v_year, 0);
+        bestOfFiveAHT('AHT','year', v_year, 0);
+        bestOfFiveART('ART','year',  v_year, 0);
+    });
+})(jQuery);

@@ -52,8 +52,11 @@ class AgentPerformController extends CI_Controller {
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
+        $params_time = $this->security->xss_clean($this->input->post('params_time'));
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
 
-        $data = $this->module_model->getSAgentperformskills($src,$params);
+        $data = $this->module_model->getSAgentperformskills($src,$params, $params_time, $index, $params_year);
 
         echo json_encode($data);
 
@@ -62,8 +65,10 @@ class AgentPerformController extends CI_Controller {
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
 
-        $data = $this->module_model->getSAgentperformByskill();
+        $data = $this->module_model->getSAgentperformByskill($params, $index, $params_year);
 
         $response = array(
                 'status' => 200,

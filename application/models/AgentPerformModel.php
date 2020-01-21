@@ -137,7 +137,9 @@ class AgentPerformModel extends CI_Model
 		return $res;
 		
 	}
-	public function getSAgentperformskills($src='',$param,$params) // table right - bottom need limit / offset
+
+
+	public function getSAgentperformskills($src='',$param, $params_time, $index, $params_year) // table right - bottom need limit / offset
 	{
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) AS ART,
 							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7) AS AHT,
@@ -145,24 +147,18 @@ class AgentPerformModel extends CI_Model
 							SUM(rpt_summary_agent.session) as COF,
 							m_login.userid AS AGENTID, m_login.name AS NAME, group_skill.skill_name AS SKILLNAME,m_login.profile_pic AS IMAGE,m_login.userlevel as LEVEL ');
 		$this->db->from('m_login');
-
-		if($params=='month')
-		{
-			$this->db->where('MONTH(tanggal)',$index);
-			$this->db->where('YEAR(tanggal)',$param_year);
-		}
-		else if($params=='year')
-		{
-			$this->db->where('YEAR(tanggal)',$index);
-		}
-		else if($params=='day')
-		{
-			$this->db->where('DATE(tanggal)',$index);
-		}
-		$this->db->group_by('DATE','ASC');
-
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
+
+		if ($params_time == "day") {
+			$this->db->where('rpt_summary_agent.tanggal', $index);
+		}else if ($params_time == "month") {
+			$this->db->where('MONTH(rpt_summary_agent.tanggal)', $index);
+			$this->db->where('YEAR(rpt_summary_agent.tanggal)', $params_year);
+		}else if ($params_time == "year") {
+			$this->db->where('YEAR(rpt_summary_agent.tanggal)', $index);
+		}
+
 		$this->db->group_by('AGENTID');
 		if($src)
 		{
@@ -198,32 +194,49 @@ class AgentPerformModel extends CI_Model
 		}
 		
 		$query = $this->db->get();
-		if($query->num_rows()>0)
-		{
-			// print_r($this->db->last_query());    
-			// exit;
-			$idx = 1;
-			foreach($query->result() as $data)
+		// print_r($this->db->last_query());
+		// exit;
+		if (count($query->result()) == 0) {
+			$content[] = array(
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data"),
+				strval("no data")
+			);
+		}else{
+			if($query->num_rows()>0)
 			{
-				$content[] = array(
-					strval($idx),
-					strval($data->AGENTID),
-					strval($data->NAME),
-					strval($data->SKILLNAME),
-					strval(number_format($data->COF,0, ',','.')),
-					strval($data->ART),
-					strval($data->AHT),
-					strval($data->AST),
-					strval(base_url().'public/user/'.$data->IMAGE),
-					strval($data->LEVEL)
+				// print_r($this->db->last_query());    
+				// exit;
+				$idx = 1;
+				foreach($query->result() as $data)
+				{
+					$content[] = array(
+						strval($idx),
+						strval($data->AGENTID),
+						strval($data->NAME),
+						strval($data->SKILLNAME),
+						strval(number_format($data->COF,0, ',','.')),
+						strval($data->ART),
+						strval($data->AHT),
+						strval($data->AST),
+						strval(base_url().'public/user/'.$data->IMAGE),
+						strval($data->LEVEL)
 
-				);
-				$idx++;
+					);
+					$idx++;
+				}
+
 			}
-
-		}
-		else{
-			$content[] = array();
+			else{
+				$content[] = array();
+			}
 		}
 
 		$res = array(
@@ -235,30 +248,27 @@ class AgentPerformModel extends CI_Model
 		return $res;
 
 	}
-	public function getSAgentperformByskill($params)
+	
+	public function getSAgentperformByskill($params, $index, $params_year)
 	{
-		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) as ART,
-			SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7) as AHT,
-			SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.ast))),2,7) as AST, 
-			group_skill.skill_name AS SKILLNAME,group_skill.skill_id AS SKILLID');
+		$this->db->select('IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7), "no data") as ART,
+			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7), "no data") as AHT,
+			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.ast))),2,7), "no data") as AST, 
+			IFNULL(group_skill.skill_name, "no data") AS SKILLNAME,group_skill.skill_id AS SKILLID');
 		$this->db->from('m_login');
 		$this->db->join('group_skill','m_login.skill_id = group_skill.skill_id');
 		$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
+
+		if ($params == "day") {
+			$this->db->where('rpt_summary_agent.tanggal = "'.$index.'"');
+		}else if ($params == "month") {
+			$this->db->where('MONTH(rpt_summary_agent.tanggal) = "'.$index.'"');
+			$this->db->where('YEAR(rpt_summary_agent.tanggal) = "'.$params_year.'"');
+		}else if ($params == "year") {
+			$this->db->where('YEAR(rpt_summary_agent.tanggal) = "'.$index.'"');
+		}
+
 		$this->db->order_by('group_skill.skill_id','ASC');
-		if($params=='month')
-		{
-			$this->db->where('MONTH(tanggal)',$index);
-			$this->db->where('YEAR(tanggal)',$param_year);
-		}
-		else if($params=='year')
-		{
-			$this->db->where('YEAR(tanggal)',$index);
-		}
-		else if($params=='day')
-		{
-			$this->db->where('DATE(tanggal)',$index);
-		}
-		$this->db->group_by('DATE','ASC');
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)

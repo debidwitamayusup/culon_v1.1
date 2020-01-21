@@ -205,7 +205,7 @@ function drawChartAndCard(response){
     // draw card yang ada datanya
     response.data.forEach(function (value, index) {
         drawCardInteractionNew(value);
-        arrTotal.push(value.total);
+        arrTotal.push(value.total_session);
         arrChannel.push(value.channel);
         arrColor.push(getColorChannel(value.channel));
     });

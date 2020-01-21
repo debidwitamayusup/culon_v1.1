@@ -99,6 +99,7 @@
                         <div class="card-body" id="echartServiceDiv">
                         <div id="echartService" class="chartsh overflow-hidden"></div>
                         </div>
+                        <div id="legend" class="legend-con"></div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-12">
