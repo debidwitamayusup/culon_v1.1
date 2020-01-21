@@ -22432,3 +22432,13 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-left : 800px;
 	background-position: 50% 50%;
 }
+
+.height-agent{
+	padding:4px 4px 0px 4px; 
+	height:340px;
+}
+
+.height-card{
+	display:flex;
+	height:330px;
+}

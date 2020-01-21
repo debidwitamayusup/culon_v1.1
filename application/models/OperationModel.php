@@ -150,7 +150,16 @@ class OperationModel extends CI_Model
         $this->db->select('m_channel.channel_name
         , rpt_summ_kip2.category
         , sum(rpt_summ_kip2.jumlah) as total_kip
-        , CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE LEFT(rpt_summ_kip2.sub_category,LOCATE(" |",rpt_summ_kip2.sub_category) -1 ) END as sub_category
+        , CASE
+        WHEN rpt_summ_kip2.sub_category is null THEN "None"
+        WHEN (LEFT(rpt_summ_kip2.sub_category, LOCATE(" &", rpt_summ_kip2.sub_category) -1 )) != ""
+        THEN LEFT(rpt_summ_kip2.sub_category, LOCATE(" &", rpt_summ_kip2.sub_category) -1 )
+        WHEN (LEFT(rpt_summ_kip2.sub_category, LOCATE(" |", rpt_summ_kip2.sub_category) -1 )) != ""
+        THEN LEFT(rpt_summ_kip2.sub_category, LOCATE(" |", rpt_summ_kip2.sub_category) -1 )
+        WHEN (LEFT(rpt_summ_kip2.sub_category, LOCATE(" -", rpt_summ_kip2.sub_category) -1 )) != ""
+        THEN LEFT(rpt_summ_kip2.sub_category, LOCATE(" -", rpt_summ_kip2.sub_category) -1 )
+        ELSE rpt_summ_kip2.sub_category
+        END as sub_category
         ,  CASE WHEN rpt_summ_kip2.sub_category is null THEN "None" ELSE rpt_summ_kip2.sub_category END as sub_category_lng
         ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
 		$this->db->from('rpt_summ_kip2');
@@ -171,7 +180,8 @@ class OperationModel extends CI_Model
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(5);
         $query = $this->db->get();
-        // $this->createLogSql();
+        // print_r($this->db->last_query());
+        // exit;
     
     	return $query->result();
     }
@@ -488,9 +498,33 @@ class OperationModel extends CI_Model
     }
     public function  getSServicebyChannel($params,$index,$param_year)
     {
+        $this->db->select('channel_id as CHANNEL_ID,channel_name as CHANNEL_NAME');
+        $this->db->from('m_channel');
+        $query = $this->db->get();
+
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $content = array(
+                    'CHANNEL_ID'=> $data->CHANNEL_ID,
+                    'CHANNEL_NAME'=> $data->CHANNEL_NAME,
+                );
+                $content2 = $this->get_dataSServicebychannel($params,$index,$param_year,$data->CHANNEL_ID);
+                
+                $databuild[] = array_merge($content,$content2);
+            }
+           return $databuild;
+        }
+        return false;
+    }
+
+    private function get_dataSServicebychannel($params,$index,$param_year,$channel)
+    {
         $this->db->select('m_channel.channel_id AS CHANNEL_ID,m_channel.channel_name AS CHANNEL_NAME,SUM(rpt_summary_scr.art_num)AS ART, SUM(rpt_summary_scr.aht_num)AS AHT, SUM(rpt_summary_scr.ast_num) AS AST');
         $this->db->from('rpt_summary_scr');
         $this->db->join('m_channel','m_channel.channel_id = rpt_summary_scr.channel_id');
+        $this->db->where('rpt_summary_scr.channel_id',$channel);
         if($params=='month')
 		{
 			$this->db->where('MONTH(tanggal)',$index);
@@ -510,19 +544,27 @@ class OperationModel extends CI_Model
 
         if($query->num_rows()>0)
         {   
+
             foreach($query->result() as $data)
             {
-                $content[] = array(
-                    'CHANNEL_ID'=> $data->CHANNEL_ID,
-                    'CHANNEL_NAME'=> $data->CHANNEL_NAME,
+                $content = array(
+                    
                     'SUM_ART'=>strval($data->ART),
                     'SUM_AHT'=>strval($data->AHT),
                     'SUM_AST'=>strval($data->AST)
                 );
-            }
-            return $content;                   
+            }              
         }
-        return FALSE;
+        else
+        {
+            $content = array(
+                'SUM_ART'=>'0',
+                'SUM_AHT'=>'0',
+                'SUM_AST'=>'0'
+            );
+        }
+
+        return $content; 
     }
 #endregion
 

@@ -112,7 +112,7 @@ class AgentPerformModel extends CI_Model
 							strval($data->AHT),
 							strval($data->AST),
 							strval(round($data->SCR, 2).'%'),
-							strval($data->COF)
+							strval(number_format($data->COF,0,',','.'))
 						);
 					}
 					else
@@ -124,7 +124,7 @@ class AgentPerformModel extends CI_Model
 							strval($data->AHT),
 							strval($data->AST),
 							strval(round($data->SCR, 2).'%'),
-							strval($data->COF)
+							strval(number_format($data->COF,0,',','.'))
 						);
 					}
 					$idx++;
@@ -135,7 +135,7 @@ class AgentPerformModel extends CI_Model
 				$content[] = array();
 			}
 		}
-	//fixing 123
+	
 		$res = array(
 			'recordsTotal' => $query->num_rows(),
 			'recordsFiltered' => $query->num_rows(),

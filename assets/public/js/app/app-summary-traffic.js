@@ -19,8 +19,8 @@ if (n < 10) {
   n = '0' + n;
 }
 
-//get yesterday
-var v_params_this_year = m + '-' + n + '-' + (o-1);
+//get today
+var v_params_this_year = m + '-' + n + '-' + (o);
 
 $(document).ready(function () {
     $('#select-month option[value='+n+']').attr('selected','selected');
@@ -471,11 +471,12 @@ function setDatePicker(){
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
         loadContent(params_time, v_params_this_year, 0)
-        $('#tag-time').html(v_params_this_year);
+        // $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
         // callSummaryInteraction(params_time,v_date);
         // loadContent(params_time, v_params_this_year)
         // $('#tag-time').html(v_params_this_year);
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
