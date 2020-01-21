@@ -243,7 +243,7 @@ function drawChartSumService(response){
 						   //      	return value;
 							value = value.toString();
 							value = value.split(/(?=(?:...)*$)/);
-							value = value.join('.');
+							value = value.join(',');
 							return value;
 						        }
 	                    },
