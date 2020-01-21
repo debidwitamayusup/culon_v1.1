@@ -85,9 +85,10 @@
                                 <div class="card-header-small bg-red">
                                     <h5 class="card-title-small card-pt10">Summary KIP</h5>
                                 </div>
+                                <div id="legend" class="legend-con"></div>
                                 <div class="card-body" id="canvas-pie">
                                     <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
-                                </div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-12">

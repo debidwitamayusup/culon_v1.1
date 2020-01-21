@@ -81,10 +81,10 @@
 									</div>
 									<div class="card-pie">
 										<div class="canvas-con">
+											<div id="legend" class="legend-con"></div>
 											<div class="canvas-con-inner" id="canvas-pie">
 												<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
-											</div>
-											<div id="legend" class="legend-con"></div>
+											</div>											
 										</div>
 									</div>
 								</div>
