@@ -363,8 +363,6 @@ function drawChartSumChannel(response){
 					color: '#7886a0'
 				}
 			},
-			// responsive: true,
-	        // maintainAspectRatio: false,
 			tooltip: {
 				show: true,
 				showContent: true,
@@ -386,6 +384,10 @@ function drawChartSumChannel(response){
 				// 	obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
 				// 	return obj;
 				// },
+			},
+			legend:{
+				data: ['ART','AHT','AST'],
+				top: 'auto'
 			},
 			series: chartdataTicket,
 			color: ["#A5B0B6","#009E8C","#00436D"]
