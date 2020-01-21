@@ -117,7 +117,7 @@
                                             <th class="wd-15p border-bottom-0">ART</th>
                                             <th class="wd-15p border-bottom-0">AHT</th>
                                             <th class="wd-15p border-bottom-0">AST</th>
-                                            <th class="wd-15p border-bottom-0">SCR</th>
+                                            <th class="wd-15p border-bottom-0 text-center">SCR</th>
                                             <th class="wd-15p border-bottom-0" width=150>Total Session (COF)</th>
                                         </tr>
                                     </thead>
