@@ -40,25 +40,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-5">
+                <div class="col-md-12 col-lg-6">
                     <div class="card">
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="height:310px" id="tableSkill">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10">
                                 <thead class="text-center text-white" style="background:#072f50">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Channel</th>
-                                        <th>Sun</th>
-                                        <th>Mon</th>
-                                        <th>Tue</th>
-                                        <th>Wed</th>
-                                        <th>Thu</th>
-                                        <th>Fri</th>
-                                        <th>Sat</th>
+                                        <td rowspan="2" class="text-middle">No</td>
+                                        <td rowspan="2" class="text-middle">Channel</td>
+                                        <td colspan="7">Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sun</td>
+                                        <td>Mon</td>
+                                        <td>Tue</td>
+                                        <td>Wed</td>
+                                        <td>Thu</td>
+                                        <td>Fri</td>
+                                        <td>Sat</td>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="font-size:10px !important;">
@@ -195,11 +197,24 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
+                                <tfoot class="text-right font-weight-extrabold bg-total">
+                                    <tr>
+                                        <td>TOTAL</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-7">
+                <div class="col-md-12 col-lg-6">
                     <div class="card">
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>

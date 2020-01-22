@@ -1,58 +1,322 @@
-$(function ($) {
+var base_url = $('#base_url').val();
+
+$(document).ready(function () {
+    // fromTemplate();
+    callDataPercentage('2020-01-19');
+    callIntervalTraffic('2020-01-19',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    
+});
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+//function get data and draw
+function getColorChannel(channel){
+    var color = [];
+    color['Email'] = '#e41313';
+    color['Facebook'] = '#467fcf';
+    color['Instagram'] = '#fbc0d5';
+    color['Line'] = '#31a550';
+    color['Live Chat'] = '#607d8b';
+    color['Messenger'] = '#3866a6';
+    color['SMS'] = '#80cbc4';
+    color['Telegram'] = '#343a40';
+    color['Twitter'] = '#45aaf2';
+    color['Twitter DM'] = '#6574cd';
+    color['Voice'] = '#ff9933';
+    color['Whatsapp'] = '#089e60';
+
+    return color[channel];
+}
+function destroyChartPercentage(){
+    //destroy chart percentage
+    $('#barWallTrafficDay').remove(); // this is my <canvas> element
+    $('#barWallTrafficDayDiv').append('<canvas id="barWallTrafficDay"></canvas>');
+}
+
+function callIntervalTraffic(date, arr_channel){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
+        data: {
+            date: date,
+            arr_channel: arr_channel
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            drawChartToday(response);
+            drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+function destroyChartInterval(){
+    // destroy chart interval 
+    $('#lineWallsumTrafficDay').remove(); // this is my <canvas> element
+    // $('#chart-no-data').remove(); // this is my <canvas> element
+    $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay"  class="h-400"></canvas>');
+}
+function drawChartToday(response){
+    destroyChartInterval();
+    var data = [];
+    if(!response.data.series){
+        $('#lineWallsumTrafficDay').remove(); // this is my <canvas> element
+        $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay" class="h-400"></canvas>');
+    }else{
+        response.data.series.forEach(function (value, index) {
+            var obj = {
+                label: value.label,
+                data: value.data,
+                backgroundColor: 'transparent',
+                borderColor: getColorChannel(value.label),
+                borderWidth: 3,
+                pointStyle: 'circle',
+                pointRadius: 4,
+                pointBorderColor: 'transparent',
+                pointBackgroundColor: getColorChannel(value.label),
+            };
+            data.push(obj);
+        });
+
+        // draw chart
+        var ctx = document.getElementById( "lineWallsumTrafficDay" );
+        var myChart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels: response.data.label_time,
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend:{
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
+                barRoundness:  1,
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        } );
+    }
+}
+
+function callDataPercentage(date){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday',
+        data: {
+            date: date
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            setTimeout(function(){callDataPercentage(date);},20000);
+            drawChartPercentageToday(response);
+            // fromTemplate(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawChartPercentageToday(response){
+    destroyChartPercentage();
+    var data_label = [];
+    var data_rate = [];
+    var data_color = [];
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
+    var obj = [{
+        label: "data",
+        data: data_rate,
+        borderColor: data_color,
+        borderWidth: "0",
+        backgroundColor: data_color
+    }];
+    // console.log(data_rate);
+
+    // draw chart
+    var ctx_percentage = document.getElementById("barWallTrafficDay");
+    ctx_percentage.height =400;
+    var percentageChart = new Chart(ctx_percentage, {
+        type: 'horizontalBar',
+        data: {
+            labels: data_label,
+            datasets: obj,
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0',
+                    // formatter: function (value, index) {
+                    //  if (/\s/.test(value)) {
+                    //      var teks = '';
+                    //      for(var i=0;i<value.length;i++){
+                    //          // if(value[i] == " "){
+                    //          //     teks = teks + '%';
+                    //          // }else{
+                    //          //     teks = teks + value[i];
+                    //          // }
+                    //          teks = value[i] + '%';
+                    //      }
+                    //      return teks;
+                    //  } 
+                    // }
+                }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0, // Edit the value according to what you need
+                        callback: function(value, index, values) {
+                           //      if(parseInt(value) >= 1000){
+                           //          var res = (value/1000);
+                                    // return res+'K'
+                           //      } else
+                           //       return value;
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join(',');
+                            return value;
+                        }
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data_rate[tooltipItem.index];
+                        // value = value.toString();
+                        // value = value.split(/(?=(?:...)*$)/);
+                        // value = value.join(',');
+                        value = addCommas(value);
+                        return value;
+                    }
+              }
+            },
+        }
+    });
+}
+
+function drawTableData(response){
+    // var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0,summarize = 0,t_summarize =0;
+    //for append title on echart
+    $("#mytbody").empty();
+    // $("#mythead_nfcr").empty();
+    if(response.data.series.length != 0){
+       
+        var i = 0;
+        response.data.series.forEach(function (value, index) {
+            // summarize = parseInt(value.fcr_1)+parseInt(value.nfcr_1)+parseInt(value.fcr_2)+parseInt(value.nfcr_2)+parseInt(value.fcr_3)+parseInt(value.nfcr_3);
+            // t_summarize = parseInt(summarize)+parseInt(t_summarize);
+            // sum_fcr1=parseInt(sum_fcr1)+parseInt(value.fcr_1);
+            // sum_nfcr1=parseInt(sum_nfcr1)+parseInt(value.nfcr_1);
+            // sum_fcr2=parseInt(sum_fcr2)+parseInt(value.fcr_2);
+            // sum_nfcr2=parseInt(sum_nfcr2)+parseInt(value.nfcr_2);
+            // sum_fcr3=parseInt(sum_fcr3)+parseInt(value.fcr_3);
+            // sum_nfcr3=parseInt(sum_nfcr3)+parseInt(value.nfcr_3);
+            $('#mytable').find('tbody').append('<tr>'+
+            '<td>'+(i+1)+'</td>'+
+            '<td>'+value.label+'</td>'+
+            '<td>'+value.data[0]+'</td>'+
+            '<td>'+value.data[1]+'</td>'+
+            '<td>'+value.data[2]+'</td>'+
+            '<td>'+value.data[3]+'</td>'+
+            '<td>'+value.data[4]+'</td>'+
+            '<td>'+value.data[5]+'</td>'+
+            '<td>'+value.data[6]+'</td>'+
+            '<td>'+value.data[7]+'</td>'+
+            '<td>'+value.data[8]+'</td>'+
+            '<td>'+value.data[9]+'</td>'+
+            '<td>'+value.data[10]+'</td>'+
+            '<td>'+value.data[11]+'</td>'+
+            '<td>'+value.data[12]+'</td>'+
+            '<td>'+value.data[13]+'</td>'+
+            '<td>'+value.data[14]+'</td>'+
+            '<td>'+value.data[15]+'</td>'+
+            '<td>'+value.data[16]+'</td>'+
+            '<td>'+value.data[17]+'</td>'+
+            '<td>'+value.data[18]+'</td>'+
+            '<td>'+value.data[19]+'</td>'+
+            '<td>'+value.data[20]+'</td>'+
+            '<td>'+value.data[21]+'</td>'+
+            '<td>'+value.data[22]+'</td>'+
+            '<td>'+value.data[23]+'</td>'+
+            '</tr>');
+            i++;
+            
+        });
+    }else{
+        $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    //fade out loading
+    $("#filter-loader").fadeOut("slow");
+}
+
+function fromTemplate(response) {
     "use strict";
     // Horizontal Bar
+     var data_label = [];
+    var data_rate = [];
+    var data_color = [];
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
 
     var MeSeContext = document.getElementById("barWallTrafficDay");
     MeSeContext.height = 400;
     var MeSeData = {
-        labels: [
-            "Whatsapp",
-            "Facebook",
-            "Line",
-            "Twitter",
-            "Twitter DM",
-            "Instagram",
-            "Messenger",
-            "Telegram",
-            "Email",
-            "Voice",
-            "SMS",
-            "Live Chat"
-        ],
+        labels: data_label,
         datasets: [{
             label: "test",
-            data: [1000,5000,4300,6000,7000,5000,10000,3500,6000,7000,2000,2500],
-            backgroundColor: [
-                "#31a550",
-                "#467fcf",
-                "#31a550",
-                "#45aaf2",
-                "#6574cd",
-                "#fbc0d5",
-                "#3866a6",
-                "#343a40",
-                "#e41313",
-                "#ff9933",
-                "#80cbc4",
-                "#607d8b"
-            ],
-            hoverBackgroundColor: [
-                "#A5B0B6",
-                "#009E8C",
-                "#00436D",
-                "#31a550",
-                "#467fcf",
-                "#31a550",
-                "#45aaf2",
-                "#6574cd",
-                "#fbc0d5",
-                "#3866a6",
-                "#343a40",
-                "#e41313",
-                "#ff9933",
-                "#80cbc4",
-                "#607d8b"
-            ]
+            data: data_rate,
+            backgroundColor: data_color,
+            hoverBackgroundColor: data_color
         }]
     };
     var MeSeChart = new Chart(MeSeContext, {
@@ -225,4 +489,4 @@ $(function ($) {
         }
     } );
 	
-});
+}

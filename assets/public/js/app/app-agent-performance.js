@@ -297,6 +297,7 @@ function drawDataTable(params_time, index, params_year){
 
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $(this).prop("class","btn btn-red btn-sm");
 
         $('#filter-date').show();

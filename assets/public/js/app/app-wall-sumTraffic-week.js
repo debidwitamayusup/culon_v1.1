@@ -151,7 +151,7 @@ $(function ($) {
 		},
 		xAxis: {
 			type: 'category',
-			data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+			data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 			
 			axisLine: {
 				lineStyle: {

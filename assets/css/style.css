@@ -6186,7 +6186,7 @@ ul {
 	overflow:hidden;
 }
 .chartsh-wall {
-	height: 34.5rem;
+	height: 36.8rem;
 	overflow:hidden;
 }
 /* ----------------- */
@@ -22476,6 +22476,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .bg-rows{
-	background : #E6E6FA;
-	border: 1px solid #fff;
+	background : #F8F8FF;
+	/* border: 1px solid #fff; */
+}
+
+.bg-column{
+	background: #778899;
 }

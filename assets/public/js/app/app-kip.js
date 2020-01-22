@@ -314,6 +314,9 @@ function drawPieChart(response){
     $('#pieKIP').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>');
 
+    $('#mylegend').remove();
+    $('#legend').append('<div id="legend" class="legend-con"></div>');
+
     let summaryKipName = []
     let summaryKip = []
 
@@ -375,8 +378,7 @@ function drawPieChart(response){
 	            legendCallback: function (chart, index) {
 	                var allData = chart.data.datasets[0].data;
 	                var legendHtml = [];
-	                console.log(chart);
-	                legendHtml.push('<ul><div class="row ml-3">');
+	                legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
 	                allData.forEach(function (data, index) {
 	                    if (allData[index] != 0) {
 	                        var label = chart.data.labels[index];
@@ -386,11 +388,10 @@ function drawPieChart(response){
 	                        for (var i in allData) {
 	                            total += parseInt(allData[i]);
 	                        }
-	                        
-	                        legendHtml.push('<li class="col-md-auto">');
+	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + dataLabel + '</span>');
 	                        legendHtml.push('</li>');
-	                    }else{
+	                    }else if(allData[index] == 0){
 	                        var label = chart.data.labels[index];
 	                        var dataLabel = allData[index];
 	                        var background = chart.data.datasets[0].backgroundColor[index];
@@ -398,8 +399,7 @@ function drawPieChart(response){
 	                        for (var i in allData) {
 	                            total += parseInt(allData[i]);
 	                        }
-	                        
-	                        legendHtml.push('<li class="col-md-auto">');
+	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '</span>');
 	                        legendHtml.push('</li>');
 	                    }
