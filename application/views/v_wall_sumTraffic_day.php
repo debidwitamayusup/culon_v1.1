@@ -45,66 +45,36 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
-                        <div class="table-responsive table-bordered" style="margin:5px 15px 5px 5px; font-size:10px;">
-                            <table class="table card-table table-striped table-vcenter table-hover">
-                                <thead style="font-size:10px; background:#072f50" class="text-white">
+                        <div class="table-responsive table-bordered" style="padding:5px;">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                                style="height:310px" id="tableSkill">
+                                <thead class="text-center text-white" style="background:#072f50">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>
-                                        <td colspan="25" class="text-center">Time</td>
+                                        <td colspan="5" class="text-center">Time</td>
                                     </tr>
                                     <tr>
-                                        <td>00:00</td>
-                                        <td>01:00</td>
-                                        <td>02:00</td>
-                                        <td>03:00</td>
-                                        <td>04:00</td>
-                                        <td>05:00</td>
-                                        <td>06:00</td>
-                                        <td>07:00</td>
-                                        <td>08:00</td>
-                                        <td>09:00</td>
-                                        <td>10:00</td>
-                                        <td>11:00</td>
-                                        <td>12:00</td>
-                                        <td>13:00</td>
-                                        <td>14:00</td>
-                                        <td>15:00</td>
-                                        <td>16:00</td>
-                                        <td>17:00</td>
-                                        <td>18:00</td>
-                                        <td>19:00</td>
-                                        <td>20:00</td>
-                                        <td>21:00</td>
-                                        <td>22:00</td>
-                                        <td>23:00</td>
-                                        <td>24:00</td>
+                                        <td>00:00 - 04:00</td>
+                                        <td>05:00 - 09:00</td>
+                                        <td>10:00 - 14:00</td>
+                                        <td>15:00 - 19:00</td>
+                                        <td>20:00 - 24:00</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>1</td>
+                                        <td>Whatsapp</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
                                         <td>2</td>
                                         <td>Facebook</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -119,50 +89,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
                                         <td>Twitter DM</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -176,51 +106,11 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
+                                        <td>200</td>                                    
                                     </tr>
                                     <tr>
                                         <td>6</td>
                                         <td>Messenger</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -235,50 +125,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                     </tr>
                                     <tr>
                                         <td>8</td>
                                         <td>Telegram</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -293,50 +143,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                     </tr>
                                     <tr>
                                         <td>10</td>
-                                        <td>Email</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
+                                        <td>Voice</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -351,50 +161,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                     </tr>
                                     <tr>
                                         <td>12</td>
                                         <td>Live Chat</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>

@@ -519,6 +519,23 @@ function setDatePicker(){
         $('#filter-year').show();
     });
 
+    var date = new Date();
+    date.setDate(date.getDate()>0);
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        minDate: date,
+        
+        onSelect: function(dateText) {
+        // console.log(this.value);
+        v_date = this.value;
+        
+        loadContent('day', v_date, 0);
+        }
+    });
+
     $('#input-date-filter').datepicker({
         dateFormat: 'yy-mm-dd',
         onSelect: function(dateText) {
