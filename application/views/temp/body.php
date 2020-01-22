@@ -85,10 +85,23 @@
 								<div class="card-header-small bg-red">
 									<h5 class="card-title-small card-pt10 text-white">Summary Traffic</h5>
 								</div>
-								<div class="card-pie">
-									<div class="canvas-con">
-										<div class="canvas-con-inner" id="canvas-pie">
-											<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+							</div>
+						</div>
+						<!--Page Header-->
+						<!-- </div> -->
+						<!----Baris Pertama----!-->
+						<div class="row">
+							<div class="col-xl-6 col-lg-6 col-md-12">
+								<div class="card overflow-hidden">
+									<div class="card-header-small bg-red">
+										<h5 class="card-title-small card-pt10 text-white">Summary Traffic</h5>
+									</div>
+									<div class="card-pie">
+										<div class="canvas-con">
+											<div id="legend" class="legend-con"></div>
+											<div class="canvas-con-inner" id="canvas-pie">
+												<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+											</div>											
 										</div>
 										<div id="legend" class="legend-con"></div>
 									</div>

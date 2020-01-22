@@ -97,7 +97,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
-        order by m_channel.channel_name asc
+        order by m_channel.channel_name desc
         ");	
 
         // $this->createLogSql();
@@ -163,12 +163,12 @@ class OperationModel extends CI_Model
         ,  CASE 
         WHEN rpt_summ_kip2.sub_category is null THEN "None"
         WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",3) != ""
-        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",3)
+        THEN UPPER(SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",3))
         WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",2) != ""
-        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",2)
+        THEN UPPER(SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",2))
         WHEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",1) != ""
-        THEN SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",1)
-        ELSE rpt_summ_kip2.sub_category
+        THEN UPPER(SUBSTRING_INDEX(rpt_summ_kip2.sub_category," |",1))
+        ELSE UPPER(rpt_summ_kip2.sub_category)
         END as sub_category_lng
         ', FALSE); //LEFT(field1,LOCATE(' ',field1) - 1)
 		$this->db->from('rpt_summ_kip2');
