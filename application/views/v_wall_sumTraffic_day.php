@@ -51,7 +51,7 @@
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>
-                                        <td colspan="5" class="text-center">Time</td>
+                                        <td colspan="24" class="text-center">Time</td>
                                     </tr>
                                     <tr>
                                         <td>00:00</td>
