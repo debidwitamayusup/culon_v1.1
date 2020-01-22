@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item active" aria-current="page">
                             <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
                         </li>
-                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by This Week</li>
+                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by Week</li>
                     </ol>
                 </div>
                 <!--Page Header-->
@@ -47,7 +47,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10">
-                                <thead class="text-center text-white" style="background:#072f50">
+                                <thead class="text-center text-white" style="background:#366790; font-size:11px;">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>

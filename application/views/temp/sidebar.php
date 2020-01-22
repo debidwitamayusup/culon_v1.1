@@ -17,8 +17,8 @@ Sidebar menu-->
 						Time</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/summary_inout_sla">Summary in / out SLA</a></li> -->
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_day">Summary Traffic by Today</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Summary Traffic by This Week</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_month">Summary Traffic by This Month</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Summary Traffic by Week</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_month">Summary Traffic by Month</a></li>
 			</ul>
 		</li>
 		<li class="slide">

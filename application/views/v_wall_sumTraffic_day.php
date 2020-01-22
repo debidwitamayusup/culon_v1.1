@@ -47,24 +47,25 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px">
-                                <thead class="text-center text-white" style="background:#072f50;">
+                                <thead class="text-center text-white" style="background:#366790;">
+                                    
                                     <tr>
-                                        <td class="font-weight-extrabold">Channel</td>
-                                        <td rowspan="2" class="bg-column">Whatsapp</td>
-                                        <td rowspan="2" class="bg-column">Facebook</td>
-                                        <td rowspan="2" class="bg-column">Twitter</td>
-                                        <td rowspan="2" class="bg-column">Twitter DM</td>
-                                        <td rowspan="2" class="bg-column">Messenger</td>
-                                        <td rowspan="2" class="bg-column">Instagram</td>
-                                        <td rowspan="2" class="bg-column">Line</td>
-                                        <td rowspan="2" class="bg-column">Telegram</td>
-                                        <td rowspan="2" class="bg-column">Email</td>
-                                        <td rowspan="2" class="bg-column">Voice</td>
-                                        <td rowspan="2" class="bg-column">SMS</td>
-                                        <td rowspan="2" class="bg-column">Live Chat</td>
+                                        <td rowspan="2" class="font-weight-extrabold">Time</td>
+                                        <td colspan="12" class="font-weight-extrabold">Channel</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-extrabold">Time</td>
+                                        <td class="bg-column">Whatsapp</td>
+                                        <td class="bg-column">Facebook</td>
+                                        <td class="bg-column">Twitter</td>
+                                        <td class="bg-column">Twitter DM</td>
+                                        <td class="bg-column">Messenger</td>
+                                        <td class="bg-column">Instagram</td>
+                                        <td class="bg-column">Line</td>
+                                        <td class="bg-column">Telegram</td>
+                                        <td class="bg-column">Email</td>
+                                        <td class="bg-column">Voice</td>
+                                        <td class="bg-column">SMS</td>
+                                        <td class="bg-column">Live Chat</td>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
