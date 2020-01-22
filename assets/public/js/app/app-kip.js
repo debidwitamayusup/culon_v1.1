@@ -168,7 +168,7 @@ function drawChartSubCategory(response){
 				top: '6',
 				right: '20',
 				bottom: '20',
-				left: '55',
+				left: '60',
 			},
 			xAxis: {
 				type: 'value',
@@ -314,6 +314,9 @@ function drawPieChart(response){
     $('#pieKIP').remove(); // this is my <canvas> element
     $('#canvas-pie').append('<canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>');
 
+    $('#mylegend').remove();
+    $('#legend').append('<div id="legend" class="legend-con"></div>');
+
     let summaryKipName = []
     let summaryKip = []
 
@@ -328,7 +331,7 @@ function drawPieChart(response){
 	    category_kip = summaryKipName;
 	    //pie chart
 	    var ctx = document.getElementById( "pieKIP");
-	    ctx.height = 377;
+	    ctx.height = 319;
 	    var myChart = new Chart( ctx, {
 	        type: 'pie',
 	        data: {
@@ -352,10 +355,7 @@ function drawPieChart(response){
 	            responsive: true,
 				maintainAspectRatio: false,
 				legend :{
-					position : "bottom",
-					labels:{
-						boxWidth:10
-				   }
+					display: false				   
 				},
 				tooltips: {
 				  callbacks: {
@@ -372,10 +372,45 @@ function drawPieChart(response){
 	                render: 'legend',
 	                fontColor: '#000',
 	                position: 'outside',
-	                segment: true
-	            }
+	                segment: true,
+	                precision: 0
+	            },
+	            legendCallback: function (chart, index) {
+	                var allData = chart.data.datasets[0].data;
+	                var legendHtml = [];
+	                legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
+	                allData.forEach(function (data, index) {
+	                    if (allData[index] != 0) {
+	                        var label = chart.data.labels[index];
+	                        var dataLabel = allData[index];
+	                        var background = chart.data.datasets[0].backgroundColor[index];
+	                        var total = 0;
+	                        for (var i in allData) {
+	                            total += parseInt(allData[i]);
+	                        }
+	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + dataLabel + '</span>');
+	                        legendHtml.push('</li>');
+	                    }else if(allData[index] == 0){
+	                        var label = chart.data.labels[index];
+	                        var dataLabel = allData[index];
+	                        var background = chart.data.datasets[0].backgroundColor[index];
+	                        var total = 0;
+	                        for (var i in allData) {
+	                            total += parseInt(allData[i]);
+	                        }
+	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '</span>');
+	                        legendHtml.push('</li>');
+	                    }
+	                })
+	                legendHtml.push('</ul></div>');
+	                return legendHtml.join("");
+	            },
 	        }
 	    } );
+	    var myLegendContainer = document.getElementById("legend");
+    	myLegendContainer.innerHTML = myChart.generateLegend();
 	}else{
 		$('#pieKIP').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 	}

@@ -2,14 +2,14 @@
 <div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 <div class="page">
     <div class="page-main">
-        <div class=" app-content mt-7">
+        <div class=" app-content mt-6">
             <div class="side-app">
                 <div class="page-header d-flex bd-highlight">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li>
+                            <!-- <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li> -->
                             <li class="breadcrumb-item active mt-2" aria-current="page">Performance by Channel</li>
                         </ol>
                         <div class="d-flex align-items-end flex-column bd-highlight">

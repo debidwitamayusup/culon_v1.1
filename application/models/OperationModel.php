@@ -97,7 +97,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
-        order by m_channel.channel_name asc
+        order by m_channel.channel_name desc
         ");	
 
         // $this->createLogSql();
