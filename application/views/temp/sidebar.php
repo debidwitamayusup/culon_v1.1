@@ -12,10 +12,13 @@ Sidebar menu-->
 				<!-- <li><a class="slide-item" href="<?=base_url()?>main/average">ART / AHT / AST</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/average_duration">Average Duration</a></li> -->
 				<!-- <li><a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Channel</li> -->
-				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
+				<!-- <li><a class="slide-item" href="<?=base_url()?>main/monitoring_status">Monitoring Ticket Status</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_ticket_time">Monitoring Ticket by
 						Time</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/summary_inout_sla">Summary in / out SLA</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_inout_sla">Summary in / out SLA</a></li> -->
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_day">Summary Traffic by Today</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Summary Traffic by This Week</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_month">Summary Traffic by This Month</a></li>
 			</ul>
 		</li>
 		<li class="slide">
