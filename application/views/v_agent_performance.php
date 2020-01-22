@@ -293,15 +293,15 @@
                                          style="width:100%">
                                          <thead class="text-center">
                                              <tr>
-                                                 <th class="wd-15p border-bottom-0">ID</th>
-                                                 <th class="wd-15p border-bottom-0" style="width:30%">Agent ID</th>
-                                                 <th class="wd-15p border-bottom-0" style="width:40%">Agent Name</th>
+                                                 <th class="wd-15p border-bottom-0">No</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">Agent ID</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:30%">Agent Name</th>
                                                  <th class="wd-15p border-bottom-0" >Skill</th>
                                                  <th class="wd-15p border-bottom-0">COF
                                                  </th>
-                                                 <th class="wd-15p border-bottom-0">ART</th>
-                                                 <th class="wd-15p border-bottom-0">AHT</th>
-                                                 <th class="wd-15p border-bottom-0">AST</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">ART</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">AHT</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">AST</th>
                                              </tr>
                                          </thead>
                                          <tbody style="font-size:12px !important;" id="mytbody">
