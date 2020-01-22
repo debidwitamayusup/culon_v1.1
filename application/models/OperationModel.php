@@ -195,7 +195,6 @@ class OperationModel extends CI_Model
     	return $query->result();
     }
     
-
     public function getCategory1($params, $index, $arr_category, $params_year)
     {
         $where= "";

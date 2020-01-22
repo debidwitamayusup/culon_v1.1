@@ -301,6 +301,7 @@ function drawChartAndCard(response){
     });
     var myLegendContainer = document.getElementById("legend");
     myLegendContainer.innerHTML = myChart.generateLegend();
+    
 }
 
 function addCommas(commas)
