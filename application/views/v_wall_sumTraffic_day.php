@@ -24,7 +24,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="barWallTrafficDayDiv">
                             <canvas id="barWallTrafficDay"></canvas>
 
                         </div>
@@ -35,7 +35,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="lineWallsumTrafficDayDiv">
                             <canvas id="lineWallsumTrafficDay" class="h-400"></canvas>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="mytable">
                                 <thead class="text-center text-white" style="background:#072f50;">
                                     <tr>
                                         <td class="font-weight-extrabold">Channel</td>
@@ -71,17 +71,17 @@
                                     <tr>
                                         <td class="bg-rows font-weight-extrabold">00:00</td>
                                         <td>200</td>
+                                        <td>400</td>
+                                        <td>500</td>
+                                        <td>600</td>
+                                        <td>700</td>
+                                        <td>800</td>
+                                        <td>900</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
+                                        <td>300</td>
+                                        <td>400</td>
+                                        <td>500</td>
+                                        <td>600</td>
                                     </tr>
                                     <tr>
                                         <td class="bg-rows font-weight-extrabold">01:00</td>
