@@ -36,7 +36,7 @@
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                         </div>
                         <div class="card-body">
-                            <div id="echartWeek" class="chartsh-wall overflow-hidden" style="width:100%;"></div>
+                            <canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>
                         </div>
                     </div>
                 </div>
@@ -50,18 +50,15 @@
                                 style="height:310px" id="tableSkill">
                                 <thead class="text-center text-white" style="background:#072f50">
                                     <tr>
-                                        <td rowspan="2" class="text-middle">No</td>
-                                        <td rowspan="2" class="text-middle">Channel</td>
-                                        <td colspan="25" class="text-center">Day</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>7</td>
+                                        <th>No</th>
+                                        <th>Channel</th>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="font-size:10px !important;">
@@ -208,7 +205,7 @@
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="lineWallsumTrafficWeek" style="height:554px;"></canvas>
+                            <div id="echartWeek" class="chartsh-wall overflow-hidden"></div>
                         </div>
                     </div>
                 </div>

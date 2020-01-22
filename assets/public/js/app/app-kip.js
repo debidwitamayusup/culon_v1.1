@@ -168,7 +168,7 @@ function drawChartSubCategory(response){
 				top: '6',
 				right: '20',
 				bottom: '20',
-				left: '55',
+				left: '60',
 			},
 			xAxis: {
 				type: 'value',
@@ -331,7 +331,7 @@ function drawPieChart(response){
 	    category_kip = summaryKipName;
 	    //pie chart
 	    var ctx = document.getElementById( "pieKIP");
-	    ctx.height = 377;
+	    ctx.height = 319;
 	    var myChart = new Chart( ctx, {
 	        type: 'pie',
 	        data: {
@@ -388,7 +388,6 @@ function drawPieChart(response){
 	                        for (var i in allData) {
 	                            total += parseInt(allData[i]);
 	                        }
-	                         
 	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + dataLabel + '</span>');
 	                        legendHtml.push('</li>');
@@ -400,7 +399,6 @@ function drawPieChart(response){
 	                        for (var i in allData) {
 	                            total += parseInt(allData[i]);
 	                        }
-
 	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '</span>');
 	                        legendHtml.push('</li>');

@@ -145,7 +145,7 @@ $(function ($) {
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '30',
+			right: '15',
 			bottom: '17',
 			left: '32',
 		},

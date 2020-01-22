@@ -9,7 +9,7 @@
                             <li class="breadcrumb-item active" aria-current="page">
                                 <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                             </li>
-                            <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li>
+                            <!-- <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li> -->
                             <li class="breadcrumb-item active mt-2" aria-current="page">Performance by Channel</li>
                         </ol>
                         <div class="d-flex align-items-end flex-column bd-highlight">
