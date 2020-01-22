@@ -576,6 +576,7 @@ class Stc_Model extends CI_Model
 		$this->db->group_by('b.channel_name');
 		$query = $this->db->get();
 		return $query;
+
 	}
 
 	// public function getAverageCustom()
@@ -620,10 +621,8 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_today2($date,$channel)
 	{
-
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
-		//$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -652,14 +651,6 @@ class Stc_Model extends CI_Model
 					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 				);
 			}
-			
-			
-
-
-			
-			
-			// echo json_encode($times);
-			// exit;
 		}
 
 		$result = array(
@@ -670,10 +661,7 @@ class Stc_Model extends CI_Model
 			)
 		);
 
-		echo json_encode($result);
-		exit;
-
-		//return $result;
+		return $result;
 	}
 
 	function get_availdata($date,$channel)
