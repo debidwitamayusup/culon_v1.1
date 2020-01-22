@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item active" aria-current="page">
                             <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
                         </li>
-                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by Today</li>
+                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by This Week</li>
                     </ol>
                 </div>
                 <!--Page Header-->
@@ -25,7 +25,7 @@
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="barWallTrafficDay"></canvas>
+                            <canvas id="barWallTrafficMonth"></canvas>
 
                         </div>
                     </div>
@@ -33,17 +33,17 @@
                 <div class="col-md-12 col-lg-8">
                     <div class="card">
                         <div class="card-header-small bg-red">
-                            <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
+                            <h5 class="card-title-small card-pt10">Traffic by Interval Monthly (Hours)</h5>
                         </div>
                         <div class="card-body">
-                            <canvas id="lineWallsumTrafficDay" class="h-400"></canvas>
+                            <canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header-small bg-red">
-                            <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
+                            <h5 class="card-title-small card-pt10">Table Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px">
@@ -64,12 +64,12 @@
                                         <td rowspan="2" class="bg-column">Live Chat</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-weight-extrabold">Time</td>
+                                        <td class="font-weight-extrabold">Date</td>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">00:00</td>
+                                        <td class="bg-rows font-weight-extrabold">1</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -84,7 +84,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">01:00</td>
+                                        <td class="bg-rows font-weight-extrabold">2</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -99,7 +99,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">02:00</td>
+                                        <td class="bg-rows font-weight-extrabold">3</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -114,7 +114,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">03:00</td>
+                                        <td class="bg-rows font-weight-extrabold">3</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -129,7 +129,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">04:00</td>
+                                        <td class="bg-rows font-weight-extrabold">4</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -144,7 +144,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">05:00</td>
+                                        <td class="bg-rows font-weight-extrabold">5</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -159,7 +159,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows">06:00</td>
+                                        <td class="bg-rows">6</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -174,7 +174,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">07:00</td>
+                                        <td class="bg-rows font-weight-extrabold">7</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -189,7 +189,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">08:00</td>
+                                        <td class="bg-rows font-weight-extrabold">8</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -204,7 +204,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">09:00</td>
+                                        <td class="bg-rows font-weight-extrabold">9</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -219,7 +219,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">10:00</td>
+                                        <td class="bg-rows font-weight-extrabold">10</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -234,7 +234,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">11:00</td>
+                                        <td class="bg-rows font-weight-extrabold">11</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -249,7 +249,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">12:00</td>
+                                        <td class="bg-rows font-weight-extrabold">12</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -264,7 +264,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">13:00</td>
+                                        <td class="bg-rows font-weight-extrabold">13</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -279,7 +279,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">14:00</td>
+                                        <td class="bg-rows font-weight-extrabold">14</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -294,7 +294,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">15:00</td>
+                                        <td class="bg-rows font-weight-extrabold">15</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -309,7 +309,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">16:00</td>
+                                        <td class="bg-rows font-weight-extrabold">16</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -324,7 +324,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">17:00</td>
+                                        <td class="bg-rows font-weight-extrabold">17</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -339,7 +339,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">18:00</td>
+                                        <td class="bg-rows font-weight-extrabold">18</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -354,7 +354,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">19:00</td>
+                                        <td class="bg-rows font-weight-extrabold">19</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -369,7 +369,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">20:00</td>
+                                        <td class="bg-rows font-weight-extrabold">20</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -384,7 +384,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">21:00</td>
+                                        <td class="bg-rows font-weight-extrabold">21</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -399,7 +399,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">22:00</td>
+                                        <td class="bg-rows font-weight-extrabold">22</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -414,7 +414,7 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-rows font-weight-extrabold">23:00</td>
+                                        <td class="bg-rows font-weight-extrabold">23</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -429,7 +429,105 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                    <td class="bg-rows font-weight-extrabold">24:00</td>
+                                    <td class="bg-rows font-weight-extrabold">24</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">25</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">26</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">27</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">28</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">29</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">30</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <td class="bg-rows font-weight-extrabold">31</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -468,4 +566,4 @@
             </div>
             <?php $this->load->view('temp/footer');?>
             <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-wall-sumTraffic-day.js"></script>
+            <script src="<?=base_url()?>assets/public/js/app/app-wall-sumTraffic-month.js"></script>
