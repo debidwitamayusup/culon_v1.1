@@ -9,8 +9,8 @@
                         <li class="breadcrumb-item active" aria-current="page">
                             <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
                         </li>
-                        <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li>
-                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary KIP All Channel</li>
+                        <!-- <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li> -->
+                        <li class="breadcrumb-item active mt-2" aria-current="page">KIP</li>
                     </ol>
                     <div class="d-flex align-items-end flex-column bd-highlight">
                         <div class="bd-highlight">
@@ -75,19 +75,17 @@
                             </div>
                         </div>
                     </div>
-                    <!----Baris Pertama----!-->
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-5 col-md-12">
-                            <div class="card">
-                                <div class="card-header-small bg-red">
-                                    <h5 class="card-title-small card-pt10">Summary KIP</h5>
-                                </div>
-                                <div id="legend" class="legend-con"></div>
-                                <div class="card-body" id="canvas-pie">
-                                    <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
-                                </div>                                
-                            </div>
+                </div>
+            </div>
+            <!----Baris Pertama----!-->
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-12">
+                    <div class="card">
+                        <div class="card-header-small bg-red">
+                        
+                            <h5 class="card-title-small card-pt10">Summary KIP</h5>
                         </div>
+                        <div id="legend" class="legend-con"></div>
                         <div class="card-body" id="canvas-pie">
                             <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
                         </div>

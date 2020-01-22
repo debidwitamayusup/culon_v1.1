@@ -168,7 +168,7 @@ function drawChartSubCategory(response){
 				top: '6',
 				right: '20',
 				bottom: '20',
-				left: '55',
+				left: '60',
 			},
 			xAxis: {
 				type: 'value',
@@ -328,7 +328,7 @@ function drawPieChart(response){
 	    category_kip = summaryKipName;
 	    //pie chart
 	    var ctx = document.getElementById( "pieKIP");
-	    ctx.height = 377;
+	    ctx.height = 319;
 	    var myChart = new Chart( ctx, {
 	        type: 'pie',
 	        data: {
@@ -376,7 +376,7 @@ function drawPieChart(response){
 	                var allData = chart.data.datasets[0].data;
 	                var legendHtml = [];
 	                console.log(chart);
-	                legendHtml.push('<ul><div class="row ml-2">');
+	                legendHtml.push('<ul><div class="row ml-3">');
 	                allData.forEach(function (data, index) {
 	                    if (allData[index] != 0) {
 	                        var label = chart.data.labels[index];
@@ -387,7 +387,7 @@ function drawPieChart(response){
 	                            total += parseInt(allData[i]);
 	                        }
 	                        
-	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+	                        legendHtml.push('<li class="col-md-auto">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + dataLabel + '</span>');
 	                        legendHtml.push('</li>');
 	                    }else{
@@ -399,7 +399,7 @@ function drawPieChart(response){
 	                            total += parseInt(allData[i]);
 	                        }
 	                        
-	                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+	                        legendHtml.push('<li class="col-md-auto">');
 	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '</span>');
 	                        legendHtml.push('</li>');
 	                    }
