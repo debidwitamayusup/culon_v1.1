@@ -24,7 +24,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="barWallTrafficDayDiv">
                             <canvas id="barWallTrafficDay"></canvas>
 
                         </div>
@@ -35,7 +35,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="lineWallsumTrafficDayDiv">
                             <canvas id="lineWallsumTrafficDay" class="h-400"></canvas>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="margin:5px 15px 5px 5px; font-size:10px;">
-                            <table class="table card-table table-striped table-vcenter table-hover">
+                            <table class="table card-table table-striped table-vcenter table-hover" id="mytable">
                                 <thead style="font-size:10px; background:#072f50" class="text-white">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
@@ -78,11 +78,10 @@
                                         <td>21:00</td>
                                         <td>22:00</td>
                                         <td>23:00</td>
-                                        <td>24:00</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="mytbody">
+                                    <!-- <tr>
                                         <td>2</td>
                                         <td>Facebook</td>
                                         <td>200</td>
@@ -400,7 +399,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

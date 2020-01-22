@@ -375,7 +375,7 @@ function drawPieChart(response){
 	            legendCallback: function (chart, index) {
 	                var allData = chart.data.datasets[0].data;
 	                var legendHtml = [];
-	                console.log(chart);
+	                // console.log(chart);
 	                legendHtml.push('<ul><div class="row ml-2">');
 	                allData.forEach(function (data, index) {
 	                    if (allData[index] != 0) {
