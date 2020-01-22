@@ -81,8 +81,8 @@ Sidebar menu-->
 				<li><a class="slide-item" href="<?=base_url()?>main/kip">KIP</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/performance_channel">Performance by Channel</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/agent_performance">Agent Performance</a></li>
-				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">CWC</a></li>
+				<!-- <hr>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_cwc">CWC</a></li> -->
 				<!-- <li class="slide submenu">
 					<a href="#collapseTicket" class="slide-item" data-toggle="collapse" aria-expanded="true"
 						aria-controls="collapseTicket"> Ticketing

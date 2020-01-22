@@ -19,8 +19,8 @@ if (n < 10) {
   n = '0' + n;
 }
 
-//get today
-var v_params_this_year = m + '-' + n + '-' + (o);
+//get yesterday
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
     $('#select-month option[value='+n+']').attr('selected','selected');

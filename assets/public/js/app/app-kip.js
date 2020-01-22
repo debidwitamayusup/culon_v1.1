@@ -28,7 +28,7 @@ $(document).ready(function () {
 	// loadContent(params_time, v_date, 0);
 	loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
-	$('#input-date-filter').datepicker("setDate", v_date);
+	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value='+n+']').attr('selected','selected');
 	$('#select-year-on-month option[value='+m+']').attr('selected','selected');
 	$('#select-year-only option[value='+m+']').attr('selected','selected');
@@ -152,7 +152,7 @@ function drawChartSubCategory(response){
 		var data = [];
 		response.data[i].forEach(function(value, index){
 			label_lng.push(value.sub_category_lng);
-			label.push(value.sub_category);
+			label.push(value.sub_category_lng);
 			data.push(value.total_kip);
 		});
 		// draw chart
@@ -160,7 +160,8 @@ function drawChartSubCategory(response){
 			name: value,
 			type: 'bar',
 			stack: 'Stack',
-			data: data
+			data: data,
+			label_lng: label_lng
 		}];
 		var optionInfo = {
 			grid: {
@@ -204,8 +205,19 @@ function drawChartSubCategory(response){
 							for(var i=0;i<value.length;i++){
 								if(value[i] == " "){
 									teks = teks + '\n';
-								}else{
+									
+								}
+								else if(value[i] == "|")
+								{
+									break;
+
+								}
+								else{
 									teks = teks + value[i];
+								}
+								if(i==11)
+								{
+									break;
 								}
 							}
 							return teks;
@@ -219,20 +231,54 @@ function drawChartSubCategory(response){
 			show : 'data',
 			// color: ["#A5B0B6"]
 			color: [color[i]],
+			// tooltip: {
+			// 	callbacks: {
+			//             label: function(tooltipItem) {
+			//                 return tooltipItem.label_lng;
+			//             }
+			//         },
+			// 	show: true,
+			// 	showContent: true,
+			// 	alwaysShowContent: false,
+			// 	triggerOn: 'mousemove',
+			// 	trigger: 'axis',
+			// 	axisPointer: {
+			// 		label: {
+			// 			show: true,
+			// 			color: '#7886a0',
+			// 			formatter : function (){
+			// 				return label_lng;
+			// 			}
+			// 		}
+			// 	},
+			// 	position: function (pos, params, dom, rect, size) {
+			// 		// tooltip will be fixed on the right if mouse hovering on the left,
+			// 		// and on the left if hovering on the right.
+			// 		// console.log(pos);
+			// 		var obj = {top: pos[0]};
+			// 		obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+			// 		return obj;
+			// 	},
+			// },
 			tooltip: {
 				show: true,
 				showContent: true,
 				alwaysShowContent: false,
 				triggerOn: 'mousemove',
 				trigger: 'axis',
+				// formatter : function (){
+				// 			return label_lng[index];
+				// 		},
 				axisPointer: {
-					label: {
-						show: true,
-						color: '#7886a0',
-						formatter : function (){
-							return label_lng;
-						}
-					}
+					 label: {
+					 	show: false,
+					 	color: '#7886a0',
+						formatter : function (label, index){
+							//var item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+							return label.value;//label_lng[data.index];
+					 		// return label_lng[value[index]];
+					 	}
+					 }
 				},
 				position: function (pos, params, dom, rect, size) {
 					// tooltip will be fixed on the right if mouse hovering on the left,
@@ -243,6 +289,11 @@ function drawChartSubCategory(response){
 					return obj;
 				},
 			},
+			callbacks: {
+			            label: function(tooltipItem) {
+			                return tooltipItem.label_lng;
+			            }
+			        },
 		};
 
 		if(label.length==0){
@@ -511,7 +562,8 @@ function addCommas(commas)
 		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		callSummaryInteraction(params_time, v_date);
+		callSummaryInteraction(params_time, v_params_this_year);
+		$('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
