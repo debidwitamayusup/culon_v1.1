@@ -6185,7 +6185,10 @@ ul {
 	height:23rem;
 	overflow:hidden;
 }
-
+.chartsh-wall {
+	height: 25.0rem;
+	overflow:hidden;
+}
 /* ----------------- */
 .chartwidget {
 	height: 18rem;
@@ -9231,6 +9234,12 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 .h-800 {
 	height: 800px !important;
+}
+.h-500{
+	height:500px !important;
+}
+.h-600{
+	height:600px !important;
 }
 .h-400 {
 	height: 400px !important;
@@ -14304,6 +14313,11 @@ btn-cust{
 
 .table-pt10{
 	padding:15px 10px 15px 10px !important;
+	font-size:9px;
+}
+table-margin{
+	margin:10px 5px 10px 5px;
+	font-size : 10px;
 }
 
 .card-ptss{

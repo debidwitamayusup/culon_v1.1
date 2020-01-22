@@ -223,6 +223,20 @@ class main extends CI_Controller {
 		$this->load->view('v_wall_summary_traffic');
 	}
 
+	public function wall_sumTraffic_day(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_wall_sumTraffic_day');
+	}
+
+	public function wall_sumTraffic_week(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_wall_sumTraffic_week');
+	}
+
 	// report
 
 	public function report_summary_ticket(){
