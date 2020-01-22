@@ -66,6 +66,7 @@ $(document).ready(function () {
 
 });
 
+
 function loadContent(params, index, params_year){
     drawDataTable2(params, index, params_year);
     summaryService(params, index, params_year);
@@ -558,6 +559,11 @@ function setDatePicker(){
 
 //jquery
 (function ($) {
+	$(window).on('resize', function(){
+		if(echartService != null && echartService != undefined){
+			echartService.resize();
+		}
+	}); 
 
     // btn day
     $('#btn-day').click(function(){

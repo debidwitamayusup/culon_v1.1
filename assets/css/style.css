@@ -22474,3 +22474,8 @@ div[data-acc-step]:not(.open) .badge-primary {
 .sidebar-dark .sidebar-heading {
 	color: rgba(255, 255, 255, .4);
 }
+
+.bg-rows{
+	background : #E6E6FA;
+	border: 1px solid #fff;
+}

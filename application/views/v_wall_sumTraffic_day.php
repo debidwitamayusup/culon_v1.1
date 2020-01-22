@@ -46,26 +46,37 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="height:310px" id="tableSkill">
-                                <thead class="text-center text-white" style="background:#072f50">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px">
+                                <thead class="text-center text-white" style="background:#072f50;">
                                     <tr>
-                                        <td rowspan="2" class="text-middle">No</td>
-                                        <td rowspan="2" class="text-middle">Channel</td>
-                                        <td colspan="5" class="text-center">Time</td>
+                                        <td>Channel</td>
+                                        <td rowspan="2">Whatsapp</td>
+                                        <td rowspan="2">Facebook</td>
+                                        <td rowspan="2">Twitter</td>
+                                        <td rowspan="2">Twitter DM</td>
+                                        <td rowspan="2">Messenger</td>
+                                        <td rowspan="2">Instagram</td>
+                                        <td rowspan="2">Line</td>
+                                        <td rowspan="2">Telegram</td>
+                                        <td rowspan="2">Email</td>
+                                        <td rowspan="2">Voice</td>
+                                        <td rowspan="2">SMS</td>
+                                        <td rowspan="2">Live Chat</td>
                                     </tr>
                                     <tr>
-                                        <td>00:00 - 04:00</td>
-                                        <td>05:00 - 09:00</td>
-                                        <td>10:00 - 14:00</td>
-                                        <td>15:00 - 19:00</td>
-                                        <td>20:00 - 24:00</td>
+                                        <td>Time</td>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     <tr>
-                                        <td>1</td>
-                                        <td>Whatsapp</td>
+                                        <td class="bg-rows">00:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -73,17 +84,14 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>2</td>
-                                        <td>Facebook</td>
+                                        <td class="bg-rows">01:00</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Twitter</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -91,26 +99,14 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>4</td>
-                                        <td>Twitter DM</td>
+                                        <td class="bg-rows">02:00</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Instagram</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>                                    
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Messenger</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -118,17 +114,14 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>7</td>
-                                        <td>Line</td>
+                                        <td class="bg-rows">03:00</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Telegram</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -136,17 +129,14 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>9</td>
-                                        <td>Email</td>
+                                        <td class="bg-rows">04:00</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>Voice</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -154,8 +144,14 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>11</td>
-                                        <td>SMS</td>
+                                        <td class="bg-rows">05:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -163,8 +159,284 @@
                                         <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td>12</td>
-                                        <td>Live Chat</td>
+                                        <td class="bg-rows">06:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">07:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">08:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">09:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">10:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">11:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">12:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">13:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">14:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">15:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">16:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">17:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">18:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">19:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">20:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">21:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">22:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">23:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bg-rows">24:00</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
