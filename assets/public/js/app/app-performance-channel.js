@@ -327,6 +327,13 @@ function drawChartSumChannel(response){
 		 //            }
 		 //        }
 		 //    },
+			responsive: {
+				rules: {
+					condition: {
+						maxWidth: 500
+					}
+				}
+			},
 			grid: {
 				top: '30',
 				right: '20',

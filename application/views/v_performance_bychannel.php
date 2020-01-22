@@ -97,7 +97,7 @@
                             <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
                         <div class="card-body" id="echartServiceDiv">
-                        <div id="echartService" class="chartsh overflow-hidden"></div>
+                        <div id="echartService" class="chartsh overflow-hidden" style="width: 500px; height: 350px;"></div>
                         </div>
                         <div id="legend" class="legend-con"></div>
                     </div>
@@ -109,7 +109,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tablesPerformance" class="table table-striped table-bordered">
+                                <table id="tablesPerformance" class="table table-striped table-bordered" style="width:100%">
                                     <thead class="text-center">
                                         <tr>
                                             <th class="wd-15p border-bottom-0">No</th>

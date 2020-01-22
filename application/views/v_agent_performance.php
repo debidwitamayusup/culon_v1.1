@@ -13,94 +13,93 @@
                          <li class="breadcrumb-item active mt-2" aria-current="page">Agent Performance</li>
                      </ol>
                      <div class="d-flex align-items-end flex-column bd-highlight">
-                            <div class="bd-highlight">
-                                <div class="card-options d-none d-sm-block">
-                                    <div class="btn-group text-center btn-sm">
-                                        <a href="#" class="btn btn-light btn-sm" id="btn-day">
-                                            <span class="">Day</a></span>
-                                        <a href="#" class="btn btn-light btn-sm" id="btn-month">
-                                            <span class="">Month</a></span>
-                                        <a href="#" class="btn btn-light btn-sm" id="btn-year">
-                                            <span class="">Year</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bd-highlight">
-                                <!-- daily -->
-                                <div id="filter-date" class="mt-1 mr-0">
-                                    <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
-                                        placeholder="MM/DD/YYYY" type="text">
-                                </div>
+                         <div class="bd-highlight">
+                             <div class="card-options d-none d-sm-block">
+                                 <div class="btn-group text-center btn-sm">
+                                     <a href="#" class="btn btn-light btn-sm" id="btn-day">
+                                         <span class="">Day</a></span>
+                                     <a href="#" class="btn btn-light btn-sm" id="btn-month">
+                                         <span class="">Month</a></span>
+                                     <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                                         <span class="">Year</a></span>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="bd-highlight">
+                             <!-- daily -->
+                             <div id="filter-date" class="mt-1 mr-0">
+                                 <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
+                                     placeholder="MM/DD/YYYY" type="text">
+                             </div>
 
-                                <!-- monthly -->
-                                <div id="filter-month" class="row mt-1 mr-0">
-                                    <div class="col-md-auto">
-                                        <select name="select-month" id="select-month" class="form-control">
-                                            <option value="1">January</option>
-                                            <option value="2">February</option>
-                                            <option value="3">March</option>
-                                            <option value="4">April</option>
-                                            <option value="5">May</option>
-                                            <option value="6">June</option>
-                                            <option value="7">July</option>
-                                            <option value="8">August</option>
-                                            <option value="9">September</option>
-                                            <option value="10">October</option>
-                                            <option value="11">November</option>
-                                            <option value="12">December</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <select name="select-year-on-month" id="select-year-on-month"
-                                            class="form-control">
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                            <!-- <option value="2018">2018</option>
+                             <!-- monthly -->
+                             <div id="filter-month" class="row mt-1 mr-0">
+                                 <div class="col-md-auto">
+                                     <select name="select-month" id="select-month" class="form-control">
+                                         <option value="1">January</option>
+                                         <option value="2">February</option>
+                                         <option value="3">March</option>
+                                         <option value="4">April</option>
+                                         <option value="5">May</option>
+                                         <option value="6">June</option>
+                                         <option value="7">July</option>
+                                         <option value="8">August</option>
+                                         <option value="9">September</option>
+                                         <option value="10">October</option>
+                                         <option value="11">November</option>
+                                         <option value="12">December</option>
+                                     </select>
+                                 </div>
+                                 <div>
+                                     <select name="select-year-on-month" id="select-year-on-month" class="form-control">
+                                         <option value="2020">2020</option>
+                                         <option value="2019">2019</option>
+                                         <!-- <option value="2018">2018</option>
                                             <option value="2017">2017</option>
                                             <option value="2016">2016</option>
                                             <option value="2015">2015</option> -->
-                                        </select>
-                                    </div>
-                                </div>
+                                     </select>
+                                 </div>
+                             </div>
 
-                                <!-- yearly -->
-                                <div id="filter-year" class="mt-1 mr-0">
-                                    <select name="select-year-only" id="select-year-only" class="form-control">
-                                        <option value="2020">2020</option>
-                                        <option value="2019" selected>2019</option>
-                                        <!-- <option value="2018">2018</option>
+                             <!-- yearly -->
+                             <div id="filter-year" class="mt-1 mr-0">
+                                 <select name="select-year-only" id="select-year-only" class="form-control">
+                                     <option value="2020">2020</option>
+                                     <option value="2019" selected>2019</option>
+                                     <!-- <option value="2018">2018</option>
                                         <option value="2017">2017</option>
                                         <option value="2016">2016</option>
                                         <option value="2015">2015</option> -->
-                                    </select>
-                                </div>
-                            </div>
-                 </div>
-                 <!--Page Header-->
-             </div>
-
-             <!----First Rows--->
-
-             <!---Next Rows---->
-             <div class="row">
-                 <div class="col-md-3">
-                     <div class="card">
-                         <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">Performance by Skill</h5>
+                                 </select>
+                             </div>
                          </div>
-                         <div class="table-responsive table-pt10">
-                             <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                 style="height:310px" id="tableSkill">
-                                 <thead class="text-center text-white bg-gray1">
-                                     <tr>
-                                         <th>Skill</th>
-                                         <th>ART</th>
-                                         <th>AHT</th>
-                                         <th>AST</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody class="text-center" style="font-size:12px !important;" id="mytbody_skill">
-                                     <!-- <tr>
+                     </div>
+                     <!--Page Header-->
+                 </div>
+
+                 <!----First Rows--->
+
+                 <!---Next Rows---->
+                 <div class="row">
+                     <div class="col-md-3">
+                         <div class="card">
+                             <div class="card-header-small bg-red">
+                                 <h5 class="card-title-small card-pt10">Performance by Skill</h5>
+                             </div>
+                             <div class="table-responsive table-pt10">
+                                 <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                                     style="height:310px" id="tableSkill">
+                                     <thead class="text-center text-white bg-gray1">
+                                         <tr>
+                                             <th>Skill</th>
+                                             <th>ART</th>
+                                             <th>AHT</th>
+                                             <th>AST</th>
+                                         </tr>
+                                     </thead>
+                                     <tbody class="text-center" style="font-size:12px !important;" id="mytbody_skill">
+                                         <!-- <tr>
                                          <td>1</td>
                                          <td>00:00:00</td>
                                          <td>00:00:00</td>
@@ -118,27 +117,27 @@
                                          <td>00:00:00</td>
                                          <td>00:00:00</td>
                                      </tr> -->
-                                 </tbody>
-                             </table>
+                                     </tbody>
+                                 </table>
+                             </div>
+                             <!-- table-responsive -->
                          </div>
-                         <!-- table-responsive -->
                      </div>
-                 </div>
-                 <div class="col-md-9">
-                     <div class="card">
-                         <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">Best Agent Performance</h5>
-                         </div>
-                         <div class="card-body height-agent">
-                             <div class="row">
-                                 <div class="col-md-4">
-                                     <div class="card height-card">
-                                         <div class="card-header-small bg-red">
-                                             <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
-                                         </div>
-                                         <div class="card-body" id="classDrawCOF" style="padding:10px">
-                                            <div class="row mb-3" id="dataDrawCOF">
-                                                 <!-- <div class="col-2 text-center">
+                     <div class="col-md-9">
+                         <div class="card">
+                             <div class="card-header-small bg-red">
+                                 <h5 class="card-title-small card-pt10">Best Agent Performance</h5>
+                             </div>
+                             <div class="card-body height-agent">
+                                 <div class="row">
+                                     <div class="col-md-4">
+                                         <div class="card height-card">
+                                             <div class="card-header-small bg-red">
+                                                 <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
+                                             </div>
+                                             <div class="card-body" id="classDrawCOF" style="padding:10px">
+                                                 <div class="row mb-3" id="dataDrawCOF">
+                                                     <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
@@ -150,7 +149,7 @@
                                                      <h4 class="font-weight-extrabold" id="nilaiAgent">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
                                                  </div> -->
-                                                 <!-- <div class="col-2 text-center">
+                                                     <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
@@ -198,43 +197,19 @@
                                                      <h4 class="font-weight-extrabold" id="nilaiAgent5">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
                                                  </div> -->
-                                            </div>
-                                         </div>
-                                     </div>
-                                 </div>
-
-                                 <div class="col-md-4">
-                                     <div class="card height-card">
-                                         <div class="card-header-small bg-red">
-                                             <h5 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h5>
-                                         </div>
-                                         <div class="card-body" id="classDrawAHT" style="padding:10px">
-                                             <div class="row mb-3" id="dataDrawAHT">
-                                                 <!-- <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
-                                                     <h6 class="text-muted font10">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div> -->
                                              </div>
                                          </div>
                                      </div>
-                                 </div>
 
-                                 <div class="col-md-4">
-                                     <div class="card height-card">
-                                         <div class="card-header-small bg-red">
-                                             <h5 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h5>
-                                         </div>
-                                         <div class="card-body" id="classDrawART" style="padding:10px">
-                                             <div class="row mb-3" id="dataDrawART">
-                                                 <!-- <div class="col-2 text-center">
+                                     <div class="col-md-4">
+                                         <div class="card height-card">
+                                             <div class="card-header-small bg-red">
+                                                 <h5 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h5>
+                                             </div>
+                                             <div class="card-body" id="classDrawAHT" style="padding:10px">
+                                                 <div class="row mb-3" id="dataDrawAHT">
+                                                     <!-- <div class="col-2 text-center">
                                                      <span class="avatar avatar-md brround cover-image"
                                                          data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
                                                  </div>
@@ -246,24 +221,48 @@
                                                      <h4 class="font-weight-extrabold">90</h4>
                                                      <h6 class="text-muted font10">Handling</h6>
                                                  </div> -->
-                                             </div>                                             
+                                                 </div>
+                                             </div>
                                          </div>
                                      </div>
-                                 </div>
 
+                                     <div class="col-md-4">
+                                         <div class="card height-card">
+                                             <div class="card-header-small bg-red">
+                                                 <h5 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h5>
+                                             </div>
+                                             <div class="card-body" id="classDrawART" style="padding:10px">
+                                                 <div class="row mb-3" id="dataDrawART">
+                                                     <!-- <div class="col-2 text-center">
+                                                     <span class="avatar avatar-md brround cover-image"
+                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+                                                 </div>
+                                                 <div class="col-7 text-center">
+                                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
+                                                     <h6 class="text-muted font10">Agent Name</h6>
+                                                 </div>
+                                                 <div class="col-3 text-right">
+                                                     <h4 class="font-weight-extrabold">90</h4>
+                                                     <h6 class="text-muted font10">Handling</h6>
+                                                 </div> -->
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+
+                                 </div>
                              </div>
                          </div>
                      </div>
                  </div>
-             </div>
-             <div class="row">
-                 <div class="col-md-12 col-lg-12">
-                     <div class="card">
-                         <div class="card-header-small bg-red">
-                             <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
-                         </div>
-                         <div class="card-body">
-                             <!-- <div class="row mb-5">
+                 <div class="row">
+                     <div class="col-md-12 col-lg-12">
+                         <div class="card">
+                             <div class="card-header-small bg-red">
+                                 <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
+                             </div>
+                             <div class="card-body">
+                                 <!-- <div class="row mb-5">
                                  <div class="col-md-3">
                                      <div class="w-75 input-group">
                                          <div class="input-group-prepend">
@@ -289,138 +288,30 @@
                                      </div>
                                  </div>
                              </div> -->
-                             <div class="table-responsive">
-                                 <table id="tableAgent" class="table-responsive table table-striped table-bordered" style="width:100%">
-                                     <thead class="text-center">
-                                         <tr>
-                                             <th class="wd-15p border-bottom-0">ID</th>
-                                             <th class="wd-15p border-bottom-0">Agent ID</th>
-                                             <th class="wd-15p border-bottom-0" style="width:40%">Agent Name
-                                             </th>
-                                             <th class="wd-15p border-bottom-0"style="width:30%">Skill</th>
-                                             <th class="wd-15p border-bottom-0 text-center" style="width:30%">COF</th>
-                                             <th class="wd-15p border-bottom-0" style="width:35%">ART</th>
-                                             <th class="wd-15p border-bottom-0" style="width:35%">AHT</th>
-                                             <th class="wd-15p border-bottom-0" style="width:35%">AST</th>
-                                         </tr>
-                                     </thead>
-                                     <tbody style="font-size:12px !important;" id="mytbody">
-                                         <!-- <tr>
-                                             <td class="text-center">1</td> 
-                                             <td class="text-center">A28921</td>
-                                             <td class="text-left">
-                                                 <a href="<?=base_url()?>main/agent_interval">Agent
-                                                     Name</a>
-                                             </td>
-                                             <td class="text-right">
-                                                 40
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">2</td>
-                                             <td class="text-center">A28921</td>
-                                             <td class="text-left">
-                                                 <a href="<?=base_url()?>main/agent_interval">Agent
-                                                     Name</a>
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">3</td>
-                                             <td class="text-center">A28921</td>
-                                             <td class="text-left">Agent Name
-                                             </td>
-                                             <td class="text-right">
-                                                 80
-                                             </td>
-                                             <td class="text-right">
-                                                 80
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">4</td>
-                                             <td class="text-center">A28921</td>
-                                             <td class="text-left">Agent Name
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">5</td>
-                                             <td class="text-center">A28921</td>
-                                             <td class="text-left">Agent Name
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 90
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                             <td class="text-right">
-                                                 100
-                                             </td>
-                                         </tr> -->
-                                     </tbody>
-                                 </table>
+                                 <div class="table-responsive">
+                                     <table id="tableAgent" class="table table-striped table-bordered"
+                                         style="width:100%">
+                                         <thead class="text-center">
+                                             <tr>
+                                                 <th class="wd-15p border-bottom-0">ID</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:30%">Agent ID</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:40%">Agent Name</th>
+                                                 <th class="wd-15p border-bottom-0" >Skill</th>
+                                                 <th class="wd-15p border-bottom-0">COF
+                                                 </th>
+                                                 <th class="wd-15p border-bottom-0">ART</th>
+                                                 <th class="wd-15p border-bottom-0">AHT</th>
+                                                 <th class="wd-15p border-bottom-0">AST</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody style="font-size:12px !important;" id="mytbody">
+                                         </tbody>
+                                     </table>
+                                 </div>
                              </div>
                          </div>
                      </div>
                  </div>
-             </div>
-             <?php $this->load->view('temp/footer');?>
-             <!--Plugin -->
-             <script src="<?=base_url()?>assets/public/js/app/app-agent-performance.js"></script>
+                 <?php $this->load->view('temp/footer');?>
+                 <!--Plugin -->
+                 <script src="<?=base_url()?>assets/public/js/app/app-agent-performance.js"></script>
