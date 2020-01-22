@@ -93,7 +93,7 @@ class SummaryToday extends CI_Controller {
         $model = $this->Stc_Model->get_traffic_interval_today2($date, $channel);
         
 
-        return json_encode($model);
+        echo json_encode($model);
       
     }
     public function getAverageInterval(){

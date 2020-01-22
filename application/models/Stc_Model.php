@@ -661,6 +661,7 @@ class Stc_Model extends CI_Model
 			)
 		);
 
+
 		return $result;
 	}
 
@@ -680,7 +681,6 @@ class Stc_Model extends CI_Model
 		$query = $this->db->get();
 		$result = array();
 		
-
 		// print_r($this->db->last_query());
 		// exit;
 
