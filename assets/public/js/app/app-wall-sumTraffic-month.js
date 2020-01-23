@@ -1,4 +1,331 @@
-$(function ($) {
+var base_url = $('#base_url').val();
+
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+//get today
+var v_params_this_year = m + '-' + n + '-' + (o);
+
+$(document).ready(function () {
+    // fromTemplate();
+    callDataPercentage(n,m);
+    callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    
+});
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
+function getColorChannel(channel){
+    var color = [];
+    color['Email'] = '#e41313';
+    color['Facebook'] = '#467fcf';
+    color['Instagram'] = '#fbc0d5';
+    color['Line'] = '#31a550';
+    color['Live Chat'] = '#607d8b';
+    color['Messenger'] = '#3866a6';
+    color['SMS'] = '#80cbc4';
+    color['Telegram'] = '#343a40';
+    color['Twitter'] = '#45aaf2';
+    color['Twitter DM'] = '#6574cd';
+    color['Voice'] = '#ff9933';
+    color['Whatsapp'] = '#089e60';
+
+    return color[channel];
+}
+
+function destroyChartInterval(){
+    // destroy chart interval 
+    $('#lineWallsumTrafficMonth').remove(); // this is my <canvas> element
+    $('#lineWallsumTrafficMonthDiv').append('<canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>');
+}
+
+function destroyChartPercentage(){
+    //destroy chart percentage
+    $('#barWallTrafficMonth').remove(); // this is my <canvas> element
+    $('#barWallTrafficMonthDiv').append('<canvas id="barWallTrafficMonth"></canvas>');
+}
+
+function callIntervalTraffic(month, arr_channel){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryMonth/getIntervalTrafficMonthly',
+        data: {
+            month: month,
+            arr_channel: arr_channel
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callIntervalTraffic(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            drawChartToday(response);
+            drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawChartToday(response){
+    destroyChartInterval();
+    var data = [];
+    if(!response.data.series){
+        $('#lineWallsumTrafficMonth').remove(); // this is my <canvas> element
+        $('#lineWallsumTrafficMonthDiv').append('<canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>');
+    }else{
+        response.data.series.forEach(function (value, index) {
+            var obj = {
+                label: value.label,
+                data: value.data,
+                backgroundColor: 'transparent',
+                borderColor: getColorChannel(value.label),
+                borderWidth: 3,
+                pointStyle: 'circle',
+                pointRadius: 4,
+                pointBorderColor: 'transparent',
+                pointBackgroundColor: getColorChannel(value.label),
+            };
+            data.push(obj);
+        });
+
+        // draw chart
+        var ctx = document.getElementById( "lineWallsumTrafficMonth" );
+        var myChart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels: response.data.label_time,
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend:{
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
+                barRoundness:  1,
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        } );
+    }
+}
+
+function callDataPercentage(month, year){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
+        data: {
+            month: month,
+            year: year
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            setTimeout(function(){callDataPercentage(date);},900000);
+            drawChartPercentageMonth(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+        },
+    });
+}
+
+
+function drawChartPercentageMonth(response){
+    destroyChartPercentage();
+    var data_label = [];
+    var data_rate = [];
+    var data_color = [];
+    response.data.forEach(function (value, index) {
+        data_label.push(value.channel_name);
+        data_rate.push(value.rate);
+        data_color.push(getColorChannel(value.channel_name));
+    });
+    var obj = [{
+        label: "data",
+        data: data_rate,
+        borderColor: data_color,
+        borderWidth: "0",
+        backgroundColor: data_color
+    }];
+    // console.log(data_rate);
+
+    // draw chart
+    var ctx_percentage = document.getElementById("barWallTrafficMonth");
+    ctx_percentage.height =400;
+    var percentageChart = new Chart(ctx_percentage, {
+        type: 'horizontalBar',
+        data: {
+            labels: data_label,
+            datasets: obj,
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0',
+                    // formatter: function (value, index) {
+                    //  if (/\s/.test(value)) {
+                    //      var teks = '';
+                    //      for(var i=0;i<value.length;i++){
+                    //          // if(value[i] == " "){
+                    //          //     teks = teks + '%';
+                    //          // }else{
+                    //          //     teks = teks + value[i];
+                    //          // }
+                    //          teks = value[i] + '%';
+                    //      }
+                    //      return teks;
+                    //  } 
+                    // }
+                }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0, // Edit the value according to what you need
+                        callback: function(value, index, values) {
+                           //      if(parseInt(value) >= 1000){
+                           //          var res = (value/1000);
+                                    // return res+'K'
+                           //      } else
+                           //       return value;
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join(',');
+                            return value;
+                        }
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data_rate[tooltipItem.index];
+                        // value = value.toString();
+                        // value = value.split(/(?=(?:...)*$)/);
+                        // value = value.join(',');
+                        value = addCommas(value);
+                        return value;
+                    }
+              }
+            },
+        }
+    });
+}
+
+function drawTableData(response){
+    var tagTime=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+
+    var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
+    var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
+    var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
+    var sumEmail = response.data.series[3].data.map(Number).reduce(summarize);
+    var sumTel = response.data.series[4].data.map(Number).reduce(summarize);
+    var sumLine = response.data.series[5].data.map(Number).reduce(summarize);
+    var sumVoice = response.data.series[6].data.map(Number).reduce(summarize);
+    var sumInst = response.data.series[7].data.map(Number).reduce(summarize);
+    var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
+    var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
+    var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
+    var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
+
+    //summarize per channel
+    function summarize(total, num) {
+          return total + num;
+    }
+    
+    $("#mytbody").empty();
+    $("#mytfoot").empty();
+    if(response.data.series.length != 0){   
+        var i = 0;
+        sumWA = parseInt(response.data.series[0].data[i]);
+        for (var i = 0; i < 24; i++) {
+            $('#wall-month-tbl').find('tbody').append('<tr>'+
+            '<td>'+tagTime[i]+'</td>'+
+            '<td>'+response.data.series[0].data[i]+'</td>'+
+            '<td>'+response.data.series[1].data[i]+'</td>'+
+            '<td>'+response.data.series[2].data[i]+'</td>'+
+            '<td>'+response.data.series[3].data[i]+'</td>'+
+            '<td>'+response.data.series[4].data[i]+'</td>'+
+            '<td>'+response.data.series[5].data[i]+'</td>'+
+            '<td>'+response.data.series[6].data[i]+'</td>'+
+            '<td>'+response.data.series[7].data[i]+'</td>'+
+            '<td>'+response.data.series[8].data[i]+'</td>'+
+            '<td>'+response.data.series[9].data[i]+'</td>'+
+            '<td>'+response.data.series[10].data[i]+'</td>'+
+            '<td>'+response.data.series[11].data[i]+'</td>'+
+            '</tr>');
+        }
+
+        $('#wall-month-tbl').find('tfoot').append('<tr>'+
+            '<td>TOTAL</td>'+
+            '<td>'+sumFb+'</td>'+
+            '<td>'+sumWA+'</td>'+
+            '<td>'+sumTw+'</td>'+
+            '<td>'+sumEmail+'</td>'+
+            '<td>'+sumTel+'</td>'+
+            '<td>'+sumLine+'</td>'+
+            '<td>'+sumVoice+'</td>'+
+            '<td>'+sumInst+'</td>'+
+            '<td>'+sumMes+'</td>'+
+            '<td>'+sumTwDM+'</td>'+
+            '<td>'+sumLive+'</td>'+
+            '<td>'+sumSms+'</td>'+
+            '</tr>');
+
+    }else{
+        $('#table_avg_traffic').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+    //fade out loading
+    $("#filter-loader").fadeOut("slow");
+}
+
+function fromTemplate(){
     "use strict";
     // Horizontal Bar
 
@@ -224,5 +551,4 @@ $(function ($) {
             }
         }
     } );
-	
-});
+}

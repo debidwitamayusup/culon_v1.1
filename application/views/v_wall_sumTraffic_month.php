@@ -24,7 +24,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="barWallTrafficMonthDiv">
                             <canvas id="barWallTrafficMonth"></canvas>
 
                         </div>
@@ -35,7 +35,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic by Interval Monthly (Hours)</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="lineWallsumTrafficMonthDiv">
                             <canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <h5 class="card-title-small card-pt10">Table Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-month-tbl">
                             <thead class="text-center text-white" style="background:#366790;">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold">Date</td>
@@ -67,8 +67,8 @@
                                         <td class="bg-column">Live Chat</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
-                                    <tr>
+                                <tbody class="text-center" id="mytbody">
+                                    <!-- <tr>
                                         <td class="bg-rows font-weight-extrabold">1</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -525,10 +525,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
-                                <tfoot class="bg-total font-weight-extrabold text-center">
-                                    <tr>
+                                <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot">
+                                    <!-- <tr>
                                     <td>TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -542,7 +542,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
