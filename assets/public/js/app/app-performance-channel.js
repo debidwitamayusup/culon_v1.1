@@ -407,7 +407,7 @@ function drawChartSumChannel(response){
 			}
 		  }
 		  
-		  var x = window.matchMedia("(max-width: 450px)")
+		  var x = window.matchMedia("(min-width: 450px)")
 		  myFunction(x) // Call listener function at run time
 		  x.addListener(myFunction)
 	}else{

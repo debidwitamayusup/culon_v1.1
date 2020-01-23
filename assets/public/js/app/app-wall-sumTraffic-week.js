@@ -143,11 +143,19 @@ $(function ($) {
 	}];
     /*----EchartThisWeek----*/
 	var option6 = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {       
+                type: 'shadow' 
+            }
+        },
 		grid: {
-			top: '6',
-			right: '10',
-			bottom: '17',
-			left: '32',
+            width:'100%',
+            top:'3%',
+            left: '1%',
+            right: '3%',
+            bottom: '3%',
+            containLabel: true
 		},
 		xAxis: {
 			type: 'category',
