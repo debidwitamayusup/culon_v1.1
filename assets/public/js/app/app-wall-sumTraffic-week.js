@@ -33,7 +33,6 @@ function getColorChannel(channel){
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
 
-<<<<<<< HEAD
     // stacked bar this week
     var chartdata3 = [{
 		name: 'Whatsapp',
@@ -153,7 +152,6 @@ function getColorChannel(channel){
     //     barChart6.resize();
     // };
     
-=======
     return color[channel];
 }
 
@@ -200,7 +198,6 @@ function getColorChannel(channel){
 //         backgroundColor: data_color
 //     }];
 //     // console.log(data_rate);
->>>>>>> origin/debi-dev
 
 //     // draw chart
 //     var ctx_percentage = document.getElementById("barWallTrafficWeek");
