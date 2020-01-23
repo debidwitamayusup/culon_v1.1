@@ -798,8 +798,7 @@ class Stc_Model extends CI_Model
 				else
 				{
 					array_push($result,'0');
-				}
-					
+				}	
 			}
 
 		}
@@ -812,6 +811,106 @@ class Stc_Model extends CI_Model
 		return $result;
 		
 	}
+
+	public function get_traffic_interval_monthly($month_id,$channel)
+	{
+		$this->db->select('rpt_summ_interval.interval as time');
+		$this->db->from('rpt_summ_interval');
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+		$times = array();
+
+		
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($times,substr($data->time,0,5).':00');
+			}
+
+			if($channel)
+			{
+				foreach($channel as $channels)
+				{
+					
+					$serials[] =  array(
+						'label'=>$channels,
+						'data'=>$this->get_availdata_permonth($month_id,$channels)
+					);
+				}
+				
+			}
+			else 
+			{
+				$serials[] =  array(
+					'label'=>'Facebook',
+					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+				);
+			}
+		}
+
+		$result = array(
+			'status' => true,
+			'data' => array(
+					'label_time' => $times,
+					'series' => $serials
+			)
+		);
+
+
+		return $result;
+	}
+
+	function get_availdata_permonth($month_id,$channel)
+	{
+		if(!$channel)
+		{
+			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
+		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		$result = array();
+
+		
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,ROUND($query->row($inx)->total,2));
+				}
+				else
+				{
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			$result = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+		
+
+		return $result;
+		
+	}
+
 
 	public function getAverageIntervalToday($params, $index, $year=0)
 	{
@@ -1031,7 +1130,6 @@ class Stc_Model extends CI_Model
 			GROUP BY m_channel.channel_name");
 		return $query->result();
 	}
-
 	public function getOptionYear()
 	{
 		// //summary_channel
@@ -1054,7 +1152,6 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
-
 	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent');
