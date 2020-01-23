@@ -143,7 +143,7 @@ function getTrafficInterval(week,arr_channel){
             console.log(response);
             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
             drawTrafficInterval(response);
-            // drawTableData(response);
+            drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -207,6 +207,55 @@ function drawTrafficInterval(response){
             }
         } );
     }
+}
+
+function drawTableTraffic(response){
+    var channel_name = [];
+    var data = [];
+    var sun=0,mon=0,tue=0,wed=0,thu=0,fri=0,sat=0;
+    console.log(response.data.series);
+    $('#mytbody').empty();
+    if (response.data.series != 0) {
+        var i = 0;
+        response.data.series.forEach(function (value, index) {
+            sun=parseInt(sun)+parseInt(value.data[0]);
+            mon=parseInt(mon)+parseInt(value.data[1]);
+            tue=parseInt(tue)+parseInt(value.data[2]);
+            wed=parseInt(wed)+parseInt(value.data[3]);
+            thu=parseInt(thu)+parseInt(value.data[4]);
+            fri=parseInt(fri)+parseInt(value.data[5]);
+            sat=parseInt(sat)+parseInt(value.data[6]);
+            $('#mytable').find('tbody').append('<tr>'+
+            '<td class="text-center">'+(i+1)+'</td>'+
+            '<td class="text-left">'+value.label+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[0])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[1])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[2])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[3])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[4])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[5])+'</td>'+
+            '<td class="text-right">'+addCommas(value.data[i].[6])+'</td>'+
+            '</tr>');
+            i++;
+            
+        });
+        $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
+            '<td colspan="2" class="text-right">TOTAL</td>'+
+            '<td class="text-right">'+addCommas(sun)+'</td>'+
+            '<td class="text-right">'+addCommas(mon)+'</td>'+
+            '<td class="text-right">'+addCommas(tue)+'</td>'+
+            '<td class="text-right">'+addCommas(wed)+'</td>'+
+            '<td class="text-right">'+addCommas(thu)+'</td>'+
+            '<td class="text-right">'+addCommas(fri)+'</td>'+
+            '<td class="text-right">'+addCommas(sat)+'</td>'+
+            '</tr>');
+    }else{
+        $('#mytable').find('tbody').append('<tr>'+
+            '<td colspan=6> No Data </td>'+
+            '</tr>');
+    }
+
+    $("#filter-loader").fadeOut("slow");
 }
 
 // $(function ($) {

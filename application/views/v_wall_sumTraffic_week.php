@@ -45,7 +45,7 @@
                             <h5 class="card-title-small card-pt10">Table Traffic Weekly</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" id="mytable">
                                 <thead class="text-center text-white" style="background:#366790; font-size:11px;">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
@@ -62,8 +62,8 @@
                                         <td>Sat</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" style="font-size:10px !important;">
-                                    <tr>
+                                <tbody class="text-center" style="font-size:10px !important;" id="mytbody">
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>Whatsapp</td>
                                         <td>200</td>
@@ -194,10 +194,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
-                                <tfoot class="text-right font-weight-extrabold bg-total">
-                                    <tr>
+                                <tfoot class="text-right font-weight-extrabold bg-total" id="mytfoot">
+                                    <!-- <tr>
                                         <td>TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -207,7 +207,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
