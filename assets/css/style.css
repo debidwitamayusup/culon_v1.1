@@ -6186,7 +6186,7 @@ ul {
 	overflow:hidden;
 }
 .chartsh-wall {
-	height: 36.8rem;
+	height: 24.3rem;
 	overflow:hidden;
 }
 .chartsh-ticket {
@@ -6199,7 +6199,7 @@ ul {
 	.chartsh-services {
 		height: 18.7rem;
 		width: 100%; 
-		height: 350px;
+		/* height: 350px; */
 		overflow:hidden;
 	}
 }
@@ -6208,7 +6208,7 @@ ul {
 	.chartsh-services {
 		height: 18.7rem;
 		width: 100%; 
-		height: 350px;
+		/* height: 350px; */
 		overflow:hidden;
 	}
 }
