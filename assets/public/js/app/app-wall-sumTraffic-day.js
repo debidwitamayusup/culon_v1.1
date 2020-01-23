@@ -57,7 +57,8 @@ function callIntervalTraffic(date, arr_channel){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -137,7 +138,8 @@ function callDataPercentage(date){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            setTimeout(function(){callDataPercentage(date);},20000);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callDataPercentage(date);},900000);
             drawChartPercentageToday(response);
             // fromTemplate(response);
         },
@@ -240,13 +242,7 @@ function drawChartPercentageToday(response){
 }
 
 function drawTableData(response){
-    // var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0,summarize = 0,t_summarize =0;
-    
-    console.log(response.data);
-
     var tagTime=["00:00:00", "01:00:00", "02:00:00", "03:00:00", "04:00:00", "05:00:00", "06:00:00", "07:00:00", "08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00", "23:00:00"];
-
-    console.log(response.data.series);
 
     var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
     var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
@@ -260,9 +256,8 @@ function drawTableData(response){
     var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-    // console.log(sumWA);
 
-
+    //summarize per channel
     function summarize(total, num) {
           return total + num;
     }
