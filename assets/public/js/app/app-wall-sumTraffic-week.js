@@ -1,6 +1,8 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function(){
+    $("#filter-loader").fadeIn("slow");
+
     getSummTrafficByChannel('3',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     getTrafficInterval('3',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
 });
