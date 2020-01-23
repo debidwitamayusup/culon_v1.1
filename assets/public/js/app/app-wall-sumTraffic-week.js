@@ -1,7 +1,8 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function(){
-    getSummTrafficByChannel('3');
+    // getSummTrafficByChannel('3');
+    getTrafficInterval('3',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
 });
 
 function addCommas(commas)
@@ -35,97 +36,177 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function getSummTrafficByChannel(week){
+// function getSummTrafficByChannel(week){
+//     $.ajax({
+//         type: 'post',
+//         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
+//         data: {
+//             week: week,
+//             arr_channel: arr_channel
+//         },
+//         success: function (r) {
+//             var response = JSON.parse(r);
+//             console.log(response);
+//             // setTimeout(function(){getSummTrafficByChannel(week);},20000);
+//             drawSummTrafficByChannel(response);
+//             // fromTemplate(response);
+//         },
+//         error: function (r) {
+//             // console.log(r);
+//             alert("error");
+//         },
+//     });
+// }
+
+// function drawSummTrafficByChannel(response){
+//     $('#barWallTrafficWeek').remove(); // this is my <canvas> element
+//     $('#barWallTrafficWeekDiv').append('<canvas id="barWallTrafficWeek"></canvas>');
+
+//     var data_label = [];
+//     var data_rate = [];
+//     var data_color = [];
+//     response.data.series.forEach(function (value, index) {
+//         data_label.push(value.label);
+//         data_rate.push(value.data);
+//         data_color.push(getColorChannel(value.label));
+//     });
+
+//     var obj = [{
+//         label: "data",
+//         data: data_rate,
+//         borderColor: data_color,
+//         borderWidth: "0",
+//         backgroundColor: data_color
+//     }];
+//     // console.log(data_rate);
+
+//     // draw chart
+//     var ctx_percentage = document.getElementById("barWallTrafficWeek");
+//     ctx_percentage.height =400;
+//     var percentageChart = new Chart(ctx_percentage, {
+//         type: 'horizontalBar',
+//         data: {
+//             labels: data_label,
+//             datasets: obj,
+//         },
+//         options: {
+//             responsive: true,
+//             maintainAspectRatio: false,
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     },
+//                     axisLabel: {
+//                     fontSize: 10,
+//                     color: '#7886a0',
+//                 }
+//                 }],
+//                 xAxes: [{
+//                     ticks: {
+//                         min: 0, // Edit the value according to what you need
+//                         callback: function(value, index, values) {
+//                             value = value.toString();
+//                             value = value.split(/(?=(?:...)*$)/);
+//                             value = value.join(',');
+//                             return value;
+//                         }
+//                     }
+//                 }]
+//             },
+//             legend: {
+//                 display: false
+//             },
+//             tooltips: {
+//               callbacks: {
+//                     label: function(tooltipItem, data) {
+//                         var value = data_rate[tooltipItem.index];
+//                         value = addCommas(value);
+//                         return value;
+//                     }
+//               }
+//             },
+//         }
+//     });
+// }
+
+function getTrafficInterval(week,arr_channel){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
         data: {
             week: week,
+            arr_channel: arr_channel
         },
         success: function (r) {
             var response = JSON.parse(r);
             console.log(response);
-            // setTimeout(function(){getSummTrafficByChannel(week);},20000);
-            drawSummTrafficByChannel(response);
-            // fromTemplate(response);
+            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            drawTrafficInterval(response);
+            // drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             alert("error");
+            // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function drawSummTrafficByChannel(response){
-    $('#barWallTrafficWeek').remove(); // this is my <canvas> element
-    $('#barWallTrafficWeekDiv').append('<canvas id="barWallTrafficWeek"></canvas>');
+function drawTrafficInterval(response){
+    // destroy chart interval 
+    $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#chart-no-data').remove(); // this is my <canvas> element
+    $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-400"></canvas>');
+    var data = [];
+    if(!response.data.series){
+        $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+        $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>');
+    }else{
+        response.data.series.forEach(function (value, index) {
+            var obj = {
+                label: value.label,
+                data: value.data,
+                backgroundColor: 'transparent',
+                borderColor: getColorChannel(value.label),
+                borderWidth: 3,
+                pointStyle: 'circle',
+                pointRadius: 4,
+                pointBorderColor: 'transparent',
+                pointBackgroundColor: getColorChannel(value.label),
+            };
+            data.push(obj);
+        });
 
-    var data_label = [];
-    var data_rate = [];
-    var data_color = [];
-    response.data.forEach(function (value, index) {
-        data_label.push(value.channel_name);
-        data_rate.push(value.total);
-        data_color.push(getColorChannel(value.channel_name));
-    });
-
-    var obj = [{
-        label: "data",
-        data: data_rate,
-        borderColor: data_color,
-        borderWidth: "0",
-        backgroundColor: data_color
-    }];
-    // console.log(data_rate);
-
-    // draw chart
-    var ctx_percentage = document.getElementById("barWallTrafficWeek");
-    ctx_percentage.height =400;
-    var percentageChart = new Chart(ctx_percentage, {
-        type: 'horizontalBar',
-        data: {
-            labels: data_label,
-            datasets: obj,
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    },
-                    axisLabel: {
-                    fontSize: 10,
-                    color: '#7886a0',
-                }
-                }],
-                xAxes: [{
-                    ticks: {
-                        min: 0, // Edit the value according to what you need
-                        callback: function(value, index, values) {
-                            value = value.toString();
-                            value = value.split(/(?=(?:...)*$)/);
-                            value = value.join(',');
-                            return value;
+        // draw chart
+        var ctx = document.getElementById( "lineWallsumTrafficWeek" );
+        var myChart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels: response.data.label_time,
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend:{
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
+                barRoundness:  1,
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true
                         }
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-              callbacks: {
-                    label: function(tooltipItem, data) {
-                        var value = data_rate[tooltipItem.index];
-                        value = addCommas(value);
-                        return value;
-                    }
-              }
-            },
-        }
-    });
+                    }]
+                }
+            }
+        } );
+    }
 }
 
 // $(function ($) {

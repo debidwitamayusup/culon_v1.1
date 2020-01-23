@@ -57,10 +57,9 @@ function callIntervalTraffic(date, arr_channel){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
             drawChartToday(response);
-            drawTableData(response);
+            // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -138,8 +137,7 @@ function callDataPercentage(date){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callDataPercentage(date);},900000);
+            setTimeout(function(){callDataPercentage(date);},20000);
             drawChartPercentageToday(response);
             // fromTemplate(response);
         },
@@ -242,65 +240,94 @@ function drawChartPercentageToday(response){
 }
 
 function drawTableData(response){
+    // var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0,summarize = 0,t_summarize =0;
+    
+    console.log(response.data);
+
+    var time1=[], time2=[], time3=[], time4=[], time5=[], time6=[], time7=[], time8=[], time9=[], time10=[]
+    var time11=[], time12=[], time13=[], time14=[], time15=[], time16=[], time17=[], time18=[], time19=[], time20=[]
+    var time21=[], time22=[], time23=[], time24=[]
     var tagTime=["00:00:00", "01:00:00", "02:00:00", "03:00:00", "04:00:00", "05:00:00", "06:00:00", "07:00:00", "08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00", "23:00:00"];
 
-    var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
-    var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
-    var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
-    var sumEmail = response.data.series[3].data.map(Number).reduce(summarize);
-    var sumTel = response.data.series[4].data.map(Number).reduce(summarize);
-    var sumLine = response.data.series[5].data.map(Number).reduce(summarize);
-    var sumVoice = response.data.series[6].data.map(Number).reduce(summarize);
-    var sumInst = response.data.series[7].data.map(Number).reduce(summarize);
-    var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
-    var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
-    var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
-    var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-
-    //summarize per channel
-    function summarize(total, num) {
-          return total + num;
+    // var i = 0;
+    for (var i = 0; i < response.data.series.length; i++) {
+        time1.push(response.data.series[i].data[0]);
+        time2.push(response.data.series[i].data[1]);
+        time3.push(response.data.series[i].data[2]);
+        time4.push(response.data.series[i].data[3]);
+        time5.push(response.data.series[i].data[4]);
+        time6.push(response.data.series[i].data[5]);
+        time7.push(response.data.series[i].data[6]);
+        time8.push(response.data.series[i].data[7]);
+        time9.push(response.data.series[i].data[8]);
+        time10.push(response.data.series[i].data[9]);
+        time11.push(response.data.series[i].data[10]);
+        time12.push(response.data.series[i].data[11]);
+        time13.push(response.data.series[i].data[12]);
+        time14.push(response.data.series[i].data[13]);
+        time15.push(response.data.series[i].data[14]);
+        time16.push(response.data.series[i].data[15]);
+        time17.push(response.data.series[i].data[16]);
+        time18.push(response.data.series[i].data[17]);
+        time19.push(response.data.series[i].data[18]);
+        time20.push(response.data.series[i].data[19]);
+        time21.push(response.data.series[i].data[20]);
+        time22.push(response.data.series[i].data[21]);
+        time23.push(response.data.series[i].data[22]);
+        time24.push(response.data.series[i].data[23]);
     }
-    
+    // response.data.series.forEach(function (value, index){
+    //     time1.push(value.data[i][0]);
+    //     i++;
+    // });
+
+    console.log(time1);
+
+    //for append title on echart
     $("#mytbody").empty();
-    $("#mytfoot").empty();
-    if(response.data.series.length != 0){   
+    // $("#mythead_nfcr").empty();
+    if(response.data.series.length != 0){
+       
         var i = 0;
-        sumWA = parseInt(response.data.series[0].data[i]);
-        for (var i = 0; i < 24; i++) {
-            $('#wall-today-tbl').find('tbody').append('<tr>'+
-            '<td>'+tagTime[i]+'</td>'+
-            '<td>'+response.data.series[0].data[i]+'</td>'+
-            '<td>'+response.data.series[1].data[i]+'</td>'+
-            '<td>'+response.data.series[2].data[i]+'</td>'+
-            '<td>'+response.data.series[3].data[i]+'</td>'+
-            '<td>'+response.data.series[4].data[i]+'</td>'+
-            '<td>'+response.data.series[5].data[i]+'</td>'+
-            '<td>'+response.data.series[6].data[i]+'</td>'+
-            '<td>'+response.data.series[7].data[i]+'</td>'+
-            '<td>'+response.data.series[8].data[i]+'</td>'+
-            '<td>'+response.data.series[9].data[i]+'</td>'+
-            '<td>'+response.data.series[10].data[i]+'</td>'+
-            '<td>'+response.data.series[11].data[i]+'</td>'+
+        // response.data.series.forEach(function (value, index) {
+            // summarize = parseInt(value.fcr_1)+parseInt(value.nfcr_1)+parseInt(value.fcr_2)+parseInt(value.nfcr_2)+parseInt(value.fcr_3)+parseInt(value.nfcr_3);
+            // t_summarize = parseInt(summarize)+parseInt(t_summarize);
+            // sum_fcr1=parseInt(sum_fcr1)+parseInt(value.fcr_1);
+            // sum_nfcr1=parseInt(sum_nfcr1)+parseInt(value.nfcr_1);
+            // sum_fcr2=parseInt(sum_fcr2)+parseInt(value.fcr_2);
+            // sum_nfcr2=parseInt(sum_nfcr2)+parseInt(value.nfcr_2);
+            // sum_fcr3=parseInt(sum_fcr3)+parseInt(value.fcr_3);
+            // sum_nfcr3=parseInt(sum_nfcr3)+parseInt(value.nfcr_3);
+            $('#mytable').find('tbody').append('<tr>'+
+            '<td>'+tagTime+'</td>'+
+            '<td>'+time1+'</td>'+
+            '<td>'+time2+'</td>'+
+            '<td>'+time3+'</td>'+
+            '<td>'+time4+'</td>'+
+            '<td>'+time5+'</td>'+
+            '<td>'+time6+'</td>'+
+            '<td>'+time7+'</td>'+
+            '<td>'+time8+'</td>'+
+            '<td>'+time9+'</td>'+
+            '<td>'+time10+'</td>'+
+            '<td>'+time11+'</td>'+
+            '<td>'+time12+'</td>'+
+            '<td>'+time13+'</td>'+
+            '<td>'+time14+'</td>'+
+            '<td>'+time15+'</td>'+
+            '<td>'+time16+'</td>'+
+            '<td>'+time17+'</td>'+
+            '<td>'+time18+'</td>'+
+            '<td>'+time19+'</td>'+
+            '<td>'+time20+'</td>'+
+            '<td>'+time21+'</td>'+
+            '<td>'+time22+'</td>'+
+            '<td>'+time23+'</td>'+
+            '<td>'+time24+'</td>'+
             '</tr>');
-        }
-
-        $('#wall-today-tbl').find('tfoot').append('<tr>'+
-            '<td>TOTAL</td>'+
-            '<td>'+sumFb+'</td>'+
-            '<td>'+sumWA+'</td>'+
-            '<td>'+sumTw+'</td>'+
-            '<td>'+sumEmail+'</td>'+
-            '<td>'+sumTel+'</td>'+
-            '<td>'+sumLine+'</td>'+
-            '<td>'+sumVoice+'</td>'+
-            '<td>'+sumInst+'</td>'+
-            '<td>'+sumMes+'</td>'+
-            '<td>'+sumTwDM+'</td>'+
-            '<td>'+sumLive+'</td>'+
-            '<td>'+sumSms+'</td>'+
-            '</tr>');
-
+            i++;
+            
+        // });
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+
