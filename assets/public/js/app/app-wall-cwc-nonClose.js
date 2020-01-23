@@ -1,0 +1,3 @@
+$(function (e) {
+    $('#tableTicket').DataTable();
+})

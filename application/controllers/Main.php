@@ -244,6 +244,13 @@ class main extends CI_Controller {
 		$this->load->view('v_wall_sumTraffic_month');
 	}
 
+	public function wall_cwc_nonClose(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_wall_cwc_nonClose');
+	}
+
 	// report
 
 	public function report_summary_ticket(){
