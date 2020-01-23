@@ -46,7 +46,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10">
-                                <thead class="text-center text-white" style="background:#366790; font-size:11px;">
+                                <thead class="text-center text-white bg-head" style="font-size:11px;">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>
@@ -196,7 +196,7 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
-                                <tfoot class="text-center table-sm font-weight-extrabold bg-total">
+                                <tfoot class="text-center font-weight-extrabold bg-total">
                                     <tr>
                                         <td>TOTAL</td>
                                         <td>200</td>

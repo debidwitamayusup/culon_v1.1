@@ -22504,5 +22504,9 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .bg-column{
-	background: #6386a9eb;
+	background: #cad1d1eb;
+}
+
+.bg-head{
+	background:#4f5a64;
 }
