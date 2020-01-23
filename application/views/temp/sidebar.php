@@ -20,7 +20,9 @@ Sidebar menu-->
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Summary Traffic by Week</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_month">Summary Traffic by Month</a></li>
 				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_cwc_nonClose">Summary Status Today (Non Close)</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_status_nonClose">Summary Status Today (Non Close)</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/wall_ticket_Close">Summary Ticket (Close)</a></li>
+
 				<hr>
 			</ul>
 		</li>

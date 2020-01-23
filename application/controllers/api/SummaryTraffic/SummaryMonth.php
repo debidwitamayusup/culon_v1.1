@@ -105,6 +105,18 @@ class SummaryMonth extends CI_Controller {
 
         echo json_encode($response);
 	}
+	public function getIntervalTrafficMonthly(){
+
+        $month_id =   $this->security->xss_clean($this->input->post('month', true));
+        $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
+
+
+        $result = $this->Stc_Model->get_traffic_interval_monthly($month_id, $channel);
+        
+
+        echo json_encode($result);
+      
+    }
 	
 	// public function summaryIntervalMonth(){
 	// 	$month = $this->input->post('month') ? $this->input->post('month') :12 ;

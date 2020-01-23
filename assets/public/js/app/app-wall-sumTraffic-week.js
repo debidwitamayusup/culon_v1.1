@@ -206,9 +206,6 @@ function drawSummTrafficByChannel(response){
 //             }
 //         }
 //     });
-
-
-
 //     // stacked bar this week
 //     var chartdata3 = [{
 // 		name: 'Whatsapp',
@@ -316,8 +313,7 @@ function drawSummTrafficByChannel(response){
 // 	var chart6 = document.getElementById('echartWeek');
 // 	var barChart6 = echarts.init(chart6);
 //     barChart6.setOption(option6);
-    
-
+// stacked bar this week 
 //     var ctx = document.getElementById( "lineWallsumTrafficWeek" );
 //     var myChart = new Chart( ctx, {
 //         type: 'line',
