@@ -665,8 +665,6 @@ class Stc_Model extends CI_Model
 		return $result;
 	}
 
-	
-
 	function get_availdata($date,$channel)
 	{
 		if(!$channel)
