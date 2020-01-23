@@ -396,8 +396,8 @@ function drawChartSumChannel(response){
 		var barChartTicket = echarts.init(chartTicket);
 		barChartTicket.setOption(optionTicket);
 		window.onresize = function(){
-			barChartTicket.responsive();
-			barChartTicket.resize();
+			// barChartTicket.responsive();
+			chartTicket.resize();
 		}
 	}else{
 		$('#echartService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
