@@ -632,6 +632,7 @@ class Stc_Model extends CI_Model
 			foreach($query->result() as $data)
 			{
 				array_push($times,substr($data->time,0,5).':00');
+
 			}
 
 			if($channel)
@@ -657,6 +658,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
+					'total_agent' => array($this->get_availdata_tot_agent($date,$channels)),
 					'series' => $serials
 			)
 		);
@@ -677,6 +679,51 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+		$result = array();
+		
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,$query->row($inx)->total);
+				}
+				else
+				{
+					array_push($result,'0');
+				}
+					
+			}
+
+		}
+		else
+		{
+			$result = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+		
+
+		return $result;
+		
+	}
+
+	function get_availdata_tot_agent($date,$channel)
+	{
+		if(!$channel)
+		{
+			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
+		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.tot_agent),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
