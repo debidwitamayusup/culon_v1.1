@@ -1193,6 +1193,61 @@ class Stc_Model extends CI_Model
 			GROUP BY m_channel.channel_name");
 		return $query->result();
 	}
+
+	public function get_traffic_interval_weeklyBar($week_id,$channel)
+	{
+		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel_name' => $data->channel_name,
+					'total' => $this->get_traffic_interval_info_weeklyBar($week_id,$data->channel_id)
+				);
+			}
+		}
+
+		return $result;
+	}
+
+	public function get_traffic_interval_info_weeklyBar($week_id,$channel)
+	{
+
+		if(!$channel)
+		{
+			return 0;
+		}
+
+		$this->db->select('SUM(rpt_summ_interval.case_session) as total');
+		$this->db->from('rpt_summ_interval');
+		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		$this->db->group_by('rpt_summ_interval.channel_id','ASC');
+		$query = $this->db->get();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		$result = array();
+
+		if($query->num_rows() == 1)
+		{
+			$result = $query->row()->total;
+		}
+		else
+		{
+			$result = 0;
+		}
+		
+		return $result;
+	}
+
 	public function getOptionYear()
 	{
 		// //summary_channel
