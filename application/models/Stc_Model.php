@@ -632,6 +632,7 @@ class Stc_Model extends CI_Model
 			foreach($query->result() as $data)
 			{
 				array_push($times,substr($data->time,0,5).':00');
+
 			}
 
 			if($channel)
@@ -657,6 +658,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
+					'total_agent' => array($this->get_availdata_tot_agent($date,$channels)),
 					'series' => $serials
 			)
 		);
@@ -677,6 +679,51 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+		$result = array();
+		
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,$query->row($inx)->total);
+				}
+				else
+				{
+					array_push($result,'0');
+				}
+					
+			}
+
+		}
+		else
+		{
+			$result = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+		
+
+		return $result;
+		
+	}
+
+	function get_availdata_tot_agent($date,$channel)
+	{
+		if(!$channel)
+		{
+			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
+		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.tot_agent),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
@@ -890,7 +937,7 @@ class Stc_Model extends CI_Model
 			{
 				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
 				{
-					array_push($result,ROUND($query->row($inx)->total,2));
+					array_push($result,ROUND($query->row($inx)->total,0));
 				}
 				else
 				{
@@ -1091,6 +1138,24 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
+
+	//temporary(for wallboard)
+	public function getPercentageIntervalTodayWallDay($date){
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(case_session) as rate
+			FROM rpt_summ_interval
+			WHERE rpt_summ_interval.tanggal = '2020-01-23'
+			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name
+			");
+		return $query->result();
+	}
 	public function getSumIntervalMonth($month, $year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		
@@ -1128,6 +1193,61 @@ class Stc_Model extends CI_Model
 			GROUP BY m_channel.channel_name");
 		return $query->result();
 	}
+
+	public function get_traffic_interval_weeklyBar($week_id,$channel)
+	{
+		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel_name' => $data->channel_name,
+					'total' => $this->get_traffic_interval_info_weeklyBar($week_id,$data->channel_id)
+				);
+			}
+		}
+
+		return $result;
+	}
+
+	public function get_traffic_interval_info_weeklyBar($week_id,$channel)
+	{
+
+		if(!$channel)
+		{
+			return 0;
+		}
+
+		$this->db->select('SUM(rpt_summ_interval.case_session) as total');
+		$this->db->from('rpt_summ_interval');
+		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		$this->db->group_by('rpt_summ_interval.channel_id','ASC');
+		$query = $this->db->get();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		$result = array();
+
+		if($query->num_rows() == 1)
+		{
+			$result = $query->row()->total;
+		}
+		else
+		{
+			$result = 0;
+		}
+		
+		return $result;
+	}
+
 	public function getOptionYear()
 	{
 		// //summary_channel

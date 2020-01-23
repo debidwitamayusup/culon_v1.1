@@ -110,7 +110,34 @@ class SummaryToday extends CI_Controller {
       
     }
 
-    
+    public function getIntervalTrafficWeeklyBar(){
+
+        $week_id =   $this->security->xss_clean($this->input->post('week', true));
+        $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
+
+
+        $data = $this->Stc_Model->get_traffic_interval_weeklyBar($week_id, $channel);
+        
+        if($data)
+        {
+            $result = array(
+                'status' => true,
+                'data' => $data
+            );
+            echo json_encode($result);  
+        }
+        else
+        {
+            $result = array(
+                'status' => true,
+                'data' => "no data"
+            );
+            echo json_encode($result);  
+        }
+       
+      
+    }
+
     public function getAverageInterval(){
         $date = $this->security->xss_clean($this->input->post('date', true));
         if(!$date){
@@ -145,6 +172,56 @@ class SummaryToday extends CI_Controller {
         $arr_data = array();
 
         $query = $this->Stc_Model->getPercentageIntervalToday($date);
+        $i = 0;
+        if($query){
+            while($i < sizeof($arr_channel)){
+                $index = 0;
+                $status = 0;
+                while($index<sizeof($query) && $status == 0){
+                    $obj = array();
+                    if($arr_channel[$i]->channel_name == $query[$index]->channel_name){
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "rate" => $query[$index]->rate
+                        ];
+                        $status = 1;
+                    }else{
+                        $obj = [
+                            "channel_name" => $arr_channel[$i]->channel_name,
+                            "rate" => 0
+                        ];
+                    }
+                    $index++;
+                }
+                array_push($arr_data, $obj);
+                $i++;
+            }
+            
+            $response = array(
+                'status' => true,
+                'data' => $arr_data, 
+            );
+        }else{
+            $response = array(
+                'status' => false,
+                'data' => ''
+            );
+        }
+
+        echo json_encode($response);
+    }
+
+    //temporary, for wallboard day
+    public function getPercentageTrafficTodayWallDay(){
+        $date = $this->security->xss_clean($this->input->post('date', true));
+        if(!$date){
+            $date = date("Y-m-d");
+        }
+
+        $arr_channel = $this->Stc_Model->get_all_channel();
+        $arr_data = array();
+
+        $query = $this->Stc_Model->getPercentageIntervalTodayWallDay($date);
         $i = 0;
         if($query){
             while($i < sizeof($arr_channel)){
