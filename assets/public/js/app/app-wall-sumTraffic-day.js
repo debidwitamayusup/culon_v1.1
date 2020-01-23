@@ -57,7 +57,8 @@ function callIntervalTraffic(date, arr_channel){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -137,7 +138,8 @@ function callDataPercentage(date){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            setTimeout(function(){callDataPercentage(date);},20000);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callDataPercentage(date);},900000);
             drawChartPercentageToday(response);
             // fromTemplate(response);
         },
@@ -240,53 +242,65 @@ function drawChartPercentageToday(response){
 }
 
 function drawTableData(response){
-    // var sum_fcr1=0, sum_nfcr1=0,sum_fcr2=0,sum_nfcr2=0,sum_fcr3=0, sum_nfcr3=0,summarize = 0,t_summarize =0;
-    //for append title on echart
+    var tagTime=["00:00:00", "01:00:00", "02:00:00", "03:00:00", "04:00:00", "05:00:00", "06:00:00", "07:00:00", "08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00", "23:00:00"];
+
+    var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
+    var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
+    var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
+    var sumEmail = response.data.series[3].data.map(Number).reduce(summarize);
+    var sumTel = response.data.series[4].data.map(Number).reduce(summarize);
+    var sumLine = response.data.series[5].data.map(Number).reduce(summarize);
+    var sumVoice = response.data.series[6].data.map(Number).reduce(summarize);
+    var sumInst = response.data.series[7].data.map(Number).reduce(summarize);
+    var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
+    var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
+    var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
+    var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
+
+    //summarize per channel
+    function summarize(total, num) {
+          return total + num;
+    }
+    
     $("#mytbody").empty();
-    // $("#mythead_nfcr").empty();
-    if(response.data.series.length != 0){
-       
+    $("#mytfoot").empty();
+    if(response.data.series.length != 0){   
         var i = 0;
-        response.data.series.forEach(function (value, index) {
-            // summarize = parseInt(value.fcr_1)+parseInt(value.nfcr_1)+parseInt(value.fcr_2)+parseInt(value.nfcr_2)+parseInt(value.fcr_3)+parseInt(value.nfcr_3);
-            // t_summarize = parseInt(summarize)+parseInt(t_summarize);
-            // sum_fcr1=parseInt(sum_fcr1)+parseInt(value.fcr_1);
-            // sum_nfcr1=parseInt(sum_nfcr1)+parseInt(value.nfcr_1);
-            // sum_fcr2=parseInt(sum_fcr2)+parseInt(value.fcr_2);
-            // sum_nfcr2=parseInt(sum_nfcr2)+parseInt(value.nfcr_2);
-            // sum_fcr3=parseInt(sum_fcr3)+parseInt(value.fcr_3);
-            // sum_nfcr3=parseInt(sum_nfcr3)+parseInt(value.nfcr_3);
-            $('#mytable').find('tbody').append('<tr>'+
-            '<td>'+(i+1)+'</td>'+
-            '<td>'+value.label+'</td>'+
-            '<td>'+value.data[0]+'</td>'+
-            '<td>'+value.data[1]+'</td>'+
-            '<td>'+value.data[2]+'</td>'+
-            '<td>'+value.data[3]+'</td>'+
-            '<td>'+value.data[4]+'</td>'+
-            '<td>'+value.data[5]+'</td>'+
-            '<td>'+value.data[6]+'</td>'+
-            '<td>'+value.data[7]+'</td>'+
-            '<td>'+value.data[8]+'</td>'+
-            '<td>'+value.data[9]+'</td>'+
-            '<td>'+value.data[10]+'</td>'+
-            '<td>'+value.data[11]+'</td>'+
-            '<td>'+value.data[12]+'</td>'+
-            '<td>'+value.data[13]+'</td>'+
-            '<td>'+value.data[14]+'</td>'+
-            '<td>'+value.data[15]+'</td>'+
-            '<td>'+value.data[16]+'</td>'+
-            '<td>'+value.data[17]+'</td>'+
-            '<td>'+value.data[18]+'</td>'+
-            '<td>'+value.data[19]+'</td>'+
-            '<td>'+value.data[20]+'</td>'+
-            '<td>'+value.data[21]+'</td>'+
-            '<td>'+value.data[22]+'</td>'+
-            '<td>'+value.data[23]+'</td>'+
+        sumWA = parseInt(response.data.series[0].data[i]);
+        for (var i = 0; i < 24; i++) {
+            $('#wall-today-tbl').find('tbody').append('<tr>'+
+            '<td>'+tagTime[i]+'</td>'+
+            '<td>'+response.data.series[0].data[i]+'</td>'+
+            '<td>'+response.data.series[1].data[i]+'</td>'+
+            '<td>'+response.data.series[2].data[i]+'</td>'+
+            '<td>'+response.data.series[3].data[i]+'</td>'+
+            '<td>'+response.data.series[4].data[i]+'</td>'+
+            '<td>'+response.data.series[5].data[i]+'</td>'+
+            '<td>'+response.data.series[6].data[i]+'</td>'+
+            '<td>'+response.data.series[7].data[i]+'</td>'+
+            '<td>'+response.data.series[8].data[i]+'</td>'+
+            '<td>'+response.data.series[9].data[i]+'</td>'+
+            '<td>'+response.data.series[10].data[i]+'</td>'+
+            '<td>'+response.data.series[11].data[i]+'</td>'+
             '</tr>');
-            i++;
-            
-        });
+        }
+
+        $('#wall-today-tbl').find('tfoot').append('<tr>'+
+            '<td>TOTAL</td>'+
+            '<td>'+sumFb+'</td>'+
+            '<td>'+sumWA+'</td>'+
+            '<td>'+sumTw+'</td>'+
+            '<td>'+sumEmail+'</td>'+
+            '<td>'+sumTel+'</td>'+
+            '<td>'+sumLine+'</td>'+
+            '<td>'+sumVoice+'</td>'+
+            '<td>'+sumInst+'</td>'+
+            '<td>'+sumMes+'</td>'+
+            '<td>'+sumTwDM+'</td>'+
+            '<td>'+sumLive+'</td>'+
+            '<td>'+sumSms+'</td>'+
+            '</tr>');
+
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+
