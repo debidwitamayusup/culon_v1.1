@@ -45,7 +45,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
-                        <div class="table-responsive table-bordered" style="padding:5px;">
+                        <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-today-tbl">
                                 <thead class="text-center text-white" style="background:#072f50;">
                                     <tr>
