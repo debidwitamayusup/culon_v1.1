@@ -24,9 +24,8 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="barWallTrafficWeekDiv">
                             <canvas id="barWallTrafficWeek"></canvas>
-
                         </div>
                     </div>
                 </div>
