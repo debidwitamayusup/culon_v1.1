@@ -890,7 +890,7 @@ class Stc_Model extends CI_Model
 			{
 				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
 				{
-					array_push($result,ROUND($query->row($inx)->total,2));
+					array_push($result,ROUND($query->row($inx)->total,0));
 				}
 				else
 				{
@@ -1089,6 +1089,24 @@ class Stc_Model extends CI_Model
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
+		return $query->result();
+	}
+
+	//temporary(for wallboard)
+	public function getPercentageIntervalTodayWallDay($date){
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(case_session) as rate
+			FROM rpt_summ_interval
+			WHERE rpt_summ_interval.tanggal = '2020-01-23'
+			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name
+			");
 		return $query->result();
 	}
 	public function getSumIntervalMonth($month, $year){

@@ -1,10 +1,25 @@
 var base_url = $('#base_url').val();
 
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+//get today
+var v_params_today= m + '-' + n + '-' + (o);
+
 $(document).ready(function () {
+    $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage('2020-01-19');
-    callIntervalTraffic('2020-01-19',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
-    
+    callDataPercentage(v_params_today);
+    callIntervalTraffic(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    $("#filter-loader").fadeOut("slow");
 });
 
 function addCommas(commas)
@@ -76,6 +91,7 @@ function destroyChartInterval(){
     // $('#chart-no-data').remove(); // this is my <canvas> element
     $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay"  class="h-400"></canvas>');
 }
+
 function drawChartToday(response){
     destroyChartInterval();
     var data = [];
@@ -131,7 +147,7 @@ function drawChartToday(response){
 function callDataPercentage(date){
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficTodayWallDay',
         data: {
             date: date
         },

@@ -15,10 +15,11 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o);
 
 $(document).ready(function () {
+    $("#filter-loader").fadeIn("slow");
     // fromTemplate();
     callDataPercentage(n,m);
     callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
-    
+    $("#filter-loader").fadeOut("slow");
 });
 
 function addCommas(commas)
