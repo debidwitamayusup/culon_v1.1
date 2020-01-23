@@ -287,7 +287,7 @@ function drawChartSumChannel(response){
 
 		// console.log(response.status);
 	$('#echartService').remove();
-    $('#echartServiceDiv').append('<div id="echartService" class="chartsh overflow-hidden"></div>');
+    $('#echartServiceDiv').append('<div id="echartService" class="chartsh-services overflow-hidden"></div>');
     if (response.status != false) {
 		let channelName = [];
 		let art = [];
@@ -395,10 +395,21 @@ function drawChartSumChannel(response){
 		var chartTicket = document.getElementById('echartService');
 		var barChartTicket = echarts.init(chartTicket);
 		barChartTicket.setOption(optionTicket);
-		window.onresize = function(){
-			// barChartTicket.responsive();
-			chartTicket.resize();
-		}
+		// window.onresize = function(){
+		// 	barChartTicket.responsive();
+		// 	// barChartTicket.resize();
+		// }
+		function myFunction(x) {
+			if (x.matches) { // If media query matches
+			  document.body.style.backgroundColor = "yellow";
+			} else {
+			 document.body.style.backgroundColor = "pink";
+			}
+		  }
+		  
+		  var x = window.matchMedia("(max-width: 450px)")
+		  myFunction(x) // Call listener function at run time
+		  x.addListener(myFunction)
 	}else{
 		$('#echartService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 	}

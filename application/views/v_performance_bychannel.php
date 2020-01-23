@@ -97,7 +97,7 @@
                             <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
                         <div class="card-body" id="echartServiceDiv">
-                        <div id="echartService" class="chartsh overflow-hidden" style="width: 500px; height: 350px;"></div>
+                        <div id="echartService" class="chartsh-servicees overflow-hidden"></div>
                         </div>
                         <div id="legend" class="legend-con"></div>
                     </div>
