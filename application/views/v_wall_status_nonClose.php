@@ -137,7 +137,7 @@
                                         <td>Reclose</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" style="font-size:9.5px !important;">
+                                <tbody class="table-sm text-center" style="font-size:9.5px !important;">
                                     <tr>
                                         <td>1</td>
                                         <td>Unit 1</td>
@@ -259,10 +259,9 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
-                                <tfoot class="text-right font-weight-extrabold bg-total">
+                                <tfoot class="table-sm text-center font-weight-extrabold bg-total">
                                     <tr>
-                                        <td>TOTAL</td>
-                                        <td>200</td>
+                                        <td colspan="2">TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>

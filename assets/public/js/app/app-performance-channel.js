@@ -401,9 +401,9 @@ function drawChartSumChannel(response){
 		// }
 		function myFunction(x) {
 			if (x.matches) { // If media query matches
-			  document.body.style.backgroundColor = "yellow";
+				barChartTicket;
 			} else {
-			 document.body.style.backgroundColor = "pink";
+				barChartTicket;
 			}
 		  }
 		  

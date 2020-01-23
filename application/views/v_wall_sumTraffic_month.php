@@ -67,7 +67,7 @@
                                         <td class="bg-column">Live Chat</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
+                                <tbody class="table-sm text-center">
                                     <tr>
                                         <td class="bg-rows font-weight-extrabold">1</td>
                                         <td>200</td>
@@ -527,7 +527,7 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
-                                <tfoot class="bg-total font-weight-extrabold text-center">
+                                <tfoot class="bg-total table-sm font-weight-extrabold text-center">
                                     <tr>
                                     <td>TOTAL</td>
                                         <td>200</td>

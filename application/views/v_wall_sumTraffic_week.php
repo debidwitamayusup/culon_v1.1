@@ -63,7 +63,7 @@
                                         <td>Sat</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" style="font-size:10px !important;">
+                                <tbody class="text-center table-sm" style="font-size:10px !important;">
                                     <tr>
                                         <td>1</td>
                                         <td>Whatsapp</td>
@@ -197,7 +197,7 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
-                                <tfoot class="text-right font-weight-extrabold bg-total">
+                                <tfoot class="text-center table-sm font-weight-extrabold bg-total">
                                     <tr>
                                         <td>TOTAL</td>
                                         <td>200</td>
