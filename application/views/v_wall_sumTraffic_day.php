@@ -46,29 +46,29 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="mytable">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-today-tbl">
                                 <thead class="text-center text-white" style="background:#072f50;">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold">Time</td>
                                         <td colspan="12" class="font-weight-extrabold">Channel</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-column">Whatsapp</td>
                                         <td class="bg-column">Facebook</td>
+                                        <td class="bg-column">Whatsapp</td>
                                         <td class="bg-column">Twitter</td>
-                                        <td class="bg-column">Twitter DM</td>
-                                        <td class="bg-column">Messenger</td>
-                                        <td class="bg-column">Instagram</td>
-                                        <td class="bg-column">Line</td>
-                                        <td class="bg-column">Telegram</td>
                                         <td class="bg-column">Email</td>
+                                        <td class="bg-column">Telegram</td>
+                                        <td class="bg-column">Line</td>
                                         <td class="bg-column">Voice</td>
-                                        <td class="bg-column">SMS</td>
+                                        <td class="bg-column">Instagram</td>
+                                        <td class="bg-column">Messenger</td>
+                                        <td class="bg-column">Twitter DM</td>
                                         <td class="bg-column">Live Chat</td>
+                                        <td class="bg-column">SMS</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
-                                    <tr>
+                                <tbody class="text-center" id="mytbody">
+                                    <!-- <tr>
                                         <td class="bg-rows font-weight-extrabold">00:00</td>
                                         <td>200</td>
                                         <td>400</td>
@@ -442,10 +442,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
-                                <tfoot class="bg-total font-weight-extrabold text-right">
-                                    <tr>
+                                <tfoot class="bg-total font-weight-extrabold text-right" id="mytfoot">
+                                   <!--  <tr>
                                     <td>TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -459,7 +459,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
