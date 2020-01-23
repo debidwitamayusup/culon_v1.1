@@ -54,10 +54,7 @@
                                      <select name="select-year-on-month" id="select-year-on-month" class="form-control">
                                          <option value="2020">2020</option>
                                          <option value="2019">2019</option>
-                                         <!-- <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option> -->
+
                                      </select>
                                  </div>
                              </div>
@@ -67,10 +64,7 @@
                                  <select name="select-year-only" id="select-year-only" class="form-control">
                                      <option value="2020">2020</option>
                                      <option value="2019" selected>2019</option>
-                                     <!-- <option value="2018">2018</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2015">2015</option> -->
+
                                  </select>
                              </div>
                          </div>
@@ -99,24 +93,7 @@
                                          </tr>
                                      </thead>
                                      <tbody class="text-center" style="font-size:12px !important;" id="mytbody_skill">
-                                         <!-- <tr>
-                                         <td>1</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                     </tr>
-                                     <tr>
-                                         <td>2</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                     </tr>
-                                     <tr>
-                                         <td>3</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                         <td>00:00:00</td>
-                                     </tr> -->
+
                                      </tbody>
                                  </table>
                              </div>
@@ -137,66 +114,7 @@
                                              </div>
                                              <div class="card-body" id="classDrawCOF" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawCOF">
-                                                     <!-- <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Agent 1</h5>
-                                                     <h6 class="text-muted font10" id="nameAgent">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold" id="nilaiAgent">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div> -->
-                                                     <!-- <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Agent 2</h5>
-                                                     <h6 class="text-muted font10" id="nameAgent2">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold" id="nilaiAgent2">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div>
-                                                 <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Agent 3</h5>
-                                                     <h6 class="text-muted font10" id="nameAgent3">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold" id="nilaiAgent3">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div>
-                                                 <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Agent 4</h5>
-                                                     <h6 class="text-muted font10" id="nameAgent4">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold" id="nilaiAgent4">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div>
-                                                 <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Agent 5</h5>
-                                                     <h6 class="text-muted font10" id="nameAgent5">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold" id="nilaiAgent5">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div> -->
+
                                                  </div>
                                              </div>
                                          </div>
@@ -209,18 +127,7 @@
                                              </div>
                                              <div class="card-body" id="classDrawAHT" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawAHT">
-                                                     <!-- <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
-                                                     <h6 class="text-muted font10">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div> -->
+
                                                  </div>
                                              </div>
                                          </div>
@@ -233,18 +140,7 @@
                                              </div>
                                              <div class="card-body" id="classDrawART" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawART">
-                                                     <!-- <div class="col-2 text-center">
-                                                     <span class="avatar avatar-md brround cover-image"
-                                                         data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
-                                                 </div>
-                                                 <div class="col-7 text-center">
-                                                     <h5 class="font14 mt-1 mb-3">Jhon Dyer</h5>
-                                                     <h6 class="text-muted font10">Agent Name</h6>
-                                                 </div>
-                                                 <div class="col-3 text-right">
-                                                     <h4 class="font-weight-extrabold">90</h4>
-                                                     <h6 class="text-muted font10">Handling</h6>
-                                                 </div> -->
+
                                                  </div>
                                              </div>
                                          </div>
@@ -293,15 +189,15 @@
                                          style="width:100%">
                                          <thead class="text-center">
                                              <tr>
-                                                 <th class="wd-15p border-bottom-0">ID</th>
-                                                 <th class="wd-15p border-bottom-0" style="width:30%">Agent ID</th>
-                                                 <th class="wd-15p border-bottom-0" style="width:40%">Agent Name</th>
-                                                 <th class="wd-15p border-bottom-0" >Skill</th>
+                                                 <th class="wd-15p border-bottom-0">No</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">Agent ID</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:30%">Agent Name</th>
+                                                 <th class="wd-15p border-bottom-0">Skill</th>
                                                  <th class="wd-15p border-bottom-0">COF
                                                  </th>
-                                                 <th class="wd-15p border-bottom-0">ART</th>
-                                                 <th class="wd-15p border-bottom-0">AHT</th>
-                                                 <th class="wd-15p border-bottom-0">AST</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">ART</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">AHT</th>
+                                                 <th class="wd-15p border-bottom-0" style="width:10%">AST</th>
                                              </tr>
                                          </thead>
                                          <tbody style="font-size:12px !important;" id="mytbody">

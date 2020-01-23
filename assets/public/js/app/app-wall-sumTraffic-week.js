@@ -145,7 +145,7 @@ $(function ($) {
 	var option6 = {
 		grid: {
 			top: '6',
-			right: '15',
+			right: '10',
 			bottom: '17',
 			left: '32',
 		},
@@ -186,6 +186,9 @@ $(function ($) {
 	var chart6 = document.getElementById('echartWeek');
 	var barChart6 = echarts.init(chart6);
     barChart6.setOption(option6);
+    // window.onresize = function() {
+    //     barChart6.resize();
+    // };
     
 
     var ctx = document.getElementById( "lineWallsumTrafficWeek" );

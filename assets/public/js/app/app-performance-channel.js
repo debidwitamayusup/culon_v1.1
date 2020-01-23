@@ -317,26 +317,18 @@ function drawChartSumChannel(response){
 			stack: 'Stack',
 			data: ast
 		}];
-		/*----echart summary ticket category----*/
+		/*----echart performance by channel----*/
 		var optionTicket = {
-			// options: {
-		 //        legend: {
-		 //            display: true,
-		 //            labels: {
-		 //                fontColor: 'rgb(255, 99, 132)'
-		 //            }
-		 //        }
-		 //    },
-			responsive: {
-				rules: {
-					condition: {
-						maxWidth: 500
-					}
-				}
-			},
+			// responsive: {
+			// 	rules: {
+			// 		condition: {
+			// 			maxWidth: "500",
+			// 		}
+			// 	}
+			// },
 			grid: {
 				top: '30',
-				right: '20',
+				right: '25',
 				bottom: '17',
 				left: '70',
 			},
@@ -402,7 +394,11 @@ function drawChartSumChannel(response){
 		};
 		var chartTicket = document.getElementById('echartService');
 		var barChartTicket = echarts.init(chartTicket);
-	    barChartTicket.setOption(optionTicket);
+		barChartTicket.setOption(optionTicket);
+		window.onresize = function(){
+			barChartTicket.responsive();
+			barChartTicket.resize();
+		}
 	}else{
 		$('#echartService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 	}
