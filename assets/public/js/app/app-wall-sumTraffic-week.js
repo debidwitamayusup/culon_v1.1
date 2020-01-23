@@ -1,7 +1,7 @@
 var base_url = $('#base_url').val();
 
 $(document).ready(function(){
-    getSummTrafficByChannel('3');
+    getSummTrafficByChannel('3',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     getTrafficInterval('3',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
 });
 
@@ -36,18 +36,19 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function getSummTrafficByChannel(week){
+function getSummTrafficByChannel(week, arr_channel){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBar',
         data: {
             week: week,
-            // arr_channel: arr_channel
+            arr_channel: arr_channel
         },
         success: function (r) {
             var response = JSON.parse(r);
             console.log(response);
-            // setTimeout(function(){getSummTrafficByChannel(week);},20000);
+            //hit url for interval 900000 (15 minutes)
+            // setTimeout(function(){callDataPercentage(date);},900000);
             drawSummTrafficByChannel(response);
             // fromTemplate(response);
         },
@@ -65,9 +66,9 @@ function drawSummTrafficByChannel(response){
     var data_label = [];
     var data_rate = [];
     var data_color = [];
-    response.data.series.forEach(function (value, index) {
+    response.data.forEach(function (value, index) {
         data_label.push(value.channel_name);
-        data_rate.push(value.rate);
+        data_rate.push(value.total);
         data_color.push(getColorChannel(value.channel_name));
     });
 
