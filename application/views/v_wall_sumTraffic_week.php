@@ -62,8 +62,13 @@
                                         <td>Sat</td>
                                     </tr>
                                 </thead>
+<<<<<<< HEAD
                                 <tbody class="text-center" style="font-size:10px !important;" id="mytbody">
                                     <!-- <tr>
+=======
+                                <tbody class="text-center table-sm" style="font-size:10px !important;">
+                                    <tr>
+>>>>>>> origin/debi-dev
                                         <td>1</td>
                                         <td>Whatsapp</td>
                                         <td>200</td>
