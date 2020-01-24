@@ -14,8 +14,9 @@ class SummaryMonth extends CI_Controller {
 		//date("m")
 		$month = $this->security->xss_clean($this->input->post('index', true));
 		$year = $this->security->xss_clean($this->input->post('params_year', true));
+		$channel = $this->security->xss_clean($this->input->post('channel_name', true));
 
-		$result = $this->Stc_Model->getIntervalPerMonthShowAll($month, $year);
+		$result = $this->Stc_Model->getIntervalPerMonthShowAll($month, $year,$channel);
         
         echo json_encode($result);
 

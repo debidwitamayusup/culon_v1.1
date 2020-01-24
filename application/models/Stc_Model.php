@@ -567,12 +567,16 @@ class Stc_Model extends CI_Model
 	}
 
 //onprogress
-	public function getIntervalPerMonthShowAll($month, $year)
+	public function getIntervalPerMonthShowAll($month, $year,$channel)
 	{
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		if($channel)
+		{
+			$this->db->where('m_channel.channel_name',$channel);
+		}
 		$query = $this->db->get();
 		$arr_time = array();
 
