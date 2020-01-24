@@ -561,9 +561,90 @@ class Stc_Model extends CI_Model
 				BETWEEN "00:00:00" AND "23:59:59" AND b.channel_name = "'.$channel_name.'"
 				GROUP BY DATE(a.tanggal)
 				');
+
 			return $query;
 		}
 	}
+
+//onprogress
+	public function getIntervalPerMonthShowAll($month, $year)
+	{
+		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				$data_r[] = array(
+					'channel_name' => $data->channel_name,
+					'month'	=> $month,
+					'total_traffic'=> $this->get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$data->channel_id)
+				);
+			}
+
+			$result = array(
+				'status' => true ,
+				'data' => $data_r
+			);
+			
+		}
+		else{
+
+			$result = array(
+				'status' => true,
+				'data' => 'nodata'
+			);
+		}
+		
+
+		return $result;
+		
+
+	}
+
+	public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
+	{
+		$this->db->select('DAY(rpt_summary_scr.tanggal) as DAY, sum(rpt_summary_scr.cof) as COF');
+		$this->db->from('rpt_summary_scr');
+		$this->db->where('MONTH(rpt_summary_scr.tanggal)',$month);
+		$this->db->where('YEAR(rpt_summary_scr.tanggal)',$year);
+		$this->db->where('rpt_summary_scr.channel_id', $channel_id);
+		$this->db->group_by('rpt_summary_scr.tanggal');
+		$query = $this->db->get();
+
+		$result = array();
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			{
+				if( strval($inx) == strval($query->row($inx)->DAY))
+				{
+					array_push($result,strval($query->row($inx)->COF));
+				}
+				else
+				{
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			{
+				array_push($result,'0');
+			}
+		}
+
+		return $result;
+	}
+
+
 
 	public function getAvgIntervalTable($month)
 	{
