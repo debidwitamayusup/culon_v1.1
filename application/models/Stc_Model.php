@@ -1345,6 +1345,7 @@ class Stc_Model extends CI_Model
 			}
 		}
 
+		
 		return $result;
 	}
 
@@ -1355,7 +1356,6 @@ class Stc_Model extends CI_Model
 		
 		foreach($days as $day)
 		{
-			//print_r($day.'|');
 			$datas[] = array(
 				'DAY'=>strval(date('l',strtotime($day))),
 				'DATE' => date('Y-m-d',strtotime($day)),
@@ -1363,8 +1363,12 @@ class Stc_Model extends CI_Model
 			);
 		}
 
-		//exit;
-		return $datas;
+		$result = array(
+			'status' => true,
+			'data' => $datas
+		);
+
+		return $result;
 	}
 
 	public function get_traffic_interval_daily($day)//channel - 
