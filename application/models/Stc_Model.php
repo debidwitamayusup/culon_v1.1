@@ -574,6 +574,7 @@ class Stc_Model extends CI_Model
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$query = $this->db->get();
+		$arr_time = array();
 
 		if($query->num_rows() > 0)
 		{
@@ -586,9 +587,15 @@ class Stc_Model extends CI_Model
 				);
 			}
 
+			for($i = 1; $i <=$numdateofmonth;$i++)
+			{
+				array_push($arr_time, $i);
+			}
+
 			$result = array(
 				'status' => true ,
-				'data' => $data_r
+				'data' => $data_r,
+				'param_date' => $arr_time
 			);
 			
 		}
@@ -614,20 +621,23 @@ class Stc_Model extends CI_Model
 		$this->db->where('YEAR(rpt_summary_scr.tanggal)',$year);
 		$this->db->where('rpt_summary_scr.channel_id', $channel_id);
 		$this->db->group_by('rpt_summary_scr.tanggal');
+		$this->db->order_by('DAY(rpt_summary_scr.tanggal)','ASC');
 		$query = $this->db->get();
 
 		$result = array();
 		if($query->num_rows()>0)
 		{
 			
-			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			for($inx = 0; $inx < $numdateofmonth; $inx++)
 			{
-				if( strval($inx) == strval($query->row($inx)->DAY))
+				if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
 				{
+					
 					array_push($result,strval($query->row($inx)->COF));
 				}
 				else
 				{
+					
 					array_push($result,'0');
 				}	
 			}
