@@ -9,6 +9,19 @@ class SummaryMonth extends CI_Controller {
 		$this->load->model('Stc_Model');
 	}
 
+	public function lineChartPerMonthShowAll()
+	{
+		//date("m")
+		$month = $this->security->xss_clean($this->input->post('index', true));
+		$year = $this->security->xss_clean($this->input->post('params_year', true));
+		$channel = $this->security->xss_clean($this->input->post('channel_name', true));
+
+		$result = $this->Stc_Model->getIntervalPerMonthShowAll($month, $year,$channel);
+        
+        echo json_encode($result);
+
+	}
+
 	public function lineChartPerMonth()
 	{
 		//date("m")
@@ -23,7 +36,7 @@ class SummaryMonth extends CI_Controller {
 		$query_date = date("Y-m-d");
 
 		//convert number of month to three letter of month
- 	// 	$dateObj   = DateTime::createFromFormat('!m', $month);
+ 	 // 	$dateObj   = DateTime::createFromFormat('!m', $month);
 		// $monthName = $dateObj->format('M');
  		
    		$paramDate = date('t', strtotime($query_date));
