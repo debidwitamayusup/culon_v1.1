@@ -325,8 +325,14 @@ function destroyChartPercentage(){
 //jquery
 (function ($) {
     // change date picker
+    var dates = new Date();
+    dates.setDate(dates.getDate()>0);
     $('#input-date').datepicker({
         dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;

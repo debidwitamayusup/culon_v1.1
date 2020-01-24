@@ -258,7 +258,7 @@ function drawChartPercentageMonth(response){
 }
 
 function drawTableData(response){
-    var tagTime=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+    var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
 
     var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
     var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
@@ -271,8 +271,8 @@ function drawTableData(response){
     var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
     var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
-    var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-
+    var sumSms = response.data.series[11].data.map(Number).reduce(summarize);
+    var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
     //summarize per channel
     function summarize(total, num) {
           return total + num;
@@ -282,10 +282,10 @@ function drawTableData(response){
     $("#mytfoot").empty();
     if(response.data.series.length != 0){   
         var i = 0;
-        sumWA = parseInt(response.data.series[0].data[i]);
         for (var i = 0; i < 24; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+tagTime[i]+'</td>'+
+            '<td>'+response.data.total_agent[0][i]+'</td>'+
             '<td>'+response.data.series[0].data[i]+'</td>'+
             '<td>'+response.data.series[1].data[i]+'</td>'+
             '<td>'+response.data.series[2].data[i]+'</td>'+
@@ -303,6 +303,7 @@ function drawTableData(response){
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
             '<td>TOTAL</td>'+
+            '<td>'+sumTotAgent+'</td>'+
             '<td>'+sumFb+'</td>'+
             '<td>'+sumWA+'</td>'+
             '<td>'+sumTw+'</td>'+

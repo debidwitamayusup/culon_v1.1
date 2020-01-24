@@ -52,21 +52,26 @@
                                 </div>
                                 <div>
                                     <select name="select-year-on-month" id="select-year-on-month" class="form-control">
-                                        <option value="2020">2020</option>
-                                        <option value="2019">2019</option>
+                                        <!-- <option value="2020">2020</option>
+                                        <option value="2019">2019</option> -->
                                         <!-- <option value="2018">2018</option>
                                             <option value="2017">2017</option>
                                             <option value="2016">2016</option>
                                             <option value="2015">2015</option> -->
                                     </select>
                                 </div>
+                                <div>
+                                    <span class="col-auto">
+                                        <button class="btn btn-sm btn-dark mt-2" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- yearly -->
                             <div id="filter-year" class="mt-1 mr-0">
                                 <select name="select-year-only" id="select-year-only" class="form-control">
-                                    <option value="2020">2020</option>
-                                    <option value="2019" selected>2019</option>
+                                   <!--  <option value="2020">2020</option>
+                                    <option value="2019" selected>2019</option> -->
                                     <!-- <option value="2018">2018</option>
                                     <option value="2017">2017</option>
                                     <option value="2016">2016</option>
@@ -82,7 +87,7 @@
                 <div class="col-xl-5 col-lg-5 col-md-12">
                     <div class="card">
                         <div class="card-header-small">
-                        
+
                             <h5 class="card-title-small card-pt10">Summary KIP</h5>
                         </div>
                         <div id="legend" class="legend-con"></div>

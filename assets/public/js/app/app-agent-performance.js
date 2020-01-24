@@ -30,9 +30,93 @@ $(document).ready(function () {
     setYearPicker();
 });
 
+//for dinamic dropdown year on month
+function callYearOnMonth()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-on-month");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-on-month').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+//for dinamic dropdown year on year
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-only");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-only').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+var date = new Date();
+date.setDate(date.getDate()>0);
 function setDatePicker(){
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
+        maxDate: 'now',
+        // showTodayButton: true,
+        showClear: true,
+        // minDate: date,
         todayHighlight: true,
         autoclose: true
     }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
@@ -312,13 +396,14 @@ function drawDataTable(params_time, index, params_year){
         // v_date = getMonth();
         // callSummaryInteraction(params_time, v_date);
         // callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val());
-        drawDataTable('month',  $("#select-month").val(), $("#select-year-on-month").val());
-        bestOfFiveCOF('COF','month',  $("#select-month").val(), $("#select-year-on-month").val());
-        bestOfFiveAHT('AHT','month',  $("#select-month").val(), $("#select-year-on-month").val());
-        bestOfFiveART('ART','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        performanceBySkill('month', n, m);
+        drawDataTable('month', n, m);
+        bestOfFiveCOF('COF','month', n, m);
+        bestOfFiveAHT('AHT','month', n, m);
+        bestOfFiveART('ART','month', n, m);
         // callSummaryInteraction('month', '12', '2019');
         // console.log($("#select-year-only").val());
+        callYearOnMonth();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -335,11 +420,12 @@ function drawDataTable(params_time, index, params_year){
         v_params_time = 'year';
         // console.log(params_time);
         // v_date = getYear();
-        performanceBySkill('year', $("#select-year-only").val(), 0);
-        drawDataTable('year',  $("#select-year-only").val(), 0);
-        bestOfFiveCOF('COF','year',  $("#select-year-only").val(), 0);
-        bestOfFiveAHT('AHT','year', $("#select-year-only").val(), 0);
-        bestOfFiveART('ART','year',  $("#select-year-only").val(), 0);
+        performanceBySkill('year', m, 0);
+        drawDataTable('year',  m, 0);
+        bestOfFiveCOF('COF','year',  m, 0);
+        bestOfFiveAHT('AHT','year', m, 0);
+        bestOfFiveART('ART','year',  m, 0);
+        callYear();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -364,26 +450,26 @@ function drawDataTable(params_time, index, params_year){
     });
 
     /*select option month*/ 
-    $('#select-month').change(function(){
-        v_month = $(this).val();
-        // console.log(value);
-        // callSummaryInteraction(params_time, v_month,v_year);
-        performanceBySkill('month', v_month, $("#select-year-on-month").val());
-        drawDataTable('month',  v_month, $("#select-year-on-month").val());
-        bestOfFiveCOF('COF','month', v_month, $("#select-year-on-month").val());
-        bestOfFiveAHT('AHT','month',  v_month, $("#select-year-on-month").val());
-        bestOfFiveART('ART','month',  v_month, $("#select-year-on-month").val());
-    });
-    $('#select-year-on-month').change(function(){
-        v_year = $(this).val();
-        // console.log(value);
-        performanceBySkill('month', $("#select-month").val(), v_year);
-        drawDataTable('month',  $("#select-month").val(),v_year);
-        bestOfFiveCOF('COF','month',  $("#select-month").val(), v_year);
-        bestOfFiveAHT('AHT','month',  $("#select-month").val(), v_year);
-        bestOfFiveART('ART','month',  $("#select-month").val(), v_year);
+    // $('#select-month').change(function(){
+    //     v_month = $(this).val();
+    //     // console.log(value);
+    //     // callSummaryInteraction(params_time, v_month,v_year);
+    //     performanceBySkill('month', v_month, $("#select-year-on-month").val());
+    //     drawDataTable('month',  v_month, $("#select-year-on-month").val());
+    //     bestOfFiveCOF('COF','month', v_month, $("#select-year-on-month").val());
+    //     bestOfFiveAHT('AHT','month',  v_month, $("#select-year-on-month").val());
+    //     bestOfFiveART('ART','month',  v_month, $("#select-year-on-month").val());
+    // });
+    // $('#select-year-on-month').change(function(){
+    //     v_year = $(this).val();
+    //     // console.log(value);
+    //     performanceBySkill('month', $("#select-month").val(), v_year);
+    //     drawDataTable('month',  $("#select-month").val(),v_year);
+    //     bestOfFiveCOF('COF','month',  $("#select-month").val(), v_year);
+    //     bestOfFiveAHT('AHT','month',  $("#select-month").val(), v_year);
+    //     bestOfFiveART('ART','month',  $("#select-month").val(), v_year);
 
-    });
+    // });
     /**/ 
 
     // select option year
@@ -395,5 +481,13 @@ function drawDataTable(params_time, index, params_year){
         bestOfFiveCOF('COF','year',  v_year, 0);
         bestOfFiveAHT('AHT','year', v_year, 0);
         bestOfFiveART('ART','year',  v_year, 0);
+    });
+
+    $('#btn-go').click(function(){
+        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val());
+        drawDataTable('month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveCOF('COF','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveAHT('AHT','month',  $("#select-month").val(), $("#select-year-on-month").val());
+        bestOfFiveART('ART','month',  $("#select-month").val(), $("#select-year-on-month").val());
     });
 })(jQuery);
