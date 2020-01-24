@@ -57,6 +57,11 @@
 
                                      </select>
                                  </div>
+                                 <div>
+									<span class="col-auto">
+										<button class="btn btn-sm btn-dark mt-2" type="button"><i class="fe fe-arrow-right text-white"></i></button>
+									</span>
+                                 </div>
                              </div>
 
                              <!-- yearly -->
@@ -72,8 +77,6 @@
                      <!--Page Header-->
                  </div>
 
-                 <!----First Rows--->
-
                  <!---Next Rows---->
                  <div class="row">
                      <div class="col-md-3">
@@ -84,7 +87,7 @@
                              <div class="table-responsive table-pt10">
                                  <table class="table card-table table-striped table-vcenter table-hover table-pt10"
                                      style="height:310px" id="tableSkill">
-                                     <thead class="text-center text-white bg-gray1">
+                                     <thead class="text-center text-white bg-head">
                                          <tr>
                                              <th>Skill</th>
                                              <th>ART</th>
@@ -158,36 +161,10 @@
                                  <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
                              </div>
                              <div class="card-body">
-                                 <!-- <div class="row mb-5">
-                                 <div class="col-md-3">
-                                     <div class="w-75 input-group">
-                                         <div class="input-group-prepend">
-                                             <div class="input-group-text">
-                                                 <i class="fe fe-activity tx-16 lh-0 op-6"></i>
-                                             </div>
-                                         </div>
-                                         <select name="select-channel" id="select-channel" class="w-75 form-control">
-                                             <option value="#">All Channel</option>
-                                             <option value="1">Whatsapp</option>
-                                             <option value="2">Instagram</option>
-                                             <option value="3">Facebook</option>
-                                             <option value="4">Twitter</option>
-                                             <option value="5">Messenger</option>
-                                             <option value="6">Telegram</option>
-                                             <option value="7">Twitter DM</option>
-                                             <option value="8">Email</option>
-                                             <option value="9">Voice</option>
-                                             <option value="10">Line</option>
-                                             <option value="11">SMS</option>
-                                             <option value="12">Live Chat</option>
-                                         </select>
-                                     </div>
-                                 </div>
-                             </div> -->
                                  <div class="table-responsive">
                                      <table id="tableAgent" class="table table-striped table-bordered"
                                          style="width:100%">
-                                         <thead class="text-center">
+                                         <thead class="text-center text-white bg-head">
                                              <tr>
                                                  <th class="wd-15p border-bottom-0">No</th>
                                                  <th class="wd-15p border-bottom-0" style="width:10%">Agent ID</th>

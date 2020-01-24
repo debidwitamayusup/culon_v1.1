@@ -68,7 +68,7 @@
                                         <td class="bg-column">SMS</td>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" id="mytbody">
+                                <tbody class="table-sm text-center" id="mytbody">
                                   
                                 </tbody>
                                 <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot">
