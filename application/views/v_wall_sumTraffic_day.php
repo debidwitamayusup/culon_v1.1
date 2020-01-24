@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
                         <div class="card-body" id="barWallTrafficDayDiv">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-12 col-lg-8">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                         </div>
                         <div class="card-body" id="lineWallsumTrafficDayDiv">
@@ -42,16 +42,16 @@
                 </div>
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-today-tbl">
-                                <thead class="text-center text-white" style="background:#072f50;">
+                                <thead class="text-center bg-head">
                                     <tr>
-                                        <td rowspan="2" class="font-weight-extrabold">Time</td>
-                                        <td rowspan="2" class="font-weight-extrabold">Total<br>Agent</td>
-                                        <td colspan="12" class="font-weight-extrabold">Channel</td>
+                                        <td rowspan="2" class="font-weight-extrabold text-white">Time</td>
+                                        <td rowspan="2" class="font-weight-extrabold text-white">Total<br>Agent</td>
+                                        <td colspan="12" class="font-weight-extrabold text-white">Channel</td>
                                     </tr>
                                     <tr>
                                         <td class="bg-column">Facebook</td>
@@ -71,7 +71,7 @@
                                 <tbody class="table-sm text-center" id="mytbody">
                                     
                                 </tbody>
-                                <tfoot class="bg-total table-sm font-weight-extrabold text-center" id="mytfoot">
+                                <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot">
                                    
                                 </tfoot>
                             </table>

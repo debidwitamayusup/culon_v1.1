@@ -17,7 +17,7 @@
 						<div class="row">
 							<div class="col-md-12 col-lg-4">
 								<div class="card">
-									<div class="card-header-small bg-red">
+									<div class="card-header-small">
 										<h5 class="card-title-small card-pt10">Summary Status Ticket / Channel</h5>
 									</div>
 									<div class="card-body">
@@ -28,7 +28,7 @@
 							</div>
 							<div class="col-md-12 col-lg-8">
 								<div class="card">
-									<div class="card-header-small bg-red">
+									<div class="card-header-small">
 										<h5 class="card-title-small card-pt10">Summary Status Ticket Month</h5>
 									</div>
 									<div class="card-body">

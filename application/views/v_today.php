@@ -19,7 +19,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
-								<div class="card-header-small bg-red">
+								<div class="card-header-small">
 									<h5 class="card-title-small card-pt10">Graphic Interval Daily</h5>
 								</div>
 								<div class="card-body">
@@ -30,7 +30,7 @@
 													<div class="input-group-text">
 														<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
 													</div>
-												</div><input id="input-date" class="form-control fc-datepicker"
+												</div><input id="input-date" class="w-55 form-control fc-datepicker"
 													placeholder="MM/DD/YYYY" type="text">
 											</div>
 										</div>
@@ -158,7 +158,7 @@
 					<div class="row">
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header-small bg-red">
+								<div class="card-header-small">
 									<h5 class="card-title-small card-pt10">Summary Session All Channel</h5>
 								</div>
 								<div class="card-body" id="chart-percentage">
@@ -169,7 +169,7 @@
 						</div>
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header-small bg-red">
+								<div class="card-header-small">
 									<h5 class="card-title-small card-pt10">Summary Service All Channel</h5>
 								</div>
 								<div class="table-responsive table-bordered table-pt10">

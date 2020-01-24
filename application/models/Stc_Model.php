@@ -953,6 +953,54 @@ class Stc_Model extends CI_Model
 		
 	}
 
+	function get_availdata_get_tot_permonth($month_id,$channel)
+	{
+		if(!$channel)
+		{
+			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+
+		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$query = $this->db->get();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		$result = array();
+
+		
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,ROUND($query->row($inx)->total,0));
+				}
+				else
+				{
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			$result = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+		}
+		
+
+		return $result;
+		
+	}
+
 
 	public function getAverageIntervalToday($params, $index, $year=0)
 	{
