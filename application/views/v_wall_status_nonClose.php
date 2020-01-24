@@ -17,13 +17,13 @@
 		                <div class="row">
 		                    <div class="col-xl-12 col-lg-12 col-md-12">
 		                        <div class="card overflow-hidden">
-		                            <div class="card-header bg-red">
-		                                <h5 class="card-title-small card-pt10 text-white">Summary Traffic</h5>
+		                            <div class="card-header">
+		                                <h5 class="card-title-small card-pt10">Summary Traffic</h5>
 		                            </div>
 		                            <div class="card-body">
 		                                <div class="row mt-2">
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="text-white card-body">New</h6>
 		                                            </div>
@@ -34,7 +34,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="text-white card-body">Open</h6>
 		                                            </div>
@@ -46,7 +46,7 @@
 		                                    </div>
 
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Reopen</h6>
 		                                            </div>
@@ -57,7 +57,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Reprocess</h6>
 		                                            </div>
@@ -70,7 +70,7 @@
 		                                </div>
 		                                <div class="row mt-2 mb-2">
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Pending</h6>
 		                                            </div>
@@ -81,7 +81,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Reject</h6>
 		                                            </div>
@@ -92,7 +92,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Reassign</h6>
 		                                            </div>
@@ -103,7 +103,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket">
+		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
 		                                                <h6 class="card-body text-white">Preclose</h6>
 		                                            </div>
@@ -121,8 +121,8 @@
 		                <div class="row">
 		                    <div class="col-xl-12 col-lg-12 col-md-12">
 		                        <div class="card overflow-hidden">
-		                            <div class="card-header-small bg-red">
-		                                <h5 class="card-title-small card-pt10 text-white">Operation Performance</h5>
+		                            <div class="card-header-small">
+		                                <h5 class="card-title-small card-pt10">Operation Performance</h5>
 		                            </div>
 		                            <div class="card-body">
 		                                <div class="table-responsive">

@@ -27,7 +27,7 @@
 								<div class="bd-highlight">
 									<!-- daily -->
 									<div id="filter-date" class="mt-1 mr-0">
-										<input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
+										<input id="input-date-filter" class="w-55 ml-auto form-control fc-datepicker"
 											placeholder="MM/DD/YYYY" type="text">
 									</div>
 
@@ -80,8 +80,8 @@
 						<div class="row">
 							<div class="col-xl-6 col-lg-6 col-md-12">
 								<div class="card overflow-hidden">
-									<div class="card-header-small bg-red">
-										<h5 class="card-title-small card-pt10 text-white">Summary Traffic</h5>
+									<div class="card-header-small">
+										<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
 									</div>
 									<div class="card-pie">
 										<div class="canvas-con">
@@ -96,13 +96,13 @@
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12">
 								<div class="card overflow-hidden">
-									<div class="card-header-small bg-red">
-										<h5 class="card-title-small card-pt10 text-white">Summary Interaction</h5>
+									<div class="card-header-small">
+										<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Interaction</h5>
 									</div>
 									<div class="card-body">
 										<div class="row mt-2">
 											<div class="col-md-6 text-center">
-												<div class="card-custom">
+												<div class="card-custom overflow-hidden">
 													<div class="card-header bg-red">
 														<h6 class="text-white card-body">Total Session</h6>
 													</div>
@@ -113,7 +113,7 @@
 												</div>
 											</div>
 											<div class="col-md-6 text-center">
-												<div class="card-custom">
+												<div class="card-custom overflow-hidden">
 													<div class="card-header bg-red">
 														<h6 class="text-white card-body">Unique Customer</h6>
 													</div>
@@ -126,7 +126,7 @@
 										</div>
 										<div class="row mt-2 mb-2">
 											<div class="col-md-6 text-center">
-												<div class="card-custom">
+												<div class="card-custom overflow-hidden">
 													<div class="card-header bg-red">
 														<h6 class="card-body text-white">Message In</h6>
 													</div>
@@ -137,7 +137,7 @@
 												</div>
 											</div>
 											<div class="col-md-6 text-center">
-												<div class="card-custom">
+												<div class="card-custom overflow-hidden">
 													<div class="card-header bg-red">
 														<h6 class="card-body text-white">Message Out</h6>
 													</div>

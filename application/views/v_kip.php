@@ -28,7 +28,7 @@
                         <div class="bd-highlight">
                             <!-- daily -->
                             <div id="filter-date" class="mt-1 mr-0">
-                                <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
+                                <input id="input-date-filter" class="w-55 ml-auto form-control fc-datepicker"
                                     placeholder="MM/DD/YYYY" type="text">
                             </div>
 
@@ -81,7 +81,7 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-12">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                         
                             <h5 class="card-title-small card-pt10">Summary KIP</h5>
                         </div>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-7 col-md-12">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">KIP per Channel</h5>
                         </div>
                         <div class="card-body" id="content-chart-kip">
