@@ -66,6 +66,83 @@ $(document).ready(function () {
 
 });
 
+//for dinamic dropdown year on month
+function callYearOnMonth()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-on-month");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-on-month').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+//for dinamic dropdown year on year
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-only");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-only').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function loadContent(params, index, params_year){
     drawDataTable2(params, index, params_year);
@@ -586,7 +663,7 @@ function setDatePicker(){
 		// v_date = '2019-12-01';
         // console.log(params_time);
 
-		loadContent(params_time, v_date);
+		loadContent(params_time, v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$("#btn-year").prop("class","btn btn-light btn-sm");
 		$('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -620,6 +697,7 @@ function setDatePicker(){
 		loadContent(params_time, n, m);
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
+		callYearOnMonth();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -637,7 +715,8 @@ function setDatePicker(){
         // console.log(params_time);
 
 		// v_date = getYear();
-		loadContent(params_time, $("#select-year-only").val(), 0);
+		loadContent(params_time, m, 0);
+		callYear();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -647,8 +726,14 @@ function setDatePicker(){
 		$('#filter-year').show();
 	});
 
+    var date = new Date();
+    date.setDate(date.getDate()>0);
 	$('#input-date-filter').datepicker({
         dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
         onSelect: function(dateText) {
 			// console.log(this.value);
 			v_date = this.value;
@@ -657,17 +742,17 @@ function setDatePicker(){
 	});
 
 	/*select option month*/ 
-	$('#select-month').change(function(){
-		v_month = $(this).val();
-		// console.log(value);
-		// callSummaryInteraction(params_time, v_month,v_year);
-		loadContent('month', v_month, $("#select-year-on-month").val());
-	});
-	$('#select-year-on-month').change(function(){
-		v_year = $(this).val();
-		// console.log(value);
-		loadContent('month', $("#select-month").val(), v_year);
-	});
+	// $('#select-month').change(function(){
+	// 	v_month = $(this).val();
+	// 	// console.log(value);
+	// 	// callSummaryInteraction(params_time, v_month,v_year);
+	// 	loadContent('month', v_month, $("#select-year-on-month").val());
+	// });
+	// $('#select-year-on-month').change(function(){
+	// 	v_year = $(this).val();
+	// 	// console.log(value);
+	// 	loadContent('month', $("#select-month").val(), v_year);
+	// });
 	/**/ 
 
 	// select option year
@@ -677,5 +762,7 @@ function setDatePicker(){
 		loadContent('year', v_year, 0);
 	});
 
-    
+    $('#btn-go').click(function(){
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
+    });
 })(jQuery);

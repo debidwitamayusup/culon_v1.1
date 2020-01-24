@@ -986,6 +986,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
+					'total_agent'=> array($this->get_availdata_get_tot_permonth($month_id)),
 					'series' => $serials
 			)
 		);
@@ -1043,13 +1044,8 @@ class Stc_Model extends CI_Model
 		
 	}
 
-	function get_availdata_get_tot_permonth($month_id,$channel)
+	function get_availdata_get_tot_permonth($month_id)
 	{
-		if(!$channel)
-		{
-			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-		}
-
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');

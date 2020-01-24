@@ -23,6 +23,7 @@
 						</div>
 						<div class="card-body">
 							<div class="d-flex flex-row bd-highlight mb-2">
+								<div class="p-2 bd-highlight h6 mt-3">Channel</div>
 								<div class="p-2 bd-highlight">
 									<div class="form-group row">
 										<select class="form-control" id="channel_name">
@@ -42,6 +43,7 @@
 										</select>
 									</div>
 								</div>
+								<div class="p-2 bd-highlight h6 mt-3 ml-5">Month</div>
 								<div class="p-2 bd-highlight">
 									<div class="wd-200 mb-3">
 										<div class="input-group">
@@ -64,6 +66,7 @@
 										</div>
 									</div>
 								</div>
+								<div class="p-2 bd-highlight h6 mt-3 ml-5">Year</div>
 								<div class="p-2 bd-highlight">
 									<div class="wd-200 mb-3">
 										<div class="input-group">
@@ -76,6 +79,11 @@
 											</div>
 										</div>
 									</div>
+								</div>
+								<div class="p-2 bd-highlight">
+									<span class="col-auto">
+										<button class="btn btn-dark" type="button" id="btn-go">Go</button>
+									</span>
 								</div>
 							</div>
 							<div class="row">
