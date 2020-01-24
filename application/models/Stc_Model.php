@@ -571,7 +571,7 @@ class Stc_Model extends CI_Model
 	{
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
-		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
 		if($channel)
 		{
@@ -586,6 +586,7 @@ class Stc_Model extends CI_Model
 			{
 				$data_r[] = array(
 					'channel_name' => $data->channel_name,
+					'channel_color' => $data->channel_color,
 					'month'	=> $month,
 					'total_traffic'=> $this->get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$data->channel_id)
 				);
