@@ -87,7 +87,7 @@
                              <div class="table-responsive table-pt10">
                                  <table class="table card-table table-striped table-vcenter table-hover table-pt10"
                                      style="height:310px" id="tableSkill">
-                                     <thead class="text-center text-white bg-gray1">
+                                     <thead class="text-center text-white bg-head">
                                          <tr>
                                              <th>Skill</th>
                                              <th>ART</th>
@@ -164,7 +164,7 @@
                                  <div class="table-responsive">
                                      <table id="tableAgent" class="table table-striped table-bordered"
                                          style="width:100%">
-                                         <thead class="text-center">
+                                         <thead class="text-center text-white bg-head">
                                              <tr>
                                                  <th class="wd-15p border-bottom-0">No</th>
                                                  <th class="wd-15p border-bottom-0" style="width:10%">Agent ID</th>

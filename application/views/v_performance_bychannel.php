@@ -116,7 +116,7 @@
                             <div class="table-responsive">
                                 <table id="tablesPerformance" class="table table-striped table-bordered"
                                     style="width:100%">
-                                    <thead class="text-center">
+                                    <thead class="text-center text-white bg-head">
                                         <tr>
                                             <th class="wd-15p border-bottom-0">No</th>
                                             <th class="wd-15p border-bottom-0">Date</th>
