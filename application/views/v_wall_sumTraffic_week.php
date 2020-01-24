@@ -196,8 +196,13 @@
                                         <td>200</td>
                                     </tr> -->
                                 </tbody>
+<<<<<<< HEAD
                                 <tfoot class="text-right font-weight-extrabold bg-total" id="mytfoot">
                                     <!-- <tr>
+=======
+                                <tfoot class="text-center font-weight-extrabold bg-total">
+                                    <tr>
+>>>>>>> origin/debi-dev
                                         <td>TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
