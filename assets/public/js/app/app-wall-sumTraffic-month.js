@@ -273,7 +273,6 @@ function drawTableData(response){
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize);
     var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
-
     //summarize per channel
     function summarize(total, num) {
           return total + num;
@@ -283,7 +282,6 @@ function drawTableData(response){
     $("#mytfoot").empty();
     if(response.data.series.length != 0){   
         var i = 0;
-        sumWA = parseInt(response.data.series[0].data[i]);
         for (var i = 0; i < 24; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+tagTime[i]+'</td>'+

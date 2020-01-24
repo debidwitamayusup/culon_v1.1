@@ -54,18 +54,18 @@
                                         <td colspan="12" class="text-white font-weight-extrabold">Channel</td>
                                     </tr>
                                     <tr>
-                                        <td class="bg-column">Whatsapp</td>
                                         <td class="bg-column">Facebook</td>
+                                        <td class="bg-column">Whatsapp</td>
                                         <td class="bg-column">Twitter</td>
-                                        <td class="bg-column">Twitter DM</td>
-                                        <td class="bg-column">Messenger</td>
-                                        <td class="bg-column">Instagram</td>
-                                        <td class="bg-column">Line</td>
-                                        <td class="bg-column">Telegram</td>
                                         <td class="bg-column">Email</td>
+                                        <td class="bg-column">Telegram</td>
+                                        <td class="bg-column">Line</td>
                                         <td class="bg-column">Voice</td>
-                                        <td class="bg-column">SMS</td>
+                                        <td class="bg-column">Instagram</td>
+                                        <td class="bg-column">Messenger</td>
+                                        <td class="bg-column">Twitter DM</td>
                                         <td class="bg-column">Live Chat</td>
+                                        <td class="bg-column">SMS</td>
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" id="mytbody">
