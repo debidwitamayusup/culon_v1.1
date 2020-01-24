@@ -49,7 +49,7 @@
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-month-tbl">
                             <thead class="text-center bg-head">
                                     <tr>
-                                        <td rowspan="2" class="text-white font-weight-extrabold">Date</td>
+                                        <td rowspan="2" class="text-white font-weight-extrabold">Time</td>
                                         <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
                                         <td colspan="12" class="text-white font-weight-extrabold">Channel</td>
                                     </tr>
