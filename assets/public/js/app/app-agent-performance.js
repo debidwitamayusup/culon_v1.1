@@ -108,9 +108,15 @@ function callYear()
     });
 }
 
+var date = new Date();
+date.setDate(date.getDate()>0);
 function setDatePicker(){
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
+        maxDate: 'now',
+        // showTodayButton: true,
+        showClear: true,
+        // minDate: date,
         todayHighlight: true,
         autoclose: true
     }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});

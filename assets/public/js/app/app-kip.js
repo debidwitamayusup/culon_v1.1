@@ -732,9 +732,14 @@ function addCommas(commas)
 		callDataSubCategory(params_time, v_date);
 	});
    
-
+    var date = new Date();
+    date.setDate(date.getDate()>0);
 	$('#input-date-filter').datepicker({
         dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
         onSelect: function(dateText) {
 			// console.log(this.value);
 			v_date = this.value;
