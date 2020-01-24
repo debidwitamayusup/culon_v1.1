@@ -6147,6 +6147,10 @@ ul {
 }
 
 /* custom chart   */
+.chartsh-traffic-ops{
+	height: 23.0rem;
+	overflow:hidden;
+}
 .chartsh-fcr {
 	height: 23.6rem;
 	overflow:hidden;
@@ -22506,6 +22510,9 @@ div[data-acc-step]:not(.open) .badge-primary {
 
 .bg-column{
 	background: #cad1d1eb;
+}
+.bg-column2{
+	background:#b8bbbbeb;
 }
 
 .bg-head{
