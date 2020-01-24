@@ -715,6 +715,8 @@ class Stc_Model extends CI_Model
 
 	function get_availdata_tot_agent($date)
 	{
+		
+
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.tot_agent),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
@@ -1199,6 +1201,7 @@ class Stc_Model extends CI_Model
 			");
 		return $query->result();
 	}
+
 	public function getSumIntervalMonth($month, $year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		
@@ -1211,7 +1214,7 @@ class Stc_Model extends CI_Model
 		// 	LEFT JOIN (
 		// 	SELECT channel_id,
 		// 	SUM(total) total,
-		// 	CAST(SUM(total)*100/
+		// 	CAST(SUM(total)*100/	
 		// 	(SELECT SUM(summary_channel.total) AS total FROM summary_channel WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."') AS DECIMAL(10,2)) as rate
 		// 	FROM summary_channel
 		// 	WHERE MONTH(summary_channel.date_time) = '".$month."' AND YEAR(date_time) = '".$year."'
@@ -1252,10 +1255,77 @@ class Stc_Model extends CI_Model
 					'channel_name' => $data->channel_name,
 					'total' => $this->get_traffic_interval_info_weeklyBar($week_id,$data->channel_id)
 				);
+				
 			}
 		}
 
 		return $result;
+	}
+
+	public function get_traffic_interval_weeklyAvg($week)
+	{
+		$year = date('Y');
+		$days = $this->get_days_inweek($week,$year);
+		
+		foreach($days as $day)
+		{
+			//print_r($day.'|');
+			$datas[] = array(
+				'DAY'=>strval(date('l',strtotime($day))),
+				'DATE' => date('Y-m-d',strtotime($day)),
+				'DATA' => $this->get_traffic_interval_daily($day)
+			);
+		}
+
+		//exit;
+		return $datas;
+	}
+
+	public function get_traffic_interval_daily($day)//channel - 
+	{
+		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
+		//$this->db->where('m_channel.channel_name',$channel);
+		$query = $this->db->get();
+
+			
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel_name' => $data->channel_name,
+					'total' => $this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id)
+				);
+			}
+		}
+		
+		return $result;
+
+		
+	}
+
+	function get_traffic_interval_info_weeklyAvg($day,$channel) //summ
+	{
+		$date = date('Y-m-d',strtotime($day));
+		
+		$this->db->select('rpt_summ_interval.case_session as TOTAL');
+		$this->db->from('rpt_summ_interval');
+		$this->db->where('rpt_summ_interval.tanggal',$date);
+		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		//$this->db->group_by('rpt_summ_interval.channel_id')
+		$query = $this->db->get();
+		
+		
+		if($query->num_rows()>0)
+		{
+			return $query->row()->TOTAL;
+		}
+		else
+		{
+			return '0';
+		}
+
 	}
 
 	public function get_traffic_interval_info_weeklyBar($week_id,$channel)
@@ -1313,6 +1383,7 @@ class Stc_Model extends CI_Model
 
 		return $query->result();
 	}
+
 	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent');
@@ -1350,5 +1421,24 @@ class Stc_Model extends CI_Model
 		// // exit;
 
 		// return $query->row();
+	}
+
+	function get_days_inweek($week,$year)
+	{
+		
+
+		$time = strtotime("1 January $year", time());
+		$day = date('w', $time);
+		$time += ((7*$week)-$day)*24*3600;
+		$dates[0] = date('Y-n-j', $time);
+		for( $x = 0; $x < 7;$x++)
+		{
+			$time += 1*24*3600;
+			$dates[$x] = date('Y-n-j', $time);
+		}
+		
+		
+
+		return $dates;
 	}
 }	

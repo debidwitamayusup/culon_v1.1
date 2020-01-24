@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Summary Traffic by Channel</h5>
                         </div>
                         <div class="card-body" id="barWallTrafficWeekDiv">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-12 col-lg-8">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Hours)</h5>
                         </div>
                         <div class="card-body" id="lineWallsumTrafficWeekDiv">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Table Traffic Weekly</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
@@ -215,7 +215,7 @@
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <div class="card">
-                        <div class="card-header-small bg-red">
+                        <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Daily)</h5>
                         </div>
                         <div class="card-body" id="echartWeekDiv">

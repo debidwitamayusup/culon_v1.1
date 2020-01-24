@@ -86,7 +86,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 }
 body {
 	margin: 0;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	font-weight: 400;
 	line-height: 1.5;
@@ -2220,8 +2220,9 @@ a.btn.disabled, fieldset:disabled a.btn {
 	padding: 0.25rem 0.5rem;
 	font-size: 0.875rem;
 	line-height: 1.33333333;
-	border-radius: 3px;
+	border-radius: 7px;
 }
+/* custom btn sm -> border-radius : 3px to 7px */
 .btn-block {
 	display: block;
 	width: 100%;
@@ -22509,4 +22510,8 @@ div[data-acc-step]:not(.open) .badge-primary {
 
 .bg-head{
 	background:#4f5a64;
+}
+
+.br-sm{
+	border-radius : 8px !important;
 }
