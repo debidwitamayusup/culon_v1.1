@@ -129,7 +129,9 @@
             bottom: 10,
             left: 'center',
             data: ['ART', 'AST', 'AHT', 'SCR'],
-            boxWidth : '10'
+            labels:{
+                boxWidth:10
+            }
         },
         grid: {
             top: '3%',
