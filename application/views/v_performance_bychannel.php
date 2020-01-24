@@ -28,14 +28,14 @@
                         <div class="bd-highlight">
                             <!-- daily -->
                             <div id="filter-date" class="mt-1 mr-0">
-                                <input id="input-date-filter" class="w-55 ml-auto form-control fc-datepicker"
+                                <input id="input-date-filter" class="w-55 ml-auto form-control form-control-sm fc-datepicker"
                                     placeholder="MM/DD/YYYY" type="text">
                             </div>
 
                             <!-- monthly -->
                             <div id="filter-month" class="row mt-1 mr-0">
                                 <div class="col-md-auto">
-                                    <select name="select-month" id="select-month" class="form-control">
+                                    <select name="select-month" id="select-month" class="form-control form-control-sm">
                                         <option value="1">January</option>
                                         <option value="2">February</option>
                                         <option value="3">March</option>
@@ -51,7 +51,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <select name="select-year-on-month" id="select-year-on-month" class="form-control">
+                                    <select name="select-year-on-month" id="select-year-on-month" class="form-control form-control-sm">
                                         <option value="2020" selected>2020</option>
                                         <option value="2019">2019</option>
                                     </select>
@@ -65,7 +65,7 @@
 
                             <!-- yearly -->
                             <div id="filter-year" class="mt-1 mr-0">
-                                <select name="select-year-only" id="select-year-only" class="form-control">
+                                <select name="select-year-only" id="select-year-only" class="form-control form-control-sm">
                                     <option value="2020" selected>2020</option>
                                     <option value="2019">2019</option>
                                     <!-- <option value="2018">2018</option>

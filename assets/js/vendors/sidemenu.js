@@ -1,6 +1,6 @@
 (function () {
 	"use strict";
-
+	var lock = false;
 	// var delay = function (elem, callback) {
 	// 	var timeout = null;
 	// 	elem.onmouseover = function() {
@@ -24,6 +24,7 @@
 	$('[data-toggle="sidebar"]').on("click", function(event) {
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
+		lock = lock ? false : true;
 		// ('.app.sidebar-mini').removeClass('.sidebar__overlay');
 		// $('.side-menu').on('mouseover mouseenter mouseleave mouseup mousedown', function() {
 		// 	return false
@@ -68,7 +69,9 @@
 	if ( $(window).width() > 739) {     
 			$('.app-sidebar').on("mouseout", function(event) { //"mouseover"
 				event.preventDefault();
-				$('.app').toggleClass('sidenav-toggled');
+				if(lock === false){
+					$('.app').toggleClass('sidenav-toggled');
+				}
 			});
 		} 
 
