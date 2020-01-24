@@ -567,12 +567,16 @@ class Stc_Model extends CI_Model
 	}
 
 //onprogress
-	public function getIntervalPerMonthShowAll($month, $year)
+	public function getIntervalPerMonthShowAll($month, $year,$channel)
 	{
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		if($channel)
+		{
+			$this->db->where('m_channel.channel_name',$channel);
+		}
 		$query = $this->db->get();
 		$arr_time = array();
 
@@ -1345,6 +1349,7 @@ class Stc_Model extends CI_Model
 			}
 		}
 
+		
 		return $result;
 	}
 
@@ -1355,7 +1360,6 @@ class Stc_Model extends CI_Model
 		
 		foreach($days as $day)
 		{
-			//print_r($day.'|');
 			$datas[] = array(
 				'DAY'=>strval(date('l',strtotime($day))),
 				'DATE' => date('Y-m-d',strtotime($day)),
@@ -1363,8 +1367,12 @@ class Stc_Model extends CI_Model
 			);
 		}
 
-		//exit;
-		return $datas;
+		$result = array(
+			'status' => true,
+			'data' => $datas
+		);
+
+		return $result;
 	}
 
 	public function get_traffic_interval_daily($day)//channel - 
