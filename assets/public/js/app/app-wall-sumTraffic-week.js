@@ -17,10 +17,11 @@ var params_week = d.getWeek()-1;
 // console.log(params_week);
 
 $(document).ready(function(){
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
 
     getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     getTrafficInterval(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
 });
 
 function addCommas(commas)
@@ -162,7 +163,7 @@ function getTrafficInterval(week,arr_channel){
             // console.log(response);
             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
             drawTrafficInterval(response);
-            drawTableTraffic(response);
+            // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -228,6 +229,30 @@ function drawTrafficInterval(response){
     }
 }
 
+function getTableChart(week,arr_channel){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
+        data: {
+            week: week,
+            arr_channel: arr_channel
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            console.log(response);
+            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            drawTableTraffic(response);
+            // drawChartDaily(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 function drawTableTraffic(response){
     var channel_name = [];
     var data = [];
@@ -274,8 +299,84 @@ function drawTableTraffic(response){
             '</tr>');
     }
 
-    $("#filter-loader").fadeOut("slow");
+    // $("#filter-loader").fadeOut("slow");
 }
+
+// function drawChartDaily(response){
+//     // Horizontal Bar
+//     $('#echartWeek').remove();
+//     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
+//     // stacked bar this week
+//     let channel_name = [];
+//     let total = [];
+//     var day = [];
+
+//     if(response.data.length != 0){
+//         response.data.day.forEach(function(value, index){
+//             day.push(value.day);
+//         });
+//         response.data.chart.forEach(function(value, index){
+//             channel_name.push(value.channel_name);
+//             total.push(value.total);
+//         });
+
+//         var chartData = [];
+//         var i = 0;
+//         var dataChart = [{
+//              name: channel_name,
+//              type: 'bar',
+//              stack: 'Stack',
+//              data: total
+//          };
+//          chartData.push(dataChart);
+//          i++
+//             /*----EchartThisWeek----*/
+//          var option6 = {
+//              grid: {
+//                  top: '6',
+//                  right: '15',
+//                  bottom: '17',
+//                  left: '32',
+//              },
+//              xAxis: {
+//                  type: 'category',
+//                  data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    
+//                  axisLine: {
+//                      lineStyle: {
+//                          color: '#efefff'
+//                      }
+//                  },
+//                  axisLabel: {
+//                      fontSize: 10,
+//                      color: '#7886a0'
+//                  }
+//              },
+//              yAxis: {
+//                  type: 'value',
+//                  splitLine: {
+//                      lineStyle: {
+//                          color: '#efefff'
+//                      }
+//                  },
+//                  axisLine: {
+//                      lineStyle: {
+//                          color: '#efefff'
+//                      }
+//                  },
+//                  axisLabel: {
+//                      fontSize: 10,
+//                      color: '#7886a0'
+//                  }
+//              },
+//              series: chartdata3,
+//              color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+//          };
+//          var chart6 = document.getElementById('echartWeek');
+//          var barChart6 = echarts.init(chart6);
+//             barChart6.setOption(option6);
+//     }
+// }
 
 // $(function ($) {
 //     "use strict";
