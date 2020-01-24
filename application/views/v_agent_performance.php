@@ -28,7 +28,7 @@
                          <div class="bd-highlight">
                              <!-- daily -->
                              <div id="filter-date" class="mt-1 mr-0">
-                                 <input id="input-date-filter" class="w-50 ml-auto form-control fc-datepicker"
+                                 <input id="input-date-filter" class="w-55 ml-auto form-control fc-datepicker"
                                      placeholder="MM/DD/YYYY" type="text">
                              </div>
 
@@ -78,7 +78,7 @@
                  <div class="row">
                      <div class="col-md-3">
                          <div class="card">
-                             <div class="card-header-small bg-red">
+                             <div class="card-header-small">
                                  <h5 class="card-title-small card-pt10">Performance by Skill</h5>
                              </div>
                              <div class="table-responsive table-pt10">
@@ -102,7 +102,7 @@
                      </div>
                      <div class="col-md-9">
                          <div class="card">
-                             <div class="card-header-small bg-red">
+                             <div class="card-header-small">
                                  <h5 class="card-title-small card-pt10">Best Agent Performance</h5>
                              </div>
                              <div class="card-body height-agent">
@@ -110,7 +110,7 @@
                                      <div class="col-md-4">
                                          <div class="card height-card">
                                              <div class="card-header-small bg-red">
-                                                 <h5 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h5>
+                                                 <h6 class="card-title-small card-pt10" id="drawCOF">The Best 5 COF</h6>
                                              </div>
                                              <div class="card-body" id="classDrawCOF" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawCOF">
@@ -123,7 +123,7 @@
                                      <div class="col-md-4">
                                          <div class="card height-card">
                                              <div class="card-header-small bg-red">
-                                                 <h5 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h5>
+                                                 <h6 class="card-title-small card-pt10" id="drawAHT">The Best 5 AHT</h6>
                                              </div>
                                              <div class="card-body" id="classDrawAHT" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawAHT">
@@ -136,7 +136,7 @@
                                      <div class="col-md-4">
                                          <div class="card height-card">
                                              <div class="card-header-small bg-red">
-                                                 <h5 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h5>
+                                                 <h6 class="card-title-small card-pt10" id="drawART">The Best 5 ART</h6>
                                              </div>
                                              <div class="card-body" id="classDrawART" style="padding:10px">
                                                  <div class="row mb-3" id="dataDrawART">
@@ -154,7 +154,7 @@
                  <div class="row">
                      <div class="col-md-12 col-lg-12">
                          <div class="card">
-                             <div class="card-header-small bg-red">
+                             <div class="card-header-small">
                                  <h5 class="card-title-small card-pt10">Summary Agent Performance Skill</h5>
                              </div>
                              <div class="card-body">
