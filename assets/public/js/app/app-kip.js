@@ -527,7 +527,7 @@ function drawKipPerChannelChart(response){
 				}
 				totalKip.push(total)
 
-	    // console.log(totalKip);
+	    console.log(totalKip);
 			});
 			var dataKip = {
 				name: value,
