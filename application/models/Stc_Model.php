@@ -658,7 +658,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
-					'total_agent' => array($this->get_availdata_tot_agent($date,$channels)),
+					'total_agent' => array($this->get_availdata_tot_agent($date)),
 					'series' => $serials
 			)
 		);
@@ -713,13 +713,8 @@ class Stc_Model extends CI_Model
 		
 	}
 
-	function get_availdata_tot_agent($date,$channel)
+	function get_availdata_tot_agent($date)
 	{
-		if(!$channel)
-		{
-			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-		}
-
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.tot_agent),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
