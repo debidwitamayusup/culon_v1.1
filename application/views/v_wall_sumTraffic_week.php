@@ -196,13 +196,8 @@
                                         <td>200</td>
                                     </tr> -->
                                 </tbody>
-<<<<<<< HEAD
                                 <tfoot class="text-right font-weight-extrabold bg-total" id="mytfoot">
                                     <!-- <tr>
-=======
-                                <tfoot class="text-center font-weight-extrabold bg-total">
-                                    <tr>
->>>>>>> origin/debi-dev
                                         <td>TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -223,7 +218,7 @@
                         <div class="card-header-small bg-red">
                             <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Daily)</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="echartWeekDiv">
                             <div id="echartWeek" class="chartsh-wall overflow-hidden"></div>
                         </div>
                     </div>

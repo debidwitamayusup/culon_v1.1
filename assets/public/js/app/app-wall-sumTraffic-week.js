@@ -14,7 +14,7 @@ Date.prototype.getWeek = function() {
 
 var d = new Date();
 var params_week = d.getWeek()-1;
-console.log(params_week);
+// console.log(params_week);
 
 $(document).ready(function(){
     $("#filter-loader").fadeIn("slow");
@@ -64,7 +64,7 @@ function getSummTrafficByChannel(week, arr_channel){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             //hit url for interval 900000 (15 minutes)
             // setTimeout(function(){callDataPercentage(date);},900000);
             drawSummTrafficByChannel(response);
@@ -159,7 +159,7 @@ function getTrafficInterval(week,arr_channel){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
             drawTrafficInterval(response);
             drawTableTraffic(response);
@@ -232,7 +232,7 @@ function drawTableTraffic(response){
     var channel_name = [];
     var data = [];
     var sun=0,mon=0,tue=0,wed=0,thu=0,fri=0,sat=0;
-    console.log(response.data.series);
+    // console.log(response.data.series);
     $('#mytbody').empty();
     if (response.data.series != 0) {
         var i = 0;
