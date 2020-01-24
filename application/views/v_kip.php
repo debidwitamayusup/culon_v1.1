@@ -60,6 +60,11 @@
                                             <option value="2015">2015</option> -->
                                     </select>
                                 </div>
+                                <div>
+                                    <span class="col-auto">
+                                        <button class="btn btn-sm btn-dark mt-2" type="button"><i class="fe fe-arrow-right text-white"></i></button>
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- yearly -->
@@ -82,7 +87,7 @@
                 <div class="col-xl-5 col-lg-5 col-md-12">
                     <div class="card">
                         <div class="card-header-small">
-                        
+
                             <h5 class="card-title-small card-pt10">Summary KIP</h5>
                         </div>
                         <div id="legend" class="legend-con"></div>

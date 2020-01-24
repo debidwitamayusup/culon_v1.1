@@ -2,7 +2,7 @@
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 		<div class="page">
 			<div class="page-main">
-				<div class=" app-content mt-7">
+				<div class=" app-content mt-6">
 					<div class="side-app">
 						<div class="page-header d-flex bd-highlight">
 							<div class="flex-grow-1 bd-highlight">
