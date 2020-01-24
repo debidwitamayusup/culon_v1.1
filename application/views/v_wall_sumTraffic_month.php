@@ -50,6 +50,7 @@
                             <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="text-white font-weight-extrabold">Date</td>
+                                        <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
                                         <td colspan="12" class="text-white font-weight-extrabold">Channel</td>
                                     </tr>
                                     <tr>
