@@ -632,7 +632,6 @@ class Stc_Model extends CI_Model
 			{
 				if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
 				{
-					
 					array_push($result,strval($query->row($inx)->COF));
 				}
 				else
