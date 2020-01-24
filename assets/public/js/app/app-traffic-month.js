@@ -342,37 +342,47 @@ function destroyChartPercentage(){
 }
 
     (function ($) {
-        $("select#month").change(function(){
-            //destroy chart
+        // $("select#month").change(function(){
+        //     //destroy chart
+        //     destroyChartInterval();
+        //     destroyChartPercentage();
+
+        //     var selectedMonth = $(this).children("option:selected").val();
+        //       // console.log(selectedMonth);
+        //       // console.log($("#dropdownYear").val());
+        //     callGraphicInterval($("#channel_name").val(), selectedMonth, $("#dropdownYear").val());
+        //     callDataPercentage(selectedMonth, $("#dropdownYear").val());
+        //     callDataTableAvg(selectedMonth, $("#dropdownYear").val());
+        // });
+
+        // $("select#channel_name").change(function(){
+        //     destroyChartInterval();
+        //      // destroyChartInterval();
+        //     var selectedChannel = $(this).children("option:selected").val();
+        //       // console.log(selectedMonth);
+        //       // console.log($("#channel_name").val());
+        //     callGraphicInterval(selectedChannel, $("#month").val(), $("#dropdownYear").val());
+        // });
+
+        // // change date picker
+        // $("select#dropdownYear").change(function(){
+        //     destroyChartInterval();
+        //     destroyChartPercentage();
+        //       var selectedYear = $(this).children("option:selected").val();
+
+        //     //console.log(selectedYear);
+        //     callGraphicInterval($("#channel_name").val(), $("#month").val(), selectedYear);
+        //     callDataPercentage($("#month").val(), selectedYear);
+        //     callDataTableAvg($("#month").val(), selectedYear);
+        // });
+
+        //btn go
+        $('#btn-go').click(function(){
             destroyChartInterval();
-            destroyChartPercentage();
+            destroyChartPercentage(); 
 
-            var selectedMonth = $(this).children("option:selected").val();
-              // console.log(selectedMonth);
-              // console.log($("#dropdownYear").val());
-            callGraphicInterval($("#channel_name").val(), selectedMonth, $("#dropdownYear").val());
-            callDataPercentage(selectedMonth, $("#dropdownYear").val());
-            callDataTableAvg(selectedMonth, $("#dropdownYear").val());
-        });
-
-        $("select#channel_name").change(function(){
-            destroyChartInterval();
-             // destroyChartInterval();
-            var selectedChannel = $(this).children("option:selected").val();
-              // console.log(selectedMonth);
-              // console.log($("#channel_name").val());
-            callGraphicInterval(selectedChannel, $("#month").val(), $("#dropdownYear").val());
-        });
-
-        // change date picker
-        $("select#dropdownYear").change(function(){
-            destroyChartInterval();
-            destroyChartPercentage();
-              var selectedYear = $(this).children("option:selected").val();
-
-            //console.log(selectedYear);
-            callGraphicInterval($("#channel_name").val(), $("#month").val(), selectedYear);
-            callDataPercentage($("#month").val(), selectedYear);
-            callDataTableAvg($("#month").val(), selectedYear);
+            callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val());
+            callDataPercentage($("#month").val(), $("#dropdownYear").val());
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val());
         });
 })(jQuery);

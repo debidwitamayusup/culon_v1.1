@@ -312,22 +312,32 @@ function destroyChartPercentage(){
 //jquery
 (function ($) {
     // change date picker
-    $("select#dateTahun").change(function(){
-        destroyChartInterval();
-        destroyChartPercentage();
-          var selectedYear = $(this).children("option:selected").val();
+    // $("select#dateTahun").change(function(){
+    //     destroyChartInterval();
+    //     destroyChartPercentage();
+    //       var selectedYear = $(this).children("option:selected").val();
 
-          //console.log(selectedYear);
-          // console.log($("#channel_name").val());
-        callGraphYear($("#channel_name").val(), selectedYear);
-        callDataPercentage(selectedYear);
-        callDataTableAvg(selectedYear);
-        // callDataTableAvg(selectedYear);
-        });
-    $("select#channel_name").change(function(){
-          var selectedName = $(this).children("option:selected").val();
-          //console.log(selectedName);
-          // console.log($("#channel_name").val());
-        callGraphYear(selectedName, $("#dateTahun").val());
+    //       //console.log(selectedYear);
+    //       // console.log($("#channel_name").val());
+    //     callGraphYear($("#channel_name").val(), selectedYear);
+    //     callDataPercentage(selectedYear);
+    //     callDataTableAvg(selectedYear);
+    //     // callDataTableAvg(selectedYear);
+    //     });
+    // $("select#channel_name").change(function(){
+    //       var selectedName = $(this).children("option:selected").val();
+    //       //console.log(selectedName);
+    //       // console.log($("#channel_name").val());
+    //     callGraphYear(selectedName, $("#dateTahun").val());
+    //     });
+
+    //btn go
+        $('#btn-go').click(function(){
+            destroyChartInterval();
+            destroyChartPercentage();
+
+            callGraphYear($("#channel_name").val(), $("#dateTahun").val());
+            callDataPercentage($("#dateTahun").val());
+            callDataTableAvg($("#dateTahun").val());
         });
     })(jQuery);
