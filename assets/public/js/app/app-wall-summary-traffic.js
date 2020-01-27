@@ -20,7 +20,18 @@ $(document).ready(function () {
     callSumAllTenant(v_params_today);
     callSumPerTenant('2020-01-24');
     // drawIntervalChart();
-    callIntervalTraffic('2020-01-24', ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callIntervalTraffic('2020-01-24', '');
+
+    $('#check-all-channel').prop('checked',false);
+    $("input:checkbox.checklist-channel").prop('checked',false);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        type.push($(el).data('type'));
+    });
+    // console.log(values);
+    list_channel = values;
+
    $("#filter-loader").fadeOut("slow");
 });
 
@@ -802,3 +813,42 @@ function fromTemplate(){
         }
     } );
 }
+
+//jquery
+(function ($) {
+    
+    // checked all channel
+    $('#check-all-channel').click(function(){
+        $("input:checkbox.checklist-channel").prop('checked',this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        // call data
+        callIntervalTraffic('2020-01-24', list_channel);
+    });
+
+    //checked channel
+    $('.checklist-channel').click(function(){
+        $('#check-all-channel').prop( "checked", false );
+        
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+        // call data
+        callIntervalTraffic('2020-01-24', list_channel);
+    });
+    
+})(jQuery);
