@@ -6,7 +6,7 @@ class WallboardController extends REST_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Wallboardmodel', 'module_model');
+        $this->load->model('WallboardModel', 'module_model');
     }
 
     public function SummaryTicketStatusNC_post(){
