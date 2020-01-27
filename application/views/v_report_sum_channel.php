@@ -227,4 +227,4 @@
              </div>
              <?php $this->load->view('temp/footer');?>
              <!--Plugin -->
-             <script src="<?=base_url()?>assets/public/js/app/app-report_sumChannel.js"></script>
+             <script src="<?=base_url()?>assets/public/js/app/app-report-sum-channel.js"></script>

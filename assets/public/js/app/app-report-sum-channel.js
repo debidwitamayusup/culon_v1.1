@@ -1,7 +1,7 @@
 $(function($){
     $('#tableReportSumChannel').dataTable();
 
-    //pie chart Ticket Channel
+    //pie chart report summary channel
     var ctx = document.getElementById( "pieChartReportSumChannel" );
     ctx.height = 280;
     var myChart = new Chart( ctx, {
