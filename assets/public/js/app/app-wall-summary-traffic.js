@@ -66,7 +66,7 @@ function callSumAllTenant(params, index, params_year){
         success: function (r) {
             // var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumAllTenant(date);},900000);
+            setTimeout(function(){callSumAllTenant(params, index, params_year);},900000);
             drawPieChartSumAllTenant(r);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -92,7 +92,7 @@ function callSumPerTenant(params, index, params_year){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumPerTenant(date);},900000);
+            setTimeout(function(){callSumPerTenant(params, index, params_year);},900000);
             drawChartPerTenant(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -120,7 +120,7 @@ function callIntervalTraffic(params, index, params_year, channel){
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawLineChart(r);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
