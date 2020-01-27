@@ -87,11 +87,23 @@ Class Wallboardmodel extends CI_Model {
 
     }
 
-    public function Traffic_ops($date)
+    public function Traffic_ops($params,$index,$params_year)
     {
         $this->db->select('tenant_id, SUM(art_num) AS ART, SUM(aht_num) AS AHT, SUM(ast_num) AS AST, SUM(scr) AS SCR');
         $this->db->from('rpt_summary_scr');
-        $this->db->where('tanggal',$date);
+        if($params == 'day')
+        {
+            $this->db->where('tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(tanggal)',$index);
+            $this->db->where('YEAR(tanggal)',$params_year);
+        } 
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(tanggal)',$index);
+        }
         $this->db->group_by('tenant_id');
         // $this->db->order_by('');
         $query = $this->db->get();
@@ -116,7 +128,7 @@ Class Wallboardmodel extends CI_Model {
         return FALSE;
     }
 
-    public function scr_pie_chart_channel($date)
+    public function scr_pie_chart_channel($params,$index,$params_year)
     {
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
@@ -132,7 +144,7 @@ Class Wallboardmodel extends CI_Model {
 			{
                 array_push($res_channel,$data->channel_name);
                 array_push($res_color,$data->channel_color);
-				array_push($res_tot,$this->get_total_cof_piechart($date,$data->channel_id));
+				array_push($res_tot,$this->get_total_cof_piechart($params,$index,$params_year,$data->channel_id));
 			}
 
 			$result = array(
@@ -145,12 +157,25 @@ Class Wallboardmodel extends CI_Model {
 		return $result;
     }
 
-    function get_total_cof_piechart($date,$channel) //summ
+    function get_total_cof_piechart($params,$index,$params_year,$channel) //summ
 	{
         
 		$this->db->select('rpt_summary_scr.cof as TOTAL');
-		$this->db->from('rpt_summary_scr');
-		$this->db->where('rpt_summary_scr.tanggal',$date);
+        $this->db->from('rpt_summary_scr');
+        if($params == 'day')
+        {
+            $this->db->where('rpt_summary_scr.tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
+        } 
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+        }
+		
 		$this->db->where('rpt_summary_scr.channel_id',$channel);
 		$query = $this->db->get();
 
@@ -165,7 +190,7 @@ Class Wallboardmodel extends CI_Model {
 
     }
     
-    function get_intervalchart($date,$channel)
+    function get_intervalchart($params,$index,$params_year,$channel)
     {
         $this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
@@ -186,7 +211,7 @@ Class Wallboardmodel extends CI_Model {
 				{
 					$serials[] =  array(
 						'label'=>$channels,
-						'data'=>$this->get_availdata($date,$channels)
+						'data'=>$this->get_availdata($params,$index,$params_year,$channels)
 					);
 				}
 			}
@@ -210,7 +235,7 @@ Class Wallboardmodel extends CI_Model {
 		
     }
 
-    function get_availdata($date,$channel)
+    function get_availdata($params,$index,$params_year,$channel)
 	{
 		if(!$channel)
 		{
@@ -219,8 +244,21 @@ Class Wallboardmodel extends CI_Model {
 
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
-		$this->db->where('rpt_summ_interval.tanggal', $date);
+        $this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+        if($params =='day')
+        {
+            $this->db->where('rpt_summ_interval.tanggal', $index);
+        }
+        else if($params == 'month')
+        {
+            $this->db->where('MONTH(rpt_summ_interval.tanggal)', $index);
+            $this->db->where('YEAR(rpt_summ_interval.tanggal)', $params_year);
+        }
+        else if($params == 'year')
+        {
+            $this->db->where('YEAR(rpt_summ_interval.tanggal)', $params_year);
+        }
+		
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();

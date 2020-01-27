@@ -118,6 +118,7 @@ class SummaryMonth extends CI_Controller {
 
         echo json_encode($response);
 	}
+	
 	public function getIntervalTrafficMonthly(){
 
         $month_id =   $this->security->xss_clean($this->input->post('month', true));
