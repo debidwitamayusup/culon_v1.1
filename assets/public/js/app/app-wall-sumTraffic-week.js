@@ -329,7 +329,7 @@ function drawChartDaily(response){
              type: 'bar',
              stack: 'Stack',
              data: total
-         };
+         }];
          chartData.push(dataChart);
          i++
             /*----EchartThisWeek----*/

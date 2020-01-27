@@ -89,12 +89,12 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="card">
-										<!-- <div class="card-body" id="customerChartMonth">
+										<div class="card-body" id="customerChartMonth">
 											<div id="echart1" class="chartsh overflow-hidden"></div>
-										</div> -->
-										<div class="card-body">
-											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>
 										</div>
+										<!-- <div class="card-body">
+											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>
+										</div> -->
 									</div>
 								</div>
 							</div>
