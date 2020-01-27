@@ -303,19 +303,19 @@ function drawTableData(response){
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
             '<td>TOTAL</td>'+
-            '<td>'+sumTotAgent+'</td>'+
-            '<td>'+sumFb+'</td>'+
-            '<td>'+sumWA+'</td>'+
-            '<td>'+sumTw+'</td>'+
-            '<td>'+sumEmail+'</td>'+
-            '<td>'+sumTel+'</td>'+
-            '<td>'+sumLine+'</td>'+
-            '<td>'+sumVoice+'</td>'+
-            '<td>'+sumInst+'</td>'+
-            '<td>'+sumMes+'</td>'+
-            '<td>'+sumTwDM+'</td>'+
-            '<td>'+sumLive+'</td>'+
-            '<td>'+sumSms+'</td>'+
+            '<td>'+addCommas(sumTotAgent)+'</td>'+
+            '<td>'+addCommas(sumFb)+'</td>'+
+            '<td>'+addCommas(sumWA)+'</td>'+
+            '<td>'+addCommas(sumTw)+'</td>'+
+            '<td>'+addCommas(sumEmail)+'</td>'+
+            '<td>'+addCommas(sumTel)+'</td>'+
+            '<td>'+addCommas(sumLine)+'</td>'+
+            '<td>'+addCommas(sumVoice)+'</td>'+
+            '<td>'+addCommas(sumInst)+'</td>'+
+            '<td>'+addCommas(sumMes)+'</td>'+
+            '<td>'+addCommas(sumTwDM)+'</td>'+
+            '<td>'+addCommas(sumLive)+'</td>'+
+            '<td>'+addCommas(sumSms)+'</td>'+
             '</tr>');
 
     }else{
