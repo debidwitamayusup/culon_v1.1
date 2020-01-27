@@ -36,6 +36,8 @@ Sidebar menu-->
 			</a>
 			
 			<ul class="slide-menu" id="accordion">
+				<li><a class="slide-item" href="<?=base_url()?>main/summary_traffic">Summary Traffic</a></li>
+				<hr>
 				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
 				<hr>
 				<!-- <div class="sidebar-heading">Traffic Interval</div> -->
