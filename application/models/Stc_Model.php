@@ -1286,7 +1286,7 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
-			WHERE rpt_summ_interval.tanggal = '2020-01-23'
+			WHERE rpt_summ_interval.tanggal = '".$date."'
 			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name
 			");
