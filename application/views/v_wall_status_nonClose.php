@@ -135,8 +135,8 @@
 		                                                <td>New</td>
 		                                                <td>Open</td>
 		                                                <td>Reopen</td>
-		                                                <td>Reject</td>
-		                                                <td>Pending</td>
+		                                                <!-- <td>Reject</td>
+		                                                <td>Pending</td> -->
 		                                                <td>Reprocess</td>
 		                                                <td>Reassign</td>
 		                                                <td>Reclose</td>
@@ -144,7 +144,7 @@
 		                                            </tr>
 		                                        </thead>
 		                                        <tbody class="table-sm text-center">
-		                                            <tr>
+		                                          <!--   <tr>
 		                                                <td>1</td>
 		                                                <td>Unit 1</td>
 		                                                <td>200</td>
@@ -273,11 +273,12 @@
 		                                                <td>200</td>
 		                                                <td>200</td>
 		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
+		                                            </tr> -->
 		                                        </tbody>
 		                                        <tfoot class="text-center font-weight-extrabold bg-total">
 		                                            <tr>
-		                                                <td colspan="2">TOTAL</td>
+		                                            	<td colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+		                                                <!-- <td colspan="2">TOTAL</td>
 		                                                <td>200</td>
 		                                                <td>200</td>
 		                                                <td>200</td>
@@ -286,7 +287,7 @@
 		                                                <td>200</td>
 		                                                <td>200</td>
 		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
+		                                                <td class="font-weight-extrabold bg-total">200</td> -->
 		                                            </tr>
 		                                        </tfoot>
 		                                    </table>
