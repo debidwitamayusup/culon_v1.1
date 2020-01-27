@@ -1362,9 +1362,9 @@ class Stc_Model extends CI_Model
 		foreach($days as $day)
 		{
 			$datas[] = array(
-				'DAY'=>strval(date('l',strtotime($day))),
-				'DATE' => date('Y-m-d',strtotime($day)),
-				'DATA' => $this->get_traffic_interval_daily($day)
+				'day'=>strval(date('l',strtotime($day))),
+				'date' => date('Y-m-d',strtotime($day)),
+				'datas' => $this->get_traffic_interval_daily($day)
 			);
 		}
 
@@ -1383,21 +1383,26 @@ class Stc_Model extends CI_Model
 		//$this->db->where('m_channel.channel_name',$channel);
 		$query = $this->db->get();
 
-		$res_channel = array();
-		$res_tot = array();
+		// $res_channel = array();
+		// $res_tot = array();
 			
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result() as $data)
 			{
-				array_push($res_channel,$data->channel_name);
-				array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id));
+				$result[] = array(
+					'channel_name' => $data->channel_name,
+					'total' => $this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id)
+				);
+				// array_push($res_channel,$data->channel_name);
+				// array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id));
+
 			}
 
-			$result = array(
-				'channel_name' => $res_channel, 
-				'total' => $res_tot
-			);
+			// $result = array(
+			// 	'channel_name' => $res_channel, 
+			// 	'total' => $res_tot
+			// );
 		}
 		
 		return $result;
@@ -1409,7 +1414,7 @@ class Stc_Model extends CI_Model
 	{
 		$date = date('Y-m-d',strtotime($day));
 		
-		$this->db->select('rpt_summ_interval.case_session as TOTAL');
+		$this->db->select('rpt_summ_interval.case_session as total');
 		$this->db->from('rpt_summ_interval');
 		$this->db->where('rpt_summ_interval.tanggal',$date);
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
@@ -1419,7 +1424,7 @@ class Stc_Model extends CI_Model
 		
 		if($query->num_rows()>0)
 		{
-			return $query->row()->TOTAL;
+			return $query->row()->total;
 		}
 		else
 		{

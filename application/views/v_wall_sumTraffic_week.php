@@ -46,7 +46,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10" id="mytable">
-                                <thead class="text-center text-white bg-head" style="font-size:11px;">
+                                <thead class="text-center text-white" style="background:#366790; font-size:11px;">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>
@@ -65,7 +65,18 @@
                                 <tbody class="text-center" style="font-size:10px !important;" id="mytbody">
                                    
                                 </tbody>
-                                <tfoot class="text-center font-weight-extrabold bg-total" id="mytfoot">
+                                <tfoot class="text-right font-weight-extrabold bg-total" id="mytfoot">
+                                    <!-- <tr>
+                                        <td>TOTAL</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                        <td>200</td>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
@@ -76,7 +87,7 @@
                         <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Daily)</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="echartWeekDiv">
                             <div id="echartWeek" class="chartsh-wall overflow-hidden"></div>
                         </div>
                     </div>
