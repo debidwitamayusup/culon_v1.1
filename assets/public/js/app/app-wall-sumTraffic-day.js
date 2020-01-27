@@ -188,7 +188,7 @@ function drawChartPercentageToday(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("barWallTrafficDay");
-    ctx_percentage.height =400;
+    ctx_percentage.height =501;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

@@ -35,6 +35,105 @@
                         <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Traffic by Interval Monthly (Hours)</h5>
                         </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input all-checklist"
+                                                    id="check-all-channel" name="check-all" value="All">
+                                                <span class="custom-control-label">Show All</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Whatsapp">
+                                                <span class="custom-control-label">Whatsapp</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Twitter">
+                                                <span class="custom-control-label">Twitter</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Facebook">
+                                                <span class="custom-control-label">Facebook</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Email">
+                                                <span class="custom-control-label">Email</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Telegram">
+                                                <span class="custom-control-label">Telegram</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Line">
+                                                <span class="custom-control-label">Line</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Voice">
+                                                <span class="custom-control-label">Voice</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Instagram">
+                                                <span class="custom-control-label">Instagram</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Messenger">
+                                                <span class="custom-control-label">Messenger</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Twitter DM">
+                                                <span class="custom-control-label">Twitter DM</span>
+                                            </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="Live Chat">
+                                                <span class="custom-control-label">Live Chat</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group m-0">
+                                        <div class="custom-controls-stacked">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="SMS">
+                                                <span class="custom-control-label">SMS</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body" id="lineWallsumTrafficMonthDiv">
                             <canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>
                         </div>
@@ -46,8 +145,9 @@
                             <h5 class="card-title-small card-pt10">Table Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10" style="font-size:12px" id="wall-month-tbl">
-                            <thead class="text-center bg-head">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                                style="font-size:12px" id="wall-month-tbl">
+                                <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="text-white font-weight-extrabold">Time</td>
                                         <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
@@ -69,7 +169,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" id="mytbody">
-                                  
+
                                 </tbody>
                                 <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot">
                                 </tfoot>

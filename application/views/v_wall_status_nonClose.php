@@ -127,7 +127,7 @@
 		                            <div class="card-body">
 		                                <div class="table-responsive">
 		                                    <table class="table card-table table-bordered table-striped table-vcenter table-hover"
-		                                        style="font-size:12px" id="tableTicket">
+		                                        style="font-size:12px; width:100%;" id="tableTicket">
 		                                        <thead class="text-center text-white bg-head">
 		                                            <tr>
 		                                                <td>No</td>

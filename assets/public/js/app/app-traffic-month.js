@@ -425,8 +425,9 @@ function drawStackedBar(params, channel_name, index, params_year){
                 }
             },
             grid: {
+                top:'2%',
                 left: '1%',
-                right: '6%',
+                right: '5%',
                 bottom: '3%',
                 containLabel: true
             },
