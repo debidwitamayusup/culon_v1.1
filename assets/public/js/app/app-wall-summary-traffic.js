@@ -1,4 +1,109 @@
-(function ($) {
+var base_url = $('#base_url').val();
+
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+//get today
+var v_params_today= m + '-' + n + '-' + (o);
+
+$(document).ready(function () {
+    $("#filter-loader").fadeIn("slow");
+    // fromTemplate();
+    callSumAllTenant(date);
+    drawTableSumAgentPeformSkill();
+   $("#filter-loader").fadeOut("slow");
+});
+
+function callSumAllTenant(date){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/Wallboard/WallboardController/TrafficOPSPieChart',
+        data: {
+            date: date
+        },
+        success: function (r) {
+            // var response = JSON.parse(r);
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callSumAllTenant(date);},900000);
+            drawCard(r);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawPieChartSumAllTenant(response){
+    //pie chart Ticket Channel
+    var ctx = document.getElementById("pieWallSummaryTraffic");
+    ctx.height = 250;
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: response.data.total,
+                backgroundColor: response.data.channel_color,
+                hoverBackgroundColor: response.data.channel_color
+            }],
+            labels: response.data.channel_name
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            legend: {
+                display: false
+            },
+            pieceLabel: {
+                render: 'legend',
+                fontColor: '#000',
+                position: 'outside',
+                segment: true
+            },
+            legendCallback: function (chart, index) {
+                var allData = chart.data.datasets[0].data;
+                // console.log(chart)
+                var legendHtml = [];
+                legendHtml.push('<ul><div class="row ml-2">');
+                allData.forEach(function (data, index) {
+                    var label = chart.data.labels[index];
+                    var dataLabel = allData[index];
+                    var background = chart.data.datasets[0].backgroundColor[index]
+                    var total = 0;
+                    for (var i in allData) {
+                        total += parseInt(allData[i]);
+                    }
+
+                    // console.log(total)
+                    var percentage = Math.round((dataLabel / total) * 100);
+                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
+                })
+                legendHtml.push('</ul></div>');
+                return legendHtml.join("");
+            },
+        }
+    });
+    var myLegendContainer = document.getElementById("legend");
+    myLegendContainer.innerHTML = myChart.generateLegend();
+}
+
+
+function fromTemplate(){
     "use strict";
 
     //pie chart Ticket Channel
@@ -323,4 +428,4 @@
             }
         }
     } );
-})(jQuery);
+}
