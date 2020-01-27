@@ -148,8 +148,6 @@ Class WallboardModel extends CI_Model {
     function get_total_cof_piechart($date,$channel) //summ
 	{
         
-		//$date = date('Y-m-d',strtotime($day));
-		
 		$this->db->select('v_scr_all_data.cof as TOTAL');
 		$this->db->from('v_scr_all_data');
 		$this->db->where('v_scr_all_data.tanggal',$date);
@@ -175,7 +173,7 @@ Class WallboardModel extends CI_Model {
 
     //     $res_channel = array();
     //     $res_color = array();
-	// 	$res_tot = array();
+	// 	   $res_tot = array();
 			
 	// 	if($query->num_rows() > 0)
 	// 	{
