@@ -556,7 +556,7 @@ function fromTemplate() {
 	var chartTicket = document.getElementById('echartService');
 	var barChartTicket = echarts.init(chartTicket);
     barChartTicket.setOption(optionTicket);
-    
+	
     // Horizontal Bar
 
     var MeSeContext = document.getElementById("barService");
