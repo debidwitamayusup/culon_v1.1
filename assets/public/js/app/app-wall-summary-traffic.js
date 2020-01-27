@@ -17,10 +17,10 @@ var v_params_today= m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant(v_params_today);
-    callSumPerTenant('2020-01-24');
+    callSumAllTenant('day', '2020-01-24', 0);
+    callSumPerTenant('day', '2020-01-24', 0);
     // drawIntervalChart();
-    callIntervalTraffic('2020-01-24', '');
+    callIntervalTraffic('day','2020-01-24',0, '');
 
     $('#check-all-channel').prop('checked',false);
     $("input:checkbox.checklist-channel").prop('checked',false);
@@ -54,12 +54,14 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function callSumAllTenant(date){
+function callSumAllTenant(params, index, params_year){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPSPieChart',
         data: {
-            date: date
+            params: params,
+            index: index,
+            params_year: params_year
         },
         success: function (r) {
             // var response = JSON.parse(r);
@@ -76,12 +78,14 @@ function callSumAllTenant(date){
     });
 }
 
-function callSumPerTenant(date){
+function callSumPerTenant(params, index, params_year){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
-            date: date
+            params: params,
+            index: index,
+            params_year: params_year
         },
         success: function (r) {
             // var response = JSON.parse(r);
@@ -100,14 +104,16 @@ function callSumPerTenant(date){
     });
 }
 
-function callIntervalTraffic(date, channel){
+function callIntervalTraffic(params, index, params_year, channel){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/IntervalToday',
         data: {
-            date: date,
+            params: params,
+            index: index,
+            params_year: params_year,
             channel: channel
         },
         success: function (r) {
@@ -829,7 +835,7 @@ function fromTemplate(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic('2020-01-24', list_channel);
+        callIntervalTraffic('day', '2020-01-24',0,list_channel);
     });
 
     //checked channel
@@ -848,7 +854,7 @@ function fromTemplate(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic('2020-01-24', list_channel);
+        callIntervalTraffic('day','2020-01-24',0, list_channel);
     });
     
 })(jQuery);
