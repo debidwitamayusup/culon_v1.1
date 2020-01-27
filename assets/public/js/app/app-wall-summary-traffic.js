@@ -166,18 +166,18 @@ function drawChartPerTenant(response){
             }
         },
         legend: {
-            bottom: 10,
+            // bottom: 10,
             left: 'center',
             data: ['ART', 'AST', 'AHT', 'SCR'],
-            labels:{
-                boxWidth:10
-            }
+            // labels:{
+            //     boxWidth:10
+            // }
         },
         grid: {
-            top: '3%',
-            right: '3%',
-            bottom: '15%',
-            left: '10%',
+            top: '10%',
+            right: '5%',
+            bottom: '10%',
+            left: '15%',
         },
         xAxis: {
             type: 'value',
