@@ -19,9 +19,29 @@ $(document).ready(function () {
     // fromTemplate();
     callSumAllTenant(v_params_today);
     callSumPerTenant('2020-01-24');
-    drawIntervalChart();
+    // drawIntervalChart();
+    callIntervalTraffic('2020-01-24', ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
    $("#filter-loader").fadeOut("slow");
 });
+
+//function get data and draw
+function getColorChannel(channel){
+    var color = [];
+    color['Email'] = '#e41313';
+    color['Facebook'] = '#467fcf';
+    color['Instagram'] = '#fbc0d5';
+    color['Line'] = '#31a550';
+    color['Live Chat'] = '#607d8b';
+    color['Messenger'] = '#3866a6';
+    color['SMS'] = '#80cbc4';
+    color['Telegram'] = '#343a40';
+    color['Twitter'] = '#45aaf2';
+    color['Twitter DM'] = '#6574cd';
+    color['Voice'] = '#ff9933';
+    color['Whatsapp'] = '#089e60';
+
+    return color[channel];
+}
 
 function callSumAllTenant(date){
     $.ajax({
@@ -54,10 +74,11 @@ function callSumPerTenant(date){
         },
         success: function (r) {
             // var response = JSON.parse(r);
+            var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(date);},900000);
-            drawChartPerTenant(r);
+            drawChartPerTenant(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -67,6 +88,35 @@ function callSumPerTenant(date){
         },
     });
 }
+
+function callIntervalTraffic(date, channel){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/Wallboard/WallboardController/IntervalToday',
+        data: {
+            date: date,
+            channel: channel
+        },
+        success: function (r) {
+            // var response = JSON.parse(r);
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            drawLineChart(r);
+            // drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+
 
 function drawPieChartSumAllTenant(response){
     //pie chart Ticket Channel
@@ -215,6 +265,65 @@ function drawChartPerTenant(response){
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
     barChartWallSummary.setOption(optionWallSummary);
+}
+
+function destroyChartInterval(){
+    // destroy chart interval 
+    $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
+    // $('#chart-no-data').remove(); // this is my <canvas> element
+    $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic"  class="h-400"></canvas>');
+}
+
+function drawLineChart(response){
+    destroyChartInterval();
+    var data = [];
+    if(!response.data.series){
+        $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
+        $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic" class="h-400"></canvas>');
+    }else{
+        response.data.series.forEach(function (value, index) {
+            var obj = {
+                label: value.label,
+                data: value.data,
+                backgroundColor: 'transparent',
+                borderColor: getColorChannel(value.label),
+                borderWidth: 3,
+                pointStyle: 'circle',
+                pointRadius: 4,
+                pointBorderColor: 'transparent',
+                pointBackgroundColor: getColorChannel(value.label),
+            };
+            data.push(obj);
+        });
+
+        // draw chart
+        var ctx = document.getElementById( "lineWallSummaryTraffic" );
+        var myChart = new Chart( ctx, {
+            type: 'line',
+            data: {
+                labels: response.data.label_time,
+                datasets: data
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend:{
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
+                barRoundness:  1,
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        } );
+    }
 }
 
 function drawIntervalChart(){
