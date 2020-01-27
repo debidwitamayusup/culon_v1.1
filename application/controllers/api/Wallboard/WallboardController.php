@@ -70,7 +70,12 @@ class WallboardController extends REST_Controller {
         // }
 
         $date = $this->security->xss_clean($this->input->post('date'));
-        $res = $this->module_model->Traffic_ops($date);
+
+        $params = $this->security->xss_clean($this->input->post('params'));
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
+
+        $res = $this->module_model->Traffic_ops($params,$index,$params_year);
         
         if ($res) {
             $this->response([
@@ -98,8 +103,13 @@ class WallboardController extends REST_Controller {
         //             ], REST_Controller::HTTP_NOT_FOUND);
         // }
 
-        $date = $this->security->xss_clean($this->input->post('date'));
-        $res = $this->module_model->scr_pie_chart_channel($date);
+        
+
+        $params = $this->security->xss_clean($this->input->post('params'));
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
+
+        $res = $this->module_model->scr_pie_chart_channel($params,$index,$params_year);
         
         if ($res) {
             $this->response([
@@ -127,9 +137,12 @@ class WallboardController extends REST_Controller {
         //             ], REST_Controller::HTTP_NOT_FOUND);
         // }
 
-        $date = $this->security->xss_clean($this->input->post('date'));
+        $params = $this->security->xss_clean($this->input->post('params'));
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
         $channel = $this->security->xss_clean($this->input->post('channel'));
-        $res = $this->module_model->get_intervalchart($date,$channel);
+
+        $res = $this->module_model->get_intervalchart($params,$index,$params_year,$channel);
         
         if ($res) {
             $this->response([
