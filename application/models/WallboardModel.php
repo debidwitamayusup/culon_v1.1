@@ -93,6 +93,7 @@ Class Wallboardmodel extends CI_Model {
         $this->db->from('v_scr_all_data');
         $this->db->where('tanggal',$date);
         $this->db->group_by('tenant_id');
+        // $this->db->order_by('');
         $query = $this->db->get();
         // print_r($this->db->last_query());
         // exit;
@@ -117,23 +118,26 @@ Class Wallboardmodel extends CI_Model {
 
     public function scr_pie_chart_channel($date)
     {
-        $this->db->select('m_channel.channel_name,m_channel.channel_id');
+        $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
 		$query = $this->db->get();
 
-		$res_channel = array();
+        $res_channel = array();
+        $res_color = array();
 		$res_tot = array();
 			
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result() as $data)
 			{
-				array_push($res_channel,$data->channel_name);
+                array_push($res_channel,$data->channel_name);
+                array_push($res_color,$data->channel_color);
 				array_push($res_tot,$this->get_total_cof_piechart($date,$data->channel_id));
 			}
 
 			$result = array(
-				'channel_name' => $res_channel, 
+                'channel_name' => $res_channel, 
+                'color' => $res_color,
 				'total' => $res_tot
 			);
 		}
