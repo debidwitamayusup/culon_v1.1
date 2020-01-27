@@ -1364,6 +1364,7 @@ class Stc_Model extends CI_Model
 			$datas[] = array(
 				'DAY'=>strval(date('l',strtotime($day))),
 				'DATE' => date('Y-m-d',strtotime($day)),
+				'CHANNEL' => $this->get_channel_only(),
 				'DATA' => $this->get_traffic_interval_daily($day)
 			);
 		}
@@ -1376,31 +1377,43 @@ class Stc_Model extends CI_Model
 		return $result;
 	}
 
-	public function get_traffic_interval_daily($day)//channel - 
+	function get_channel_only()
 	{
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
-		//$this->db->where('m_channel.channel_name',$channel);
+		$query = $this->db->get();
+		$res_channel = array();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($res_channel,$data->channel_name);
+			}
+			
+		}
+		
+		return $res_channel;
+	}
+
+	function get_traffic_interval_daily($day)//channel - 
+	{
+		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
 		$query = $this->db->get();
 
-		$res_channel = array();
+		
 		$res_tot = array();
 			
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result() as $data)
 			{
-				array_push($res_channel,$data->channel_name);
 				array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id));
 			}
-
-			$result = array(
-				'channel_name' => $res_channel, 
-				'total' => $res_tot
-			);
 		}
 		
-		return $result;
+		return $res_tot;
 
 		
 	}
