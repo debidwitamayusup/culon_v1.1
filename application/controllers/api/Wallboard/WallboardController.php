@@ -117,4 +117,34 @@ class WallboardController extends REST_Controller {
 
     }
 
+    public function IntervalToday_post(){
+            
+        // if(!$this->input->post('token'))
+        // {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => 'Token Not found,Loging off!'
+        //             ], REST_Controller::HTTP_NOT_FOUND);
+        // }
+
+        $date = $this->security->xss_clean($this->input->post('date'));
+        $channel = $this->security->xss_clean($this->input->post('channel'));
+        $res = $this->module_model->get_intervalchart($date,$channel);
+        
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
 }

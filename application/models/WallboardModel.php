@@ -165,33 +165,97 @@ Class WallboardModel extends CI_Model {
 
     }
     
-    // function get_intervalchart($date)
-    // {
-    //     $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
-	// 	$this->db->from('m_channel');
-	// 	$query = $this->db->get();
+    function get_intervalchart($date,$channel)
+    {
+        $this->db->select('v_interval_all_data.interval as time');
+		$this->db->from('v_interval_all_data');
+		$this->db->group_by('v_interval_all_data.interval','ASC');
+		$query = $this->db->get();
+		$times = array();
 
-    //     $res_channel = array();
-    //     $res_color = array();
-	// 	   $res_tot = array();
-			
-	// 	if($query->num_rows() > 0)
-	// 	{
-	// 		foreach($query->result() as $data)
-	// 		{
-    //             array_push($res_channel,$data->channel_name);
-    //             array_push($res_color,$data->channel_color);
-	// 			array_push($res_tot,$this->get_total_cof_piechart($date,$data->channel_id));
-	// 		}
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($times,substr($data->time,0,5).':00');
+			}
 
-	// 		$result = array(
-    //             'channel_name' => $res_channel, 
-    //             'color' => $res_color,
-	// 			'total' => $res_tot
-	// 		);
-	// 	}
+			if($channel)
+			{
+				foreach($channel as $channels)
+				{
+					$serials[] =  array(
+						'label'=>$channels,
+						'data'=>$this->get_availdata($date,$channels)
+					);
+				}
+			}
+			else 
+			{
+				$serials[] =  array(
+					'label'=>'Facebook',
+					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+				);
+			}
+		}
+
+		$result = array(
+					'label_time' => $times,
+					'series' => $serials
+                );
 		
-	// 	return $result;
-    // }
+
+
+		return $result;
+		
+    }
+
+    function get_availdata($date,$channel)
+	{
+		if(!$channel)
+		{
+			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+
+		$this->db->select('v_interval_all_data.interval , COALESCE(SUM(v_interval_all_data.case_session),0) as total');
+		$this->db->from('m_channel');
+		$this->db->join('v_interval_all_data','v_interval_all_data.channel_id = m_channel.channel_id');
+		$this->db->where('v_interval_all_data.tanggal', $date);
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('v_interval_all_data.interval','ASC');
+		$query = $this->db->get();
+		$result = array();
+		
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				{
+					array_push($result,$query->row($inx)->total);
+				}
+				else
+				{
+					array_push($result,'0');
+				}
+					
+			}
+
+		}
+		else
+		{
+			$result = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+		
+
+		return $result;
+		
+    }
+    
+
 
 }
