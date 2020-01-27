@@ -515,10 +515,11 @@ function fromTemplate() {
 	/*----echart summary ticket category----*/
 	var optionTicket = {
 		grid: {
-			top: '6',
-			right: '10',
-			bottom: '17',
-			left: '70',
+			top: '1%',
+			right: '2%',
+			bottom: '3%',
+			left: '10%',
+			width:'auto',
 		},
 		xAxis: {
 			type: 'value',
@@ -556,7 +557,11 @@ function fromTemplate() {
 	var chartTicket = document.getElementById('echartService');
 	var barChartTicket = echarts.init(chartTicket);
     barChartTicket.setOption(optionTicket);
-    
+	// $(window).on('responsive', function(){
+    //     if(barChartTicket != null && barChartTicket!= undefined){
+    //         barChartTicket.responsive();
+    //     }
+    // });
     // Horizontal Bar
 
     var MeSeContext = document.getElementById("barService");

@@ -47,7 +47,6 @@ function callGraphicInterval(channel_name, month, year){
     // console.log("selectedMonthst");
     // console.log(month);
     // console.log(year);
-
     destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -65,20 +64,12 @@ function callGraphicInterval(channel_name, month, year){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            let arrChannelName = []
-            let arrTotal = []
-            // response.data.forEach(function(value, index){
-            //     arrChannelName.push(value.channel_name);
-            //     arrTotal.push(value.total_traffic);
-                var chartdata = [{
+            var chartdata = [{
                 name: getMontName,
                 type: 'bar',
                 data: response.data.total_traffic
             }];
-            // });
 
-            
-            // console.log(response.data);
             // console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
