@@ -20,20 +20,36 @@ Class Wallboardmodel extends CI_Model {
 
         if($query->num_rows()>0)
         {
-            
+            $idx = 1;
             foreach($query->result() as $data)
             {
+                // $result[] = array(
+                //     'unit_name' => $data->unit,
+                //     'New'   => $data->sNew,
+                //     'Open'  => $data->sOpen,
+                //     'ReProses' => $data->sReProses,
+                //     'ReOpen' => $data->sReopen,
+                //     'PreClose' => $data->sPreClose,
+                //     'ReAssign' => $data->sReAssign,
+                //     'Pending' => 'NAN 0',
+                //     'jml' => $data->jml
+                // );
+                
+//missing pending - reject
                 $result[] = array(
-                    'unit_name' => $data->unit,
-                    'New'   => $data->sNew,
-                    'Open'  => $data->sOpen,
-                    'ReProses' => $data->sReProses,
-                    'ReOpen' => $data->sReopen,
-                    'PreClose' => $data->sPreClose,
-                    'ReAssign' => $data->sReAssign,
-                    'Pending' => 'NAN 0',
-                    'jml' => $data->jml
+                     $idx,
+                     $data->unit,
+                     $data->sNew,
+                     $data->sOpen,
+                     $data->sReopen,
+                     
+
+                     $data->sReProses,
+                     $data->sReAssign,
+                     $data->sPreClose,
+                     $data->jml
                 );
+                $idx++;
             }
 
             return $result;
