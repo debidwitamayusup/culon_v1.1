@@ -18,8 +18,9 @@ $(document).ready(function () {
     // $('#dropdownYear option[value='+m+']').attr('selected','selected');
     // console.log('"'+n+'"');
     // console.log(m);
-    callGraphicInterval('ShowAll', $("#month").val(), m);
+    // callGraphicInterval('ShowAll', $("#month").val(), m);
     // callGraphicInterval('ShowAll', '1', '2020');
+    drawStackedBar('month', '', n, m);
     callDataPercentage($("#month").val(), m);
     callDataTableAvg($("#month").val(), m);
 });
@@ -328,6 +329,153 @@ function callYear()
     });
 }
 
+function drawStackedBar(params, channel_name, index, params_year){
+    destroyChartInterval();
+     $("#filter-loader").fadeIn("slow");
+    var getMontName = monthNumToName(month);
+    var data = "";
+    var base_url = $('#base_url').val();
+    //call traffic per month
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonthShowAll',
+        data: {
+            "params": params,
+            "channel_name": channel_name,
+            "index": index,
+            "params_year": params_year,
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+         // stacked bar traffic monthly
+         // console.log(response.data[0].total_traffic);
+        var chartdata3 = [{
+            name: 'Whatsapp',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[10].total_traffic
+        }, {
+            name: 'Facebook',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[5].total_traffic
+        },{
+            name: 'Twitter',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[7].total_traffic
+        },{
+            name: 'Twitter DM',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[11].total_traffic
+        },{
+            name: 'Instagram',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[9].total_traffic
+        },{
+            name: 'Messenger',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[6].total_traffic
+        },{
+            name: 'Telegram',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[4].total_traffic
+        },{
+            name: 'Line',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[8].total_traffic
+        },{
+            name: 'Email',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[1].total_traffic
+        },{
+            name: 'Voice',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[0].total_traffic
+        },{
+            name: 'SMS',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[3].total_traffic
+        },{
+            name: 'Live Chat',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[2].total_traffic
+        }];
+        /*----EchartMonth*/
+        var option6 = {
+            // grid: {
+            //  top: '6',
+            //  right: '15',
+            //  bottom: '17',
+            //  left: '32',
+            // },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { 
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '1%',
+                right: '6%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: response.param_date,
+                
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0'
+                }
+            },
+            yAxis: {
+                type: 'value',
+                splitLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0'
+                }
+            },
+            series: chartdata3,
+            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+        };
+        var chart6 = document.getElementById('echart1');
+        var barChart6 = echarts.init(chart6);
+        barChart6.setOption(option6);
+        $("#filter-loader").fadeOut("slow");
+    },
+        error: function (r) {
+            alert("error");
+             $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 // function destroy element canvas
 function destroyChartInterval(){
     // destroy chart interval 
@@ -380,8 +528,11 @@ function destroyChartPercentage(){
         $('#btn-go').click(function(){
             destroyChartInterval();
             destroyChartPercentage(); 
-
-            callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val());
+            if ($("#channel_name").val() == 'ShowAll') {
+                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val());
+            }else{
+                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val());
+            }
             callDataPercentage($("#month").val(), $("#dropdownYear").val());
             callDataTableAvg($("#month").val(), $("#dropdownYear").val());
         });
