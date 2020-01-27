@@ -728,7 +728,6 @@ class Stc_Model extends CI_Model
 			foreach($query->result() as $data)
 			{
 				array_push($times,substr($data->time,0,5).':00');
-
 			}
 
 			if($channel)
