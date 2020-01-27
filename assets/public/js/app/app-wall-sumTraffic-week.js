@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     getTrafficInterval(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
-    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    // getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     drawChartDaily();
 });
 
@@ -230,108 +230,138 @@ function drawTrafficInterval(response){
     }
 }
 
-function getTableChart(week,arr_channel){
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
-        data: {
-            week: week,
-            arr_channel: arr_channel
-        },
-        success: function (r) {
-            var response = JSON.parse(r);
-            console.log(response);
-            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
-            drawTableTraffic(response);
-            // drawChartDaily(response);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            alert("error");
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
+// function getTableChart(week,arr_channel){
+//     $.ajax({
+//         type: 'post',
+//         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
+//         data: {
+//             week: week,
+//             arr_channel: arr_channel
+//         },
+//         success: function (r) {
+//             var response = JSON.parse(r);
+//             console.log(response);
+//             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+//             drawTableTraffic(response);
+//             // drawChartDaily(response);
+//             // $("#filter-loader").fadeOut("slow");
+//         },
+//         error: function (r) {
+//             // console.log(r);
+//             alert("error");
+//             // $("#filter-loader").fadeOut("slow");
+//         },
+//     });
+// }
 
-function drawTableTraffic(response){
-    var channel_name = [];
-    var data = [];
-    var sun=0,mon=0,tue=0,wed=0,thu=0,fri=0,sat=0;
-    // console.log(response.data[0].data);
-    $('#mytbody').empty();
-    if (response.data.length != 0) {
-        var i = 0;
-        console.log(response.data[i].datas);
-        response.data[i].datas.forEach(function (value, index) {
-            // sun=parseInt(sun)+parseInt(value.data[0]);
-            // mon=parseInt(mon)+parseInt(value.data[1]);
-            // tue=parseInt(tue)+parseInt(value.data[2]);
-            // wed=parseInt(wed)+parseInt(value.data[3]);
-            // thu=parseInt(thu)+parseInt(value.data[4]);
-            // fri=parseInt(fri)+parseInt(value.data[5]);
-            // sat=parseInt(sat)+parseInt(value.data[6]);
-            $('#mytable').find('tbody').append('<tr>'+
-            '<td class="text-center">'+(i+1)+'</td>'+
-            '<td class="text-left">'+value.channel_name+'</td>'+
-            '<td class="text-right">'+addCommas(value.total)+'</td>'+
-            '<td class="text-right">'+addCommas(value.total)+'</td>'+
-            // '<td class="text-right">'+addCommas(value.data[2])+'</td>'+
-            // '<td class="text-right">'+addCommas(value.data[3])+'</td>'+
-            // '<td class="text-right">'+addCommas(value.data[4])+'</td>'+
-            // '<td class="text-right">'+addCommas(value.data[5])+'</td>'+
-            // '<td class="text-right">'+addCommas(value.data[6])+'</td>'+
-            '</tr>');
-            i++;
+// function drawTableTraffic(response){
+//     var channel_name = [];
+//     var data = [];
+//     var sun=0,mon=0,tue=0,wed=0,thu=0,fri=0,sat=0;
+//     // console.log(response.data[0].data);
+//     $('#mytbody').empty();
+//     if (response.data.length != 0) {
+//         var i = 0;
+//         // console.log(response.data[]);
+
+//         response.data.forEach(function (value, index) {
+//             $('#mytable').find('tbody').append('<tr id="no">'+
+//                '<td id="numbTD">'+(i+1)+'</td>'+
+//                '<td id="channel">'+value.channel_name+'</td>'+
+//                '<td id="totalMon"></td>'+
+//            '</tr>');
+//             i++;
             
-        });
-        // $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
-        //     '<td colspan="2" class="text-right">TOTAL</td>'+
-        //     '<td class="text-right">'+addCommas(sun)+'</td>'+
-        //     '<td class="text-right">'+addCommas(mon)+'</td>'+
-        //     '<td class="text-right">'+addCommas(tue)+'</td>'+
-        //     '<td class="text-right">'+addCommas(wed)+'</td>'+
-        //     '<td class="text-right">'+addCommas(thu)+'</td>'+
-        //     '<td class="text-right">'+addCommas(fri)+'</td>'+
-        //     '<td class="text-right">'+addCommas(sat)+'</td>'+
-        //     '</tr>');
-    }else{
-        $('#mytable').find('tbody').append('<tr>'+
-            '<td colspan=6> No Data </td>'+
-            '</tr>');
-    }
+//         });
+//         // $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
+//         //     '<td colspan="2" class="text-right">TOTAL</td>'+
+//         //     '<td class="text-right">'+addCommas(sun)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(mon)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(tue)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(wed)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(thu)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(fri)+'</td>'+
+//         //     '<td class="text-right">'+addCommas(sat)+'</td>'+
+//         //     '</tr>');
+//     }else{
+//         $('#mytable').find('tbody').append('<tr>'+
+//             '<td colspan=6> No Data </td>'+
+//             '</tr>');
+//     }
 
-    // $("#filter-loader").fadeOut("slow");
-}
+//     // $("#filter-loader").fadeOut("slow");
+// }
 
 function drawChartDaily(response){
     // Horizontal Bar
-    $('#echartWeek').remove();
-    $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
+    // $('#echartWeek').remove();
+    // $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
     // stacked bar this week
-    let channel_name = [];
-    let total = [];
-    var day = [];
+    // let channel_name = [];
+    // let total = [];
+    // var day = [];
+    var chartdata3 = [{
+         name: 'Whatsapp',
+         type: 'bar',
+         stack: 'Stack',
+         data: [14, 18, 20, 14, 29, 21, 25]
+     }, {
+         name: 'Facebook',
+         type: 'bar',
+         stack: 'Stack',
+         data: [20, 30, 35, 30, 50, 30, 30]
+     },{
+         name: 'Twitter',
+         type: 'bar',
+         stack: 'Stack',
+         data: [30, 40, 45, 50, 60, 40, 40]
+     },{
+         name: 'Twitter DM',
+         type: 'bar',
+         stack: 'Stack',
+         data: [40, 50, 55, 60, 70, 60, 60]
+     },{
+         name: 'Instagram',
+         type: 'bar',
+         stack: 'Stack',
+         data: [50, 60, 70, 70, 80, 70, 70]
+     },{
+         name: 'Messenger',
+         type: 'bar',
+         stack: 'Stack',
+         data: [60, 70, 80, 80, 90, 80, 80]
+     },{
+         name: 'Telegram',
+         type: 'bar',
+         stack: 'Stack',
+         data: [70, 80, 90, 90, 100, 90, 90]
+     },{
+         name: 'Line',
+         type: 'bar',
+         stack: 'Stack',
+         data: [80, 90, 100, 100, 120, 100, 100]
+     },{
+         name: 'Email',
+         type: 'bar',
+         stack: 'Stack',
+         data: [90, 100, 120, 110, 130, 130, 130]
+     },{
+         name: 'Voice',
+         type: 'bar',
+         stack: 'Stack',
+         data: [100, 120, 130, 150, 140, 150, 160]
+     },{
+         name: 'SMS',
+         type: 'bar',
+         stack: 'Stack',
+         data: [120, 140, 150, 160, 160, 170, 180]
+     },{
+         name: 'Live Chat',
+         type: 'bar',
+         stack: 'Stack',
+         data: [130, 150, 160, 170, 180, 190, 200]
+     }];
 
-    if(response.data.length != 0){
-        response.data.day.forEach(function(value, index){
-            day.push(value.day);
-        });
-        response.data.chart.forEach(function(value, index){
-            channel_name.push(value.channel_name);
-            total.push(value.total);
-        });
-
-        var chartData = [];
-        var i = 0;
-        var dataChart = [{
-             name: channel_name,
-             type: 'bar',
-             stack: 'Stack',
-             data: total
-         }];
-         chartData.push(dataChart);
-         i++
             /*----EchartThisWeek----*/
          var option6 = {
              grid: {
@@ -377,7 +407,7 @@ function drawChartDaily(response){
          var chart6 = document.getElementById('echartWeek');
          var barChart6 = echarts.init(chart6);
             barChart6.setOption(option6);
-    }
+    
 }
 
 // $(function ($) {
