@@ -56,7 +56,7 @@ function callGraphicInterval(channel_name, month, year){
     //call traffic per month
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonthShowAll',
+        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonth',
         data: {
             "channel_name": channel_name,
             "month": month,
@@ -67,18 +67,18 @@ function callGraphicInterval(channel_name, month, year){
             // console.log(response);
             let arrChannelName = []
             let arrTotal = []
-            response.data.forEach(function(value, index){
-                arrChannelName.push(value.channel_name);
-                arrTotal.push(value.total_traffic);
+            // response.data.forEach(function(value, index){
+            //     arrChannelName.push(value.channel_name);
+            //     arrTotal.push(value.total_traffic);
                 var chartdata = [{
                 name: getMontName,
                 type: 'bar',
-                data: arrTotal
+                data: response.data.total_traffic
             }];
-            });
+            // });
 
             
-            console.log(response.data);
+            // console.log(response.data);
             // console.log(response.data.channel_color)
             var chart = document.getElementById('echart1');
             var barChart = echarts.init(chart);
