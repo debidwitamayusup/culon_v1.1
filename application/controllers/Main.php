@@ -33,11 +33,17 @@ class main extends CI_Controller {
 
 	public function home()
 	{
-
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
         $this->load->view('temp/body');
+	}
+
+	public function summary_traffic(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_traffic');
 	}
 
 	public function login(){
@@ -307,13 +313,4 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_summary_interval');
 	}
-
-	public function cek(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('cek.php');
-		$this->load->view('temp/footer');
-	}
-
 }
