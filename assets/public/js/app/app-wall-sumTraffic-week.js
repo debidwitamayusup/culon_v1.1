@@ -263,13 +263,18 @@ function drawTrafficInterval(response){
 //     if (response.data.length != 0) {
 //         var i = 0;
 //         // console.log(response.data[]);
-
 //         response.data.forEach(function (value, index) {
-//             $('#mytable').find('tbody').append('<tr id="no">'+
-//                '<td id="numbTD">'+(i+1)+'</td>'+
-//                '<td id="channel">'+value.channel_name+'</td>'+
-//                '<td id="totalMon"></td>'+
-//            '</tr>');
+//             $('#mytable').find('tbody').append('<tr>'+
+//             '<td class="text-center">'+(i+1)+'</td>'+
+//             '<td class="text-left">'+value.datas.channel_name+'</td>'+
+//             '<td class="text-right">'+addCommas(value.total)+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[1])+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[2])+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[3])+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[4])+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[5])+'</td>'+
+//             // '<td class="text-right">'+addCommas(value.data[6])+'</td>'+
+//             '</tr>');
 //             i++;
             
 //         });

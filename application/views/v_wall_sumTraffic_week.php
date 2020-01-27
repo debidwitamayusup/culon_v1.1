@@ -196,9 +196,9 @@
                                         <td>200</td>
                                     </tr>
                                 </tbody>
-                                <tfoot class="text-right font-weight-extrabold bg-total" id="mytfoot">
-                                    <!-- <tr>
-                                        <td>TOTAL</td>
+                                <tfoot class="text-center font-weight-extrabold bg-total" id="mytfoot">
+                                    <tr>
+                                        <td colspan="2">TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -206,8 +206,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                        <td>200</td>
-                                    </tr> -->
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
