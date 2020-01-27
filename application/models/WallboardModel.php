@@ -90,7 +90,7 @@ Class WallboardModel extends CI_Model {
     public function Traffic_ops($date)
     {
         $this->db->select('tenant_id, SUM(art_num) AS ART, SUM(aht_num) AS AHT, SUM(ast_num) AS AST, SUM(scr) AS SCR');
-        $this->db->from('v_scr_all_data');
+        $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         $this->db->group_by('tenant_id');
         // $this->db->order_by('');
@@ -148,10 +148,10 @@ Class WallboardModel extends CI_Model {
     function get_total_cof_piechart($date,$channel) //summ
 	{
         
-		$this->db->select('v_scr_all_data.cof as TOTAL');
-		$this->db->from('v_scr_all_data');
-		$this->db->where('v_scr_all_data.tanggal',$date);
-		$this->db->where('v_scr_all_data.channel_id',$channel);
+		$this->db->select('rpt_summary_scr.cof as TOTAL');
+		$this->db->from('rpt_summary_scr');
+		$this->db->where('rpt_summary_scr.tanggal',$date);
+		$this->db->where('rpt_summary_scr.channel_id',$channel);
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)
@@ -167,9 +167,9 @@ Class WallboardModel extends CI_Model {
     
     function get_intervalchart($date,$channel)
     {
-        $this->db->select('v_interval_all_data.interval as time');
-		$this->db->from('v_interval_all_data');
-		$this->db->group_by('v_interval_all_data.interval','ASC');
+        $this->db->select('rpt_summ_interval.interval as time');
+		$this->db->from('rpt_summ_interval');
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
 
@@ -217,12 +217,12 @@ Class WallboardModel extends CI_Model {
 			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
 		}
 
-		$this->db->select('v_interval_all_data.interval , COALESCE(SUM(v_interval_all_data.case_session),0) as total');
+		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('v_interval_all_data','v_interval_all_data.channel_id = m_channel.channel_id');
-		$this->db->where('v_interval_all_data.tanggal', $date);
+		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
-		$this->db->group_by('v_interval_all_data.interval','ASC');
+		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
 		
