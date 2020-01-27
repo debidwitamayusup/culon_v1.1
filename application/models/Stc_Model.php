@@ -571,7 +571,7 @@ class Stc_Model extends CI_Model
 	{
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
-		$this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
 		if($channel)
 		{
@@ -586,6 +586,7 @@ class Stc_Model extends CI_Model
 			{
 				$data_r[] = array(
 					'channel_name' => $data->channel_name,
+					'channel_color' => $data->channel_color,
 					'month'	=> $month,
 					'total_traffic'=> $this->get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$data->channel_id)
 				);
@@ -1285,7 +1286,7 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
-			WHERE rpt_summ_interval.tanggal = '2020-01-23'
+			WHERE rpt_summ_interval.tanggal = '".$date."'
 			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name
 			");
@@ -1382,16 +1383,21 @@ class Stc_Model extends CI_Model
 		//$this->db->where('m_channel.channel_name',$channel);
 		$query = $this->db->get();
 
+		$res_channel = array();
+		$res_tot = array();
 			
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result() as $data)
 			{
-				$result[] = array(
-					'channel_name' => $data->channel_name,
-					'total' => $this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id)
-				);
+				array_push($res_channel,$data->channel_name);
+				array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id));
 			}
+
+			$result = array(
+				'channel_name' => $res_channel, 
+				'total' => $res_tot
+			);
 		}
 		
 		return $result;
