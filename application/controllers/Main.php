@@ -308,4 +308,12 @@ class main extends CI_Controller {
 		$this->load->view('v_report_summary_interval');
 	}
 
+	public function cek(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('cek.php');
+		$this->load->view('temp/footer');
+	}
+
 }
