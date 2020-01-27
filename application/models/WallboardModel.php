@@ -20,20 +20,36 @@ Class WallboardModel extends CI_Model {
 
         if($query->num_rows()>0)
         {
-            
+            $idx = 1;
             foreach($query->result() as $data)
             {
+                // $result[] = array(
+                //     'unit_name' => $data->unit,
+                //     'New'   => $data->sNew,
+                //     'Open'  => $data->sOpen,
+                //     'ReProses' => $data->sReProses,
+                //     'ReOpen' => $data->sReopen,
+                //     'PreClose' => $data->sPreClose,
+                //     'ReAssign' => $data->sReAssign,
+                //     'Pending' => 'NAN 0',
+                //     'jml' => $data->jml
+                // );
+
+//missing pending - reject
                 $result[] = array(
-                    'unit_name' => $data->unit,
-                    'New'   => $data->sNew,
-                    'Open'  => $data->sOpen,
-                    'ReProses' => $data->sReProses,
-                    'ReOpen' => $data->sReopen,
-                    'PreClose' => $data->sPreClose,
-                    'ReAssign' => $data->sReAssign,
-                    'Pending' => 'NAN 0',
-                    'jml' => $data->jml
+                     $idx,
+                     $data->unit,
+                     $data->sNew,
+                     $data->sOpen,
+                     $data->sReopen,
+                     
+
+                     $data->sReProses,
+                     $data->sReAssign,
+                     $data->sPreClose,
+                     $data->jml
                 );
+                $idx++;
             }
 
             return $result;
@@ -69,6 +85,35 @@ Class WallboardModel extends CI_Model {
         return FALSE;
 
 
+    }
+
+
+    public function Traffic_ops($date)
+    {
+        $this->db->select('tenant_id, SUM(art_num) AS ART, SUM(aht_num) AS AHT, SUM(ast_num) AS AST, SUM(scr) AS SCR');
+        $this->db->from('v_scr_all_data');
+        $this->db->where('tanggal',$date);
+        $this->db->group_by('tenant_id');
+        $query = $this->db->get();
+        // print_r($this->db->last_query());
+        // exit;
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'TENANT_ID' => $data->tenant_id,
+                    'ART' => $data->ART,
+                    'AHT' => $data->AHT,
+                    'AST' => $data->AST,
+                    'SCR' => $data->SCR
+                );
+            }
+            return $result;
+        }
+
+        return FALSE;
     }
 
 
