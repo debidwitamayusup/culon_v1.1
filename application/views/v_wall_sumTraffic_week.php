@@ -63,7 +63,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" style="font-size:10px !important;" id="mytbody">
-                                    <tr>
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>Whatsapp</td>
                                         <td>200</td>
@@ -194,10 +194,10 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                                 <tfoot class="text-center font-weight-extrabold bg-total" id="mytfoot">
-                                    <tr>
+                                    <!-- <tr>
                                         <td colspan="2">TOTAL</td>
                                         <td>200</td>
                                         <td>200</td>
@@ -206,7 +206,7 @@
                                         <td>200</td>
                                         <td>200</td>
                                         <td>200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tfoot>
                             </table>
                         </div>
