@@ -11,16 +11,15 @@ if (n < 10) {
   n = '0' + n;
 }
 
-//get today
-var v_params_today= m + '-' + n + '-' + (o);
+//get yesterday
+var v_params_today= m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', '2020-01-24', 0);
-    callSumPerTenant('day', '2020-01-24', 0);
-    // drawIntervalChart();
-    callIntervalTraffic('day','2020-01-24',0, '');
+    callSumAllTenant('day', v_params_today, 0);
+    callSumPerTenant('day', v_params_today, 0);
+    callIntervalTraffic('day',v_params_today,0, '');
 
     $('#check-all-channel').prop('checked',false);
     $("input:checkbox.checklist-channel").prop('checked',false);
@@ -32,7 +31,18 @@ $(document).ready(function () {
     // console.log(values);
     list_channel = values;
 
-   $("#filter-loader").fadeOut("slow");
+    $('#input-date-filter').datepicker("setDate", v_params_today);
+    $("#btn-month").prop("class", "btn btn-light btn-sm");
+    $("#btn-year").prop("class", "btn btn-light btn-sm");
+    $("#btn-day").prop("class", "btn btn-red btn-sm");
+
+    sessionStorage.removeItem('paramsSession');
+    sessionStorage.setItem('paramsSession', 'day');
+
+    $('#filter-date').show();
+    $('#filter-month').hide();
+    $('#filter-year').hide();
+    $("#filter-loader").fadeOut("slow");
 });
 
 //function get data and draw
@@ -54,6 +64,84 @@ function getColorChannel(channel){
     return color[channel];
 }
 
+//for dinamic dropdown year on month
+function callYearOnMonth()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-on-month");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-on-month').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+//for dinamic dropdown year on year
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-only");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-only').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
 function callSumAllTenant(params, index, params_year){
     $.ajax({
         type: 'post',
@@ -66,7 +154,7 @@ function callSumAllTenant(params, index, params_year){
         success: function (r) {
             // var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumAllTenant(params, index, params_year);},900000);
+            setTimeout(function(){callSumAllTenant(date);},900000);
             drawPieChartSumAllTenant(r);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -92,7 +180,7 @@ function callSumPerTenant(params, index, params_year){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumPerTenant(params, index, params_year);},900000);
+            setTimeout(function(){callSumPerTenant(date);},900000);
             drawChartPerTenant(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -117,11 +205,12 @@ function callIntervalTraffic(params, index, params_year, channel){
             channel: channel
         },
         success: function (r) {
+            var response = r;
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
-            drawLineChart(r);
+            drawLineChart(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -136,6 +225,7 @@ function callIntervalTraffic(params, index, params_year, channel){
 
 
 function drawPieChartSumAllTenant(response){
+    destroyPieChart();
     //pie chart Ticket Channel
     var ctx = document.getElementById("pieWallSummaryTraffic");
     ctx.height = 250;
@@ -191,6 +281,7 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerTenant(response){
+    destroyHorizontalChart();
     let arrTenant = [], arrART =[], arrAHT = [], arrAST = [], arrSCR = []
 
 
@@ -289,6 +380,16 @@ function destroyChartInterval(){
     $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
     // $('#chart-no-data').remove(); // this is my <canvas> element
     $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic"  class="h-400"></canvas>');
+}
+
+function destroyPieChart(){
+    $('#pieWallSummaryTraffic').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
+}
+
+function destroyHorizontalChart(){
+    $('#echartWallSummaryTraffic').remove(); // this is my <canvas> element
+    $('#echartWallSummaryTrafficDiv').append('<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>');
 }
 
 function drawLineChart(response){
@@ -800,9 +901,9 @@ function fromTemplate(){
                     } ]
         },
         options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			legend:{
+            responsive: true,
+            maintainAspectRatio: false,
+            legend:{
                 position:'bottom',
                 labels:{
                     boxWidth:10
@@ -813,16 +914,193 @@ function fromTemplate(){
                 yAxes: [ {
                     ticks: {
                         beginAtZero: true
-						}
+                        }
                     }]
             }
         }
     } );
 }
 
-//jquery
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
+}
+
+// jquery
 (function ($) {
-    
+    // change date picker
+    var dates = new Date();
+    dates.setDate(dates.getDate()>0);
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        onSelect: function(dateText) {
+            // console.log(this.value);
+            v_date = this.value;
+
+            callSumAllTenant('day', v_date, 0);
+            callSumPerTenant('day', v_date, 0);
+            callIntervalTraffic('day',v_date,0, '');
+
+            $('#check-all-channel').prop('checked',false);
+            $("input:checkbox.checklist-channel").prop('checked',false);
+        }
+    });
+
+    // btn day
+    $('#btn-day').click(function () {
+        params_time = 'day';
+        v_date = '2019-12-01';
+        $('#input-date-filter').datepicker("setDate", v_params_today);
+
+        callSumAllTenant('day', v_params_today, 0);
+        callSumPerTenant('day', v_params_today, 0);
+        callIntervalTraffic('day',v_params_today,0, '');
+
+        $("#btn-month").prop("class", "btn btn-light btn-sm");
+        $("#btn-year").prop("class", "btn btn-light btn-sm");
+        $(this).prop("class", "btn btn-red btn-sm");
+
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'day');
+
+        sessionStorage.removeItem('monthSession');
+        // sessionStorage.setItem('monthSession', n);
+
+        sessionStorage.removeItem('yearSession');
+        // sessionStorage.setItem('yearSession', m);
+
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+    });
+
+    // btn month
+    $('#btn-month').click(function () {
+        params_time = 'month';
+        callSumAllTenant('month', n, m);
+        callSumPerTenant('month', n, m);
+        callIntervalTraffic('month',n,m, '');
+        callYearOnMonth();
+
+        $("#btn-day").prop("class", "btn btn-light btn-sm");
+        $("#btn-year").prop("class", "btn btn-light btn-sm");
+        $(this).prop("class", "btn btn-red btn-sm");
+
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'month');
+
+        sessionStorage.removeItem('monthSession');
+        sessionStorage.setItem('monthSession', n);
+
+        sessionStorage.removeItem('yearSession');
+        sessionStorage.setItem('yearSession', m);
+
+        $('#filter-date').hide();
+        $('#filter-month').show();
+        $('#filter-year').hide();
+    });
+
+    // btn year
+    $('#btn-year').click(function () {
+        params_time = 'year';
+        callSumAllTenant('year', m, 0);
+        callSumPerTenant('year', m, 0);
+        callIntervalTraffic('year',m,0, '');
+        callYear();
+
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'year');
+
+        sessionStorage.removeItem('monthSession');
+
+        sessionStorage.removeItem('yearSession');
+        sessionStorage.setItem('yearSession', m);
+
+        $("#btn-day").prop("class", "btn btn-light btn-sm");
+        $("#btn-month").prop("class", "btn btn-light btn-sm");
+        $(this).prop("class", "btn btn-red btn-sm");
+
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
+    });
+
+
+    $('#select-year-only').change(function () {
+        v_year = $(this).val();
+        callSumAllTenant('year', v_year, 0);
+        callSumPerTenant('year', v_year, 0);
+        callIntervalTraffic('year',v_year,0, '');
+        
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
+    });
+
+    $('#btn-go').click(function(){
+        callSumAllTenant('month',$("#select-month").val(), $("#select-year-on-month").val());
+        callSumPerTenant('month',$("#select-month").val(), $("#select-year-on-month").val());
+        callIntervalTraffic('month',$("#select-month").val(), $("#select-year-on-month").val(), '');
+
+        sessionStorage.removeItem('monthSession');
+        sessionStorage.setItem('monthSession', $("#select-month").val());
+
+        sessionStorage.removeItem('yearSession');
+        sessionStorage.setItem('yearSession', $("#select-year-on-month").val());
+
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+    });
+
     // checked all channel
     $('#check-all-channel').click(function(){
         $("input:checkbox.checklist-channel").prop('checked',this.checked);
@@ -833,9 +1111,21 @@ function fromTemplate(){
         });
         // console.log(values);
         list_channel = values;
-
+        let fromParams = sessionStorage.getItem('paramsSession');
+        console.log(fromParams);
         // call data
-        callIntervalTraffic('day', '2020-01-24',0,list_channel);
+        if (fromParams == 'day') {
+            callIntervalTraffic(fromParams, $("#input-date-filter").val(),0,list_channel);
+        }else if (fromParams == 'month') {
+            let monthFromParams = sessionStorage.getItem('monthSession');
+            let yearFromParams = sessionStorage.getItem('yearSession');
+            console.log('ini month params:'+monthFromParams);
+            console.log('ini year params:'+yearFromParams);
+            callIntervalTraffic(fromParams, monthFromParams, yearFromParams,list_channel);
+        }else if (fromParams == 'year') {
+            callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel);
+            // console.log($("#select-year-only").val());  
+        }
     });
 
     //checked channel
@@ -854,7 +1144,18 @@ function fromTemplate(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic('day','2020-01-24',0, list_channel);
+        let fromParams = sessionStorage.getItem('paramsSession');
+        console.log(fromParams);
+        if (fromParams == 'day') {
+            callIntervalTraffic(fromParams, $("#input-date-filter").val(),0,list_channel);
+        }else if (fromParams == 'month') {
+            let monthFromParams = sessionStorage.getItem('monthSession');
+            let yearFromParams = sessionStorage.getItem('yearSession');
+            console.log('ini month params:'+monthFromParams);
+            console.log('ini year params:'+yearFromParams);
+            callIntervalTraffic(fromParams, monthFromParams, yearFromParams,list_channel);
+        }else if (fromParams == 'year') {
+            callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel);
+        }
     });
-    
 })(jQuery);

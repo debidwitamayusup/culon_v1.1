@@ -256,7 +256,7 @@ Class WallboardModel extends CI_Model {
         }
         else if($params == 'year')
         {
-            $this->db->where('YEAR(rpt_summ_interval.tanggal)', $params_year);
+            $this->db->where('YEAR(rpt_summ_interval.tanggal)', $index);
         }
 		
 		$this->db->where_in('m_channel.channel_name',$channel);

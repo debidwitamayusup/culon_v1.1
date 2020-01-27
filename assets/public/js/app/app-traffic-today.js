@@ -8,8 +8,8 @@ $(document).ready(function () {
     v_date = getYesterday();
     $('#input-date').datepicker("setDate", v_date);
     //set check all channel
-    $('#check-all-channel').prop('checked',true);
-    $("input:checkbox.checklist-channel").prop('checked',true);
+    $('#check-all-channel').prop('checked',false);
+    $("input:checkbox.checklist-channel").prop('checked',false);
     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
     Array.prototype.forEach.call(checkboxes, function(el) {
         values.push(el.value);
