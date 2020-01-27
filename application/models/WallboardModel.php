@@ -35,7 +35,7 @@ Class WallboardModel extends CI_Model {
                 //     'jml' => $data->jml
                 // );
 
-//missing pending - reject
+     //missing pending - reject
                 $result[] = array(
                      $idx,
                      $data->unit,
@@ -87,7 +87,6 @@ Class WallboardModel extends CI_Model {
 
     }
 
-
     public function Traffic_ops($date)
     {
         $this->db->select('tenant_id, SUM(art_num) AS ART, SUM(aht_num) AS AHT, SUM(ast_num) AS AST, SUM(scr) AS SCR');
@@ -116,5 +115,52 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
+    public function scr_pie_chart_channel($date)
+    {
+        $this->db->select('m_channel.channel_name,m_channel.channel_id');
+		$this->db->from('m_channel');
+		$query = $this->db->get();
+
+		$res_channel = array();
+		$res_tot = array();
+			
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($res_channel,$data->channel_name);
+				array_push($res_tot,$this->get_total_cof_piechart($date,$data->channel_id));
+			}
+
+			$result = array(
+				'channel_name' => $res_channel, 
+				'total' => $res_tot
+			);
+		}
+		
+		return $result;
+    }
+
+    function get_total_cof_piechart($date,$channel) //summ
+	{
+        
+		//$date = date('Y-m-d',strtotime($day));
+		
+		$this->db->select('v_scr_all_data.cof as TOTAL');
+		$this->db->from('v_scr_all_data');
+		$this->db->where('v_scr_all_data.tanggal',$date);
+		$this->db->where('v_scr_all_data.channel_id',$channel);
+		$query = $this->db->get();
+
+		if($query->num_rows()>0)
+		{
+			return $query->row()->TOTAL;
+		}
+		else
+		{
+			return '0';
+		}
+
+	}
 
 }
