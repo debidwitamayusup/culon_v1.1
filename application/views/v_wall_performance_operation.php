@@ -311,8 +311,8 @@
                                 </thead>
                                 <tbody class="table-sm text-center">
                                     <tr>
-                                        <td class="text-right">1</td>
-                                        <td class="text-right">Telkom</td>
+                                        <td>1</td>
+                                        <td>Telkom</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -326,8 +326,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">2</td>
-                                        <td class="text-right">BRI</td>
+                                        <td>2</td>
+                                        <td>BRI</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -341,8 +341,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">3</td>
-                                        <td class="text-right">Pegadaian</td>
+                                        <td>3</td>
+                                        <td>Pegadaian</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -356,8 +356,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">4</td>
-                                        <td class="text-right">Garuda</td>
+                                        <td>4</td>
+                                        <td>Garuda</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -371,8 +371,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">6</td>
-                                        <td class="text-right">XXXX</td>
+                                        <td>6</td>
+                                        <td>XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -386,8 +386,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">7</td>
-                                        <td class="text-right">XXXX</td>
+                                        <td>7</td>
+                                        <td>XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -401,8 +401,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">8</td>
-                                        <td class="text-right">XXXX</td>
+                                        <td>8</td>
+                                        <td>XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -416,8 +416,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">9</td>
-                                        <td class="text-right">XXXX</td>
+                                        <td>9</td>
+                                        <td>XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -431,8 +431,8 @@
                                         <td class="text-right">50</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">10</td>
-                                        <td class="text-right">XXXX</td>
+                                        <td>10</td>
+                                        <td>XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
