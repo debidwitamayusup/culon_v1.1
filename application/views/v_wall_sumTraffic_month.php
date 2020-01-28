@@ -13,6 +13,14 @@
                     </ol>
                 </div>
                 <!--Page Header-->
+                <div class="d-flex bd-highlight">
+                    <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+                    <div class="p-2 bd-highlight">
+                        <select class="form-control" id="channel_name">
+                            <option value="#">Layanan</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <!----First Rows--->
