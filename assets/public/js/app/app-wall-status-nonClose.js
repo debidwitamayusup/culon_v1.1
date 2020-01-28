@@ -172,7 +172,9 @@ function drawTableSumAgentPeformSkill(){
 			{ className: "text-right", targets: 5 },
 			{ className: "text-right", targets: 6 },
 			{ className: "text-right", targets: 7 },
-			{ className: "text-right font-weight-extrabold", targets: 8 }
+			{ className: "text-right", targets: 8 },
+			{ className: "text-right", targets: 9 },
+			{ className: "text-right font-weight-extrabold", targets: 10 }
 		],    
         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
@@ -251,8 +253,20 @@ function drawTableSumAgentPeformSkill(){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-            pageTotalTot = api
+            pageTotal7 = api
                 .column( 8, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotal8 = api
+                .column( 9, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotalTot = api
+                .column( 10, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -268,7 +282,9 @@ function drawTableSumAgentPeformSkill(){
             $( api.column( 5 ).footer() ).html(pageTotal4);
             $( api.column( 6 ).footer() ).html(pageTotal5);
             $( api.column( 7 ).footer() ).html(pageTotal6);
-            $( api.column( 8 ).footer() ).html(pageTotalTot);
+            $( api.column( 8 ).footer() ).html(pageTotal7);
+            $( api.column( 9 ).footer() ).html(pageTotal8);
+            $( api.column( 10 ).footer() ).html(pageTotalTot);
         },
         destroy: true
     });

@@ -142,12 +142,12 @@
 													<td width="30%">Unit</td>
 													<td>New</td>
 													<td>Open</td>
-													<td>Reopen</td>
-													<!-- <td>Reject</td>
-		                                                <td>Pending</td> -->
 													<td>Reprocess</td>
+													<td>Pending</td>
+		                                            <td>Reopen</td>
+													<td>Reject</td>
+													<td>Preclose</td>
 													<td>Reassign</td>
-													<td>Reclose</td>
 													<td>Total</td>
 												</tr>
 											</thead>
@@ -286,6 +286,8 @@
 											<tfoot class="text-center font-weight-extrabold bg-total">
 												<tr>
 													<td colspan="2"></td>
+													<td></td>
+													<td></td>
 													<td></td>
 													<td></td>
 													<td></td>
