@@ -557,7 +557,7 @@ function drawKipPerChannelChart(response){
 	    // console.log(chartdata3);
 		var option6 = {
 			grid: {
-				top: '6',
+				top: '30',
 				right: '23',
 				bottom: '20',
 				left: '65',
@@ -606,6 +606,10 @@ function drawKipPerChannelChart(response){
 					// 	} 
 					// }
 				}
+			},
+			legend:{
+				data: ['KOMPLAIN', 'INFORMASI', 'PERMINTAAN'],
+				top: 'auto'
 			},
 			series: chartdata3,
 			color: ["#A5B0B6","#009E8C","#00436D"],
