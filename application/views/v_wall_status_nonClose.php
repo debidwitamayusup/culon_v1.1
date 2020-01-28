@@ -1,27 +1,35 @@
 		<!-- Global Loader-->
 		<div id="global-loader"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader"></div>
 		<div class="page">
-		    <div class="page-main">
-		        <div class=" app-content mt-6">
-		            <div class="side-app">
-		                <div class="page-header d-flex bd-highlight">
-		                    <ol class="breadcrumb">
-		                        <li class="breadcrumb-item active" aria-current="page">
-		                            <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
-		                        </li>
-		                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Status Today (Non Close)
-		                        </li>
-		                    </ol>
-		                </div>
-
-		                <div class="row">
-		                    <div class="col-xl-12 col-lg-12 col-md-12">
-		                        <div class="card overflow-hidden">
-		                            <div class="card-header">
-		                                <h5 class="card-title-small card-pt10">Summary Traffic</h5>
-		                            </div>
-		                            <div class="card-body" id="cardNonClose">
-		                                <!-- <div class="row mt-2">
+			<div class="page-main">
+				<div class=" app-content mt-6">
+					<div class="side-app">
+						<div class="page-header d-flex bd-highlight">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item active" aria-current="page">
+									<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+								</li>
+								<li class="breadcrumb-item active mt-2" aria-current="page">Summary Status Today (Non Close)
+								</li>
+							</ol>
+						</div>
+						<div class="d-flex bd-highlight">
+							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+							<div class="p-2 bd-highlight">
+								<select class="form-control" id="channel_name">
+									<option value="#">Layanan</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12">
+							<div class="card overflow-hidden">
+								<div class="card-header">
+									<h5 class="card-title-small card-pt10">Summary Traffic</h5>
+								</div>
+								<div class="card-body" id="cardNonClose">
+									<!-- <div class="row mt-2">
 		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
 		                                        <div class="card-custom-ticket overflow-hidden">
 		                                            <div class="card-header-small bg-red">
@@ -114,37 +122,37 @@
 		                                        </div>
 		                                    </div>
 		                                </div> -->
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="row">
-		                    <div class="col-xl-12 col-lg-12 col-md-12">
-		                        <div class="card overflow-hidden">
-		                            <div class="card-header-small">
-		                                <h5 class="card-title-small card-pt10">Operation Performance</h5>
-		                            </div>
-		                            <div class="card-body">
-		                                <div class="table-responsive">
-		                                    <table class="table card-table table-bordered table-striped table-vcenter table-hover"
-		                                        style="font-size:12px; width:100%;" id="tableTicket">
-		                                        <thead class="text-center text-white bg-head">
-		                                            <tr>
-		                                                <td>No</td>
-		                                                <td width="30%">Unit</td>
-		                                                <td>New</td>
-		                                                <td>Open</td>
-		                                                <td>Reopen</td>
-		                                                <!-- <td>Reject</td>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12">
+							<div class="card overflow-hidden">
+								<div class="card-header-small">
+									<h5 class="card-title-small card-pt10">Operation Performance</h5>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table card-table table-bordered table-striped table-vcenter table-hover"
+											style="font-size:12px; width:100%;" id="tableTicket">
+											<thead class="text-center text-white bg-head">
+												<tr>
+													<td>No</td>
+													<td width="30%">Unit</td>
+													<td>New</td>
+													<td>Open</td>
+													<td>Reopen</td>
+													<!-- <td>Reject</td>
 		                                                <td>Pending</td> -->
-		                                                <td>Reprocess</td>
-		                                                <td>Reassign</td>
-		                                                <td>Reclose</td>
-		                                                <td>Total</td>
-		                                            </tr>
-		                                        </thead>
-		                                        <tbody class="table-sm">
-		                                          <!--   <tr>
+													<td>Reprocess</td>
+													<td>Reassign</td>
+													<td>Reclose</td>
+													<td>Total</td>
+												</tr>
+											</thead>
+											<tbody class="table-sm">
+												<!--   <tr>
 		                                                <td>1</td>
 		                                                <td>Unit 1</td>
 		                                                <td>200</td>
@@ -274,11 +282,18 @@
 		                                                <td>200</td>
 		                                                <td class="font-weight-extrabold bg-total">200</td>
 		                                            </tr> -->
-		                                        </tbody>
-		                                        <tfoot class="text-center font-weight-extrabold bg-total">
-		                                            <tr>
-		                                            	<td colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-		                                                <!-- <td colspan="2">TOTAL</td>
+											</tbody>
+											<tfoot class="text-center font-weight-extrabold bg-total">
+												<tr>
+													<td colspan="2"></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<!-- <td colspan="2">TOTAL</td>
 		                                                <td>200</td>
 		                                                <td>200</td>
 		                                                <td>200</td>
@@ -288,13 +303,13 @@
 		                                                <td>200</td>
 		                                                <td>200</td>
 		                                                <td class="font-weight-extrabold bg-total">200</td> -->
-		                                            </tr>
-		                                        </tfoot>
-		                                    </table>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <?php $this->load->view('temp/footer');?>
-		                <script src="<?=base_url()?>assets/public/js/app/app-wall-status-nonClose.js"></script>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<script src="<?=base_url()?>assets/public/js/app/app-wall-status-nonClose.js"></script>

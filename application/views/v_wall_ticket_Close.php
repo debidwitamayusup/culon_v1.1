@@ -13,30 +13,40 @@
 								</li>
 							</ol>
 						</div>
-						<!---Next Rows---->
-						<div class="row">
-							<div class="col-md-12 col-lg-4">
-								<div class="card">
-									<div class="card-header-small">
-										<h5 class="card-title-small card-pt10">Summary Status Ticket / Channel</h5>
-									</div>
-									<div class="card-body">
-										<canvas id="barWallTicketClose"></canvas>
-
-									</div>
-								</div>
+						<div class="d-flex bd-highlight">
+							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+							<div class="p-2 bd-highlight">
+								<select class="form-control" id="channel_name">
+									<option value="#">Layanan</option>
+								</select>
 							</div>
-							<div class="col-md-12 col-lg-8">
-								<div class="card">
-									<div class="card-header-small">
-										<h5 class="card-title-small card-pt10">Summary Status Ticket Month</h5>
-									</div>
-									<div class="card-body">
-										<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
-									</div>
+						</div>
+					</div>
+
+					<!---Next Rows---->
+					<div class="row">
+						<div class="col-md-12 col-lg-4">
+							<div class="card">
+								<div class="card-header-small">
+									<h5 class="card-title-small card-pt10">Summary Status Ticket / Channel</h5>
+								</div>
+								<div class="card-body">
+									<canvas id="barWallTicketClose"></canvas>
+
 								</div>
 							</div>
 						</div>
-						<?php $this->load->view('temp/footer');?>
-						<!--Plugin -->
-						<script src="<?=base_url()?>assets/public/js/app/app-wall-ticket-Close.js"></script>
+						<div class="col-md-12 col-lg-8">
+							<div class="card">
+								<div class="card-header-small">
+									<h5 class="card-title-small card-pt10">Summary Status Ticket Month</h5>
+								</div>
+								<div class="card-body">
+									<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<!--Plugin -->
+					<script src="<?=base_url()?>assets/public/js/app/app-wall-ticket-Close.js"></script>
