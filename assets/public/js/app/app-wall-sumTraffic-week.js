@@ -20,9 +20,19 @@ $(document).ready(function(){
     // $("#filter-loader").fadeIn("slow");
 
     getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
-    getTrafficInterval(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    getTrafficInterval(params_week,'');
     getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+
+    $('#check-all-channel').prop('checked',false);
+    $("input:checkbox.checklist-channel").prop('checked',false);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        type.push($(el).data('type'));
+    });
+    // console.log(values);
+    list_channel = values;
 });
 
 function addCommas(commas)
@@ -178,7 +188,6 @@ function getTrafficInterval(week,arr_channel){
 function drawTrafficInterval(response){
     // destroy chart interval 
     $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-    // $('#chart-no-data').remove(); // this is my <canvas> element
     $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-400"></canvas>');
     var data = [];
     if(!response.data.series){
@@ -288,7 +297,7 @@ function drawTableTraffic(response){
             '<td colspan="2" class="text-right">TOTAL</td>'+            
             '<td class="text-right">'+addCommas(mon)+'</td>'+
             '<td class="text-right">'+addCommas(tue)+'</td>'+
-            '<td clas="text-right">'+addCommas(wed)+'</td>'+
+            '<td class="text-right">'+addCommas(wed)+'</td>'+
             '<td class="text-right">'+addCommas(thu)+'</td>'+
             '<td class="text-right">'+addCommas(fri)+'</td>'+
             '<td class="text-right">'+addCommas(sat)+'</td>'+
@@ -457,6 +466,44 @@ function drawChartDaily(week,arr_channel){
         }
     });          
 }
+
+(function ($) {
+    
+    // checked all channel
+    $('#check-all-channel').click(function(){
+        $("input:checkbox.checklist-channel").prop('checked',this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        // call data
+        getTrafficInterval(params_week,list_channel);
+    });
+
+    //checked channel
+    $('.checklist-channel').click(function(){
+        $('#check-all-channel').prop( "checked", false );
+        
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+        // call data
+        getTrafficInterval(params_week, list_channel);
+    });
+    
+})(jQuery);
 
 // $(function ($) {
 //     "use strict";

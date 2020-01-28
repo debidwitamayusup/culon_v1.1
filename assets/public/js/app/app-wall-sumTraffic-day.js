@@ -18,8 +18,19 @@ $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
     callDataPercentage(v_params_today);
-    callIntervalTraffic(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callIntervalTraffic(v_params_today,'');
+    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     $("#filter-loader").fadeOut("slow");
+
+    $('#check-all-channel').prop('checked',false);
+    $("input:checkbox.checklist-channel").prop('checked',false);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        type.push($(el).data('type'));
+    });
+    // console.log(values);
+    list_channel = values;
 });
 
 function addCommas(commas)
@@ -75,6 +86,33 @@ function callIntervalTraffic(date, arr_channel){
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawChartToday(response);
+            // drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function callTableInterval(date, arr_channel){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
+        data: {
+            date: date,
+            arr_channel: arr_channel
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callTableInterval(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -85,6 +123,7 @@ function callIntervalTraffic(date, arr_channel){
         },
     });
 }
+
 function destroyChartInterval(){
     // destroy chart interval 
     $('#lineWallsumTrafficDay').remove(); // this is my <canvas> element
@@ -538,7 +577,7 @@ function fromTemplate(response) {
         list_channel = values;
 
         // call data
-        callIntervalTraffic('day', '2020-01-24',0,list_channel);
+        callIntervalTraffic(v_params_today,list_channel);
     });
 
     //checked channel
@@ -557,7 +596,7 @@ function fromTemplate(response) {
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic('day','2020-01-24',0, list_channel);
+        callIntervalTraffic(v_params_today, list_channel);
     });
     
 })(jQuery);

@@ -18,8 +18,19 @@ $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
     callDataPercentage(n,m);
-    callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callIntervalTraffic(n,'');
+    callTableInterval(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
     $("#filter-loader").fadeOut("slow");
+
+    $('#check-all-channel').prop('checked',false);
+    $("input:checkbox.checklist-channel").prop('checked',false);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    Array.prototype.forEach.call(checkboxes, function(el) {
+        values.push(el.value);
+        type.push($(el).data('type'));
+    });
+    // console.log(values);
+    list_channel = values;
 });
 
 function addCommas(commas)
@@ -81,6 +92,32 @@ function callIntervalTraffic(month, arr_channel){
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callIntervalTraffic(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawChartToday(response);
+            // drawTableData(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+function callTableInterval(month, arr_channel){
+    // console.log(+arr_channel);
+    // $("#filter-loader").fadeIn("slow");
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/SummaryTraffic/SummaryMonth/getIntervalTrafficMonthly',
+        data: {
+            month: month,
+            arr_channel: arr_channel
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callTableInterval(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -326,6 +363,44 @@ function drawTableData(response){
     //fade out loading
     $("#filter-loader").fadeOut("slow");
 }
+
+(function ($) {
+    
+    // checked all channel
+    $('#check-all-channel').click(function(){
+        $("input:checkbox.checklist-channel").prop('checked',this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        // call data
+        callIntervalTraffic(n,list_channel);
+    });
+
+    //checked channel
+    $('.checklist-channel').click(function(){
+        $('#check-all-channel').prop( "checked", false );
+        
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+        // call data
+        callIntervalTraffic(n, list_channel);
+    });
+    
+})(jQuery);
 
 function fromTemplate(){
     "use strict";
