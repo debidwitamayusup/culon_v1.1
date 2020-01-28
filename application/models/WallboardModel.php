@@ -49,10 +49,16 @@ Class WallboardModel extends CI_Model {
 
         if($query->num_rows()>0)
         {
+            $tdatas=0;
+
             foreach($query->result() as $data)
             {
-                array_push($result,$this->Op_Performancedata($src,$unit,$data->status_id));
+                $datas = $this->Op_Performancedata($src,$unit,$data->status_id);
+                $tdatas = $tdatas + $datas;
+                array_push($result,$datas);
             }
+            array_push($result,strval($tdatas));
+
             return $result;
         }
         return FALSE;
