@@ -78,12 +78,26 @@ function callYearOnMonth()
 
             // var html = '<option value="2020">2020</option>';
             var html = '';
+            var monthOption = '';
             var i;
                 for(i=0; i<response.data.niceDate.length; i++){
                     html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
                 }
                 $('#select-year-on-month').html(html);
-            
+
+                monthOption = '<option value="01">January</option>'+
+                                '<option value="02">February</option>'+
+                                '<option value="03">March</option>'+
+                                '<option value="04">April</option>'+
+                                '<option value="05">May</option>'+
+                                '<option value="06">June</option>'+
+                                '<option value="07">July</option>'+
+                                '<option value="08">August</option>'+
+                                '<option value="09">September</option>'+
+                                '<option value="10">October</option>'+
+                                '<option value="11">November</option>'+
+                                '<option value="12">December</option>';
+                $('#select-month').html(monthOption);                            
             // var option = $ ("<option />");
             //     option.html(i);
             //     option.val(i);
@@ -585,6 +599,13 @@ function setDatePicker(){
     // btn month
     $('#btn-month').click(function(){
         params_time = 'month';
+        
+        // var arg ='option '+n+'';
+        // $('#select-month').val(arg)
+        console.log('dwe'+n);
+        // $( '#select-month' ).find('option[value='+n+']').attr('selected','selected')
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
         loadContent(params_time, n, m);
@@ -595,6 +616,9 @@ function setDatePicker(){
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+
+        // document.getElementById("select-month").selected = "true"
+        // document.getElementById("select-year-on-month").selected = "true"
 
         $('#filter-date').hide();
         $('#filter-month').show();
@@ -612,6 +636,7 @@ function setDatePicker(){
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         $('#filter-date').hide();
         $('#filter-month').hide();
         $('#filter-year').show();

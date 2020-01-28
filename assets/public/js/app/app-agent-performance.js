@@ -50,6 +50,7 @@ function callYearOnMonth()
             var response = JSON.parse(r);
 
             // var html = '<option value="2020">2020</option>';
+            var monthOption='';
             var html = '';
             var i;
                 for(i=0; i<response.data.niceDate.length; i++){
@@ -57,6 +58,19 @@ function callYearOnMonth()
                 }
                 $('#select-year-on-month').html(html);
             
+            monthOption = '<option value="01">January</option>'+
+                                '<option value="02">February</option>'+
+                                '<option value="03">March</option>'+
+                                '<option value="04">April</option>'+
+                                '<option value="05">May</option>'+
+                                '<option value="06">June</option>'+
+                                '<option value="07">July</option>'+
+                                '<option value="08">August</option>'+
+                                '<option value="09">September</option>'+
+                                '<option value="10">October</option>'+
+                                '<option value="11">November</option>'+
+                                '<option value="12">December</option>';
+            $('#select-month').html(monthOption);
             // var option = $ ("<option />");
             //     option.html(i);
             //     option.val(i);
@@ -407,7 +421,8 @@ function drawDataTable(params_time, index, params_year){
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
-        
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
 
         $('#filter-date').hide();
         $('#filter-month').show();

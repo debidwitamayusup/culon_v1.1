@@ -17,8 +17,8 @@
             <div class="d-flex bd-highlight">
                 <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
                 <div class="p-2 bd-highlight">
-                        <select class="form-control" id="channel_name">
-                            <option value="#">Layanan</option>
+                        <select class="form-control" id="tenant_name">
+                            <!-- <option value="#">Layanan</option> -->
                         </select>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="font-size:10px">
+                                style="font-size:10px" id="tabelCOFByChannel">
                                 <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">No</td>
@@ -60,8 +60,8 @@
                                         <td class="bg-column">SMS</td>
                                     </tr>
                                 </thead>
-                                <tbody class="table-sm text-center">
-                                    <tr>
+                                <tbody class="table-sm text-center" id="mytbody">
+                                    <!-- <tr>
                                         <td>1</td>
                                         <td>Telkom</td>
                                         <td>50</td>
@@ -248,12 +248,12 @@
                                         <td>50</td>
                                         <td>50</td>
                                         <td>50</td>
-                                        <td>50</td>
+                                        <td>50</td> -->
                                     </tr>
                                 </tbody>
-                                <tfoot class="bg-total font-weight-extrabold text-center">
+                                <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot">
                                     <tr>
-                                        <td colspan="2">Total</td>
+                                        <!-- <td colspan="2">Total</td>
                                         <td>50</td>
                                         <td>50</td>
                                         <td>50</td>
@@ -270,7 +270,7 @@
                                         <td>50</td>
                                         <td>50</td>
                                         <td>50</td>
-                                        <td>50</td>
+                                        <td>50</td> -->
                                     </tr>
                                 </tfoot>
                             </table>

@@ -322,37 +322,36 @@ function drawTableData(response){
         for (var i = 0; i < 24; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+tagTime[i]+'</td>'+
-            '<td>'+response.data.total_agent[0][i]+'</td>'+
-            '<td>'+response.data.series[0].data[i]+'</td>'+
-            '<td>'+response.data.series[1].data[i]+'</td>'+
-            '<td>'+response.data.series[2].data[i]+'</td>'+
-            '<td>'+response.data.series[3].data[i]+'</td>'+
-            '<td>'+response.data.series[4].data[i]+'</td>'+
-            '<td>'+response.data.series[5].data[i]+'</td>'+
-            '<td>'+response.data.series[6].data[i]+'</td>'+
-            '<td>'+response.data.series[7].data[i]+'</td>'+
-            '<td>'+response.data.series[8].data[i]+'</td>'+
-            '<td>'+response.data.series[9].data[i]+'</td>'+
-            '<td>'+response.data.series[10].data[i]+'</td>'+
-            '<td>'+response.data.series[11].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.total_agent[0][i]+'</td>'+
+            '<td class="text-right">'+response.data.series[0].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[1].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[2].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[3].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[4].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[5].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[6].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[7].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[8].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[9].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[10].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[11].data[i]+'</td>'+
             '</tr>');
         }
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
-            '<td>TOTAL</td>'+
-            '<td>'+addCommas(sumTotAgent)+'</td>'+
-            '<td>'+addCommas(sumFb)+'</td>'+
-            '<td>'+addCommas(sumWA)+'</td>'+
-            '<td>'+addCommas(sumTw)+'</td>'+
-            '<td>'+addCommas(sumEmail)+'</td>'+
-            '<td>'+addCommas(sumTel)+'</td>'+
-            '<td>'+addCommas(sumLine)+'</td>'+
-            '<td>'+addCommas(sumVoice)+'</td>'+
-            '<td>'+addCommas(sumInst)+'</td>'+
-            '<td>'+addCommas(sumMes)+'</td>'+
-            '<td>'+addCommas(sumTwDM)+'</td>'+
-            '<td>'+addCommas(sumLive)+'</td>'+
-            '<td>'+addCommas(sumSms)+'</td>'+
+            '<td colspan="2">TOTAL</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTw)+'</td>'+
+            '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '</tr>');
 
     }else{

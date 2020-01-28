@@ -183,6 +183,48 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function SummStatusTicketOps_post()
+    {
+
+        $src = $this->security->xss_clean($this->input->post('search'));
+        $date = $this->security->xss_clean($this->input->post('date'));
+
+        $res = $this->module_model->SummStatusTicketOps($date,$src);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function GetTennantscr_post()
+    {
+        $date = $this->security->xss_clean($this->input->post('date'));
+        $res = $this->module_model->Tenantscrget($date);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
 
 
 //under const

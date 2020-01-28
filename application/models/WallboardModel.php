@@ -60,31 +60,36 @@ Class WallboardModel extends CI_Model {
 
     public function sumStat_NC()
     {
-        $this->db->select('SUM(sNew) as SNEW, SUM(sOpen) as SOPEN, SUM(sReopen) as SREOPEN, SUM(sReProses) as SREPROSES, SUM(sPreClose) as SPRECLOSE, SUM(sReAssign) as SREASSIGN');
-        $this->db->from('v_summ_ticket_unit');
+        $this->db->select('m_status.status , SUM(v_summ_unit.jml) as jml');
+        $this->db->from('m_status');
+        $this->db->join('v_summ_unit','v_summ_unit.ticket_status = m_status.status_id');
+        $this->db->where('v_summ_unit.jml IS NOT NULL');
+        $this->db->or_where('v_summ_unit.jml IS NULL');
+        $this->db->group_by('v_summ_unit.ticket_status');
+
         $query = $this->db->get();
+        $result = array();
 
         if($query->num_rows()>0)
         {
-            $result = array(
-                'sumNew'   => $query->row()->SNEW,
-                'sumOpen'  => $query->row()->SOPEN,
-                'sumReProses' => $query->row()->SREPROSES,
-                'sumReOpen' => $query->row()->SREOPEN,
-                'sumPreClose' => $query->row()->SPRECLOSE,
-                'sumReAssign' => $query->row()->SREASSIGN,
-                'sumPending' => 'NAN 0'
-             );
+            foreach($query->result() as $datas)
+            {
+                $result['sum'.$datas->status] = $datas->jml;
+            }
+            
+            // $result = array(
+            //     'sumNew'   => $query->row()->SNEW,
+            //     'sumOpen'  => $query->row()->SOPEN,
+            //     'sumReProses' => $query->row()->SREPROSES,
+            //     'sumReOpen' => $query->row()->SREOPEN,
+            //     'sumPreClose' => $query->row()->SPRECLOSE,
+            //     'sumReAssign' => $query->row()->SREASSIGN,
+            //     'sumPending' => 'NAN 0'
+            //  );
 
             return $result;
-        }
-
-           
-        
-
+        }         
         return FALSE;
-
-
     }
 
     public function Traffic_ops($params,$index,$params_year)
@@ -296,7 +301,7 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
-        $this->db->select('rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
+        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         if($src)
@@ -314,7 +319,7 @@ Class WallboardModel extends CI_Model {
                 $t_id = $data->tenant_id;
 
                 $data = array(
-                    'TENANT_ID' => $t_id,
+                    'TENANT_ID' => strtoupper($data->id),
                     'SUMCOF' =>  $data->COF,
                     'SUMART' => $data->ART,
                     'SUMAHT' => $data->AHT,
@@ -366,7 +371,64 @@ Class WallboardModel extends CI_Model {
         
     }
 
+
+    public function Tenantscrget($date)
+    {
+        $this->db->select('tenant_id');
+        $this->db->from('rpt_summary_scr');
+        $this->db->where('tanggal',$date);
+        $this->db->group_by('tenant_id');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            $result = array();
+            foreach($query->result() as $data)
+            {
+                array_push($result,$data->tenant_id);
+            }
+            return $result;
+        }
+        return false;
+    }
+
+  
+
 //under const
+
+public function SummStatusTicketOps($date,$src)
+    {
+        $this->db->select('rpt_summ_kip1.tenant_id,');
+        $this->db->from('rpt_summ_kip1');
+        $this->db->where('tanggal',$date);
+        if($src)
+        {
+            $this->db->where('tenant_id',$src);
+        }
+        $this->db->group_by('category');
+        $this->db->group_by('tenant_id');
+
+        $query = $this->db->get();
+        
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $t_id = $data->tenant_id;
+
+                $data = array(
+                    'TENANT_ID' => $t_id
+                );
+
+                $result[] = $data3;
+
+            }
+
+            return $result;
+        }
+
+        return FALSE;
+    }
     public function SummTicketC($months,$year)
     {
         

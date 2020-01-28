@@ -448,13 +448,21 @@ function drawStackedBar(params, channel_name, index, params_year){
             },
             legend:{
                 data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat'],
-                bottom: 'auto'
+                left: 'center',
+                // top: 'bottom',
+                itemWidth :12,
+                padding: [20, 10,30, 10]
             },
+
             grid: {
-                top:'2%',
-                left: '1%',
-                right: '5%',
-                bottom: '3%',
+                // top:'2%',
+                // left: '1%',
+                // right: '2%',
+                // bottom: '3%',
+                top: '17%',
+                right: '3%',
+                bottom: '7%',
+                left: '3%',
                 containLabel: true
             },
             xAxis: {
