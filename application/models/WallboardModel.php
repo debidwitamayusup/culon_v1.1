@@ -447,7 +447,6 @@ Class WallboardModel extends CI_Model {
         
     }
 
-
     public function Tenantscrget($date)
     {
         $this->db->select('tenant_id');
@@ -468,7 +467,24 @@ Class WallboardModel extends CI_Model {
         return false;
     }
 
-  
+    public function Channel_data()
+    {
+        $this->db->select('channel_name');
+        $this->db->from('m_channel');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+               array_push($result,$data->channel_name);
+            }
+            return $result;
+        }
+        return FALSE;
+    }
 
 //under const
 
