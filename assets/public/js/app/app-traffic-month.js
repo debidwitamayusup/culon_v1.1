@@ -420,9 +420,31 @@ function drawStackedBar(params, channel_name, index, params_year){
             // },
             tooltip: {
                 trigger: 'axis',
-                axisPointer: { 
-                    type: 'shadow'
-                }
+                 show: true,
+                 showContent: true,
+                 alwaysShowContent: false,
+                 triggerOn: 'mousemove',
+                 trigger: 'axis',
+                 axisPointer: {
+                     label: {
+                         show: true,
+                         color: '#7886a0',
+                         type: 'shadow',
+                         fontSize: 8
+                         // formatter : function (){
+                         //     return label_lng;
+                         // }
+                     }
+                 },
+                 // position: ['86%', '0%']
+                 position: function (pos, params, dom, rect, size) {
+                     // tooltip will be fixed on the right if mouse hovering on the left,
+                     // and on the left if hovering on the right.
+                     // console.log(pos);
+                     var obj = {top: pos[6]};
+                     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                     return obj;
+                 },
             },
             grid: {
                 top:'2%',
