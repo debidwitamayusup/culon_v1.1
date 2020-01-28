@@ -229,7 +229,25 @@ function drawChartPerTenant(response){
         tooltip: {
             trigger: 'axis',
             axisPointer: {       
-                type: 'shadow'
+                // type: 'shadow'
+                label: {
+                    show: false,
+                    formatter: function (value, index) {
+                            var teks = '';
+                            // console.log(value)
+                            if(value.value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value.value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else{
+                                return value.value
+                            }
+                            return teks;
+                    }
+                }
             }
         },
         legend: {
