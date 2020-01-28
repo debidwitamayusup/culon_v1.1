@@ -384,7 +384,7 @@ function drawChartSumChannel(response){
 		let art = [];
 		let aht = [];
 		let ast = [];
-		console.log(response.data);
+		// console.log(response.data);
 		response.data.forEach(function (value, index) {
 			channelName.push(value.CHANNEL_NAME);
 			art.push(value.SUM_ART);

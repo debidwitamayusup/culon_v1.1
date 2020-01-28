@@ -202,8 +202,6 @@ function drawPieChartSumAllTenant(response){
 function drawChartPerTenant(response){
     let arrTenant = [], arrART =[], arrAHT = [], arrAST = [], arrSCR = []
 
-
-
     response.data.forEach(function (value, index) {
             arrTenant.push(value.TENANT_ID);
             arrART.push(value.ART);

@@ -89,7 +89,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reopen</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReOpen)+'</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReopen)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -100,7 +100,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reprocess</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReProses)+'</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReProcess)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -113,7 +113,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Pending</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">200</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumPending)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -124,7 +124,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reject</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">200</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReject)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+

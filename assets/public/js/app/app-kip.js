@@ -454,7 +454,7 @@ function drawPieChart(response){
 				  callbacks: {
 						label: function(tooltipItem, data) {
 							var value = data.datasets[0].data[tooltipItem.index];
-							console.log(data);
+							// console.log(data);
 							value = value.toString();
 							value = value.split(/(?=(?:...)*$)/);
 							value = value.join(',');
@@ -483,7 +483,7 @@ function drawPieChart(response){
 	                            total += parseInt(allData[i]);
 	                        }
 	                        legendHtml.push('<li class="col-md-auto">');
-	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + dataLabel + '</span>');
+	                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + addCommas(dataLabel) + '</span>');
 	                        legendHtml.push('</li>');
 	                    }else if(allData[index] == 0){
 	                        var label = chart.data.labels[index];
@@ -542,7 +542,7 @@ function drawKipPerChannelChart(response){
 				}
 				totalKip.push(total)
 
-	    console.log(totalKip);
+	    // console.log(totalKip);
 			});
 			var dataKip = {
 				name: value,

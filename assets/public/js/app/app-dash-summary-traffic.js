@@ -1200,15 +1200,15 @@ function setDatePicker(){
         // console.log(values);
         list_channel = values;
         let fromParams = sessionStorage.getItem('paramsSession');
-        console.log(fromParams);
+        // console.log(fromParams);
         // call data
         if (fromParams == 'day') {
             callIntervalTraffic(fromParams, $("#input-date-filter").val(),0,list_channel);
         }else if (fromParams == 'month') {
             let monthFromParams = sessionStorage.getItem('monthSession');
             let yearFromParams = sessionStorage.getItem('yearSession');
-            console.log('ini month params:'+monthFromParams);
-            console.log('ini year params:'+yearFromParams);
+            // console.log('ini month params:'+monthFromParams);
+            // console.log('ini year params:'+yearFromParams);
             callIntervalTraffic(fromParams, monthFromParams, yearFromParams,list_channel);
         }else if (fromParams == 'year') {
             callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel);
@@ -1233,14 +1233,14 @@ function setDatePicker(){
         list_channel = values;
         // call data
         let fromParams = sessionStorage.getItem('paramsSession');
-        console.log(fromParams);
+        // console.log(fromParams);
         if (fromParams == 'day') {
             callIntervalTraffic(fromParams, $("#input-date-filter").val(),0,list_channel);
         }else if (fromParams == 'month') {
             let monthFromParams = sessionStorage.getItem('monthSession');
             let yearFromParams = sessionStorage.getItem('yearSession');
-            console.log('ini month params:'+monthFromParams);
-            console.log('ini year params:'+yearFromParams);
+            // console.log('ini month params:'+monthFromParams);
+            // console.log('ini year params:'+yearFromParams);
             callIntervalTraffic(fromParams, monthFromParams, yearFromParams,list_channel);
         }else if (fromParams == 'year') {
             callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel);
