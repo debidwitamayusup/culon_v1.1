@@ -284,17 +284,17 @@ function drawTableTraffic(response){
             $('#mytable').find('tbody').append('<tr>'+
             '<td class="text-center">'+(i+1)+'</td>'+
             '<td class="text-left">'+response.channel[i]+'</td>'+
-            '<td>'+response.data[0].DATA[i]+'</td>'+
-            '<td>'+response.data[1].DATA[i]+'</td>'+
-            '<td>'+response.data[2].DATA[i]+'</td>'+
-            '<td>'+response.data[3].DATA[i]+'</td>'+
-            '<td>'+response.data[4].DATA[i]+'</td>'+
-            '<td>'+response.data[5].DATA[i]+'</td>'+
-            '<td>'+response.data[6].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[0].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[1].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[2].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[3].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[4].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[5].DATA[i]+'</td>'+
+            '<td class="text-right">'+response.data[6].DATA[i]+'</td>'+
             '</tr>');
         };
         $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
-            '<td colspan="2" class="text-right">TOTAL</td>'+            
+            '<td colspan="2" class="text-center">TOTAL</td>'+            
             '<td class="text-right">'+addCommas(mon)+'</td>'+
             '<td class="text-right">'+addCommas(tue)+'</td>'+
             '<td class="text-right">'+addCommas(wed)+'</td>'+

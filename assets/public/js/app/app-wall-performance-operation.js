@@ -16,10 +16,10 @@ var v_params_today= m + '-' + n + '-' + (o);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
-    // callTableCOFByChannel('2020-01-24', '');
-    // getTenant('2020-01-24');
-    getTenant(v_params_today);
-    callTableCOFByChannel(v_params_today);
+    callTableCOFByChannel('2020-01-24', '');
+    getTenant('2020-01-24');
+    // getTenant(v_params_today);
+    // callTableCOFByChannel(v_params_today);
 
    $("#filter-loader").fadeOut("slow");
 });

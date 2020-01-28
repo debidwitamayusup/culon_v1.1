@@ -326,37 +326,36 @@ function drawTableData(response){
         for (var i = 0; i < 24; i++) {
             $('#wall-today-tbl').find('tbody').append('<tr>'+
             '<td>'+tagTime[i]+'</td>'+
-            '<td>'+response.data.total_agent[0][i]+'</td>'+
-            '<td>'+response.data.series[0].data[i]+'</td>'+
-            '<td>'+response.data.series[1].data[i]+'</td>'+
-            '<td>'+response.data.series[2].data[i]+'</td>'+
-            '<td>'+response.data.series[3].data[i]+'</td>'+
-            '<td>'+response.data.series[4].data[i]+'</td>'+
-            '<td>'+response.data.series[5].data[i]+'</td>'+
-            '<td>'+response.data.series[6].data[i]+'</td>'+
-            '<td>'+response.data.series[7].data[i]+'</td>'+
-            '<td>'+response.data.series[8].data[i]+'</td>'+
-            '<td>'+response.data.series[9].data[i]+'</td>'+
-            '<td>'+response.data.series[10].data[i]+'</td>'+
-            '<td>'+response.data.series[11].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.total_agent[0][i]+'</td>'+
+            '<td class="text-right">'+response.data.series[0].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[1].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[2].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[3].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[4].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[5].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[6].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[7].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[8].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[9].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[10].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[11].data[i]+'</td>'+
             '</tr>');
         }
 
         $('#wall-today-tbl').find('tfoot').append('<tr>'+
-            '<td>TOTAL</td>'+
-            '<td>'+sumTotAgent+'</td>'+
-            '<td>'+sumFb+'</td>'+
-            '<td>'+sumWA+'</td>'+
-            '<td>'+sumTw+'</td>'+
-            '<td>'+sumEmail+'</td>'+
-            '<td>'+sumTel+'</td>'+
-            '<td>'+sumLine+'</td>'+
-            '<td>'+sumVoice+'</td>'+
-            '<td>'+sumInst+'</td>'+
-            '<td>'+sumMes+'</td>'+
-            '<td>'+sumTwDM+'</td>'+
-            '<td>'+sumLive+'</td>'+
-            '<td>'+sumSms+'</td>'+
+            '<td colspan="2">TOTAL</td>'+
+            '<td class="text-right">'+sumFb+'</td>'+
+            '<td class="text-right">'+sumWA+'</td>'+
+            '<td class="text-right">'+sumTw+'</td>'+
+            '<td class="text-right">'+sumEmail+'</td>'+
+            '<td class="text-right">'+sumTel+'</td>'+
+            '<td class="text-right">'+sumLine+'</td>'+
+            '<td class="text-right">'+sumVoice+'</td>'+
+            '<td class="text-right">'+sumInst+'</td>'+
+            '<td class="text-right">'+sumMes+'</td>'+
+            '<td class="text-right">'+sumTwDM+'</td>'+
+            '<td class="text-right">'+sumLive+'</td>'+
+            '<td class="text-right">'+sumSms+'</td>'+
             '</tr>');
 
     }else{
