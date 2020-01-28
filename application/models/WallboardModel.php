@@ -8,55 +8,86 @@ Class WallboardModel extends CI_Model {
         parent::__construct();
     }
 
+
     public function Op_Performance($src='')
     {
-        $this->db->select('*');
-        $this->db->from('v_summ_ticket_unit');
+        $this->db->select('m_unit.unit,m_unit.unit_id');
+        $this->db->from('m_unit');
+        $query = $this->db->get();
+
+        if($query->num_rows()>0)
+        {
+        
+            $idx = 1;
+            foreach($query->result() as $data)
+            {
+                $data1 = array(
+                        $idx,
+                        $data->unit    
+                    );
+                $idx++;
+                $data2 = $this->Op_Performancestat($src,$data->unit_id);
+                $data3 = array_merge($data1,$data2);
+                $result[] = $data3; 
+            }
+            return $result;
+        }
+        return FALSE;
+
+
+    }
+
+    function Op_Performancestat($src ='',$unit)
+    {
+        $this->db->select('status_id');
+        $this->db->from('m_status');
+        $this->db->where('status_id !=',8);
+        $this->db->order_by('status_id');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows()>0)
+        {
+            $tdatas=0;
+
+            foreach($query->result() as $data)
+            {
+                $datas = $this->Op_Performancedata($src,$unit,$data->status_id);
+                $tdatas = $tdatas + $datas;
+                array_push($result,$datas);
+            }
+            array_push($result,strval($tdatas));
+
+            return $result;
+        }
+        return FALSE;
+    }
+
+
+
+    function Op_Performancedata($src='',$unit,$status_id)
+    {
+        $this->db->select('v_summ_unit.jml');
+        $this->db->from('v_summ_unit');
+        $this->db->join('m_status','v_summ_unit.ticket_status = m_status.status_id');
+        $this->db->where('v_summ_unit.unit_id',$unit);
+        $this->db->where('v_summ_unit.ticket_status',$status_id);
         if($src)
 		{
-			$this->db->like('unit',$src);
+			$this->db->like('m_unit.unit',$src);
         }
         $query = $this->db->get();
 
         if($query->num_rows()>0)
         {
-            $idx = 1;
-            foreach($query->result() as $data)
-            {
-                // $result[] = array(
-                //     'unit_name' => $data->unit,
-                //     'New'   => $data->sNew,
-                //     'Open'  => $data->sOpen,
-                //     'ReProses' => $data->sReProses,
-                //     'ReOpen' => $data->sReopen,
-                //     'PreClose' => $data->sPreClose,
-                //     'ReAssign' => $data->sReAssign,
-                //     'Pending' => 'NAN 0',
-                //     'jml' => $data->jml
-                // );
-
-     //missing pending - reject
-                $result[] = array(
-                     $idx,
-                     $data->unit,
-                     $data->sNew,
-                     $data->sOpen,
-                     $data->sReopen,
-                     
-
-                     $data->sReProses,
-                     $data->sReAssign,
-                     $data->sPreClose,
-                     $data->jml
-                );
-                $idx++;
-            }
-
-            return $result;
+            return $query->row()->jml;
         }
 
-        return FALSE;
+        return "0";
     }
+
+    
 
     public function sumStat_NC()
     {
