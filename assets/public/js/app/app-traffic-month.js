@@ -178,7 +178,7 @@ function callDataPercentage(month, year){
 function drawChartPercentageMonth(response){
     var data_label = [];
     var data_rate = [];
-    var data_color = [];;
+    var data_color = [];
     response.data.forEach(function (value, index) {
         data_label.push(value.channel_name);
         data_rate.push(value.rate);

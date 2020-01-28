@@ -250,4 +250,16 @@ class WallboardController extends REST_Controller {
 
     }
 
+    // debi
+    public function summaryTicketCloseWall_post()
+    {
+        $month = $this->security->xss_clean($this->input->post('index', true));
+        $year = $this->security->xss_clean($this->input->post('params_year', true));
+        $channel = $this->security->xss_clean($this->input->post('channel_name', true));
+
+        $res = $this->module_model->summaryTicketCloseWall($month, $year);
+
+        echo json_encode($res);
+    }
+
 }
