@@ -90,7 +90,7 @@ function callSumPerTenant(params, index, params_year){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            console.log(response);
+            // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(params, index, params_year);},900000);
             drawChartPerTenant(response);
@@ -327,13 +327,16 @@ function drawChartPerTenant(response){
         legend: {
             // bottom: 10,
             left: 'center',
+            top: 'auto',
             data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
+            itemWidth :12,
+            padding: [10, 10,40, 10]
             // labels:{
             //     boxWidth:10
             // }
         },
         grid: {
-            top: '10%',
+            top: '15%',
             right: '5%',
             bottom: '10%',
             left: '16%'
