@@ -296,7 +296,7 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
-        $this->db->select('rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
+        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         if($src)
@@ -314,7 +314,7 @@ Class WallboardModel extends CI_Model {
                 $t_id = $data->tenant_id;
 
                 $data = array(
-                    'TENANT_ID' => $t_id,
+                    'TENANT_ID' => strtoupper($data->id),
                     'SUMCOF' =>  $data->COF,
                     'SUMART' => $data->ART,
                     'SUMAHT' => $data->AHT,
@@ -366,7 +366,64 @@ Class WallboardModel extends CI_Model {
         
     }
 
+
+    public function Tenantscrget($date)
+    {
+        $this->db->select('tenant_id');
+        $this->db->from('rpt_summary_scr');
+        $this->db->where('tanggal',$date);
+        $this->db->group_by('tenant_id');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            $result = array();
+            foreach($query->result() as $data)
+            {
+                array_push($result,$data->tenant_id);
+            }
+            return $result;
+        }
+        return false;
+    }
+
+  
+
 //under const
+
+public function SummStatusTicketOps($date,$src)
+    {
+        $this->db->select('rpt_summ_kip1.tenant_id,');
+        $this->db->from('rpt_summ_kip1');
+        $this->db->where('tanggal',$date);
+        if($src)
+        {
+            $this->db->where('tenant_id',$src);
+        }
+        $this->db->group_by('category');
+        $this->db->group_by('tenant_id');
+
+        $query = $this->db->get();
+        
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $t_id = $data->tenant_id;
+
+                $data = array(
+                    'TENANT_ID' => $t_id
+                );
+
+                $result[] = $data3;
+
+            }
+
+            return $result;
+        }
+
+        return FALSE;
+    }
     public function SummTicketC($months,$year)
     {
         
