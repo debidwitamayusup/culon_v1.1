@@ -451,7 +451,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                 left: 'center',
                 // top: 'bottom',
                 itemWidth :12,
-                padding: [20, 10,30, 10]
+                padding: [10, 10,40, 10]
             },
 
             grid: {
@@ -459,7 +459,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                 // left: '1%',
                 // right: '2%',
                 // bottom: '3%',
-                top: '17%',
+                top: '19%',
                 right: '3%',
                 bottom: '7%',
                 left: '3%',

@@ -22,9 +22,9 @@
 							<h5 class="card-title-small card-pt10">Graphic Interval Monthly</h5>
 						</div>
 						<div class="card-body">
-							<div class="d-flex flex-row bd-highlight mb-2">
-								<div class="p-2 bd-highlight h6 mt-3">Channel</div>
-								<div class="p-2 bd-highlight">
+							<div class="row mb-3">
+								<div class="col-sm-auto h6 mt-3">Channel</div>
+								<div class="col-sm-auto">
 									<div class="form-group row">
 										<select class="form-control" id="channel_name">
 											<option value="ShowAll">Show All</option>
@@ -43,46 +43,39 @@
 										</select>
 									</div>
 								</div>
-								<div class="p-2 bd-highlight h6 mt-3 ml-5">Month</div>
-								<div class="p-2 bd-highlight">
-									<div class="wd-200 mb-3">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<select class="form-control" id="month">
-													<option value="1">January</option>
-													<option value="2">February</option>
-													<option value="3">March</option>
-													<option value="4">April</option>
-													<option value="5">May</option>
-													<option value="6">June</option>
-													<option value="7">July</option>
-													<option value="8">August</option>
-													<option value="9">September</option>
-													<option value="10">October</option>
-													<option value="11">November</option>
-													<option value="12">December</option>
-												</select>
-											</div>
-										</div>
+								<div class="col-sm-auto h6 mt-3 ml-3">Month</div>
+								<div class="col-sm-auto">
+									<div class="form-group row">
+										<select class="form-control" id="month">
+											<option value="1">January</option>
+											<option value="2">February</option>
+											<option value="3">March</option>
+											<option value="4">April</option>
+											<option value="5">May</option>
+											<option value="6">June</option>
+											<option value="7">July</option>
+											<option value="8">August</option>
+											<option value="9">September</option>
+											<option value="10">October</option>
+											<option value="11">November</option>
+											<option value="12">December</option>
+										</select>
 									</div>
 								</div>
-								<div class="p-2 bd-highlight h6 mt-3 ml-5">Year</div>
-								<div class="p-2 bd-highlight">
-									<div class="wd-200 mb-3">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
-												<select class="form-control select2" id="dropdownYear">
-													<!-- <option value="1">2019</option>
+								<div class="col-sm-auto h6 mt-3">Year</div>
+								<div class="col-sm-auto">
+									<div class="form-group row">
+										<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
+										<select class="form-control select2" id="dropdownYear">
+											<!-- <option value="1">2019</option>
 															<option value="2">2020</option> -->
-												</select>
-											</div>
-										</div>
+										</select>
 									</div>
 								</div>
-								<div class="p-2 bd-highlight">
-									<span class="col-auto">
-										<button class="btn btn-md btn-dark" type="button" id="btn-go"><i class="fas fa-filter"></i></button>
+								<div class="col-sm-auto">
+									<span>
+										<button class="btn btn-sm btn-dark" style="height:37px" type="button" id="btn-go"><i
+												class="fas fa-filter"></i></button>
 									</span>
 								</div>
 							</div>
@@ -90,7 +83,7 @@
 								<div class="col-md-12">
 									<div class="card" id="customerChartMonth">
 										<!-- <div class="card-body" > -->
-											<div id="echart1" class="chartsh overflow-hidden h-100 "></div>
+										<div id="echart1" class="chartsh overflow-hidden h-200 "></div>
 										<!-- </div> -->
 										<!-- <div class="card-body">
 											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>
