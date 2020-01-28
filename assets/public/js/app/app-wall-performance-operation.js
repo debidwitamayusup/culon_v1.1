@@ -24,6 +24,19 @@ $(document).ready(function () {
    $("#filter-loader").fadeOut("slow");
 });
 
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
 function getTenant(date){
     $.ajax({
         type: 'POST',
@@ -109,24 +122,24 @@ function drawTableCOFByChannel(response){
         for (var i = 0; i < response.data.length; i++) {
             $('#tabelCOFByChannel').find('tbody').append('<tr>'+
                 '<td>'+(i+1)+'</td>'+
-                '<td>'+(response.data[i].TENANT_ID || 0)+'</td>'+
-                '<td>'+(response.data[i].Facebook || 0)+'</td>'+
-                '<td>'+(response.data[i].Whatsapp || 0)+'</td>'+
-                '<td>'+(response.data[i].Twitter || 0)+'</td>'+
-                '<td>'+(response.data[i].Email || 0)+'</td>'+
-                '<td>'+(response.data[i].Telegram || 0)+'</td>'+
-                '<td>'+(response.data[i].Line || 0)+'</td>'+
-                '<td>'+(response.data[i].Voice || 0)+'</td>'+
-                '<td>'+(response.data[i].Instagram || 0)+'</td>'+
-                '<td>'+(response.data[i].Messenger || 0)+'</td>'+
-                '<td>'+(response.data[i]['Twitter DM'] || 0)+'</td>'+
-                '<td>'+(response.data[i]['Live Chat'] || 0)+'</td>'+
-                '<td>'+(response.data[i].SMS || 0)+'</td>'+
-                '<td>'+(response.data[i].SUMCOF || 0)+'</td>'+
-                '<td>'+(response.data[i].SUMART || 0)+'</td>'+
-                '<td>'+(response.data[i].SUMAHT || 0)+'</td>'+
-                '<td>'+(response.data[i].SUMAST || 0)+'</td>'+
-                '<td>'+(response.data[i].SUMSCR || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].TENANT_ID || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Facebook || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Whatsapp || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Twitter || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Email || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Telegram || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Line || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Voice || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Instagram || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Messenger || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i]['Twitter DM'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i]['Live Chat'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SMS || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMCOF || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMART || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMAHT || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMAST || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMSCR || 0)+'</td>'+
                 '</tr>');
 
              sumFb+= parseInt((response.data[i].Facebook || 0));
@@ -150,23 +163,23 @@ function drawTableCOFByChannel(response){
         
         $('#tabelCOFByChannel').find('tfoot').append('<tr>'+
             '<td colspan="2">TOTAL</td>'+
-            '<td>'+sumFb+'</td>'+
-            '<td>'+sumWA+'</td>'+
-            '<td>'+sumTw+'</td>'+
-            '<td>'+sumEmail+'</td>'+
-            '<td>'+sumTel+'</td>'+
-            '<td>'+sumLine+'</td>'+
-            '<td>'+sumVoice+'</td>'+
-            '<td>'+sumInst+'</td>'+
-            '<td>'+sumMes+'</td>'+
-            '<td>'+sumTwDM+'</td>'+
-            '<td>'+sumLive+'</td>'+
-            '<td>'+sumSms+'</td>'+
-            '<td>'+sumCOF+'</td>'+
-            '<td>'+sumART+'</td>'+
-            '<td>'+sumAHT+'</td>'+
-            '<td>'+sumAST+'</td>'+
-            '<td>'+sumSCR+'</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTw)+'</td>'+
+            '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumSms)+'</td>'+
+            '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
+            '<td class="text-right">'+addCommas(sumART)+'</td>'+
+            '<td class="text-right">'+addCommas(sumAHT)+'</td>'+
+            '<td class="text-right">'+addCommas(sumAST)+'</td>'+
+            '<td class="text-right">'+addCommas(sumSCR)+'</td>'+
             '</tr>');
     }else{
         $('#tabelCOFByChannel').find('tbody').append('<tr>'+
