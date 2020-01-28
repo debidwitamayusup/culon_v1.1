@@ -133,8 +133,6 @@ function callIntervalTraffic(params, index, params_year, channel){
     });
 }
 
-
-
 function drawPieChartSumAllTenant(response){
     //pie chart Ticket Channel
     var ctx = document.getElementById("pieWallSummaryTraffic");
@@ -155,6 +153,17 @@ function drawPieChartSumAllTenant(response){
 
             legend: {
                 display: false
+            },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return data.labels[tooltipItem.index]+': '+ value;
+                    }
+              } // end callbacks:
             },
             pieceLabel: {
                 render: 'legend',

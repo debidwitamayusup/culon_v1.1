@@ -45,6 +45,19 @@ $(document).ready(function () {
     $("#filter-loader").fadeOut("slow");
 });
 
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
 //function get data and draw
 function getColorChannel(channel){
     var color = [];
@@ -154,7 +167,7 @@ function callSumAllTenant(params, index, params_year){
         success: function (r) {
             // var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumAllTenant(date);},900000);
+            // setTimeout(function(){callSumAllTenant(date);},900000);
             drawPieChartSumAllTenant(r);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -180,7 +193,7 @@ function callSumPerTenant(params, index, params_year){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumPerTenant(date);},900000);
+            // setTimeout(function(){callSumPerTenant(date);},900000);
             drawChartPerTenant(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -227,6 +240,9 @@ function callIntervalTraffic(params, index, params_year, channel){
 function drawPieChartSumAllTenant(response){
     destroyPieChart();
     //pie chart Ticket Channel
+    // $('#legend').remove();
+    // $('#mylegend').append('<div id="legend" class="legend-con"></div>');
+
     var ctx = document.getElementById("pieWallSummaryTraffic");
     ctx.height = 250;
     var myChart = new Chart(ctx, {
@@ -246,6 +262,17 @@ function drawPieChartSumAllTenant(response){
             legend: {
                 display: false
             },
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join(',');
+                        return data.labels[tooltipItem.index]+': '+ value;
+                    }
+              } // end callbacks:
+            },
             pieceLabel: {
                 render: 'legend',
                 fontColor: '#000',
@@ -256,7 +283,7 @@ function drawPieChartSumAllTenant(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
+                legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
                 allData.forEach(function (data, index) {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

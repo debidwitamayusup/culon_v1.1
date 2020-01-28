@@ -93,7 +93,7 @@ function destroyChartInterval(){
 }
 
 function drawChartToday(response){
-    console.log(response.data.series);
+    // console.log(response.data.series);
     destroyChartInterval();
     var data = [];
     if(!response.data.series){
@@ -523,3 +523,41 @@ function fromTemplate(response) {
     } );
 	
 }
+
+(function ($) {
+    
+    // checked all channel
+    $('#check-all-channel').click(function(){
+        $("input:checkbox.checklist-channel").prop('checked',this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+
+        // call data
+        callIntervalTraffic('day', '2020-01-24',0,list_channel);
+    });
+
+    //checked channel
+    $('.checklist-channel').click(function(){
+        $('#check-all-channel').prop( "checked", false );
+        
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+        // call data
+        callIntervalTraffic('day','2020-01-24',0, list_channel);
+    });
+    
+})(jQuery);
