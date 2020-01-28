@@ -450,9 +450,13 @@ function drawDataTable(params_time, index, params_year){
         $('#filter-year').show();
     });
        
-
+    var date = new Date();
+    date.setDate(date.getDate() > 0);
     $('#input-date-filter').datepicker({
         dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
