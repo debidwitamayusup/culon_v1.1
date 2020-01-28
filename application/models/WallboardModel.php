@@ -125,7 +125,7 @@ Class WallboardModel extends CI_Model {
 
     public function Traffic_ops($params,$index,$params_year)
     {
-        $this->db->select('tenant_id, SUM(art_num) AS ART, SUM(aht_num) AS AHT, SUM(ast_num) AS AST, SUM(scr) AS SCR');
+        $this->db->select('tenant_id');
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
         {
@@ -141,27 +141,72 @@ Class WallboardModel extends CI_Model {
             $this->db->where('YEAR(tanggal)',$index);
         }
         $this->db->group_by('tenant_id');
-        // $this->db->order_by('');
         $query = $this->db->get();
-        // print_r($this->db->last_query());
-        // exit;
 
         if($query->num_rows() > 0)
         {
             foreach($query->result() as $data)
             {
+                
                 $result[] = array(
                     'TENANT_ID' => $data->tenant_id,
-                    'ART' => $data->ART,
-                    'AHT' => $data->AHT,
-                    'AST' => $data->AST,
-                    'SCR' => $data->SCR
+                    'DATA' => $this->Traffic_opschannel($params,$index,$params_year,$data->tenant_id)
                 );
             }
             return $result;
         }
 
         return FALSE;
+    }
+
+    function Traffic_opschannel($params,$index,$params_year,$tid)
+    {
+        $this->db->select('channel_id');
+        $this->db->from('m_channel');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+               array_push($result,$this->Traffic_opsdata($params,$index,$params_year,$tid,$data->channel_id));
+            }
+            return $result;
+        }
+        return FALSE;
+    }
+
+
+    function Traffic_opsdata($params,$index,$params_year,$tid,$channel)
+    {
+        $this->db->select('IFNULL(SUM(rpt_summary_scr.cof),0) AS cof');
+        $this->db->from('rpt_summary_scr');
+        $this->db->join('m_channel','m_channel.channel_id = rpt_summary_scr.channel_id');
+        if($params == 'day')
+        {
+            $this->db->where('rpt_summary_scr.tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
+        } 
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+        }
+        $this->db->where('rpt_summary_scr.tenant_id',$tid);        
+        $this->db->where('rpt_summary_scr.channel_id',$channel);
+        $query = $this->db->get();
+
+       
+        if($query->num_rows() > 0)
+        {
+            return $query->row()->cof;
+        }
+        return 0;
     }
 
     public function scr_pie_chart_channel($params,$index,$params_year)
