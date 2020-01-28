@@ -440,7 +440,7 @@ function drawChartPerTenant(response){
                             {
                                 teks = teks + "TELKOMSEL";
                             }
-                            else if(value == "oct_bodyshop")
+                            else if(value.value == "oct_bodyshop")
                             {
                                 teks = teks + "BODYSHOP";
                             }
