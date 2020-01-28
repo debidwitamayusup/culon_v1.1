@@ -313,4 +313,11 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_summary_interval');
 	}
+
+	public function report_opsi1(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_opsi1');
+	}
 }
