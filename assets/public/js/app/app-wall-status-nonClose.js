@@ -89,7 +89,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reopen</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReOpen)+'</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReopen)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -100,7 +100,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reprocess</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReProses)+'</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReProcess)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -113,7 +113,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Pending</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">200</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumPending)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -124,7 +124,7 @@ function drawCard(response){
                         '<h6 class="card-body text-white">Reject</h6>'+
                     '</div>'+
                     '<div class="card-body">'+
-                        '<h2 class="mb-4 mt-3 num-font">200</h2>'+
+                        '<h2 class="mb-4 mt-3 num-font">'+parseInt(response.data.sumReject)+'</h2>'+
                         '<span class="text-muted mb-5"></span>'+
                     '</div>'+
                 '</div>'+
@@ -172,7 +172,9 @@ function drawTableSumAgentPeformSkill(){
 			{ className: "text-right", targets: 5 },
 			{ className: "text-right", targets: 6 },
 			{ className: "text-right", targets: 7 },
-			{ className: "text-right font-weight-extrabold", targets: 8 }
+			{ className: "text-right", targets: 8 },
+			{ className: "text-right", targets: 9 },
+			{ className: "text-right font-weight-extrabold", targets: 10 }
 		],    
         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
@@ -251,8 +253,20 @@ function drawTableSumAgentPeformSkill(){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
-            pageTotalTot = api
+            pageTotal7 = api
                 .column( 8, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotal8 = api
+                .column( 9, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            pageTotalTot = api
+                .column( 10, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -268,7 +282,9 @@ function drawTableSumAgentPeformSkill(){
             $( api.column( 5 ).footer() ).html(pageTotal4);
             $( api.column( 6 ).footer() ).html(pageTotal5);
             $( api.column( 7 ).footer() ).html(pageTotal6);
-            $( api.column( 8 ).footer() ).html(pageTotalTot);
+            $( api.column( 8 ).footer() ).html(pageTotal7);
+            $( api.column( 9 ).footer() ).html(pageTotal8);
+            $( api.column( 10 ).footer() ).html(pageTotalTot);
         },
         destroy: true
     });

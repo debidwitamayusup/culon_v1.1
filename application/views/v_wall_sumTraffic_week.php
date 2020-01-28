@@ -171,12 +171,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" style="font-size:10px !important;" id="mytbody">
-<<<<<<< HEAD
-                                    <tr>
-                                        <!-- <tr>
-=======
                                     <!-- <tr>
->>>>>>> origin/risyadnew-dev
                                         <td>1</td>
                                         <td>Whatsapp</td>
                                         <td>200</td>

@@ -162,11 +162,14 @@ function drawChartToday(response){
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                legend:{
-                    position:'bottom',
-                    labels:{
-                        boxWidth:10
-                    }
+                // legend:{
+                //     position:'bottom',
+                //     labels:{
+                //         boxWidth:10
+                //     }
+                // },
+                legend : {
+                    display : false
                 },
                 barRoundness:  1,
                 scales: {
@@ -611,11 +614,14 @@ function fromTemplate(){
         options: {
 			responsive: true,
 			maintainAspectRatio: false,
-			legend:{
-                position:'bottom',
-                labels:{
-                    boxWidth:10
-                }
+			// legend:{
+            //     position:'bottom',
+            //     labels:{
+            //         boxWidth:10
+            //     }
+            // },
+            legend :{
+                display : false
             },
             barRoundness: 1,
             scales: {
