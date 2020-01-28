@@ -425,10 +425,14 @@ function drawStackedBar(params, channel_name, index, params_year){
                 }
             },
             grid: {
-                top:'2%',
-                left: '1%',
-                right: '5%',
-                bottom: '3%',
+                // top:'2%',
+                // left: '1%',
+                // right: '2%',
+                // bottom: '3%',
+                top: '3%',
+             right: '0%',
+             bottom: '5%',
+             left: '1%',
                 containLabel: true
             },
             xAxis: {
