@@ -364,7 +364,21 @@ function drawChartPerTenant(response){
             },
             axisLabel: {
                 fontSize: 10,
-                color: '#7886a0'
+                color: '#7886a0',
+                formatter: function (value, index) {
+                            var teks = '';
+                            if(value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else{
+                                return value
+                            }
+                            return teks;
+                    }
             }
         },
         series: chartWallSummary,
