@@ -348,7 +348,7 @@ function drawStackedBar(params, channel_name, index, params_year){
         success: function (r) {
             var response = JSON.parse(r);
          // stacked bar traffic monthly
-         // console.log(response.data[0].total_traffic);
+         console.log(response);
         var chartdata3 = [{
             name: 'Whatsapp',
             type: 'bar',
