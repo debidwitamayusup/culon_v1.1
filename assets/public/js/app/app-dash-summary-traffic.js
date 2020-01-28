@@ -347,7 +347,25 @@ function drawChartPerTenant(response){
         tooltip: {
             trigger: 'axis',
             axisPointer: {       
-                type: 'shadow'
+                // type: 'shadow'
+                label: {
+                    show: false,
+                    formatter: function (value, index) {
+                            var teks = '';
+                            // console.log(value)
+                            if(value.value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value.value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else{
+                                return value.value
+                            }
+                            return teks;
+                    }
+                }
             }
         },
         legend: {
@@ -362,7 +380,7 @@ function drawChartPerTenant(response){
             top: '10%',
             right: '5%',
             bottom: '10%',
-            left: '15%',
+            left: '16%'
         },
         xAxis: {
             type: 'value',
@@ -391,7 +409,21 @@ function drawChartPerTenant(response){
             },
             axisLabel: {
                 fontSize: 10,
-                color: '#7886a0'
+                color: '#7886a0',
+                formatter: function (value, index) {
+                            var teks = '';
+                            if(value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else{
+                                return value
+                            }
+                            return teks;
+                    }
             }
         },
         series: chartWallSummary,

@@ -162,8 +162,15 @@
                                         <td>Sun</td>
                                     </tr>
                                 </thead>
+<<<<<<< HEAD
+                                <tbody class="table-sm text-center" style="font-size:10px !important;" id="mytbody">
+                                    <tr>
+                                    <!-- <tr>
+
+=======
                                 <tbody class="text-center" style="font-size:10px !important;" id="mytbody">
                                     <!-- <tr>
+>>>>>>> origin/risyadnew-dev
                                         <td>1</td>
                                         <td>Whatsapp</td>
                                         <td>200</td>

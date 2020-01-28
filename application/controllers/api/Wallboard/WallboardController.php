@@ -160,4 +160,50 @@ class WallboardController extends REST_Controller {
 
     }
 
+    public function SummPerformOps_post()
+    {
+
+        $src = $this->security->xss_clean($this->input->post('search'));
+        $date = $this->security->xss_clean($this->input->post('date'));
+
+        $res = $this->module_model->SummPerformOps($date,$src);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+
+
+//under const
+    public function SummTicketC_post()
+    {
+        $res = $this->module_model->SummTicketC($months,$year);
+        
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
 }

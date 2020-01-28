@@ -143,7 +143,7 @@
 		                                                <td>Total</td>
 		                                            </tr>
 		                                        </thead>
-		                                        <tbody class="table-sm text-center">
+		                                        <tbody class="table-sm">
 		                                          <!--   <tr>
 		                                                <td>1</td>
 		                                                <td>Unit 1</td>

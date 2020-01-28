@@ -57,7 +57,7 @@
 								</div>
 								<div class="p-2 bd-highlight">
 									<span class="col-auto">
-										<button class="btn btn-dark" type="button" id="btn-go">Go</button>
+										<button class="btn btn-md btn-dark" type="button" id="btn-go"><i class="fas fa-filter"></i></button>
 									</span>
 								</div>
 							</div>
