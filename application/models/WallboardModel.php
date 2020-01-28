@@ -60,31 +60,36 @@ Class WallboardModel extends CI_Model {
 
     public function sumStat_NC()
     {
-        $this->db->select('SUM(sNew) as SNEW, SUM(sOpen) as SOPEN, SUM(sReopen) as SREOPEN, SUM(sReProses) as SREPROSES, SUM(sPreClose) as SPRECLOSE, SUM(sReAssign) as SREASSIGN');
-        $this->db->from('v_summ_ticket_unit');
+        $this->db->select('m_status.status , SUM(v_summ_unit.jml) as jml');
+        $this->db->from('m_status');
+        $this->db->join('v_summ_unit','v_summ_unit.ticket_status = m_status.status_id');
+        $this->db->where('v_summ_unit.jml IS NOT NULL');
+        $this->db->or_where('v_summ_unit.jml IS NULL');
+        $this->db->group_by('v_summ_unit.ticket_status');
+
         $query = $this->db->get();
+        $result = array();
 
         if($query->num_rows()>0)
         {
-            $result = array(
-                'sumNew'   => $query->row()->SNEW,
-                'sumOpen'  => $query->row()->SOPEN,
-                'sumReProses' => $query->row()->SREPROSES,
-                'sumReOpen' => $query->row()->SREOPEN,
-                'sumPreClose' => $query->row()->SPRECLOSE,
-                'sumReAssign' => $query->row()->SREASSIGN,
-                'sumPending' => 'NAN 0'
-             );
+            foreach($query->result() as $datas)
+            {
+                $result['sum'.$datas->status] = $datas->jml;
+            }
+            
+            // $result = array(
+            //     'sumNew'   => $query->row()->SNEW,
+            //     'sumOpen'  => $query->row()->SOPEN,
+            //     'sumReProses' => $query->row()->SREPROSES,
+            //     'sumReOpen' => $query->row()->SREOPEN,
+            //     'sumPreClose' => $query->row()->SPRECLOSE,
+            //     'sumReAssign' => $query->row()->SREASSIGN,
+            //     'sumPending' => 'NAN 0'
+            //  );
 
             return $result;
-        }
-
-           
-        
-
+        }         
         return FALSE;
-
-
     }
 
     public function Traffic_ops($params,$index,$params_year)
