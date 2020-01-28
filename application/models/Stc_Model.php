@@ -1368,13 +1368,13 @@ class Stc_Model extends CI_Model
 				// 'datas' => $this->get_traffic_interval_daily($day)
 				'DAY'=>strval(date('l',strtotime($day))),
 				'DATE' => date('Y-m-d',strtotime($day)),
-				'CHANNEL' => $this->get_channel_only(),
 				'DATA' => $this->get_traffic_interval_daily($day)
 			);
 		}
 
 		$result = array(
 			'status' => true,
+			'channel' => $this->get_channel_only(),
 			'data' => $datas
 		);
 

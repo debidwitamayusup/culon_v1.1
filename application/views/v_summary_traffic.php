@@ -66,7 +66,7 @@
 		                                    </div>
 		                                    <div>
 		                                        <span class="col-auto">
-		                                            <button class="btn btn-sm btn-dark mt-1" type="button"><i
+		                                            <button class="btn btn-sm btn-dark mt-1" type="button" id="btn-go"><i
 		                                                    class="fe fe-arrow-right text-white"></i></button>
 		                                        </span>
 		                                    </div>
@@ -114,7 +114,7 @@
 		                            <div class="card-header-small">
 		                                <h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 		                            </div>
-		                            <div class="card-body">
+		                            <div class="card-body" id="echartWallSummaryTrafficDiv">
 		                                <div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>
 		                            </div>
 		                        </div>
@@ -242,7 +242,7 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="card-body">
+		                            <div class="card-body" id="lineWallSummaryTrafficDiv">
 		                                <canvas id="lineWallSummaryTraffic" class="h-400"></canvas>
 		                            </div>
 		                        </div>
