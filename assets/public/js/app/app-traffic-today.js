@@ -135,12 +135,13 @@ function drawChartToday(response){
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                legend:{
-                    position:'bottom',
-                    labels:{
-                        boxWidth:10
-                    }
-                },
+                // legend:{
+                //     position:'bottom',
+                //     labels:{
+                //         boxWidth:10
+                //     }
+                // },
+                legend : false,
                 barRoundness:  1,
                 scales: {
                     yAxes: [ {
