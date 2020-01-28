@@ -16,18 +16,55 @@ var v_params_today= m + '-' + n + '-' + (o);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
-    callTableCOFByChannel('2020-01-24');
-    // callTableCOFByChannel(v_params_today);
+    // callTableCOFByChannel('2020-01-24', '');
+    // getTenant('2020-01-24');
+    getTenant(v_params_today);
+    callTableCOFByChannel(v_params_today);
 
    $("#filter-loader").fadeOut("slow");
 });
 
-function callTableCOFByChannel(date){
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            var html = '<option value="">Semua Layanan</option>';
+            // var html = '';
+            var i;
+            // console.log(response);
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                }
+                $('#tenant_name').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function callTableCOFByChannel(date, search){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/SummPerformOps',
         data: {
-            date: date
+            date: date,
+            search: search
         },
         success: function (r) {
             // var response = JSON.parse(r);
@@ -132,9 +169,19 @@ function drawTableCOFByChannel(response){
             '<td>'+sumSCR+'</td>'+
             '</tr>');
     }else{
-        $('#table_avg_traffic').find('tbody').append('<tr>'+
+        $('#tabelCOFByChannel').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+
             '</tr>');
     }
 }
+
+(function ($) {
+    $("select#tenant_name").change(function(){
+        // destroyChartInterval();
+         // destroyChartInterval();
+        var selectedTenant = $(this).children("option:selected").val();
+        // callTableCOFByChannel('2020-01-24', selectedTenant);
+        callTableCOFByChannel(v_params_today, selectedTenant);
+    });
+})(jQuery);
 
