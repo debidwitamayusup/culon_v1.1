@@ -90,7 +90,7 @@ function callSumPerTenant(params, index, params_year){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            // console.log(response);
+            console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(params, index, params_year);},900000);
             drawChartPerTenant(response);
@@ -200,36 +200,91 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerTenant(response){
-    let arrTenant = [], arrART =[], arrAHT = [], arrAST = [], arrSCR = []
+    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [];
 
     response.data.forEach(function (value, index) {
             arrTenant.push(value.TENANT_ID);
-            arrART.push(value.ART);
-            arrAHT.push(value.AHT);
-            arrAST.push(value.AST);
-            arrSCR.push(value.SCR);
+            // arrART.push(value.ART);
+            // arrAHT.push(value.AHT);
+            // arrAST.push(value.AST);
+            // arrSCR.push(value.SCR);
         });
+    for (var i = 0; i < response.data.length; i++) {
+        // console.log()
+        dataWa.push(response.data[i].DATA[10]);
+        dataFB.push(response.data[i].DATA[5]);
+        dataDM.push(response.data[i].DATA[11]);
+        dataTwitter.push(response.data[i].DATA[7]);
+        dataIg.push(response.data[i].DATA[9]);
+        dataMessenger.push(response.data[i].DATA[6]);
+        dataTelegram.push(response.data[i].DATA[4]);
+        dataLine.push(response.data[i].DATA[8]);
+        dataEmail.push(response.data[i].DATA[1]);
+        dataVoice.push(response.data[i].DATA[0]);
+        dataSMS.push(response.data[i].DATA[3]);
+        dataLive.push(response.data[i].DATA[2]);
+    }
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{
-        name: 'ART',
-        type: 'bar',
-        stack: 'Stack',
-        data: arrART
-    }, {
-        name: 'AST',
-        type: 'bar',
-        stack: 'Stack',
-        data: arrAST
-    }, {
-        name: 'AHT',
-        type: 'bar',
-        stack: 'Stack',
-        data: arrAHT
-    }, {
-        name: 'SCR',
-        type: 'bar',
-        stack: 'Stack',
-        data: arrSCR
+         name: 'Whatsapp',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataWa
+     }, {
+         name: 'Facebook',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataFB
+     },{
+         name: 'Twitter',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTwitter
+     },{
+         name: 'Twitter DM',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataDM
+     },{
+         name: 'Instagram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataIg
+     },{
+         name: 'Messenger',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataMessenger
+     },{
+         name: 'Telegram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTelegram
+     },{
+         name: 'Line',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLine
+     },{
+         name: 'Email',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataEmail
+     },{
+         name: 'Voice',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataVoice
+     },{
+         name: 'SMS',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataSMS
+     },{
+         name: 'Live Chat',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLive
     }];
     /*----echartTicketUnit----*/
     var optionWallSummary = {
@@ -249,18 +304,30 @@ function drawChartPerTenant(response){
                             {
                                 teks = teks + "TELKOMSEL";
                             }
+                            else if(value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
                             else{
                                 return value.value
                             }
                             return teks;
                     }
                 }
-            }
+            },
+            position: function (pos, params, dom, rect, size) {
+                 // tooltip will be fixed on the right if mouse hovering on the left,
+                 // and on the left if hovering on the right.
+                 // console.log(pos);
+                 var obj = {top: pos[6]};
+                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                 return obj;
+             },
         },
         legend: {
             // bottom: 10,
             left: 'center',
-            data: ['ART', 'AST', 'AHT', 'SCR'],
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
             // labels:{
             //     boxWidth:10
             // }
@@ -308,6 +375,10 @@ function drawChartPerTenant(response){
                             {
                                 teks = teks + "TELKOMSEL";
                             }
+                            else if(value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
                             else{
                                 return value
                             }
@@ -316,7 +387,7 @@ function drawChartPerTenant(response){
             }
         },
         series: chartWallSummary,
-        color: ["#00206C", "#007C7A", "#0038DE", "#00CBC9"]
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
     };
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
