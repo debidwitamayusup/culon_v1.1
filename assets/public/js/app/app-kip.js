@@ -440,10 +440,11 @@ function drawPieChart(response){
 				  callbacks: {
 						label: function(tooltipItem, data) {
 							var value = data.datasets[0].data[tooltipItem.index];
+							console.log(data);
 							value = value.toString();
 							value = value.split(/(?=(?:...)*$)/);
 							value = value.join(',');
-							return value;
+							return data.labels[tooltipItem.index]+': ' + value;
 						}
 				  } // end callbacks:
 				}, //end tooltips
@@ -714,7 +715,7 @@ function addCommas(commas)
         params_time = 'year';
         // console.log(params_time);
 		// v_date = getYear();
-		callSummaryInteraction(params_time, $("#select-year-only").val(), 0);
+		callSummaryInteraction(params_time, m, 0);
 		callYear();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");

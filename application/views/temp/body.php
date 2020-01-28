@@ -62,7 +62,7 @@
 										</div>
 										<div>
 											<span class="col-auto">
-												<button class="btn btn-sm btn-dark mt-1" type="button"><i
+												<button class="btn btn-sm btn-dark mt-1" type="button" id="btn-go"><i
 														class="fe fe-arrow-right text-white"></i></button>
 											</span>
 										</div>
