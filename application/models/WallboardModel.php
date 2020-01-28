@@ -293,6 +293,87 @@ Class WallboardModel extends CI_Model {
 		return $result;
 		
     }
+
+    public function SummPerformOps($date,$src)
+    {
+        $this->db->select('rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
+        $this->db->from('rpt_summary_scr');
+        $this->db->where('tanggal',$date);
+        if($src)
+        {
+            $this->db->where('tenant_id',$src);
+        }
+        $this->db->group_by('tenant_id');
+
+        $query = $this->db->get();
+        
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $t_id = $data->tenant_id;
+
+                $data = array(
+                    'TENANT_ID' => $t_id,
+                    'SUMCOF' =>  $data->COF,
+                    'SUMART' => $data->ART,
+                    'SUMAHT' => $data->AHT,
+                    'SUMAST' => $data->AST,
+                    'SUMSCR' => $data->SCR
+                );
+
+                $data2 = $this->SummPerformOps_sub($date,$t_id);
+
+                $data3 = array_merge($data,$data2);
+                $result[] = $data3;
+
+            }
+
+            return $result;
+        }
+
+        return FALSE;
+    }
+
+    function SummPerformOps_sub($date,$tenant_id)
+    {
+
+        $this->db->select('m_channel.channel_name , IFNULL(rpt_summary_scr.cof,0) as cof');
+        $this->db->from('m_channel');
+        $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');
+        $this->db->where('rpt_summary_scr.tanggal',$date);
+        $this->db->where('rpt_summary_scr.tenant_id',$tenant_id);
+        $this->db->where('cof IS NOT NULL');
+        $this->db->or_where('cof IS NULL');
+        $this->db->group_by('m_channel.channel_name');
+        $this->db->order_by('m_channel.channel_id','asc');
+
+        $query = $this->db->get();
+        $result = array();
+
+
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $result[$data->channel_name] =  $data->cof;
+            }
+       
+            return $result;
+        }
+
+        return false;
+        
+    }
+
+//under const
+    public function SummTicketC($months,$year)
+    {
+        
+
+        return FALSE;
+
+    }
     
 
 
