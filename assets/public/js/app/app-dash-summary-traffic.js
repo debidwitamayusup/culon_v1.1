@@ -335,7 +335,7 @@ function drawChartPerTenant(response){
             top: '10%',
             right: '5%',
             bottom: '10%',
-            left: '15%',
+            left: '16%'
         },
         xAxis: {
             type: 'value',
