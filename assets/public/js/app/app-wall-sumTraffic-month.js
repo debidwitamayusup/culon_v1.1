@@ -19,7 +19,7 @@ $(document).ready(function () {
     // fromTemplate();
     callDataPercentage(n,m);
     callIntervalTraffic(n,'');
-    callTableInterval(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callTableInterval(n,'');
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);
@@ -102,21 +102,21 @@ function callIntervalTraffic(month, arr_channel){
         },
     });
 }
-function callTableInterval(month, arr_channel){
+function callTableInterval(month, tennant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryMonth/getIntervalTrafficMonthly',
+        url: base_url+'api/Wallboard/WallboardController/GetInvalMonthTable',
         data: {
             month: month,
-            arr_channel: arr_channel
+            tennant_id: tennant_id            
         },
         success: function (r) {
-            var response = JSON.parse(r);
+            var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableInterval(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            // setTimeout(function(){callTableInterval(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -298,51 +298,55 @@ function drawChartPercentageMonth(response){
 }
 
 function drawTableData(response){
-    var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
+    // var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
 
-    var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
-    var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
-    var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
-    var sumEmail = response.data.series[3].data.map(Number).reduce(summarize);
-    var sumTel = response.data.series[4].data.map(Number).reduce(summarize);
-    var sumLine = response.data.series[5].data.map(Number).reduce(summarize);
-    var sumVoice = response.data.series[6].data.map(Number).reduce(summarize);
-    var sumInst = response.data.series[7].data.map(Number).reduce(summarize);
-    var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
-    var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
-    var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
-    var sumSms = response.data.series[11].data.map(Number).reduce(summarize);
-    var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
+    var sumFb = response.data[5].total_interval.map(Number).reduce(summarize);
+    var sumWA = response.data[10].total_interval.map(Number).reduce(summarize);
+    var sumTw = response.data[7].total_interval.map(Number).reduce(summarize);
+    var sumEmail = response.data[1].total_interval.map(Number).reduce(summarize);
+    var sumTel = response.data[4].total_interval.map(Number).reduce(summarize);
+    var sumLine = response.data[8].total_interval.map(Number).reduce(summarize);
+    var sumVoice = response.data[0].total_interval.map(Number).reduce(summarize);
+    var sumInst = response.data[9].total_interval.map(Number).reduce(summarize);
+    var sumMes = response.data[6].total_interval.map(Number).reduce(summarize);
+    var sumTwDM = response.data[11].total_interval.map(Number).reduce(summarize);
+    var sumLive = response.data[2].total_interval.map(Number).reduce(summarize);
+    var sumSms = response.data[3].total_interval.map(Number).reduce(summarize);
+    var sumChat = response.data[12].total_interval.map(Number).reduce(summarize);;
+    // var sumTotAgent = response.data.total_interval.map(Number).reduce(summarize);
     //summarize per channel
     function summarize(total, num) {
           return total + num;
     }
     
     $("#mytbody").empty();
-    $("#mytfoot").empty();
-    if(response.data.series.length != 0){   
-        var i = 0;
-        for (var i = 0; i < 24; i++) {
+    // $("#mytfoot").empty();
+    if(response.data.length != 0){ 
+        // console.log(response)
+        // console.log(response.data[12].total_interval)  
+        // var i = 0;
+        for (var i = 0; i < response.dates.length; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
-            '<td>'+tagTime[i]+'</td>'+
-            '<td class="text-right">'+response.data.total_agent[0][i]+'</td>'+
-            '<td class="text-right">'+response.data.series[0].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[1].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[2].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[3].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[4].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[5].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[6].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[7].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[8].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[9].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[10].data[i]+'</td>'+
-            '<td class="text-right">'+response.data.series[11].data[i]+'</td>'+
+            '<td>'+response.dates[i]+'</td>'+
+            // '<td class="text-right">'+sumTotAgent+'</td>'+
+            '<td class="text-right">'+response.data[5].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[10].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[7].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[1].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[4].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[8].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[0].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[9].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[6].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[11].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[2].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[3].total_interval[i]+'</td>'+
+            '<td class="text-right">'+response.data[12].total_interval[i]+'</td>'+
             '</tr>');
         }
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
-            '<td colspan="2">TOTAL</td>'+
+            '<td class="text-center">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
@@ -355,6 +359,7 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
+            '<td class="text-right">'+addCommas(sumChat)+'</td>'+
             '</tr>');
 
     }else{
