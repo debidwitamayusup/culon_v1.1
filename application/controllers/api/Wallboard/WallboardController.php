@@ -228,6 +228,29 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function GetInvalMonthTable_post()
+    {
+        $channels = $this->security->xss_clean($this->input->post('channel'));
+        $month = $this->security->xss_clean($this->input->post('month'));
+
+        $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
+        $res_timeval = $this->module_model->getalldateinmonth($month);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'dates' => $res_timeval,
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
 
 //under const
     public function SummTicketC_post()
