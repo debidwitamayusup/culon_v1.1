@@ -765,6 +765,8 @@ class Stc_Model extends CI_Model
 
 	function get_availdata($date,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		if(!$channel)
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -773,6 +775,10 @@ class Stc_Model extends CI_Model
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		if($tid)
+		{
+			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+		}
 		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
@@ -1278,6 +1284,7 @@ class Stc_Model extends CI_Model
 
 	//temporary(for wallboard)
 	public function getPercentageIntervalTodayWallDay($date){
+		$tid = 'WHERE rpt_summ_interval.tenant_id = "'.$this->security->xss_clean($this->input->post('tenant_id')'"');
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -1287,10 +1294,12 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
+			".$tid."
 			WHERE rpt_summ_interval.tanggal = '".$date."'
 			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name
 			");
+			
 		return $query->result();
 	}
 
