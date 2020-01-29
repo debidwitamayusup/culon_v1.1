@@ -1363,6 +1363,7 @@ class Stc_Model extends CI_Model
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->order_by('m_channel.channel_id','DESC');
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)
@@ -1500,7 +1501,7 @@ class Stc_Model extends CI_Model
 		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
-		$this->db->group_by('rpt_summ_interval.channel_id','ASC');
+		$this->db->group_by('rpt_summ_interval.channel_id');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
