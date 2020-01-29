@@ -74,6 +74,7 @@ class WallboardController extends REST_Controller {
         $params = $this->security->xss_clean($this->input->post('params'));
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
+       
 
         $res = $this->module_model->Traffic_ops($params,$index,$params_year);
         $res2 =$this->module_model->Channel_data();
@@ -143,6 +144,7 @@ class WallboardController extends REST_Controller {
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
         $channel = $this->security->xss_clean($this->input->post('channel'));
+        
 
         $res = $this->module_model->get_intervalchart($params,$index,$params_year,$channel);
         

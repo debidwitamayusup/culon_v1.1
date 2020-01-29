@@ -125,6 +125,8 @@ Class WallboardModel extends CI_Model {
 
     public function Traffic_ops($params,$index,$params_year)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
         $this->db->select('tenant_id');
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
@@ -139,6 +141,10 @@ Class WallboardModel extends CI_Model {
         if($params == 'year')
         {
             $this->db->where('YEAR(tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
         }
         $this->db->group_by('tenant_id');
         $query = $this->db->get();
@@ -240,7 +246,8 @@ Class WallboardModel extends CI_Model {
 
     function get_total_cof_piechart($params,$index,$params_year,$channel) //summ
 	{
-        
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summary_scr.cof as TOTAL');
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
@@ -255,6 +262,10 @@ Class WallboardModel extends CI_Model {
         if($params == 'year')
         {
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
         }
 		
 		$this->db->where('rpt_summary_scr.channel_id',$channel);
@@ -318,6 +329,9 @@ Class WallboardModel extends CI_Model {
 
     function get_availdata($params,$index,$params_year,$channel)
 	{
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		if(!$channel)
 		{
 			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
@@ -339,6 +353,11 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('YEAR(rpt_summ_interval.tanggal)', $index);
         }
+        if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
@@ -504,6 +523,8 @@ Class WallboardModel extends CI_Model {
 
 		if($query->num_rows() > 0)
 		{
+            // print_r($this->db->last_query());
+            // exit;
 			foreach($query->result() as $data)
 			{
 				$result[] = array(
