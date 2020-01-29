@@ -19,7 +19,7 @@ $(document).ready(function () {
     // fromTemplate();
     callDataPercentage(n,m);
     callIntervalTraffic(n,'');
-    callTableInterval(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callTableInterval(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);
@@ -60,6 +60,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }

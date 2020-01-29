@@ -40,6 +40,7 @@
 											<option value="Twitter DM">Twitter DM</option>
 											<option value="Live Chat">Live Chat</option>
 											<option value="SMS">SMS</option>
+											<option value="ChatBot">Chat Bot</option>
 										</select>
 									</div>
 								</div>
