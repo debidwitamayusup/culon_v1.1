@@ -285,7 +285,12 @@ function drawChartPerTenant(response){
          type: 'bar',
          stack: 'Stack',
          data: dataLive
-    }];
+    },{
+        name: 'Chat Bot',
+        type: 'bar',
+        stack: 'Stack',
+        data: dataLive
+   }];
     /*----echartTicketUnit----*/
     var optionWallSummary = {
         tooltip: {
@@ -326,7 +331,7 @@ function drawChartPerTenant(response){
         },
         legend: {
             
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat','Chat Bot'],
             itemWidth :12,
             padding: [10, 10],
             top : 'auto',
@@ -389,7 +394,7 @@ function drawChartPerTenant(response){
             }
         },
         series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b','#79213B']
     };
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);

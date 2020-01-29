@@ -56,18 +56,17 @@
                                                  </div>
                                              </div>
                                              <div class="col-xs-auto ml-1">
-                                                 <div class="input-group" style="width:200px">
+                                                 <div class="input-group" style="width:150px">
                                                      <div class="input-group-prepend">
                                                          <div class="input-group-text">
-                                                             <i class="fe fe-message-square tx-16 lh-0 op-6"></i>
+                                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                                          </div>
                                                      </div><input class="form-control fc-datepicker"
-                                                         placeholder="Start Date" type="text"><input class="form-control fc-datepicker"
-                                                         placeholder="End Date" type="text">
+                                                         placeholder="Start Date" type="text">
                                                  </div>
                                              </div>
-                                             <!-- <div class="col-xs-auto">
-                                                 <div class="w-60 input-group">
+                                             <div class="col-xs-auto ml-1">
+                                                 <div class="input-group" style="width:150px">
                                                      <div class="input-group-prepend">
                                                          <div class="input-group-text">
                                                              <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -75,14 +74,14 @@
                                                      </div><input class="form-control fc-datepicker"
                                                          placeholder="End Date" type="text">
                                                  </div>
-                                             </div> -->
-                                             <div class="col-sm-auto">
-                                                 <button class="btn btn-sm btn-dark" type="button" style="height:37px" id="btn-go"><i
+                                             </div>
+                                             <div class="col-xs-auto ml-1">
+                                                 <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
                                                          class="fas fa-filter"></i></button>
 
                                              </div>
-                                             <div class="col-sm-auto">
-                                                 <button class="btn btn-sm btn-primary" type="button" style="height:37px" id="btn-go"><i
+                                             <div class="col-xs-auto ml-1">
+                                                 <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-go"><i
                                                          class="fas fa-download mr-2"></i>Export</button>
 
                                              </div>
