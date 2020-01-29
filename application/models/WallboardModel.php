@@ -552,6 +552,54 @@ Class WallboardModel extends CI_Model {
         return $arr_time;
     }
 
+    public function getallagentpermonth($month)
+    {
+        $year = date('Y');
+        $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($month), intval($year));
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+		$this->db->select('SUM(tot_agent) as tots, DAY(rpt_summ_interval.tanggal) as DAY');
+        $this->db->from('rpt_summ_interval');
+        if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+		$this->db->where('MONTH(rpt_summ_interval.tanggal)',$month);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)',$year);
+		$this->db->group_by('rpt_summ_interval.tanggal');
+		$this->db->order_by('DAY(rpt_summ_interval.tanggal)','ASC');
+		$query = $this->db->get();
+
+		$result = array();
+		if($query->num_rows()>0)
+		{
+			$st = 1;
+			for($inx = 1; $inx <= $numdateofmonth; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($st)->DAY), 1, '0', STR_PAD_LEFT))
+				{
+                    array_push($result,strval($query->row($st)->tots));
+                    $st++;
+				}
+				else
+				{			
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			{
+				array_push($result,'0');
+			}
+		}
+
+		return $result;
+    }
+
     public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
 	{
 

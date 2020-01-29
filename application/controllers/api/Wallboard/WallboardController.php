@@ -144,7 +144,7 @@ class WallboardController extends REST_Controller {
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
         $channel = $this->security->xss_clean($this->input->post('channel'));
-        
+
 
         $res = $this->module_model->get_intervalchart($params,$index,$params_year,$channel);
         
@@ -237,19 +237,24 @@ class WallboardController extends REST_Controller {
 
         $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
         $res_timeval = $this->module_model->getalldateinmonth($month);
+        $tot = $this->module_model->getallagentpermonth($month);
 
         if ($res) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
                 'dates' => $res_timeval,
+                'total_agent' => $tot,
                 'data'    => $res
                     ], REST_Controller::HTTP_OK);
         }
         else {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Not Found!'
+                'message' => 'Not Found!',
+                'dates' => 'EMPTY',
+                'total_agent' => 'EMPTY',
+                'data'    => 'EMPTY'
                     ], REST_Controller::HTTP_OK);
         }
     }
