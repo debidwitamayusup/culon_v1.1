@@ -386,7 +386,7 @@ function drawChartPerTenant(response){
             containLabel : true,
         },
         grid: {
-            top: '20%',
+            top: '25%',
             right: '3%',
             bottom: '5%',
             left: '16%'
@@ -1006,7 +1006,7 @@ function fromTemplate(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic('day', '2020-01-24',0,list_channel);
+        callIntervalTraffic('day', '2020-01-24',0,list_channel, $('#tenant_id').val());
     });
 
     //checked channel
@@ -1025,7 +1025,7 @@ function fromTemplate(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic('day','2020-01-24',0, list_channel);
+        callIntervalTraffic('day','2020-01-24',0, list_channel, $('#tenant_id').val());
     });
 
     $("select#tenant_id").change(function(){
@@ -1038,6 +1038,8 @@ function fromTemplate(){
         // drawIntervalChart();
         callIntervalTraffic('day','2020-01-24',0, '', selectedTenant);
         $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
         // getTenant('2020-01-24');
     });
     

@@ -326,28 +326,29 @@ function drawTableData(response){
         // console.log(response)
         // console.log(response.data[12].total_interval)  
         // var i = 0;
+        console.log(response);
         for (var i = 0; i < response.dates.length; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+response.dates[i]+'</td>'+
-            // '<td class="text-right">'+sumTotAgent+'</td>'+
-            '<td class="text-right">'+response.data[5].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[10].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[7].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[1].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[4].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[8].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[0].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[9].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[6].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[11].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[2].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[3].total_interval[i]+'</td>'+
-            '<td class="text-right">'+response.data[12].total_interval[i]+'</td>'+
+            '<td class="text-right">'+addCommas(response.total_agent[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[5].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[10].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[7].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[1].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[4].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[8].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[0].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[9].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[6].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[11].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[2].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[3].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[12].total_interval[i])+'</td>'+
             '</tr>');
         }
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
-            '<td class="text-center">TOTAL</td>'+
+            '<td class="text-center" colspan="2">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
