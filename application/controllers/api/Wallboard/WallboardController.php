@@ -278,11 +278,27 @@ class WallboardController extends REST_Controller {
     {
         $month = $this->security->xss_clean($this->input->post('index', true));
         $year = $this->security->xss_clean($this->input->post('params_year', true));
-        $channel = $this->security->xss_clean($this->input->post('channel_name', true));
+        //$channel = $this->security->xss_clean($this->input->post('channel_name', true));
 
         $res = $this->module_model->summaryTicketCloseWall($month, $year);
+        $res_timeval = $this->module_model->getalldateinmonth($month);
 
-        echo json_encode($res);
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'dates' => $res_timeval,
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
     }
 
 }

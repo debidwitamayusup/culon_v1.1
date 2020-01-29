@@ -491,8 +491,8 @@ Class WallboardModel extends CI_Model {
     public function get_traffic_interval_monthly($month,$channel)
 	{
         $year = date('Y');
-        $mo_int = date('m', strtotime($month));
-		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
+        
+		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, intval($year));
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
@@ -522,15 +522,16 @@ Class WallboardModel extends CI_Model {
     public function getalldateinmonth($month)
     {
         $year = date('Y');
-        $mo_int = date('m', strtotime($month));
+        $mo_int = $month;
         $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
         $arr_time = array();
 
         
-        for($i = 1; $i <=$numdateofmonth;$i++)
+        for($i = 1; $i <= $numdateofmonth;$i++)
 		{
 			array_push($arr_time, $i);
         }
+
         return $arr_time;
     }
 
@@ -644,7 +645,7 @@ Class WallboardModel extends CI_Model {
         {
             foreach($query->result() as $data)
             {
-                $data_r[] = array(
+                $result[] = array(
                     'channel_name' => $data->channel_name,
                     'channel_color' => $data->channel_color,
                     'month' => $month,
@@ -652,28 +653,12 @@ Class WallboardModel extends CI_Model {
                 );
             }
 
-            for($i = 1; $i <=$numdateofmonth;$i++)
-            {
-                array_push($arr_time, $i);
-            }
-
-            $result = array(
-                'status' => true ,
-                'data' => $data_r,
-                'param_date' => $arr_time
-            );
-            
-        }
-        else{
-
-            $result = array(
-                'status' => true,
-                'data' => 'nodata'
-            );
-        }
         
-
-        return $result;
+            return $result;
+        }
+      
+        return false;
+        
     }
 
     public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
