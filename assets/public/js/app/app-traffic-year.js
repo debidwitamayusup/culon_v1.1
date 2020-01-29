@@ -88,10 +88,12 @@ function callGraphYear(channel_name,year) {
         var barChart = echarts.init(chart);
         var option = {
             grid: {
-                top: '6',
-                right: '5',
-                bottom: '17',
-                left: '45',
+                top: '10%',
+                right: '3%',
+                bottom: '3%',
+                left: '2%',
+                containLabel: true,
+                width: '100%'
             },
             xAxis: {
                 data: response.data.month_x_axis,

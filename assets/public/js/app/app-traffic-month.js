@@ -451,7 +451,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                 left: 'center',
                 // top: 'bottom',
                 itemWidth :12,
-                padding: [10, 10,40, 10]
+                padding: [20, 10,40, 10]
             },
 
             grid: {
@@ -459,11 +459,12 @@ function drawStackedBar(params, channel_name, index, params_year){
                 // left: '1%',
                 // right: '2%',
                 // bottom: '3%',
-                top: '19%',
-                right: '3%',
+                top: '25%',
+                right: '2%',
                 bottom: '7%',
                 left: '3%',
-                containLabel: true
+                containLabel: true,
+                width: '100%'
             },
             xAxis: {
                 type: 'category',
@@ -515,7 +516,7 @@ function drawStackedBar(params, channel_name, index, params_year){
 function destroyChartInterval(){
     // destroy chart interval 
     $('#echart1').remove(); // this is my <canvas> element
-    $('#customerChartMonth').append('<div id="echart1" class="chartsh overflow-hidden"></div>');
+    $('#customerChartMonth').append('<div id="echart1" class="chartsh-month overflow-hidden"></div>');
 }
 
 function destroyChartPercentage(){

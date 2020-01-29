@@ -6141,6 +6141,11 @@ ul {
 	overflow:hidden;
 }
 
+.chartsh-month{
+	height : 22rem;
+	overflow:hidden;
+}
+
 .chartsh-vertical{
 	padding-left : 10px;
 	overflow : hidden;
