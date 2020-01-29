@@ -87,8 +87,11 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 body {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
+	/* font-family: 'Nunito', sans-serif; */
+	/* font-family: 'Assistant', sans-serif; */
+	/* font-family: 'Ropa Sans', sans-serif; */
 	font-size: 13px;
-	font-weight: 400;
+	font-weight: 500;
 	line-height: 1.5;
 	color:#2A1B4D;
 	text-align: left;
