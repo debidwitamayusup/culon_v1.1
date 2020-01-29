@@ -227,6 +227,7 @@ class SummaryToday extends CI_Controller {
     //temporary, for wallboard day
     public function getPercentageTrafficTodayWallDay(){
         $date = $this->security->xss_clean($this->input->post('date', true));
+        // $tid = $this->security->xss_clean($this->input->post('tenant_id'));
         if(!$date){
             $date = date("Y-m-d");
         }

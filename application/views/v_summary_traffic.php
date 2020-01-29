@@ -240,7 +240,7 @@
 														<label class="custom-control custom-checkbox">
 		                                                    <input type="checkbox"
 		                                                        class="custom-control-input checklist-channel"
-		                                                        id="list-channel[]" name="example-checkbox2" value="Chat Bot">
+		                                                        id="list-channel[]" name="example-checkbox2" value="ChatBot">
 		                                                    <span class="custom-control-label">Chat Bot</span>
 		                                                </label>
 		                                            </div>
