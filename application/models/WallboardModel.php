@@ -527,11 +527,17 @@ Class WallboardModel extends CI_Model {
 
     public function getBarchannelPerMonth_det($month,$year,$channel_id)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
         $this->db->select('IFNULL(SUM(cof),0) as cof');
         $this->db->from('rpt_summary_scr');
         $this->db->where('MONTH(tanggal)',$month);
         $this->db->where('YEAR(tanggal)',$year);
         $this->db->where('channel_id',$channel_id);
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
         $this->db->group_by('channel_id');
         $query = $this->db->get();
 
