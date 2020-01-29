@@ -259,6 +259,31 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function GetBarchannelPerMonth_post()
+    {
+        $year = $this->security->xss_clean($this->input->post('params_year'));
+        $month = $this->security->xss_clean($this->input->post('month'));
+
+        $res = $this->module_model->getBarchannelPerMonth($month,$year);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'EMPTY',
+                'total_agent' => 'EMPTY',
+                'data'    => 'EMPTY'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
 //under const
     public function SummTicketC_post()
     {
