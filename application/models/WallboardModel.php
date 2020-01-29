@@ -574,7 +574,7 @@ Class WallboardModel extends CI_Model {
 		$result = array();
 		if($query->num_rows()>0)
 		{
-			$st = 1;
+			$st = 0;
 			for($inx = 1; $inx <= $numdateofmonth; $inx++)
 			{
 				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($st)->DAY), 1, '0', STR_PAD_LEFT))
