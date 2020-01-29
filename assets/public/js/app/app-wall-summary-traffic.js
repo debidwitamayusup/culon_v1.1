@@ -17,10 +17,11 @@ var v_params_today= m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', '2020-01-24', 0);
-    callSumPerTenant('day', '2020-01-24', 0);
+    callSumAllTenant('day', '2020-01-24', 0, '');
+    callSumPerTenant('day', '2020-01-24', 0, '');
     // drawIntervalChart();
-    callIntervalTraffic('day','2020-01-24',0, '');
+    callIntervalTraffic('day','2020-01-24',0, '', '');
+    getTenant('2020-01-24');
 
     $('#check-all-channel').prop('checked',false);
     $("input:checkbox.checklist-channel").prop('checked',false);
@@ -34,6 +35,40 @@ $(document).ready(function () {
 
    $("#filter-loader").fadeOut("slow");
 });
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            var html = '<option value="">Semua Layanan</option>';
+            // var html = '';
+            var i;
+            // console.log(response);
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                }
+                $('#tenant_id').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 //function get data and draw
 function getColorChannel(channel){
@@ -55,19 +90,20 @@ function getColorChannel(channel){
     return color[channel];
 }
 
-function callSumAllTenant(params, index, params_year){
+function callSumAllTenant(params, index, params_year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPSPieChart',
         data: {
             params: params,
             index: index,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             // var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumAllTenant(params, index, params_year);},900000);
+            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},900000);
             drawPieChartSumAllTenant(r);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -79,21 +115,22 @@ function callSumAllTenant(params, index, params_year){
     });
 }
 
-function callSumPerTenant(params, index, params_year){
+function callSumPerTenant(params, index, params_year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
             params: params,
             index: index,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumPerTenant(params, index, params_year);},900000);
+            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},900000);
             drawChartPerTenant(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -105,7 +142,7 @@ function callSumPerTenant(params, index, params_year){
     });
 }
 
-function callIntervalTraffic(params, index, params_year, channel){
+function callIntervalTraffic(params, index, params_year, channel, tenant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -115,13 +152,14 @@ function callIntervalTraffic(params, index, params_year, channel){
             params: params,
             index: index,
             params_year: params_year,
-            channel: channel
+            channel: channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"], tenant_id);},900000);
             drawLineChart(r);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -988,6 +1026,19 @@ function fromTemplate(){
         list_channel = values;
         // call data
         callIntervalTraffic('day','2020-01-24',0, list_channel);
+    });
+
+    $("select#tenant_id").change(function(){
+        // destroyChartInterval();
+         // destroyChartInterval();
+        var selectedTenant = $(this).children("option:selected").val();
+        // callTableCOFByChannel('2020-01-24', selectedTenant);
+        callSumAllTenant('day', '2020-01-24', 0, selectedTenant);
+        callSumPerTenant('day', '2020-01-24', 0, selectedTenant);
+        // drawIntervalChart();
+        callIntervalTraffic('day','2020-01-24',0, '', selectedTenant);
+        $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
+        // getTenant('2020-01-24');
     });
     
 })(jQuery);
