@@ -502,6 +502,52 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
+    public function getBarchannelPerMonth($month, $year)
+    {
+        $this->db->select('channel_name,channel_id');
+        $this->db->from('m_channel');
+        $this->db->order_by('channel_id','desc');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+               $result[] = array(
+                   'channel_name' => $data->channel_name,
+                   'rate' => $this->getBarchannelPerMonth_det($month,$year,$data->channel_id)
+               );
+            }
+            return $result;
+        }
+        return FALSE;
+    }
+
+    public function getBarchannelPerMonth_det($month,$year,$channel_id)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $this->db->select('IFNULL(SUM(cof),0) as cof');
+        $this->db->from('rpt_summary_scr');
+        $this->db->where('MONTH(tanggal)',$month);
+        $this->db->where('YEAR(tanggal)',$year);
+        $this->db->where('channel_id',$channel_id);
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        $this->db->group_by('channel_id');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+		{
+           return $query->row()->cof;
+        }
+        return false;
+    }
+
 
     public function get_traffic_interval_monthly($month,$channel)
 	{
@@ -559,6 +605,7 @@ Class WallboardModel extends CI_Model {
 
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
+       
 		$this->db->select('SUM(tot_agent) as tots, DAY(rpt_summ_interval.tanggal) as DAY');
         $this->db->from('rpt_summ_interval');
         if($tid)
@@ -571,10 +618,12 @@ Class WallboardModel extends CI_Model {
 		$this->db->order_by('DAY(rpt_summ_interval.tanggal)','ASC');
 		$query = $this->db->get();
 
+        // print_r($this->db->last_query());
+        // exit;
 		$result = array();
 		if($query->num_rows()>0)
 		{
-			$st = 1;
+			$st = 0;
 			for($inx = 1; $inx <= $numdateofmonth; $inx++)
 			{
 				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($st)->DAY), 1, '0', STR_PAD_LEFT))
