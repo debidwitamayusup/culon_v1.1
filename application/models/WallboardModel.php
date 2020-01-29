@@ -64,8 +64,6 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
-
-
     function Op_Performancedata($src='',$unit,$status_id)
     {
         $this->db->select('v_summ_unit.jml');
@@ -86,8 +84,6 @@ Class WallboardModel extends CI_Model {
 
         return "0";
     }
-
-    
 
     public function sumStat_NC()
     {
@@ -559,7 +555,7 @@ Class WallboardModel extends CI_Model {
     public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
 	{
 
-        $tid = $this->security->xss_clean($this->input->post('tennant_id'));
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('DAY(rpt_summ_interval.tanggal) as DAY, sum(rpt_summ_interval.case_session) as COF');
         $this->db->from('rpt_summ_interval');
