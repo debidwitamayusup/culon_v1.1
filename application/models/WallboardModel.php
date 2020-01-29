@@ -374,6 +374,7 @@ Class WallboardModel extends CI_Model {
 		return $result;
 		
     }
+    
 
     public function SummPerformOps($date,$src)
     {
@@ -486,9 +487,106 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
+
+    public function get_traffic_interval_monthly($month,$channel)
+	{
+        $year = date('Y');
+        
+		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, intval($year));
+
+		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
+		$this->db->from('m_channel');
+		if($channel)
+		{
+			$this->db->where('m_channel.channel_name',$channel);
+		}
+		$query = $this->db->get();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel_name' => $data->channel_name,
+					'channel_color' => $data->channel_color,
+					'month'	=> $month,
+					'total_interval'=> $this->get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$data->channel_id)
+				);
+			}
+
+			return $result;
+        }
+		return false;
+    }
+    
+    public function getalldateinmonth($month)
+    {
+        $year = date('Y');
+        $mo_int = $month;
+        $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
+        $arr_time = array();
+
+        
+        for($i = 1; $i <= $numdateofmonth;$i++)
+		{
+			array_push($arr_time, $i);
+        }
+
+        return $arr_time;
+    }
+
+    public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
+	{
+
+        $tid = $this->security->xss_clean($this->input->post('tennant_id'));
+
+		$this->db->select('DAY(rpt_summ_interval.tanggal) as DAY, sum(rpt_summ_interval.case_session) as COF');
+        $this->db->from('rpt_summ_interval');
+
+        if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
+		$this->db->where('MONTH(rpt_summ_interval.tanggal)',$month);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)',$year);
+		$this->db->where('rpt_summ_interval.channel_id', $channel_id);
+		$this->db->group_by('rpt_summ_interval.tanggal');
+		$this->db->order_by('DAY(rpt_summ_interval.tanggal)','ASC');
+		$query = $this->db->get();
+
+		$result = array();
+		if($query->num_rows()>0)
+		{
+			
+			for($inx = 0; $inx < $numdateofmonth; $inx++)
+			{
+				if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
+				{
+					array_push($result,strval($query->row($inx)->COF));
+				}
+				else
+				{			
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			{
+				array_push($result,'0');
+			}
+		}
+
+		return $result;
+	}
+
+
 //under const
 
-public function SummStatusTicketOps($date,$src)
+    public function SummStatusTicketOps($date,$src)
     {
         $this->db->select('rpt_summ_kip1.tenant_id,');
         $this->db->from('rpt_summ_kip1');
@@ -547,7 +645,7 @@ public function SummStatusTicketOps($date,$src)
         {
             foreach($query->result() as $data)
             {
-                $data_r[] = array(
+                $result[] = array(
                     'channel_name' => $data->channel_name,
                     'channel_color' => $data->channel_color,
                     'month' => $month,
@@ -555,28 +653,12 @@ public function SummStatusTicketOps($date,$src)
                 );
             }
 
-            for($i = 1; $i <=$numdateofmonth;$i++)
-            {
-                array_push($arr_time, $i);
-            }
-
-            $result = array(
-                'status' => true ,
-                'data' => $data_r,
-                'param_date' => $arr_time
-            );
-            
-        }
-        else{
-
-            $result = array(
-                'status' => true,
-                'data' => 'nodata'
-            );
-        }
         
-
-        return $result;
+            return $result;
+        }
+      
+        return false;
+        
     }
 
     public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
@@ -593,21 +675,22 @@ public function SummStatusTicketOps($date,$src)
         $result = array();
         if($query->num_rows()>0)
         {
-            
-            for($inx = 0; $inx < $numdateofmonth; $inx++)
+            $ser = 0;
+            for($inx = 1; $inx <= $numdateofmonth; $inx++)
             {
-                if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
+                if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($ser)->DAY), 1, '0', STR_PAD_LEFT))
                 {
-                    array_push($result,strval($query->row($inx)->ticketClose));
-                    // print_r($inx.'/'.strval($query->row($inx)->DAY).'/');
+                    array_push($result,strval($query->row($ser)->ticketClose));
+                    // print_r('|'.$inx.'-'.$ser.'-'.$query->row($ser)->DAY);
+                    $ser++;
                 }
                 else
                 {
-                    
+                    // print_r('|'.$inx.'-'.$ser.'-'.$query->row($ser)->DAY);
                     array_push($result,'0');
                 }   
             }
-            // exit;
+            $ser = 0;
 
         }
         else
