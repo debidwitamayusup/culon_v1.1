@@ -225,7 +225,7 @@ function drawChartPerTenant(response){
         dataVoice.push(response.data[i].DATA[0]);
         dataSMS.push(response.data[i].DATA[3]);
         dataLive.push(response.data[i].DATA[2]);
-        dataChatbot.push(response.data[i].DATA[12])
+        dataChatbot.push(response.data[i].DATA[12]);
     }
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{

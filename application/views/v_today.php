@@ -141,6 +141,12 @@
 															id="list-channel[]" name="example-checkbox2" value="SMS">
 														<span class="custom-control-label">SMS</span>
 													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox"
+															class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="Chat Bot">
+														<span class="custom-control-label">Chat Bot</span>
+													</label>
 												</div>
 											</div>
 										</div>
