@@ -326,6 +326,7 @@ function drawTableData(response){
         // console.log(response)
         // console.log(response.data[12].total_interval)  
         // var i = 0;
+        console.log(response);
         for (var i = 0; i < response.dates.length; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+response.dates[i]+'</td>'+
