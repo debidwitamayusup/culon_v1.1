@@ -19,7 +19,7 @@ $(document).ready(function () {
     // fromTemplate();
     callDataPercentage(v_params_today);
     callIntervalTraffic(v_params_today,'');
-    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
+    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"]);
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);
@@ -85,7 +85,7 @@ function callIntervalTraffic(date, arr_channel){
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"]);},900000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -314,7 +314,7 @@ function drawTableData(response){
     var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-    // var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
+    var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
     var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
 
     //summarize per channel
