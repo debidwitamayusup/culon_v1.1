@@ -482,10 +482,10 @@ function drawChartPerTenant(response){
             
         },
         grid: {
-            top: '20%',
+            top: '25%',
             right: '3%',
             bottom: '5%',
-            left: '2%',
+            left: '1%',
             containLabel: true,
             width: 'auto'
         },
