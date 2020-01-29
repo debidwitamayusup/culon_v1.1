@@ -33,7 +33,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="font-size:10px" id="tabelCOFByChannel">
+                                style="font-size:9px; width:100%" id="tabelCOFByChannel">
                                 <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">No</td>

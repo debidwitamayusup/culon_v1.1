@@ -325,20 +325,19 @@ function drawChartPerTenant(response){
              },
         },
         legend: {
-            // bottom: 10,
-            left: 'center',
-            top: 'auto',
+            
             data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
             itemWidth :12,
-            padding: [10, 10,40, 10]
-            // labels:{
-            //     boxWidth:10
-            // }
+            padding: [10, 10],
+            top : 'auto',
+            left : 'center',
+            width :'100%',
+            containLabel : true,
         },
         grid: {
-            top: '15%',
-            right: '5%',
-            bottom: '10%',
+            top: '20%',
+            right: '3%',
+            bottom: '5%',
             left: '16%'
         },
         xAxis: {
@@ -395,6 +394,13 @@ function drawChartPerTenant(response){
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
     barChartWallSummary.setOption(optionWallSummary);
+
+    $(window).on('resize', function(){
+        if(barChartWallSummary != null && barChartWallSummary != undefined){
+            barChartWallSummary.resize();
+        }
+    });
+
 }
 
 function destroyChartInterval(){

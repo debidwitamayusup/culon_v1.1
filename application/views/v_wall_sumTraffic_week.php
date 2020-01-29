@@ -326,7 +326,7 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Daily)</h5>
                         </div>
                         <div class="card-body" id="echartWeekDiv">
-                            <div id="echartWeek" class="chartsh-wall overflow-hidden"></div>
+                            <div id="echartWeek" class="chartsh-wall overflow-hidden" style="width:100%"></div>
                         </div>
                     </div>
                 </div>
