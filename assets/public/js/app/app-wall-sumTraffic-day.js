@@ -121,7 +121,7 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], tenant_id);},900000);
+            setTimeout(function(){callIntervalTraffic(date, '', tenant_id);},900000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");

@@ -159,7 +159,7 @@ function callIntervalTraffic(params, index, params_year, channel, tenant_id){
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"], tenant_id);},900000);
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, '', tenant_id);},900000);
             drawLineChart(r);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");

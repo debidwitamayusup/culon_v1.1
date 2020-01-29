@@ -174,7 +174,7 @@ function getTrafficInterval(week,arr_channel){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            setTimeout(function(){callIntervalTraffic(week, '');},900000);
             drawTrafficInterval(response);
             // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
