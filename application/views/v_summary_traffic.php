@@ -66,7 +66,7 @@
 		                                    </div>
 		                                    <div>
 		                                        <span class="col-auto">
-		                                            <button class="btn btn-sm btn-dark mt-1" type="button" id="btn-go"><i
+		                                            <button class="btn btn-sm btn-dark" type="button"  style="height:29px" id="btn-go"><i
 		                                                    class="fe fe-arrow-right text-white"></i></button>
 		                                        </span>
 		                                    </div>
@@ -115,13 +115,13 @@
 		                                <h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 		                            </div>
 		                            <div class="card-body" id="echartWallSummaryTrafficDiv">
-		                                <div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>
+		                                <div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden" style="width:100%"></div>
 		                            </div>
 		                        </div>
 		                    </div>
 		                </div>
 		                <div class="row">
-		                    <!---! Kolom Channel--->
+		                    <!---! Kolom Channel--->	
 		                    <div class="col-xl-12 col-lg-12 col-md-12">
 		                        <div class="card overflow-hidden">
 		                            <div class="card-header-small">

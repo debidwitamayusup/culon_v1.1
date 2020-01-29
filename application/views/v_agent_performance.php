@@ -58,7 +58,7 @@
                                  </div>
                                  <div>
 									<span class="col-auto">
-										<button class="btn btn-sm btn-dark mt-2" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
+										<button class="btn btn-sm btn-dark" style="height:29px" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
 									</span>
                                  </div>
                              </div>

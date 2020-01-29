@@ -414,10 +414,12 @@ function drawChartDaily(week,arr_channel){
 
              var option6 = {
              grid: {
-                 top: '18%',
-                 right: '5%',
+                 top: '20%',
+                 right: '3%',
                  bottom: '5%',
-                 left: '5%',
+                 left: '3%',
+                 width: '100%',
+                 containLabel: true
              },
              xAxis: {
                  type: 'category',
@@ -483,11 +485,7 @@ function drawChartDaily(week,arr_channel){
                 left: 'center',
                 top: 'auto',
                 data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
-                itemWidth :12,
-                // padding: [10, 10,40, 10]
-                // labels:{
-                //     boxWidth:10
-                // }
+                itemWidth :12
              },
              series: chartdata3,
              color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']

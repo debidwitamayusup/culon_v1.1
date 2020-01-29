@@ -83,7 +83,7 @@
 								<div class="col-md-12">
 									<div class="card" id="customerChartMonth">
 										<!-- <div class="card-body" > -->
-										<div id="echart1" class="chartsh overflow-hidden h-200 "></div>
+										<div id="echart1" class="chartsh-month overflow-hidden h-200 "></div>
 										<!-- </div> -->
 										<!-- <div class="card-body">
 											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>

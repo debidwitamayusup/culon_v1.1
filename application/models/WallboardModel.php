@@ -691,7 +691,6 @@ Class WallboardModel extends CI_Model {
                 }   
             }
             $ser = 0;
-
         }
         else
         {

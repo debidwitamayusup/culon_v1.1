@@ -467,15 +467,15 @@ function drawChartPerTenant(response){
             data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
             itemWidth :12,
             padding: [10, 10,40, 10]
-            // labels:{
-            //     boxWidth:10
-            // }
+            
         },
         grid: {
-            top: '15%',
-            right: '5%',
-            bottom: '10%',
-            left: '16%'
+            top: '20%',
+            right: '3%',
+            bottom: '5%',
+            left: '2%',
+            containLabel: true,
+            width: 'auto'
         },
         xAxis: {
             type: 'value',

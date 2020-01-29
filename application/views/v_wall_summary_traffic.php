@@ -50,7 +50,7 @@
 									<h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 								</div>
 								<div class="card-body">
-									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>
+									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden" style="width:100%"></div>
 								</div>
 							</div>
 						</div>

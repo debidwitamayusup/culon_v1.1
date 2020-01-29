@@ -419,10 +419,12 @@ function drawChartSumChannel(response){
 			// 	}
 			// },
 			grid: {
-				top: '30',
-				right: '25',
-				bottom: '17',
-				left: '70',
+				top: '10%',
+				right: '5%',
+				bottom: '3%',
+				left: '5%',
+				width: '100%',
+				containLabel: true
 			},
 			xAxis: {
 				type: 'value',
@@ -479,7 +481,6 @@ function drawChartSumChannel(response){
 			},
 			legend:{
 				data: ['ART','AHT','AST'],
-				top: 'auto'
 			},
 			series: chartdataTicket,
 			color: ["#A5B0B6","#009E8C","#00436D"]
@@ -534,6 +535,8 @@ function fromTemplate() {
 			bottom: '3%',
 			left: '10%',
 			width:'auto',
+			height: 'auto',
+			containLabel : true
 		},
 		xAxis: {
 			type: 'value',

@@ -74,7 +74,8 @@
 
 <!-- Chart js -->
 <script src="<?=base_url()?>assets/js/chart/chart.bundle.js"></script>
-<script src="<?=base_url()?>assets/js/chart/echart.js"></script>
+<!-- <script scr="<?=base_url()?>assets/js/vendors/echart.js"></script>-->
+<script src="<?=base_url()?>assets/js/chart/echart.js"></script> 
 
 <!--Jquery.knob js-->
 <script src="<?=base_url()?>assets/js/othercharts/jquery.knob.js"></script>
