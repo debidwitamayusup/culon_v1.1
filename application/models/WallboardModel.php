@@ -599,6 +599,7 @@ public function SummStatusTicketOps($date,$src)
                 if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
                 {
                     array_push($result,strval($query->row($inx)->ticketClose));
+                    // print_r($inx.'/'.strval($query->row($inx)->DAY).'/');
                 }
                 else
                 {
@@ -606,6 +607,7 @@ public function SummStatusTicketOps($date,$src)
                     array_push($result,'0');
                 }   
             }
+            // exit;
 
         }
         else
