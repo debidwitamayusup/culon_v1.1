@@ -13,14 +13,14 @@
 								</li>
 							</ol>
 						</div>
-						<div class="d-flex bd-highlight">
+						<!-- <div class="d-flex bd-highlight">
 							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
 							<div class="p-2 bd-highlight">
 								<select class="form-control" id="channel_name">
 									<option value="#">Layanan</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<!---Next Rows---->
@@ -41,7 +41,7 @@
 								<div class="card-header-small">
 									<h5 class="card-title-small card-pt10">Summary Status Ticket Month</h5>
 								</div>
-								<div class="card-body">
+								<div class="card-body" id="echartWeekDiv">
 									<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
 								</div>
 							</div>

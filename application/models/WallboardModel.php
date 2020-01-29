@@ -626,6 +626,94 @@ Class WallboardModel extends CI_Model {
 
     }
     
+    // debi
+    public function summaryTicketCloseWall($month, $year)
+    {
+        $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
+        $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
+        $this->db->from('m_channel');
+        // if($channel)
+        // {
+        //     $this->db->where('m_channel.channel_name',$channel);
+        // }
+        $query = $this->db->get();
+        $arr_time = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+                $data_r[] = array(
+                    'channel_name' => $data->channel_name,
+                    'channel_color' => $data->channel_color,
+                    'month' => $month,
+                    'total_traffic'=> $this->get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$data->channel_id)
+                );
+            }
+
+            for($i = 1; $i <=$numdateofmonth;$i++)
+            {
+                array_push($arr_time, $i);
+            }
+
+            $result = array(
+                'status' => true ,
+                'data' => $data_r,
+                'param_date' => $arr_time
+            );
+            
+        }
+        else{
+
+            $result = array(
+                'status' => true,
+                'data' => 'nodata'
+            );
+        }
+        
+
+        return $result;
+    }
+
+    public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
+    {
+        $this->db->select('DAY(rpt_summ_ticket.tanggal) AS DAY, SUM(rpt_summ_ticket.sClose) AS ticketClose');
+        $this->db->from('rpt_summ_ticket');
+        $this->db->where('MONTH(rpt_summ_ticket.tanggal)',$month);
+        $this->db->where('YEAR(rpt_summ_ticket.tanggal)',$year);
+        $this->db->where('rpt_summ_ticket.channel_id', $channel_id);
+        $this->db->group_by('rpt_summ_ticket.tanggal');
+        $this->db->order_by('DAY(rpt_summ_ticket.tanggal)','ASC');
+        $query = $this->db->get();
+
+        $result = array();
+        if($query->num_rows()>0)
+        {
+            
+            for($inx = 0; $inx < $numdateofmonth; $inx++)
+            {
+                if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
+                {
+                    array_push($result,strval($query->row($inx)->ticketClose));
+                }
+                else
+                {
+                    
+                    array_push($result,'0');
+                }   
+            }
+
+        }
+        else
+        {
+            for($inx = 1;$inx <= $numdateofmonth; $inx++)
+            {
+                array_push($result,'0');
+            }
+        }
+
+        return $result;
+    }
 
 }

@@ -414,10 +414,10 @@ function drawChartDaily(week,arr_channel){
 
              var option6 = {
              grid: {
-                 top: '6',
-                 right: '15',
-                 bottom: '17',
-                 left: '32',
+                 top: '18%',
+                 right: '5%',
+                 bottom: '5%',
+                 left: '5%',
              },
              xAxis: {
                  type: 'category',
@@ -477,6 +477,17 @@ function drawChartDaily(week,arr_channel){
                      obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
                      return obj;
                  },
+             },
+             legend: {
+                // bottom: 10,
+                left: 'center',
+                top: 'auto',
+                data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
+                itemWidth :12,
+                // padding: [10, 10,40, 10]
+                // labels:{
+                //     boxWidth:10
+                // }
              },
              series: chartdata3,
              color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
