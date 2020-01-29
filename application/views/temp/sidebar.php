@@ -114,7 +114,6 @@ Sidebar menu-->
 				<i class="angle fas fa-angle-right"></i>
 			</a>
 			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?=base_url()?>main/report_opsi1">Summary Channel V2</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_channel">Summary Channel</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_ticket">Summary Ticket</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_interval">Summary Interval</a></li>
