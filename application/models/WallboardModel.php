@@ -393,7 +393,7 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
-        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
+        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, AVG(scr) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         if($src)
