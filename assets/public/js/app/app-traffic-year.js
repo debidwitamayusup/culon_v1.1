@@ -163,6 +163,7 @@ function getColorChannel(channel_name){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#31a550';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel_name];
 }

@@ -19,10 +19,10 @@ var params_week = d.getWeek()-1;
 $(document).ready(function(){
     // $("#filter-loader").fadeIn("slow");
 
-    getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"]);
     getTrafficInterval(params_week,'');
-    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
-    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
+    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
 
     $('#check-all-channel').prop('checked',false);
     $("input:checkbox.checklist-channel").prop('checked',false);
@@ -62,6 +62,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
@@ -90,6 +91,7 @@ function getSummTrafficByChannel(week, arr_channel){
 }
 
 function drawSummTrafficByChannel(response){
+    console.log(response);
     $('#barWallTrafficWeek').remove(); // this is my <canvas> element
     $('#barWallTrafficWeekDiv').append('<canvas id="barWallTrafficWeek"></canvas>');
 
@@ -282,7 +284,7 @@ function drawTableTraffic(response){
     // console.log(response.data[0].data);
     $('#mytbody').empty();
     if (response.data.length != 0) {
-        for (var i = 0; i < 12; i++) {
+        for (var i = 0; i < 13; i++) {
         // console.log(response.channel[i]);
             $('#mytable').find('tbody').append('<tr>'+
             '<td class="text-center">'+(i+1)+'</td>'+
@@ -333,7 +335,7 @@ function drawChartDaily(week,arr_channel){
             var response = JSON.parse(r);
             // console.log(response);
 
-            let dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [];
+            let dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatBot = [];
             for (var i = 0; i < response.data.length; i++) {
                 // console.log()
                 dataWa.push(response.data[i].DATA[10]);
@@ -348,6 +350,7 @@ function drawChartDaily(week,arr_channel){
                 dataVoice.push(response.data[i].DATA[0]);
                 dataSMS.push(response.data[i].DATA[3]);
                 dataLive.push(response.data[i].DATA[2]);
+                dataChatBot.push(response.data[i].DATA[12]);
             }
 
             var chartdata3 = [{
@@ -410,11 +413,16 @@ function drawChartDaily(week,arr_channel){
                  type: 'bar',
                  stack: 'Stack',
                  data: dataLive
+             },{
+                 name: 'Chat Bot',
+                 type: 'bar',
+                 stack: 'Stack',
+                 data: dataChatBot
              }];
 
              var option6 = {
              grid: {
-                 top: '20%',
+                 top: '25%',
                  right: '3%',
                  bottom: '5%',
                  left: '3%',
@@ -484,11 +492,11 @@ function drawChartDaily(week,arr_channel){
                 // bottom: 10,
                 left: 'center',
                 top: 'auto',
-                data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
+                data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
                 itemWidth :12
              },
              series: chartdata3,
-             color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+             color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
          };
          var chart6 = document.getElementById('echartWeek');
          var barChart6 = echarts.init(chart6);

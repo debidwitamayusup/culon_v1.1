@@ -50,6 +50,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
@@ -186,7 +187,12 @@ function drawPieChartSumAllTenant(response){
                     }
 
                     // console.log(total)
-                    var percentage = Math.round((dataLabel / total) * 100);
+                    // var percentage = Math.round((dataLabel / total) * 100);
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
                     legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
                 })
@@ -200,7 +206,7 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerTenant(response){
-    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [];
+    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot =[];
 
     response.data.forEach(function (value, index) {
             arrTenant.push(value.TENANT_ID);
@@ -209,6 +215,7 @@ function drawChartPerTenant(response){
             // arrAST.push(value.AST);
             // arrSCR.push(value.SCR);
         });
+    // console.log(response.data);
     for (var i = 0; i < response.data.length; i++) {
         // console.log()
         dataWa.push(response.data[i].DATA[10]);
@@ -223,6 +230,7 @@ function drawChartPerTenant(response){
         dataVoice.push(response.data[i].DATA[0]);
         dataSMS.push(response.data[i].DATA[3]);
         dataLive.push(response.data[i].DATA[2]);
+        dataChatbot.push(response.data[i].DATA[12]);
     }
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{
@@ -286,11 +294,11 @@ function drawChartPerTenant(response){
          stack: 'Stack',
          data: dataLive
     },{
-        name: 'Chat Bot',
-        type: 'bar',
-        stack: 'Stack',
-        data: dataLive
-   }];
+         name: 'Chat Bot',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataChatbot
+    }];
     /*----echartTicketUnit----*/
     var optionWallSummary = {
         tooltip: {
@@ -331,7 +339,7 @@ function drawChartPerTenant(response){
         },
         legend: {
             
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat','Chat Bot'],
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
             itemWidth :12,
             padding: [10, 10],
             top : 'auto',
@@ -394,7 +402,7 @@ function drawChartPerTenant(response){
             }
         },
         series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b','#79213B']
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
     };
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);

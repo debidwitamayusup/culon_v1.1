@@ -151,6 +151,7 @@ function getColorChannel(channel_name){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#31a550';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel_name];
 }
@@ -409,6 +410,11 @@ function drawStackedBar(params, channel_name, index, params_year){
             type: 'bar',
             stack: 'Stack',
             data: response.data[2].total_traffic
+        },{
+            name: 'Chat Bot',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[12].total_traffic
         }];
         /*----EchartMonth*/
         var option6 = {
@@ -447,7 +453,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                  },
             },
             legend:{
-                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat'],
+                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat', 'Chat Bot'],
                 left: 'center',
                 // top: 'bottom',
                 itemWidth :12,
@@ -498,7 +504,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                 }
             },
             series: chartdata3,
-            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
         };
         var chart6 = document.getElementById('echart1');
         var barChart6 = echarts.init(chart6);

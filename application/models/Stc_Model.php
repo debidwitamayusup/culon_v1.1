@@ -175,11 +175,14 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('DATE(b.tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(b.tanggal)', $index);
 			$this->db->where('YEAR(tanggal)',$params_year);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(b.tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name', 'ASC');
@@ -288,7 +291,7 @@ class Stc_Model extends CI_Model
 		LEFT JOIN(
 			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
-			where $where2
+			where tenant_id = 'oct_telkomcare' AND $where2
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
 		ORDER BY m_channel.channel_name";
@@ -336,11 +339,14 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query;
@@ -366,11 +372,14 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query;
@@ -1524,11 +1533,14 @@ class Stc_Model extends CI_Model
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query->row();

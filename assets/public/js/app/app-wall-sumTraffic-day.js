@@ -19,7 +19,7 @@ $(document).ready(function () {
     // fromTemplate();
     callDataPercentage(v_params_today);
     callIntervalTraffic(v_params_today,'');
-    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);
+    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);
@@ -61,6 +61,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
@@ -300,7 +301,7 @@ function drawChartPercentageToday(response){
 
 function drawTableData(response){
     var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
-
+    console.log(response);
     var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
     var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
     var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
@@ -313,6 +314,7 @@ function drawTableData(response){
     var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
+    // var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
     var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
 
     //summarize per channel
@@ -340,6 +342,7 @@ function drawTableData(response){
             '<td class="text-right">'+response.data.series[9].data[i]+'</td>'+
             '<td class="text-right">'+response.data.series[10].data[i]+'</td>'+
             '<td class="text-right">'+response.data.series[11].data[i]+'</td>'+
+            '<td class="text-right">'+response.data.series[12].data[i]+'</td>'+
             '</tr>');
         }
 
@@ -357,6 +360,7 @@ function drawTableData(response){
             '<td class="text-right">'+sumTwDM+'</td>'+
             '<td class="text-right">'+sumLive+'</td>'+
             '<td class="text-right">'+sumSms+'</td>'+
+            '<td class="text-right">'+sumChatBot+'</td>'+
             '</tr>');
 
     }else{

@@ -139,7 +139,7 @@
                                             </label>
                                             <label class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input checklist-channel"
-                                                    id="list-channel[]" name="example-checkbox2" value="Chat Bot">
+                                                    id="list-channel[]" name="example-checkbox2" value="ChatBot">
                                                 <span class="custom-control-label">Chat Bot</span>
                                             </label>
                                         </div>
@@ -164,7 +164,7 @@
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">Time</td>
                                         <td rowspan="2" class="font-weight-extrabold text-white">Total<br>Agent</td>
-                                        <td colspan="12" class="font-weight-extrabold text-white">Channel</td>
+                                        <td colspan="13" class="font-weight-extrabold text-white">Channel</td>
                                     </tr>
                                     <tr>
                                         <td class="bg-column">Facebook</td>
@@ -179,6 +179,7 @@
                                         <td class="bg-column">Twitter DM</td>
                                         <td class="bg-column">Live Chat</td>
                                         <td class="bg-column">SMS</td>
+                                        <td class="bg-column">Chat Bot</td>
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" id="mytbody">
