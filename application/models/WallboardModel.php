@@ -777,8 +777,13 @@ Class WallboardModel extends CI_Model {
 
     public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+
         $this->db->select('DAY(rpt_summ_ticket.tanggal) AS DAY, SUM(rpt_summ_ticket.sClose) AS ticketClose');
         $this->db->from('rpt_summ_ticket');
+        if ($tid){
+            $this->db->where('rpt_summ_ticket.tenant_id', $tid);
+        }
         $this->db->where('MONTH(rpt_summ_ticket.tanggal)',$month);
         $this->db->where('YEAR(rpt_summ_ticket.tanggal)',$year);
         $this->db->where('rpt_summ_ticket.channel_id', $channel_id);

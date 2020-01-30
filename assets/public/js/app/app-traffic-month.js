@@ -4,6 +4,7 @@ var months = [
     'October', 'November', 'December'
     ];
 var base_url = $('#base_url').val();
+var v_params_tenant = 'oct_telkomcare'
 var d = new Date();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
@@ -20,9 +21,9 @@ $(document).ready(function () {
     // console.log(m);
     // callGraphicInterval('ShowAll', $("#month").val(), m);
     // callGraphicInterval('ShowAll', '1', '2020');
-    drawStackedBar('month', '', n, m);
-    callDataPercentage($("#month").val(), m);
-    callDataTableAvg($("#month").val(), m);
+    drawStackedBar('month', '', n, m, v_params_tenant);
+    callDataPercentage($("#month").val(), m, v_params_tenant);
+    callDataTableAvg($("#month").val(), m), v_params_tenant;
 });
 
 function monthNumToName(month) {
@@ -156,13 +157,14 @@ function getColorChannel(channel_name){
     return color[channel_name];
 }
 
-function callDataPercentage(month, year){
+function callDataPercentage(month, year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
         data: {
             month: month,
-            year: year
+            year: year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -249,13 +251,14 @@ function drawChartPercentageMonth(response){
     });
 }
 
-function callDataTableAvg(month, year){
+function callDataTableAvg(month, year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/averageIntervalTable',
         data: {
             month: month,
-            year: year
+            year: year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -330,7 +333,7 @@ function callYear()
     });
 }
 
-function drawStackedBar(params, channel_name, index, params_year){
+function drawStackedBar(params, channel_name, index, params_year, tenant_id){
     destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -345,6 +348,7 @@ function drawStackedBar(params, channel_name, index, params_year){
             "channel_name": channel_name,
             "index": index,
             "params_year": params_year,
+            "tenant_id": tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -571,11 +575,11 @@ function destroyChartPercentage(){
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val());
+                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }else{
-                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val());
+                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val());
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val());
+            callDataPercentage($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
         });
 })(jQuery);

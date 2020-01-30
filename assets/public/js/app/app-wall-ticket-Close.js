@@ -9,7 +9,7 @@ var n = d.getMonth()+1;
 var m = d.getFullYear();
 
 $(document).ready(function () {
-    drawStackedBar('month', '10', '2019');
+    drawStackedBar('month', '10', '2019','');
 });
 
 function addCommas(commas)
@@ -31,7 +31,7 @@ function destroyChartInterval(){
     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>');
 }
 
-function drawStackedBar(params,index, params_year){
+function drawStackedBar(params,index, params_year, tenant_id){
 	destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     // var getMontName = monthNumToName(month);
@@ -46,6 +46,7 @@ function drawStackedBar(params,index, params_year){
             // "channel_name": channel_name,
             "index": index,
             "params_year": params_year,
+            "tenant_id": tenant_id
         },
         success: function (r) {
             // var response = JSON.parse(r);

@@ -1,6 +1,7 @@
 var base_url = $('#base_url').val();
 var v_date = '';
 var list_channel= [];
+var v_params_tenant = 'oct_telkomcare'
 
 $(document).ready(function () {
     // set date
@@ -19,9 +20,9 @@ $(document).ready(function () {
     list_channel = values;
 
     // var data_chart = callIntervalTraffic(v_date, []);
-    var data_chart = callIntervalTraffic(v_date, list_channel);
-    var data_table_avg = callDataTableAvg(v_date);
-    var data_percentage = callDataPercentage(v_date);
+    var data_chart = callIntervalTraffic(v_date, list_channel, v_params_tenant);
+    var data_table_avg = callDataTableAvg(v_date, v_params_tenant);
+    var data_percentage = callDataPercentage(v_date, v_params_tenant);
     
 });
 
@@ -79,7 +80,7 @@ function getToday(){
     return today;
 }
 
-function callIntervalTraffic(date, arr_channel){
+function callIntervalTraffic(date, arr_channel, tenant_id){
     // console.log(+arr_channel);
     $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -87,7 +88,8 @@ function callIntervalTraffic(date, arr_channel){
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
             date: date,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -156,12 +158,13 @@ function drawChartToday(response){
     }
 }
 
-function callDataTableAvg(date){
+function callDataTableAvg(date, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getAverageInterval',
         data: {
-            date: date
+            date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -200,12 +203,13 @@ function drawTableToday(response){
     
 }
 
-function callDataPercentage(date){
+function callDataPercentage(date, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday',
         data: {
-            date: date
+            date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -340,9 +344,9 @@ function destroyChartPercentage(){
             v_date = this.value;
             
             //re draw
-            callIntervalTraffic(this.value, list_channel);
-            callDataTableAvg(this.value);
-            callDataPercentage(this.value);
+            callIntervalTraffic(this.value, list_channel, v_params_tenant);
+            callDataTableAvg(this.value, v_params_tenant);
+            callDataPercentage(this.value, v_params_tenant);
         }
     });
 
@@ -358,7 +362,7 @@ function destroyChartPercentage(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic(v_date, list_channel);
+        callIntervalTraffic(v_date, list_channel, v_params_tenant);
     });
 
     //checked channel
@@ -377,7 +381,7 @@ function destroyChartPercentage(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic(v_date, list_channel);
+        callIntervalTraffic(v_date, list_channel, v_params_tenant);
     });
     
 })(jQuery);
