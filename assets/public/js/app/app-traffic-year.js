@@ -343,8 +343,8 @@ function destroyChartPercentage(){
             destroyChartInterval();
             destroyChartPercentage();
 
-            callGraphYear($("#channel_name").val(), $("#dateTahun").val());
-            callDataPercentage($("#dateTahun").val());
-            callDataTableAvg($("#dateTahun").val());
+            callGraphYear($("#channel_name").val(), $("#dateTahun").val(), v_params_tenant);
+            callDataPercentage($("#dateTahun").val(), v_params_tenant);
+            callDataTableAvg($("#dateTahun").val(), v_params_tenant);
         });
     })(jQuery);
