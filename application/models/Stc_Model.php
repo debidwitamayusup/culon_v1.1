@@ -1298,7 +1298,7 @@ class Stc_Model extends CI_Model
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$where2 = "";
 		if ($tid) {
-			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+			$where2 = "AND rpt_summary_scr.tenant_id ='" .$tid."'";
 		}
 
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
