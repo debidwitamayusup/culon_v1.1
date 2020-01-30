@@ -17,7 +17,7 @@ var v_params_this_year = m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage(n,m);
+    callDataPercentage(n,'oct_telkomcare',m);
     callIntervalTraffic(n,'');
     callTableInterval(n,'');
     $("#filter-loader").fadeOut("slow");
@@ -91,7 +91,7 @@ function callIntervalTraffic(month, arr_channel){
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            // setTimeout(function(){callIntervalTraffic(month, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -185,18 +185,19 @@ function drawChartToday(response){
     }
 }
 
-function callDataPercentage(month, year){
+function callDataPercentage(month, tenant_id, params_year){
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
+        url: base_url+'api/Wallboard/WallboardController/GetBarchannelPerMonth',
         data: {
             month: month,
-            year: year
+            tenant_id: tenant_id,
+            params_year: params_year
         },
         success: function (r) {
-            var response = JSON.parse(r);
-            // console.log(response);
-            setTimeout(function(){callDataPercentage(date);},900000);
+            var response = r;
+            console.log(response);
+            // setTimeout(function(){callDataPercentage(date);},900000);
             drawChartPercentageMonth(response);
         },
         error: function (r) {
@@ -313,7 +314,7 @@ function drawTableData(response){
     var sumTwDM = response.data[11].total_interval.map(Number).reduce(summarize);
     var sumLive = response.data[2].total_interval.map(Number).reduce(summarize);
     var sumSms = response.data[3].total_interval.map(Number).reduce(summarize);
-    var sumChat = response.data[12].total_interval.map(Number).reduce(summarize);;
+    var sumChat = response.data[12].total_interval.map(Number).reduce(summarize);
     // var sumTotAgent = response.data.total_interval.map(Number).reduce(summarize);
     //summarize per channel
     function summarize(total, num) {
