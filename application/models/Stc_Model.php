@@ -170,19 +170,22 @@ class Stc_Model extends CI_Model
 
 	public function get_all_unique_customer_per_channel($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('a.channel_name, sum(b.unik) as total_unique');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('DATE(b.tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(b.tanggal)', $index);
 			$this->db->where('YEAR(tanggal)',$params_year);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(b.tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name', 'ASC');
@@ -240,7 +243,8 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getCardMain($params, $index, $params_year)
-	{	
+	{	$tid = $this->security->xss_clean($this->input->post('tenant_id',true));
+
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		// $this->db->select('channel_name channel, SUM(total) total');
 		// $this->db->from('summary_channel');
@@ -257,6 +261,13 @@ class Stc_Model extends CI_Model
 		// $query = $this->db->get();
 		$where = "";
 		$where2 = "";
+		$where3 = "";
+
+		if($tid)
+		{
+			$where3 ="AND tenant_id ='".$tid."'";
+		}
+		
 		if($params == 'day'){
 			$where = "DATE(date_time)= '".$index."'";
 			$where2 = "tanggal = '".$index."'";
@@ -291,7 +302,7 @@ class Stc_Model extends CI_Model
 		LEFT JOIN(
 			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
-			where tenant_id = 'oct_telkomcare' AND $where2
+			where $where2 $where3
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
 		ORDER BY m_channel.channel_name";
@@ -334,68 +345,48 @@ class Stc_Model extends CI_Model
 
 	public function getTotInteraction($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('IFNULL(SUM(b.cof), 0) total_interaction');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query;
-
-		// $this->db->select('IFNULL(SUM(cof), 0) total_interaction');
-		// $this->db->from('rpt_summary_scr');
-		// if($params == 'day'){
-		// 	$this->db->where('tanggal', $index);
-		// }else if($params == 'month'){
-		// 	$this->db->where('MONTH(tanggal)', $index);
-		// 	$this->db->where('YEAR(tanggal)', $params_year);
-		// }else if($params == 'year'){
-		// 	$this->db->where('YEAR(tanggal)', $index);
-		// }
-		// $query = $this->db->get();
-		// return $query;
 	}
 
 	public function getTotUniqueCustomer($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('IFNULL(SUM(unik),0) total_unique_customer');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query;
-
-		// $this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
-		// $this->db->from('rpt_summary_scr');
-		// if($params == 'day'){
-		// 	$this->db->where('tanggal', $index);
-		// }else if($params == 'month'){
-		// 	$this->db->where('MONTH(tanggal)', $index);
-		// 	$this->db->where('YEAR(tanggal)', $params_year);
-		// }else if($params == 'year'){
-		// 	$this->db->where('YEAR(tanggal)', $index);
-		// }
-		// $query = $this->db->get();
-		// return $query;
 	}
 
 	public function getAverageCustomer($params, $index)
@@ -417,20 +408,6 @@ class Stc_Model extends CI_Model
 	{
 		if ($channel_name == "ShowAll") {
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			// $this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
-			// $this->db->from('summary_channel');
-			// $this->db->where('YEAR(date_time) = "'.$year.'" ');
-			// $this->db->group_by('MONTH(date_time)');
-			// $this->db->order_by('MONTH(date_time)');
-
-			//summary_channel
-			// $this->db->select('b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			// $this->db->from('summary_channel a');
-			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			// $this->db->where('YEAR(a.date_time) = "'.$year.'"');
-			// $this->db->group_by('MONTH(a.date_time)');
-			// $this->db->order_by('MONTH(a.date_time)');
-
 			//rpt_summary_scr
 			$this->db->select('b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
@@ -1585,13 +1562,18 @@ class Stc_Model extends CI_Model
 	}
 
 	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id', $tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
+			
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
