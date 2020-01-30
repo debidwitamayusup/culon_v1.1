@@ -462,6 +462,7 @@ class Stc_Model extends CI_Model
 	public function getSumIntervalYear($year)
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 ="";
 		if($tid)
 		{
 			$where2 = "AND rpt_summary_scr.tenant_id ='".$tid."'";

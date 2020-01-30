@@ -4,7 +4,7 @@ var months = [
     'October', 'November', 'December'
     ];
 var base_url = $('#base_url').val();
-var v_params_tenant = 'oct_telkomcare'
+var v_params_tenant = 'oct_telkomcare';
 var d = new Date();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
