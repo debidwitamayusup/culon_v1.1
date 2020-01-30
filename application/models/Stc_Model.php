@@ -1253,7 +1253,7 @@ class Stc_Model extends CI_Model
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
 			WHERE DATE(rpt_summ_interval.tanggal) = '".$date."' $where2
-			GROUP BY rpt_summ_interval.channel_id) AS a ON a.rpt_summ_interval = m_channel.channel_id 	
+			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
