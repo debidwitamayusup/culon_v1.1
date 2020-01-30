@@ -868,8 +868,14 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_weekly($week_id,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -922,12 +928,17 @@ class Stc_Model extends CI_Model
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		}
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
@@ -967,8 +978,14 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_monthly($month_id,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -1022,12 +1039,17 @@ class Stc_Model extends CI_Model
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		}
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
@@ -1067,11 +1089,19 @@ class Stc_Model extends CI_Model
 
 	function get_availdata_get_tot_permonth($month_id)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 
@@ -1360,6 +1390,7 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_weeklyBar($week_id,$channel)
 	{
+
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$this->db->where_in('m_channel.channel_name',$channel);
@@ -1435,7 +1466,6 @@ class Stc_Model extends CI_Model
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$query = $this->db->get();
-
 		
 		$res_tot = array();
 			
@@ -1460,19 +1490,23 @@ class Stc_Model extends CI_Model
 			}
 		}
 		
-		return $res_tot;
-
-		
+		return $res_tot;	
 	}
 
 	function get_traffic_interval_info_weeklyAvg($day,$channel) //summ
 	{
 		$date = date('Y-m-d',strtotime($day));
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		
 		$this->db->select('rpt_summ_interval.case_session as total');
 		$this->db->from('rpt_summ_interval');
 		$this->db->where('rpt_summ_interval.tanggal',$date);
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		//$this->db->group_by('rpt_summ_interval.channel_id')
 		$query = $this->db->get();
 		
@@ -1496,11 +1530,17 @@ class Stc_Model extends CI_Model
 			return 0;
 		}
 
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('SUM(rpt_summ_interval.case_session) as total');
 		$this->db->from('rpt_summ_interval');
 		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_interval.channel_id');
 		$query = $this->db->get();
 

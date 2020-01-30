@@ -207,7 +207,7 @@ function drawChartPercentageYear(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalYear");
-    ctx_percentage.height = 566;
+    ctx_percentage.height = 610;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

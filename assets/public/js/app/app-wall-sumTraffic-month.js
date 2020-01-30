@@ -18,7 +18,7 @@ $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
     callDataPercentage(n,'oct_telkomcare',m);
-    callIntervalTraffic(n,'');
+    callIntervalTraffic(n,'', '');
     callTableInterval(n,'');
     $("#filter-loader").fadeOut("slow");
 
@@ -77,7 +77,7 @@ function destroyChartPercentage(){
     $('#barWallTrafficMonthDiv').append('<canvas id="barWallTrafficMonth"></canvas>');
 }
 
-function callIntervalTraffic(month, arr_channel){
+function callIntervalTraffic(month, arr_channel, tenant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -85,7 +85,8 @@ function callIntervalTraffic(month, arr_channel){
         url: base_url+'api/SummaryTraffic/SummaryMonth/getIntervalTrafficMonthly',
         data: {
             month: month,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -327,6 +328,7 @@ function drawTableData(response){
         // console.log(response)
         // console.log(response.data[12].total_interval)  
         // var i = 0;
+        console.log(response);
         for (var i = 0; i < response.dates.length; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+response.dates[i]+'</td>'+
