@@ -24,7 +24,7 @@ if (o < 10) {
 if (n < 10) {
   n = '0' + n;
 }
-
+var v_params_tenant = 'oct_telkomcare';
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 	// loadContent(params_time, v_date, 0);
-	loadContent(params_time, v_params_this_year, 0);
+	loadContent(params_time, v_params_this_year, 0, v_params_tenant);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value='+n+']').attr('selected','selected');
@@ -158,10 +158,10 @@ function callYear()
     });
 }
 
-function loadContent(params, index, params_year){
-    drawDataTable2(params, index, params_year);
-    summaryService(params, index, params_year);
-	summaryChannel(params, index, params_year);
+function loadContent(params, index, params_year, tenant_id){
+    drawDataTable2(params, index, params_year, tenant_id);
+    summaryService(params, index, params_year, tenant_id);
+	summaryChannel(params, index, params_year, tenant_id);
 	// callSummaryInteraction(params, index,0);
 }
 
@@ -182,7 +182,7 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function summaryService(params, index, params_year){
+function summaryService(params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
@@ -190,7 +190,8 @@ function summaryService(params, index, params_year){
         data: {
             params: params,
             index: index,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (response) {
             // var response = JSON.parse(r);
@@ -206,7 +207,7 @@ function summaryService(params, index, params_year){
     });
 }
 
-function summaryChannel(params, index, params_year){
+function summaryChannel(params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
         type: 'post',
@@ -214,7 +215,8 @@ function summaryChannel(params, index, params_year){
         data: {
             params: params,
             index: index,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (response) {
             // var response = JSON.parse(r);
@@ -227,7 +229,7 @@ function summaryChannel(params, index, params_year){
         },
     });
 }
-function drawDataTable2(params, index, params_year){
+function drawDataTable2(params, index, params_year, tenant_id){
 	// console.log(params);
 	$("#filter-loader").fadeIn("slow");
 
@@ -243,7 +245,8 @@ function drawDataTable2(params, index, params_year){
             data: {
             	params: params,
             	index: index,
-            	params_year, params_year
+            	params_year: params_year,
+            	tenant_id: tenant_id
             }
         },
         columnDefs: [
@@ -686,10 +689,10 @@ function setDatePicker(){
 		// v_date = '2019-12-01';
         // console.log(params_time);
 
-		loadContent(params_time, v_params_this_year);
+		loadContent(params_time, v_params_this_year, v_params_tenant);
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$("#btn-year").prop("class","btn btn-light btn-sm");
-		$('#input-date-filter').datepicker("setDate", v_params_this_year);
+		$('#input-date-filter').datepicker("setDate", v_params_this_year, v_params_tenant);
 		$(this).prop("class","btn btn-red btn-sm");
 
 		$('#filter-date').show();
@@ -717,7 +720,7 @@ function setDatePicker(){
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n, m);
+		loadContent(params_time, n, m, v_params_tenant);
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
 		callYearOnMonth();
@@ -741,7 +744,7 @@ function setDatePicker(){
         // console.log(params_time);
 
 		// v_date = getYear();
-		loadContent(params_time, m, 0);
+		loadContent(params_time, m, 0, v_params_tenant);
 		callYear();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -763,7 +766,7 @@ function setDatePicker(){
         onSelect: function(dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent(params_time, v_date,0);
+			loadContent(params_time, v_date,0,v_params_tenant);
         }
 	});
 
@@ -785,10 +788,10 @@ function setDatePicker(){
 	$('#select-year-only').change(function(){
 		v_year = $(this).val();
 		// console.log(this.value);
-		loadContent('year', v_year, 0);
+		loadContent('year', v_year, 0, v_params_tenant);
 	});
 
     $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(),v_params_tenant);
     });
 })(jQuery);
