@@ -43,8 +43,15 @@ class OperationModel extends CI_Model
     }
 
     public function get_top_3_category_operation_performance($params, $index, $year){
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
         $this->db->select('category, sum(jumlah) as total_kip');
         $this->db->from('rpt_summ_kip1');
+
+        if($tid)
+        {
+            $this->db->where('rpt_summ_kip1.tenant_id',$tid);
+        }
+
         if($params == 'day'){
             $this->db->where('tanggal', $index);
         }else if($params == 'month'){
@@ -67,6 +74,12 @@ class OperationModel extends CI_Model
 
     public function get_kip_per_channel($params, $index, $arr_category, $params_year)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+        $where2 = "";
+        if($tid)
+        {
+            $where2 = "and rpt_summ_kip1.tenant_id ='".$tid"' ";
+        }
         $index_alpha[1]="a";
         $index_alpha[2]="b";
         $index_alpha[3]="c";
@@ -88,7 +101,7 @@ class OperationModel extends CI_Model
             $left_join .= " LEFT JOIN (
                 SELECT category as category_$i, channel_id, sum(jumlah) as total_$i
                 from rpt_summ_kip1
-                where category = '".$key->category."' and $where
+                where category = '".$key->category."' and $where $where2
                 GROUP BY channel_id
             ) as $index_alpha[$i] on $index_alpha[$i].channel_id = m_channel.channel_id ";
             $i++;
@@ -147,6 +160,10 @@ class OperationModel extends CI_Model
     }
 
     public function get_data_sub_category($params, $index, $channel_id, $category, $params_year){
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+       
+
         $this->db->select('m_channel.channel_name
         , rpt_summ_kip2.category
         , sum(rpt_summ_kip2.jumlah) as total_kip
@@ -185,6 +202,11 @@ class OperationModel extends CI_Model
             $this->db->where('m_channel.channel_id', $channel_id);
         }
         $this->db->where('rpt_summ_kip2.category', $category);
+        
+        if($tid)
+        {
+            $this->db->where('rpt_summ_kip2.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_kip2.sub_category');
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(5);
@@ -475,8 +497,14 @@ class OperationModel extends CI_Model
 #region :: ragakasih
     public function  getSService($params,$index,$params_year)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
         $this->db->select('AVG(art_num) AS ART, AVG(aht_num)AS AHT, AVG(ast_num) AS AST');
         $this->db->from('rpt_summary_scr');
+        if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+        }
         if($params=='month')
 		{
 			$this->db->where('MONTH(tanggal)',$index);
@@ -529,10 +557,15 @@ class OperationModel extends CI_Model
 
     private function get_dataSServicebychannel($params,$index,$param_year,$channel)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
         $this->db->select('m_channel.channel_id AS CHANNEL_ID,m_channel.channel_name AS CHANNEL_NAME,SUM(rpt_summary_scr.art_num)AS ART, SUM(rpt_summary_scr.aht_num)AS AHT, SUM(rpt_summary_scr.ast_num) AS AST');
         $this->db->from('rpt_summary_scr');
         $this->db->join('m_channel','m_channel.channel_id = rpt_summary_scr.channel_id');
         $this->db->where('rpt_summary_scr.channel_id',$channel);
+        if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+        }
         if($params=='month')
 		{
 			$this->db->where('MONTH(tanggal)',$index);
