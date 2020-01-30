@@ -406,13 +406,21 @@ class Stc_Model extends CI_Model
 
 	public function getIntervalYear($year,$channel_name)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+
 		if ($channel_name == "ShowAll") {
+
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 			//rpt_summary_scr
 			$this->db->select('b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.tanggal) = "'.$year.'"');
+			if($tid)
+			{
+				$this->db->where('a.tenant_id',$tid);
+			}
 			$this->db->group_by('MONTH(a.tanggal)');
 			$this->db->order_by('MONTH(a.tanggal)');
 
@@ -420,26 +428,15 @@ class Stc_Model extends CI_Model
 		
 			return $query;
 		} else {
-			//JANGAN DIAPUS YA BRAY, BACK TO THE UP. BACKUP
-			// $this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
-			// $this->db->from('summary_channel');
-			// $this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
-			// $this->db->group_by('MONTH(date_time)');
-			
-			//summary_channel
-			// $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			// $this->db->select('b.channel_name, b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			// $this->db->from('summary_channel a');
-			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			// $this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
-			// $this->db->group_by('MONTH(a.date_time)');
-			// $this->db->order_by('MONTH(a.date_time)');
-
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 			$this->db->select('b.channel_name, b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.tanggal) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
+			if($tid)
+			{
+				$this->db->where('a.tenant_id',$tid);
+			}
 			$this->db->group_by('MONTH(a.tanggal)');
 			$this->db->order_by('MONTH(a.tanggal)');
 
@@ -464,9 +461,11 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-
-			// CAST(SUM(cof)*100/
-			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."' ) AS DECIMAL(10,2)) as rate
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		if($tid)
+		{
+			$where2 = "AND rpt_summary_scr.tenant_id ='".$tid."'";
+		}
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -479,6 +478,7 @@ class Stc_Model extends CI_Model
 			SUM(cof) rate
 			FROM rpt_summary_scr
 			WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."'
+			$where2
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
