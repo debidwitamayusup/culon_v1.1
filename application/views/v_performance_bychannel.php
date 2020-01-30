@@ -58,7 +58,7 @@
                                 </div>
                                 <div>
                                     <span class="col-auto">
-                                        <button class="btn btn-sm btn-dark mt-2" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
+                                        <button class="btn btn-sm btn-dark" style="height:29px" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
                                     </span>
                                 </div>
                             </div>
@@ -102,9 +102,8 @@
                             <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
                         <div class="card-body" id="echartServiceDiv">
-                            <div id="echartService" class="chartsh-servicees overflow-hidden"></div>
+                            <div id="echartService" class="chartsh-servicees overflow-hidden" style="width : 100%"></div>
                         </div>
-                        <div id="legend" class="legend-con"></div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-12">

@@ -15,14 +15,14 @@
 								</ol>
 							</div>
 						</div>
-						<!-- <div class="d-flex bd-highlight">
+						<div class="d-flex bd-highlight">
 							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
 							<div class="p-2 bd-highlight">
-								<select class="form-control" id="channel_name">
-									<option value="#">Layanan</option>
+								<select class="form-control" id="tenant_id">
+									<!-- <option value="#">Layanan</option> -->
 								</select>
 							</div>
-						</div> -->
+						</div>
 					</div>
 					<!--Page Header-->
 					<!-- </div> -->
@@ -50,7 +50,7 @@
 									<h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 								</div>
 								<div class="card-body">
-									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>
+									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden" style="width:100%"></div>
 								</div>
 							</div>
 						</div>
@@ -156,6 +156,11 @@
 														<input type="checkbox" class="custom-control-input checklist-channel"
 															id="list-channel[]" name="example-checkbox2" value="SMS">
 														<span class="custom-control-label">SMS</span>
+													</label>
+													<label class="custom-control custom-checkbox">
+														<input type="checkbox" class="custom-control-input checklist-channel"
+															id="list-channel[]" name="example-checkbox2" value="ChatBot">
+														<span class="custom-control-label">Chat Bot</span>
 													</label>
 												</div>
 											</div>

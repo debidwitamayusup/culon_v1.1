@@ -33,7 +33,7 @@
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="font-size:10px" id="tabelCOFByChannel">
+                                style="font-size:9px; width:100%" id="tabelCOFByChannel">
                                 <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">No</td>
@@ -312,7 +312,7 @@
                                 <tbody class="table-sm text-center">
                                     <tr>
                                         <td>1</td>
-                                        <td>Telkom</td>
+                                        <td class="text-left">Telkom</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -327,7 +327,7 @@
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>BRI</td>
+                                        <td class="text-left">BRI</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -342,7 +342,7 @@
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>Pegadaian</td>
+                                        <td class="text-left">Pegadaian</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -357,7 +357,7 @@
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td>Garuda</td>
+                                        <td class="text-left">Garuda</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -372,7 +372,7 @@
                                     </tr>
                                     <tr>
                                         <td>6</td>
-                                        <td>XXXX</td>
+                                        <td class="text-left">XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -387,7 +387,7 @@
                                     </tr>
                                     <tr>
                                         <td>7</td>
-                                        <td>XXXX</td>
+                                        <td class="text-left">XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -402,7 +402,7 @@
                                     </tr>
                                     <tr>
                                         <td>8</td>
-                                        <td>XXXX</td>
+                                        <td class="text-left">XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -417,7 +417,7 @@
                                     </tr>
                                     <tr>
                                         <td>9</td>
-                                        <td>XXXX</td>
+                                        <td class="text-left">XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
@@ -432,7 +432,7 @@
                                     </tr>
                                     <tr>
                                         <td>10</td>
-                                        <td>XXXX</td>
+                                        <td class="text-left">XXXX</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>
                                         <td class="text-right">50</td>

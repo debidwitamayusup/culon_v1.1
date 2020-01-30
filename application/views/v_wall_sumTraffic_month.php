@@ -137,6 +137,11 @@
                                                     id="list-channel[]" name="example-checkbox2" value="SMS">
                                                 <span class="custom-control-label">SMS</span>
                                             </label>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input checklist-channel"
+                                                    id="list-channel[]" name="example-checkbox2" value="ChatBot">
+                                                <span class="custom-control-label">Chat Bot</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -157,9 +162,9 @@
                                 style="font-size:12px" id="wall-month-tbl">
                                 <thead class="text-center bg-head">
                                     <tr>
-                                        <td rowspan="2" class="text-white font-weight-extrabold">Time</td>
+                                        <td rowspan="2" class="text-white font-weight-extrabold">Dates</td>
                                         <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
-                                        <td colspan="12" class="text-white font-weight-extrabold">Channel</td>
+                                        <td colspan="14" class="text-white font-weight-extrabold">Channel</td>
                                     </tr>
                                     <tr>
                                         <td class="bg-column">Facebook</td>
@@ -174,6 +179,7 @@
                                         <td class="bg-column">Twitter DM</td>
                                         <td class="bg-column">Live Chat</td>
                                         <td class="bg-column">SMS</td>
+                                        <td class="bg-column">Chat Bot</td>
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" id="mytbody">

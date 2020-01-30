@@ -88,10 +88,12 @@ function callGraphYear(channel_name,year) {
         var barChart = echarts.init(chart);
         var option = {
             grid: {
-                top: '6',
-                right: '5',
-                bottom: '17',
-                left: '45',
+                top: '10%',
+                right: '3%',
+                bottom: '3%',
+                left: '2%',
+                containLabel: true,
+                width: '100%'
             },
             xAxis: {
                 data: response.data.month_x_axis,
@@ -161,6 +163,7 @@ function getColorChannel(channel_name){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#31a550';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel_name];
 }
@@ -204,7 +207,7 @@ function drawChartPercentageYear(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalYear");
-    ctx_percentage.height = 566;
+    ctx_percentage.height = 610;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {

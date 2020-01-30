@@ -184,7 +184,7 @@ class SummaryToday extends CI_Controller {
         $arr_channel = $this->Stc_Model->get_all_channel();
         $arr_data = array();
 
-        $query = $this->Stc_Model->getPercentageIntervalToday($date);
+        $query = $this->Stc_Model->getPercentageIntervalToday_O($date);
         $i = 0;
         if($query){
             while($i < sizeof($arr_channel)){
@@ -227,6 +227,7 @@ class SummaryToday extends CI_Controller {
     //temporary, for wallboard day
     public function getPercentageTrafficTodayWallDay(){
         $date = $this->security->xss_clean($this->input->post('date', true));
+        // $tid = $this->security->xss_clean($this->input->post('tenant_id'));
         if(!$date){
             $date = date("Y-m-d");
         }

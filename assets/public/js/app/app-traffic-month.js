@@ -4,6 +4,7 @@ var months = [
     'October', 'November', 'December'
     ];
 var base_url = $('#base_url').val();
+var v_params_tenant = 'oct_telkomcare';
 var d = new Date();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
@@ -20,9 +21,9 @@ $(document).ready(function () {
     // console.log(m);
     // callGraphicInterval('ShowAll', $("#month").val(), m);
     // callGraphicInterval('ShowAll', '1', '2020');
-    drawStackedBar('month', '', n, m);
-    callDataPercentage($("#month").val(), m);
-    callDataTableAvg($("#month").val(), m);
+    drawStackedBar('month', '', n, m, v_params_tenant);
+    callDataPercentage($("#month").val(), m, v_params_tenant);
+    callDataTableAvg($("#month").val(), m), v_params_tenant;
 });
 
 function monthNumToName(month) {
@@ -151,17 +152,19 @@ function getColorChannel(channel_name){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#31a550';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel_name];
 }
 
-function callDataPercentage(month, year){
+function callDataPercentage(month, year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
         data: {
             month: month,
-            year: year
+            year: year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -195,7 +198,7 @@ function drawChartPercentageMonth(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalMonth");
-    ctx_percentage.height = 567;
+    ctx_percentage.height = 610;
     // ctx_percentage.width = 180;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
@@ -248,13 +251,14 @@ function drawChartPercentageMonth(response){
     });
 }
 
-function callDataTableAvg(month, year){
+function callDataTableAvg(month, year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/averageIntervalTable',
         data: {
             month: month,
-            year: year
+            year: year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -329,7 +333,7 @@ function callYear()
     });
 }
 
-function drawStackedBar(params, channel_name, index, params_year){
+function drawStackedBar(params, channel_name, index, params_year, tenant_id){
     destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -344,6 +348,7 @@ function drawStackedBar(params, channel_name, index, params_year){
             "channel_name": channel_name,
             "index": index,
             "params_year": params_year,
+            "tenant_id": tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -409,6 +414,11 @@ function drawStackedBar(params, channel_name, index, params_year){
             type: 'bar',
             stack: 'Stack',
             data: response.data[2].total_traffic
+        },{
+            name: 'Chat Bot',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[12].total_traffic
         }];
         /*----EchartMonth*/
         var option6 = {
@@ -447,11 +457,11 @@ function drawStackedBar(params, channel_name, index, params_year){
                  },
             },
             legend:{
-                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat'],
+                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat', 'Chat Bot'],
                 left: 'center',
                 // top: 'bottom',
                 itemWidth :12,
-                padding: [10, 10,40, 10]
+                padding: [20, 10,40, 10]
             },
 
             grid: {
@@ -459,11 +469,12 @@ function drawStackedBar(params, channel_name, index, params_year){
                 // left: '1%',
                 // right: '2%',
                 // bottom: '3%',
-                top: '19%',
-                right: '3%',
+                top: '25%',
+                right: '2%',
                 bottom: '7%',
                 left: '3%',
-                containLabel: true
+                containLabel: true,
+                width: '100%'
             },
             xAxis: {
                 type: 'category',
@@ -497,7 +508,7 @@ function drawStackedBar(params, channel_name, index, params_year){
                 }
             },
             series: chartdata3,
-            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
         };
         var chart6 = document.getElementById('echart1');
         var barChart6 = echarts.init(chart6);
@@ -515,7 +526,7 @@ function drawStackedBar(params, channel_name, index, params_year){
 function destroyChartInterval(){
     // destroy chart interval 
     $('#echart1').remove(); // this is my <canvas> element
-    $('#customerChartMonth').append('<div id="echart1" class="chartsh overflow-hidden"></div>');
+    $('#customerChartMonth').append('<div id="echart1" class="chartsh-month overflow-hidden"></div>');
 }
 
 function destroyChartPercentage(){
@@ -564,11 +575,11 @@ function destroyChartPercentage(){
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val());
+                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }else{
-                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val());
+                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val());
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val());
+            callDataPercentage($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
         });
 })(jQuery);

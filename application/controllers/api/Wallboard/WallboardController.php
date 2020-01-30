@@ -74,6 +74,7 @@ class WallboardController extends REST_Controller {
         $params = $this->security->xss_clean($this->input->post('params'));
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
+       
 
         $res = $this->module_model->Traffic_ops($params,$index,$params_year);
         $res2 =$this->module_model->Channel_data();
@@ -143,6 +144,7 @@ class WallboardController extends REST_Controller {
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
         $channel = $this->security->xss_clean($this->input->post('channel'));
+
 
         $res = $this->module_model->get_intervalchart($params,$index,$params_year,$channel);
         
@@ -228,8 +230,61 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function GetInvalMonthTable_post()
+    {
+        $channels = $this->security->xss_clean($this->input->post('channel'));
+        $month = $this->security->xss_clean($this->input->post('month'));
 
-//under const
+        $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
+        $res_timeval = $this->module_model->getalldateinmonth($month);
+        $tot = $this->module_model->getallagentpermonth($month);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'dates' => $res_timeval,
+                'total_agent' => $tot,
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'EMPTY',
+                'total_agent' => 'EMPTY',
+                'data'    => 'EMPTY'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function GetBarchannelPerMonth_post()
+    {
+        $year = $this->security->xss_clean($this->input->post('params_year'));
+        $month = $this->security->xss_clean($this->input->post('month'));
+
+        $res = $this->module_model->getBarchannelPerMonth($month,$year);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'EMPTY',
+                'total_agent' => 'EMPTY',
+                'data'    => 'EMPTY'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    //under const
     public function SummTicketC_post()
     {
         $res = $this->module_model->SummTicketC($months,$year);
@@ -255,11 +310,27 @@ class WallboardController extends REST_Controller {
     {
         $month = $this->security->xss_clean($this->input->post('index', true));
         $year = $this->security->xss_clean($this->input->post('params_year', true));
-        $channel = $this->security->xss_clean($this->input->post('channel_name', true));
+        //$channel = $this->security->xss_clean($this->input->post('channel_name', true));
 
         $res = $this->module_model->summaryTicketCloseWall($month, $year);
+        $res_timeval = $this->module_model->getalldateinmonth($month);
 
-        echo json_encode($res);
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'dates' => $res_timeval,
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
     }
 
 }

@@ -122,7 +122,7 @@ function drawTableCOFByChannel(response){
         for (var i = 0; i < response.data.length; i++) {
             $('#tabelCOFByChannel').find('tbody').append('<tr>'+
                 '<td>'+(i+1)+'</td>'+
-                '<td>'+addCommas(response.data[i].TENANT_ID || 0)+'</td>'+
+                '<td class="text-left">'+addCommas(response.data[i].TENANT_ID || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Facebook || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Whatsapp || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Twitter || 0)+'</td>'+
@@ -162,7 +162,7 @@ function drawTableCOFByChannel(response){
         }
         
         $('#tabelCOFByChannel').find('tfoot').append('<tr>'+
-            '<td colspan="2">TOTAL</td>'+
+            '<td colspan="2" class="text-right">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+

@@ -9,7 +9,7 @@ var n = d.getMonth()+1;
 var m = d.getFullYear();
 
 $(document).ready(function () {
-    drawStackedBar('month', '10', '2019');
+    drawStackedBar('month', '10', '2019','');
 });
 
 function addCommas(commas)
@@ -31,7 +31,7 @@ function destroyChartInterval(){
     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>');
 }
 
-function drawStackedBar(params,index, params_year){
+function drawStackedBar(params,index, params_year, tenant_id){
 	destroyChartInterval();
      $("#filter-loader").fadeIn("slow");
     // var getMontName = monthNumToName(month);
@@ -46,10 +46,11 @@ function drawStackedBar(params,index, params_year){
             // "channel_name": channel_name,
             "index": index,
             "params_year": params_year,
+            "tenant_id": tenant_id
         },
         success: function (r) {
-            var response = JSON.parse(r);
-            // var response = r;
+            // var response = JSON.parse(r);
+            var response = r;
             drawHorizontalChart(response);
             console.log(response);
         var chartdata3 = [{
@@ -112,6 +113,11 @@ function drawStackedBar(params,index, params_year){
             type: 'bar',
             stack: 'Stack',
             data: response.data[2].total_traffic
+        },{
+            name: 'Chat Bot',
+            type: 'bar',
+            stack: 'Stack',
+            data: response.data[12].total_traffic
         }];
         /*----EchartMonth*/
         var option6 = {
@@ -150,7 +156,7 @@ function drawStackedBar(params,index, params_year){
                  },
             },
             legend:{
-                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat'],
+                data: ['Whatsapp','Facebook','Twitter','Twitter DM','Instagram','Messenger','Telegram','Line','Email','Voice','SMS','Live Chat', 'Chat Bot'],
                 left: 'center',
                 // top: 'bottom',
                 itemWidth :12,
@@ -170,7 +176,7 @@ function drawStackedBar(params,index, params_year){
             },
             xAxis: {
                 type: 'category',
-                data: response.param_date,
+                data: response.dates,
                 
                 axisLine: {
                     lineStyle: {
@@ -200,7 +206,7 @@ function drawStackedBar(params,index, params_year){
                 }
             },
             series: chartdata3,
-            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+            color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
         };
         var chart6 = document.getElementById('echartWeek');
         var barChart6 = echarts.init(chart6);
@@ -218,7 +224,7 @@ function drawHorizontalChart(response){
  	var data_label = [];
     var data_total = [];
     var data_color = [];
-
+    console.log(response.data);
  	response.data.forEach(function (value, index) {
         data_label.push(value.channel_name);
         data_total.push(value.total_traffic.map(Number).reduce(summarize));

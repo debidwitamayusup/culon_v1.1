@@ -73,6 +73,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#089e60';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
@@ -320,7 +321,12 @@ function drawPieChartSumAllTenant(response){
                         }
 
                         // console.log(total)
-                        var percentage = Math.round((dataLabel / total) * 100);
+                        // var percentage = Math.round((dataLabel / total) * 100);
+                        if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                        }else{
+                            var percentage = Math.round((dataLabel / total) * 100);
+                        }
                         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + '0' + '%</span>');
                     }
@@ -336,7 +342,7 @@ function drawPieChartSumAllTenant(response){
 
 function drawChartPerTenant(response){
     destroyHorizontalChart();
-    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [];
+    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot=[];
 
     response.data.forEach(function (value, index) {
             arrTenant.push(value.TENANT_ID);
@@ -359,6 +365,7 @@ function drawChartPerTenant(response){
         dataVoice.push(response.data[i].DATA[0]);
         dataSMS.push(response.data[i].DATA[3]);
         dataLive.push(response.data[i].DATA[2]);
+        dataChatbot.push(response.data[i].DATA[12]);
     }
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{
@@ -421,6 +428,11 @@ function drawChartPerTenant(response){
          type: 'bar',
          stack: 'Stack',
          data: dataLive
+    },{
+         name: 'Chat Bot',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataChatbot
     }];
     /*----echartTicketUnit----*/
     var optionWallSummary = {
@@ -464,18 +476,18 @@ function drawChartPerTenant(response){
             // bottom: 10,
             left: 'center',
             top: 'auto',
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat'],
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
             itemWidth :12,
             padding: [10, 10,40, 10]
-            // labels:{
-            //     boxWidth:10
-            // }
+            
         },
         grid: {
-            top: '15%',
-            right: '5%',
-            bottom: '10%',
-            left: '16%'
+            top: '25%',
+            right: '3%',
+            bottom: '5%',
+            left: '1%',
+            containLabel: true,
+            width: 'auto'
         },
         xAxis: {
             type: 'value',
@@ -526,7 +538,7 @@ function drawChartPerTenant(response){
             }
         },
         series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b']
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
     };
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
@@ -583,11 +595,14 @@ function drawLineChart(response){
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                legend:{
-                    position:'bottom',
-                    labels:{
-                        boxWidth:10
-                    }
+                // legend:{
+                //     position:'bottom',
+                //     labels:{
+                //         boxWidth:10
+                //     }
+                // },
+                legend :{
+                    display: false
                 },
                 barRoundness:  1,
                 scales: {

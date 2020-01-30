@@ -3,6 +3,7 @@ var params_time = '';
 var v_date = '';
 var v_month = '';
 var v_year = '';
+var v_params_tenant = 'oct_telkomcare';
 var months = [
     'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September',
@@ -38,7 +39,7 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, v_params_this_year, 0);
+    loadContent(params_time, v_params_this_year, 0, v_params_tenant);
     // $('#tag-time').html(v_params_this_year);
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -169,6 +170,7 @@ function getColorChannel(channel){
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
     color['Whatsapp'] = '#31a550';
+    color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
@@ -203,21 +205,21 @@ function getYear(){
     return year;
 }
 
-function loadContent(params, index_time, params_year){
+function loadContent(params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(params, index_time, params_year);
-    callTotalInteraction(params, index_time, params_year);
-    callTotalUniqueCustomer(params, index_time, params_year);
+    callSummaryInteraction(params, index_time, params_year, tenant_id);
+    callTotalInteraction(params, index_time, params_year, tenant_id);
+    callTotalUniqueCustomer(params, index_time, params_year, tenant_id);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time, params_year);
-    callSummaryCaseTotAgent(params, index_time, params_year);
+    callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id);
+    callSummaryCaseTotAgent(params, index_time, params_year, tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
 function drawCardInteraction(value){
     let classBg = value.channel == "Whatsapp" ? "bg-primary" : value.channel == "Email" ? "bg-danger" : value.channel == "Twitter" ? "bg-info" : value.channel == "Facebook" ? "bg-blue" : value.channel == "Telegram" ? "bg-dark" : value.channel == "Voice" ? "bg-warning" : value.channel == "Instagram" ? "bg-pink" : value.channel == "Facebook Messenger" ? "bg-blue-dark" : value.channel == "Twitter DM" ? "bg-indigo" : value.channel == "Line" ? "bg-success" : value.channel == "Live Chat" ? "bg-gray1" : value.channel == "SMS" ? "bg-blue-teal" : "";
     
-    let classIcon = value.channel == "Whatsapp" ? "fab fa-whatsapp text-primary" : value.channel == "Email" ? "fa fa-envelope text-danger" : value.channel == "Twitter" ? "fab fa-twitter text-info" : value.channel == "Facebook" ? "fab fa-facebook text-blue" : value.channel == "Telegram" ? "fab fa-telegram text-dark" : value.channel == "Voice" ? "fa fa-microphone text-warning" : value.channel == "Instagram" ? "fab fa-instagram text-pink" : value.channel == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue" : value.channel == "Twitter DM" ? "fa fa-mail-bulk text-indigo" : value.channel == "Line" ? "fab fa-line text-success" : value.channel == "Live Chat" ? "fa fa-comments text-gray1" : value.channel == "SMS" ? "fa fa-envelope-open text-blue-teal" : "";
+    let classIcon = value.channel == "Whatsapp" ? "fab fa-whatsapp text-primary" : value.channel == "Email" ? "fa fa-envelope text-danger" : value.channel == "Twitter" ? "fab fa-twitter text-info" : value.channel == "Facebook" ? "fab fa-facebook text-blue" : value.channel == "Telegram" ? "fab fa-telegram text-dark" : value.channel == "Voice" ? "fa fa-microphone text-warning" : value.channel == "Instagram" ? "fab fa-instagram text-pink" : value.channel == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue" : value.channel == "Twitter DM" ? "fa fa-mail-bulk text-indigo" : value.channel == "ChatBot" ? "fe fe-messenger-square text-indigo" : value.channel == "Line" ? "fab fa-line text-success" : value.channel == "Live Chat" ? "fa fa-comments text-gray1" : value.channel == "SMS" ? "fa fa-envelope-open text-blue-teal" : "";
     
     var channel_name = (value.channel==='Facebook Messenger')?'Messenger':value.channel;
     
@@ -261,14 +263,15 @@ function drawCardInteractionNew(value){
     '</div>');
 }
 
-function callSummaryInteraction(params, index_time, params_year){
+function callSummaryInteraction(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url + 'Summary-Traffic/cardMain',
         data: {
             params: params,
             index: index_time,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) { 
             var response = JSON.parse(r);
@@ -304,7 +307,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 303;
+    ctx.height = 280;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -413,7 +416,7 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function callTotalInteraction(params, index_time, params_year){
+function callTotalInteraction(params, index_time, params_year, tenant_id){
     //call total interaction
     $.ajax({
         type: 'post',
@@ -421,7 +424,8 @@ function callTotalInteraction(params, index_time, params_year){
         data: {
             params: params,
             index: index_time,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -439,7 +443,7 @@ function callTotalInteraction(params, index_time, params_year){
     });
 }
 
-function callTotalUniqueCustomer(params, index_time, params_year){
+function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
        //call total unique customer
        $.ajax({
         type: 'post',
@@ -447,7 +451,8 @@ function callTotalUniqueCustomer(params, index_time, params_year){
         data: {
             params: params,
             index: index_time,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -485,7 +490,7 @@ function callAverageCustomer(params, index_time, params_year){
     });
 }
 
-function callUniqueCustomerPerChannel(params, index_time, params_year){
+function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id){
     // destroy div card unique customer per channel
     $('#retres-unique').remove(); // this is my <canvas> element
     $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
@@ -495,7 +500,8 @@ function callUniqueCustomerPerChannel(params, index_time, params_year){
         data: {
             params: params,
             index: index_time,
-            params_year
+            params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -522,14 +528,15 @@ function callUniqueCustomerPerChannel(params, index_time, params_year){
     });
 }
 
-function callSummaryCaseTotAgent(params, index_time, params_year){
+function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
         data: {
             params: params,
             index: index_time,
-            params_year
+            params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -571,7 +578,7 @@ function setDatePicker(){
             // console.log(this.value);
             v_date = this.value;
 
-            loadContent('day', v_date, 0);
+            loadContent('day', v_date, 0, v_params_tenant);
         }
     });
 
@@ -580,7 +587,7 @@ function setDatePicker(){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0)
+        loadContent(params_time, v_params_this_year, 0, v_params_tenant)
         // $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
         // callSummaryInteraction(params_time,v_date);
@@ -608,7 +615,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m);
+        loadContent(params_time, n, m, v_params_tenant);
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -630,7 +637,7 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0);
+        loadContent(params_time, m, 0, v_params_tenant);
         callYear();
         $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -655,7 +662,7 @@ function setDatePicker(){
         // console.log(this.value);
         v_date = this.value;
         
-        loadContent('day', v_date, 0);
+        loadContent('day', v_date, 0, v_params_tenant);
         }
     });
 
@@ -708,6 +715,6 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
     });
 })(jQuery);

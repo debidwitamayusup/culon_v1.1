@@ -170,9 +170,15 @@ class Stc_Model extends CI_Model
 
 	public function get_all_unique_customer_per_channel($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('a.channel_name, sum(b.unik) as total_unique');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('DATE(b.tanggal)', $index);
 		}else if($params == 'month'){
@@ -237,7 +243,8 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getCardMain($params, $index, $params_year)
-	{	
+	{	$tid = $this->security->xss_clean($this->input->post('tenant_id',true));
+
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		// $this->db->select('channel_name channel, SUM(total) total');
 		// $this->db->from('summary_channel');
@@ -254,6 +261,13 @@ class Stc_Model extends CI_Model
 		// $query = $this->db->get();
 		$where = "";
 		$where2 = "";
+		$where3 = "";
+
+		if($tid)
+		{
+			$where3 ="AND tenant_id ='".$tid."'";
+		}
+		
 		if($params == 'day'){
 			$where = "DATE(date_time)= '".$index."'";
 			$where2 = "tanggal = '".$index."'";
@@ -288,7 +302,7 @@ class Stc_Model extends CI_Model
 		LEFT JOIN(
 			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
-			where $where2
+			where $where2 $where3
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
 		ORDER BY m_channel.channel_name";
@@ -331,9 +345,15 @@ class Stc_Model extends CI_Model
 
 	public function getTotInteraction($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('IFNULL(SUM(b.cof), 0) total_interaction');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -344,26 +364,19 @@ class Stc_Model extends CI_Model
 		}
 		$query = $this->db->get();
     	return $query;
-
-		// $this->db->select('IFNULL(SUM(cof), 0) total_interaction');
-		// $this->db->from('rpt_summary_scr');
-		// if($params == 'day'){
-		// 	$this->db->where('tanggal', $index);
-		// }else if($params == 'month'){
-		// 	$this->db->where('MONTH(tanggal)', $index);
-		// 	$this->db->where('YEAR(tanggal)', $params_year);
-		// }else if($params == 'year'){
-		// 	$this->db->where('YEAR(tanggal)', $index);
-		// }
-		// $query = $this->db->get();
-		// return $query;
 	}
 
 	public function getTotUniqueCustomer($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('IFNULL(SUM(unik),0) total_unique_customer');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id',$tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -374,19 +387,6 @@ class Stc_Model extends CI_Model
 		}
 		$query = $this->db->get();
     	return $query;
-
-		// $this->db->select('IFNULL(SUM(unique_customer),0) total_unique_customer');
-		// $this->db->from('rpt_summary_scr');
-		// if($params == 'day'){
-		// 	$this->db->where('tanggal', $index);
-		// }else if($params == 'month'){
-		// 	$this->db->where('MONTH(tanggal)', $index);
-		// 	$this->db->where('YEAR(tanggal)', $params_year);
-		// }else if($params == 'year'){
-		// 	$this->db->where('YEAR(tanggal)', $index);
-		// }
-		// $query = $this->db->get();
-		// return $query;
 	}
 
 	public function getAverageCustomer($params, $index)
@@ -406,27 +406,21 @@ class Stc_Model extends CI_Model
 
 	public function getIntervalYear($year,$channel_name)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+
 		if ($channel_name == "ShowAll") {
+
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			// $this->db->select('MONTH(date_time) date, SUM(total) total_traffic');
-			// $this->db->from('summary_channel');
-			// $this->db->where('YEAR(date_time) = "'.$year.'" ');
-			// $this->db->group_by('MONTH(date_time)');
-			// $this->db->order_by('MONTH(date_time)');
-
-			//summary_channel
-			// $this->db->select('b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			// $this->db->from('summary_channel a');
-			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			// $this->db->where('YEAR(a.date_time) = "'.$year.'"');
-			// $this->db->group_by('MONTH(a.date_time)');
-			// $this->db->order_by('MONTH(a.date_time)');
-
 			//rpt_summary_scr
 			$this->db->select('b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.tanggal) = "'.$year.'"');
+			if($tid)
+			{
+				$this->db->where('a.tenant_id',$tid);
+			}
 			$this->db->group_by('MONTH(a.tanggal)');
 			$this->db->order_by('MONTH(a.tanggal)');
 
@@ -434,26 +428,15 @@ class Stc_Model extends CI_Model
 		
 			return $query;
 		} else {
-			//JANGAN DIAPUS YA BRAY, BACK TO THE UP. BACKUP
-			// $this->db->select('channel_name, MONTH(date_time) date, SUM(total) total_traffic');
-			// $this->db->from('summary_channel');
-			// $this->db->where('YEAR(date_time) = "'.$year.'" AND channel_name = "'.$channel_name.'"');
-			// $this->db->group_by('MONTH(date_time)');
-			
-			//summary_channel
-			// $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-			// $this->db->select('b.channel_name, b.channel_color, MONTH(a.date_time) date, SUM(a.total) total_traffic');
-			// $this->db->from('summary_channel a');
-			// $this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
-			// $this->db->where('YEAR(a.date_time) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
-			// $this->db->group_by('MONTH(a.date_time)');
-			// $this->db->order_by('MONTH(a.date_time)');
-
 			$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 			$this->db->select('b.channel_name, b.channel_color, MONTH(a.tanggal) date, SUM(a.cof) total_traffic');
 			$this->db->from('rpt_summary_scr a');
 			$this->db->join('m_channel b', 'a.channel_id=b.channel_id', 'LEFT');
 			$this->db->where('YEAR(a.tanggal) = "'.$year.'" AND b.channel_name = "'.$channel_name.'"');
+			if($tid)
+			{
+				$this->db->where('a.tenant_id',$tid);
+			}
 			$this->db->group_by('MONTH(a.tanggal)');
 			$this->db->order_by('MONTH(a.tanggal)');
 
@@ -478,9 +461,12 @@ class Stc_Model extends CI_Model
 
 	public function getSumIntervalYear($year)
 	{
-
-			// CAST(SUM(cof)*100/
-			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."' ) AS DECIMAL(10,2)) as rate
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 ="";
+		if($tid)
+		{
+			$where2 = "AND rpt_summary_scr.tenant_id ='".$tid."'";
+		}
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -493,6 +479,7 @@ class Stc_Model extends CI_Model
 			SUM(cof) rate
 			FROM rpt_summary_scr
 			WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."'
+			$where2
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
@@ -621,11 +608,16 @@ class Stc_Model extends CI_Model
 
 	public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->select('DAY(rpt_summary_scr.tanggal) as DAY, sum(rpt_summary_scr.cof) as COF');
 		$this->db->from('rpt_summary_scr');
 		$this->db->where('MONTH(rpt_summary_scr.tanggal)',$month);
 		$this->db->where('YEAR(rpt_summary_scr.tanggal)',$year);
 		$this->db->where('rpt_summary_scr.channel_id', $channel_id);
+		if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summary_scr.tanggal');
 		$this->db->order_by('DAY(rpt_summary_scr.tanggal)','ASC');
 		$query = $this->db->get();
@@ -717,8 +709,14 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_today2($date,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
+		if($tid)
+		{
+			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+		}
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -765,6 +763,8 @@ class Stc_Model extends CI_Model
 
 	function get_availdata($date,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		if(!$channel)
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -773,6 +773,10 @@ class Stc_Model extends CI_Model
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		if($tid)
+		{
+			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+		}
 		$this->db->where('rpt_summ_interval.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
@@ -853,8 +857,14 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_weekly($week_id,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -907,12 +917,17 @@ class Stc_Model extends CI_Model
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		}
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
@@ -952,8 +967,14 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_monthly($month_id,$channel)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -1007,12 +1028,17 @@ class Stc_Model extends CI_Model
 		{
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		}
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
@@ -1052,11 +1078,19 @@ class Stc_Model extends CI_Model
 
 	function get_availdata_get_tot_permonth($month_id)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
 		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 
@@ -1096,81 +1130,38 @@ class Stc_Model extends CI_Model
 
 	public function getAverageIntervalToday($params, $index, $year=0)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+		}
+
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		
-		// $this->db->select('agent_perform.date_time, m_channel.channel_name, agent_perform.art, agent_perform.aht, agent_perform.ait as ast, agent_perform.hi, agent_perform.handle, round((agent_perform.hi/agent_perform.handle)*100, 2) as scr');
-		// $this->db->from('agent_perform');
-		// $this->db->join('m_channel', 'm_channel.channel_id = agent_perform.channel_id');
-		// $this->db->where('DATE(agent_perform.date_time)', $date);
-		// $this->db->group_by('agent_perform.channel_id');
-		// $this->db->order_by('agent_perform.channel_id', 'ASC');
-		// $query = $this->db->get();
 		$where = "";
 		$art = "";
 		$aht = "";
 		$ast = "";
 		if($params == 'day'){
-			//agent_perform
-			// $where = "DATE(agent_perform.date_time)= '".$index."'";
-			// $art = "agent_perform.art";
-			// $ast = "agent_perform.ait as ast";
-			// $aht = "agent_perform.aht";
 
-			//rpt_summary_scr
-			$where = "rpt_summary_scr.tanggal= '".$index."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
+			$where = "rpt_summ_interval.tanggal= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
 		}else if($params == 'month'){
-			//agent_perform
-			// $where = "MONTH(agent_perform.date_time)= '".$index."' AND YEAR(agent_perform.date_time)= '".$year."'";
-			// $art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
-			// $ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
-			// $aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
 
-			//rpt_summary_scr
-			$where = "MONTH(rpt_summary_scr.tanggal)= '".$index."' AND YEAR(rpt_summary_scr.tanggal)= '".$year."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
+			$where = "MONTH(rpt_summ_interval.tanggal)= '".$index."' AND YEAR(rpt_summ_interval.tanggal)= '".$year."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
 		}else if($params == 'year'){
-			//agent_perform
-			// $where = "YEAR(agent_perform.date_time)= '".$index."'";
-			// $art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.art))),2,7) AS art";
-			// $ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.ait))),2,7) AS ast";
-			// $aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(agent_perform.aht))),2,7) AS aht";
 
-			//rpt_summary_scr
-			$where = "YEAR(rpt_summary_scr.tanggal)= '".$index."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
+			$where = "YEAR(rpt_summ_interval.tanggal)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
 		}
 		$query = $this->db->query("SELECT 
-			-- agent_perform
-		-- m_channel.channel_name
-		-- , m_channel.icon_dashboard
-		-- , m_channel.channel_color 
-		-- , IFNULL(a.art, 0) as art 
-		-- , IFNULL(a.aht, 0) as aht 
-		-- , IFNULL(a.ast, 0) as ast
-		-- , IFNULL(a.scr, 0) as scr
-		-- FROM m_channel 
-		-- LEFT JOIN (
-		-- 	SELECT agent_perform.channel_id
-		-- 	, $art
-		-- 	, $aht
-		-- 	, $ast
-		-- 	, agent_perform.hi, agent_perform.handle
-		-- 	, round((agent_perform.hi/agent_perform.handle)*100, 2) as scr 
-		-- 	, DATE(agent_perform.date_time)as date 
-		-- 	FROM agent_perform 
-		-- 	WHERE $where 
-		-- 	GROUP BY agent_perform.channel_id
-		-- )as a on a.channel_id = m_channel.channel_id  
-		-- ORDER BY m_channel.channel_name
-
-		-- rpt_summary_scr
 		m_channel.channel_name
 		, m_channel.icon_dashboard
 		, m_channel.channel_color 
@@ -1180,15 +1171,15 @@ class Stc_Model extends CI_Model
 		, IFNULL(a.scr, '-') as scr
 		FROM m_channel 
 		LEFT JOIN (
-			SELECT rpt_summary_scr.channel_id
+			SELECT rpt_summ_interval.channel_id
 			, $art
 			, $aht
 			, $ast
-			, round(AVG(rpt_summary_scr.scr), 2) as scr
-			, rpt_summary_scr.tanggal as date 
-			FROM rpt_summary_scr
-			WHERE $where
-			GROUP BY rpt_summary_scr.channel_id
+			, round(AVG(rpt_summ_interval.scr), 2) as scr
+			, rpt_summ_interval.tanggal as date 
+			FROM rpt_summ_interval
+			WHERE $where $where2
+			GROUP BY rpt_summ_interval.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	
@@ -1222,41 +1213,12 @@ class Stc_Model extends CI_Model
 
 	public function getPercentageIntervalToday($date){
 
-		// $this->db->select('SUM(rpt_summary_scr.cof) AS total');
-		// $this->db->from('rpt_summary_scr');
-		// $this->db->where('DATE(rpt_summary_scr.tanggal)', $date);
-		// $query = $this->db->get();
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
 
-		// if($query->row()->total)
-		// {
-		// 	$total = $query->row()->total;
-	
-		// 	$this->db->select('channel_id ,COALESCE(SUM(rpt_summary_scr.cof),0) AS TPS');
-		// 	$this->db->from('rpt_summary_scr');
-		// 	$this->db->where('DATE(rpt_summary_scr.tanggal)',$date);
-		// 	$this->db->group_by('channel_id');
-		// 	$query = $this->db->get();
-
-		// 	// if($query->num_rows()>0)
-		// 	// {
-		// 	// 	foreach($query->result() as $data)
-		// 	// 	{
-		// 	// 		$content[] = array(
-		// 	// 			'channel_id'=> $data->channel_id,
-		// 	// 			'res' => $data->TPS/$total
-		// 	// 		);
-		// 	// 		ECHO round($data->TPS/$total,2);
-		// 	// 	}
-				
-		// 	// }
-		// 	//exit;
-
-		// 	print_r($this->db->last_query());
-		// 	exit;
-		// }
-
-			// CAST(SUM(cof)*100/
-			// (SELECT SUM(rpt_summary_scr.cof) AS total FROM rpt_summary_scr WHERE DATE(rpt_summary_scr.tanggal) = '".$date."' ) AS DECIMAL(10,2)) as rate
+		if ($tid) {
+			$where2 = "AND rpt_summary_scr.tenant_id ='" .$tid."'";
+		}
 
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
@@ -1269,8 +1231,35 @@ class Stc_Model extends CI_Model
 			SUM(cof) total,
 			SUM(cof) as rate
 			FROM rpt_summary_scr
-			WHERE DATE(rpt_summary_scr.tanggal) = '".$date."'
+			WHERE DATE(rpt_summary_scr.tanggal) = '".$date."' $where2
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY m_channel.channel_name");
+
+		return $query->result();
+	}
+
+	public function getPercentageIntervalToday_O($date){
+
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+		}
+
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+		$query = $this->db->query("SELECT
+			m_channel.channel_name,
+			IFNULL(SUM(a.total), 0) total_by_month,
+			IFNULL(a.rate, 0) rate
+			FROM m_channel
+			LEFT JOIN (
+			SELECT channel_id,
+			SUM(case_session) total,
+			SUM(case_session) as rate
+			FROM rpt_summ_interval
+			WHERE DATE(rpt_summ_interval.tanggal) = '".$date."' $where2
+			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
@@ -1278,6 +1267,14 @@ class Stc_Model extends CI_Model
 
 	//temporary(for wallboard)
 	public function getPercentageIntervalTodayWallDay($date){
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+		}else{
+			$where2 = "";
+		}
+		
+
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$query = $this->db->query("SELECT
 			m_channel.channel_name,
@@ -1287,14 +1284,24 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
-			WHERE rpt_summ_interval.tanggal = '".$date."'
+			WHERE rpt_summ_interval.tanggal = '".$date."' ".$where2."
 			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name
 			");
+			
+			// print_r(last_query);
+			// exit;
 		return $query->result();
 	}
 
 	public function getSumIntervalMonth($month, $year){
+
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		if ($tid) {
+			$where2 = "AND rpt_summary_scr.tenant_id ='" .$tid."'";
+		}
+
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		
 		//summary_channel
@@ -1326,7 +1333,7 @@ class Stc_Model extends CI_Model
 			SUM(cof) total,
 			SUM(cof) rate
 			FROM rpt_summary_scr
-			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."'
+			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."' $where2
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 		return $query->result();
@@ -1334,9 +1341,11 @@ class Stc_Model extends CI_Model
 
 	public function get_traffic_interval_weeklyBar($week_id,$channel)
 	{
+
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->order_by('m_channel.channel_id','DESC');
 		$query = $this->db->get();
 
 		if($query->num_rows() > 0)
@@ -1408,7 +1417,6 @@ class Stc_Model extends CI_Model
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$query = $this->db->get();
-
 		
 		$res_tot = array();
 			
@@ -1433,19 +1441,23 @@ class Stc_Model extends CI_Model
 			}
 		}
 		
-		return $res_tot;
-
-		
+		return $res_tot;	
 	}
 
 	function get_traffic_interval_info_weeklyAvg($day,$channel) //summ
 	{
 		$date = date('Y-m-d',strtotime($day));
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		
 		$this->db->select('rpt_summ_interval.case_session as total');
 		$this->db->from('rpt_summ_interval');
 		$this->db->where('rpt_summ_interval.tanggal',$date);
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		//$this->db->group_by('rpt_summ_interval.channel_id')
 		$query = $this->db->get();
 		
@@ -1469,12 +1481,18 @@ class Stc_Model extends CI_Model
 			return 0;
 		}
 
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('SUM(rpt_summ_interval.case_session) as total');
 		$this->db->from('rpt_summ_interval');
 		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
 		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
-		$this->db->group_by('rpt_summ_interval.channel_id','ASC');
+		if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+		$this->db->group_by('rpt_summ_interval.channel_id');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
@@ -1518,17 +1536,25 @@ class Stc_Model extends CI_Model
 	}
 
 	public function get_summary_case_tot_agent_sla($params, $index, $params_year){
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('ifnull(sum(msg_in),0) as msg_in, ifnull(sum(msg_out), 0) as msg_out, IFNULL(sum(cof),0) as tot_agent');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id = b.channel_id', 'LEFT');
+		if($tid)
+		{
+			$this->db->where('b.tenant_id', $tid);
+		}
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
+			
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
+			$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query->row();

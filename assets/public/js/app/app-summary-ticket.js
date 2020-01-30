@@ -38,7 +38,7 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, v_params_this_year, 0);
+    // loadContent(params_time, v_params_this_year, 0);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	
