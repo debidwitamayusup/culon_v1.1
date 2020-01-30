@@ -38,6 +38,8 @@ class AgentPerformModel extends CI_Model
 #region :: ragakasih
 	public function getSSallchannel($src='',$params,$index,$params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('
 		tanggal AS DATE,
 		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART,
@@ -47,6 +49,10 @@ class AgentPerformModel extends CI_Model
 		SUM(cof) AS COF');
 
 		$this->db->from('rpt_summary_scr');
+		if($tid)
+		{
+			$this->db->where('rpt_summary_scr.tenant_id',$tid);
+		}
 		
 		
 		if($src)//search datatable function 
