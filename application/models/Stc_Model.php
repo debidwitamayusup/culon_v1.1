@@ -607,11 +607,16 @@ class Stc_Model extends CI_Model
 
 	public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->select('DAY(rpt_summary_scr.tanggal) as DAY, sum(rpt_summary_scr.cof) as COF');
 		$this->db->from('rpt_summary_scr');
 		$this->db->where('MONTH(rpt_summary_scr.tanggal)',$month);
 		$this->db->where('YEAR(rpt_summary_scr.tanggal)',$year);
 		$this->db->where('rpt_summary_scr.channel_id', $channel_id);
+		if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+        }
 		$this->db->group_by('rpt_summary_scr.tanggal');
 		$this->db->order_by('DAY(rpt_summary_scr.tanggal)','ASC');
 		$query = $this->db->get();
@@ -1289,6 +1294,13 @@ class Stc_Model extends CI_Model
 	}
 
 	public function getSumIntervalMonth($month, $year){
+
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+		}
+
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		
 		//summary_channel
@@ -1320,7 +1332,7 @@ class Stc_Model extends CI_Model
 			SUM(cof) total,
 			SUM(cof) rate
 			FROM rpt_summary_scr
-			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."'
+			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."' $where2
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 		return $query->result();
