@@ -1,12 +1,13 @@
 var base_url = $('#base_url').val();
+var v_params_tenant = 'oct_telkomcare';
 
 $(document).ready(function () {
     var d = new Date();
     var n = d.getFullYear();
     $('#dateTahun option[value = '+n+']').attr('selected','selected');
-    var data_chart = callGraphYear('ShowAll', n);
-    var data_graph = callDataPercentage(n);
-    var data_table = callDataTableAvg(n);
+    var data_chart = callGraphYear('ShowAll', n, v_params_tenant);
+    var data_graph = callDataPercentage(n, v_params_tenant);
+    var data_table = callDataTableAvg(n, v_params_tenant);
     var data_year = callYear();
 });
 
@@ -61,7 +62,7 @@ function callYear()
     });
 }
 
-function callGraphYear(channel_name,year) {
+function callGraphYear(channel_name,year,tenant_id) {
     $("#filter-loader").fadeIn("slow");
     var data = "";
     var base_url = $('#base_url').val();
@@ -72,7 +73,8 @@ function callGraphYear(channel_name,year) {
         url: base_url + 'api/SummaryTraffic/SummaryYear/gInterval',
         data: {
             "channel_name": channel_name,
-            "year": year
+            "year": year,
+            "tenant_id": tenant_id
         },
 
         success: function (r) {
@@ -168,12 +170,13 @@ function getColorChannel(channel_name){
     return color[channel_name];
 }
 
-function callDataPercentage(year){
+function callDataPercentage(year,tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryYear/summaryIntervalYear',
         data: {
-            year: year
+            year: year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -260,12 +263,13 @@ function drawChartPercentageYear(response){
     });
 }
 
-function callDataTableAvg(year){
+function callDataTableAvg(year,tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryYear/averageInterval',
         data: {
-            year: year
+            year: year,
+            tenant_id:tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
