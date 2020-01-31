@@ -304,6 +304,117 @@ function drawTableYear(response){
     
 }
 
+function stackedBarIntervalYear(channel_name, tenant_id){
+    destroyChartInterval();
+    $("#filter-loader").fadeIn("slow");
+    var getMontName = monthNumToName(month);
+    var data = "";
+    var base_url = $('#base_url').val();
+    //call traffic per month
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/gInterval',
+        data: {
+            "channel_name": channel_name,
+            "year": year,
+            "tenant_id": tenant_id
+        },
+        success: function (r) {
+        var response = JSON.parse(r);
+        console.log(response);
+        // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
+        // Return with commas in between
+        var numberWithCommas = function (x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        var dataStacked = [];
+        var datasetsStacked = "";
+
+        response.data.forEach(function (value){
+            datasetsStacked = {
+                    label: value.channel_name,
+                    data: value.total_traffic,
+                    backgroundColor: value.channel_color,
+                    hoverBackgroundColor: value.channel_color,
+                    hoverBorderWidth: 0
+                },
+
+            dataStacked.push(datasetsStacked);
+        });
+
+        
+        // console.log(dataStacked);
+        var bar_ctx = document.getElementById('BarTrafficMonth');
+
+        var bar_chart = new Chart(bar_ctx, {
+            type: 'bar',
+            // type: 'horizontalBar',
+            data: {
+                labels: response.data.month_x_axis,
+                datasets: dataStacked,
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 10,
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                        }
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            callback: function (value) {
+                                return numberWithCommas(value);
+                            },
+                        },
+                    }],
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 10,
+                    }
+                }
+            },
+            // plugins: [{
+            // 	beforeInit: function (chart) {
+            // 		chart.data.labels.forEach(function (value, index, array) {
+            // 			var a = [];
+            // 			a.push(value.slice(0, 5));
+            // 			var i = 1;
+            // 			while (value.length > (i * 5)) {
+            // 				a.push(value.slice(i * 5, (i + 1) * 5));
+            // 				i++;
+            // 			}
+            // 			array[index] = a;
+            // 		})
+            // 	}
+            // }]
+        });
+        $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            alert("error");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 function destroyChartInterval(){
     // destroy chart interval 
     $('#echartYear').remove(); // this is my <canvas> element

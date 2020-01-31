@@ -1,22 +1,22 @@
 var base_url = $('#base_url').val();
 
-Date.prototype.getWeek = function() {
-  var date = new Date(this.getTime());
-  date.setHours(0, 0, 0, 0);
-  // Thursday in current week decides the year.
-  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-  // January 4 is always in week 1.
-  var week1 = new Date(date.getFullYear(), 0, 4);
-  // Adjust to Thursday in week 1 and count number of weeks from date to week1.
-  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
-                        - 3 + (week1.getDay() + 6) % 7) / 7);
+Date.prototype.getWeek = function () {
+    var date = new Date(this.getTime());
+    date.setHours(0, 0, 0, 0);
+    // Thursday in current week decides the year.
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    // January 4 is always in week 1.
+    var week1 = new Date(date.getFullYear(), 0, 4);
+    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 -
+        3 + (week1.getDay() + 6) % 7) / 7);
 }
 
 var d = new Date();
-var params_week = d.getWeek()-1;
+var params_week = d.getWeek() - 1;
 // console.log(params_week);
 
-$(document).ready(function(){
+$(document).ready(function () {
     // $("#filter-loader").fadeIn("slow");
 
     getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
@@ -24,10 +24,12 @@ $(document).ready(function(){
     getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
     drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
 
-    $('#check-all-channel').prop('checked',false);
-    $("input:checkbox.checklist-channel").prop('checked',false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
+    $('#check-all-channel').prop('checked', false);
+    $("input:checkbox.checklist-channel").prop('checked', false);
+    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
+        values = [],
+        type = [];
+    Array.prototype.forEach.call(checkboxes, function (el) {
         values.push(el.value);
         type.push($(el).data('type'));
     });
@@ -35,8 +37,7 @@ $(document).ready(function(){
     list_channel = values;
 });
 
-function addCommas(commas)
-{
+function addCommas(commas) {
     commas += '';
     x = commas.split('.');
     x1 = x[0];
@@ -48,7 +49,7 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function getColorChannel(channel){
+function getColorChannel(channel) {
     var color = [];
     color['Email'] = '#e41313';
     color['Facebook'] = '#467fcf';
@@ -70,7 +71,7 @@ function getColorChannel(channel){
 function getSummTrafficByChannel(week, arr_channel, tenant_id){
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBar',
+        url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBar',
         data: {
             week: week,
             arr_channel: arr_channel,
@@ -116,7 +117,7 @@ function drawSummTrafficByChannel(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("barWallTrafficWeek");
-    ctx_percentage.height =501;
+    ctx_percentage.height = 501;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {
@@ -132,14 +133,14 @@ function drawSummTrafficByChannel(response){
                         beginAtZero: true
                     },
                     axisLabel: {
-                    fontSize: 10,
-                    color: '#7886a0',
-                }
+                        fontSize: 10,
+                        color: '#7886a0',
+                    }
                 }],
                 xAxes: [{
                     ticks: {
                         min: 0, // Edit the value according to what you need
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             value = value.toString();
                             value = value.split(/(?=(?:...)*$)/);
                             value = value.join(',');
@@ -152,13 +153,13 @@ function drawSummTrafficByChannel(response){
                 display: false
             },
             tooltips: {
-              callbacks: {
-                    label: function(tooltipItem, data) {
+                callbacks: {
+                    label: function (tooltipItem, data) {
                         var value = data_rate[tooltipItem.index];
                         value = addCommas(value);
                         return value;
                     }
-              }
+                }
             },
         }
     });
@@ -167,7 +168,7 @@ function drawSummTrafficByChannel(response){
 function getTrafficInterval(week,arr_channel, tenant_id){
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
+        url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
         data: {
             week: week,
             arr_channel: arr_channel,
@@ -189,15 +190,15 @@ function getTrafficInterval(week,arr_channel, tenant_id){
     });
 }
 
-function drawTrafficInterval(response){
+function drawTrafficInterval(response) {
     // destroy chart interval 
     $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
     $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-400"></canvas>');
     var data = [];
-    if(!response.data.series){
+    if (!response.data.series) {
         $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
         $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>');
-    }else{
+    } else {
         response.data.series.forEach(function (value, index) {
             var obj = {
                 label: value.label,
@@ -214,8 +215,8 @@ function drawTrafficInterval(response){
         });
 
         // draw chart
-        var ctx = document.getElementById( "lineWallsumTrafficWeek" );
-        var myChart = new Chart( ctx, {
+        var ctx = document.getElementById("lineWallsumTrafficWeek");
+        var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: response.data.label_time,
@@ -230,26 +231,26 @@ function drawTrafficInterval(response){
                 //         boxWidth:10
                 //     }
                 // },
-                legend : {
-                    display : false
+                legend: {
+                    display: false
                 },
-                barRoundness:  1,
+                barRoundness: 1,
                 scales: {
-                    yAxes: [ {
+                    yAxes: [{
                         ticks: {
                             beginAtZero: true
                         }
                     }]
                 }
             }
-        } );
+        });
     }
 }
 
 function getTableChart(week,arr_channel, tenant_id){
     $.ajax({
         type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
+        url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
             week: week,
             arr_channel: arr_channel,
@@ -271,7 +272,7 @@ function getTableChart(week,arr_channel, tenant_id){
     });
 }
 
-function drawTableTraffic(response){
+function drawTableTraffic(response) {
     var mon = response.data[0].DATA.map(Number).reduce(summarize);
     var tue = response.data[1].DATA.map(Number).reduce(summarize);;
     var wed = response.data[2].DATA.map(Number).reduce(summarize);;
@@ -281,39 +282,40 @@ function drawTableTraffic(response){
     var sun = response.data[6].DATA.map(Number).reduce(summarize);;
 
     function summarize(total, num) {
-          return total + num;
+        return total + num;
     }
 
     // console.log(response.data[0].data);
     $('#mytbody').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 13; i++) {
-        // console.log(response.channel[i]);
-            $('#mytable').find('tbody').append('<tr>'+
-            '<td class="text-center">'+(i+1)+'</td>'+
-            '<td class="text-left">'+response.channel[i]+'</td>'+
-            '<td class="text-right">'+response.data[0].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[1].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[2].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[3].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[4].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[5].DATA[i]+'</td>'+
-            '<td class="text-right">'+response.data[6].DATA[i]+'</td>'+
-            '</tr>');
+            // console.log(response.channel[i]);
+            $('#mytable').find('tbody').append('<tr>' +
+                '<td class="text-center">' + (i + 1) + '</td>' +
+                '<td class="text-left">' + response.channel[i] + '</td>' +
+                '<td class="text-right">' + response.data[0].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[1].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[2].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[3].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[4].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[5].DATA[i] + '</td>' +
+                '<td class="text-right">' + response.data[6].DATA[i] + '</td>' +
+                '</tr>');
         };
-        $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">'+
-            '<td colspan="2" class="text-center">TOTAL</td>'+            
-            '<td class="text-right">'+addCommas(mon)+'</td>'+
-            '<td class="text-right">'+addCommas(tue)+'</td>'+
-            '<td class="text-right">'+addCommas(wed)+'</td>'+
-            '<td class="text-right">'+addCommas(thu)+'</td>'+
-            '<td class="text-right">'+addCommas(fri)+'</td>'+
-            '<td class="text-right">'+addCommas(sat)+'</td>'+
-            '<td class="text-right">'+addCommas(sun)+'</td>'+
+        $('#mytable').find('tbody').append('<tr class="bg-total font-weight-extrabold">' +
+            '<td colspan="2" class="text-center">TOTAL</td>' +
+            '<td class="text-right">' + addCommas(mon) + '</td>' +
+            '<td class="text-right">' + addCommas(tue) + '</td>' +
+            '<td class="text-right">' + addCommas(wed) + '</td>' +
+            '<td class="text-right">' + addCommas(thu) + '</td>' +
+            '<td class="text-right">' + addCommas(fri) + '</td>' +
+            '<td class="text-right">' + addCommas(sat) + '</td>' +
+            '<td class="text-right">' + addCommas(sun) + '</td>' +
             '</tr>');
-    }else{s
-        $('#mytable').find('tbody').append('<tr>'+
-            '<td colspan=6> No Data </td>'+
+    } else {
+        s
+        $('#mytable').find('tbody').append('<tr>' +
+            '<td colspan=6> No Data </td>' +
             '</tr>');
     }
 
@@ -324,22 +326,33 @@ function drawChartDaily(week,arr_channel, tenant_id){
     // Horizontal Bar
     $('#echartWeek').remove();
     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
-    
     var base_url = $('#base_url').val();
 
     $.ajax({
-        type:'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
             'week': week,
             'arr_channel': arr_channel,
             "tenant_id": tenant_id
         },
-        success: function(r){
+        success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
 
-            let dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatBot = [];
+            let dataWa = [],
+                dataFB = [],
+                dataDM = [],
+                dataIg = [],
+                dataMessenger = [],
+                dataTelegram = [],
+                dataLine = [],
+                dataEmail = [],
+                dataVoice = [],
+                dataSMS = [],
+                dataLive = [],
+                dataTwitter = [],
+                dataChatBot = [];
             for (var i = 0; i < response.data.length; i++) {
                 // console.log()
                 dataWa.push(response.data[i].DATA[10]);
@@ -358,168 +371,172 @@ function drawChartDaily(week,arr_channel, tenant_id){
             }
 
             var chartdata3 = [{
-                 name: 'Whatsapp',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataWa
-             }, {
-                 name: 'Facebook',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataFB
-             },{
-                 name: 'Twitter',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataTwitter
-             },{
-                 name: 'Twitter DM',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataDM
-             },{
-                 name: 'Instagram',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataIg
-             },{
-                 name: 'Messenger',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataMessenger
-             },{
-                 name: 'Telegram',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataTelegram
-             },{
-                 name: 'Line',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataLine
-             },{
-                 name: 'Email',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataEmail
-             },{
-                 name: 'Voice',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataVoice
-             },{
-                 name: 'SMS',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataSMS
-             },{
-                 name: 'Live Chat',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataLive
-             },{
-                 name: 'Chat Bot',
-                 type: 'bar',
-                 stack: 'Stack',
-                 data: dataChatBot
-             }];
+                name: 'Whatsapp',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataWa
+            }, {
+                name: 'Facebook',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataFB
+            }, {
+                name: 'Twitter',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataTwitter
+            }, {
+                name: 'Twitter DM',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataDM
+            }, {
+                name: 'Instagram',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataIg
+            }, {
+                name: 'Messenger',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataMessenger
+            }, {
+                name: 'Telegram',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataTelegram
+            }, {
+                name: 'Line',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataLine
+            }, {
+                name: 'Email',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataEmail
+            }, {
+                name: 'Voice',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataVoice
+            }, {
+                name: 'SMS',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataSMS
+            }, {
+                name: 'Live Chat',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataLive
+            }, {
+                name: 'Chat Bot',
+                type: 'bar',
+                stack: 'Stack',
+                data: dataChatBot
+            }];
 
-             var option6 = {
-             grid: {
-                 top: '25%',
-                 right: '3%',
-                 bottom: '5%',
-                 left: '3%',
-                 width: '100%',
-                 containLabel: true
-             },
-             xAxis: {
-                 type: 'category',
-                 data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    
-                 axisLine: {
-                     lineStyle: {
-                         color: '#efefff'
-                     }
-                 },
-                 axisLabel: {
-                     fontSize: 10,
-                     color: '#7886a0'
-                 }
-             },
-             yAxis: {
-                 type: 'value',
-                 splitLine: {
-                     lineStyle: {
-                         color: '#efefff'
-                     }
-                 },
-                 axisLine: {
-                     lineStyle: {
-                         color: '#efefff'
-                     }
-                 },
-                 axisLabel: {
-                     fontSize: 10,
-                     color: '#7886a0'
-                 }
-             },
-             tooltip: {
-                trigger: 'axis',
-                 show: true,
-                 showContent: true,
-                 alwaysShowContent: false,
-                 triggerOn: 'mousemove',
-                 trigger: 'axis',
-                 axisPointer: {
-                     label: {
-                         show: true,
-                         color: '#7886a0',
-                         type: 'shadow',
-                         fontSize: 8
-                         // formatter : function (){
-                         //     return label_lng;
-                         // }
-                     }
-                 },
-                 // position: ['86%', '0%']
-                 position: function (pos, params, dom, rect, size) {
-                     // tooltip will be fixed on the right if mouse hovering on the left,
-                     // and on the left if hovering on the right.
-                     // console.log(pos);
-                     var obj = {top: pos[6]};
-                     obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                     return obj;
-                 },
-             },
-             legend: {
-                // bottom: 10,
-                left: 'center',
-                top: 'auto',
-                data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
-                itemWidth :12
-             },
-             series: chartdata3,
-             color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
-         };
-         var chart6 = document.getElementById('echartWeek');
-         var barChart6 = echarts.init(chart6);
+            var option6 = {
+                grid: {
+                    top: '25%',
+                    right: '3%',
+                    bottom: '5%',
+                    left: '3%',
+                    width: '100%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    splitLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    show: true,
+                    showContent: true,
+                    alwaysShowContent: false,
+                    triggerOn: 'mousemove',
+                    trigger: 'axis',
+                    axisPointer: {
+                        label: {
+                            show: true,
+                            color: '#7886a0',
+                            type: 'shadow',
+                            fontSize: 8
+                            // formatter : function (){
+                            //     return label_lng;
+                            // }
+                        }
+                    },
+                    // position: ['86%', '0%']
+                    position: function (pos, params, dom, rect, size) {
+                        // tooltip will be fixed on the right if mouse hovering on the left,
+                        // and on the left if hovering on the right.
+                        // console.log(pos);
+                        var obj = {
+                            top: pos[6]
+                        };
+                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                        return obj;
+                    },
+                },
+                legend: {
+                    // bottom: 10,
+                    left: 'center',
+                    top: 'auto',
+                    data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
+                    itemWidth: 12
+                },
+                series: chartdata3,
+                color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+            };
+            var chart6 = document.getElementById('echartWeek');
+            var barChart6 = echarts.init(chart6);
             barChart6.setOption(option6);
         },
         error: function (r) {
             alert("error");
-             // $("#filter-loader").fadeOut("slow");
+            // $("#filter-loader").fadeOut("slow");
         }
-    });          
+    });
 }
 
 (function ($) {
-    
+
     // checked all channel
-    $('#check-all-channel').click(function(){
-        $("input:checkbox.checklist-channel").prop('checked',this.checked);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
+    $('#check-all-channel').click(function () {
+        $("input:checkbox.checklist-channel").prop('checked', this.checked);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
+            values = [],
+            type = [];
+        Array.prototype.forEach.call(checkboxes, function (el) {
             values.push(el.value);
             type.push($(el).data('type'));
         });
@@ -527,19 +544,21 @@ function drawChartDaily(week,arr_channel, tenant_id){
         list_channel = values;
 
         // call data
-        getTrafficInterval(params_week,list_channel);
+        getTrafficInterval(params_week, list_channel);
     });
 
     //checked channel
-    $('.checklist-channel').click(function(){
-        $('#check-all-channel').prop( "checked", false );
-        
-        var checkedValues = $('input:checkbox:checked').map(function() {
+    $('.checklist-channel').click(function () {
+        $('#check-all-channel').prop("checked", false);
+
+        var checkedValues = $('input:checkbox:checked').map(function () {
             return this.value;
         }).get();
 
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
+            values = [],
+            type = [];
+        Array.prototype.forEach.call(checkboxes, function (el) {
             values.push(el.value);
             type.push($(el).data('type'));
         });
@@ -548,7 +567,182 @@ function drawChartDaily(week,arr_channel, tenant_id){
         // call data
         getTrafficInterval(params_week, list_channel);
     });
-    
+
+    // Vertical Bar Wallboard Summary Traffic Week yang baru 
+    // Return with commas in between
+    var numberWithCommas = function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    var whatsapp = [20, 20, 20, 20, 20, 20, 20];
+    var facebook = [40, 40, 40, 40, 40, 40, 40];
+    var twitter = [60, 60, 60, 60, 60, 60, 60];
+    var twitterdm = [80, 80, 80, 80, 80, 80, 80];
+    var instagram = [90, 90, 90, 90, 90, 90, 90];
+    var messenger = [100, 100, 100, 100, 100, 100, 100];
+    var telegram = [110, 110, 110, 110, 110, 110, 110];
+    var line = [120, 120, 120, 120, 120, 120, 120];
+    var email = [130, 130, 130, 130, 130, 130, 130];
+    var twitter = [140, 140, 140, 140, 140, 140, 140];
+    var voice = [150, 150, 150, 150, 150, 150, 150];
+    var sms = [160, 160, 160, 160, 160, 160, 160];
+    var livechat = [170, 170, 170, 170, 170, 170, 170];
+    var chatbot = [180, 180, 180, 180, 180, 180, 180];
+    var LabelX = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    var bar_ctx = document.getElementById('BarWallSummaryWeek');
+
+    var bar_chart = new Chart(bar_ctx, {
+        type: 'bar',
+        // type: 'horizontalBar',
+        data: {
+            labels: LabelX,
+            datasets: [{
+                    label: 'Whatsapp',
+                    data: whatsapp,
+                    backgroundColor: "#089e60",
+                    hoverBackgroundColor: "#089e60",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Facebook',
+                    data: facebook,
+                    backgroundColor: "#467fcf",
+                    hoverBackgroundColor: "#467fcf",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Twitter',
+                    data: twitter,
+                    backgroundColor: "#45aaf2",
+                    hoverBackgroundColor: "#45aaf2",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Twitter DM',
+                    data: twitterdm,
+                    backgroundColor: "#6574cd",
+                    hoverBackgroundColor: "#6574cd",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Instagram',
+                    data: instagram,
+                    backgroundColor: "#fbc0d5",
+                    hoverBackgroundColor: "#fbc0d5",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Messenger',
+                    data: messenger,
+                    backgroundColor: "#3866a6",
+                    hoverBackgroundColor: "#3866a6",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Telegram',
+                    data: telegram,
+                    backgroundColor: "#343a40",
+                    hoverBackgroundColor: "#343a40",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Line',
+                    data: line,
+                    backgroundColor: "#31a550",
+                    hoverBackgroundColor: "#31a550",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Email',
+                    data: email,
+                    backgroundColor: "#e41313",
+                    hoverBackgroundColor: "#e41313",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Voice',
+                    data: voice,
+                    backgroundColor: "#ff9933",
+                    hoverBackgroundColor: "#ff9933",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'SMS',
+                    data: sms,
+                    backgroundColor: "#80cbc4",
+                    hoverBackgroundColor: "#80cbc4",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'Live Chat',
+                    data: livechat,
+                    backgroundColor: "#607d8b",
+                    hoverBackgroundColor: "#607d8b",
+                    hoverBorderWidth: 0
+                },
+                {
+                    label: 'ChatBot',
+                    data: chatbot,
+                    backgroundColor: "#6e273e",
+                    hoverBackgroundColor: "#6e273e",
+                    hoverBorderWidth: 0
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 10,
+            },
+            tooltips: {
+                mode: 'label',
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                    }
+                }
+            },
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    gridLines: {
+                        display: false
+                    },
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        callback: function (value) {
+                            return numberWithCommas(value);
+                        },
+                    },
+                }],
+            },
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 10,
+                }
+            }
+        },
+        // plugins: [{
+        // 	beforeInit: function (chart) {
+        // 		chart.data.labels.forEach(function (value, index, array) {
+        // 			var a = [];
+        // 			a.push(value.slice(0, 5));
+        // 			var i = 1;
+        // 			while (value.length > (i * 5)) {
+        // 				a.push(value.slice(i * 5, (i + 1) * 5));
+        // 				i++;
+        // 			}
+        // 			array[index] = a;
+        // 		})
+        // 	}
+        // }]
+    });
+
 })(jQuery);
 
 // $(function ($) {
@@ -702,7 +896,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
 // 		xAxis: {
 // 			type: 'category',
 // 			data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-			
+
 // 			axisLine: {
 // 				lineStyle: {
 // 					color: '#efefff'
@@ -883,5 +1077,5 @@ function drawChartDaily(week,arr_channel, tenant_id){
 //             }
 //         }
 //     } );
-	
+
 // });

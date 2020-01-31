@@ -75,8 +75,8 @@
 								</div>
 								<div class="col-sm-auto">
 									<span>
-										<button class="btn btn-sm btn-dark" style="height:37px" type="button" id="btn-go"><i
-												class="fas fa-filter"></i></button>
+										<button class="btn btn-sm btn-dark" style="height:37px" type="button"
+											id="btn-go"><i class="fas fa-filter"></i></button>
 									</span>
 								</div>
 							</div>
@@ -84,10 +84,20 @@
 								<div class="col-md-12">
 									<div class="card" id="customerChartMonth">
 										<!-- <div class="card-body" > -->
-										<div id="echart1" class="chartsh-month overflow-hidden h-200 "></div>
+										<!-- <div id="echart1" class="chartsh-month overflow-hidden h-200 "></div> -->
 										<!-- </div> -->
 										<!-- <div class="card-body">
 											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>
+										</div> -->
+									
+										<!-- Stacked Chart yang baru -->
+										<div class="card-body" id="BarTrafficMonthDiv">
+                            				<canvas id="BarTrafficMonth" width="600" height="400"></canvas>
+                        				</div>
+
+										<!-- Bar Chart u/ per channel -->
+										<!-- <div class="card-body">
+											<canvas id="BarChartMonth" class="h-300"></canvas>
 										</div> -->
 									</div>
 								</div>
