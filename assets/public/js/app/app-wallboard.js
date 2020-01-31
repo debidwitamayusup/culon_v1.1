@@ -33,7 +33,7 @@ function drawCard(response){
             '</div>'+
             '<div class="widget-user-image">'+
                 '<div class="plan-icon-70 bg-light text-center">'+
-                    '<i class="fab fa-facebook-messenger color-icon-dark"></i>'+
+                    '<i class="'+value.CHANNEL_ICON+' color-icon-dark"></i>'+
                 '</div>'+
             '</div>'+
             '<div class="box-footer text-white bg-gradient-RedOcean lrRadius">'+
