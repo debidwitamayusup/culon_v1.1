@@ -699,7 +699,7 @@ Class WallboardModel extends CI_Model {
 
     public function WallboardMain()
     {
-        $this->db->select('channel_id, chn ,cof ,art ,aht, Queue');
+        $this->db->select('channel_id, chn ,cof ,art ,aht, Queue, icon_dashboard');
         $this->db->from('v_mon_service_today_custom');
         // if($tid)
         // {
@@ -713,15 +713,16 @@ Class WallboardModel extends CI_Model {
             {
                 $result[] = array(
                     'CHANNEL_NAME' => $data->chn,
+                    'CHANNEL_ICON' => $data->icon_dashboard,
                     'COF' => $data->cof,
                     'ART' => $data->art,
                     'AHT' => $data->aht,
                     'QUEUE' => $data->Queue,
-                    'WAITING' => "555",
-                    'SCR' => "555",
-                    'MSG_IN' => "555",
-                    'MSG_OUT' => "555",
-                    'SLA' => "555"
+                    'WAITING' => "999",
+                    'SCR' => "999",
+                    'MSG_IN' => "999",
+                    'MSG_OUT' => "999",
+                    'SLA' => "999"
                 );
 
             }
