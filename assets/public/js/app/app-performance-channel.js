@@ -24,7 +24,7 @@ if (o < 10) {
 if (n < 10) {
 	n = '0' + n;
 }
-
+var v_params_tenant = 'oct_telkomcare';
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o - 1);
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
 	sessionStorage.removeItem('paramsSession');
 	sessionStorage.setItem('paramsSession', 'day');
 	// loadContent(params_time, v_date, 0);
-	loadContent(params_time, v_params_this_year, 0);
+	loadContent(params_time, v_params_this_year, 0, v_params_tenant);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value=' + n + ']').attr('selected', 'selected');
@@ -156,10 +156,10 @@ function callYear() {
 	});
 }
 
-function loadContent(params, index, params_year) {
-	drawDataTable2(params, index, params_year);
-	summaryService(params, index, params_year);
-	summaryChannel(params, index, params_year);
+function loadContent(params, index, params_year, tenant_id){
+    drawDataTable2(params, index, params_year, tenant_id);
+    summaryService(params, index, params_year, tenant_id);
+	summaryChannel(params, index, params_year, tenant_id);
 	// callSummaryInteraction(params, index,0);
 }
 
@@ -179,20 +179,21 @@ function addCommas(commas) {
 	return x1 + x2;
 }
 
-function summaryService(params, index, params_year) {
+function summaryService(params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
-	$.ajax({
-		type: 'post',
-		url: base_url + 'api/OperationPerformance/PerformanceByChannel/BarSummaryService',
-		data: {
-			params: params,
-			index: index,
-			params_year: params_year
-		},
-		success: function (response) {
-			// var response = JSON.parse(r);
-			// console.log(response);
-			drawChartSumService(response);
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryService',
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year,
+            tenant_id: tenant_id
+        },
+        success: function (response) {
+            // var response = JSON.parse(r);
+            // console.log(response);
+            drawChartSumService(response);
 			$("#filter-loader").fadeOut("slow");
 		},
 		error: function (r) {
@@ -203,59 +204,54 @@ function summaryService(params, index, params_year) {
 	});
 }
 
-function summaryChannel(params, index, params_year) {
+function summaryChannel(params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
-		type: 'post',
-		url: base_url + 'api/OperationPerformance/PerformanceByChannel/BarSummaryServiceByChannel',
-		data: {
-			params: params,
-			index: index,
-			params_year: params_year
-		},
-		success: function (response) {
-			// var response = JSON.parse(r);
-			// console.log(response);
-			drawChartSumChannel(response);
-		},
-		error: function (r) {
-			// console.log(r);
-			alert("error");
-		},
-	});
+        type: 'post',
+        url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryServiceByChannel',
+        data: {
+            params: params,
+            index: index,
+            params_year: params_year,
+            tenant_id: tenant_id
+        },
+        success: function (response) {
+            // var response = JSON.parse(r);
+            // console.log(response);
+            drawChartSumChannel(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+        },
+    });
 }
-
-function drawDataTable2(params, index, params_year) {
+function drawDataTable2(params, index, params_year, tenant_id){
 	// console.log(params);
 	$("#filter-loader").fadeIn("slow");
 
-	$('#mytbody').remove();
-	// $('#mytfoot').remove();
-	$('#tablesPerformance').append('<tbody class="text-center" id="mytbody" style="font-size:12px !important;">');
+    $('#mytbody').remove();
+    // $('#mytfoot').remove();
+    $('#tablesPerformance').append('<tbody class="text-center" id="mytbody" style="font-size:12px !important;">');
 
-	$('#tablesPerformance').DataTable({
-		processing: true,
-		ajax: {
-			url: base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
-			type: 'POST',
-			data: {
-				params: params,
-				index: index,
-				params_year,
-				params_year
-			}
-		},
-		columnDefs: [{
-				className: "text-right",
-				targets: 5
-			},
-			{
-				className: "text-right",
-				targets: 6
-			}
-		],
-		destroy: true,
-	});
+    $('#tablesPerformance').DataTable({
+        processing : true,
+        ajax: {
+            url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
+            type : 'POST',
+            data: {
+            	params: params,
+            	index: index,
+            	params_year: params_year,
+            	tenant_id: tenant_id
+            }
+        },
+        columnDefs: [
+			{ className: "text-right", targets: 5 },
+			{ className: "text-right", targets: 6 }
+		],   
+        destroy: true,
+    });
 }
 
 function drawChartSumService(response) {
@@ -695,11 +691,11 @@ function setDatePicker() {
 		// v_date = '2019-12-01';
 		// console.log(params_time);
 
-		loadContent(params_time, v_params_this_year);
-		$("#btn-month").prop("class", "btn btn-light btn-sm");
-		$("#btn-year").prop("class", "btn btn-light btn-sm");
-		$('#input-date-filter').datepicker("setDate", v_params_this_year);
-		$(this).prop("class", "btn btn-red btn-sm");
+		loadContent(params_time, v_params_this_year, v_params_tenant);
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+		$("#btn-year").prop("class","btn btn-light btn-sm");
+		$('#input-date-filter').datepicker("setDate", v_params_this_year, v_params_tenant);
+		$(this).prop("class","btn btn-red btn-sm");
 
 		$('#filter-date').show();
 		$('#filter-month').hide();
@@ -726,7 +722,7 @@ function setDatePicker() {
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n, m);
+		loadContent(params_time, n, m, v_params_tenant);
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
 		callYearOnMonth();
@@ -750,7 +746,7 @@ function setDatePicker() {
 		// console.log(params_time);
 
 		// v_date = getYear();
-		loadContent(params_time, m, 0);
+		loadContent(params_time, m, 0, v_params_tenant);
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -772,8 +768,8 @@ function setDatePicker() {
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent(params_time, v_date, 0);
-		}
+			loadContent(params_time, v_date,0,v_params_tenant);
+        }
 	});
 
 	/*select option month*/
@@ -794,13 +790,16 @@ function setDatePicker() {
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
 		// console.log(this.value);
-		loadContent('year', v_year, 0);
+		loadContent('year', v_year, 0, v_params_tenant);
 	});
 
-	$('#btn-go').click(function () {
-		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
-	});
+	// $('#btn-go').click(function () {
+	// 	loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
+	// });
 
+	$('#btn-go').click(function(){
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(),v_params_tenant);
+    });
 
 	// Horizontal Bar Performance by Channel yang baru 
 	// Return with commas in between
@@ -895,4 +894,5 @@ function setDatePicker() {
 		// 	}
 		// }]
 	});
+    
 })(jQuery);

@@ -64,8 +64,6 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
-
-
     function Op_Performancedata($src='',$unit,$status_id)
     {
         $this->db->select('v_summ_unit.jml');
@@ -86,8 +84,6 @@ Class WallboardModel extends CI_Model {
 
         return "0";
     }
-
-    
 
     public function sumStat_NC()
     {
@@ -125,6 +121,8 @@ Class WallboardModel extends CI_Model {
 
     public function Traffic_ops($params,$index,$params_year)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
         $this->db->select('tenant_id');
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
@@ -139,6 +137,10 @@ Class WallboardModel extends CI_Model {
         if($params == 'year')
         {
             $this->db->where('YEAR(tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
         }
         $this->db->group_by('tenant_id');
         $query = $this->db->get();
@@ -240,7 +242,8 @@ Class WallboardModel extends CI_Model {
 
     function get_total_cof_piechart($params,$index,$params_year,$channel) //summ
 	{
-        
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		$this->db->select('rpt_summary_scr.cof as TOTAL');
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
@@ -255,6 +258,10 @@ Class WallboardModel extends CI_Model {
         if($params == 'year')
         {
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
         }
 		
 		$this->db->where('rpt_summary_scr.channel_id',$channel);
@@ -318,6 +325,9 @@ Class WallboardModel extends CI_Model {
 
     function get_availdata($params,$index,$params_year,$channel)
 	{
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
 		if(!$channel)
 		{
 			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
@@ -339,6 +349,11 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('YEAR(rpt_summ_interval.tanggal)', $index);
         }
+        if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+
 		
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
@@ -378,7 +393,7 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
-        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, SUM(scr) as SCR');
+        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUM(art_num) ART, SUM(aht_num) as AHT, SUM(ast_num) as AST, AVG(scr) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         if($src)
@@ -487,6 +502,52 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
+    public function getBarchannelPerMonth($month, $year)
+    {
+        $this->db->select('channel_name,channel_id');
+        $this->db->from('m_channel');
+        $this->db->order_by('channel_id','desc');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+               $result[] = array(
+                   'channel_name' => $data->channel_name,
+                   'rate' => $this->getBarchannelPerMonth_det($month,$year,$data->channel_id)
+               );
+            }
+            return $result;
+        }
+        return FALSE;
+    }
+
+    public function getBarchannelPerMonth_det($month,$year,$channel_id)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $this->db->select('IFNULL(SUM(cof),0) as cof');
+        $this->db->from('rpt_summary_scr');
+        $this->db->where('MONTH(tanggal)',$month);
+        $this->db->where('YEAR(tanggal)',$year);
+        $this->db->where('channel_id',$channel_id);
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        $this->db->group_by('channel_id');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+		{
+           return $query->row()->cof;
+        }
+        return false;
+    }
+
 
     public function get_traffic_interval_monthly($month,$channel)
 	{
@@ -504,6 +565,8 @@ Class WallboardModel extends CI_Model {
 
 		if($query->num_rows() > 0)
 		{
+            // print_r($this->db->last_query());
+            // exit;
 			foreach($query->result() as $data)
 			{
 				$result[] = array(
@@ -535,10 +598,61 @@ Class WallboardModel extends CI_Model {
         return $arr_time;
     }
 
+    public function getallagentpermonth($month)
+    {
+        $year = date('Y');
+        $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($month), intval($year));
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+       
+		$this->db->select('SUM(tot_agent) as tots, DAY(rpt_summ_interval.tanggal) as DAY');
+        $this->db->from('rpt_summ_interval');
+        if($tid)
+        {
+            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+        }
+		$this->db->where('MONTH(rpt_summ_interval.tanggal)',$month);
+		$this->db->where('YEAR(rpt_summ_interval.tanggal)',$year);
+		$this->db->group_by('rpt_summ_interval.tanggal');
+		$this->db->order_by('DAY(rpt_summ_interval.tanggal)','ASC');
+		$query = $this->db->get();
+
+        // print_r($this->db->last_query());
+        // exit;
+		$result = array();
+		if($query->num_rows()>0)
+		{
+			$st = 0;
+			for($inx = 1; $inx <= $numdateofmonth; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($st)->DAY), 1, '0', STR_PAD_LEFT))
+				{
+                    array_push($result,strval($query->row($st)->tots));
+                    $st++;
+				}
+				else
+				{			
+					array_push($result,'0');
+				}	
+			}
+
+		}
+		else
+		{
+			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			{
+				array_push($result,'0');
+			}
+		}
+
+		return $result;
+    }
+
     public function get_availabledata_permonth_day_ShowALL($numdateofmonth,$month,$year,$channel_id)
 	{
 
-        $tid = $this->security->xss_clean($this->input->post('tennant_id'));
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
 		$this->db->select('DAY(rpt_summ_interval.tanggal) as DAY, sum(rpt_summ_interval.case_session) as COF');
         $this->db->from('rpt_summ_interval');
@@ -663,8 +777,13 @@ Class WallboardModel extends CI_Model {
 
     public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
     {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+
         $this->db->select('DAY(rpt_summ_ticket.tanggal) AS DAY, SUM(rpt_summ_ticket.sClose) AS ticketClose');
         $this->db->from('rpt_summ_ticket');
+        if ($tid){
+            $this->db->where('rpt_summ_ticket.tenant_id', $tid);
+        }
         $this->db->where('MONTH(rpt_summ_ticket.tanggal)',$month);
         $this->db->where('YEAR(rpt_summ_ticket.tanggal)',$year);
         $this->db->where('rpt_summ_ticket.channel_id', $channel_id);
@@ -691,7 +810,6 @@ Class WallboardModel extends CI_Model {
                 }   
             }
             $ser = 0;
-
         }
         else
         {

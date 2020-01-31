@@ -17,9 +17,10 @@ var v_params_today= m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage(v_params_today);
-    callIntervalTraffic(v_params_today,'');
-    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
+    callDataPercentage('2020-01-24', '');
+    callIntervalTraffic('2020-01-24','', '');
+    callTableInterval('2020-01-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    getTenant('2020-01-24');
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);
@@ -32,6 +33,40 @@ $(document).ready(function () {
     // console.log(values);
     list_channel = values;
 });
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            var html = '<option value="">Semua Layanan</option>';
+            // var html = '';
+            var i;
+            // console.log(response);
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                }
+                $('#tenant_id').html(html);
+            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function addCommas(commas)
 {
@@ -71,7 +106,7 @@ function destroyChartPercentage(){
     $('#barWallTrafficDayDiv').append('<canvas id="barWallTrafficDay"></canvas>');
 }
 
-function callIntervalTraffic(date, arr_channel){
+function callIntervalTraffic(date, arr_channel, tenant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -79,13 +114,14 @@ function callIntervalTraffic(date, arr_channel){
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
             date: date,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callIntervalTraffic(date, '', tenant_id);},900000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -98,7 +134,7 @@ function callIntervalTraffic(date, arr_channel){
     });
 }
 
-function callTableInterval(date, arr_channel){
+function callTableInterval(date, arr_channel, tenant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
@@ -106,13 +142,14 @@ function callTableInterval(date, arr_channel){
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
             date: date,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableInterval(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
+            setTimeout(function(){callTableInterval(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"], tenant_id);},900000);
             // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -186,12 +223,13 @@ function drawChartToday(response){
     }
 }
 
-function callDataPercentage(date){
+function callDataPercentage(date, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficTodayWallDay',
         data: {
-            date: date
+            date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -314,7 +352,7 @@ function drawTableData(response){
     var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-    // var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
+    var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
     var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
 
     //summarize per channel
@@ -602,6 +640,20 @@ function fromTemplate(response) {
         list_channel = values;
         // call data
         callIntervalTraffic(v_params_today, list_channel);
+    });
+
+    $("select#tenant_id").change(function(){
+        // destroyChartInterval();
+         // destroyChartInterval();
+        var selectedTenant = $(this).children("option:selected").val();
+        $('#check-all-channel').prop( "checked", false );
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        // callTableCOFByChannel('2020-01-24', selectedTenant);
+        callDataPercentage('2020-01-24', selectedTenant);
+        callIntervalTraffic('2020-01-24','', selectedTenant);
+        callTableInterval('2020-01-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], selectedTenant);
+        $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
+        // getTenant('2020-01-24');
     });
     
 })(jQuery);

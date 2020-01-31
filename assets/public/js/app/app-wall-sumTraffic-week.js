@@ -19,10 +19,10 @@ var params_week = d.getWeek() - 1;
 $(document).ready(function () {
     // $("#filter-loader").fadeIn("slow");
 
-    getSummTrafficByChannel(params_week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"]);
-    getTrafficInterval(params_week, '');
-    getTableChart(params_week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
-    drawChartDaily(params_week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"]);
+    getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    getTrafficInterval(params_week,'', '');
+    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
+    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
 
     $('#check-all-channel').prop('checked', false);
     $("input:checkbox.checklist-channel").prop('checked', false);
@@ -68,13 +68,14 @@ function getColorChannel(channel) {
     return color[channel];
 }
 
-function getSummTrafficByChannel(week, arr_channel) {
+function getSummTrafficByChannel(week, arr_channel, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBar',
         data: {
             week: week,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -91,8 +92,8 @@ function getSummTrafficByChannel(week, arr_channel) {
     });
 }
 
-function drawSummTrafficByChannel(response) {
-    console.log(response);
+function drawSummTrafficByChannel(response){
+    // console.log(response);
     $('#barWallTrafficWeek').remove(); // this is my <canvas> element
     $('#barWallTrafficWeekDiv').append('<canvas id="barWallTrafficWeek"></canvas>');
 
@@ -164,18 +165,19 @@ function drawSummTrafficByChannel(response) {
     });
 }
 
-function getTrafficInterval(week, arr_channel) {
+function getTrafficInterval(week,arr_channel, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
         data: {
             week: week,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            setTimeout(function(){callIntervalTraffic(week, '');},900000);
             drawTrafficInterval(response);
             // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
@@ -245,13 +247,14 @@ function drawTrafficInterval(response) {
     }
 }
 
-function getTableChart(week, arr_channel) {
+function getTableChart(week,arr_channel, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
             week: week,
-            arr_channel: arr_channel
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -319,11 +322,7 @@ function drawTableTraffic(response) {
     // $("#filter-loader").fadeOut("slow");
 }
 
-function drawChartDaily(week, arr_channel) {
-    // Horizontal Bar
-    $('#echartWeek').remove();
     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
-
     var base_url = $('#base_url').val();
 
     $.ajax({
@@ -331,7 +330,8 @@ function drawChartDaily(week, arr_channel) {
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
             'week': week,
-            'arr_channel': arr_channel
+            'arr_channel': arr_channel,
+            "tenant_id": tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);

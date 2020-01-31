@@ -15,7 +15,8 @@ if (o < 10) {
 if (n < 10) {
 	n = '0' + n;
 }
-var v_params_this_year = m + '-' + n + '-' + (o - 1);
+var v_params_this_year = m + '-' + n + '-' + (o-1);
+var v_params_tenant = 'oct_telkomcare';
 $(document).ready(function () {
 
 	params_time = 'day';
@@ -26,7 +27,7 @@ $(document).ready(function () {
 	channel_id = '';
 	$('#btn-day').prop("class", "btn btn-red btn-sm");
 	// loadContent(params_time, v_date, 0);
-	loadContent(params_time, v_params_this_year, 0);
+	loadContent(params_time, v_params_this_year, 0, v_params_tenant);
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value=' + n + ']').attr('selected', 'selected');
@@ -41,10 +42,10 @@ $(document).ready(function () {
 });
 
 
-function loadContent(params, index) {
+function loadContent(params, index, tenant_id){
 	loadAllChannel();
-	callSummaryInteraction(params, index, 0);
-	// callSummaryInteraction('month' , '12', '2019');
+    callSummaryInteraction(params, index, 0, tenant_id);
+    // callSummaryInteraction('month' , '12', '2019');
 }
 
 //for dinamic dropdown year on month
@@ -160,7 +161,7 @@ function loadAllChannel() {
 	});
 }
 
-function callSummaryInteraction(params, index, year) {
+function callSummaryInteraction(params, index, year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	// console.log(params)
 	// console.log(index)
@@ -171,14 +172,15 @@ function callSummaryInteraction(params, index, year) {
 		data: {
 			params: params,
 			index: index,
-			year: year
-		},
-		success: function (r) {
-			var response = JSON.parse(r);
-			// console.log(response);
-			drawPieChart(response);
+			year: year,
+			tenant_id: tenant_id
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
+            // console.log(response);
+            drawPieChart(response);
 			drawKipPerChannelChart(response);
-			callDataSubCategory(params, index, year);
+			callDataSubCategory(params, index, year, tenant_id);
 			// $("#filter-loader").fadeOut("slow");
 		},
 		error: function (r) {
@@ -188,7 +190,7 @@ function callSummaryInteraction(params, index, year) {
 	});
 }
 
-function callDataSubCategory(params, index, year) {
+function callDataSubCategory(params, index,year,tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
 		type: 'post',
@@ -198,10 +200,11 @@ function callDataSubCategory(params, index, year) {
 			index: index,
 			channel_id: channel_id,
 			category: category_kip,
-			year: year
-		},
-		success: function (r) {
-			var response = JSON.parse(r);
+			year: year,
+			tenant_id: tenant_id
+        },
+        success: function (r) { 
+            var response = JSON.parse(r);
 			// console.log(response);
 			drawChartSubCategory(response);
 			$("#filter-loader").fadeOut("slow");
@@ -554,7 +557,7 @@ function drawKipPerChannelChart(response) {
 		// console.log(chartdata3);
 		var option6 = {
 			grid: {
-				top: '6',
+				top: '30',
 				right: '23',
 				bottom: '20',
 				left: '65',
@@ -603,6 +606,10 @@ function drawKipPerChannelChart(response) {
 					// 	} 
 					// }
 				}
+			},
+			legend:{
+				data: ['KOMPLAIN', 'INFORMASI', 'PERMINTAAN'],
+				top: 'auto'
 			},
 			series: chartdata3,
 			color: ["#A5B0B6", "#009E8C", "#00436D"],
@@ -689,12 +696,12 @@ function addCommas(commas) {
 		params_time = 'day';
 		// v_date = getToday();
 		v_date = '2019-12-01';
-		// console.log(params_time);
-		callSummaryInteraction(params_time, v_params_this_year);
-		$('#input-date-filter').datepicker("setDate", v_params_this_year);
-		$("#btn-month").prop("class", "btn btn-light btn-sm");
-		$("#btn-year").prop("class", "btn btn-light btn-sm");
-		$(this).prop("class", "btn btn-red btn-sm");
+        // console.log(params_time);
+		callSummaryInteraction(params_time, v_params_this_year, v_params_tenant);
+		$('#input-date-filter').datepicker("setDate", v_params_this_year, v_params_tenant);
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+		$(this).prop("class","btn btn-red btn-sm");
 
 		$('#filter-date').show();
 		$('#filter-month').hide();
@@ -708,7 +715,7 @@ function addCommas(commas) {
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		callSummaryInteraction(params_time, n, m);
+		callSummaryInteraction(params_time, n, m, v_params_tenant);
 		callYearOnMonth();
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
@@ -730,7 +737,7 @@ function addCommas(commas) {
 		params_time = 'year';
 		// console.log(params_time);
 		// v_date = getYear();
-		callSummaryInteraction(params_time, m, 0);
+		callSummaryInteraction(params_time, m, 0, v_params_tenant);
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -747,7 +754,7 @@ function addCommas(commas) {
 	$('#channel_name').change(function () {
 		channel_id = $('#channel_name').val();
 		// console.log(value);
-		callDataSubCategory(params_time, v_date);
+		callDataSubCategory(params_time, v_date, v_params_tenant);
 	});
 
 	var date = new Date();
@@ -761,8 +768,8 @@ function addCommas(commas) {
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			callSummaryInteraction(params_time, v_date, 0);
-		}
+			callSummaryInteraction(params_time, v_date,0,v_params_tenant);
+        }
 	});
 
 	/*select option month*/
@@ -783,19 +790,18 @@ function addCommas(commas) {
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
 		// console.log(this.value);
-		callSummaryInteraction('year', v_year, 0);
+		callSummaryInteraction('year', v_year, 0, v_params_tenant);
 	});
 
-	$('#btn-go').click(function () {
-		callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val());
-	});
-
-
+	
 	// Horizontal Bar KIP yang baru 
 	// Return with commas in between
 	var numberWithCommas = function (x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	};
+	$('#btn-go').click(function(){
+        callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+    });
 
 	var komplain = [20,20,20,20,20,20,20,20,20,20,20,20,20];
 	var informasi = [40,40,40,40,40,40,40,40,40,40,40,40,40];
