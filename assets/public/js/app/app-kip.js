@@ -177,7 +177,7 @@ function callSummaryInteraction(params, index, year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
+            console.log(response);
             drawPieChart(response);
 			drawKipPerChannelChart(response);
 			callDataSubCategory(params, index, year, tenant_id);
@@ -512,14 +512,13 @@ function drawPieChart(response) {
 
 function drawKipPerChannelChart(response) {
 
-	//destroy div piechart
-	$('#echartKIP').remove(); // this is my <canvas> element
-	$('#content-chart-kip').append('<div id="echartKIP" class="chartsh-kip overflow-hidden"></div>');
+	$('#horizontalBarKIP').remove(); // this is my <canvas> element
+    $('#horizontalBarKIPDiv').append('<canvas id="horizontalBarKIP" width="600" height="378"></canvas>');
 
-	let category = []
+    let category = []
 	var arr_channel = []
 
-	if (response.data.length != 0) {
+    if (response.data.length != 0) {
 		response.data.kip_channel.forEach(function (value) {
 			arr_channel.push(value.channel_name);
 		});
@@ -528,6 +527,7 @@ function drawKipPerChannelChart(response) {
 			category.push(value.category);
 		});
 		var chartdata3 = []
+		var color = ["#A5B0B6", "#009E8C", "#00436D"];
 		var i = 0;
 		category.forEach(function (value, index) {
 			var totalKip = []
@@ -545,93 +545,85 @@ function drawKipPerChannelChart(response) {
 				// console.log(totalKip);
 			});
 			var dataKip = {
-				name: value,
-				type: 'bar',
-				stack: "stack",
-				data: totalKip
+				label: category[i],
+				data: totalKip,
+				backgroundColor: color[i],
+				hoverBackgroundColor: color[i],
+				hoverBorderWidth: 0
+				// name: value,
+				// type: 'bar',
+				// stack: "stack",
+				// data: totalKip
 			}
 			chartdata3.push(dataKip);
 			i++;
 
 		});
-		// console.log(chartdata3);
-		var option6 = {
-			grid: {
-				top: '30',
-				right: '23',
-				bottom: '20',
-				left: '65',
+		var numberWithCommas = function (x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+		var bar_ctx = document.getElementById('horizontalBarKIP');
+		
+		var bar_chart = new Chart(bar_ctx, {
+			// type: 'bar',
+			type: 'horizontalBar',
+			data: {
+				labels: arr_channel,
+				datasets: chartdata3
 			},
-			xAxis: {
-				type: 'value',
-				axisLine: {
-					lineStyle: {
-						color: '#efefff'
+			options: {
+				responsive : true,
+				maintainAspectRatio:false,
+				animation: {
+					duration: 10,
+				},
+				tooltips: {
+					mode: 'label',
+					callbacks: {
+						label: function (tooltipItem, data) {
+							return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+						}
 					}
 				},
-				axisLabel: {
-					fontSize: 10,
-					color: '#7886a0'
-				}
-			},
-			yAxis: {
-				type: 'category',
-				data: arr_channel,
-				splitLine: {
-					lineStyle: {
-						color: '#efefff'
-					}
+				scales: {
+					xAxes: [{
+						stacked: true,
+						gridLines: {
+							display: false
+						},
+					}],
+					yAxes: [{
+						stacked: true,
+						ticks: {
+							callback: function (value) {
+								return numberWithCommas(value);
+							},
+						},
+					}],
 				},
-				axisLine: {
-					lineStyle: {
-						color: '#efefff'
-					}
-				},
-				axisLabel: {
-					fontSize: 10,
-					color: '#7886a0',
-					// formatter: function (value, index) {
-					// 	if (/\s/.test(value)) {
-					// 		var teks = '';
-					// 		for(var i=0;i<value.length;i++){
-					// 			if(value[i] == " "){
-					// 				teks = teks + '\n';
-					// 			}else{
-					// 				teks = teks + value[i];
-					// 			}
-					// 		}
-					// 		return teks;
-					// 	}else{
-					// 		return value;
-					// 	} 
-					// }
+				legend: {
+					display: true,
+                    labels: {
+                        boxWidth: 10,
+                    }
+					
 				}
 			},
-			legend:{
-				data: ['KOMPLAIN', 'INFORMASI', 'PERMINTAAN'],
-				top: 'auto'
-			},
-			series: chartdata3,
-			color: ["#A5B0B6", "#009E8C", "#00436D"],
-			tooltip: {
-				show: true,
-				showContent: true,
-				alwaysShowContent: false,
-				triggerOn: 'mousemove',
-				trigger: 'axis',
-				axisPointer: {
-					label: {
-						show: true,
-						color: '#7886a0'
-					}
-				}
-			},
-		};
-		var chart6 = document.getElementById('echartKIP');
-		var barChart6 = echarts.init(chart6);
-		barChart6.setOption(option6);
-	} else {
-		$('#echartKIP').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+			// plugins: [{
+			// 	beforeInit: function (chart) {
+			// 		chart.data.labels.forEach(function (value, index, array) {
+			// 			var a = [];
+			// 			a.push(value.slice(0, 5));
+			// 			var i = 1;
+			// 			while (value.length > (i * 5)) {
+			// 				a.push(value.slice(i * 5, (i + 1) * 5));
+			// 				i++;
+			// 			}
+			// 			array[index] = a;
+			// 		})
+			// 	}
+			// }]
+		});
 	}
 }
 
@@ -807,90 +799,90 @@ function addCommas(commas) {
         callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
     });
 
-	var komplain = [20,20,20,20,20,20,20,20,20,20,20,20,20];
-	var informasi = [40,40,40,40,40,40,40,40,40,40,40,40,40];
-	var permintaan = [60,60,60,60,60,60,60,60,60,60,60,60,60];
-	var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram","SMS","Messenger","Live Chat","Line","Instagram","Facebook","Email","ChatBot"];
+	// var komplain = [20,20,20,20,20,20,20,20,20,20,20,20,20];
+	// var informasi = [40,40,40,40,40,40,40,40,40,40,40,40,40];
+	// var permintaan = [60,60,60,60,60,60,60,60,60,60,60,60,60];
+	// var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram","SMS","Messenger","Live Chat","Line","Instagram","Facebook","Email","ChatBot"];
 
-	var bar_ctx = document.getElementById('horizontalBarKIP');
+	// var bar_ctx = document.getElementById('horizontalBarKIP');
 
-	var bar_chart = new Chart(bar_ctx, {
-		// type: 'bar',
-		type: 'horizontalBar',
-		data: {
-			labels: LabelX,
-			datasets: [{
-					label: 'Komplain',
-					data: komplain,
-					backgroundColor: "#A5B0B6",
-					hoverBackgroundColor: "#A5B0B6",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Informasi',
-					data: informasi,
-					backgroundColor: "#009E8C",
-					hoverBackgroundColor: "#009E8C",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Permintaan',
-					data: permintaan,
-					backgroundColor: "#00436D",
-					hoverBackgroundColor: "#00436D",
-					hoverBorderWidth: 0
-				},
-			]
-		},
-		options: {
-			responsive : true,
-			maintainAspectRatio:false,
-			animation: {
-				duration: 10,
-			},
-			tooltips: {
-				mode: 'label',
-				callbacks: {
-					label: function (tooltipItem, data) {
-						return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-					}
-				}
-			},
-			scales: {
-				xAxes: [{
-					stacked: true,
-					gridLines: {
-						display: false
-					},
-				}],
-				yAxes: [{
-					stacked: true,
-					ticks: {
-						callback: function (value) {
-							return numberWithCommas(value);
-						},
-					},
-				}],
-			},
-			legend: {
-				display: false,
+	// var bar_chart = new Chart(bar_ctx, {
+	// 	// type: 'bar',
+	// 	type: 'horizontalBar',
+	// 	data: {
+	// 		labels: LabelX,
+	// 		datasets: [{
+	// 				label: 'Komplain',
+	// 				data: komplain,
+	// 				backgroundColor: "#A5B0B6",
+	// 				hoverBackgroundColor: "#A5B0B6",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Informasi',
+	// 				data: informasi,
+	// 				backgroundColor: "#009E8C",
+	// 				hoverBackgroundColor: "#009E8C",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Permintaan',
+	// 				data: permintaan,
+	// 				backgroundColor: "#00436D",
+	// 				hoverBackgroundColor: "#00436D",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 		]
+	// 	},
+	// 	options: {
+	// 		responsive : true,
+	// 		maintainAspectRatio:false,
+	// 		animation: {
+	// 			duration: 10,
+	// 		},
+	// 		tooltips: {
+	// 			mode: 'label',
+	// 			callbacks: {
+	// 				label: function (tooltipItem, data) {
+	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+	// 				}
+	// 			}
+	// 		},
+	// 		scales: {
+	// 			xAxes: [{
+	// 				stacked: true,
+	// 				gridLines: {
+	// 					display: false
+	// 				},
+	// 			}],
+	// 			yAxes: [{
+	// 				stacked: true,
+	// 				ticks: {
+	// 					callback: function (value) {
+	// 						return numberWithCommas(value);
+	// 					},
+	// 				},
+	// 			}],
+	// 		},
+	// 		legend: {
+	// 			display: false,
 				
-			}
-		},
-		// plugins: [{
-		// 	beforeInit: function (chart) {
-		// 		chart.data.labels.forEach(function (value, index, array) {
-		// 			var a = [];
-		// 			a.push(value.slice(0, 5));
-		// 			var i = 1;
-		// 			while (value.length > (i * 5)) {
-		// 				a.push(value.slice(i * 5, (i + 1) * 5));
-		// 				i++;
-		// 			}
-		// 			array[index] = a;
-		// 		})
-		// 	}
-		// }]
-	});
+	// 		}
+	// 	},
+	// 	// plugins: [{
+	// 	// 	beforeInit: function (chart) {
+	// 	// 		chart.data.labels.forEach(function (value, index, array) {
+	// 	// 			var a = [];
+	// 	// 			a.push(value.slice(0, 5));
+	// 	// 			var i = 1;
+	// 	// 			while (value.length > (i * 5)) {
+	// 	// 				a.push(value.slice(i * 5, (i + 1) * 5));
+	// 	// 				i++;
+	// 	// 			}
+	// 	// 			array[index] = a;
+	// 	// 		})
+	// 	// 	}
+	// 	// }]
+	// });
 
 })(jQuery);

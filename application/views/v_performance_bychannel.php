@@ -102,12 +102,12 @@
                             <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
                         <!-- chart yang baru -->
-                        <!-- <div class="card-body">
+                        <div class="card-body" id="horizontalBarPerformanceChannelDiv">
                             <canvas id="horizontalBarPerformanceChannel" width="600" height="350"></canvas>
-                        </div> -->
-                        <div class="card-body" id="echartServiceDiv">
-                            <div id="echartService" class="chartsh-services overflow-hidden" style="width : 100%"></div>
                         </div>
+                        <!-- <div class="card-body" id="echartServiceDiv">
+                            <div id="echartService" class="chartsh-services overflow-hidden" style="width : 100%"></div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-12">

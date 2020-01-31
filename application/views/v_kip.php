@@ -106,13 +106,13 @@
                         </div>
 
                         <!-- chart yang baru -->
-                        <!-- <div class="card-body">
+                        <div class="card-body" id="horizontalBarKIPDiv">
                             <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
-                        </div> -->
-
-                        <div class="card-body" id="content-chart-kip">
-                            <div id="echartKIP"></div>
                         </div>
+
+                        <!-- <div class="card-body" id="content-chart-kip">
+                            <div id="echartKIP"></div>
+                        </div> -->
                     </div>
                 </div>
             </div>
