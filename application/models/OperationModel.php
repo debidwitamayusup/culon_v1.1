@@ -1,5 +1,4 @@
 <?php 
-
 class OperationModel extends CI_Model
 {
 
@@ -24,7 +23,6 @@ class OperationModel extends CI_Model
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(date)', $index);
-
             //hardcoded year based on availability data on db
             $this->db->where('YEAR(date)', $index);
 			// $this->db->where('YEAR(date)', '2019');
@@ -78,7 +76,7 @@ class OperationModel extends CI_Model
         $where2 = "";
         if($tid)
         {
-            $where2 = "and rpt_summ_kip1.tenant_id ='".$tid."' ";
+            $where2 = "and rpt_summ_kip1.tenant_id ='".$tid."'";
         }
         $index_alpha[1]="a";
         $index_alpha[2]="b";
@@ -163,7 +161,7 @@ class OperationModel extends CI_Model
 
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
        
-        $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+
         $this->db->select('m_channel.channel_name
         , rpt_summ_kip2.category
         , sum(rpt_summ_kip2.jumlah) as total_kip
