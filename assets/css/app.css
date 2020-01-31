@@ -150,10 +150,14 @@
 }
 
 .font-13{
-    line-height: 1.15;
+    line-height: 1.0;
     font-size: 13px !important;
 }
 
+.font-11{
+    line-height:1.0;
+    font-size:11px !important;
+}
 /* Accordion */
 .accordionjs .acc_section:first-of-type .acc_head {
     border-top-left-radius: 3px;

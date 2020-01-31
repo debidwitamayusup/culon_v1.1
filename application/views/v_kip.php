@@ -28,7 +28,8 @@
                         <div class="bd-highlight">
                             <!-- daily -->
                             <div id="filter-date" class="mt-1 mr-0">
-                                <input id="input-date-filter" class="w-55 ml-auto form-control form-control-sm fc-datepicker"
+                                <input id="input-date-filter"
+                                    class="w-55 ml-auto form-control form-control-sm fc-datepicker"
                                     placeholder="MM/DD/YYYY" type="text">
                             </div>
 
@@ -36,7 +37,7 @@
                             <div id="filter-month" class="row mt-1 mr-0">
                                 <div class="col-md-auto">
                                     <select name="select-month" id="select-month" class="form-control form-control-sm">
-                                       <!--  <option value="1">January</option>
+                                        <!--  <option value="1">January</option>
                                         <option value="2">February</option>
                                         <option value="3">March</option>
                                         <option value="4">April</option>
@@ -51,7 +52,8 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <select name="select-year-on-month" id="select-year-on-month" class="form-control form-control-sm">
+                                    <select name="select-year-on-month" id="select-year-on-month"
+                                        class="form-control form-control-sm">
                                         <!-- <option value="2020">2020</option>
                                         <option value="2019">2019</option> -->
                                         <!-- <option value="2018">2018</option>
@@ -62,7 +64,8 @@
                                 </div>
                                 <div>
                                     <span class="col-auto">
-                                        <button class="btn btn-sm btn-dark" style="height:29px" type="button" id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
+                                        <button class="btn btn-sm btn-dark" style="height:29px" type="button"
+                                            id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
                                     </span>
                                 </div>
                             </div>
@@ -70,7 +73,7 @@
                             <!-- yearly -->
                             <div id="filter-year" class="mt-1 mr-0">
                                 <select name="select-year-only" id="select-year-only" class="form-control form-control">
-                                   <!--  <option value="2020">2020</option>
+                                    <!--  <option value="2020">2020</option>
                                     <option value="2019" selected>2019</option> -->
                                     <!-- <option value="2018">2018</option>
                                     <option value="2017">2017</option>
@@ -85,7 +88,7 @@
             <!----Baris Pertama----!-->
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-12">
-                    <div class="card">
+                    <div class="card h-450">
                         <div class="card-header-small">
 
                             <h5 class="card-title-small card-pt10">Summary KIP</h5>
@@ -101,6 +104,12 @@
                         <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">KIP per Channel</h5>
                         </div>
+
+                        <!-- chart yang baru -->
+                        <!-- <div class="card-body">
+                            <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
+                        </div> -->
+
                         <div class="card-body" id="content-chart-kip">
                             <div id="echartKIP"></div>
                         </div>
