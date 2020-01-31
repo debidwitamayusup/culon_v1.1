@@ -417,7 +417,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         },
         success: function (r) {
         var response = JSON.parse(r);
-        // console.log(response.data);
+        console.log(response.data);
         // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
         // Return with commas in between
         var numberWithCommas = function (x) {

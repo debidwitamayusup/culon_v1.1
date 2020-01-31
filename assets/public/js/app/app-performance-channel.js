@@ -217,7 +217,7 @@ function summaryChannel(params, index, params_year, tenant_id){
         },
         success: function (response) {
             // var response = JSON.parse(r);
-            // console.log(response);
+            console.log(response);
             drawChartSumChannel(response);
         },
         error: function (r) {
@@ -378,134 +378,114 @@ function drawChartSumService(response) {
 function drawChartSumChannel(response) {
 
 	// console.log(response.status);
-	$('#echartService').remove();
-	$('#echartServiceDiv').append('<div id="echartService" class="chartsh-services overflow-hidden"></div>');
+	$('#horizontalBarPerformanceChannel').remove();
+	$('#horizontalBarPerformanceChannelDiv').append('<canvas id="horizontalBarPerformanceChannel" width="600" height="350"></canvas>');
 	if (response.status != false) {
+		
 		let channelName = [];
 		let art = [];
 		let aht = [];
 		let ast = [];
-		// console.log(response.data);
-		response.data.forEach(function (value, index) {
-			channelName.push(value.CHANNEL_NAME);
+		
+		var color = ["#A5B0B6", "#009E8C", "#00436D"];
+		var labeling = ["ART", "AHT", "AST"];
+
+		var numberWithCommas = function (x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        response.data.forEach(function(value, index){
+        	channelName.push(value.CHANNEL_NAME);
 			art.push(value.SUM_ART);
 			aht.push(value.SUM_AHT);
 			ast.push(value.SUM_AST);
-
 		});
-		// console.log(channelName);
-		var chartdataTicket = [{
-			name: 'ART',
-			type: 'bar',
-			stack: 'Stack',
-			data: art
-		}, {
-			name: 'AHT',
-			type: 'bar',
-			stack: 'Stack',
-			data: aht
-		}, {
-			name: 'AST',
-			type: 'bar',
-			stack: 'Stack',
-			data: ast
-		}];
-		/*----echart performance by channel----*/
-		var optionTicket = {
-			// responsive: {
-			// 	rules: {
-			// 		condition: {
-			// 			maxWidth: "500",
-			// 		}
+		var total = [art,aht,ast];
+		// console.log(total);
+		var dataStacked = [];
+		var datasetStacked = "";
+		var i = 0;
+		response.data.forEach(function (value, index) {
+			// channelName.push(value.CHANNEL_NAME);
+			// art.push(value.SUM_ART);
+			// aht.push(value.SUM_AHT);
+			// ast.push(value.SUM_AST);
+			datasetStacked = {
+								label: labeling[i],
+								data: total[i],
+								backgroundColor: color[i],
+								hoverBackgroundColor: color[i],
+								hoverBorderWidth: 0
+					},
+			i++;
+			dataStacked.push(datasetStacked);
+		});
+		// console.log(dataStacked);
+
+		var bar_ctx = document.getElementById('horizontalBarPerformanceChannel');
+
+		var bar_chart = new Chart(bar_ctx, {
+			// type: 'bar',
+			type: 'horizontalBar',
+			data: {
+				labels: channelName,
+				datasets: dataStacked
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				animation: {
+					duration: 10,
+				},
+				tooltips: {
+					mode: 'label',
+					callbacks: {
+						label: function (tooltipItem, data) {
+							return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+						}
+					}
+				},
+				scales: {
+					xAxes: [{
+						stacked: true,
+						gridLines: {
+							display: false
+						},
+					}],
+					yAxes: [{
+						stacked: true,
+						ticks: {
+							callback: function (value) {
+								return numberWithCommas(value);
+							},
+						},
+					}],
+				},
+				legend: {
+					display: true,
+					// data: labeling,
+					labels: {
+						boxWidth: 10
+					}
+				}
+			},
+			// plugins: [{
+			// 	beforeInit: function (chart) {
+			// 		chart.data.labels.forEach(function (value, index, array) {
+			// 			var a = [];
+			// 			a.push(value.slice(0, 5));
+			// 			var i = 1;
+			// 			while (value.length > (i * 5)) {
+			// 				a.push(value.slice(i * 5, (i + 1) * 5));
+			// 				i++;
+			// 			}
+			// 			array[index] = a;
+			// 		})
 			// 	}
-			// },
-			grid: {
-				top: '10%',
-				right: '5%',
-				bottom: '3%',
-				left: '5%',
-				width: '100%',
-				containLabel: true
-			},
-			xAxis: {
-				type: 'value',
-				axisLine: {
-					lineStyle: {
-						color: '#efefff'
-					}
-				},
-				axisLabel: {
-					fontSize: 10,
-					color: '#7886a0'
-				}
-			},
-			yAxis: {
-				type: 'category',
-				// data: ['Live Chat','SMS','Messenger','Email','Voice','Twitter DM','Twitter','Whatsapp','Line','Telegram','Facebook','Instagram'],
-				data: channelName,
-				splitLine: {
-					lineStyle: {
-						color: '#efefff'
-					}
-				},
-				axisLine: {
-					lineStyle: {
-						color: '#efefff'
-					}
-				},
-				axisLabel: {
-					fontSize: 10,
-					color: '#7886a0'
-				}
-			},
-			tooltip: {
-				show: true,
-				showContent: true,
-				alwaysShowContent: false,
-				triggerOn: 'mousemove',
-				trigger: 'axis',
-				axisPointer: {
-					label: {
-						show: true,
-						color: '#7886a0'
-					}
-				},
-
-				// position: function (pos, params, dom, rect, size) {
-				// 	// tooltip will be fixed on the right if mouse hovering on the left,
-				// 	// and on the left if hovering on the right.
-				// 	// console.log(pos);
-				// 	var obj = {top: pos[0]};
-				// 	obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-				// 	return obj;
-				// },
-			},
-			legend: {
-				data: ['ART', 'AHT', 'AST'],
-			},
-			series: chartdataTicket,
-			color: ["#A5B0B6", "#009E8C", "#00436D"]
-		};
-		var chartTicket = document.getElementById('echartService');
-		var barChartTicket = echarts.init(chartTicket);
-		barChartTicket.setOption(optionTicket);
-		// window.onresize = function(){
-		// 	barChartTicket.responsive();
-		// 	// barChartTicket.resize();
-		// }
-		function myFunction(x) {
-			if (x.matches) { // If media query matches
-				barChartTicket;
-			} else {
-				barChartTicket;
-			}
-		}
-
-		var x = window.matchMedia("(min-width: 450px)")
-		myFunction(x) // Call listener function at run time
-		x.addListener(myFunction)
+			// }]
+		});
 	} else {
-		$('#echartService').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+		$('#horizontalBarPerformanceChannel').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 	}
 }
 
@@ -804,91 +784,91 @@ function setDatePicker() {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	};
 
-	var komplain = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
-	var informasi = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40];
-	var permintaan = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
-	var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram", "SMS", "Messenger", "Live Chat", "Line", "Instagram", "Facebook", "Email", "ChatBot"];
+	// var komplain = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+	// var informasi = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40];
+	// var permintaan = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
+	// var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram", "SMS", "Messenger", "Live Chat", "Line", "Instagram", "Facebook", "Email", "ChatBot"];
 
-	var bar_ctx = document.getElementById('horizontalBarPerformanceChannel');
+	// var bar_ctx = document.getElementById('horizontalBarPerformanceChannel');
 
-	var bar_chart = new Chart(bar_ctx, {
-		// type: 'bar',
-		type: 'horizontalBar',
-		data: {
-			labels: LabelX,
-			datasets: [{
-					label: 'Komplain',
-					data: komplain,
-					backgroundColor: "#A5B0B6",
-					hoverBackgroundColor: "#A5B0B6",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Informasi',
-					data: informasi,
-					backgroundColor: "#009E8C",
-					hoverBackgroundColor: "#009E8C",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Permintaan',
-					data: permintaan,
-					backgroundColor: "#00436D",
-					hoverBackgroundColor: "#00436D",
-					hoverBorderWidth: 0
-				},
-			]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			animation: {
-				duration: 10,
-			},
-			tooltips: {
-				mode: 'label',
-				callbacks: {
-					label: function (tooltipItem, data) {
-						return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-					}
-				}
-			},
-			scales: {
-				xAxes: [{
-					stacked: true,
-					gridLines: {
-						display: false
-					},
-				}],
-				yAxes: [{
-					stacked: true,
-					ticks: {
-						callback: function (value) {
-							return numberWithCommas(value);
-						},
-					},
-				}],
-			},
-			legend: {
-				display: true,
-				labels: {
-					boxWidth: 10
-				}
-			}
-		},
-		// plugins: [{
-		// 	beforeInit: function (chart) {
-		// 		chart.data.labels.forEach(function (value, index, array) {
-		// 			var a = [];
-		// 			a.push(value.slice(0, 5));
-		// 			var i = 1;
-		// 			while (value.length > (i * 5)) {
-		// 				a.push(value.slice(i * 5, (i + 1) * 5));
-		// 				i++;
-		// 			}
-		// 			array[index] = a;
-		// 		})
-		// 	}
-		// }]
-	});
+	// var bar_chart = new Chart(bar_ctx, {
+	// 	// type: 'bar',
+	// 	type: 'horizontalBar',
+	// 	data: {
+	// 		labels: LabelX,
+	// 		datasets: [{
+	// 				label: 'Komplain',
+	// 				data: komplain,
+	// 				backgroundColor: "#A5B0B6",
+	// 				hoverBackgroundColor: "#A5B0B6",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Informasi',
+	// 				data: informasi,
+	// 				backgroundColor: "#009E8C",
+	// 				hoverBackgroundColor: "#009E8C",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Permintaan',
+	// 				data: permintaan,
+	// 				backgroundColor: "#00436D",
+	// 				hoverBackgroundColor: "#00436D",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 		]
+	// 	},
+	// 	options: {
+	// 		responsive: true,
+	// 		maintainAspectRatio: false,
+	// 		animation: {
+	// 			duration: 10,
+	// 		},
+	// 		tooltips: {
+	// 			mode: 'label',
+	// 			callbacks: {
+	// 				label: function (tooltipItem, data) {
+	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+	// 				}
+	// 			}
+	// 		},
+	// 		scales: {
+	// 			xAxes: [{
+	// 				stacked: true,
+	// 				gridLines: {
+	// 					display: false
+	// 				},
+	// 			}],
+	// 			yAxes: [{
+	// 				stacked: true,
+	// 				ticks: {
+	// 					callback: function (value) {
+	// 						return numberWithCommas(value);
+	// 					},
+	// 				},
+	// 			}],
+	// 		},
+	// 		legend: {
+	// 			display: true,
+	// 			labels: {
+	// 				boxWidth: 10
+	// 			}
+	// 		}
+	// 	},
+	// 	// plugins: [{
+	// 	// 	beforeInit: function (chart) {
+	// 	// 		chart.data.labels.forEach(function (value, index, array) {
+	// 	// 			var a = [];
+	// 	// 			a.push(value.slice(0, 5));
+	// 	// 			var i = 1;
+	// 	// 			while (value.length > (i * 5)) {
+	// 	// 				a.push(value.slice(i * 5, (i + 1) * 5));
+	// 	// 				i++;
+	// 	// 			}
+	// 	// 			array[index] = a;
+	// 	// 		})
+	// 	// 	}
+	// 	// }]
+	// });
 })(jQuery);

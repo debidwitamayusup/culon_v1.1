@@ -177,7 +177,7 @@ function callSummaryInteraction(params, index, year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
+            console.log(response);
             drawPieChart(response);
 			drawKipPerChannelChart(response);
 			callDataSubCategory(params, index, year, tenant_id);
@@ -602,7 +602,10 @@ function drawKipPerChannelChart(response) {
 					}],
 				},
 				legend: {
-					display: false,
+					display: true,
+                    labels: {
+                        boxWidth: 10,
+                    }
 					
 				}
 			},
