@@ -697,8 +697,40 @@ Class WallboardModel extends CI_Model {
 		return $result;
 	}
 
+    public function WallboardMain()
+    {
+        $this->db->select('channel_id, chn ,cof ,art ,aht');
+        $this->db->from('v_mon_service_today');
+        // if($tid)
+        // {
+           //noTID
+        // }
+        $query = $this->db->get();
+        
+        if($query->num_rows()>0)
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'CHANNEL_NAME' => $data->chn,
+                    'COF' => $data->cof,
+                    'ART' => $data->art,
+                    'AHT' => $data->aht,
+                    'QUEUE' => "555",
+                    'WAITING' => "555",
+                    'SCR' => "555",
+                    'MSG_IN' => "555",
+                    'MSG_OUT' => "555",
+                    'SLA' => "555"
+                );
 
-//under const
+            }
+
+            return $result;
+        }
+
+        return false;
+    }
 
     public function SummStatusTicketOps($date,$src)
     {
@@ -732,6 +764,7 @@ Class WallboardModel extends CI_Model {
         }
 
         return FALSE;
+
     }
     public function SummTicketC($months,$year)
     {
