@@ -803,6 +803,9 @@ function addCommas(commas) {
 	var numberWithCommas = function (x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	};
+	$('#btn-go').click(function(){
+        callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+    });
 
 	var komplain = [20,20,20,20,20,20,20,20,20,20,20,20,20];
 	var informasi = [40,40,40,40,40,40,40,40,40,40,40,40,40];

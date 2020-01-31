@@ -326,7 +326,6 @@ function drawChartDaily(week,arr_channel, tenant_id){
     // Horizontal Bar
     $('#echartWeek').remove();
     $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
-
     var base_url = $('#base_url').val();
 
     $.ajax({
