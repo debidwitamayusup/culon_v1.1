@@ -699,8 +699,8 @@ Class WallboardModel extends CI_Model {
 
     public function WallboardMain()
     {
-        $this->db->select('channel_id, chn ,cof ,art ,aht');
-        $this->db->from('v_mon_service_today');
+        $this->db->select('channel_id, chn ,cof ,art ,aht, Queue');
+        $this->db->from('v_mon_service_today_custom');
         // if($tid)
         // {
            //noTID
@@ -716,7 +716,7 @@ Class WallboardModel extends CI_Model {
                     'COF' => $data->cof,
                     'ART' => $data->art,
                     'AHT' => $data->aht,
-                    'QUEUE' => "555",
+                    'QUEUE' => $data->Queue,
                     'WAITING' => "555",
                     'SCR' => "555",
                     'MSG_IN' => "555",
