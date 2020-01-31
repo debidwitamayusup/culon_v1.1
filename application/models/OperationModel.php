@@ -161,7 +161,7 @@ class OperationModel extends CI_Model
 
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
        
-
+        $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
         $this->db->select('m_channel.channel_name
         , rpt_summ_kip2.category
         , sum(rpt_summ_kip2.jumlah) as total_kip

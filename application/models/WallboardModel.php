@@ -719,10 +719,10 @@ Class WallboardModel extends CI_Model {
                     'AHT' => $data->aht,
                     'QUEUE' => $data->Queue,
                     'WAITING' => "999",
-                    'SCR' => "999",
+                    'SCR' => "99.9%",
                     'MSG_IN' => "999",
                     'MSG_OUT' => "999",
-                    'SLA' => "999"
+                    'SLA' => "99.9%"
                 );
 
             }
