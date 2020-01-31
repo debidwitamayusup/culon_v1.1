@@ -84,16 +84,16 @@
 								<div class="col-md-12">
 									<div class="card" id="customerChartMonth">
 										<!-- <div class="card-body" > -->
-										<div id="echart1" class="chartsh-month overflow-hidden h-200 "></div>
+										<!-- <div id="echart1" class="chartsh-month overflow-hidden h-200 "></div> -->
 										<!-- </div> -->
 										<!-- <div class="card-body">
 											<div id="chartStackMonth" class="chartsh overflow-hidden"></div>
 										</div> -->
-
+									
 										<!-- Stacked Chart yang baru -->
-										<!-- <div class="card-body">
+										<div class="card-body" id="BarTrafficMonthDiv">
                             				<canvas id="BarTrafficMonth" width="600" height="400"></canvas>
-                        				</div> -->
+                        				</div>
 
 										<!-- Bar Chart u/ per channel -->
 										<!-- <div class="card-body">

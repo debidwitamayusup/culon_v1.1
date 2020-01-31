@@ -21,9 +21,13 @@ $(document).ready(function () {
     // console.log(m);
     // callGraphicInterval('ShowAll', $("#month").val(), m);
     // callGraphicInterval('ShowAll', '1', '2020');
-    drawStackedBar('month', '', n, m, v_params_tenant);
+    // drawStackedBar('month', '', n, m, v_params_tenant);
+
+
+    stackedBarInterval('month', '', n, m, v_params_tenant);
     callDataPercentage($("#month").val(), m, v_params_tenant);
     callDataTableAvg($("#month").val(), m), v_params_tenant;
+    // fromTemplate();
 });
 
 function monthNumToName(month) {
@@ -72,7 +76,7 @@ function callGraphicInterval(channel_name, month, year) {
             }];
 
             // console.log(response.data.channel_color)
-            var chart = document.getElementById('echart1');
+            var chart = document.getElementById('BarTrafficMonth');
             var barChart = echarts.init(chart);
             var option = {
                 grid: {
@@ -525,8 +529,8 @@ function drawStackedBar(params, channel_name, index, params_year, tenant_id){
 // function destroy element canvas
 function destroyChartInterval() {
     // destroy chart interval 
-    $('#echart1').remove(); // this is my <canvas> element
-    $('#customerChartMonth').append('<div id="echart1" class="chartsh-month overflow-hidden"></div>');
+    $('#BarTrafficMonth').remove(); // this is my <canvas> element
+    $('#BarTrafficMonthDiv').append('<canvas id="BarTrafficMonth" width="600" height="400"></canvas>');
 }
 
 function destroyChartPercentage() {
@@ -575,7 +579,7 @@ function destroyChartPercentage() {
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                drawStackedBar('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }else{
                 callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }
@@ -584,220 +588,159 @@ function destroyChartPercentage() {
         });
 })(jQuery);
 
-$(function($){
-     // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
-	// Return with commas in between
-	var numberWithCommas = function (x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	};
-
-	var whatsapp = [20, 20, 20,20, 20, 20,20,20, 20, 20,20, 20, 20,20,20, 20, 20,20, 20, 20,20,20, 20, 20,20, 20, 20,20,20,20,20];
-	var facebook = [40, 40, 40,40, 40, 40,40,40, 40, 40,40, 40, 40,40,40, 40, 40,40, 40, 40,40,40, 40, 40,40, 40, 40,40,40, 40, 40];
-    var twitter = [60, 60, 60,60, 60, 60,60,60, 60, 60,60, 60, 60,60,60, 60, 60,60, 60, 60,60,60, 60, 60,60, 60, 60,60,60, 60, 60];
-    var twitterdm = [80, 80, 80,80, 80, 80,80,80, 80, 80,80, 80, 80,80,80, 80, 80,80, 80, 80,80,80, 80, 80,80, 80, 80,80,80, 80, 80];
-    var instagram = [90, 90, 90,90, 90, 90,90,90, 90, 90,90, 90, 90,90,90, 90, 90,90, 90, 90,90,90, 90, 90,90, 90, 90,90,90, 90, 90];
-    var messenger = [100, 100, 100,100, 100, 100,100,100, 100, 100,100, 100, 100,100,100, 100, 100,100, 100, 100,100,100, 100, 100,100, 100, 100,100,100, 100, 100];
-    var telegram = [110, 110, 110,110, 110, 110,110,110, 110, 110,110, 110, 110,110,110, 110, 110,110, 110, 110,110,110, 110, 110,110, 110, 110,110,110, 110, 110];
-    var line = [120, 120, 120,120, 120, 120,120,120, 120, 120,120, 120, 120,120,120, 120, 120,120, 120, 120,120,120, 120, 120,120, 120, 120,120,120, 120, 120];
-    var email = [130, 130, 130,130, 130, 130,130,130, 130, 130,130, 130, 130,130,130, 130, 130,130, 130, 130,130,130, 130, 130,130, 130, 130,130,130, 130, 130];
-    var twitter = [140, 140, 140,140, 140, 140,140,140, 140, 140,140, 140, 140,140,140, 140, 140,140, 140, 140,140,140, 140, 140,140, 140, 140,140,140, 140, 140];
-    var voice = [150,150, 150,150,150, 150,150,150,150, 150,150,150, 150,150,150,150, 150,150,150, 150,150,150,150, 150,150,150, 150,150,150,150, 150];
-    var sms = [160, 160, 160,160, 160, 160,160,160, 160, 160,160, 160, 160,160,160, 160, 160,160, 160, 160,160,160, 160, 160,160, 160, 160,160,160, 160, 160];
-    var livechat = [170, 170, 170,170, 170, 170,170,170, 170, 170,170, 170, 170,170,170, 170, 170,170, 170, 170,170,170, 170, 170,170, 170, 170,170,170, 170, 170];
-    var chatbot = [180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180];
-	var LabelX = ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"];
-
-	var bar_ctx = document.getElementById('BarTrafficMonth');
-
-	var bar_chart = new Chart(bar_ctx, {
-		type: 'bar',
-		// type: 'horizontalBar',
-		data: {
-			labels: LabelX,
-			datasets: [{
-					label: 'Whatsapp',
-					data: whatsapp,
-					backgroundColor: "#089e60",
-					hoverBackgroundColor: "#089e60",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Facebook',
-					data: facebook,
-					backgroundColor: "#467fcf",
-					hoverBackgroundColor: "#467fcf",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Twitter',
-					data: twitter,
-					backgroundColor: "#45aaf2",
-					hoverBackgroundColor: "#45aaf2",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Twitter DM',
-					data: twitterdm,
-					backgroundColor: "#6574cd",
-					hoverBackgroundColor: "#6574cd",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Instagram',
-					data: instagram,
-					backgroundColor: "#fbc0d5",
-					hoverBackgroundColor: "#fbc0d5",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Messenger',
-					data: messenger,
-					backgroundColor: "#3866a6",
-					hoverBackgroundColor: "#3866a6",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Telegram',
-					data: telegram,
-					backgroundColor: "#343a40",
-					hoverBackgroundColor: "#343a40",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Line',
-					data:line,
-					backgroundColor: "#31a550",
-					hoverBackgroundColor: "#31a550",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Email',
-					data: email,
-					backgroundColor: "#e41313",
-					hoverBackgroundColor: "#e41313",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Voice',
-					data: voice,
-					backgroundColor: "#ff9933",
-					hoverBackgroundColor: "#ff9933",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'SMS',
-					data: sms,
-					backgroundColor: "#80cbc4",
-					hoverBackgroundColor: "#80cbc4",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Live Chat',
-					data: livechat,
-					backgroundColor: "#607d8b",
-					hoverBackgroundColor: "#607d8b",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'ChatBot',
-					data: chatbot,
-					backgroundColor: "#6e273e",
-					hoverBackgroundColor: "#6e273e",
-					hoverBorderWidth: 0
-				}
-			]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			animation: {
-				duration: 10,
-			},
-			tooltips: {
-				mode: 'label',
-				callbacks: {
-					label: function (tooltipItem, data) {
-						return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
-					}
-				}
-			},
-			scales: {
-				xAxes: [{
-					stacked: true,
-					gridLines: {
-						display: false
-					},
-				}],
-				yAxes: [{
-					stacked: true,
-					ticks: {
-						callback: function (value) {
-							return numberWithCommas(value);
-						},
-					},
-				}],
-			},
-			legend: {
-				display: true,
-				labels: {
-                    boxWidth: 10,
-				}
-			}
-		},
-		// plugins: [{
-		// 	beforeInit: function (chart) {
-		// 		chart.data.labels.forEach(function (value, index, array) {
-		// 			var a = [];
-		// 			a.push(value.slice(0, 5));
-		// 			var i = 1;
-		// 			while (value.length > (i * 5)) {
-		// 				a.push(value.slice(i * 5, (i + 1) * 5));
-		// 				i++;
-		// 			}
-		// 			array[index] = a;
-		// 		})
-		// 	}
-		// }]
-    });
-    
-    var ctx = document.getElementById( "BarChartMonth" );
-    // ctx.height = 100;
-    var myChart = new Chart( ctx, {
-        type: 'bar',
+//stacked bar chartjs
+function stackedBarInterval(params, channel_name, index, params_year, tenant_id){
+    destroyChartInterval();
+    $("#filter-loader").fadeIn("slow");
+    var getMontName = monthNumToName(month);
+    var data = "";
+    var base_url = $('#base_url').val();
+    //call traffic per month
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonthShowAll',
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
-            datasets: [
-                {
-                    label: "Total",
-                    data: [180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180],
-                    borderColor: "rgba(19, 150, 204, 0.9)",
-                    borderWidth: "0",
-                    backgroundColor: "rgba(19, 150, 204, 0.8)"
-                            }
-                        ]
+            "params": params,
+            "channel_name": channel_name,
+            "index": index,
+            "params_year": params_year,
+            "tenant_id": tenant_id
         },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			layout: {
-					padding: {
-					left: 50,
-					right: 0,
-					top: 0,
-					bottom: 0
-				}
-			},
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true,
-						//padding:50,
-                    }
-                                } ]
+        success: function (r) {
+        var response = JSON.parse(r);
+        console.log(response.data);
+        // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
+        // Return with commas in between
+        var numberWithCommas = function (x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        var dataStacked = [];
+        var datasetsStacked = "";
+
+        response.data.forEach(function (value){
+            datasetsStacked = {
+                    label: value.channel_name,
+                    data: value.total_traffic,
+                    backgroundColor: value.channel_color,
+                    hoverBackgroundColor: value.channel_color,
+                    hoverBorderWidth: 0
+                },
+
+            dataStacked.push(datasetsStacked);
+        });
+
+        
+        console.log(dataStacked);
+        var bar_ctx = document.getElementById('BarTrafficMonth');
+
+        var bar_chart = new Chart(bar_ctx, {
+            type: 'bar',
+            // type: 'horizontalBar',
+            data: {
+                labels: response.param_date,
+                datasets: dataStacked,
             },
-            legend:{
-                display : false
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 10,
+                },
+                tooltips: {
+                    mode: 'label',
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                        }
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        gridLines: {
+                            display: false
+                        },
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            callback: function (value) {
+                                return numberWithCommas(value);
+                            },
+                        },
+                    }],
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        boxWidth: 10,
+                    }
+                }
+            },
+            // plugins: [{
+            // 	beforeInit: function (chart) {
+            // 		chart.data.labels.forEach(function (value, index, array) {
+            // 			var a = [];
+            // 			a.push(value.slice(0, 5));
+            // 			var i = 1;
+            // 			while (value.length > (i * 5)) {
+            // 				a.push(value.slice(i * 5, (i + 1) * 5));
+            // 				i++;
+            // 			}
+            // 			array[index] = a;
+            // 		})
+            // 	}
+            // }]
+        });
+        $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            alert("error");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function fromTemplate(){
+    var ctx = document.getElementById( "BarChartMonth" );
+        // ctx.height = 100;
+        var myChart = new Chart( ctx, {
+            type: 'bar',
+            data: {
+                labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
+                datasets: [
+                    {
+                        label: "Total",
+                        data: [180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180],
+                        borderColor: "rgba(19, 150, 204, 0.9)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(19, 150, 204, 0.8)"
+                                }
+                            ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                        padding: {
+                        left: 50,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    yAxes: [ {
+                        ticks: {
+                            beginAtZero: true,
+                            //padding:50,
+                        }
+                                    } ]
+                },
+                legend:{
+                    display : false
+                }
             }
-        }
-    } );
-});
+        } );
+}
