@@ -404,24 +404,18 @@ function drawChartSumChannel(response) {
 		// console.log(total);
 		var dataStacked = [];
 		var datasetStacked = "";
-		var i = 0;
-		response.data.forEach(function (value, index) {
-			// channelName.push(value.CHANNEL_NAME);
-			// art.push(value.SUM_ART);
-			// aht.push(value.SUM_AHT);
-			// ast.push(value.SUM_AST);
+		for (var i = 0; i < 3; i++) {
 			datasetStacked = {
-								label: labeling[i],
-								data: total[i],
-								backgroundColor: color[i],
-								hoverBackgroundColor: color[i],
-								hoverBorderWidth: 0
-					},
-			i++;
-			dataStacked.push(datasetStacked);
-		});
+						label: labeling[i],
+						data: total[i],
+						backgroundColor: color[i],
+						hoverBackgroundColor: color[i],
+						hoverBorderWidth: 0
+					}
+					dataStacked.push(datasetStacked);
+		}		
+			
 		// console.log(dataStacked);
-
 		var bar_ctx = document.getElementById('horizontalBarPerformanceChannel');
 
 		var bar_chart = new Chart(bar_ctx, {
