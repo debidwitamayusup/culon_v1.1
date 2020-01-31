@@ -27,7 +27,6 @@ $(document).ready(function () {
     stackedBarInterval('month', '', n, m, v_params_tenant);
     callDataPercentage($("#month").val(), m, v_params_tenant);
     callDataTableAvg($("#month").val(), m), v_params_tenant;
-    // fromTemplate();
 });
 
 function monthNumToName(month) {
@@ -335,197 +334,6 @@ function callYear() {
     });
 }
 
-function drawStackedBar(params, channel_name, index, params_year, tenant_id){
-    destroyChartInterval();
-    $("#filter-loader").fadeIn("slow");
-    var getMontName = monthNumToName(month);
-    var data = "";
-    var base_url = $('#base_url').val();
-    //call traffic per month
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonthShowAll',
-        data: {
-            "params": params,
-            "channel_name": channel_name,
-            "index": index,
-            "params_year": params_year,
-            "tenant_id": tenant_id
-        },
-        success: function (r) {
-            var response = JSON.parse(r);
-            // stacked bar traffic monthly
-            // console.log(response);
-            var chartdata3 = [{
-                name: 'Whatsapp',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[10].total_traffic
-            }, {
-                name: 'Facebook',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[5].total_traffic
-            }, {
-                name: 'Twitter',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[7].total_traffic
-            }, {
-                name: 'Twitter DM',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[11].total_traffic
-            }, {
-                name: 'Instagram',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[9].total_traffic
-            }, {
-                name: 'Messenger',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[6].total_traffic
-            }, {
-                name: 'Telegram',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[4].total_traffic
-            }, {
-                name: 'Line',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[8].total_traffic
-            }, {
-                name: 'Email',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[1].total_traffic
-            }, {
-                name: 'Voice',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[0].total_traffic
-            }, {
-                name: 'SMS',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[3].total_traffic
-            }, {
-                name: 'Live Chat',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[2].total_traffic
-            }, {
-                name: 'Chat Bot',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[12].total_traffic
-            }];
-            /*----EchartMonth*/
-            var option6 = {
-                // grid: {
-                //  top: '6',
-                //  right: '15',
-                //  bottom: '17',
-                //  left: '32',
-                // },
-                tooltip: {
-                    trigger: 'axis',
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: false,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: true,
-                            color: '#7886a0',
-                            type: 'shadow',
-                            fontSize: 8
-                            // formatter : function (){
-                            //     return label_lng;
-                            // }
-                        }
-                    },
-                    // position: ['86%', '0%']
-                    position: function (pos, params, dom, rect, size) {
-                        // tooltip will be fixed on the right if mouse hovering on the left,
-                        // and on the left if hovering on the right.
-                        // console.log(pos);
-                        var obj = {
-                            top: pos[6]
-                        };
-                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                        return obj;
-                    },
-                },
-                legend: {
-                    data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
-                    left: 'center',
-                    // top: 'bottom',
-                    itemWidth: 12,
-                    padding: [20, 10, 40, 10]
-                },
-
-                grid: {
-                    // top:'2%',
-                    // left: '1%',
-                    // right: '2%',
-                    // bottom: '3%',
-                    top: '25%',
-                    right: '2%',
-                    bottom: '7%',
-                    left: '3%',
-                    containLabel: true,
-                    width: '100%'
-                },
-                xAxis: {
-                    type: 'category',
-                    data: response.param_date,
-
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                series: chartdata3,
-                color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
-            };
-            var chart6 = document.getElementById('echart1');
-            var barChart6 = echarts.init(chart6);
-            barChart6.setOption(option6);
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
-
 // function destroy element canvas
 function destroyChartInterval() {
     // destroy chart interval 
@@ -581,7 +389,8 @@ function destroyChartPercentage() {
             if ($("#channel_name").val() == 'ShowAll') {
                 stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }else{
-                callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             }
             callDataPercentage($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
             callDataTableAvg($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
@@ -608,7 +417,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         },
         success: function (r) {
         var response = JSON.parse(r);
-        console.log(response.data);
+        // console.log(response.data);
         // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
         // Return with commas in between
         var numberWithCommas = function (x) {
@@ -631,7 +440,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         });
 
         
-        console.log(dataStacked);
+        // console.log(dataStacked);
         var bar_ctx = document.getElementById('BarTrafficMonth');
 
         var bar_chart = new Chart(bar_ctx, {
@@ -700,47 +509,4 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
             $("#filter-loader").fadeOut("slow");
         },
     });
-}
-
-function fromTemplate(){
-    var ctx = document.getElementById( "BarChartMonth" );
-        // ctx.height = 100;
-        var myChart = new Chart( ctx, {
-            type: 'bar',
-            data: {
-                labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"],
-                datasets: [
-                    {
-                        label: "Total",
-                        data: [180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180,180, 180, 180,180,180, 180, 180],
-                        borderColor: "rgba(19, 150, 204, 0.9)",
-                        borderWidth: "0",
-                        backgroundColor: "rgba(19, 150, 204, 0.8)"
-                                }
-                            ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                        padding: {
-                        left: 50,
-                        right: 0,
-                        top: 0,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    yAxes: [ {
-                        ticks: {
-                            beginAtZero: true,
-                            //padding:50,
-                        }
-                                    } ]
-                },
-                legend:{
-                    display : false
-                }
-            }
-        } );
 }
