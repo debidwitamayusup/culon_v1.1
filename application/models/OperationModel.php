@@ -78,7 +78,7 @@ class OperationModel extends CI_Model
         $where2 = "";
         if($tid)
         {
-            $where2 = "and rpt_summ_kip1.tenant_id ='".$tid"' ";
+            $where2 = "and rpt_summ_kip1.tenant_id ='".$tid."'";
         }
         $index_alpha[1]="a";
         $index_alpha[2]="b";
