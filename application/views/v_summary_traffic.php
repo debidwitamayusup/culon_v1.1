@@ -142,29 +142,6 @@
 															<span class="custom-control-label">Show All</span>
 														</label>
 														<label class="custom-control custom-checkbox">
-<<<<<<< HEAD
-<<<<<<< HEAD
-		                                                    <input type="checkbox"
-		                                                        class="custom-control-input checklist-channel"
-		                                                        id="list-channel[]" name="example-checkbox2" value="ChatBot">
-		                                                    <span class="custom-control-label">Chat Bot</span>
-		                                                </label>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="card-body" id="lineWallSummaryTrafficDiv">
-		                                <canvas id="lineWallSummaryTraffic" class="h-400"></canvas>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <?php $this->load->view('temp/footer');?>
-		                <script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
-=======
-=======
->>>>>>> origin/elsa-dev
 															<input type="checkbox"
 																class="custom-control-input checklist-channel"
 																id="list-channel[]" name="example-checkbox2" value="Whatsapp">
@@ -283,7 +260,3 @@
 						</div>
 						<?php $this->load->view('temp/footer');?>
 						<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
-<<<<<<< HEAD
->>>>>>> origin/elsa-dev
-=======
->>>>>>> origin/elsa-dev
