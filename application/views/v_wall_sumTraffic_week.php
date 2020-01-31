@@ -159,7 +159,7 @@
                         <div class="table-responsive table-bordered" style="padding:5px;">
                             <table class="table card-table table-striped table-vcenter table-hover table-pt10"
                                 id="mytable">
-                                <thead class="text-center text-white" style="background:#366790; font-size:11px;">
+                                <thead class="text-center text-white bg-head" style="font-size:11px;">
                                     <tr>
                                         <td rowspan="2" class="text-middle">No</td>
                                         <td rowspan="2" class="text-middle">Channel</td>
@@ -333,6 +333,10 @@
                         <div class="card-body" id="echartWeekDiv">
                             <div id="echartWeek" class="chartsh-wall overflow-hidden" style="width:100%"></div>
                         </div>
+                        <!-- Chart yang baru -->
+                        <!-- <div class="card-body">
+                            <canvas id="BarWallSummaryWeek" width="600" height="415"></canvas>
+                        </div> -->
                     </div>
                 </div>
             </div>

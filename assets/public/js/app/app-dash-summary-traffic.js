@@ -1333,4 +1333,180 @@ function setDatePicker(){
             callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel);
         }
     });
+
+
+    // Horizontal Bar Dashboard Summary Traffic yang baru 
+	// Return with commas in between
+	var numberWithCommas = function (x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+
+	var whatsapp = [20, 20, 20];
+	var facebook = [40, 40, 40];
+    var twitter = [60, 60, 60];
+    var twitterdm = [80, 80, 80];
+    var instagram = [90, 90, 90];
+    var messenger = [100, 100, 100];
+    var telegram = [110, 110, 110];
+    var line = [120, 120, 120];
+    var email = [130, 130, 130];
+    var twitter = [140, 140, 140];
+    var voice = [150,150, 150];
+    var sms = [160, 160, 160];
+    var livechat = [170, 170, 170];
+    var chatbot = [180, 180, 180];
+	var LabelX = ["Telkom Care", "Telkom", "BRI"];
+
+	var bar_ctx = document.getElementById('horizontalBarDashSummary');
+
+	var bar_chart = new Chart(bar_ctx, {
+		// type: 'bar',
+		type: 'horizontalBar',
+		data: {
+			labels: LabelX,
+			datasets: [{
+					label: 'Whatsapp',
+					data: whatsapp,
+					backgroundColor: "#089e60",
+					hoverBackgroundColor: "#089e60",
+					hoverBorderWidth: 0
+				},
+				{
+					label: 'Facebook',
+					data: facebook,
+					backgroundColor: "#467fcf",
+					hoverBackgroundColor: "#467fcf",
+					hoverBorderWidth: 0
+				},
+				{
+					label: 'Twitter',
+					data: twitter,
+					backgroundColor: "#45aaf2",
+					hoverBackgroundColor: "#45aaf2",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Twitter DM',
+					data: twitterdm,
+					backgroundColor: "#6574cd",
+					hoverBackgroundColor: "#6574cd",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Instagram',
+					data: instagram,
+					backgroundColor: "#fbc0d5",
+					hoverBackgroundColor: "#fbc0d5",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Messenger',
+					data: messenger,
+					backgroundColor: "#3866a6",
+					hoverBackgroundColor: "#3866a6",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Telegram',
+					data: telegram,
+					backgroundColor: "#343a40",
+					hoverBackgroundColor: "#343a40",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Line',
+					data:line,
+					backgroundColor: "#31a550",
+					hoverBackgroundColor: "#31a550",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Email',
+					data: email,
+					backgroundColor: "#e41313",
+					hoverBackgroundColor: "#e41313",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Voice',
+					data: voice,
+					backgroundColor: "#ff9933",
+					hoverBackgroundColor: "#ff9933",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'SMS',
+					data: sms,
+					backgroundColor: "#80cbc4",
+					hoverBackgroundColor: "#80cbc4",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'Live Chat',
+					data: livechat,
+					backgroundColor: "#607d8b",
+					hoverBackgroundColor: "#607d8b",
+					hoverBorderWidth: 0
+                },
+                {
+					label: 'ChatBot',
+					data: chatbot,
+					backgroundColor: "#6e273e",
+					hoverBackgroundColor: "#6e273e",
+					hoverBorderWidth: 0
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			animation: {
+				duration: 10,
+			},
+			tooltips: {
+				mode: 'label',
+				callbacks: {
+					label: function (tooltipItem, data) {
+						return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+					}
+				}
+			},
+			scales: {
+				xAxes: [{
+					stacked: true,
+					gridLines: {
+						display: false
+					},
+				}],
+				yAxes: [{
+					stacked: true,
+					ticks: {
+						callback: function (value) {
+							return numberWithCommas(value);
+						},
+					},
+				}],
+			},
+			legend: {
+				display: true,
+				labels: {
+					boxWidth: 10
+				}
+			}
+		},
+		// plugins: [{
+		// 	beforeInit: function (chart) {
+		// 		chart.data.labels.forEach(function (value, index, array) {
+		// 			var a = [];
+		// 			a.push(value.slice(0, 5));
+		// 			var i = 1;
+		// 			while (value.length > (i * 5)) {
+		// 				a.push(value.slice(i * 5, (i + 1) * 5));
+		// 				i++;
+		// 			}
+		// 			array[index] = a;
+		// 		})
+		// 	}
+		// }]
+	});
 })(jQuery);

@@ -1,5 +1,4 @@
 <?php 
-
 class OperationModel extends CI_Model
 {
 
@@ -24,7 +23,6 @@ class OperationModel extends CI_Model
 			$this->db->where('DATE(date)', $index);
 		}else if($params == 'month'){
 			$this->db->where('MONTH(date)', $index);
-
             //hardcoded year based on availability data on db
             $this->db->where('YEAR(date)', $index);
 			// $this->db->where('YEAR(date)', '2019');

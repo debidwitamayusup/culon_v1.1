@@ -16,6 +16,8 @@ Sidebar menu-->
 				<li><a class="slide-item" href="<?=base_url()?>main/monitoring_ticket_time">Monitoring Ticket by
 						Time</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/summary_inout_sla">Summary in / out SLA</a></li> -->
+				<li><a class="slide-item" href="<?=base_url()?>main/wallboard">Wallboard</a></li>
+				<hr>
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_day">Traffic by Today</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Traffic by Week</a></li>

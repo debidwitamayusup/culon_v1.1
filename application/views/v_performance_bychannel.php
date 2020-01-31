@@ -86,11 +86,11 @@
             <!---Next Rows---->
             <div class="row">
                 <div class="col-md-12 col-lg-5">
-                    <div class="card">
+                    <div class="card" style="height:425px">
                         <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Summary Service</h5>
                         </div>
-                        <div class="card-body" style="margin:60px 0px 60px 0px !important" id="barServiceDiv">
+                        <div class="card-body" style="margin:70px 0px 60px 0px !important" id="barServiceDiv">
                             <canvas id="barService"></canvas>
 
                         </div>
@@ -101,8 +101,12 @@
                         <div class="card-header-small">
                             <h5 class="card-title-small card-pt10">Summary Services by Channel</h5>
                         </div>
+                        <!-- chart yang baru -->
+                        <!-- <div class="card-body">
+                            <canvas id="horizontalBarPerformanceChannel" width="600" height="350"></canvas>
+                        </div> -->
                         <div class="card-body" id="echartServiceDiv">
-                            <div id="echartService" class="chartsh-servicees overflow-hidden" style="width : 100%"></div>
+                            <div id="echartService" class="chartsh-services overflow-hidden" style="width : 100%"></div>
                         </div>
                     </div>
                 </div>
