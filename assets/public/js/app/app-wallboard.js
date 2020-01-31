@@ -11,7 +11,7 @@ function callCardWall(){
         success: function (r) { 
             // var response = JSON.parse(r);
             var response = r;
-            setTimeout(function(){callCardWall();},20000);
+            setTimeout(function(){callCardWall();},900000);
             drawCard(response);
         },
         error: function (r) {
