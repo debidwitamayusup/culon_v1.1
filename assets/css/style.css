@@ -3330,14 +3330,15 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 /* custom */
 .widget-user .widget-user-header {
     padding: 12px;
-    height: 73px;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
+    height: 50px;
+    /* border-top-right-radius: 12px;
+    border-top-left-radius: 12px; */
 }
 
 .widget-user .widget-user-username {
     margin-top: 0;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
+	margin-left: 53px;
     font-size: 20px;
     font-weight: 300;
     color:#fff;
@@ -3351,8 +3352,8 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .widget-user .widget-user-image {
     position: absolute;
-    top: 30px;
-    left: 53%;
+    top: 5px;
+    left: 19%;
     margin-left: -45px;
 }
 .widget-user .widget-user-image>img {
@@ -3361,7 +3362,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     border: 3px solid #fff;
 }
 .widget-user .box-footer {
-    padding-top: 30px;
+    padding-top: 0px;
 }
 
 
@@ -3408,7 +3409,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .description-block>.description-header {
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 21px;
 }
 .description-block>.description-text {
     text-transform: uppercase;
@@ -3564,7 +3565,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .plan-icon-70 {
     display: inline-block;
-    font-size: 32px;
+    font-size: 30px;
     width: 70px;
     height: 70px;
     line-height: 70px;
@@ -3574,6 +3575,19 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     box-shadow: 0 1px 15px rgba(199, 199, 199, 0.2), 0 1px 6px rgba(199, 199, 199, 0.2);
     transition: all .3s;
   
+}
+
+.plan-icon-40{
+	display: inline-block;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    border: 1px solid #e4e6f9;
+    border-radius: 50%;
+    box-shadow: 0 1px 15px rgba(199, 199, 199, 0.2), 0 1px 6px rgba(199, 199, 199, 0.2);
+    transition: all .3s;
 }
 .icon.icon-shape {
     width: 3rem;
@@ -8100,6 +8114,35 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 .border-left-0 {
 	border-left: 0 !important;
+}
+
+/* custom border */
+.border-right-2{
+	border-right:1.5px solid #0f0f0f !important;
+}
+
+.border-top-2{
+	border-top: 1.5px solid #0f0f0f !important;
+}
+
+.border-bottom-2{
+	border-bottom:1.5px solid #0f0f0f !important;
+}
+
+.border-left-2{
+	border-left:1.5px solid #0f0f0f !important;
+}
+
+.border-top-dark{
+	border-top: 1.5px solid #858688 !important;
+}
+
+.border-bottom-dark{
+	border-bottom: 1.5px solid #858688 !important;
+}
+
+.border-right-dark{
+	border-right: 1.5px solid #858688 !important;
 }
 .border-success {
 	border-color: #31a550 !important;
@@ -22674,6 +22717,49 @@ div[data-acc-step]:not(.open) .badge-primary {
 
 }
 
+.bg-gradient-PureLust{
+	background: #333333;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.bg-gradient-Earthly{
+	background: #649173;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #DBD5A4, #649173);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #DBD5A4, #649173); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+}
+
+.bg-gradient-ForeverLost{
+	background: #5D4157;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #7da190, #5D4157);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #7da190, #5D4157); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-gradient-Titanium{
+	background: #616161;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to top, #9bc5c3, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.bg-gradientMoor{
+	background: #616161;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #505f5e, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #505f5e, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-gradientMoor2{
+	background: #616161;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #9bc5c3, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.bg-light2{
+	background:#ede7d3 !important;
+}
+
 .bg-header-box{
 	background : #4b4d55;
 	border:0px !important;
@@ -22686,4 +22772,15 @@ div[data-acc-step]:not(.open) .badge-primary {
 .lrRadius{
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+}
+
+.circle-icon {
+    background: #fbf9f9;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    vertical-align: middle;
+    /* padding: 30px; */
 }

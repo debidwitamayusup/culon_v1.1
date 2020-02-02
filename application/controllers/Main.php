@@ -179,6 +179,12 @@ class main extends CI_Controller {
 		$this->load->view('temp/wall_footer');
 	}
 
+	public function wallboard_2(){
+		$this->load->view('temp/header');
+		$this->load->view('v_wallboard_v2');
+		$this->load->view('temp/wall_footer');
+	}
+
 	public function monitoring_status(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
