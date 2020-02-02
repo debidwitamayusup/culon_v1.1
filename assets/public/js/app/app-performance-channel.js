@@ -793,13 +793,10 @@ function setDatePicker() {
 		loadContent('year', v_year, 0, v_params_tenant);
 	});
 
-	// $('#btn-go').click(function () {
-	// 	loadContent('month', $("#select-month").val(), $("#select-year-on-month").val());
-	// });
+	$('#btn-go').click(function () {
+		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+	});
 
-	$('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(),v_params_tenant);
-    });
 
 	// Horizontal Bar Performance by Channel yang baru 
 	// Return with commas in between
@@ -894,5 +891,4 @@ function setDatePicker() {
 		// 	}
 		// }]
 	});
-    
 })(jQuery);

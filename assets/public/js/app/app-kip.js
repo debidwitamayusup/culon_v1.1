@@ -793,7 +793,11 @@ function addCommas(commas) {
 		callSummaryInteraction('year', v_year, 0, v_params_tenant);
 	});
 
-	
+	$('#btn-go').click(function () {
+		callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+	});
+
+
 	// Horizontal Bar KIP yang baru 
 	// Return with commas in between
 	var numberWithCommas = function (x) {

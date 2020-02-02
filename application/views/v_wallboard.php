@@ -606,3 +606,5 @@
             </div>
         </div>
     </div>
+    <?php $this->load->view('temp/wall_footer');?>
+    <script src="<?=base_url()?>assets/public/js/app/app-wallboard.js"></script>

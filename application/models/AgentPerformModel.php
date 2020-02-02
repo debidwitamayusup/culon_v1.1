@@ -155,6 +155,7 @@ class AgentPerformModel extends CI_Model
 
 	public function getSAgentperformskills($src='',$param, $params_time, $index, $params_year) // table right - bottom need limit / offset
 	{
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7) AS ART,
 							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7) AS AHT,
 							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.ast))),2,7) AS AST,
@@ -261,6 +262,7 @@ class AgentPerformModel extends CI_Model
 	
 	public function getSAgentperformByskill($params, $index, $params_year)
 	{
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7), "no data") as ART,
 			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7), "no data") as AHT,
 			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.ast))),2,7), "no data") as AST, 

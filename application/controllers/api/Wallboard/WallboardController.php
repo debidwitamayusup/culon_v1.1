@@ -284,6 +284,28 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function WallboardMain_post()
+    {
+        //token
+
+        $res = $this->module_model->WallboardMain();
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'data'    => 'EMPTY'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
     //under const
     public function SummTicketC_post()
     {
