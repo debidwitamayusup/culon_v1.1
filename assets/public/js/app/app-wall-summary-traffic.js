@@ -263,7 +263,7 @@ function drawChartPerTenant(response){
     // response.channel.forEach(function(value,index){
     //     dataChannel.push(value.channel);
     // });
-    console.log(dataChannel);
+    console.log(response.data[0].DATA[0]);
     var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
 
     var dataStacked = [];
@@ -271,15 +271,16 @@ function drawChartPerTenant(response){
     for (var i = 0; i < 12; i++) {
         datasetStacked = {
                     label: dataChannel[i],
-                    data: dataTotal[i],
+                    data: response.data.DATA,
                     backgroundColor: color[i],
                     hoverBackgroundColor: color[i],
                     hoverBorderWidth: 0
                 }
                 dataStacked.push(datasetStacked);
     }
+    console.log(color);
 
-    console.log(response.data);
+    // console.log(response.data);
     var numberWithCommas = function (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };

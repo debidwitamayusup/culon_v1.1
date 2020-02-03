@@ -125,12 +125,25 @@ function callGraphYear(channel_name, year, tenant_id) {
                          bottom: 10
                      }
                  },
+                 tooltips: {
+                      callbacks: {
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[0].data[tooltipItem.index];
+                                if(parseInt(value) >= 1000){
+                                           return 'Total: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        } else {
+                                           return 'Total: ' + value;
+                                        }
+                            }
+                      } // end callbacks:
+                    },
                     scales: {
                         yAxes: [ {
                             ticks: {
-                                beginAtZero: true,
-                             //padding:50,
-                            }
+                            callback: function (value) {
+                                return numberWithCommas(value);
+                                },
+                            },
                                         } ]
                     },
                 }
