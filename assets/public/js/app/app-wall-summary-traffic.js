@@ -128,7 +128,7 @@ function callSumPerTenant(params, index, params_year, tenant_id){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            // console.log(response);
+            console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},900000);
             drawChartPerTenant(response);
@@ -244,212 +244,93 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerTenant(response){
-    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot =[];
+    let arrTenant = [], dataTotal = [];
 
-    response.data.forEach(function (value, index) {
-            arrTenant.push(value.TENANT_ID);
-            // arrART.push(value.ART);
-            // arrAHT.push(value.AHT);
-            // arrAST.push(value.AST);
-            // arrSCR.push(value.SCR);
-        });
-    // console.log(response.data);
-    for (var i = 0; i < response.data.length; i++) {
-        // console.log()
-        dataWa.push(response.data[i].DATA[10]);
-        dataFB.push(response.data[i].DATA[5]);
-        dataDM.push(response.data[i].DATA[11]);
-        dataTwitter.push(response.data[i].DATA[7]);
-        dataIg.push(response.data[i].DATA[9]);
-        dataMessenger.push(response.data[i].DATA[6]);
-        dataTelegram.push(response.data[i].DATA[4]);
-        dataLine.push(response.data[i].DATA[8]);
-        dataEmail.push(response.data[i].DATA[1]);
-        dataVoice.push(response.data[i].DATA[0]);
-        dataSMS.push(response.data[i].DATA[3]);
-        dataLive.push(response.data[i].DATA[2]);
-        dataChatbot.push(response.data[i].DATA[12]);
+    response.data.forEach(function(value,index){
+        arrTenant.push(value.TENANT_ID);
+        dataTotal.push(value.DATA);
+    });
+
+    var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
+
+    var dataStacked = [];
+    var datasetStacked = "";
+    for (var i = 0; i < 12; i++) {
+        datasetStacked = {
+                    label: response.channel[i],
+                    data: dataTotal[i],
+                    backgroundColor: color[i],
+                    hoverBackgroundColor: color[i],
+                    hoverBorderWidth: 0
+                }
+                dataStacked.push(datasetStacked);
     }
-    /*----echart Wallboard Summary Traffic----*/
-    var chartWallSummary = [{
-         name: 'Whatsapp',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataWa
-     }, {
-         name: 'Facebook',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataFB
-     },{
-         name: 'Twitter',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTwitter
-     },{
-         name: 'Twitter DM',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataDM
-     },{
-         name: 'Instagram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataIg
-     },{
-         name: 'Messenger',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataMessenger
-     },{
-         name: 'Telegram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTelegram
-     },{
-         name: 'Line',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLine
-     },{
-         name: 'Email',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataEmail
-     },{
-         name: 'Voice',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataVoice
-     },{
-         name: 'SMS',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataSMS
-     },{
-         name: 'Live Chat',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLive
-    },{
-         name: 'Chat Bot',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataChatbot
-    }];
-    /*----echartTicketUnit----*/
-    var optionWallSummary = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {       
-                // type: 'shadow'
-                label: {
-                    show: false,
-                    formatter: function (value, index) {
-                            var teks = '';
-                            // console.log(value)
-                            if(value.value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value.value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value.value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value.value
-                            }
-                            return teks;
-                    }
-                }
-            },
-            position: function (pos, params, dom, rect, size) {
-                 // tooltip will be fixed on the right if mouse hovering on the left,
-                 // and on the left if hovering on the right.
-                 // console.log(pos);
-                 var obj = {top: pos[6]};
-                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                 return obj;
-             },
-        },
-        legend: {
-            
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
-            itemWidth :12,
-            padding: [10, 10],
-            top : 'auto',
-            left : 'center',
-            width :'100%',
-            containLabel : true,
-        },
-        grid: {
-            top: '25%',
-            right: '3%',
-            bottom: '5%',
-            left: '16%'
-        },
-        xAxis: {
-            type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        yAxis: {
-            type: 'category',
-            data: arrTenant,
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0',
-                formatter: function (value, index) {
-                            var teks = '';
-                            if(value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value
-                            }
-                            return teks;
-                    }
-            }
-        },
-        series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
-    };
-    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
-    var barChartWallSummary = echarts.init(chartWallSummary);
-    barChartWallSummary.setOption(optionWallSummary);
 
-    $(window).on('resize', function(){
-        if(barChartWallSummary != null && barChartWallSummary != undefined){
-            barChartWallSummary.resize();
-        }
+    console.log(response.data);
+    var numberWithCommas = function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    var bar_ctx = document.getElementById('horizontalBarWallSummary');
+
+    var bar_chart = new Chart(bar_ctx, {
+        // type: 'bar',
+        type: 'horizontalBar',
+        data: {
+            labels: arrTenant,
+            datasets: dataStacked
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 10,
+            },
+            // tooltips: {
+            //     mode: 'label',
+            //     callbacks: {
+            //         label: function (tooltipItem, data) {
+            //             return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+            //         }
+            //     }
+            // },
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    gridLines: {
+                        display: false
+                    },
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        callback: function (value) {
+                            return numberWithCommas(value);
+                        },
+                    },
+                }],
+            },
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 10
+                }
+            }
+        },
+        // plugins: [{
+        //  beforeInit: function (chart) {
+        //      chart.data.labels.forEach(function (value, index, array) {
+        //          var a = [];
+        //          a.push(value.slice(0, 5));
+        //          var i = 1;
+        //          while (value.length > (i * 5)) {
+        //              a.push(value.slice(i * 5, (i + 1) * 5));
+        //              i++;
+        //          }
+        //          array[index] = a;
+        //      })
+        //  }
+        // }]
     });
 
 }
@@ -1045,163 +926,163 @@ function fromTemplate(){
     
     // Horizontal Bar Wallboard Summary Traffic yang baru 
 	// Return with commas in between
-	var numberWithCommas = function (x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	};
+	// var numberWithCommas = function (x) {
+	// 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	// };
 
-	var whatsapp = [20, 20, 20];
-	var facebook = [40, 40, 40];
-    var twitter = [60, 60, 60];
-    var twitterdm = [80, 80, 80];
-    var instagram = [90, 90, 90];
-    var messenger = [100, 100, 100];
-    var telegram = [110, 110, 110];
-    var line = [120, 120, 120];
-    var email = [130, 130, 130];
-    var twitter = [140, 140, 140];
-    var voice = [150,150, 150];
-    var sms = [160, 160, 160];
-    var livechat = [170, 170, 170];
-    var chatbot = [180, 180, 180];
-	var LabelX = ["Telkom Care", "Telkom", "BRI"];
+	// var whatsapp = [20, 20, 20];
+	// var facebook = [40, 40, 40];
+ //    var twitter = [60, 60, 60];
+ //    var twitterdm = [80, 80, 80];
+ //    var instagram = [90, 90, 90];
+ //    var messenger = [100, 100, 100];
+ //    var telegram = [110, 110, 110];
+ //    var line = [120, 120, 120];
+ //    var email = [130, 130, 130];
+ //    var twitter = [140, 140, 140];
+ //    var voice = [150,150, 150];
+ //    var sms = [160, 160, 160];
+ //    var livechat = [170, 170, 170];
+ //    var chatbot = [180, 180, 180];
+	// var LabelX = ["Telkom Care", "Telkom", "BRI"];
 
-	var bar_ctx = document.getElementById('horizontalBarWallSummary');
+	// var bar_ctx = document.getElementById('horizontalBarWallSummary');
 
-	var bar_chart = new Chart(bar_ctx, {
-		// type: 'bar',
-		type: 'horizontalBar',
-		data: {
-			labels: LabelX,
-			datasets: [{
-					label: 'Whatsapp',
-					data: whatsapp,
-					backgroundColor: "#089e60",
-					hoverBackgroundColor: "#089e60",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Facebook',
-					data: facebook,
-					backgroundColor: "#467fcf",
-					hoverBackgroundColor: "#467fcf",
-					hoverBorderWidth: 0
-				},
-				{
-					label: 'Twitter',
-					data: twitter,
-					backgroundColor: "#45aaf2",
-					hoverBackgroundColor: "#45aaf2",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Twitter DM',
-					data: twitterdm,
-					backgroundColor: "#6574cd",
-					hoverBackgroundColor: "#6574cd",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Instagram',
-					data: instagram,
-					backgroundColor: "#fbc0d5",
-					hoverBackgroundColor: "#fbc0d5",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Messenger',
-					data: messenger,
-					backgroundColor: "#3866a6",
-					hoverBackgroundColor: "#3866a6",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Telegram',
-					data: telegram,
-					backgroundColor: "#343a40",
-					hoverBackgroundColor: "#343a40",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Line',
-					data:line,
-					backgroundColor: "#31a550",
-					hoverBackgroundColor: "#31a550",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Email',
-					data: email,
-					backgroundColor: "#e41313",
-					hoverBackgroundColor: "#e41313",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Voice',
-					data: voice,
-					backgroundColor: "#ff9933",
-					hoverBackgroundColor: "#ff9933",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'SMS',
-					data: sms,
-					backgroundColor: "#80cbc4",
-					hoverBackgroundColor: "#80cbc4",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'Live Chat',
-					data: livechat,
-					backgroundColor: "#607d8b",
-					hoverBackgroundColor: "#607d8b",
-					hoverBorderWidth: 0
-                },
-                {
-					label: 'ChatBot',
-					data: chatbot,
-					backgroundColor: "#6e273e",
-					hoverBackgroundColor: "#6e273e",
-					hoverBorderWidth: 0
-				}
-			]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			animation: {
-				duration: 10,
-			},
-			tooltips: {
-				mode: 'label',
-				callbacks: {
-					label: function (tooltipItem, data) {
-						return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-					}
-				}
-			},
-			scales: {
-				xAxes: [{
-					stacked: true,
-					gridLines: {
-						display: false
-					},
-				}],
-				yAxes: [{
-					stacked: true,
-					ticks: {
-						callback: function (value) {
-							return numberWithCommas(value);
-						},
-					},
-				}],
-			},
-			legend: {
-				display: true,
-				labels: {
-					boxWidth: 10
-				}
-			}
-		},
+	// var bar_chart = new Chart(bar_ctx, {
+	// 	// type: 'bar',
+	// 	type: 'horizontalBar',
+	// 	data: {
+	// 		labels: LabelX,
+	// 		datasets: [{
+	// 				label: 'Whatsapp',
+	// 				data: whatsapp,
+	// 				backgroundColor: "#089e60",
+	// 				hoverBackgroundColor: "#089e60",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Facebook',
+	// 				data: facebook,
+	// 				backgroundColor: "#467fcf",
+	// 				hoverBackgroundColor: "#467fcf",
+	// 				hoverBorderWidth: 0
+	// 			},
+	// 			{
+	// 				label: 'Twitter',
+	// 				data: twitter,
+	// 				backgroundColor: "#45aaf2",
+	// 				hoverBackgroundColor: "#45aaf2",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Twitter DM',
+	// 				data: twitterdm,
+	// 				backgroundColor: "#6574cd",
+	// 				hoverBackgroundColor: "#6574cd",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Instagram',
+	// 				data: instagram,
+	// 				backgroundColor: "#fbc0d5",
+	// 				hoverBackgroundColor: "#fbc0d5",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Messenger',
+	// 				data: messenger,
+	// 				backgroundColor: "#3866a6",
+	// 				hoverBackgroundColor: "#3866a6",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Telegram',
+	// 				data: telegram,
+	// 				backgroundColor: "#343a40",
+	// 				hoverBackgroundColor: "#343a40",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Line',
+	// 				data:line,
+	// 				backgroundColor: "#31a550",
+	// 				hoverBackgroundColor: "#31a550",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Email',
+	// 				data: email,
+	// 				backgroundColor: "#e41313",
+	// 				hoverBackgroundColor: "#e41313",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Voice',
+	// 				data: voice,
+	// 				backgroundColor: "#ff9933",
+	// 				hoverBackgroundColor: "#ff9933",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'SMS',
+	// 				data: sms,
+	// 				backgroundColor: "#80cbc4",
+	// 				hoverBackgroundColor: "#80cbc4",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'Live Chat',
+	// 				data: livechat,
+	// 				backgroundColor: "#607d8b",
+	// 				hoverBackgroundColor: "#607d8b",
+	// 				hoverBorderWidth: 0
+ //                },
+ //                {
+	// 				label: 'ChatBot',
+	// 				data: chatbot,
+	// 				backgroundColor: "#6e273e",
+	// 				hoverBackgroundColor: "#6e273e",
+	// 				hoverBorderWidth: 0
+	// 			}
+	// 		]
+	// 	},
+	// 	options: {
+	// 		responsive: true,
+	// 		maintainAspectRatio: false,
+	// 		animation: {
+	// 			duration: 10,
+	// 		},
+	// 		tooltips: {
+	// 			mode: 'label',
+	// 			callbacks: {
+	// 				label: function (tooltipItem, data) {
+	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+	// 				}
+	// 			}
+	// 		},
+	// 		scales: {
+	// 			xAxes: [{
+	// 				stacked: true,
+	// 				gridLines: {
+	// 					display: false
+	// 				},
+	// 			}],
+	// 			yAxes: [{
+	// 				stacked: true,
+	// 				ticks: {
+	// 					callback: function (value) {
+	// 						return numberWithCommas(value);
+	// 					},
+	// 				},
+	// 			}],
+	// 		},
+	// 		legend: {
+	// 			display: true,
+	// 			labels: {
+	// 				boxWidth: 10
+	// 			}
+	// 		}
+	// 	},
 		// plugins: [{
 		// 	beforeInit: function (chart) {
 		// 		chart.data.labels.forEach(function (value, index, array) {
@@ -1216,5 +1097,5 @@ function fromTemplate(){
 		// 		})
 		// 	}
 		// }]
-	});
+	// });
 })(jQuery);

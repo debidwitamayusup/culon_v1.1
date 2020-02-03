@@ -479,3 +479,202 @@
             var barChart6 = echarts.init(chart6);
             barChart6.setOption(option6);
             $("#filter-loader").fadeOut("slow");
+
+//Backup app-wall-summary-traffic drawChartPerTenant
+		for (var i = 0; i < response.data.length; i++) {
+        // console.log()
+        dataWa.push(response.data[i].DATA[10]);
+        dataFB.push(response.data[i].DATA[5]);
+        dataDM.push(response.data[i].DATA[11]);
+        dataTwitter.push(response.data[i].DATA[7]);
+        dataIg.push(response.data[i].DATA[9]);
+        dataMessenger.push(response.data[i].DATA[6]);
+        dataTelegram.push(response.data[i].DATA[4]);
+        dataLine.push(response.data[i].DATA[8]);
+        dataEmail.push(response.data[i].DATA[1]);
+        dataVoice.push(response.data[i].DATA[0]);
+        dataSMS.push(response.data[i].DATA[3]);
+        dataLive.push(response.data[i].DATA[2]);
+        dataChatbot.push(response.data[i].DATA[12]);
+    }
+    /*----echart Wallboard Summary Traffic----*/
+    var chartWallSummary = [{
+         name: 'Whatsapp',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataWa
+     }, {
+         name: 'Facebook',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataFB
+     },{
+         name: 'Twitter',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTwitter
+     },{
+         name: 'Twitter DM',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataDM
+     },{
+         name: 'Instagram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataIg
+     },{
+         name: 'Messenger',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataMessenger
+     },{
+         name: 'Telegram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTelegram
+     },{
+         name: 'Line',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLine
+     },{
+         name: 'Email',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataEmail
+     },{
+         name: 'Voice',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataVoice
+     },{
+         name: 'SMS',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataSMS
+     },{
+         name: 'Live Chat',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLive
+    },{
+         name: 'Chat Bot',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataChatbot
+    }];
+    /*----echartTicketUnit----*/
+    var optionWallSummary = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {       
+                // type: 'shadow'
+                label: {
+                    show: false,
+                    formatter: function (value, index) {
+                            var teks = '';
+                            // console.log(value)
+                            if(value.value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value.value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else if(value.value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
+                            else{
+                                return value.value
+                            }
+                            return teks;
+                    }
+                }
+            },
+            position: function (pos, params, dom, rect, size) {
+                 // tooltip will be fixed on the right if mouse hovering on the left,
+                 // and on the left if hovering on the right.
+                 // console.log(pos);
+                 var obj = {top: pos[6]};
+                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                 return obj;
+             },
+        },
+        legend: {
+            
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
+            itemWidth :12,
+            padding: [10, 10],
+            top : 'auto',
+            left : 'center',
+            width :'100%',
+            containLabel : true,
+        },
+        grid: {
+            top: '25%',
+            right: '3%',
+            bottom: '5%',
+            left: '16%'
+        },
+        xAxis: {
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: arrTenant,
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0',
+                formatter: function (value, index) {
+                            var teks = '';
+                            if(value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else if(value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
+                            else{
+                                return value
+                            }
+                            return teks;
+                    }
+            }
+        },
+        series: chartWallSummary,
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+    };
+    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
+    var barChartWallSummary = echarts.init(chartWallSummary);
+    barChartWallSummary.setOption(optionWallSummary);
+
+    $(window).on('resize', function(){
+        if(barChartWallSummary != null && barChartWallSummary != undefined){
+            barChartWallSummary.resize();
+        }
+    });
