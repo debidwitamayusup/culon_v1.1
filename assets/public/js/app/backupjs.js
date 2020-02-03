@@ -245,3 +245,67 @@
 		var x = window.matchMedia("(min-width: 450px)")
 		myFunction(x) // Call listener function at run time
 		x.addListener(myFunction)
+
+// Backup graphic interval year app-traffic-year
+		var chart = document.getElementById('echartYear');
+            var barChart = echarts.init(chart);
+            var option = {
+                grid: {
+                    top: '10%',
+                    right: '3%',
+                    bottom: '3%',
+                    left: '2%',
+                    containLabel: true,
+                    width: '100%'
+                },
+                xAxis: {
+                    data: response.data.month_x_axis,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                tooltip: {
+                    show: true,
+                    showContent: true,
+                    alwaysShowContent: false,
+                    triggerOn: 'mousemove',
+                    trigger: 'axis',
+                    axisPointer: {
+                        label: {
+                            show: false,
+                        }
+                    }
+                },
+                yAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 8,
+                        color: '#7886a0'
+                    }
+                },
+                series: chartdata,
+                color: ['' + response.data.channel_color + '']
+            };
+            barChart.setOption(option);
+            $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            alert("error");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });

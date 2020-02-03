@@ -62,10 +62,10 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-body" id="customerChartYear">
-										<div id="echartYear" class="chartsh overflow-hidden"></div>
-									</div>
-									<!-- Chart Baru Yearly -->
-									<!-- <canvas id="BarChartYear" class="h-300"></canvas> -->
+										<!-- Chart Baru Yearly -->
+										<canvas id="BarChartYear" class="h-300"></canvas>
+										<!-- <div id="echartYear" class="chartsh overflow-hidden"></div> -->
+									</div>									
 								</div>
 							</div>
 						</div>
