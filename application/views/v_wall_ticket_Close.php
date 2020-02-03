@@ -41,8 +41,11 @@
 								<div class="card-header-small">
 									<h5 class="card-title-small card-pt10">Summary Status Ticket Month</h5>
 								</div>
-								<div class="card-body" id="echartWeekDiv">
+								<!-- <div class="card-body" id="echartWeekDiv">
 									<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
+								</div> -->
+								<div class="card-body">
+									<canvas id="BarWallTicketCloseMonth" height="203"></canvas>
 								</div>
 							</div>
 						</div>
