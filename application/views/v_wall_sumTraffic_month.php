@@ -158,7 +158,7 @@
                             <h5 class="card-title-small card-pt10">Table Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito12"
                                 style="font-size:12px" id="wall-month-tbl">
                                 <thead class="text-center bg-head">
                                     <tr>

@@ -123,7 +123,7 @@
 							<h5 class="card-title-small card-pt10">Summary Service All Channel</h5>
 						</div>
 						<div class="table-responsive table-bordered table-pt10">
-							<table class="table card-table table-striped table-vcenter table-hover"
+							<table class="table card-table table-striped table-vcenter table-hover fontNunito12"
 								id="tabel_average_month">
 								<thead class="text-center text-white bg-gray1">
 									<tr>

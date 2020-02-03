@@ -22733,13 +22733,13 @@ background: linear-gradient(to right, #DBD5A4, #649173); /* W3C, IE 10+/ Edge, F
 /* .bg-gradient-ForeverLost{
 	background: #5D4157;  
 	background: -webkit-linear-gradient(to right, #7da190, #5D4157);  
-	background: linear-gradient(to right, #7da190, #5D4157); 
+	background: linear-gradient(to right, #7da190, #5D4157);
 } */
 
 .bg-gradient-ForeverLost{
-	background: #62afd9; 
-	background: -webkit-linear-gradient(to right, #315a84, #62afd9); 
-	background: linear-gradient(to right, #315a84, #62afd9);
+	background: #31a2c0;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #47658a, #31a2c0)  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #47658a, #31a2c0) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .bg-gradient-Titanium{
@@ -22749,17 +22749,10 @@ background: linear-gradient(to right, #DBD5A4, #649173); /* W3C, IE 10+/ Edge, F
 
 }
 
-
-/* .bg-gradientMoor{
-	background: #616161;  
-	background: -webkit-linear-gradient(to right, #505f5e, #616161); 
-	background: linear-gradient(to right, #505f5e, #616161);
-} */
-
 .bg-gradientMoor{
-	background: #2980b9;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right , #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #616161;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #505f5e, #616161);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #505f5e, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .bg-gradientMoor2{
@@ -22796,4 +22789,24 @@ background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Fir
     line-height: 35px;
     vertical-align: middle;
     /* padding: 30px; */
+}
+
+.fontNunito11{
+	font-family : 'Nunito', san-serif; 
+	font-size:11px;
+}
+
+.fontNunito12{
+	font-family: 'Nunito', san-serif;
+	font-size:12px;
+}
+
+.fontNunito10{
+	font-family: 'Nunito', san-serif;
+	font-size:10px;
+}
+
+.fontNunito9{
+	font-family: 'Nunito', san-serif;
+	font-size:9px;
 }
