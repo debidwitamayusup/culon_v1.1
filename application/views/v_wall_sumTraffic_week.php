@@ -157,7 +157,7 @@
                             <h5 class="card-title-small card-pt10">Table Traffic Weekly</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
                                 id="mytable">
                                 <thead class="text-center text-white bg-head" style="font-size:11px;">
                                     <tr>
@@ -176,150 +176,10 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-sm text-center" style="font-size:10px !important;" id="mytbody">
-                                    <!-- <tr>
-                                        <td>1</td>
-                                        <td>Whatsapp</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Facebook</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Twitter</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Twitter DM</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Instagram</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Messenger</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Line</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Telegram</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>Email</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>Voice</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>SMS</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>Live Chat</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr> -->
+                                    
                                 </tbody>
                                 <tfoot class="text-center font-weight-extrabold bg-total" id="mytfoot">
-                                    <!-- <tr>
-                                        <td colspan="2">TOTAL</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                        <td>200</td>
-                                    </tr> -->
+                               
                                 </tfoot>
                             </table>
                         </div>

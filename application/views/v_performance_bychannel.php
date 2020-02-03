@@ -117,7 +117,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tablesPerformance" class="table table-striped table-bordered"
+                                <table id="tablesPerformance" class="table table-striped table-bordered fontNunito12"
                                     style="width:100%">
                                     <thead class="text-center text-white bg-head">
                                         <tr>

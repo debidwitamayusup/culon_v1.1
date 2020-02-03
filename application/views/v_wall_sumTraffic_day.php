@@ -158,8 +158,7 @@
                             <h5 class="card-title-small card-pt10">Traffic Interval by Channel</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10"
-                                style="font-size:12px" id="wall-today-tbl">
+                            <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito12" id="wall-today-tbl">
                                 <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">Time</td>

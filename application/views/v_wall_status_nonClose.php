@@ -134,7 +134,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="table card-table table-bordered table-striped table-vcenter table-hover"
+										<table class="table card-table table-bordered table-striped table-vcenter table-hover fontNunito12"
 											style="font-size:12px; width:100%;" id="tableTicket">
 											<thead class="text-center text-white bg-head">
 												<tr>
@@ -152,136 +152,7 @@
 												</tr>
 											</thead>
 											<tbody class="table-sm">
-												<!--   <tr>
-		                                                <td>1</td>
-		                                                <td>Unit 1</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>2</td>
-		                                                <td>Unit 2</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>3</td>
-		                                                <td>Unit 3</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>4</td>
-		                                                <td>Unit 4</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>5</td>
-		                                                <td>Unit 5</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>6</td>
-		                                                <td>Unit 6</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>7</td>
-		                                                <td>Unit 7</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>8</td>
-		                                                <td>Unit 8</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>9</td>
-		                                                <td>Unit 9</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="bg-total">200</td>
-		                                            </tr>
-		                                            <tr>
-		                                                <td>10</td>
-		                                                <td>Unit 10</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td>
-		                                            </tr> -->
+											
 											</tbody>
 											<tfoot class="text-center font-weight-extrabold bg-total">
 												<tr>
@@ -295,16 +166,6 @@
 													<td></td>
 													<td></td>
 													<td></td>
-													<!-- <td colspan="2">TOTAL</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td>200</td>
-		                                                <td class="font-weight-extrabold bg-total">200</td> -->
 												</tr>
 											</tfoot>
 										</table>
