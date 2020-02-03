@@ -23,15 +23,6 @@
                              <h5 class="card-title-small card-pt10">Summary Channel</h5>
                          </div>
                          <div class="row">
-                             <div class="col-md-12 col-lg-5 col-xl-5">
-                                 <div class="card overflow-hidden">
-                                     <div class="card-body">
-                                         <canvas id="pieChartReportSumChannel1"
-                                             class="donutShadow overflow-hidden"></canvas>
-                                     </div>
-                                     <div id="legend1" class="legend-con"></div>
-                                 </div>
-                             </div>
                              <div class="col-md-12 col-lg-7 col-xl-7">
                                  <div class="card overflow-hidden">
                                      <div class="card-body">
@@ -76,19 +67,20 @@
                                                  </div>
                                              </div>
                                              <div class="col-xs-auto ml-1">
-                                                 <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
-                                                         class="fas fa-filter"></i></button>
+                                                 <button class="btn btn-sm btn-dark" type="button" style="height:35px"
+                                                     id="btn-go"><i class="fas fa-filter"></i></button>
 
                                              </div>
                                              <div class="col-xs-auto ml-1">
-                                                 <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-go"><i
+                                                 <button class="btn btn-sm btn-primary" type="button"
+                                                     style="height:35px" id="btn-go"><i
                                                          class="fas fa-download mr-2"></i>Export</button>
 
                                              </div>
                                          </div>
                                      </div>
-                                     <div class="table-responsive table-pt10">
-                                         <table class="table table-striped table-bordered " style="font-size:11px">
+                                     <div class="table-responsive" style="padding:10px 15px 10px 15px;">
+                                         <table class="table table-striped table-bordered fontStyle1">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
                                                      <td>Channel</td>
@@ -99,6 +91,13 @@
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
+                                             <tr>
+                                                     <td class="bg-total text-left">Chatbot</td>
+                                                     <td class="text-right">2000</td>
+                                                     <td class="text-right">2000</td>
+                                                     <td class="text-right">00:30:00</td>
+                                                     <td class="text-right">00:30:00</td>
+                                                 </tr>
                                                  <tr>
                                                      <td class="bg-total text-left">Whatsapp</td>
                                                      <td class="text-right">2000</td>
@@ -186,7 +185,16 @@
                                              </tbody>
                                          </table>
                                      </div>
-
+                                 </div>
+                             </div>
+                             <div class="col-md-12 col-lg-5 col-xl-5">
+                                 <div class="card overflow-hidden">
+                                 <div id="legend1" class="legend-con"></div>
+                                     <div class="card-body">
+                                         <canvas id="pieChartReportSumChannel1"
+                                             class="donutShadow overflow-hidden"></canvas>
+                                     </div>
+                                     
                                  </div>
                              </div>
                          </div>

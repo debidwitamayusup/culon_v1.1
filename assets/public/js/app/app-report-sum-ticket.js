@@ -1,10 +1,10 @@
-$(function($){
-    $('#tableReportSumChannel').dataTable();
+$(function ($){
 
+    $('#tableSumTicket').dataTable();
 
     //pie chart report summary channel
-    var ctx1 = document.getElementById( "pieChartReportSumChannel1" );
-    ctx1.height = 290;
+    var ctx1 = document.getElementById( "pieChartReportSumTicket" );
+    ctx1.height = 356;
     var myChart1 = new Chart( ctx1, {
         type: 'pie',
         data: {
@@ -75,7 +75,7 @@ $(function($){
 				var allData = chart.data.datasets[0].data;
 				// console.log(chart)
 				var legendHtml = [];
-				legendHtml.push('<ul><div class="row mt-2 ml-5">');
+				legendHtml.push('<ul><div class="row mt-3 mb-3 ml-5">');
 				allData.forEach(function(data,index){
 					var label = chart.data.labels[index];
 					var dataLabel = allData[index];
@@ -97,4 +97,4 @@ $(function($){
 	});
 	var myLegendContainer1 = document.getElementById("legend1");
 	myLegendContainer1.innerHTML = myChart1.generateLegend();
-});
+})

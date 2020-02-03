@@ -298,11 +298,32 @@ class main extends CI_Controller {
 		$this->load->view('v_report_sum_channel');
 	}
 
+	public function report_summary_interval(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_summary_interval');
+	}
+
+	public function report_agent_log(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_agent_log');
+	}
+
 	public function report_agent_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('v_report_agent');
+		$this->load->view('v_report_agent_performance');
+	}
+
+	public function report_agent_summary(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_agent_summary');
 	}
 
 	public function report_detail_cwc(){
@@ -312,24 +333,6 @@ class main extends CI_Controller {
 		$this->load->view('v_report_detail_cwc');
 	}
 	
-	public function report_agent_log(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_report_agent_log');
-	}
 	
-	public function report_summary_interval(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_report_summary_interval');
-	}
 
-	public function report_opsi1(){
-		$this->load->view('temp/header');
-		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
-		$this->load->view('v_report_opsi1');
-	}
 }
