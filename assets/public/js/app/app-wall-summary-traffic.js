@@ -248,9 +248,9 @@ function drawChartPerTenant(response){
 
     response.data.forEach(function(value,index){
         arrTenant.push(value.TENANT_ID);
-        dataTotal.push(value.DATA);
+        // dataTotal.push(value.DATA);
     });
-
+    // console.log(response.data[0].DATA[0])
     var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
 
     var dataStacked = [];
@@ -258,7 +258,7 @@ function drawChartPerTenant(response){
     for (var i = 0; i < 12; i++) {
         datasetStacked = {
                     label: response.channel[i],
-                    data: dataTotal[i],
+                    data: response.data.DATA[i],
                     backgroundColor: color[i],
                     hoverBackgroundColor: color[i],
                     hoverBorderWidth: 0
