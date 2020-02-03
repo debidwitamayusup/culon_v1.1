@@ -61,7 +61,6 @@ function callYear() {
 }
 
 function callGraphYear(channel_name, year, tenant_id) {
-    destroyChartInterval();
     $("#filter-loader").fadeIn("slow");
     var data = "";
     var base_url = $('#base_url').val();
@@ -78,97 +77,75 @@ function callGraphYear(channel_name, year, tenant_id) {
 
         success: function (r) {
             var response = JSON.parse(r);
-            
-            var numberWithCommas = function (x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            };
-            console.log(response);
-
-            var dataStacked = [];
-            var datasetsStacked = "";
-
-            response.data.forEach(function (value, index){
-                datasetsStacked = {
-                        label: value.channel_name,
-                        data: value.total_traffic,
-                        backgroundColor: value.channel_color,
-                        hoverBackgroundColor: value.channel_color,
-                        hoverBorderWidth: 0
-                    },
-
-                dataStacked.push(datasetsStacked);
-            });
-
-            
-            // console.log(dataStacked);
-            var bar_ctx = document.getElementById('BarChartYear');
-
-            var bar_chart = new Chart(bar_ctx, {
+            var chartdata = [{
+                name: 'total',
                 type: 'bar',
-                // type: 'horizontalBar',
-                data: {
-                    labels: response.data.month_x_axis,
-                    datasets: dataStacked,
+                data: response.data.total_traffic
+            }];
+            // console.log(response);
+
+            var chart = document.getElementById('echartYear');
+            var barChart = echarts.init(chart);
+            var option = {
+                grid: {
+                    top: '10%',
+                    right: '3%',
+                    bottom: '3%',
+                    left: '2%',
+                    containLabel: true,
+                    width: '100%'
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: {
-                        duration: 10,
-                    },
-                    tooltips: {
-                        mode: 'label',
-                        callbacks: {
-                            label: function (tooltipItem, data) {
-                                return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
-                            }
+                xAxis: {
+                    data: response.data.month_x_axis,
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
                         }
                     },
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                            gridLines: {
-                                display: false
-                            },
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                            ticks: {
-                                callback: function (value) {
-                                    return numberWithCommas(value);
-                                },
-                            },
-                        }],
-                    },
-                    legend: {
-                        display: true,
-                        labels: {
-                            boxWidth: 10,
+                    axisLabel: {
+                        fontSize: 10,
+                        color: '#7886a0'
+                    }
+                },
+                tooltip: {
+                    show: true,
+                    showContent: true,
+                    alwaysShowContent: false,
+                    triggerOn: 'mousemove',
+                    trigger: 'axis',
+                    axisPointer: {
+                        label: {
+                            show: false,
                         }
                     }
                 },
-                // plugins: [{
-                //  beforeInit: function (chart) {
-                //      chart.data.labels.forEach(function (value, index, array) {
-                //          var a = [];
-                //          a.push(value.slice(0, 5));
-                //          var i = 1;
-                //          while (value.length > (i * 5)) {
-                //              a.push(value.slice(i * 5, (i + 1) * 5));
-                //              i++;
-                //          }
-                //          array[index] = a;
-                //      })
-                //  }
-                // }]
-            });
+                yAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#efefff'
+                        }
+                    },
+                    axisLabel: {
+                        fontSize: 8,
+                        color: '#7886a0'
+                    }
+                },
+                series: chartdata,
+                color: ['' + response.data.channel_color + '']
+            };
+            barChart.setOption(option);
             $("#filter-loader").fadeOut("slow");
-            },
-            error: function (r) {
-                alert("error");
-                $("#filter-loader").fadeOut("slow");
-            },
-        });            
+        },
+        error: function (r) {
+            alert("error");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
 }
 
 //function get data and draw
@@ -481,47 +458,47 @@ function destroyChartPercentage() {
     });
 })(jQuery);
 
-$(function($){
-    // single bar chart
-    var ctx = document.getElementById( "BarChartYear" );
-    ctx.height = 200;
-    var myChart = new Chart( ctx, {
-        type: 'bar',
-        data: {
-            labels: [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ],
-            datasets: [
-                {
-                    label: "Total",
-                    data: [ 40000,5000,8000,90000,10000,5000,7000,9000,5000,1000,1000,1000],
-                    borderColor: "#9DCE9D",
-                    borderWidth: "0",
-                    backgroundColor: "#9DCE9D"
-                            }
-                        ]
-        },
-        options: {
-			responsive: true,
-            maintainAspectRatio: false,
-            legend:{
-                display : false
-            },
-			layout: {
-					padding: {
-					left: 20,
-					right: 20,
-					top: 25,
-					bottom: 10
-				}
-			},
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true,
-						//padding:50,
-                    }
-                                } ]
-            },
-        }
-    } );
+// $(function($){
+//     // single bar chart
+//     var ctx = document.getElementById( "BarChartYear" );
+//     ctx.height = 200;
+//     var myChart = new Chart( ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ],
+//             datasets: [
+//                 {
+//                     label: "Total",
+//                     data: [ 40000,5000,8000,90000,10000,5000,7000,9000,5000,1000,1000,1000],
+//                     borderColor: "#9DCE9D",
+//                     borderWidth: "0",
+//                     backgroundColor: "#9DCE9D"
+//                             }
+//                         ]
+//         },
+//         options: {
+// 			responsive: true,
+//             maintainAspectRatio: false,
+//             legend:{
+//                 display : false
+//             },
+// 			layout: {
+// 					padding: {
+// 					left: 20,
+// 					right: 20,
+// 					top: 25,
+// 					bottom: 10
+// 				}
+// 			},
+//             scales: {
+//                 yAxes: [ {
+//                     ticks: {
+//                         beginAtZero: true,
+// 						//padding:50,
+//                     }
+//                                 } ]
+//             },
+//         }
+//     } );
 
-});
+// });

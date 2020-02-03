@@ -32,7 +32,7 @@ function destroyChartInterval() {
 
 function drawStackedBar(params, index, params_year, tenant_id) {
     destroyChartInterval();
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
     // var getMontName = monthNumToName(month);
     var data = "";
     var base_url = $('#base_url').val();
@@ -51,168 +51,85 @@ function drawStackedBar(params, index, params_year, tenant_id) {
             // var response = JSON.parse(r);
             var response = r;
             drawHorizontalChart(response);
+
             console.log(response);
-            var chartdata3 = [{
-                name: 'Whatsapp',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[10].total_traffic
-            }, {
-                name: 'Facebook',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[5].total_traffic
-            }, {
-                name: 'Twitter',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[7].total_traffic
-            }, {
-                name: 'Twitter DM',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[11].total_traffic
-            }, {
-                name: 'Instagram',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[9].total_traffic
-            }, {
-                name: 'Messenger',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[6].total_traffic
-            }, {
-                name: 'Telegram',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[4].total_traffic
-            }, {
-                name: 'Line',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[8].total_traffic
-            }, {
-                name: 'Email',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[1].total_traffic
-            }, {
-                name: 'Voice',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[0].total_traffic
-            }, {
-                name: 'SMS',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[3].total_traffic
-            }, {
-                name: 'Live Chat',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[2].total_traffic
-            }, {
-                name: 'Chat Bot',
-                type: 'bar',
-                stack: 'Stack',
-                data: response.data[12].total_traffic
-            }];
-            /*----EchartMonth*/
-            var option6 = {
-                // grid: {
-                //  top: '6',
-                //  right: '15',
-                //  bottom: '17',
-                //  left: '32',
-                // },
-                tooltip: {
-                    trigger: 'axis',
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: false,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: true,
-                            color: '#7886a0',
-                            type: 'shadow',
-                            fontSize: 8
-                            // formatter : function (){
-                            //     return label_lng;
-                            // }
-                        }
-                    },
-                    // position: ['86%', '0%']
-                    position: function (pos, params, dom, rect, size) {
-                        // tooltip will be fixed on the right if mouse hovering on the left,
-                        // and on the left if hovering on the right.
-                        // console.log(pos);
-                        var obj = {
-                            top: pos[6]
-                        };
-                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                        return obj;
-                    },
-                },
-                legend: {
-                    data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
-                    left: 'center',
-                    // top: 'bottom',
-                    itemWidth: 12,
-                    padding: [10, 10, 40, 10]
-                },
-
-                grid: {
-                    // top:'2%',
-                    // left: '1%',
-                    // right: '2%',
-                    // bottom: '3%',
-                    top: '19%',
-                    right: '3%',
-                    bottom: '7%',
-                    left: '3%',
-                    containLabel: true
-                },
-                xAxis: {
-                    type: 'category',
-                    data: response.dates,
-
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                yAxis: {
-                    type: 'value',
-                    splitLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                series: chartdata3,
-                color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+            
+            var numberWithCommas = function (x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             };
-            var chart6 = document.getElementById('echartWeek');
-            var barChart6 = echarts.init(chart6);
-            barChart6.setOption(option6);
-            $("#filter-loader").fadeOut("slow");
+
+            var dataStacked = [];
+            var datasetsStacked = "";
+
+            response.data.forEach(function(value){
+                datasetsStacked = {
+                    label: value.channel_name,
+                    data: value.total_traffic,
+                    backgroundColor: value.channel_color,
+                    hoverBackgroundColor: value.channel_color,
+                    hoverBorderWidth: 0
+                },
+                dataStacked.push(datasetsStacked)
+            })
+            
+            var bar_ctx = document.getElementById('BarWallTicketCloseMonth');
+
+            var bar_chart = new Chart(bar_ctx, {
+                type: 'bar',
+                data: {
+                    labels: response.dates,
+                    datasets: dataStacked,
+                },
+                options: {
+                    animation: {
+                        duration: 10,
+                    },
+                    tooltips: {
+                        mode: 'label',
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                            }
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            gridLines: {
+                                display: false
+                            },
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return numberWithCommas(value);
+                                },
+                            },
+                        }],
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            boxWidth: 10
+                        }
+                    }
+                },
+                // plugins: [{
+                //     beforeInit: function (chart) {
+                //         chart.data.labels.forEach(function (value, index, array) {
+                //             var a = [];
+                //             a.push(value.slice(0, 5));
+                //             var i = 1;
+                //             while (value.length > (i * 5)) {
+                //                 a.push(value.slice(i * 5, (i + 1) * 5));
+                //                 i++;
+                //             }
+                //             array[index] = a;
+                //         })
+                //     }
+                // }]
+            });
         },
         error: function (r) {
             alert("error");
@@ -487,175 +404,175 @@ function fromTemplate() {
     // };
 }
 
-$(function ($) {
-    // Return with commas in between
-    var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+// $(function ($) {
+//     // Return with commas in between
+//     var numberWithCommas = function (x) {
+//         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//     };
 
-    var whatsapp = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
-    var facebook = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40];
-    var twitter = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
-    var twitterdm = [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80];
-    var instagram = [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90];
-    var messenger = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
-    var telegram = [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110];
-    var line = [120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120];
-    var email = [130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130];
-    var twitter = [140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140];
-    var voice = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150];
-    var sms = [160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160];
-    var livechat = [170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170];
-    var chatbot = [180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180];
-    var LabelX = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
-    var bar_ctx = document.getElementById('BarWallTicketCloseMonth');
+//     var whatsapp = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+//     var facebook = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40];
+//     var twitter = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
+//     var twitterdm = [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80];
+//     var instagram = [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90];
+//     var messenger = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+//     var telegram = [110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110, 110];
+//     var line = [120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120];
+//     var email = [130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130, 130];
+//     var twitter = [140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140, 140];
+//     var voice = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150];
+//     var sms = [160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160, 160];
+//     var livechat = [170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170];
+//     var chatbot = [180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180];
+//     var LabelX = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+//     var bar_ctx = document.getElementById('BarWallTicketCloseMonth');
 
-    var bar_chart = new Chart(bar_ctx, {
-        type: 'bar',
-        data: {
-            labels: LabelX,
-            datasets: [
-                {
-                    label: 'Whatsapp',
-                    data: whatsapp,
-                    backgroundColor: "#089e60",
-                    hoverBackgroundColor: "#089e60",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Facebook',
-                    data: facebook,
-                    backgroundColor: "#467fcf",
-                    hoverBackgroundColor: "#467fcf",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Twitter',
-                    data: twitter,
-                    backgroundColor: "#45aaf2",
-                    hoverBackgroundColor: "#45aaf2",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Twitter DM',
-                    data: twitterdm,
-                    backgroundColor: "#6574cd",
-                    hoverBackgroundColor: "#6574cd",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Instagram',
-                    data: instagram,
-                    backgroundColor: "#fbc0d5",
-                    hoverBackgroundColor: "#fbc0d5",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Messenger',
-                    data: messenger,
-                    backgroundColor: "#3866a6",
-                    hoverBackgroundColor: "#3866a6",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Telegram',
-                    data: telegram,
-                    backgroundColor: "#343a40",
-                    hoverBackgroundColor: "#343a40",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Line',
-                    data: line,
-                    backgroundColor: "#31a550",
-                    hoverBackgroundColor: "#31a550",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Email',
-                    data: email,
-                    backgroundColor: "#e41313",
-                    hoverBackgroundColor: "#e41313",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Voice',
-                    data: voice,
-                    backgroundColor: "#ff9933",
-                    hoverBackgroundColor: "#ff9933",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'SMS',
-                    data: sms,
-                    backgroundColor: "#80cbc4",
-                    hoverBackgroundColor: "#80cbc4",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'Live Chat',
-                    data: livechat,
-                    backgroundColor: "#607d8b",
-                    hoverBackgroundColor: "#607d8b",
-                    hoverBorderWidth: 0
-                },
-                {
-                    label: 'ChatBot',
-                    data: chatbot,
-                    backgroundColor: "#6e273e",
-                    hoverBackgroundColor: "#6e273e",
-                    hoverBorderWidth: 0
-                }
-            ]
-        },
-        options: {
-            animation: {
-                duration: 10,
-            },
-            tooltips: {
-                mode: 'label',
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
-                    }
-                }
-            },
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                    gridLines: {
-                        display: false
-                    },
-                }],
-                yAxes: [{
-                    stacked: true,
-                    ticks: {
-                        callback: function (value) {
-                            return numberWithCommas(value);
-                        },
-                    },
-                }],
-            },
-            legend: {
-                display: true,
-                labels: {
-					boxWidth: 10
-				}
-            }
-        },
-        // plugins: [{
-        //     beforeInit: function (chart) {
-        //         chart.data.labels.forEach(function (value, index, array) {
-        //             var a = [];
-        //             a.push(value.slice(0, 5));
-        //             var i = 1;
-        //             while (value.length > (i * 5)) {
-        //                 a.push(value.slice(i * 5, (i + 1) * 5));
-        //                 i++;
-        //             }
-        //             array[index] = a;
-        //         })
-        //     }
-        // }]
-    });
-});
+//     var bar_chart = new Chart(bar_ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: LabelX,
+//             datasets: [
+//                 {
+//                     label: 'Whatsapp',
+//                     data: whatsapp,
+//                     backgroundColor: "#089e60",
+//                     hoverBackgroundColor: "#089e60",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Facebook',
+//                     data: facebook,
+//                     backgroundColor: "#467fcf",
+//                     hoverBackgroundColor: "#467fcf",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Twitter',
+//                     data: twitter,
+//                     backgroundColor: "#45aaf2",
+//                     hoverBackgroundColor: "#45aaf2",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Twitter DM',
+//                     data: twitterdm,
+//                     backgroundColor: "#6574cd",
+//                     hoverBackgroundColor: "#6574cd",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Instagram',
+//                     data: instagram,
+//                     backgroundColor: "#fbc0d5",
+//                     hoverBackgroundColor: "#fbc0d5",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Messenger',
+//                     data: messenger,
+//                     backgroundColor: "#3866a6",
+//                     hoverBackgroundColor: "#3866a6",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Telegram',
+//                     data: telegram,
+//                     backgroundColor: "#343a40",
+//                     hoverBackgroundColor: "#343a40",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Line',
+//                     data: line,
+//                     backgroundColor: "#31a550",
+//                     hoverBackgroundColor: "#31a550",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Email',
+//                     data: email,
+//                     backgroundColor: "#e41313",
+//                     hoverBackgroundColor: "#e41313",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Voice',
+//                     data: voice,
+//                     backgroundColor: "#ff9933",
+//                     hoverBackgroundColor: "#ff9933",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'SMS',
+//                     data: sms,
+//                     backgroundColor: "#80cbc4",
+//                     hoverBackgroundColor: "#80cbc4",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'Live Chat',
+//                     data: livechat,
+//                     backgroundColor: "#607d8b",
+//                     hoverBackgroundColor: "#607d8b",
+//                     hoverBorderWidth: 0
+//                 },
+//                 {
+//                     label: 'ChatBot',
+//                     data: chatbot,
+//                     backgroundColor: "#6e273e",
+//                     hoverBackgroundColor: "#6e273e",
+//                     hoverBorderWidth: 0
+//                 }
+//             ]
+//         },
+//         options: {
+//             animation: {
+//                 duration: 10,
+//             },
+//             tooltips: {
+//                 mode: 'label',
+//                 callbacks: {
+//                     label: function (tooltipItem, data) {
+//                         return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+//                     }
+//                 }
+//             },
+//             scales: {
+//                 xAxes: [{
+//                     stacked: true,
+//                     gridLines: {
+//                         display: false
+//                     },
+//                 }],
+//                 yAxes: [{
+//                     stacked: true,
+//                     ticks: {
+//                         callback: function (value) {
+//                             return numberWithCommas(value);
+//                         },
+//                     },
+//                 }],
+//             },
+//             legend: {
+//                 display: true,
+//                 labels: {
+// 					boxWidth: 10
+// 				}
+//             }
+//         },
+//         // plugins: [{
+//         //     beforeInit: function (chart) {
+//         //         chart.data.labels.forEach(function (value, index, array) {
+//         //             var a = [];
+//         //             a.push(value.slice(0, 5));
+//         //             var i = 1;
+//         //             while (value.length > (i * 5)) {
+//         //                 a.push(value.slice(i * 5, (i + 1) * 5));
+//         //                 i++;
+//         //             }
+//         //             array[index] = a;
+//         //         })
+//         //     }
+//         // }]
+//     });
+// });

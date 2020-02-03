@@ -15,6 +15,7 @@ if (o < 10) {
 if (n < 10) {
 	n = '0' + n;
 }
+console.log(n);
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 var v_params_tenant = 'oct_telkomcare';
 $(document).ready(function () {
@@ -177,7 +178,7 @@ function callSummaryInteraction(params, index, year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawPieChart(response);
 			drawKipPerChannelChart(response);
 			callDataSubCategory(params, index, year, tenant_id);
