@@ -44,6 +44,9 @@
 								<div class="card-body" id="echartWeekDiv">
 									<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
 								</div>
+								<!-- <div class="card-body">
+									<canvas id="BarWallTicketCloseMonth" height="203"></canvas>
+								</div> -->
 							</div>
 						</div>
 					</div>

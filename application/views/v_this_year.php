@@ -64,6 +64,8 @@
 									<div class="card-body" id="customerChartYear">
 										<div id="echartYear" class="chartsh overflow-hidden"></div>
 									</div>
+									<!-- Chart Baru Yearly -->
+									<!-- <canvas id="BarChartYear" class="h-300"></canvas> -->
 								</div>
 							</div>
 						</div>
