@@ -244,21 +244,34 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerTenant(response){
-    let arrTenant = [], dataTotal = [];
+    let arrTenant = [], dataTotal = [], dataChannel = [];
+
 
     response.data.forEach(function(value,index){
         arrTenant.push(value.TENANT_ID);
-        // dataTotal.push(value.DATA);
+        // value.forEach(function(value,index){
+        //     dataTotal.push(value.DATA);
+        // });
+        // for (var i = 0; i < 12; i++) {
+        dataTotal.push(value.DATA);
+        // }        
     });
-    // console.log(response.data[0].DATA[0])
+    // response.data.DATA.forEach(function(value,index){
+    //     dataTotal.push(value.DATA);
+    // });
+    dataChannel = response.channel;
+    // response.channel.forEach(function(value,index){
+    //     dataChannel.push(value.channel);
+    // });
+    console.log(dataChannel);
     var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
 
     var dataStacked = [];
     var datasetStacked = "";
     for (var i = 0; i < 12; i++) {
         datasetStacked = {
-                    label: response.channel[i],
-                    data: response.data.DATA[i],
+                    label: dataChannel[i],
+                    data: dataTotal[i],
                     backgroundColor: color[i],
                     hoverBackgroundColor: color[i],
                     hoverBorderWidth: 0
