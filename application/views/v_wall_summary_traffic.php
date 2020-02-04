@@ -50,12 +50,12 @@
 									<h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 								</div>
 								<!-- chart yang baru -->
-									<!-- <div class="card-body">
+									<div class="card-body">
 										<canvas id="horizontalBarWallSummary" width="600" height="392"></canvas>
-									</div> -->
-								<div class="card-body">
+									</div>
+								<!-- <div class="card-body">
 									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden" style="width:100%"></div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
