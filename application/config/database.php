@@ -81,6 +81,7 @@ $db['default'] = array(
 	'username' => 'benhil',
 	'password' => 'Qwerty!@#2019',
 	'database' => 'db_dashboard', //on4
+	'port' 	   =>  3306,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

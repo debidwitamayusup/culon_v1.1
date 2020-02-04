@@ -77,8 +77,10 @@ class WallboardController extends REST_Controller {
        
 
         $res = $this->module_model->Traffic_ops($params,$index,$params_year);
-        $res2 =$this->module_model->Channel_data();
+        //$res2 =$this->module_model->T_id($params,$index,$params_year);
         
+        $res2 =$this->module_model->Channel_data();
+       // $res2 =$this->module_model->Channel_data();
         if ($res) {
             $this->response([
                 'status'  => TRUE,
@@ -90,7 +92,9 @@ class WallboardController extends REST_Controller {
         else {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Not Found!'
+                'message' => 'Not Found!',
+                'data'    => array(),
+                'channel' => array()
                     ], REST_Controller::HTTP_OK);
         }
 
