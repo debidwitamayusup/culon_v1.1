@@ -326,6 +326,8 @@ function drawChartPerTenant(response){
             },
             legend: {
                 display: true,
+                position: "top",
+                align: "start",
                 labels: {
                     boxWidth: 10
                 }

@@ -1,5 +1,5 @@
 $(function ($) {
-    $('#tableReportSumInterval').dataTable();
+	$('#tableReportSumInterval').dataTable();
 
     //pie chart report summary channel
     var ctx = document.getElementById( "pieChartReportSumInterval" );
