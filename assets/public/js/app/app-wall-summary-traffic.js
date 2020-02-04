@@ -243,117 +243,322 @@ function drawPieChartSumAllTenant(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
+// function drawChartPerTenant(response){
+//     let arrTenant = [], dataTotal = [], dataChannel = [];
+
+//     var j=0;
+//     response.data.forEach(function(value,index){
+//         arrTenant.push(value.TENANT_ID);
+//         // value.forEach(function(value,index){
+//         //     dataTotal.push(value.DATA);
+//         // });
+//         // for (var i = 0; i < response.data['0']['DATA'].length; i++) {
+//         // response.data[i].DATA.forEach(function(value, index){
+//         j.toString();
+//         dataTotal.push(response.data[j]['DATA']);
+//         // });
+//         j++;
+//         // }        
+//     });
+//     console.log(dataTotal)
+//     // response.data.DATA.forEach(function(value,index){
+//     //     dataTotal.push(value.DATA);
+//     // });
+//     dataChannel = response.channel;
+//     // response.channel.forEach(function(value,index){
+//     //     dataChannel.push(value.channel);
+//     // });
+//     console.log(response.data[0].DATA[0]);
+//     var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
+
+//     var dataStacked = [];
+//     var datasetStacked = "";
+//     for (var i = 0; i < response.data.length; i++) {
+//         datasetStacked = {
+//                     label: dataChannel[i],
+//                     data: dataTotal[i],
+//                     backgroundColor: color[i],
+//                     hoverBackgroundColor: color[i],
+//                     hoverBorderWidth: 0
+//                 }
+//                 dataStacked.push(datasetStacked);
+//     }
+//     console.log(color);
+
+//     // console.log(response.data);
+//     var numberWithCommas = function (x) {
+//         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//     };
+
+//     var bar_ctx = document.getElementById('horizontalBarWallSummary');
+
+//     var bar_chart = new Chart(bar_ctx, {
+//         // type: 'bar',
+//         type: 'horizontalBar',
+//         data: {
+//             labels: arrTenant,
+//             datasets: dataStacked
+//         },
+//         options: {
+//             responsive: true,
+//             maintainAspectRatio: false,
+//             animation: {
+//                 duration: 10,
+//             },
+//             // tooltips: {
+//             //     mode: 'label',
+//             //     callbacks: {
+//             //         label: function (tooltipItem, data) {
+//             //             return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+//             //         }
+//             //     }
+//             // },
+//             scales: {
+//                 xAxes: [{
+//                     stacked: true,
+//                     gridLines: {
+//                         display: false
+//                     },
+//                 }],
+//                 yAxes: [{
+//                     stacked: true,
+//                     ticks: {
+//                         callback: function (value) {
+//                             return numberWithCommas(value);
+//                         },
+//                     },
+//                 }],
+//             },
+//             legend: {
+//                 display: true,
+//                 position: "top",
+//                 align: "start",
+//                 labels: {
+//                     boxWidth: 10
+//                 }
+//             }
+//         },
+//         // plugins: [{
+//         //  beforeInit: function (chart) {
+//         //      chart.data.labels.forEach(function (value, index, array) {
+//         //          var a = [];
+//         //          a.push(value.slice(0, 5));
+//         //          var i = 1;
+//         //          while (value.length > (i * 5)) {
+//         //              a.push(value.slice(i * 5, (i + 1) * 5));
+//         //              i++;
+//         //          }
+//         //          array[index] = a;
+//         //      })
+//         //  }
+//         // }]
+//     });
+
+// }
+
 function drawChartPerTenant(response){
-    let arrTenant = [], dataTotal = [], dataChannel = [];
+    // destroyHorizontalChart();
+    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot=[];
 
-    var j=0;
-    response.data.forEach(function(value,index){
-        arrTenant.push(value.TENANT_ID);
-        // value.forEach(function(value,index){
-        //     dataTotal.push(value.DATA);
-        // });
-        // for (var i = 0; i < response.data['0']['DATA'].length; i++) {
-        // response.data[i].DATA.forEach(function(value, index){
-        j.toString();
-        dataTotal.push(response.data[j]['DATA']);
-        // });
-        j++;
-        // }        
-    });
-    console.log(dataTotal)
-    // response.data.DATA.forEach(function(value,index){
-    //     dataTotal.push(value.DATA);
-    // });
-    dataChannel = response.channel;
-    // response.channel.forEach(function(value,index){
-    //     dataChannel.push(value.channel);
-    // });
-    console.log(response.data[0].DATA[0]);
-    var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
-
-    var dataStacked = [];
-    var datasetStacked = "";
+    response.data.forEach(function (value, index) {
+            arrTenant.push(value.TENANT_ID);
+            // arrART.push(value.ART);
+            // arrAHT.push(value.AHT);
+            // arrAST.push(value.AST);
+            // arrSCR.push(value.SCR);
+        });
     for (var i = 0; i < response.data.length; i++) {
-        datasetStacked = {
-                    label: dataChannel[i],
-                    data: dataTotal[i],
-                    backgroundColor: color[i],
-                    hoverBackgroundColor: color[i],
-                    hoverBorderWidth: 0
-                }
-                dataStacked.push(datasetStacked);
+        // console.log()
+        dataWa.push(response.data[i].DATA[10]);
+        dataFB.push(response.data[i].DATA[5]);
+        dataDM.push(response.data[i].DATA[11]);
+        dataTwitter.push(response.data[i].DATA[7]);
+        dataIg.push(response.data[i].DATA[9]);
+        dataMessenger.push(response.data[i].DATA[6]);
+        dataTelegram.push(response.data[i].DATA[4]);
+        dataLine.push(response.data[i].DATA[8]);
+        dataEmail.push(response.data[i].DATA[1]);
+        dataVoice.push(response.data[i].DATA[0]);
+        dataSMS.push(response.data[i].DATA[3]);
+        dataLive.push(response.data[i].DATA[2]);
+        dataChatbot.push(response.data[i].DATA[12]);
     }
-    console.log(color);
-
-    // console.log(response.data);
-    var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
-
-    var bar_ctx = document.getElementById('horizontalBarWallSummary');
-
-    var bar_chart = new Chart(bar_ctx, {
-        // type: 'bar',
-        type: 'horizontalBar',
-        data: {
-            labels: arrTenant,
-            datasets: dataStacked
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                duration: 10,
-            },
-            // tooltips: {
-            //     mode: 'label',
-            //     callbacks: {
-            //         label: function (tooltipItem, data) {
-            //             return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-            //         }
-            //     }
-            // },
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                    gridLines: {
-                        display: false
-                    },
-                }],
-                yAxes: [{
-                    stacked: true,
-                    ticks: {
-                        callback: function (value) {
-                            return numberWithCommas(value);
-                        },
-                    },
-                }],
-            },
-            legend: {
-                display: true,
-                position: "top",
-                align: "start",
-                labels: {
-                    boxWidth: 10
+    /*----echart Wallboard Summary Traffic----*/
+    var chartWallSummary = [{
+         name: 'Whatsapp',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataWa
+     }, {
+         name: 'Facebook',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataFB
+     },{
+         name: 'Twitter',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTwitter
+     },{
+         name: 'Twitter DM',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataDM
+     },{
+         name: 'Instagram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataIg
+     },{
+         name: 'Messenger',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataMessenger
+     },{
+         name: 'Telegram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTelegram
+     },{
+         name: 'Line',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLine
+     },{
+         name: 'Email',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataEmail
+     },{
+         name: 'Voice',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataVoice
+     },{
+         name: 'SMS',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataSMS
+     },{
+         name: 'Live Chat',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLive
+    },{
+         name: 'Chat Bot',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataChatbot
+    }];
+    /*----echartTicketUnit----*/
+    var optionWallSummary = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {       
+                // type: 'shadow'
+                label: {
+                    show: false,
+                    formatter: function (value, index) {
+                            var teks = '';
+                            // console.log(value)
+                            if(value.value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value.value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else if(value.value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
+                            else{
+                                return value.value
+                            }
+                            return teks;
+                    }
                 }
+            },
+            position: function (pos, params, dom, rect, size) {
+                 // tooltip will be fixed on the right if mouse hovering on the left,
+                 // and on the left if hovering on the right.
+                 // console.log(pos);
+                 var obj = {top: pos[6]};
+                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                 return obj;
+             },
+        },
+        legend: {
+            // bottom: 10,
+            left: 'center',
+            top: 'auto',
+            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
+            itemWidth :12,
+            padding: [10, 10,40, 10]
+            
+        },
+        grid: {
+            top: '25%',
+            right: '3%',
+            bottom: '5%',
+            left: '1%',
+            containLabel: true,
+            width: 'auto'
+        },
+        xAxis: {
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0'
             }
         },
-        // plugins: [{
-        //  beforeInit: function (chart) {
-        //      chart.data.labels.forEach(function (value, index, array) {
-        //          var a = [];
-        //          a.push(value.slice(0, 5));
-        //          var i = 1;
-        //          while (value.length > (i * 5)) {
-        //              a.push(value.slice(i * 5, (i + 1) * 5));
-        //              i++;
-        //          }
-        //          array[index] = a;
-        //      })
-        //  }
-        // }]
-    });
-
+        yAxis: {
+            type: 'category',
+            data: arrTenant,
+            splitLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#efefff'
+                }
+            },
+            axisLabel: {
+                fontSize: 10,
+                color: '#7886a0',
+                formatter: function (value, index) {
+                            var teks = '';
+                            if(value == "oct_telkomcare"){
+                                teks = teks + "TELKOMCARE";
+                            }
+                            else if(value == "oct_telkomsel")
+                            {
+                                teks = teks + "TELKOMSEL";
+                            }
+                            else if(value == "oct_bodyshop")
+                            {
+                                teks = teks + "BODYSHOP";
+                            }
+                            else{
+                                return value
+                            }
+                            return teks;
+                    }
+            }
+        },
+        series: chartWallSummary,
+        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+    };
+    var chartWallSummary = document.getElementById('horizontalBarWallSummary');
+    var barChartWallSummary = echarts.init(chartWallSummary);
+    barChartWallSummary.setOption(optionWallSummary);
 }
 
 function destroyChartInterval(){
