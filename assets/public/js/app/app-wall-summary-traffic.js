@@ -246,16 +246,21 @@ function drawPieChartSumAllTenant(response){
 function drawChartPerTenant(response){
     let arrTenant = [], dataTotal = [], dataChannel = [];
 
-
+    var j=0;
     response.data.forEach(function(value,index){
         arrTenant.push(value.TENANT_ID);
         // value.forEach(function(value,index){
         //     dataTotal.push(value.DATA);
         // });
-        // for (var i = 0; i < 12; i++) {
-        dataTotal.push(value.DATA);
+        // for (var i = 0; i < response.data['0']['DATA'].length; i++) {
+        // response.data[i].DATA.forEach(function(value, index){
+        j.toString();
+        dataTotal.push(response.data[j]['DATA']);
+        // });
+        j++;
         // }        
     });
+    console.log(dataTotal)
     // response.data.DATA.forEach(function(value,index){
     //     dataTotal.push(value.DATA);
     // });
@@ -268,10 +273,10 @@ function drawChartPerTenant(response){
 
     var dataStacked = [];
     var datasetStacked = "";
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < response.data.length; i++) {
         datasetStacked = {
                     label: dataChannel[i],
-                    data: response.data.DATA,
+                    data: dataTotal[i],
                     backgroundColor: color[i],
                     hoverBackgroundColor: color[i],
                     hoverBorderWidth: 0
