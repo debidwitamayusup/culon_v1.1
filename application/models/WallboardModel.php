@@ -17,18 +17,18 @@ Class WallboardModel extends CI_Model {
 
         if($query->num_rows()>0)
         {
-        
+
             $idx = 1;
             foreach($query->result() as $data)
             {
                 $data1 = array(
                         $idx,
-                        $data->unit    
+                        $data->unit
                     );
                 $idx++;
                 $data2 = $this->Op_Performancestat($src,$data->unit_id);
                 $data3 = array_merge($data1,$data2);
-                $result[] = $data3; 
+                $result[] = $data3;
             }
             return $result;
         }
@@ -103,7 +103,7 @@ Class WallboardModel extends CI_Model {
             {
                 $result['sum'.$datas->status] = $datas->jml;
             }
-            
+
             // $result = array(
             //     'sumNew'   => $query->row()->SNEW,
             //     'sumOpen'  => $query->row()->SOPEN,
@@ -115,7 +115,7 @@ Class WallboardModel extends CI_Model {
             //  );
 
             return $result;
-        }         
+        }
         return FALSE;
     }
 
@@ -133,7 +133,7 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('MONTH(tanggal)',$index);
             $this->db->where('YEAR(tanggal)',$params_year);
-        } 
+        }
         if($params == 'year')
         {
             $this->db->where('YEAR(tanggal)',$index);
@@ -149,7 +149,7 @@ Class WallboardModel extends CI_Model {
         {
             foreach($query->result() as $data)
             {
-                
+
                 $result[] = array(
                     'TENANT_ID' => $data->tenant_id,
                     'DATA' => $this->Traffic_opschannel($params,$index,$params_year,$data->tenant_id)
@@ -159,6 +159,185 @@ Class WallboardModel extends CI_Model {
         }
 
         return FALSE;
+    }
+
+    public function T_id($params,$index,$params_year)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $this->db->select('tenant_id');
+        $this->db->from('rpt_summary_scr');
+        if($params == 'day')
+        {
+            $this->db->where('tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(tanggal)',$index);
+            $this->db->where('YEAR(tanggal)',$params_year);
+        }
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        $this->db->group_by('tenant_id');
+        $query = $this->db->get();
+
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+                array_push($result,$data->tenant_id);
+            }
+            return $result;
+        }
+
+        return FALSE;
+    }
+
+    
+    public function Traffic_ops2($params,$index,$params_year)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+        $maxtenant = $this->getalltenantnumscr($params,$index,$params_year,$tid);
+
+        $this->db->select('channel_id, channel_name');
+        $this->db->from('m_channel');
+        $query = $this->db->get();
+
+       // $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+                $num = array();
+                $rss = array();
+                for($a = 1; $a<=$maxtenant;$a++)
+                {   
+                    if($a == 1)
+                    {
+                        $tids = 'oct_bodyshop';
+                    }
+                    else if($a == 2)
+                    {
+                        $tids = 'oct_telkomcare';
+                    }
+                    else if($a == 3)
+                    {
+                        $tids = 'oct_telkomsel';
+                    }
+                    
+                    $num = null;
+                    $num = $this->Traffic_opsdata2($params,$index,$params_year,$tids,$data->channel_id);
+
+                    if($num)
+                    {
+                        array_push($rss,$num);
+                    }
+                    else 
+                    {
+                        array_push($rss,'0');
+                    }
+                       
+                }
+
+
+                $result[] = array(
+                    'channel_name' => $data->channel_name,
+                    'data' =>  $num
+                );
+               
+            }
+            return $result;
+        }
+        return FALSE;
+
+    }
+
+    function Traffic_opsdata2($params,$index,$params_year,$tid,$channel)
+    {
+       
+        $this->db->select('IFNULL(SUM(rpt_summary_scr.cof),0) AS cof');
+        $this->db->from('rpt_summary_scr');
+        if($params == 'day')
+        {
+            $this->db->where('rpt_summary_scr.tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
+        }
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+        }
+        
+        $this->db->where('rpt_summary_scr.channel_id',$channel);
+        $this->db->group_by('rpt_summary_scr.tenant_id');
+
+        $query = $this->db->get();
+
+        // print_r($this->db->last_query());
+        // //exit();
+        $result = array();
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+                array_push($result,$data->cof);
+            }
+            return $result;
+        }
+        return array(0,0,0);
+    }
+
+    function getalltenantnumscr($params,$index,$params_year,$tid)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $this->db->select('count(tenant_id) as ct');
+        $this->db->from('rpt_summary_scr');
+        if($params == 'day')
+        {
+            $this->db->where('tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(tanggal)',$index);
+            $this->db->where('YEAR(tanggal)',$params_year);
+        }
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(tanggal)',$index);
+        }
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        $this->db->group_by('tenant_id');
+        $query = $this->db->get();
+
+        
+
+        if($query->num_rows() > 0)
+        {
+            return $query->row()->ct;
+        }
+
+        return 0;
     }
 
     function Traffic_opschannel($params,$index,$params_year,$tid)
@@ -194,22 +373,23 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
-        } 
+        }
         if($params == 'year')
         {
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
         }
-        $this->db->where('rpt_summary_scr.tenant_id',$tid);        
+        $this->db->where('rpt_summary_scr.tenant_id',$tid);
         $this->db->where('rpt_summary_scr.channel_id',$channel);
         $query = $this->db->get();
 
-       
+
         if($query->num_rows() > 0)
         {
             return $query->row()->cof;
         }
         return 0;
     }
+
 
     public function scr_pie_chart_channel($params,$index,$params_year)
     {
@@ -220,7 +400,7 @@ Class WallboardModel extends CI_Model {
         $res_channel = array();
         $res_color = array();
 		$res_tot = array();
-			
+
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result() as $data)
@@ -231,12 +411,12 @@ Class WallboardModel extends CI_Model {
 			}
 
 			$result = array(
-                'channel_name' => $res_channel, 
+                'channel_name' => $res_channel,
                 'color' => $res_color,
 				'total' => $res_tot
 			);
 		}
-		
+
 		return $result;
     }
 
@@ -254,7 +434,7 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
-        } 
+        }
         if($params == 'year')
         {
             $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
@@ -263,7 +443,7 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('rpt_summary_scr.tenant_id',$tid);
         }
-		
+
 		$this->db->where('rpt_summary_scr.channel_id',$channel);
 		$query = $this->db->get();
 
@@ -277,7 +457,7 @@ Class WallboardModel extends CI_Model {
 		}
 
     }
-    
+
     function get_intervalchart($params,$index,$params_year,$channel)
     {
         $this->db->select('rpt_summ_interval.interval as time');
@@ -303,7 +483,7 @@ Class WallboardModel extends CI_Model {
 					);
 				}
 			}
-			else 
+			else
 			{
 				$serials[] =  array(
 					'label'=>'Facebook',
@@ -316,11 +496,11 @@ Class WallboardModel extends CI_Model {
 					'label_time' => $times,
 					'series' => $serials
                 );
-		
+
 
 
 		return $result;
-		
+
     }
 
     function get_availdata($params,$index,$params_year,$channel)
@@ -354,18 +534,18 @@ Class WallboardModel extends CI_Model {
             $this->db->where('rpt_summ_interval.tenant_id',$tid);
         }
 
-		
+
 		$this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
-		
+
 		// print_r($this->db->last_query());
 		// exit;
 
 		if($query->num_rows()>0)
 		{
-			
+
 			for($inx = 0;$inx < 24; $inx++)
 			{
 				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
@@ -376,7 +556,7 @@ Class WallboardModel extends CI_Model {
 				{
 					array_push($result,'0');
 				}
-					
+
 			}
 
 		}
@@ -384,12 +564,12 @@ Class WallboardModel extends CI_Model {
 		{
 			$result = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
 		}
-		
+
 
 		return $result;
-		
+
     }
-    
+
 
     public function SummPerformOps($date,$src)
     {
@@ -403,7 +583,7 @@ Class WallboardModel extends CI_Model {
         $this->db->group_by('tenant_id');
 
         $query = $this->db->get();
-        
+
         if($query->num_rows()>0)
         {
             foreach($query->result() as $data)
@@ -455,12 +635,12 @@ Class WallboardModel extends CI_Model {
             {
                 $result[$data->channel_name] =  $data->cof;
             }
-       
+
             return $result;
         }
 
         return false;
-        
+
     }
 
     public function Tenantscrget($date)
@@ -485,22 +665,31 @@ Class WallboardModel extends CI_Model {
 
     public function Channel_data()
     {
-        $this->db->select('channel_name');
+        $this->db->select('channel_name, channel_color');
         $this->db->from('m_channel');
         $query = $this->db->get();
 
-        $result = array();
+        $name = array();
+        $color = array();
 
         if($query->num_rows() > 0)
         {
             foreach($query->result() as $data)
             {
-               array_push($result,$data->channel_name);
+               array_push($name,$data->channel_name);
+               array_push($color,$data->channel_color);
             }
+
+            $result = array(
+                'name' => $name,
+                'color' => $color
+            );
+
             return $result;
         }
         return FALSE;
     }
+    
 
     public function getBarchannelPerMonth($month, $year)
     {
@@ -552,7 +741,7 @@ Class WallboardModel extends CI_Model {
     public function get_traffic_interval_monthly($month,$channel)
 	{
         $year = date('Y');
-        
+
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, intval($year));
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
@@ -581,7 +770,7 @@ Class WallboardModel extends CI_Model {
         }
 		return false;
     }
-    
+
     public function getalldateinmonth($month)
     {
         $year = date('Y');
@@ -589,7 +778,7 @@ Class WallboardModel extends CI_Model {
         $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
         $arr_time = array();
 
-        
+
         for($i = 1; $i <= $numdateofmonth;$i++)
 		{
 			array_push($arr_time, $i);
@@ -605,7 +794,7 @@ Class WallboardModel extends CI_Model {
 
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-       
+
 		$this->db->select('SUM(tot_agent) as tots, DAY(rpt_summ_interval.tanggal) as DAY');
         $this->db->from('rpt_summ_interval');
         if($tid)
@@ -620,6 +809,7 @@ Class WallboardModel extends CI_Model {
 
         // print_r($this->db->last_query());
         // exit;
+
 		$result = array();
 		if($query->num_rows()>0)
 		{
@@ -632,9 +822,9 @@ Class WallboardModel extends CI_Model {
                     $st++;
 				}
 				else
-				{			
+				{
 					array_push($result,'0');
-				}	
+				}
 			}
 
 		}
@@ -672,7 +862,7 @@ Class WallboardModel extends CI_Model {
 		$result = array();
 		if($query->num_rows()>0)
 		{
-			
+
 			for($inx = 0; $inx < $numdateofmonth; $inx++)
 			{
 				if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
@@ -680,9 +870,9 @@ Class WallboardModel extends CI_Model {
 					array_push($result,strval($query->row($inx)->COF));
 				}
 				else
-				{			
+				{
 					array_push($result,'0');
-				}	
+				}
 			}
 
 		}
@@ -706,7 +896,7 @@ Class WallboardModel extends CI_Model {
            //noTID
         // }
         $query = $this->db->get();
-        
+
         if($query->num_rows()>0)
         {
             foreach($query->result() as $data)
@@ -746,7 +936,7 @@ Class WallboardModel extends CI_Model {
         $this->db->group_by('tenant_id');
 
         $query = $this->db->get();
-        
+
         if($query->num_rows()>0)
         {
             foreach($query->result() as $data)
@@ -769,12 +959,12 @@ Class WallboardModel extends CI_Model {
     }
     public function SummTicketC($months,$year)
     {
-        
+
 
         return FALSE;
 
     }
-    
+
     // debi
     public function summaryTicketCloseWall($month, $year)
     {
@@ -801,12 +991,12 @@ Class WallboardModel extends CI_Model {
                 );
             }
 
-        
+
             return $result;
         }
-      
+
         return false;
-        
+
     }
 
     public function get_availabledata_permonth_day_summaryTicketCloseWall($numdateofmonth,$month,$year,$channel_id)
@@ -841,7 +1031,7 @@ Class WallboardModel extends CI_Model {
                 {
                     // print_r('|'.$inx.'-'.$ser.'-'.$query->row($ser)->DAY);
                     array_push($result,'0');
-                }   
+                }
             }
             $ser = 0;
         }
