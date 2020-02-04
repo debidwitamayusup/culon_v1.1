@@ -244,7 +244,12 @@ Class WallboardModel extends CI_Model {
 	{
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summary_scr.cof as TOTAL');
+        if($tid){
+            $this->db->select('rpt_summary_scr.cof as TOTAL');
+        }else{
+            $this->db->select('SUM(rpt_summary_scr.cof) as TOTAL');
+        }
+		
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
         {

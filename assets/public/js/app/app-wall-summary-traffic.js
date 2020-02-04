@@ -221,7 +221,7 @@ function drawPieChartSumAllTenant(response){
                     var background = chart.data.datasets[0].backgroundColor[index]
                     var total = 0;
                     for (var i in allData) {
-                        total += parseInt(allData[i]);
+                        total += parseInt(Number(allData[i]));
                     }
 
                     // console.log(total)
