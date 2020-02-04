@@ -61,7 +61,8 @@ function callYear() {
 }
 
 function callGraphYear(channel_name, year, tenant_id) {
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
+    destroyChartInterval();
     var data = "";
     var base_url = $('#base_url').val();
     // console.log(year);
@@ -77,68 +78,76 @@ function callGraphYear(channel_name, year, tenant_id) {
 
         success: function (r) {
             var response = JSON.parse(r);
-            var chartdata = [{
-                name: 'total',
-                type: 'bar',
-                data: response.data.total_traffic
-            }];
-            // console.log(response);
+            // var chartdata = [{
+            //     name: 'total',
+            //     type: 'bar',
+            //     data: response.data.total_traffic
+            // }];
+            console.log(response);
 
-            var chart = document.getElementById('echartYear');
-            var barChart = echarts.init(chart);
-            var option = {
-                grid: {
-                    top: '10%',
-                    right: '3%',
-                    bottom: '3%',
-                    left: '2%',
-                    containLabel: true,
-                    width: '100%'
-                },
-                xAxis: {
-                    data: response.data.month_x_axis,
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#7886a0'
-                    }
-                },
-                tooltip: {
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: false,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: false,
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: '#efefff'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 8,
-                        color: '#7886a0'
-                    }
-                },
-                series: chartdata,
-                color: ['' + response.data.channel_color + '']
+            var numberWithCommas = function (x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             };
-            barChart.setOption(option);
+
+            var dataStacked = [];
+            var datasetsStacked = "";
+                datasetsStacked = {
+                        label: response.data.channel_name,
+                        data: response.data.total_traffic,
+                        backgroundColor: response.data.channel_color,
+                        hoverBackgroundColor: response.data.channel_color,
+                        hoverBorderWidth: 0
+                    },
+
+                dataStacked.push(datasetsStacked);
+
+            
+            // console.log(dataStacked);
+            var ctx = document.getElementById('BarChartYear');
+
+            var myChart = new Chart( ctx, {
+                type: 'bar',
+                data: {
+                    labels: response.data.month_x_axis,
+                    datasets: dataStacked
+                },
+                options: {
+                 responsive: true,
+                    maintainAspectRatio: false,
+                    legend:{
+                        display : false
+                    },
+                 layout: {
+                         padding: {
+                         left: 20,
+                         right: 20,
+                         top: 25,
+                         bottom: 10
+                     }
+                 },
+                 tooltips: {
+                      callbacks: {
+                            label: function(tooltipItem, data) {
+                                var value = data.datasets[0].data[tooltipItem.index];
+                                if(parseInt(value) >= 1000){
+                                           return 'Total: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                        } else {
+                                           return 'Total: ' + value;
+                                        }
+                            }
+                      } // end callbacks:
+                    },
+                    scales: {
+                        yAxes: [ {
+                            ticks: {
+                            callback: function (value) {
+                                return numberWithCommas(value);
+                                },
+                            },
+                                        } ]
+                    },
+                }
+            } );
             $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -415,8 +424,8 @@ function stackedBarIntervalYear(channel_name, tenant_id) {
 
 function destroyChartInterval() {
     // destroy chart interval 
-    $('#echartYear').remove(); // this is my <canvas> element
-    $('#customerChartYear').append('<div id="echartYear"  class="h-400"></div>');
+    $('#BarChartYear').remove(); // this is my <canvas> element
+    $('#customerChartYear').append('<canvas id="BarChartYear" class="h-300"></canvas>');
 }
 
 function destroyChartPercentage() {

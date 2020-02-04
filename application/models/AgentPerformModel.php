@@ -40,6 +40,8 @@ class AgentPerformModel extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		
 		$this->db->select('
 		tanggal AS DATE,
 		SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART,

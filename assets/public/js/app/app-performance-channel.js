@@ -30,9 +30,9 @@ var v_params_this_year = m + '-' + n + '-' + (o - 1);
 
 // console.log(v_params_this_year);
 
-// console.log(d);
+console.log(n);
 $(document).ready(function () {
-	loadContent(v_params, v_params_this_year, 0);
+	// loadContent(v_params, v_params_this_year, 0);
 	// loadContent(v_params, v_params_this_year, 0);
 
 	params_time = 'day';
@@ -68,6 +68,7 @@ $(document).ready(function () {
 
 //for dinamic dropdown year on month
 function callYearOnMonth() {
+
 	var data = "";
 	var base_url = $('#base_url').val();
 	// console.log(year);
@@ -105,7 +106,7 @@ function callYearOnMonth() {
 				'<option value="10">October</option>' +
 				'<option value="11">November</option>' +
 				'<option value="12">December</option>';
-			$('#select-month').html(monthOption);
+			// $('#select-month').html(monthOption);
 			// var option = $ ("<option />");
 			//     option.html(i);
 			//     option.val(i);
@@ -252,6 +253,7 @@ function drawDataTable2(params, index, params_year, tenant_id){
 		],   
         destroy: true,
     });
+    // console.log(response);
 }
 
 function drawChartSumService(response) {
@@ -444,6 +446,11 @@ function drawChartSumChannel(response) {
 						stacked: true,
 						gridLines: {
 							display: false
+						},
+						ticks: {
+							callback: function (value) {
+								return numberWithCommas(value);
+							},
 						},
 					}],
 					yAxes: [{
@@ -690,6 +697,10 @@ function setDatePicker() {
 
 	// btn month
 	$('#btn-month').click(function () {
+		var d = new Date();
+		var o = d.getDate();
+		var n = d.getMonth() + 1;
+		var m = d.getFullYear();
 		params_time = 'month';
 		// console.log(params_time);
 
@@ -700,7 +711,7 @@ function setDatePicker() {
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
 		callYearOnMonth();
-
+		console.log(n);
 		$('#select-month option[value=' + n + ']').attr('selected', 'selected');
 		$('#select-year-on-month option[value=' + m + ']').attr('selected', 'selected');
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
