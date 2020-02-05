@@ -7,6 +7,7 @@ var m = d.getFullYear();
 var tenantFromFilter = '';
 var channelFromFilter = '';
 var monthFromFilter = '';
+var tenants = [];
 if (o < 10) {
   o = '0' + o;
 } 
@@ -38,11 +39,17 @@ $(document).ready(function () {
 });
 
 function monthNumToName(month) {
-    return months[month - 1] || '';
+    if(month){
+        return months[month - 1] || '';
+    }
+    return 'All Month';
 }
 
 function channelToName(channel_id){
-    return channels[channel_id - 1] || '';
+    if (channel_id){
+        return channels[channel_id - 1] || '';
+    }
+    return 'All Channel'
 }
 
 function getTenant(date){
@@ -59,6 +66,7 @@ function getTenant(date){
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
+            // tenants = response.data;
             var html = '<option value="">All Tenant</option>';
             // var html = '';
                 for(i=0; i<response.data.length; i++){
