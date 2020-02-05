@@ -122,7 +122,9 @@
         {
             $tid = $this->security->xss_clean($this->input->get('tenant_id'));
             $chn = $this->security->xss_clean($this->input->get('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
             $mnth = $this->security->xss_clean($this->input->get('month'));
+            $mnth2 = $this->security->xss_clean($this->input->get('month_name'));
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->get('name'));
 
@@ -143,6 +145,10 @@
             ->setCellValue('A3','Export By ')
             ->setCellValue('B2',date('d-m-Y H'))
             ->setCellValue('B3', $name)
+            ->setCellValue('C2','Filter Month ')
+            ->setCellValue('C3',' Filter Channel ')
+            ->setCellValue('D2', $mnth2)
+            ->setCellValue('D3', $chn2)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'TANGGAL')
             ->setCellValue('C4', 'COF')
