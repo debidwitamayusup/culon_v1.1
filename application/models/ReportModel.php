@@ -101,9 +101,9 @@ Class ReportModel extends CI_Model {
     {
         $year = date('Y');
 
-        $this->db->select('a.agentid as agent_id,
-        a.agentName as agent_name,
-        a.skill_name as skill_name, 
+        $this->db->select('a.agentid as AGENT_ID,
+        a.agentName as AGENT_NAME,
+        a.skill_name as SKILL_NAME, 
         SUM(a.cof) as COF,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
@@ -126,7 +126,7 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$t_end);
         }
         $this->db->where('YEAR(a.tanggal)',$year);
-        $this->db->group_by('a.agent_name');
+        $this->db->group_by('a.agentName');
         $query = $this->db->get();
 
 
@@ -139,7 +139,9 @@ Class ReportModel extends CI_Model {
                 {
                     $result[] = array(
                         $id,
-                        $data->TANGGAL,
+                        $data->AGENT_ID,
+                        $data->AGENT_NAME,
+                        $data->SKILL_NAME,
                         $data->COF,
                         $data->ART,
                         $data->AHT,

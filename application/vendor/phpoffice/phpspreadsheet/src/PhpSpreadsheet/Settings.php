@@ -36,7 +36,7 @@ class Settings
      *
      * @var bool
      */
-    private static $libXmlDisableEntityLoader = true;
+    private static $libXmlDisableEntityLoader = false;
 
     /**
      * The cache implementation to be used for cell collection.

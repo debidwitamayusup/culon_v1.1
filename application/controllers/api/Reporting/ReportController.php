@@ -68,6 +68,32 @@
             }
         }
 
+        public function ReportingSPA_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $meth = 'data';
+
+            //token
+            $res = $this->module_model->get_datareportSPA($tid, $t_start,$t_end,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
         // Export ke excel
         public function EXPORTSC_get()
         {
