@@ -35,11 +35,8 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportSPO()
+    public function get_datareportSPO( $tid, $chn, $mnth)
     {
-        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-        $chn = $this->security->xss_clean($this->input->post('channel_id'));
-        $mnth = $this->security->xss_clean($this->input->post('month'));
         $year = date('Y');
 
         $this->db->select('a.tanggal as TANGGAL, 
