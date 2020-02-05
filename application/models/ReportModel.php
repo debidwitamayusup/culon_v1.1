@@ -134,6 +134,7 @@ Class ReportModel extends CI_Model {
 
         // print_r($this->db->last_query());
         // exit;
+        
         if($query->num_rows() > 0)
         {
             if($meth == 'data')
@@ -146,11 +147,11 @@ Class ReportModel extends CI_Model {
                         $data->AGENT_ID,
                         $data->AGENT_NAME,
                         $data->SKILL_NAME,
-                        $data->COF,
+                        strval(number_format($data->COF,0,',','.')),
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        $data->SCR.'%'
+                        round($data->SCR,2).'%'
                     );
                     $id++;
                 }

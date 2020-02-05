@@ -274,7 +274,7 @@
                 ->setCellValue('F'.$i, $datas->ART)
                 ->setCellValue('G'.$i, $datas->AHT)
                 ->setCellValue('H'.$i, $datas->AST)
-                ->setCellValue('I'.$i, round($datas->SCR,2).'%')
+                ->setCellValue('I'.$i, $datas->SCR)
                 ;
                 $i++;
             }
