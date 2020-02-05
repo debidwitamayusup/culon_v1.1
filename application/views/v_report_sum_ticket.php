@@ -33,7 +33,7 @@
                                              <div class="col-sm-auto h6 mt-3">Channel</div>
                                              <div class="col-sm-auto">
                                                  <div class="form-group row">
-                                                     <select class="form-control" id="agent_name">
+                                                     <select class="form-control" id="channelName">
                                                          <option value="">All Channel</option>
                                                          <option value="12">Whatsapp</option>
                                                          <option value="6">Facebook</option>
