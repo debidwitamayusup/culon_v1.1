@@ -217,5 +217,82 @@
                 $writer->save('php://output');
                 exit;
         }
+
+        public function EXPORTSPA_get()
+        {
+
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->get('name'));
+
+            $data = $this->module_model->get_datareportSPA($tid,$t_start,$t_end,$meth);
+            $spreadsheet = new Spreadsheet();
+
+            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+            ->setLastModifiedBy('INFOMEDIA')
+            ->setTitle('Office 2007 XLSX Document')
+            ->setSubject('Office 2007 XLSX Document')
+            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+            ->setKeywords('office 2007 openxml php')
+            ->setCategory('result file');
+
+            if (!$tid){
+                $tid = 'All Tenant';
+            }
+
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1','Summary Performance Operation - '.$tid)
+            ->setCellValue('A2','Export Time ')
+            ->setCellValue('A3','Export By ')
+            ->setCellValue('B2',date('d-m-Y H'))
+            ->setCellValue('B3', $name)
+            ->setCellValue('C2','Filter Start ')
+            ->setCellValue('C3','Filter End ')
+            ->setCellValue('D2', $t_start)
+            ->setCellValue('D3', $t_end)
+            ->setCellValue('A4', 'NO')
+            ->setCellValue('B4', 'AGENT ID')
+            ->setCellValue('C4', 'AGENT NAME')
+            ->setCellValue('D4', 'SKILL')
+            ->setCellValue('E4', 'COF')
+            ->setCellValue('F4', 'ART')
+            ->setCellValue('G4', 'AHT')
+            ->setCellValue('H4', 'AST')
+            ->setCellValue('I4', 'SCR')
+            ;
+
+            $i=5; foreach($data as $datas) {
+
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $i-4)
+                ->setCellValue('B'.$i, $datas->AGENT_ID)
+                ->setCellValue('C'.$i, $datas->AGENT_NAME)
+                ->setCellValue('D'.$i, $datas->SKILL_NAME)
+                ->setCellValue('E'.$i, $datas->COF)
+                ->setCellValue('F'.$i, $datas->ART)
+                ->setCellValue('G'.$i, $datas->AHT)
+                ->setCellValue('H'.$i, $datas->AST)
+                ->setCellValue('I'.$i, $datas->SCR)
+                ;
+                $i++;
+            }
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$i);
+
+                $spreadsheet->getActiveSheet()->setTitle('SP Agent -  '.date('d-m-Y H'));
+                $spreadsheet->setActiveSheetIndex(0);
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename="SP Agent Report "'.date('d-m-Y H').'".xlsx"');
+                header('Cache-Control: max-age=0');
+                header('Cache-Control: max-age=1');
+                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                header('Cache-Control: cache, must-revalidate'); 
+                header('Pragma: public'); 
+                $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                $writer->save('php://output');
+                exit;
+        }
     }
 ?>
