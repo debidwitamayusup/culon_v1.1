@@ -139,6 +139,10 @@
             ->setKeywords('office 2007 openxml php')
             ->setCategory('result file');
 
+            if (!$tid){
+                $tid = 'All Tenant';
+            }
+
             $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1','Summary Performance Operation - '.$tid)
             ->setCellValue('A2','Export Time ')
