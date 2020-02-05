@@ -80,7 +80,7 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        $data->SCR.'%'
+                        round($data->SCR,2).'%'
                     );
                     $id++;
                 }
