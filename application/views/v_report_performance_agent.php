@@ -26,11 +26,11 @@
                                 <div class="col-sm-auto h6 mt-3">Layanan</div>
                                 <div class="col-sm-auto">
                                     <div class="form-group row">
-                                        <select class="form-control" id="channel_name">
-                                            <option value="ShowAll">Semua Layanan</option>
+                                        <select class="form-control" id="layanan_name">
+                                            <!-- <option value="ShowAll">Semua Layanan</option>
                                             <option value="1">Telkom Care</option>
                                             <option value="2">BRI</option>
-                                            <option value="3">Telkomsel</option>
+                                            <option value="3">Telkomsel</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                                 <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div><input class="form-control fc-datepicker" placeholder="Start Date"
-                                            type="text">
+                                            type="text" id="start-date">
                                     </div>
                                 </div>
                                 <div class="col-sm-auto h6 ml-1 mt-3">to</div>
@@ -53,7 +53,7 @@
                                                 <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div><input class="form-control fc-datepicker" placeholder="End Date"
-                                            type="text">
+                                            type="text" id="end-date">
                                     </div>
                                 </div>
                                 <div class="col-xs-auto ml-1">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-xs-auto ml-1">
                                     <button class="btn btn-sm btn-primary" type="button" style="height:35px"
-                                        id="btn-go"><i class="fas fa-download mr-2"></i>Export</button>
+                                        id="btn-export"><i class="fas fa-download mr-2"></i>Export</button>
 
                                 </div>
                             </div>
@@ -73,19 +73,19 @@
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <th class="wd-15p border-bottom-0">No</th>
-                                        <th class="wd-15p border-bottom-0">Agent ID</th>
-                                        <th class="wd-15p border-bottom-0">Agent Name</th>
-                                        <th class="wd-15p border-bottom-0">Skill</th>
-                                        <th class="wd-15p border-bottom-0">COF</th>
-                                        <th class="wd-15p border-bottom-0">ART</th>
-                                        <th class="wd-15p border-bottom-0">AHT</th>
-                                        <th class="wd-15p border-bottom-0">AST</th>
-                                        <th class="wd-15p border-bottom-0">SCR</th>
+                                        <td class="wd-15p border-bottom-0" width="20">No</td>
+                                        <td class="wd-15p border-bottom-0">Agent ID</td>
+                                        <td class="wd-15p border-bottom-0">Agent Name</td>
+                                        <td class="wd-15p border-bottom-0">Skill</td>
+                                        <td class="wd-15p border-bottom-0">COF</td>
+                                        <td class="wd-15p border-bottom-0">ART</td>
+                                        <td class="wd-15p border-bottom-0">AHT</td>
+                                        <td class="wd-15p border-bottom-0">AST</td>
+                                        <td class="wd-15p border-bottom-0">SCR</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-center">TD0025</td>
                                         <td class="text-center">Agent Name</td>
@@ -194,7 +194,7 @@
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">100%</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -204,4 +204,4 @@
             </div>
             <?php $this->load->view('temp/footer');?>
             <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-report-operation.js"></script>
+            <script src="<?=base_url()?>assets/public/js/app/app-report-agent-performance.js"></script>
