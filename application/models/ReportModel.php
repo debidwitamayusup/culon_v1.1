@@ -59,9 +59,9 @@ Class ReportModel extends CI_Model {
         if($mnth)
         {
             $this->db->where('MONTH(a.tanggal)',$mnth);
-            $this->db->where('YEAR(a.tanggal)',$year);
+            
         }
-
+        $this->db->where('YEAR(a.tanggal)',$year);
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
