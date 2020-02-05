@@ -188,7 +188,7 @@
                                  </div>
                              </div>
                              <div class="col-md-12 col-lg-5 col-xl-5">
-                                 <div class="card overflow-hidden">
+                                 <div class="card-pie overflow-hidden">
                                  <div id="legend1" class="legend-con"></div>
                                      <div class="card-body">
                                          <canvas id="pieChartReportSumChannel1"

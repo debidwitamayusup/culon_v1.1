@@ -17,10 +17,14 @@ var v_params_today= m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage('2020-01-24', '');
-    callIntervalTraffic('2020-01-24','', '');
-    callTableInterval('2020-01-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    getTenant('2020-01-24');
+    // callDataPercentage('2020-01-24', '');
+    // callIntervalTraffic('2020-01-24','', '');
+    // callTableInterval('2020-01-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    // getTenant('2020-01-24');
+    callDataPercentage(v_params_today, '');
+    callIntervalTraffic(v_params_today,'', '');
+    callTableInterval(v_params_today,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    getTenant(v_params_today);
     $("#filter-loader").fadeOut("slow");
 
     $('#check-all-channel').prop('checked',false);

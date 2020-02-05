@@ -16,7 +16,7 @@
 
 	<!--Bootstrap.min css-->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/css/bootstrap.min.css">
-
+	<!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/css/plugin/jquery-ui.css"> -->
 	<!--Font Awesome-->
 	<link href="<?php echo base_url();?>assets/css/fontawesome-free/css/all.css" rel="stylesheet"/>
 

@@ -35,7 +35,7 @@
 									<div id="filter-month" class="row mt-1 mr-0">
 										<div class="col-md-auto">
 											<select name="select-month" id="select-month" class="form-control form-control-sm">
-												<!-- <option value="1">January</option>
+												<option value="1">January</option>
 												<option value="2">February</option>
 												<option value="3">March</option>
 												<option value="4">April</option>
@@ -46,7 +46,7 @@
 												<option value="9">September</option>
 												<option value="10">October</option>
 												<option value="11">November</option>
-												<option value="12">December</option> -->
+												<option value="12">December</option>
 											</select>
 										</div>
 										<div>

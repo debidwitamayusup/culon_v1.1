@@ -424,7 +424,12 @@ Class WallboardModel extends CI_Model {
 	{
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summary_scr.cof as TOTAL');
+        if($tid){
+            $this->db->select('rpt_summary_scr.cof as TOTAL');
+        }else{
+            $this->db->select('SUM(rpt_summary_scr.cof) as TOTAL');
+        }
+		
         $this->db->from('rpt_summary_scr');
         if($params == 'day')
         {
@@ -614,7 +619,7 @@ Class WallboardModel extends CI_Model {
 
     function SummPerformOps_sub($date,$tenant_id)
     {
-
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
         $this->db->select('m_channel.channel_name , IFNULL(rpt_summary_scr.cof,0) as cof');
         $this->db->from('m_channel');
         $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');

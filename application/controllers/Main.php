@@ -326,6 +326,19 @@ class main extends CI_Controller {
 		$this->load->view('v_report_agent_summary');
 	}
 
+	public function report_performance_operation(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_performance_operation');
+	}
+
+	public function report_performance_agent(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_performance_agent');
+	}
 	public function report_detail_cwc(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
