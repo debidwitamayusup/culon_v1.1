@@ -146,7 +146,7 @@
             ->setCellValue('B2',date('d-m-Y H'))
             ->setCellValue('B3', $name)
             ->setCellValue('C2','Filter Month ')
-            ->setCellValue('C3',' Filter Channel ')
+            ->setCellValue('C3','Filter Channel ')
             ->setCellValue('D2', $mnth2)
             ->setCellValue('D3', $chn2)
             ->setCellValue('A4', 'NO')
