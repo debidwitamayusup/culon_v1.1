@@ -221,9 +221,9 @@
         public function EXPORTSPA_get()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_time'));
-            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->get('name'));
 
