@@ -678,3 +678,191 @@
             barChartWallSummary.resize();
         }
     });
+
+//Backup KIP Komplain Informasi Permintaan
+function drawChartSubCategory(response) {
+    //destroy div row content
+    $('#content-sub-category').remove(); // this is my <div> element
+    $('#chart-no-data').remove();
+    $('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
+    var color = [];
+    color[0] = "#A5B0B6";
+    color[1] = "#009E8C";
+    color[2] = "#00436D";
+    console.log(response);
+
+    var i = 0;
+    category_kip.forEach(function (value, index) {
+        $('#content-sub-category').append('' +
+            '<div class="col-lg-4 col-md-12">' +
+            '<div class="card">' +
+            '<div class="card-header-small bg-red">' +
+            '<h6 class="card-title-small card-pt10">' + value + '</h6>' +
+            '</div>' +
+            '<div class="card-body">' +
+            '<canvas id="horizontaklBarKomplain' + value + '" class="h-300"></canvas>' +
+            // '<canvas id="echart'+value+'" class="chartsh overflow-hidden"></canvas>'+
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '');
+        var label = [];
+        var label_lng = [];
+        var data = [];
+        response.data[i].forEach(function (value, index) {
+            label_lng.push(value.sub_category_lng);
+            label.push(value.sub_category_lng);
+            data.push(value.total_kip);
+        });
+        // draw chart
+        var chartdataInfo = [{
+            name: value,
+            type: 'bar',
+            stack: 'Stack',
+            data: data,
+            label_lng: label_lng
+        }];
+        var optionInfo = {
+            grid: {
+                top: '6',
+                right: '20',
+                bottom: '20',
+                left: '60',
+            },
+            xAxis: {
+                type: 'value',
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 9,
+                    color: '#7886a0'
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: label,
+                splitLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#efefff'
+                    }
+                },
+                axisLabel: {
+                    fontSize: 10,
+                    color: '#7886a0',
+                    // rotate:45,
+                    formatter: function (value, index) {
+                        if (/\s/.test(value)) {
+                            var teks = '';
+                            for (var i = 0; i < value.length; i++) {
+                                if (value[i] == " ") {
+                                    teks = teks + '\n';
+
+                                } else if (value[i] == "|") {
+                                    break;
+
+                                } else {
+                                    teks = teks + value[i];
+                                }
+                                if (i == 11) {
+                                    break;
+                                }
+                            }
+                            return teks;
+                        } else {
+                            return value;
+                        }
+                    }
+                },
+            },
+            series: chartdataInfo,
+            show: 'data',
+            // color: ["#A5B0B6"]
+            color: [color[i]],
+            // tooltip: {
+            //  callbacks: {
+            //             label: function(tooltipItem) {
+            //                 return tooltipItem.label_lng;
+            //             }
+            //         },
+            //  show: true,
+            //  showContent: true,
+            //  alwaysShowContent: false,
+            //  triggerOn: 'mousemove',
+            //  trigger: 'axis',
+            //  axisPointer: {
+            //      label: {
+            //          show: true,
+            //          color: '#7886a0',
+            //          formatter : function (){
+            //              return label_lng;
+            //          }
+            //      }
+            //  },
+            //  position: function (pos, params, dom, rect, size) {
+            //      // tooltip will be fixed on the right if mouse hovering on the left,
+            //      // and on the left if hovering on the right.
+            //      // console.log(pos);
+            //      var obj = {top: pos[0]};
+            //      obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+            //      return obj;
+            //  },
+            // },
+            tooltip: {
+                show: true,
+                showContent: true,
+                alwaysShowContent: false,
+                triggerOn: 'mousemove',
+                trigger: 'axis',
+                // formatter : function (){
+                //          return label_lng[index];
+                //      },
+                axisPointer: {
+                    label: {
+                        show: false,
+                        color: '#7886a0',
+                        formatter: function (label, index) {
+                            //var item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                            return label.value; //label_lng[data.index];
+                            // return label_lng[value[index]];
+                        }
+                    }
+                },
+                position: function (pos, params, dom, rect, size) {
+                    // tooltip will be fixed on the right if mouse hovering on the left,
+                    // and on the left if hovering on the right.
+                    // console.log(pos);
+                    var obj = {
+                        top: pos[0]
+                    };
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                    return obj;
+                },
+            },
+            callbacks: {
+                label: function (tooltipItem) {
+                    return tooltipItem.label_lng;
+                }
+            },
+        };
+
+        if (label.length == 0) {
+            // console.log("kosong")
+            $('#echart' + value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+        } else {
+            // console.log("masuk")
+            var chartInfo = document.getElementById('echart' + value);
+            var barChartInfo = echarts.init(chartInfo);
+            barChartInfo.setOption(optionInfo);
+        }
+
+        i++;
+    });
+}
