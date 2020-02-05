@@ -38,6 +38,7 @@ Class ReportModel extends CI_Model {
     public function get_datareportSPO($tid, $chn, $mnth,$meth)
     {
         $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         $this->db->select('a.tanggal as TANGGAL, 
         SUM(a.cof) as COF,
@@ -62,6 +63,7 @@ Class ReportModel extends CI_Model {
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
+
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
@@ -99,7 +101,8 @@ Class ReportModel extends CI_Model {
 
     public function get_datareportSPA($tid, $t_start,$t_end,$meth)
     {
-        $year = date('Y');
+        //$year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         $this->db->select('a.agentid as AGENT_ID,
         a.agentName as AGENT_NAME,
@@ -125,11 +128,12 @@ Class ReportModel extends CI_Model {
         {
             $this->db->where('a.tanggal <=',$t_end);
         }
-        $this->db->where('YEAR(a.tanggal)',$year);
+       // $this->db->where('YEAR(a.tanggal)',$year);
         $this->db->group_by('a.agentName');
         $query = $this->db->get();
 
-
+        // print_r($this->db->last_query());
+        // exit;
         if($query->num_rows() > 0)
         {
             if($meth == 'data')
@@ -156,10 +160,8 @@ Class ReportModel extends CI_Model {
             else
             {
                 return $query->result();
-            }
-            
+            }      
         }
-
         return false;
     }
 }
