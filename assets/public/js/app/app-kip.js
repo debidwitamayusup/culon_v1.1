@@ -890,4 +890,130 @@ function addCommas(commas) {
 	// 	// }]
 	// });
 
+	// horizontal bar chart komplain
+    var ctx = document.getElementById( "horizontaklBarKomplain" );
+    ctx.height = 100;
+    var myChart = new Chart( ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+            datasets: [
+                {
+                    label: "Total",
+                    data: [ 15000, 6000, 6000, 9000, 10000],
+                    borderColor: "#A5B0B6",
+                    borderWidth: "0",
+                    backgroundColor: "#A5B0B6"
+                            }
+                        ]
+        },
+        options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			layout: {
+					padding: {
+					left: 50,
+					right: 0,
+					top: 0,
+					bottom: 0
+				}
+			},
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true,
+						//padding:50,
+                    }
+                                } ]
+			},
+			legend:{
+				display:false
+			}
+        }
+	} );
+
+	// Horizontal Bar Chart Informasi
+	var ctx = document.getElementById( "horizontaklBarInformasi" );
+    ctx.height = 100;
+    var myChart = new Chart( ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+            datasets: [
+                {
+                    label: "Total",
+                    data: [ 15000, 6000, 6000, 9000, 10000],
+                    borderColor: "#009E8C",
+                    borderWidth: "0",
+                    backgroundColor: "#009E8C"
+                            }
+                        ]
+        },
+        options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			layout: {
+					padding: {
+					left: 50,
+					right: 0,
+					top: 0,
+					bottom: 0
+				}
+			},
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true,
+						//padding:50,
+                    }
+                                } ]
+			},
+			legend:{
+				display:false
+			}
+        }
+	} );
+
+	// Horizontal Bar Chart Permintaan
+	var ctx = document.getElementById( "horizontaklBarPermintaan" );
+    ctx.height = 100;
+    var myChart = new Chart( ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+            datasets: [
+                {
+                    label: "Total",
+                    data: [ 15000, 6000, 6000, 9000, 10000],
+                    borderColor: "#00436D",
+                    borderWidth: "0",
+                    backgroundColor: "#00436D"
+                            }
+                        ]
+        },
+        options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			layout: {
+					padding: {
+					left: 50,
+					right: 0,
+					top: 0,
+					bottom: 0
+				}
+			},
+            scales: {
+                yAxes: [ {
+                    ticks: {
+                        beginAtZero: true,
+						//padding:50,
+                    }
+                                } ]
+			},
+			legend:{
+				display:false
+			}
+        }
+	} );
+	
 })(jQuery);
