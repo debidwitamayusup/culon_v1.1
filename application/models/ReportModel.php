@@ -78,7 +78,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->TANGGAL,
-                        strval(number_format($data->COF,0,',','.')),
+                        strval(number_format($data->COF,0,'.',',')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
@@ -148,7 +148,7 @@ Class ReportModel extends CI_Model {
                         $data->AGENT_ID,
                         $data->AGENT_NAME,
                         $data->SKILL_NAME,
-                        strval(number_format($data->COF,0,',','.')),
+                        strval(number_format($data->COF,0,'.',',')),
                         $data->ART,
                         $data->AHT,
                         $data->AST,
