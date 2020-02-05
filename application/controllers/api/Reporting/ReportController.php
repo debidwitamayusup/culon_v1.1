@@ -41,6 +41,33 @@
             }
         }
 
+        public function ReportingSPO_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $mnth = $this->security->xss_clean($this->input->post('month'));
+            $meth = 'data';
+
+            //token
+            $res = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
         // Export ke excel
         public function EXPORTSC_get()
         {
@@ -96,9 +123,10 @@
             $tid = $this->security->xss_clean($this->input->get('tenant_id'));
             $chn = $this->security->xss_clean($this->input->get('channel_id'));
             $mnth = $this->security->xss_clean($this->input->get('month'));
+            $meth = 'excel';
             $name = $this->security->xss_clean($this->input->get('name'));
 
-            $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth);
+            $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
             $spreadsheet = new Spreadsheet();
 
             $spreadsheet->getProperties()->setCreator('INFOMEDIA')
