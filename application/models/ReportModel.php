@@ -76,11 +76,78 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->TANGGAL,
-                        $data->COF,
+                        strval(number_format($data->COF,0,',','.')),
+                        // $data->COF,
                         $data->ART,
                         $data->AHT,
                         $data->AST,
                         round($data->SCR,2).'%'
+                    );
+                    $id++;
+                }
+                
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }
+            
+        }
+
+        return false;
+    }
+
+    public function get_datareportSPA($tid, $t_start,$t_end,$meth)
+    {
+        $year = date('Y');
+
+        $this->db->select('a.agentid as AGENT_ID,
+        a.agentName as AGENT_NAME,
+        a.skill_name as SKILL_NAME, 
+        SUM(a.cof) as COF,
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
+        AVG(a.scr) as SCR');
+
+        $this->db->from('v_rpt_summ_agent a');
+        // $this->db->join('m_channel b','b.channel_id = a.channel_id');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+       
+        if($t_start)
+        {
+            $this->db->where('a.tanggal >=',$t_start);
+        }
+        if($t_end)
+        {
+            $this->db->where('a.tanggal <=',$t_end);
+        }
+        $this->db->where('YEAR(a.tanggal)',$year);
+        $this->db->group_by('a.agentName');
+        $query = $this->db->get();
+
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->AGENT_ID,
+                        $data->AGENT_NAME,
+                        $data->SKILL_NAME,
+                        $data->COF,
+                        $data->ART,
+                        $data->AHT,
+                        $data->AST,
+                        $data->SCR.'%'
                     );
                     $id++;
                 }
