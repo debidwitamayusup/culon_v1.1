@@ -47,13 +47,13 @@
             $data = $this->module_model->get_datareportSC();
             $spreadsheet = new Spreadsheet();
 
-            $spreadsheet->getProperties()->setCreator('Infomedoi')
-            ->setLastModifiedBy('infomedio')
-            ->setTitle('Office 2007 XLSX Test Document')
-            ->setSubject('Office 2007 XLSX Test Document')
-            ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+            ->setLastModifiedBy('INFOMEDIA')
+            ->setTitle('Office 2007 Test Document')
+            ->setSubject('Office 2007 Test Document')
+            ->setDescription(' document for Office 2007 XLSX, generated using PHP classes.')
             ->setKeywords('office 2007 openxml php')
-            ->setCategory('Test result file');
+            ->setCategory('result file');
 
             $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'NO')
@@ -76,10 +76,10 @@
                 ;
                 $i++;
             }
-                $spreadsheet->getActiveSheet()->setTitle('Report Excel '.date('d-m-Y H'));
+                $spreadsheet->getActiveSheet()->setTitle('Summary Channel - '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Report Excel.xlsx"');
+                header('Content-Disposition: attachment;filename="Summary Channel Report"'.date('d-m-Y H').'".xlsx"');
                 header('Cache-Control: max-age=0');
                 header('Cache-Control: max-age=1');
                 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
@@ -93,7 +93,12 @@
 
         public function EXPORTSPO_get()
         {
-            $data = $this->module_model->get_datareportSPO();
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->get('channel_id'));
+            $mnth = $this->security->xss_clean($this->input->get('month'));
+            $name = $this->security->xss_clean($this->input->get('name'));
+
+            $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth);
             $spreadsheet = new Spreadsheet();
 
             $spreadsheet->getProperties()->setCreator('INFOMEDIA')
@@ -105,19 +110,24 @@
             ->setCategory('result file');
 
             $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'NO')
-            ->setCellValue('B1', 'TANGGAL')
-            ->setCellValue('C1', 'COF')
-            ->setCellValue('D1', 'ART')
-            ->setCellValue('E1', 'AHT')
-            ->setCellValue('F1', 'AST')
-            ->setCellValue('G1', 'SCR')
+            ->setCellValue('A1','Summary Performance Operation - '.$tid)
+            ->setCellValue('A2','Export Time ')
+            ->setCellValue('A3','Export By ')
+            ->setCellValue('B2',date('d-m-Y H'))
+            ->setCellValue('B3', $name)
+            ->setCellValue('A4', 'NO')
+            ->setCellValue('B4', 'TANGGAL')
+            ->setCellValue('C4', 'COF')
+            ->setCellValue('D4', 'ART')
+            ->setCellValue('E4', 'AHT')
+            ->setCellValue('F4', 'AST')
+            ->setCellValue('G4', 'SCR')
             ;
 
-            $i=2; foreach($data as $datas) {
+            $i=5; foreach($data as $datas) {
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $i-1)
+                ->setCellValue('A'.$i, $i-4)
                 ->setCellValue('B'.$i, $datas->TANGGAL)
                 ->setCellValue('c'.$i, $datas->COF)
                 ->setCellValue('D'.$i, $datas->ART)
@@ -127,10 +137,12 @@
                 ;
                 $i++;
             }
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$i);
+
                 $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Report Excel.xlsx"');
+                header('Content-Disposition: attachment;filename="SP Operation Report "'.date('d-m-Y H').'".xlsx"');
                 header('Cache-Control: max-age=0');
                 header('Cache-Control: max-age=1');
                 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
