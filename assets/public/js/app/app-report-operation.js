@@ -4,12 +4,27 @@ var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
+var tenantFromFilter = '';
+var channelFromFilter = '';
+var monthFromFilter = '';
 if (o < 10) {
   o = '0' + o;
 } 
 if (n < 10) {
   n = '0' + n;
 }
+
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+];
+
+var channels = [
+    'Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook',
+    'Messenger', 'Twitter', '', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', '',
+    'Chat Bot'
+];
 
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
@@ -21,6 +36,14 @@ $(document).ready(function () {
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
+
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
+
+function channelToName(channel_id){
+    return channels[channel_id - 1] || '';
+}
 
 function getTenant(date){
     $.ajax({
@@ -51,6 +74,9 @@ function getTenant(date){
 }
 
 function drawTablePerformOps(tenant_id, channel_id, month){
+    // console.log(tenantFromFilter);
+    // console.log(channelFromFilter);
+    // console.log(monthFromFilter);
 	$('#tableOperation2').DataTable({
         // processing : true,
         // serverSide : true,
@@ -77,16 +103,23 @@ function drawTablePerformOps(tenant_id, channel_id, month){
 }
 
 function exportTablePerformOps(tenant_id, channel_id, month, name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
 }
 
 //jquery
 (function ($) {
     $('#btn-export').click(function(){
-        exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
+        // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
+        exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
     });
 
     $('#btn-go').click(function(){
+        tenantFromFilter = $('#layanan_name').val();
+        channelFromFilter = $('#channel_name').val();
+        monthFromFilter = $('#month_name').val();
+        
         drawTablePerformOps($('#layanan_name').val(), $('#channel_name').val(), $('#month_name').val());
     });
+
+    
 })(jQuery);
