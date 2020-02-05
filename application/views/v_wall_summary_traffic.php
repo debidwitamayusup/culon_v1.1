@@ -14,15 +14,16 @@
 									</li>
 								</ol>
 							</div>
-						</div>
-						<div class="d-flex bd-highlight">
-							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-							<div class="p-2 bd-highlight">
-								<select class="form-control" id="tenant_id">
-									<!-- <option value="#">Layanan</option> -->
-								</select>
+							<div class="d-flex bd-highlight">
+								<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+								<div class="p-2 bd-highlight">
+									<select class="form-control" id="tenant_id">
+										<!-- <option value="#">Layanan</option> -->
+									</select>
+								</div>
 							</div>
 						</div>
+
 					</div>
 					<!--Page Header-->
 					<!-- </div> -->
@@ -50,11 +51,12 @@
 									<h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
 								</div>
 								<!-- chart yang baru -->
-									<!-- <div class="card-body">
+								<!-- <div class="card-body">
 										<canvas id="horizontalBarWallSummary" width="600" height="392"></canvas>
 									</div> -->
 								<div class="card-body" id="echartWallSummaryTrafficDiv">
-									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden" style="width:100%"></div>
+									<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"
+										style="width:100%"></div>
 								</div>
 							</div>
 						</div>
