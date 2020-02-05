@@ -97,34 +97,36 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportSPA($tid, $chn, $mnth,$meth)
+    public function get_datareportSPA($tid, $t_start,$t_end,$meth)
     {
         $year = date('Y');
 
-        $this->db->select('a.tanggal as TANGGAL, 
+        $this->db->select('a.agentid as agent_id,
+        a.agentName as agent_name,
+        a.skill_name as skill_name, 
         SUM(a.cof) as COF,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
         AVG(a.scr) as SCR');
 
-        $this->db->from('rpt_summary_scr a');
+        $this->db->from('v_rpt_summ_agent a');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
             $this->db->where('a.tenant_id',$tid);
         }
-        if($chn)
+       
+        if($t_start)
         {
-            $this->db->where('a.channel_id',$chn);
+            $this->db->where('a.tanggal >=',$t_start);
         }
-        if($mnth)
+        if($t_end)
         {
-            $this->db->where('MONTH(a.tanggal)',$mnth);
-            
+            $this->db->where('a.tanggal <=',$t_end);
         }
         $this->db->where('YEAR(a.tanggal)',$year);
-        $this->db->group_by('a.tanggal');
+        $this->db->group_by('a.agent_name');
         $query = $this->db->get();
 
 
