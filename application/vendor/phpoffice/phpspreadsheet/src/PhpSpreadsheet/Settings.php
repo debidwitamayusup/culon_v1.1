@@ -30,12 +30,13 @@ class Settings
      *      7.2 < 7.2.1
      *      7.1 < 7.1.13
      *      7.0 < 7.0.27
+     *      5.6 ANY
      * then you may need to disable this check to prevent unwanted behaviour in other threads
      * SECURITY WARNING: Changing this flag is not recommended.
      *
      * @var bool
      */
-    private static $libXmlDisableEntityLoader = true;
+    private static $libXmlDisableEntityLoader = false;
 
     /**
      * The cache implementation to be used for cell collection.
@@ -121,6 +122,7 @@ class Settings
      *      7.2 < 7.2.1
      *      7.1 < 7.1.13
      *      7.0 < 7.0.27
+     *      5.6 ANY
      * then you may need to disable this check to prevent unwanted behaviour in other threads
      * SECURITY WARNING: Changing this flag to false is not recommended.
      *

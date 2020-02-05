@@ -5,26 +5,27 @@
         <div class=" app-content mt-6">
             <div class="side-app">
                 <div class="page-header d-flex p-2 bd-highlight">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
-                            <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
-                        </li>
-                        <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance Operation</li>
-                    </ol>
-                </div>
-                <!--Page Header-->
-            </div>
-            <div class="d-flex bd-highlight">
-                <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-                <div class="p-2 bd-highlight">
+                    <div class="flex-grow-1 bd-highlight">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+                            </li>
+                            <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance Operation
+                            </li>
+                        </ol>
+                    </div>
+                <!-- </div> -->
+                <div class="d-flex bd-highlight">
+                    <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+                    <div class="p-2 bd-highlight">
                         <select class="form-control" id="tenant_name">
                             <!-- <option value="#">Layanan</option> -->
                         </select>
+                    </div>
                 </div>
+                <!--Page Header-->
             </div>
-            <!-- <div class="d-flex flex-row bd-highlight">
-                
-            </div> -->
+
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
@@ -32,7 +33,8 @@
                             <h5 class="card-title-small card-pt10">Summary Performance Operation</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
+                            <table
+                                class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                                 style="font-size:9px; width:100%" id="tabelCOFByChannel">
                                 <thead class="text-center bg-head">
                                     <tr>
@@ -286,7 +288,8 @@
                             <h5 class="card-title-small card-pt10">Summary Status Ticket</h5>
                         </div>
                         <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
-                            <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10">
+                            <table
+                                class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10">
                                 <thead class="text-center bg-head">
                                     <tr>
                                         <td rowspan="2" class="font-weight-extrabold text-white">No</td>
