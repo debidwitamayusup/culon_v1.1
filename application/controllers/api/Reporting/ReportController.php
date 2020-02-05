@@ -41,23 +41,47 @@
             }
         }
 
+        public function ReportingSPO_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $mnth = $this->security->xss_clean($this->input->post('month'));
+            $meth = 'data';
+
+            //token
+            $res = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
         // Export ke excel
-        public function export_get()
+        public function EXPORTSC_get()
         {
             $data = $this->module_model->get_datareportSC();
-            // Create new Spreadsheet object
             $spreadsheet = new Spreadsheet();
 
-            // Set document properties
-            $spreadsheet->getProperties()->setCreator('Infomedoi')
-            ->setLastModifiedBy('infomedio')
-            ->setTitle('Office 2007 XLSX Test Document')
-            ->setSubject('Office 2007 XLSX Test Document')
-            ->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')
+            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+            ->setLastModifiedBy('INFOMEDIA')
+            ->setTitle('Office 2007 Test Document')
+            ->setSubject('Office 2007 Test Document')
+            ->setDescription(' document for Office 2007 XLSX, generated using PHP classes.')
             ->setKeywords('office 2007 openxml php')
-            ->setCategory('Test result file');
+            ->setCategory('result file');
 
-            // Add some data
             $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'NO')
             ->setCellValue('B1', 'NAMA CHANNEL')
@@ -67,45 +91,105 @@
             ->setCellValue('F1', 'TOTAL SESSION')
             ;
 
-            // Miscellaneous glyphs, UTF-8
             $i=2; foreach($data as $datas) {
 
-            $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A'.$i, $i-1)
-            ->setCellValue('B'.$i, $datas->CHANNEL_NAME)
-            ->setCellValue('c'.$i, $datas->MESSAGE_IN)
-            ->setCellValue('D'.$i, $datas->MESSAGE_OUT)
-            ->setCellValue('E'.$i, $datas->UNIQUE_CUSTOMER)
-            ->setCellValue('F'.$i, $datas->TOTAL_SESSION)
-            ;
-            $i++;
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $i-1)
+                ->setCellValue('B'.$i, $datas->CHANNEL_NAME)
+                ->setCellValue('c'.$i, $datas->MESSAGE_IN)
+                ->setCellValue('D'.$i, $datas->MESSAGE_OUT)
+                ->setCellValue('E'.$i, $datas->UNIQUE_CUSTOMER)
+                ->setCellValue('F'.$i, $datas->TOTAL_SESSION)
+                ;
+                $i++;
             }
-        
-
-            // Rename worksheet
-                $spreadsheet->getActiveSheet()->setTitle('Report Excel '.date('d-m-Y H'));
-
-                // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+                $spreadsheet->getActiveSheet()->setTitle('Summary Channel - '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
-
-                // Redirect output to a client’s web browser (Xlsx)
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Report Excel.xlsx"');
+                header('Content-Disposition: attachment;filename="Summary Channel Report"'.date('d-m-Y H').'".xlsx"');
                 header('Cache-Control: max-age=0');
-                // If you're serving to IE 9, then the following may be needed
                 header('Cache-Control: max-age=1');
-
-                // If you're serving to IE over SSL, then the following may be needed
-                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
-                header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-                header('Pragma: public'); // HTTP/1.0
-
+                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                header('Cache-Control: cache, must-revalidate'); 
+                header('Pragma: public'); 
                 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
                 $writer->save('php://output');
                 exit;
+        }
+
+        public function EXPORTSPO_get()
+        {
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->get('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $mnth = $this->security->xss_clean($this->input->get('month'));
+            $mnth2 = $this->security->xss_clean($this->input->get('month_name'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->get('name'));
+
+            $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
+            $spreadsheet = new Spreadsheet();
+
+            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+            ->setLastModifiedBy('INFOMEDIA')
+            ->setTitle('Office 2007 XLSX Document')
+            ->setSubject('Office 2007 XLSX Document')
+            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+            ->setKeywords('office 2007 openxml php')
+            ->setCategory('result file');
+
+            if (!$tid){
+                $tid = 'All Tenant';
             }
 
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1','Summary Performance Operation - '.$tid)
+            ->setCellValue('A2','Export Time ')
+            ->setCellValue('A3','Export By ')
+            ->setCellValue('B2',date('d-m-Y H'))
+            ->setCellValue('B3', $name)
+            ->setCellValue('C2','Filter Month ')
+            ->setCellValue('C3',' Filter Channel ')
+            ->setCellValue('D2', $mnth2)
+            ->setCellValue('D3', $chn2)
+            ->setCellValue('A4', 'NO')
+            ->setCellValue('B4', 'TANGGAL')
+            ->setCellValue('C4', 'COF')
+            ->setCellValue('D4', 'ART')
+            ->setCellValue('E4', 'AHT')
+            ->setCellValue('F4', 'AST')
+            ->setCellValue('G4', 'SCR')
+            ;
 
- }
+            $i=5; foreach($data as $datas) {
+
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $i-4)
+                ->setCellValue('B'.$i, $datas->TANGGAL)
+                ->setCellValue('c'.$i, $datas->COF)
+                ->setCellValue('D'.$i, $datas->ART)
+                ->setCellValue('E'.$i, $datas->AHT)
+                ->setCellValue('F'.$i, $datas->AST)
+                ->setCellValue('G'.$i, round($datas->SCR,2).'%')
+                ;
+                $i++;
+            }
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$i);
+
+                $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
+                $spreadsheet->setActiveSheetIndex(0);
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename="SP Operation Report "'.date('d-m-Y H').'".xlsx"');
+                header('Cache-Control: max-age=0');
+                header('Cache-Control: max-age=1');
+                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                header('Cache-Control: cache, must-revalidate'); 
+                header('Pragma: public'); 
+                $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                $writer->save('php://output');
+                exit;
+        }
+    }
 ?>

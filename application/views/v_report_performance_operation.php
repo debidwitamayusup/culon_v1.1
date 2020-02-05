@@ -27,10 +27,10 @@
                                 <div class="col-sm-auto">
                                     <div class="form-group row">
                                         <select class="form-control" id="layanan_name">
-                                            <option value="ShowAll">Semua Layanan</option>
-                                            <option value="1">Telkom Care</option>
-                                            <option value="2">BRI</option>
-                                            <option value="3">Telkomsel</option>
+                                            <!-- <option value="">Semua Layanan</option>
+                                            <option value="oct_telkomcare">Telkom Care</option>
+                                            <option value="oct_bri">BRI</option>
+                                            <option value="oct_telkomsel">Telkomsel</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -38,20 +38,20 @@
                                 <div class="col-sm-auto">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
-                                            <option value="ShowAll">All Channel</option>
-                                            <option value="1">Whatsapp</option>
-                                            <option value="2">Facebook</option>
-                                            <option value="3">Twitter</option>
-                                            <option value="4">Twitter DM</option>
-                                            <option value="5">Instagram</option>
-                                            <option value="6">Messenger</option>
-                                            <option value="7">Telegram</option>
-                                            <option value="8">Line</option>
-                                            <option value="9">Email</option>
-                                            <option value="10">Voice</option>
-                                            <option value="11">Live Chat</option>
-                                            <option value="12">SMS</option>
-                                            <option value="13">Chatbot</option>
+                                            <option value="">All Channel</option>
+                                            <option value="12">Whatsapp</option>
+                                            <option value="6">Facebook</option>
+                                            <option value="8">Twitter</option>
+                                            <option value="13">Twitter DM</option>
+                                            <option value="11">Instagram</option>
+                                            <option value="7">Messenger</option>
+                                            <option value="5">Telegram</option>
+                                            <option value="10">Line</option>
+                                            <option value="2">Email</option>
+                                            <option value="1">Voice</option>
+                                            <option value="3">Live Chat</option>
+                                            <option value="4">SMS</option>
+                                            <option value="15">Chatbot</option>
                                         </select>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="col-sm-auto">
                                     <div class="form-group row">
                                         <select class="form-control" id="month_name">
-                                            <option value="ShowAll">Select Month</option>
+                                            <option value="">All Month</option>
                                             <option value="1">January</option>
                                             <option value="2">February</option>
                                             <option value="3">March</option>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-auto ml-1">
-                                    <button class="btn btn-sm btn-dark" type="button" style="height:35px"><i
+                                    <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
                                             class="fas fa-filter"></i></button>
 
                                 </div>
@@ -102,7 +102,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-center">2020-01-01</td>
                                         <td class="text-right">200</td>
@@ -191,7 +191,7 @@
                                         <td class="text-center">00:00:00</td>
                                         <td class="text-center">00:00:00</td>
                                         <td class="text-center">100%</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
