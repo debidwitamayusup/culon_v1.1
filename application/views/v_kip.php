@@ -109,10 +109,6 @@
                         <div class="card-body" id="horizontalBarKIPDiv">
                             <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
                         </div>
-
-                        <!-- <div class="card-body" id="content-chart-kip">
-                            <div id="echartKIP"></div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -127,6 +123,10 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- chart baru -->
+                            <!-- <div class="card-body">
+                                <canvas id="horizontaklBarKomplain" class="h-300"></canvas>
+                            </div> -->
                             <div id="row-sub-category">
                                 <div class="row" id="content-sub-category">
                                 </div>
