@@ -35,7 +35,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportSPO( $tid, $chn, $mnth)
+    public function get_datareportSPO($tid, $chn, $mnth,$meth)
     {
         $year = date('Y');
 
@@ -65,9 +65,33 @@ Class ReportModel extends CI_Model {
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
+
         if($query->num_rows() > 0)
         {
-            return $query->result();
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->TANGGAL,
+                        $data->COF,
+                        $data->ART,
+                        $data->AHT,
+                        $data->AST,
+                        $data->SCR.'%'
+                    );
+                    $id++;
+                }
+                
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }
+            
         }
 
         return false;
