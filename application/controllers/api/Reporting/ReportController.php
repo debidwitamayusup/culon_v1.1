@@ -13,6 +13,75 @@
             $this->load->model('ReportModel', 'module_model');
         }
 
+        function ss_formatter($src)
+        {
+            if($src =='header') {
+            $result = [
+                'font' => [
+                    'bold' => true,
+                    'color' => [
+                        'argb' => 'FFFFFF',
+                    ]
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                ],
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    ],
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => [
+                        'argb' => '777777',
+                    ]
+                    
+                ],
+            ];
+            }
+            else if($src =='body')
+            {
+                $result = [
+                   
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        ],
+                    ],
+                    
+                ];
+            }
+            else if($src == 'title')
+            {
+                $result = [
+                    'font' => [
+                        'bold' => true,
+                        'size' => 16
+                    ],
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    ],
+                    
+                ];
+            }
+            else if($src == 'subtitle')
+            {
+                $result = [
+                    'font' => [
+                        'bold' => true,
+                        'size' => 12
+                    ],
+                    'alignment' => [
+                        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                    ],
+                    
+                ];
+            }
+
+            return $result;
+        }
+        
         public function ReportingSC_post()
         {
 
@@ -144,6 +213,8 @@
                 exit;
         }
 
+      
+
         public function EXPORTSPO_get()
         {
             $tid = $this->security->xss_clean($this->input->get('tenant_id'));
@@ -188,12 +259,20 @@
             ->setCellValue('G4', 'SCR')
             ;
 
-            $i=5; foreach($data as $datas) {
+            $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('A4:G4')->applyFromArray($this->ss_formatter('header'));
+
+
+            $i=5; 
+            foreach($data as $datas) {
 
                 $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A'.$i, $i-4)
                 ->setCellValue('B'.$i, $datas->TANGGAL)
-                ->setCellValue('c'.$i, $datas->COF)
+                ->setCellValue('c'.$i, strval(number_format($datas->COF,0,',','.')))
                 ->setCellValue('D'.$i, $datas->ART)
                 ->setCellValue('E'.$i, $datas->AHT)
                 ->setCellValue('F'.$i, $datas->AST)
@@ -201,7 +280,18 @@
                 ;
                 $i++;
             }
-                $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$i);
+            $x = $i-1;
+                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+
+                $spreadsheet->getActiveSheet()->getStyle('A5:G'.$x)->applyFromArray($this->ss_formatter('body'));
+
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$x);
 
                 $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
@@ -263,6 +353,12 @@
             ->setCellValue('I4', 'SCR')
             ;
 
+            $spreadsheet->getActiveSheet()->mergeCells('A1:I1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
+
             $i=5; foreach($data as $datas) {
 
                 $spreadsheet->setActiveSheetIndex(0)
@@ -270,15 +366,28 @@
                 ->setCellValue('B'.$i, $datas->AGENT_ID)
                 ->setCellValue('C'.$i, $datas->AGENT_NAME)
                 ->setCellValue('D'.$i, $datas->SKILL_NAME)
-                ->setCellValue('E'.$i, $datas->COF)
+                ->setCellValue('E'.$i, strval(number_format($datas->COF,0,',','.')))
                 ->setCellValue('F'.$i, $datas->ART)
                 ->setCellValue('G'.$i, $datas->AHT)
                 ->setCellValue('H'.$i, $datas->AST)
-                ->setCellValue('I'.$i, $datas->SCR)
+                ->setCellValue('I'.$i, round($datas->SCR,2).'%')
                 ;
                 $i++;
             }
-                $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$i);
+            $x = $i-1;
+                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+
+                $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
+               
 
                 $spreadsheet->getActiveSheet()->setTitle('SP Agent -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
