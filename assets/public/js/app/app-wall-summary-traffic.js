@@ -128,7 +128,7 @@ function callSumPerTenant(params, index, params_year, tenant_id){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            console.log(response);
+            // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},900000);
             drawChartPerTenant(response);
@@ -173,7 +173,9 @@ function callIntervalTraffic(params, index, params_year, channel, tenant_id){
 }
 
 function drawPieChartSumAllTenant(response){
-    //pie chart Ticket Channel
+    $('#pieWallSummaryTraffic').remove();
+    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
+
     var ctx = document.getElementById("pieWallSummaryTraffic");
     ctx.height = 250;
     var myChart = new Chart(ctx, {
@@ -358,6 +360,8 @@ function drawPieChartSumAllTenant(response){
 
 function drawChartPerTenant(response){
     // destroyHorizontalChart();
+    $('#echartWallSummaryTraffic').remove(); // this is my <canvas> element
+    $('#echartWallSummaryTrafficDiv').append('<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>');
     let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot=[];
 
     response.data.forEach(function (value, index) {
@@ -556,7 +560,7 @@ function drawChartPerTenant(response){
         series: chartWallSummary,
         color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
     };
-    var chartWallSummary = document.getElementById('horizontalBarWallSummary');
+    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
     barChartWallSummary.setOption(optionWallSummary);
 }
