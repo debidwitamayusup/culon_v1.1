@@ -33,21 +33,21 @@
                                              <div class="col-sm-auto h6 mt-3">Channel</div>
                                              <div class="col-sm-auto">
                                                  <div class="form-group row">
-                                                     <select class="form-control" id="agent_name">
-                                                         <option value="ShowAll">All Channel</option>
-                                                         <option value="1">Whatsapp</option>
-                                                         <option value="2">Facebook</option>
-                                                         <option value="3">Twitter</option>
-                                                         <option value="4">Instagram</option>
-                                                         <option value="5">Twitter DM</option>
-                                                         <option value="6">Messenger</option>
-                                                         <option value="7">Telegram</option>
-                                                         <option value="8">Line</option>
-                                                         <option value="9">Email</option>
-                                                         <option value="10">Voice</option>
-                                                         <option value="11">Live Chat</option>
-                                                         <option value="12">SMS</option>
-                                                         <option value="13">Chatbot</option>
+                                                     <select class="form-control" id="channelName">
+                                                         <option value="">All Channel</option>
+                                                         <option value="12">Whatsapp</option>
+                                                         <option value="6">Facebook</option>
+                                                         <option value="8">Twitter</option>
+                                                         <option value="11">Instagram</option>
+                                                         <option value="13">Twitter DM</option>
+                                                         <option value="7">Messenger</option>
+                                                         <option value="5">Telegram</option>
+                                                         <option value="10">Line</option>
+                                                         <option value="2">Email</option>
+                                                         <option value="1">Voice</option>
+                                                         <option value="3">Live Chat</option>
+                                                         <option value="4">SMS</option>
+                                                         <option value="15">Chatbot</option>
                                                      </select>
                                                  </div>
                                              </div>
