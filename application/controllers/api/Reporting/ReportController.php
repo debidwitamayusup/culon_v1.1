@@ -171,10 +171,13 @@
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->post('name'));
             $chart = $this->security->xss_clean($this->input->post('chart_img'));
-            $imageData = base64_decode($chart);
+            $imageData = base64_decode(substr($chart,22));
             $chart_img = imagecreatefromstring($imageData);
+            $gdImage = @imagecreatetruecolor(120, 20) or die('Cannot Initialize new GD image stream');
+            $textColor = imagecolorallocate($gdImage, 255, 255, 255);
+            imagestring($gdImage, 1, 5, 5,  'Created with PhpSpreadsheet', $textColor);
 
-            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
             $drawing->setName('Chart');
             $drawing->setDescription('Chart');
             $drawing->setCoordinates('H2');
@@ -184,7 +187,7 @@
             $drawing->setHeight(36);
 
 
-            $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end);
+            $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
