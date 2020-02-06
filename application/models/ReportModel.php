@@ -8,30 +8,63 @@ Class ReportModel extends CI_Model {
         parent::__construct();
     }
 
-    public function get_datareportSC()
+    public function get_datareportSC($chn,$t_start,$t_end,$meth)
     {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-        $this->db->select('b.channel_name as CHANNEL_NAME, SUM(a.msg_in) as MESSAGE_IN, SUM(a.msg_out) as MESSAGE_OUT, SUM(a.unik) as UNIQUE_CUSTOMER, sum(a.cof) as TOTAL_SESSION');
+        $this->db->select('b.channel_name as CHANNEL_NAME, 
+        SUM(a.msg_in) as MESSAGE_IN, 
+        SUM(a.msg_out) as MESSAGE_OUT, 
+        SUM(a.unik) as UNIQUE_CUSTOMER, 
+        SUM(a.cof) as TOTAL_SESSION');
         $this->db->from('rpt_summary_scr a');
         $this->db->join('m_channel b','b.channel_id = a.channel_id');
+
         if($tid)
         {
             $this->db->where('a.tenant_id',$tid);
         }
+        if($tid)
+        {
+            $this->db->where('a.channel_id',$tid);
+        }
+        if($t_start)
+        {
+            $this->db->where('a.tanggal >=',$t_start);
+        }
+        if($t_end)
+        {
+            $this->db->where('a.tanggal <=',$t_end);
+        }
+
         $this->db->group_by('b.channel_name');
         $query = $this->db->get();
 
-        if($query->num_rows() > 0)
+       if($query->num_rows() > 0)
         {
-
-            return $query->result();
-            // foreach($query->result() as $data)
-            // {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->CHANNEL_NAME,
+                        $data->MESSAGE_IN,
+                        $data->MESSAGE_OUT,
+                        $data->UNIQUE_CUSTOMER,
+                        strval(number_format($data->TOTAL_SESSION,0,'.',','))
+                    );
+                    $id++;
+                }
                 
-            // }
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }      
         }
-
         return false;
     }
 
