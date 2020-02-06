@@ -1,3 +1,65 @@
+var base_url = $('#base_url').val();
+var v_params_tenant = 'oct_telkomcare';
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+var tenantFromFilter = '';
+var v_start_date = '';
+var v_end_date = '';
+var tenants = [];
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+var v_params_today= m + '-' + n + '-' + (o);
+var startDateFromFilter = v_params_today;
+var endDateFromFilter = v_params_today;
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+
+$(document).ready(function () {
+    getTenant('')
+    $('#start-date').datepicker("setDate", v_params_today);
+    $('#end-date').datepicker("setDate", v_params_today);
+    startDateFromFilter = v_params_today;
+    endDateFromFilter = v_params_today;
+    drawTableAgentPerform(v_params_tenant,v_params_today,v_params_today);
+    // $('#tableOperation2').dataTable();
+    // callTablePerformOps(v_params_tenant, '', n);
+});
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
+            // var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                }
+                $('#tenant-id').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
 $(function($){
     $('#tableReportSumChannel').dataTable();
 
