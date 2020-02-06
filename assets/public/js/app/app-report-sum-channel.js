@@ -114,18 +114,62 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
         //     alert("error");
         // },
     // });
-    const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
+    // const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
+    // const data = {
+    //     tenant_id : tenant_id,
+    //     start_time: start_time,
+    //     end_time: end_time,
+    //     name: name,
+    //     chart_img: baseImg
+    // }
+    //  $.post({
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTSC',
+    //     data: {
+    //         "tenant_id" : tenant_id,
+    //         "start_time": start_time,
+    //         "end_time": end_time,
+    //         "name": name,
+    //         "chart_img": baseImg
+    //     }
+    //  });
+    // $.post(Url,data, function(data, status){
+    //     // console.log(`${data} and status is ${status}`)
+    //     // window.location = Url
+    // });
+    const Http = new XMLHttpRequest();
+    const url=base_url + 'api/Reporting/ReportController/EXPORTSC';
     const data = {
-        tenant_id : tenant_id,
-        start_time: start_time,
-        end_time: end_time,
-        name: name,
-        chart_img: baseImg
-    }
+            tenant_id : tenant_id,
+            start_time: start_time,
+            end_time: end_time,
+            name: name,
+            chart_img: baseImg
+        }
+    Http.open("POST", url, data);
+    Http.send();
 
-    $.post(Url,data, function(data, status){
-        console.log(`${data} and status is ${status}`)
-    });
+    // Http.onreadystatechange = (e) => {
+    // console.log(Http.responseText)
+    // var postData = { checkOne:  tenant_id, start_time, end_time, baseImg};
+    // $.ajax({
+    //     type: "POST",
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTSC',
+    //     data: postData,
+    //     success: function (data) {
+    //         SuccessMessage("file download will start in few second..");
+    //         var url = base_url + 'api/Reporting/ReportController/EXPORTSC?data=' + data;
+    //         window.location = url;
+    //     },
+       
+    //     traditional: true,
+    //     error: function (xhr, status, p3, p4) {
+    //         var err = "Error " + " " + status + " " + p3 + " " + p4;
+    //         if (xhr.responseText && xhr.responseText[0] == "{")
+    //             err = JSON.parse(xhr.responseText).Message;
+    //         ErrorMessage(err);
+    //     }
+    // });
+    
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
@@ -239,6 +283,7 @@ function drawPieChartSumChannel(response){
     var myLegendContainer1 = document.getElementById("legend1");
     myLegendContainer1.innerHTML = myChart1.generateLegend();
 
+    //generate chart to base 64 image
     function done(){
         baseImg = myChart1.toBase64Image();
     }
