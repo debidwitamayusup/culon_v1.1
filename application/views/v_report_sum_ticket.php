@@ -80,7 +80,6 @@
                                                      </select>
                                                  </div>
                                              </div>
-
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-dark" type="button" style="height:35px"
                                                      id="btn-go"><i class="fas fa-filter"></i></button>
@@ -88,7 +87,7 @@
                                              </div>
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-primary" type="button"
-                                                     style="height:35px" id="btn-go"><i
+                                                     style="height:35px" id="btn-export"><i
                                                          class="fas fa-download mr-2"></i>Export</button>
 
                                              </div>

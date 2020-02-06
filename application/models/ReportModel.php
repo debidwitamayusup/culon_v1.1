@@ -148,7 +148,6 @@ Class ReportModel extends CI_Model {
         {
             $this->db->where('a.tenant_id',$tid);
         }
-       
         if($t_start)
         {
             $this->db->where('a.tanggal >=',$t_start);

@@ -85,9 +85,9 @@
         public function ReportingSC_post()
         {
 
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $meth = 'data';
             //token
             $res = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
@@ -103,7 +103,7 @@
                 $this->response([
                     'status'  => FALSE,
                     'message' => 'Not Found!',
-                    'data'    => 'EMPTY'
+                    'data'    => array()
                         ], REST_Controller::HTTP_OK);
             }
         }
@@ -161,17 +161,33 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
-        
+
         // Export ke excel
-        public function EXPORTSC_get()
+        public function EXPORTSC_post()
         {
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $name = $this->security->xss_clean($this->input->post('name'));
+            $chart = $this->security->xss_clean($this->input->post('chart_img'));
+            $imageData = base64_decode(substr($chart,22));
+            $chart_img = imagecreatefromstring($imageData);
+            $gdImage = @imagecreatetruecolor(120, 20) or die('Cannot Initialize new GD image stream');
+            $textColor = imagecolorallocate($gdImage, 255, 255, 255);
+            imagestring($gdImage, 1, 5, 5,  'Created with PhpSpreadsheet', $textColor);
 
-            $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end);
+            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+            $drawing->setName('Chart');
+            $drawing->setDescription('Chart');
+            $drawing->setCoordinates('H2');
+            $drawing->setImageResource($chart_img);
+            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_JPEG);
+            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
+            $drawing->setHeight(36);
+
+
+            $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
@@ -198,11 +214,14 @@
             ->setCellValue('D3', $t_end)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'CHANNEL_NAME')
-            ->setCellValue('C4', 'MESSAGE IN')
-            ->setCellValue('D4', 'MESSAGE OUT')
-            ->setCellValue('E4', 'UNIQUE CUSTOMER')
-            ->setCellValue('F4', 'TOTAL SESSION')
+            ->setCellValue('C4', 'UNIQUE CUSTOMER')
+            ->setCellValue('D4', 'TOTAL SESSION')
+            ->setCellValue('E4', 'MESSAGE IN')
+            ->setCellValue('F4', 'MESSAGE OUT')
             ;
+
+            $drawing->setWorksheet($spreadsheet->getActiveSheet());
+            
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
