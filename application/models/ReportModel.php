@@ -8,25 +8,20 @@ Class ReportModel extends CI_Model {
         parent::__construct();
     }
 
-    public function get_datareportSC($chn,$t_start,$t_end,$meth)
+    public function get_datareportSC($tid,$t_start,$t_end,$meth)
     {
-        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-
         $this->db->select('b.channel_name as CHANNEL_NAME, 
-        SUM(a.msg_in) as MESSAGE_IN, 
-        SUM(a.msg_out) as MESSAGE_OUT, 
         SUM(a.unik) as UNIQUE_CUSTOMER, 
-        SUM(a.cof) as TOTAL_SESSION');
+        SUM(a.cof) as TOTAL_SESSION,
+        SUM(a.msg_in) as MESSAGE_IN, 
+        SUM(a.msg_out) as MESSAGE_OUT
+        ');
         $this->db->from('rpt_summary_scr a');
         $this->db->join('m_channel b','b.channel_id = a.channel_id');
 
         if($tid)
         {
             $this->db->where('a.tenant_id',$tid);
-        }
-        if($tid)
-        {
-            $this->db->where('a.channel_id',$tid);
         }
         if($t_start)
         {
@@ -50,10 +45,10 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->CHANNEL_NAME,
-                        $data->MESSAGE_IN,
-                        $data->MESSAGE_OUT,
                         $data->UNIQUE_CUSTOMER,
-                        strval(number_format($data->TOTAL_SESSION,0,'.',','))
+                        strval(number_format($data->TOTAL_SESSION,0,',','.')),
+                        $data->MESSAGE_IN,
+                        $data->MESSAGE_OUT
                     );
                     $id++;
                 }
@@ -111,7 +106,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->TANGGAL,
-                        strval(number_format($data->COF,0,'.',',')),
+                        strval(number_format($data->COF,0,',','.')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
@@ -181,7 +176,7 @@ Class ReportModel extends CI_Model {
                         $data->AGENT_ID,
                         $data->AGENT_NAME,
                         $data->SKILL_NAME,
-                        strval(number_format($data->COF,0,'.',',')),
+                        strval(number_format($data->COF,0,',','.')),
                         $data->ART,
                         $data->AHT,
                         $data->AST,
