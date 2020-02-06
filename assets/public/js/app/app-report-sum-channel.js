@@ -93,24 +93,37 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
 
 function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTSC',
-        data: {
-            "tenant_id" : tenant_id,
-            "start_time": start_time,
-            "end_time": end_time,
-            "name": name,
-            "chart_img": baseImg
-        },
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTSC',
+    //     data: {
+    //         "tenant_id" : tenant_id,
+    //         "start_time": start_time,
+    //         "end_time": end_time,
+    //         "name": name,
+    //         "chart_img": baseImg
+    //     }
+        // ,
 
-        success: function (r) {
-            alert("exported")
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("error");
-        },
+        // success: function (r) {
+        //     alert("exported")
+        // },
+        // error: function (r) {
+        //     //console.log(r);
+        //     alert("error");
+        // },
+    // });
+    const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
+    const data = {
+        tenant_id : tenant_id,
+        start_time: start_time,
+        end_time: end_time,
+        name: name,
+        chart_img: baseImg
+    }
+
+    $.post(Url,data, function(data, status){
+        console.log(`${data} and status is ${status}`)
     });
 }
 
