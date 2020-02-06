@@ -161,15 +161,28 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
-        
+
         // Export ke excel
-        public function EXPORTSC_get()
+        public function EXPORTSC_post()
         {
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $name = $this->security->xss_clean($this->input->post('name'));
+            $chart = $this->security->xss_clean($this->input->post('chart_img'));
+            $imageData = base64_decode($chart);
+            $chart_img = imagecreatefromstring($imageData);
+
+            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+            $drawing->setName('Chart');
+            $drawing->setDescription('Chart');
+            $drawing->setCoordinates('H2');
+            $drawing->setImageResource($chart_img);
+            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_JPEG);
+            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
+            $drawing->setHeight(36);
+
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
@@ -203,6 +216,9 @@
             ->setCellValue('E4', 'MESSAGE IN')
             ->setCellValue('F4', 'MESSAGE OUT')
             ;
+
+            $drawing->setWorksheet($spreadsheet->getActiveSheet());
+            
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
