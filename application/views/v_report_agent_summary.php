@@ -96,7 +96,7 @@
                                         <td class="border-bottom-0">Chatbot</td>
                                         <td class="border-bottom-0">Live Chat</td>
                                         <td class="border-bottom-0">WA</td>
-                                        <td class="border-bottom-0">Total Session</td>
+                                        <td class="border-bottom-0">Total Create</td>
                                         <td class="border-bottom-0">AHT</td>
                                         <td class="border-bottom-0">Total Handling</td>
                                     </tr>
