@@ -88,10 +88,9 @@
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $chn = $this->security->xss_clean($this->input->post('channel'));
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSC($chn,$t_start,$t_end,$meth);
+            $res = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
     
             if ($res) {
                 $this->response([
@@ -99,7 +98,7 @@
                     'message' => 'Data available!',
                     'data'    => $res
                         ], REST_Controller::HTTP_OK);
-            }
+                    }
             else {
                 $this->response([
                     'status'  => FALSE,
@@ -165,13 +164,13 @@
         // Export ke excel
         public function EXPORTSC_get()
         {
-            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->get('name'));
 
-            $data = $this->module_model->get_datareportSC($chn,$t_start,$t_end);
+            $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end);
             $spreadsheet = new Spreadsheet();
 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
@@ -217,10 +216,10 @@
                 $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A'.$i, $i-4)
                 ->setCellValue('B'.$i, $datas->CHANNEL_NAME)
-                ->setCellValue('D'.$i, $datas->MESSAGE_IN)
-                ->setCellValue('E'.$i, $datas->MESSAGE_OUT)
-                ->setCellValue('F'.$i, $datas->UNIQUE_CUSTOMER)
-                ->setCellValue('c'.$i, strval(number_format($datas->TOTAL_SESSION,0,',','.')))
+                ->setCellValue('C'.$i, $datas->UNIQUE_CUSTOMER)
+                ->setCellValue('D'.$i, strval(number_format($datas->TOTAL_SESSION,0,',','.')))
+                ->setCellValue('E'.$i, $datas->MESSAGE_IN)
+                ->setCellValue('F'.$i, $datas->MESSAGE_OUT)
                 ;
                 $i++;
             }
