@@ -29,7 +29,7 @@
                                          <div class="row">
                                              <div class="col-sm-auto">
                                                  <div class="form-group row">
-                                                     <select class="form-control" id="tenant-id">
+                                                     <select class="form-control" id="tenant-id" style="width:130px">
                                                          <!-- <option value="">All Channel</option>
                                                         <option value="12">Whatsapp</option>
                                                         <option value="6">Facebook</option>
@@ -48,7 +48,7 @@
                                                  </div>
                                              </div>
                                              <div class="col-xs-auto ml-1">
-                                                 <div class="input-group" style="width:130px">
+                                                 <div class="input-group" style="width:140px">
                                                      <div class="input-group-prepend">
                                                          <div class="input-group-text">
                                                              <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -58,7 +58,7 @@
                                                  </div>
                                              </div>
                                              <div class="col-xs-auto ml-1">
-                                                 <div class="input-group" style="width:130px">
+                                                 <div class="input-group" style="width:140px">
                                                      <div class="input-group-prepend">
                                                          <div class="input-group-text">
                                                              <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -82,14 +82,15 @@
                                      </div>
                                      <div class="table-responsive" style="padding:10px 15px 10px 15px;">
                                          <table id="tableSumChannel"
-                                             class="table table-striped table-bordered fontNunito10">
+                                             class="table table-striped table-bordered fontNunito11" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                     <td>Channel</td>
-                                                     <td>Message In</td>
-                                                     <td>Message Out</td>
-                                                     <td>Unique Customers</td>
-                                                     <td>Total Sessions</td>
+                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
+                                                     <td class="wd-15p border-bottom-0">Channel</td>
+                                                     <td class="wd-15p border-bottom-0">Unique Customers</td>
+                                                     <td class="wd-15p border-bottom-0">Total Sessions</td>
+                                                     <td class="wd-15p border-bottom-0">Message In</td>
+                                                     <td class="wd-15p border-bottom-0">Message Out</td>
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
@@ -99,22 +100,14 @@
                                      </div>
                                  </div>
                              </div>
-                             <!-- <div class="col-md-12 col-lg-5 col-xl-5">
-                                 <div class="card-pie overflow-hidden">
+                             <div class="col-md-12 col-lg-5 col-xl-5">
+                                 <div class="card overflow-hidden">
                                      <div id="legend1" class="legend-con"></div>
-                                     <div class="card-body">
+                                     <div class="card-body mb-2" id="pieChartReportSumChannelDiv">
                                          <canvas id="pieChartReportSumChannel1"
                                              class="donutShadow overflow-hidden"></canvas>
                                      </div>
-                                 </div>
-                             </div> -->
-                             <div class="col-md-12 col-lg-5 col-xl-5">
-                                 <div class="card overflow-hidden">
-                                 <div id="legend1" class="legend-con"></div>
-                                     <div class="card-body">
-                                     <canvas id="pieChartReportSumChannel1"
-                                             class="donutShadow overflow-hidden"></canvas>
-                                     </div>
+
                                  </div>
                              </div>
                          </div>
@@ -122,7 +115,6 @@
                      </div>
                  </div>
              </div>
-
              <?php $this->load->view('temp/footer');?>
              <!--Plugin -->
              <script src="<?=base_url()?>assets/public/js/app/app-report-sum-channel.js"></script>
