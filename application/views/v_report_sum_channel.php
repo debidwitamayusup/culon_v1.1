@@ -84,11 +84,12 @@
                                          <table id="tableSumChannel" class="table table-striped table-bordered fontStyle1">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                     <td>Channel</td>
-                                                     <td>Message In</td>
-                                                     <td>Message Out</td>
-                                                     <td>Unique Customers</td>
-                                                     <td>Total Sessions</td>
+                                                    <td class="wd-15p border-bottom-0" width="20">No</td>
+                                                    <td class="wd-15p border-bottom-0">Channel</td>
+                                                    <td class="wd-15p border-bottom-0">Unique Customers</td>
+                                                    <td class="wd-15p border-bottom-0">Total Sessions</td>
+                                                    <td class="wd-15p border-bottom-0">Message In</td>
+                                                    <td class="wd-15p border-bottom-0">Message Out</td>
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
