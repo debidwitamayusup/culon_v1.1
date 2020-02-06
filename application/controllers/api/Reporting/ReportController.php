@@ -268,7 +268,6 @@
                 header('Pragma: public'); 
                 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
                 $writer->save('php://output');
-                exit;
         }
 
         public function EXPORTSPO_get()

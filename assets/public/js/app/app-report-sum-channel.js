@@ -94,26 +94,26 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
 
 function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
-    // $.ajax({
-    //     type: 'POST',
-    //     url: base_url + 'api/Reporting/ReportController/EXPORTSC',
-    //     data: {
-    //         "tenant_id" : tenant_id,
-    //         "start_time": start_time,
-    //         "end_time": end_time,
-    //         "name": name,
-    //         "chart_img": baseImg
-    //     }
-        // ,
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTSC',
+        data: {
+            "tenant_id" : tenant_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "name": name,
+            "chart_img": baseImg
+        }
+    //     ,
 
-        // success: function (r) {
-        //     alert("exported")
-        // },
-        // error: function (r) {
-        //     //console.log(r);
-        //     alert("error");
-        // },
-    // });
+    //     success: function (r) {
+    //         alert("exported")
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("error");
+    //     },
+    });
     // const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
     // const data = {
     //     tenant_id : tenant_id,
@@ -136,17 +136,17 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
     //     // console.log(`${data} and status is ${status}`)
     //     // window.location = Url
     // });
-    const Http = new XMLHttpRequest();
-    const url=base_url + 'api/Reporting/ReportController/EXPORTSC';
-    const data = {
-            tenant_id : tenant_id,
-            start_time: start_time,
-            end_time: end_time,
-            name: name,
-            chart_img: baseImg
-        }
-    Http.open("POST", url, data);
-    Http.send();
+    // const Http = new XMLHttpRequest();
+    // const url=base_url + 'api/Reporting/ReportController/EXPORTSC';
+    // const data = {
+    //         tenant_id : tenant_id,
+    //         start_time: start_time,
+    //         end_time: end_time,
+    //         name: name,
+    //         chart_img: baseImg
+    //     }
+    // Http.open("POST", url, data);
+    // Http.send();
 
     // Http.onreadystatechange = (e) => {
     // console.log(Http.responseText)
@@ -169,7 +169,22 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
     //         ErrorMessage(err);
     //     }
     // });
-    
+    // var formdata = new FormData();
+    // formdata.append("base64image", baseImg)
+
+    // $.ajax({
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTSC',
+    //     type: "POST",
+    //     data: {
+    //         tenant_id : tenant_id,
+    //         start_time: start_time,
+    //         end_time: end_time,
+    //         name: name,
+    //         chart_img: formdata,
+    //         processData: false,
+    //         contentType: false
+    //     }
+    // });
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
