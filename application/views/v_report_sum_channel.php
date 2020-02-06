@@ -81,7 +81,7 @@
                                          </div>
                                      </div>
                                      <div class="table-responsive" style="padding:10px 15px 10px 15px;">
-                                         <table id="tableSumChannel" class="table table-striped table-bordered fontStyle1">
+                                         <table id="tableSumChannel" class="table table-striped table-bordered fontStyle1" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
@@ -192,7 +192,7 @@
                              <div class="col-md-12 col-lg-5 col-xl-5">
                                  <div class="card-pie overflow-hidden">
                                  <div id="legend1" class="legend-con"></div>
-                                     <div class="card-body">
+                                     <div class="card-body" id="pieChartReportSumChannelDiv">
                                          <canvas id="pieChartReportSumChannel1"
                                              class="donutShadow overflow-hidden"></canvas>
                                      </div>
