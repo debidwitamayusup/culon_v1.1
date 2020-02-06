@@ -100,7 +100,7 @@ function callDrawPieChart(tenant_id, start_time, end_time){
         },
         success: function (r) {
             var response = r;
-            console.log(response.data.TOTAL);
+            // console.log(response.data.TOTAL);
 
             drawPieChartSumChannel(response);
         },
@@ -116,7 +116,7 @@ function drawPieChartSumChannel(response){
     $('#pieChartReportSumChannel1').remove(); // this is my <canvas> element
     $('#pieChartReportSumChannelDiv').append('<canvas id="pieChartReportSumChannel1" class="donutShadow overflow-hidden"></canvas>');
 
-    console.log(response);
+    // console.log(response);
 
     var ctx1 = document.getElementById( "pieChartReportSumChannel1" );
     ctx1.height = 290;
