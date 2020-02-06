@@ -158,7 +158,7 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         console.log(startDateFromFilter);
-        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
+        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg);
     });
 
     $('#btn-go').click(function(){
