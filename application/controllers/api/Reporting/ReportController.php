@@ -85,14 +85,13 @@
         public function ReportingSC_post()
         {
 
-            $date1 = $this->security->xss_clean($this->input->post('date_start'));
-            $date2 = $this->security->xss_clean($this->input->post('date_end'));
-            $src = $this->security->xss_clean($this->input->post('src'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $chn = $this->security->xss_clean($this->input->post('channel'));
-
+            $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSC($date1,$date2,$tid,$chn,$src);
+            $res = $this->module_model->get_datareportSC($chn,$t_start,$t_end,$meth);
     
             if ($res) {
                 $this->response([
@@ -166,42 +165,82 @@
         // Export ke excel
         public function EXPORTSC_get()
         {
-            $data = $this->module_model->get_datareportSC();
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->get('name'));
+
+            $data = $this->module_model->get_datareportSC($chn,$t_start,$t_end);
             $spreadsheet = new Spreadsheet();
 
-            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+           $spreadsheet->getProperties()->setCreator('INFOMEDIA')
             ->setLastModifiedBy('INFOMEDIA')
-            ->setTitle('Office 2007 Test Document')
-            ->setSubject('Office 2007 Test Document')
-            ->setDescription(' document for Office 2007 XLSX, generated using PHP classes.')
+            ->setTitle('Office 2007 XLSX Document')
+            ->setSubject('Office 2007 XLSX Document')
+            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
             ->setKeywords('office 2007 openxml php')
             ->setCategory('result file');
 
+            if (!$tid){
+                $tid = 'All Tenant';
+            }
+
             $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'NO')
-            ->setCellValue('B1', 'NAMA CHANNEL')
-            ->setCellValue('C1', 'MESSAGE IN')
-            ->setCellValue('D1', 'MESSAGE OUT')
-            ->setCellValue('E1', 'UNIQUE CUSTOMER')
-            ->setCellValue('F1', 'TOTAL SESSION')
+            ->setCellValue('A1','Summary Performance Operation - '.$tid)
+            ->setCellValue('A2','Export Time ')
+            ->setCellValue('A3','Export By ')
+            ->setCellValue('B2',date('d-m-Y H:i:s'))
+            ->setCellValue('B3', $name)
+            ->setCellValue('C2','Filter Start ')
+            ->setCellValue('C3','Filter END ')
+            ->setCellValue('D2', $t_start)
+            ->setCellValue('D3', $t_end)
+            ->setCellValue('A4', 'NO')
+            ->setCellValue('B4', 'CHANNEL_NAME')
+            ->setCellValue('C4', 'MESSAGE IN')
+            ->setCellValue('D4', 'MESSAGE OUT')
+            ->setCellValue('E4', 'UNIQUE CUSTOMER')
+            ->setCellValue('F4', 'TOTAL SESSION')
             ;
 
-            $i=2; foreach($data as $datas) {
+            $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('A4:F4')->applyFromArray($this->ss_formatter('header'));
+
+
+            $i=5; 
+            foreach($data as $datas) {
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $i-1)
+                ->setCellValue('A'.$i, $i-4)
                 ->setCellValue('B'.$i, $datas->CHANNEL_NAME)
-                ->setCellValue('c'.$i, $datas->MESSAGE_IN)
-                ->setCellValue('D'.$i, $datas->MESSAGE_OUT)
-                ->setCellValue('E'.$i, $datas->UNIQUE_CUSTOMER)
-                ->setCellValue('F'.$i, $datas->TOTAL_SESSION)
+                ->setCellValue('D'.$i, $datas->MESSAGE_IN)
+                ->setCellValue('E'.$i, $datas->MESSAGE_OUT)
+                ->setCellValue('F'.$i, $datas->UNIQUE_CUSTOMER)
+                ->setCellValue('c'.$i, strval(number_format($datas->TOTAL_SESSION,0,',','.')))
                 ;
                 $i++;
             }
-                $spreadsheet->getActiveSheet()->setTitle('Summary Channel - '.date('d-m-Y H'));
+            $x = $i-1;
+                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+
+
+                $spreadsheet->getActiveSheet()->getStyle('A5:F'.$x)->applyFromArray($this->ss_formatter('body'));
+
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:F'.$x);
+
+                $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Summary Channel Report"'.date('d-m-Y H').'".xlsx"');
+                header('Content-Disposition: attachment;filename="Summary Channel Report "'.date('d-m-Y H').'".xlsx"');
                 header('Cache-Control: max-age=0');
                 header('Cache-Control: max-age=1');
                 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
@@ -212,8 +251,6 @@
                 $writer->save('php://output');
                 exit;
         }
-
-      
 
         public function EXPORTSPO_get()
         {
