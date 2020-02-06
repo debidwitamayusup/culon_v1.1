@@ -124,8 +124,8 @@ Sidebar menu-->
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_summary">Agent Summary</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_performance_agent">Summary Performance Agent</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_performance_operation">Summary Performance Operation</a></li>
-				<li><a class="slide-item" href="#">Detail Ticket</a></li>
-				<li><a class="slide-item" href="#">Detail CWC</a></li>
+				<!-- <li><a class="slide-item" href="#">Detail Ticket</a></li>
+				<li><a class="slide-item" href="#">Detail CWC</a></li> -->
 			</ul>
 		</li>
 	</ul>

@@ -24,8 +24,17 @@
                         </div>
                         <div class="card-body">
                             <div class="row mb-2">
-                                <div class="col-sm-auto h6 mt-3">Agent ID</div>
-                                <div class="col-sm-auto">
+                            <div class="col-xs-auto">
+                                    <div class="input-group" style="width:150px">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                                            </div>
+                                        </div><input class="form-control fc-datepicker" placeholder="DD/MM/YYYY"
+                                            type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto ml-3">
                                     <div class="form-group row">
                                         <select class="form-control" id="agent_name">
                                             <option value="ShowAll">All Agent</option>
@@ -35,8 +44,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-auto h6 mt-3 ml-3">Channel</div>
-                                <div class="col-sm-auto">
+                                <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channelName">
                                              <option value="">All Channel</option>
@@ -56,16 +64,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-auto ml-3">
-                                    <div class="input-group" style="width:150px">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-                                            </div>
-                                        </div><input class="form-control fc-datepicker" placeholder="DD/MM/YYYY"
-                                            type="text">
-                                    </div>
-                                </div>
+                               
                                 <div class="col-xs-auto ml-1">
                                     <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
                                             class="fas fa-filter"></i></button>
@@ -79,32 +78,36 @@
                             </div>
                         </div>
                         <div class="table-responsive" style="padding:6px">
-                            <table id="tableAgentSummary" class="table table-striped table-bordered fontNunito10" width="100%">
+                            <table class="table table-striped table-bordered fontNunito10" width="100%">
                                 <thead class="bg-head text-white text-center">
                                     <tr>
-                                        <td class="wd-15p border-bottom-0" width="10">No</td>
-                                        <td class="wd-15p border-bottom-0">Date</td>
-                                        <td class="wd-15p border-bottom-0">ID Agent</td>
-                                        <td class="wd-15p border-bottom-0">IG</td>
-                                        <td class="wd-15p border-bottom-0">FB</td>
-                                        <td class="wd-15p border-bottom-0">Tele</td>
-                                        <td class="wd-15p border-bottom-0">Line</td>
-                                        <td class="wd-15p border-bottom-0">Msg</td>
-                                        <td class="wd-15p border-bottom-0">Tw</td>
-                                        <td class="wd-15p border-bottom-0">Tw DM</td>
-                                        <td class="wd-15p border-bottom-0">Email</td>
-                                        <td class="wd-15p border-bottom-0">SMS</td>
-                                        <td class="wd-15p border-bottom-0">Voice</td>
-                                        <td class="wd-15p border-bottom-0">Chatbot</td>
-                                        <td class="wd-15p border-bottom-0">LC</td>
-                                        <td class="wd-15p border-bottom-0">WA</td>
+                                        <td class="border-bottom-0">Date</td>
+                                        <td class="border-bottom-0">ID Agent</td>
+                                        <td class="border-bottom-0">Instagram</td>
+                                        <td class="border-bottom-0">FB</td>
+                                        <td class="border-bottom-0">Telegram</td>
+                                        <td class="border-bottom-0">Line</td>
+                                        <td class="border-bottom-0">Messenger</td>
+                                        <td class="border-bottom-0">Twitter</td>
+                                        <td class="border-bottom-0">Twitter DM</td>
+                                        <td class="border-bottom-0">Email</td>
+                                        <td class="border-bottom-0">SMS</td>
+                                        <td class="border-bottom-0">Voice</td>
+                                        <td class="border-bottom-0">Chatbot</td>
+                                        <td class="border-bottom-0">Live Chat</td>
+                                        <td class="border-bottom-0">WA</td>
+                                        <td class="border-bottom-0">Total Session</td>
+                                        <td class="border-bottom-0">AHT</td>
+                                        <td class="border-bottom-0">Total Handling</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -120,9 +123,11 @@
                                         <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -138,9 +143,11 @@
                                         <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -156,9 +163,11 @@
                                         <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">4</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -174,9 +183,11 @@
                                         <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">5</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -192,99 +203,11 @@
                                         <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
+                                        <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">7</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">8</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">9</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">11</td>
-                                        <td class="text-center">2020-01-01 10:18:40</td>
-                                        <td class="text-center">AD205A</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>

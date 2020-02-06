@@ -158,5 +158,6 @@ $(function($){
         }
 	});
 	var myLegendContainer1 = document.getElementById("legend1");
-	myLegendContainer1.innerHTML = myChart1.generateLegend();
+    myLegendContainer1.innerHTML = myChart1.generateLegend();
+
 });
