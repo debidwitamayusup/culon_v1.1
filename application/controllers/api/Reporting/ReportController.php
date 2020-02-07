@@ -172,21 +172,21 @@
             $name = $this->security->xss_clean($this->input->post('name'));
 
         #region - 1st part sub image to spreadsheet
-            $chart = $this->security->xss_clean($this->input->post('chart_img'));
-            $imageData = base64_decode($chart);
-            $chart_img = imagecreatefromstring($imageData);
-            $white = imagecolorallocate($chart_img, 255, 255, 255);
-            imagecolortransparent($chart_img, $white);
-            imagesavealpha($chart_img,true);
-            imagealphablending($chart_img, true); 
+            // $chart = $this->security->xss_clean($this->input->post('chart_img'));
+            // $imageData = base64_decode($chart);
+            // $chart_img = imagecreatefromstring($imageData);
+            // $white = imagecolorallocate($chart_img, 255, 255, 255);
+            // imagecolortransparent($chart_img, $white);
+            // imagesavealpha($chart_img,true);
+            // imagealphablending($chart_img, true); 
            
-            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-            $drawing->setName('Chart');
-            $drawing->setDescription('Chart');
-            $drawing->setCoordinates('H2');
-            $drawing->setImageResource($chart_img);
-            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+            // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+            // $drawing->setName('Chart');
+            // $drawing->setDescription('Chart');
+            // $drawing->setCoordinates('H2');
+            // $drawing->setImageResource($chart_img);
+            // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+            // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
         #endregion 
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
@@ -221,9 +221,9 @@
             ->setCellValue('E4', 'UNIQUE CUSTOMER')
             ->setCellValue('F4', 'TOTAL SESSION')
             ;
-    #region - 2nd part sub image to spreadsheet
-           $drawing->setWorksheet($spreadsheet->getActiveSheet());
-    #endregion           
+        #region - 2nd part sub image to spreadsheet
+             //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+        #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
@@ -269,10 +269,10 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $path = APPPATH.'public\reportdata';
+                $path = APPPATH.'public/reportdata';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                $writer->save($path.$filename);
-                //$writer->save('php://output');
+                // $writer->save($path.$filename);
+                $writer->save('php://output');
                 exit;
         }
 
