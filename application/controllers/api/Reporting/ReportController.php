@@ -269,17 +269,10 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-<<<<<<< HEAD
-                $path = APPPATH.'public/reportdata/';
-                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                $writer->save($path.$filename);
-                // $writer->save('php://output');
-=======
                 $path = APPPATH.'public/reportdata';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
                 // $writer->save($path.$filename);
                 $writer->save('php://output');
->>>>>>> origin/raga-dev
                 exit;
         }
 
