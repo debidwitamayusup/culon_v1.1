@@ -45,10 +45,10 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->CHANNEL_NAME,
-                        strval(number_format($data->UNIQUE_CUSTOMER,0,',','.')),
-                        strval(number_format($data->TOTAL_SESSION,0,',','.')),
-                        strval(number_format($data->MESSAGE_IN,0,',','.')),
-                        strval(number_format($data->MESSAGE_OUT,0,',','.'))
+                        strval(number_format($data->UNIQUE_CUSTOMER,0,'.',',')),
+                        strval(number_format($data->TOTAL_SESSION,0,'.',',')),
+                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
+                        strval(number_format($data->MESSAGE_OUT,0,'.',','))
                     );
                     $id++;
                 }
