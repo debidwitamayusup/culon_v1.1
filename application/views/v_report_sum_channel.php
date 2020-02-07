@@ -27,10 +27,31 @@
                                  <div class="card overflow-hidden">
                                      <div class="card-body">
                                          <div class="row">
-                                             <div class="col-sm-auto">
+                                         <div class="col-xs-auto ml-1">
+                                                 <div class="input-group" style="width:140px">
+                                                     <div class="input-group-prepend">
+                                                         <div class="input-group-text">
+                                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                                                         </div>
+                                                     </div><input class="form-control fc-datepicker" id="start-date"
+                                                         placeholder="Start Date" type="text">
+                                                 </div>
+                                             </div>
+                                             <div class="col-xs-auto ml-1">
+                                                 <div class="input-group" style="width:140px">
+                                                     <div class="input-group-prepend">
+                                                         <div class="input-group-text">
+                                                             <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
+                                                         </div>
+                                                     </div><input class="form-control fc-datepicker" id="end-date"
+                                                         placeholder="End Date" type="text">
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-sm-auto ml-1">
                                                  <div class="form-group row">
-                                                     <select class="form-control" id="tenant-id">
-                                                        <!-- <option value="">All Channel</option>
+                                                     <select class="form-control" id="tenant-id" style="width:130px">
+                                                         <!-- <option value="">All Channel</option>
                                                         <option value="12">Whatsapp</option>
                                                         <option value="6">Facebook</option>
                                                         <option value="8">Twitter</option>
@@ -47,26 +68,27 @@
                                                      </select>
                                                  </div>
                                              </div>
-                                             <div class="col-xs-auto ml-1">
-                                                 <div class="input-group" style="width:150px">
-                                                     <div class="input-group-prepend">
-                                                         <div class="input-group-text">
-                                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
-                                                         </div>
-                                                     </div><input class="form-control fc-datepicker" id="start-date"
-                                                         placeholder="Start Date" type="text">
+                                             <div class="col-sm-auto ml-1">
+                                                 <div class="form-group row">
+                                                     <select class="form-control" style="width:130px">
+                                                         <option value="">All Channel</option>
+                                                        <option value="12">Whatsapp</option>
+                                                        <option value="6">Facebook</option>
+                                                        <option value="8">Twitter</option>
+                                                        <option value="13">Twitter DM</option>
+                                                        <option value="11">Instagram</option>
+                                                        <option value="7">Messenger</option>
+                                                        <option value="5">Telegram</option>
+                                                        <option value="10">Line</option>
+                                                        <option value="2">Email</option>
+                                                        <option value="1">Voice</option>
+                                                        <option value="3">Live Chat</option>
+                                                        <option value="4">SMS</option>
+                                                        <option value="15">Chatbot</option> 
+                                                     </select>
                                                  </div>
                                              </div>
-                                             <div class="col-xs-auto ml-1">
-                                                 <div class="input-group" style="width:150px">
-                                                     <div class="input-group-prepend">
-                                                         <div class="input-group-text">
-                                                             <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
-                                                         </div>
-                                                     </div><input class="form-control fc-datepicker" id="end-date"
-                                                         placeholder="End Date" type="text">
-                                                 </div>
-                                             </div>
+                                             
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-dark" type="button" style="height:35px"
                                                      id="btn-go"><i class="fas fa-filter"></i></button>
@@ -81,122 +103,33 @@
                                          </div>
                                      </div>
                                      <div class="table-responsive" style="padding:10px 15px 10px 15px;">
-                                         <table id="tableSumChannel" class="table table-striped table-bordered fontStyle1" width="100%">
+                                         <table id="tableSumChannel"
+                                             class="table table-striped table-bordered fontNunito11" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                    <td class="wd-15p border-bottom-0" width="20">No</td>
-                                                    <td class="wd-15p border-bottom-0">Channel</td>
-                                                    <td class="wd-15p border-bottom-0">Unique Customers</td>
-                                                    <td class="wd-15p border-bottom-0">Total Sessions</td>
-                                                    <td class="wd-15p border-bottom-0">Message In</td>
-                                                    <td class="wd-15p border-bottom-0">Message Out</td>
+                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
+                                                     <td class="wd-15p border-bottom-0">Channel</td>
+                                                     <td class="wd-15p border-bottom-0">Unique Customers</td>
+                                                     <td class="wd-15p border-bottom-0">Total Sessions</td>
+                                                     <td class="wd-15p border-bottom-0">Message In</td>
+                                                     <td class="wd-15p border-bottom-0">Message Out</td>
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
-                                             <!-- <tr>
-                                                     <td class="bg-total text-left">Chatbot</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Whatsapp</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Facebook</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Twitter</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Twitter DM</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Messenger</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Instagram</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Line</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Telegram</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Email</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Voice</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">SMS</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td class="bg-total text-left">Live Chat</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">2000</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                     <td class="text-right">00:30:00</td>
-                                                 </tr> -->
+
                                              </tbody>
                                          </table>
                                      </div>
                                  </div>
                              </div>
                              <div class="col-md-12 col-lg-5 col-xl-5">
-                                 <div class="card-pie overflow-hidden">
-                                 <div id="legend1" class="legend-con"></div>
-                                     <div class="card-body" id="pieChartReportSumChannelDiv">
+                                 <div class="card overflow-hidden">
+                                     <div id="legend1" class="legend-con"></div>
+                                     <div class="card-body mb-2" id="pieChartReportSumChannelDiv">
                                          <canvas id="pieChartReportSumChannel1"
                                              class="donutShadow overflow-hidden"></canvas>
                                      </div>
-                                     
+
                                  </div>
                              </div>
                          </div>

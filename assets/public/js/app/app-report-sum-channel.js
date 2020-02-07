@@ -217,7 +217,7 @@ function drawPieChartSumChannel(response){
     // console.log(response);
 
     var ctx1 = document.getElementById( "pieChartReportSumChannel1" );
-    ctx1.height = 290;
+    ctx1.height = 300;
     var myChart1 = new Chart( ctx1, {
         type: 'pie',
         data: {
@@ -256,7 +256,7 @@ function drawPieChartSumChannel(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mt-2 ml-5">');
+                legendHtml.push('<ul><div class="row mt-1 ml-5">');
                 allData.forEach(function(data,index){
                     if (allData[index] !=0) {
                         var label = chart.data.labels[index];

@@ -23,7 +23,28 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-auto">
+                            <div class="col-xs-auto ml-1">
+                                    <div class="input-group" style="width:150px">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
+                                            </div>
+                                        </div><input class="form-control fc-datepicker" placeholder="DD/MM/YYYY"
+                                            type="text">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-auto ml-2">
+                                    <div class="form-group row">
+                                        <select class="form-control" id="interval">
+                                            <option value="ShowAll">All Interval</option>
+                                            <option value="1">1 Jam</option>
+                                            <option value="2">3 Jam</option>
+                                            <option value="3">6 Jam</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
                                             <option value="ShowAll">All Channel</option>
@@ -39,35 +60,8 @@
                                             <option value="Twitter DM">Twitter DM</option>
                                             <option value="Live Chat">Live Chat</option>
                                             <option value="SMS">SMS</option>
+                                            <option value="Chatbot">Chatbot</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-xs-auto ml-1">
-                                    <div class="input-group" style="width:150px">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
-                                            </div>
-                                        </div><input class="form-control fc-datepicker" placeholder="DD/MM/YYYY"
-                                            type="text">
-                                    </div>
-                                </div>
-                                <div class="col-xs-auto ml-1">
-                                    <div class="input-group" style="width:150px">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-clock tx-16 lh-0 op-6"></i>
-                                            </div>
-                                        </div><input class="form-control" placeholder="Start Time" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-xs-auto ml-1">
-                                    <div class="input-group" style="width:150px">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-clock tx-16 lh-0 op-6"></i>
-                                            </div>
-                                        </div><input class="form-control" placeholder="End Time" type="text">
                                     </div>
                                 </div>
                                 <div class="col-xs-auto ml-1">
@@ -81,138 +75,116 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive" style="padding:8px;">
+                        
+                        <div class="table-responsive">
                             <table id="tableReportSumInterval" class="table table-striped table-bordered fontNunito12"
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <th class="wd-15p border-bottom-0">No</th>
-                                        <th class="wd-15p border-bottom-0">Date</th>
-                                        <th class="wd-15p border-bottom-0">Time</th>
-                                        <th class="wd-15p border-bottom-0">Message In</th>
-                                        <th class="wd-15p border-bottom-0">Message Out</th>
-                                        <th class="wd-15p border-bottom-0">Reminder Message</th>
+                                        <th class="wd-15p border-bottom-0">Interval</th>
                                         <th class="wd-15p border-bottom-0">ART</th>
                                         <th class="wd-15p border-bottom-0">AHT</th>
                                         <th class="wd-15p border-bottom-0">AST</th>
+                                        <th class="wd-15p border-bottom-0" width="100">Message In</th>
+                                        <th class="wd-15p border-bottom-0" width="100">Message Out</th>
+                                        <th class="wd-15p border-bottom-0" width="130">Reminder Message</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">03:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">06:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">4</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">09:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">5</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">12:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">15:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">7</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">18:00-10.30</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">8</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">21:00-10.30</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">9</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">24:00-10.30</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">10</td>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">10:00</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">27:00-10.30</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="col-md-12 col-lg-5 col-xl-5">

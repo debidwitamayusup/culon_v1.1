@@ -178,5 +178,6 @@ function setDatePicker() {
         drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
+    $('#reportAgentPerformance').dataTable();
     
 })(jQuery);
