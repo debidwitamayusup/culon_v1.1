@@ -245,7 +245,7 @@ function setDatePicker() {
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        console.log(startDateFromFilter);
+        // console.log(startDateFromFilter);
         exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
     });
 
