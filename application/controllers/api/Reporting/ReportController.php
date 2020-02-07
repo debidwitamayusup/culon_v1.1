@@ -85,12 +85,40 @@
         public function ReportingSC_post()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $meth = 'data';
             //token
             $res = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function ReportingSInterval_post()
+        {
+
+            $interval = $this->security->xss_clean($this->input->post('interval'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+            $meth = 'data';
+            //token
+            $res = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
     
             if ($res) {
                 $this->response([
@@ -171,23 +199,23 @@
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->get('name'));
 
-        #region - 1st part sub image to spreadsheet
-            // $chart = $this->security->xss_clean($this->input->post('chart_img'));
-            // $imageData = base64_decode($chart);
-            // $chart_img = imagecreatefromstring($imageData);
-            // $white = imagecolorallocate($chart_img, 255, 255, 255);
-            // imagecolortransparent($chart_img, $white);
-            // imagesavealpha($chart_img,true);
-            // imagealphablending($chart_img, true); 
-           
-            // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-            // $drawing->setName('Chart');
-            // $drawing->setDescription('Chart');
-            // $drawing->setCoordinates('H2');
-            // $drawing->setImageResource($chart_img);
-            // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-            // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
-        #endregion 
+            #region - 1st part sub image to spreadsheet
+                // $chart = $this->security->xss_clean($this->input->post('chart_img'));
+                // $imageData = base64_decode($chart);
+                // $chart_img = imagecreatefromstring($imageData);
+                // $white = imagecolorallocate($chart_img, 255, 255, 255);
+                // imagecolortransparent($chart_img, $white);
+                // imagesavealpha($chart_img,true);
+                // imagealphablending($chart_img, true); 
+            
+                // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                // $drawing->setName('Chart');
+                // $drawing->setDescription('Chart');
+                // $drawing->setCoordinates('H2');
+                // $drawing->setImageResource($chart_img);
+                // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+            #endregion 
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
@@ -216,14 +244,15 @@
             ->setCellValue('D3', $t_end)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'CHANNEL_NAME')
-            ->setCellValue('C4', 'UNIQUE CUSTOMER')
-            ->setCellValue('D4', 'TOTAL SESSION')
-            ->setCellValue('E4', 'MESSAGE IN')
-            ->setCellValue('F4', 'MESSAGE OUT')
+            ->setCellValue('C4', 'MESSAGE IN')
+            ->setCellValue('D4', 'MESSAGE OUT')
+            ->setCellValue('E4', 'UNIQUE CUSTOMER')
+            ->setCellValue('F4', 'TOTAL SESSION')
             ;
-        #region - 2nd part sub image to spreadsheet
-             //$drawing->setWorksheet($spreadsheet->getActiveSheet());
-        #endregion           
+
+            #region - 2nd part sub image to spreadsheet
+                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+            #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
