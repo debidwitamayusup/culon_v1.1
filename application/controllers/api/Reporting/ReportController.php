@@ -12,7 +12,7 @@
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
         }
-
+#region :: Raga
         function ss_formatter($src)
         {
             if($src =='header') {
@@ -170,22 +170,24 @@
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->post('name'));
-            $chart = $this->security->xss_clean($this->input->post('chart_img'));
-            $imageData = base64_decode(substr($chart,22));
-            $chart_img = imagecreatefromstring($imageData);
-            $gdImage = @imagecreatetruecolor(120, 20) or die('Cannot Initialize new GD image stream');
-            $textColor = imagecolorallocate($gdImage, 255, 255, 255);
-            imagestring($gdImage, 1, 5, 5,  'Created with PhpSpreadsheet', $textColor);
 
+        #region - 1st part sub image to spreadsheet
+            $chart = $this->security->xss_clean($this->input->post('chart_img'));
+            $imageData = base64_decode($chart);
+            $chart_img = imagecreatefromstring($imageData);
+            $white = imagecolorallocate($chart_img, 255, 255, 255);
+            imagecolortransparent($chart_img, $white);
+            imagesavealpha($chart_img,true);
+            imagealphablending($chart_img, true); 
+           
             $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
             $drawing->setName('Chart');
             $drawing->setDescription('Chart');
             $drawing->setCoordinates('H2');
             $drawing->setImageResource($chart_img);
-            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_JPEG);
-            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
-            $drawing->setHeight(36);
-
+            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+        #endregion 
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
@@ -219,9 +221,9 @@
             ->setCellValue('E4', 'MESSAGE IN')
             ->setCellValue('F4', 'MESSAGE OUT')
             ;
-
-            $drawing->setWorksheet($spreadsheet->getActiveSheet());
-            
+    #region - 2nd part sub image to spreadsheet
+           $drawing->setWorksheet($spreadsheet->getActiveSheet());
+    #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
@@ -258,16 +260,20 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
+                $filename = $name.'"Summary Channel Report "'.date('d-m-Y H').'".xlsx"';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Summary Channel Report "'.date('d-m-Y H').'".xlsx"');
+                header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
                 header('Cache-Control: max-age=1');
                 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-                $writer->save('php://output');
+                $path = APPPATH.'public/reportdata/';
+                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                $writer->save($path.$filename);
+                // $writer->save('php://output');
+                exit;
         }
 
         public function EXPORTSPO_get()
@@ -458,5 +464,7 @@
                 $writer->save('php://output');
                 exit;
         }
+
+#endregion Raga
     }
 ?>
