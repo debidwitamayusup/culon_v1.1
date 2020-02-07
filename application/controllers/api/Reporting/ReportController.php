@@ -85,9 +85,9 @@
         public function ReportingSC_post()
         {
 
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $meth = 'data';
             //token
             $res = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
@@ -103,7 +103,7 @@
                 $this->response([
                     'status'  => FALSE,
                     'message' => 'Not Found!',
-                    'data'    => 'EMPTY'
+                    'data'    => array()
                         ], REST_Controller::HTTP_OK);
             }
         }
@@ -216,10 +216,10 @@
             ->setCellValue('D3', $t_end)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'CHANNEL_NAME')
-            ->setCellValue('C4', 'MESSAGE IN')
-            ->setCellValue('D4', 'MESSAGE OUT')
-            ->setCellValue('E4', 'UNIQUE CUSTOMER')
-            ->setCellValue('F4', 'TOTAL SESSION')
+            ->setCellValue('C4', 'UNIQUE CUSTOMER')
+            ->setCellValue('D4', 'TOTAL SESSION')
+            ->setCellValue('E4', 'MESSAGE IN')
+            ->setCellValue('F4', 'MESSAGE OUT')
             ;
         #region - 2nd part sub image to spreadsheet
              //$drawing->setWorksheet($spreadsheet->getActiveSheet());

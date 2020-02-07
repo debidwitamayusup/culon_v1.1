@@ -58,7 +58,7 @@
                                                              <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                                          </div>
                                                      </div><input class="form-control fc-datepicker"
-                                                         placeholder="DD/MM/YYYY" type="text">
+                                                         placeholder="DD/MM/YYYY" type="text" id="datePicker">
                                                  </div>
                                              </div>
                                              <div class="col-xs-auto ml-1">
@@ -68,7 +68,7 @@
                                              </div>
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-primary" type="button"
-                                                     style="height:35px" id="btn-go"><i
+                                                     style="height:35px" id="btn-export"><i
                                                          class="fas fa-download mr-2"></i>Export</button>
 
                                              </div>
@@ -79,7 +79,7 @@
                                              id="tableSumTicket" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                     <td>No</td>
+                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
                                                      <td>Create Ticket Date</td>
                                                      <td>Ticket ID</td>
                                                      <td>Agent ID</td>
