@@ -111,10 +111,10 @@
         public function ReportingSInterval_post()
         {
 
-            $interval = $this->security->xss_clean($this->input->post('interval'));
-            $date = $this->security->xss_clean($this->input->post('tanggal'));
-            $chn = $this->security->xss_clean($this->input->post('channel'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $interval = $this->security->xss_clean($this->input->post('interval'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
 
             $meth = 'data';
             //token

@@ -30,14 +30,14 @@
                                                 <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div><input class="form-control fc-datepicker" placeholder="DD/MM/YYYY"
-                                            type="text">
+                                            type="text" id="input-date">
                                     </div>
                                 </div>
                                 
                                 <div class="col-sm-auto ml-2">
                                     <div class="form-group row">
                                         <select class="form-control" id="interval">
-                                            <option value="ShowAll">All Interval</option>
+                                            <option value="">All Interval</option>
                                             <option value="1">1 Jam</option>
                                             <option value="2">3 Jam</option>
                                             <option value="3">6 Jam</option>
@@ -47,20 +47,20 @@
                                 <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
-                                            <option value="ShowAll">All Channel</option>
-                                            <option value="Whatsapp">Whatsapp</option>
-                                            <option value="Twitter">Twitter</option>
-                                            <option value="Facebook">Facebook</option>
-                                            <option value="Email">Email</option>
-                                            <option value="Telegram">Telegram</option>
-                                            <option value="Line">Line</option>
-                                            <option value="Voice">Voice</option>
-                                            <option value="Instagram">Instagram</option>
-                                            <option value="Messenger">Messenger</option>
-                                            <option value="Twitter DM">Twitter DM</option>
-                                            <option value="Live Chat">Live Chat</option>
-                                            <option value="SMS">SMS</option>
-                                            <option value="Chatbot">Chatbot</option>
+                                            <option value="">All Channel</option>
+                                            <option value="12">Whatsapp</option>
+                                            <option value="6">Facebook</option>
+                                            <option value="8">Twitter</option>
+                                            <option value="13">Twitter DM</option>
+                                            <option value="11">Instagram</option>
+                                            <option value="7">Messenger</option>
+                                            <option value="5">Telegram</option>
+                                            <option value="10">Line</option>
+                                            <option value="2">Email</option>
+                                            <option value="1">Voice</option>
+                                            <option value="3">Live Chat</option>
+                                            <option value="4">SMS</option>
+                                            <option value="15">Chatbot</option>
                                         </select>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-xs-auto ml-1">
                                     <button class="btn btn-sm btn-primary" type="button" style="height:35px"
-                                        id="btn-go"><i class="fas fa-download mr-2"></i>Export</button>
+                                        id="btn-export"><i class="fas fa-download mr-2"></i>Export</button>
 
                                 </div>
                             </div>
@@ -81,17 +81,18 @@
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <th class="wd-15p border-bottom-0">Interval</th>
-                                        <th class="wd-15p border-bottom-0">ART</th>
-                                        <th class="wd-15p border-bottom-0">AHT</th>
-                                        <th class="wd-15p border-bottom-0">AST</th>
-                                        <th class="wd-15p border-bottom-0" width="100">Message In</th>
-                                        <th class="wd-15p border-bottom-0" width="100">Message Out</th>
-                                        <th class="wd-15p border-bottom-0" width="130">Reminder Message</th>
+                                        <td class="wd-15p border-bottom-0" width="20">No</td>
+                                        <td class="wd-15p border-bottom-0">Interval</td>
+                                        <td class="wd-15p border-bottom-0">ART</td>
+                                        <td class="wd-15p border-bottom-0">AHT</td>
+                                        <td class="wd-15p border-bottom-0">AST</td>
+                                        <td class="wd-15p border-bottom-0" width="100">Message In</td>
+                                        <td class="wd-15p border-bottom-0" width="100">Message Out</td>
+                                        <td class="wd-15p border-bottom-0" width="130">Reminder Message</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
@@ -180,7 +181,7 @@
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
