@@ -117,7 +117,7 @@ Sidebar menu-->
 			</a>
 			<ul class="slide-menu">
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_channel">Summary Channel</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_ticket">Summary Ticket</a></li>
+				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_close_ticket">Summary Close Ticket</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_interval">Summary Interval</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_log">Agent Log</a></li>
 				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
