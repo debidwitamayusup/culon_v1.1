@@ -346,6 +346,18 @@ class main extends CI_Controller {
 		$this->load->view('v_report_detail_cwc');
 	}
 	
+	public function report_summary_close_ticket(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_close_ticket');
+	}
 	
+	public function report_detail_ticket(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_detail_ticket');
+	}
 
 }
