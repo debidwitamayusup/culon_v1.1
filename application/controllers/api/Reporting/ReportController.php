@@ -163,13 +163,13 @@
         }
 
         // Export ke excel
-        public function EXPORTSC_post()
+        public function EXPORTSC_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_time'));
-            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
         #region - 1st part sub image to spreadsheet
             // $chart = $this->security->xss_clean($this->input->post('chart_img'));

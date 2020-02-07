@@ -107,12 +107,12 @@
                                              class="table table-striped table-bordered fontNunito11" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
-                                                     <td class="wd-15p border-bottom-0">Channel</td>
-                                                     <td class="wd-15p border-bottom-0">Unique Customers</td>
-                                                     <td class="wd-15p border-bottom-0">Total Sessions</td>
-                                                     <td class="wd-15p border-bottom-0">Message In</td>
-                                                     <td class="wd-15p border-bottom-0">Message Out</td>
+                                                     <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Channel</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Unique Customers</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Total Sessions</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Message In</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Message Out</td>
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
