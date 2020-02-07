@@ -27,27 +27,7 @@
                                  <div class="card overflow-hidden">
                                      <div class="card-body">
                                          <div class="row">
-                                             <div class="col-sm-auto">
-                                                 <div class="form-group row">
-                                                     <select class="form-control" id="tenant-id" style="width:130px">
-                                                         <!-- <option value="">All Channel</option>
-                                                        <option value="12">Whatsapp</option>
-                                                        <option value="6">Facebook</option>
-                                                        <option value="8">Twitter</option>
-                                                        <option value="13">Twitter DM</option>
-                                                        <option value="11">Instagram</option>
-                                                        <option value="7">Messenger</option>
-                                                        <option value="5">Telegram</option>
-                                                        <option value="10">Line</option>
-                                                        <option value="2">Email</option>
-                                                        <option value="1">Voice</option>
-                                                        <option value="3">Live Chat</option>
-                                                        <option value="4">SMS</option>
-                                                        <option value="15">Chatbot</option>  -->
-                                                     </select>
-                                                 </div>
-                                             </div>
-                                             <div class="col-xs-auto ml-1">
+                                         <div class="col-xs-auto ml-1">
                                                  <div class="input-group" style="width:140px">
                                                      <div class="input-group-prepend">
                                                          <div class="input-group-text">
@@ -67,6 +47,48 @@
                                                          placeholder="End Date" type="text">
                                                  </div>
                                              </div>
+
+                                             <div class="col-sm-auto ml-1">
+                                                 <div class="form-group row">
+                                                     <select class="form-control" id="tenant-id" style="width:130px">
+                                                         <!-- <option value="">All Channel</option>
+                                                        <option value="12">Whatsapp</option>
+                                                        <option value="6">Facebook</option>
+                                                        <option value="8">Twitter</option>
+                                                        <option value="13">Twitter DM</option>
+                                                        <option value="11">Instagram</option>
+                                                        <option value="7">Messenger</option>
+                                                        <option value="5">Telegram</option>
+                                                        <option value="10">Line</option>
+                                                        <option value="2">Email</option>
+                                                        <option value="1">Voice</option>
+                                                        <option value="3">Live Chat</option>
+                                                        <option value="4">SMS</option>
+                                                        <option value="15">Chatbot</option>  -->
+                                                     </select>
+                                                 </div>
+                                             </div>
+                                             <div class="col-sm-auto ml-1">
+                                                 <div class="form-group row">
+                                                     <select class="form-control" style="width:130px">
+                                                         <option value="">All Channel</option>
+                                                        <option value="12">Whatsapp</option>
+                                                        <option value="6">Facebook</option>
+                                                        <option value="8">Twitter</option>
+                                                        <option value="13">Twitter DM</option>
+                                                        <option value="11">Instagram</option>
+                                                        <option value="7">Messenger</option>
+                                                        <option value="5">Telegram</option>
+                                                        <option value="10">Line</option>
+                                                        <option value="2">Email</option>
+                                                        <option value="1">Voice</option>
+                                                        <option value="3">Live Chat</option>
+                                                        <option value="4">SMS</option>
+                                                        <option value="15">Chatbot</option> 
+                                                     </select>
+                                                 </div>
+                                             </div>
+                                             
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-dark" type="button" style="height:35px"
                                                      id="btn-go"><i class="fas fa-filter"></i></button>
