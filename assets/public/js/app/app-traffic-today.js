@@ -152,7 +152,18 @@ function drawChartToday(response){
                             beginAtZero: true
                         }
                     }]
-                }
+                },
+                //untuk onclick pada chart javascript
+                onClick: function(event, array) {
+                    let element = this.getElementAtEvent(event);
+                    if (element.length > 0) {
+                    var series= element[0]._model.datasetLabel;
+                    var label = element[0]._chart.data.labels;
+                    var labeling = this.data.datasets[element[0]._datasetIndex].label;
+                    var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
+                    alert("Sessions of "+labeling+" is "+value);
+                    }
+                },
             }
         } );
     }
@@ -309,6 +320,17 @@ function drawChartPercentageToday(response){
                         return value;
                     }
               }
+            },
+            //untuk onclick pada chart javascript
+            onClick: function(event, array) {
+                let element = this.getElementAtEvent(event);
+                if (element.length > 0) {
+                var series= element[0]._model.label;
+                var label = element[0]._chart.data.labels;
+                var labeling = this.data.datasets[element[0]._datasetIndex].label;
+                var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
+                alert("Sessions of "+series+" is "+value);
+                }
             },
         }
     });

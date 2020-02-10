@@ -35,6 +35,32 @@
             }
         }
 
-       
+        public function ReportingDiagramsSSClose_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $channel = $this->security->xss_clean($this->input->post('channel'));
+            
+            //token
+            $res = $this->module_model->get_diagramsSSClose($tid,$t_start,$t_end,$channel);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => 'EMPTY'
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
     }
 ?>

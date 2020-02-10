@@ -37,7 +37,6 @@
                                 <div class="col-sm-auto ml-2">
                                     <div class="form-group row">
                                         <select class="form-control" id="interval">
-                                            <!-- <option value="">All Interval</option> -->
                                             <option value="1">1 Jam</option>
                                             <option value="2">3 Jam</option>
                                             <option value="3">6 Jam</option>
