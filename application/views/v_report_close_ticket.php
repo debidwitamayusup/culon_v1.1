@@ -49,7 +49,7 @@
                                  </div>
                                  <div class="col-sm-auto ml-3">
                                      <div class="form-group row">
-                                         <select class="form-control">
+                                         <select class="form-control" id="channel_name">
                                              <option value="">All Channel</option>
                                              <option value="12">Whatsapp</option>
                                              <option value="6">Facebook</option>
@@ -69,10 +69,10 @@
                                  </div>
                                  <div class="col-sm-auto ml-1">
                                      <div class="form-group row">
-                                         <select class="form-control" id="tenantName">
-                                             <option value="">All Tenant</option>
-                                             <option value="12">Whatsapp</option>
-                                             <option value="6">Facebook</option>
+                                         <select class="form-control" id="layanan_name">
+                                                <!-- <option value="">All Tenant</option>
+                                                <option value="12">Whatsapp</option>
+                                                <option value="6">Facebook</option> -->
                                          </select>
                                      </div>
                                  </div>
