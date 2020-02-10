@@ -100,41 +100,6 @@
                                          </tr>
                                      </thead>
                                      <tbody class="table-sm text-center">
-                                         <tr>
-                                             <td class="text-center">1</td>
-                                             <td class="text-center">2020-01-19</td>
-                                             <td class="text-center">ALL</td>
-                                             <td class="text-center">Close</td>
-                                             <td class="text-right">400</td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">2</td>
-                                             <td class="text-center">2020-01-19</td>
-                                             <td class="text-center">ALL</td>
-                                             <td class="text-center">Close</td>
-                                             <td class="text-right">400</td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">3</td>
-                                             <td class="text-center">2020-01-19</td>
-                                             <td class="text-center">ALL</td>
-                                             <td class="text-center">Close</td>
-                                             <td class="text-right">400</td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">4</td>
-                                             <td class="text-center">2020-01-19</td>
-                                             <td class="text-center">ALL</td>
-                                             <td class="text-center">Close</td>
-                                             <td class="text-right">400</td>
-                                         </tr>
-                                         <tr>
-                                             <td class="text-center">5</td>
-                                             <td class="text-center">2020-01-19</td>
-                                             <td class="text-center">ALL</td>
-                                             <td class="text-center">Close</td>
-                                             <td class="text-right">400</td>
-                                         </tr>
                                      </tbody>
                                  </table>
                              </div>
@@ -168,66 +133,7 @@
                                                      </tr>
                                                  </thead>
                                                  <tbody class="table-sm text-center">
-                                                     <tr>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">Chatbot</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">2</td>
-                                                         <td class="text-center">Facebook</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">Twitter</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">Twitter DM</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">5</td>
-                                                         <td class="text-center">Messenger</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">6</td>
-                                                         <td class="text-center">Whatsapp</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">7</td>
-                                                         <td class="text-center">Email</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">8</td>
-                                                         <td class="text-center">Instagram</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">9</td>
-                                                         <td class="text-center">Line</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">10</td>
-                                                         <td class="text-center">Telegram</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">11</td>
-                                                         <td class="text-center">Live Chat</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
-                                                     <tr>
-                                                         <td class="text-center">12</td>
-                                                         <td class="text-center">SMS</td>
-                                                         <td class="text-center">1300</td>
-                                                     </tr>
+                                                     
                                                  </tbody>
                                              </table>
                                          </div>
