@@ -38,7 +38,7 @@
                                  </div>
                                  <div class="col-sm-auto h6 mt-3 ml-1">to</div>
                                  <div class="col-xs-auto ml-1">
-                                     <div class="input-group" style="width:130px">
+                                     <div class="input-group" style="width:150px">
                                          <div class="input-group-prepend">
                                              <div class="input-group-text">
                                                  <i class="fas fa-calendar tx-16 lh-0 op-6"></i>

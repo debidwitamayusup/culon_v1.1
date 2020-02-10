@@ -33,8 +33,10 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     getTenant('')
-    drawTableCloseTicket(v_params_today, v_params_today, '');
-    drawTableCloseTicketPerChannel(v_params_today, v_params_today, '');
+    $('#start-date').datepicker("setDate", v_params_today);
+    $('#end-date').datepicker("setDate", v_params_today);
+    drawTableCloseTicket(v_params_today, v_params_today, '', '');
+    drawTableCloseTicketPerChannel(v_params_today, v_params_today, '', '');
 });
 
 function monthNumToName(month) {
@@ -80,15 +82,15 @@ function getTenant(date){
     });
 }
 
-function drawTableCloseTicket(start_date, end_date, tenant_id){
+function drawTableCloseTicket(tenant_id, start_date, end_date, channel){
     $('#tableSumClose').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSCloseTicket',
             type : 'POST',
             data :{
+                tenant_id: tenant_id,
                 start_date: start_date,
                 end_date: end_date,
-                tenant_id: tenant_id,
                 channel: channel
             }
         },
@@ -103,15 +105,15 @@ function drawTableCloseTicket(start_date, end_date, tenant_id){
     });
 }
 
-function drawTableCloseTicketPerChannel(start_date, end_date, tenant_id){
+function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel){
     $('#tableSumChannel').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSClosePerCh',
             type : 'POST',
             data :{
+                tenant_id: tenant_id,
                 start_date: start_date,
                 end_date: end_date,
-                tenant_id: tenant_id,
                 channel: channel
             }
         },
@@ -124,8 +126,45 @@ function drawTableCloseTicketPerChannel(start_date, end_date, tenant_id){
     });
 }
 
+function setDatePicker() {
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({
+        "cursor": "pointer",
+        "background": "white"
+    });
+}
+
 //jquery
 (function ($) {
+    var date = new Date();
+    date.setDate(date.getDate() > 0);
+    $('#start-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_start_date = this.value;
+        // }
+    });
+
+    $('#end-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_end_date = this.value;
+        // }
+    });
+
     // $('#btn-export').click(function(){
     //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
     //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
@@ -137,10 +176,8 @@ function drawTableCloseTicketPerChannel(start_date, end_date, tenant_id){
         endDateFromFilter = $('#end-date').val();
         channelFromFilter = $('#channel_name').val();
         
-        drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
-        
-        drawTableCloseTicket($('#layanan_name').val(), $('#channel_name').val(), $('#month_name').val());
-        drawTableCloseTicketPerChannel();
+        drawTableCloseTicket($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
+        drawTableCloseTicketPerChannel($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
     });
 
     
