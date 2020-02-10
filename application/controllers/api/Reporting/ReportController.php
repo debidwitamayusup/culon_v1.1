@@ -12,7 +12,7 @@
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
         }
-#region :: Raga
+        #region :: Raga
         function ss_formatter($src)
         {
             if($src =='header') {
@@ -548,6 +548,6 @@
                 exit;
         }
 
-#endregion Raga
+        #endregion Raga
     }
 ?>
