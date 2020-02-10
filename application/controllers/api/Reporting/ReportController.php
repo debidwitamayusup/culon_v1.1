@@ -341,7 +341,7 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.'"Summary Channel Report "'.date('d-m-Y H').'".xlsx"';
+                $filename = $name.' SC Report '.date('d-m-Y H').'.xlsx';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                 header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
@@ -610,7 +610,7 @@
             ;
             $i++;
         }
-        //for per channel
+        //for table per channel
         $j=$i+3; 
         $spreadsheet->setActiveSheetIndex(0)
         ->setCellValue('A'.$j, 'NO')
@@ -629,11 +629,11 @@
             $h++;
             $numering++;
         }
-        $x = $i-1;
-        $y= $h-1;
-        $yy = $h-2;
-        $indek = 'A'.$y.':'.'C'.$y;
-        $indekfilter = 'A'.$yy.':'.'C'.$yy;
+            $x = $i-1;
+            $y= $h-1;
+            $yy = $h-2;
+            $indek = 'A'.$y.':'.'C'.$y;
+            $indekfilter = 'A'.$yy.':'.'C'.$yy;
             $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
             $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
             $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
@@ -644,7 +644,7 @@
             $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
 
             $spreadsheet->getActiveSheet()->getStyle(''.$indek.'')->applyFromArray($this->ss_formatter('body'));
-            $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
+            // $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
         
 
             $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));

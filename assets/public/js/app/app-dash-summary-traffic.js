@@ -339,6 +339,16 @@ function drawPieChartSumAllTenant(response){
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");
             },
+            //untuk onclick pada chart javascript
+            onClick: function(event, array) {
+                let element = this.getElementAtEvent(event);
+                if (element.length > 0) {
+                var series= element[0]._model.datasetLabel;
+                var label = element[0]._model.label;
+                var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
+                alert("Sessions of "+label+" is "+value);
+                }
+            },
         }
     });
     var myLegendContainer = document.getElementById("legend");
