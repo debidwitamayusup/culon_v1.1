@@ -617,18 +617,23 @@
         ->setCellValue('B'.$j, 'CHANNEL')
         ->setCellValue('C'.$j, 'JUMLAH')
         ;
-        $spreadsheet->getActiveSheet()->getStyle('A10:C10')->applyFromArray($this->ss_formatter('header'));
+        $spreadsheet->getActiveSheet()->getStyle('A'.$j.':C'.$j.'')->applyFromArray($this->ss_formatter('header'));
         $h=$j+1;
+        $numering = 1;
         foreach($dataPerChn as $dataschn){
             $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A'.$h, $h)
+            ->setCellValue('A'.$h, $numering)
             ->setCellValue('B'.$h, $dataschn->CHANNEL_NAME)
             ->setCellValue('C'.$h, strval(number_format($dataschn->T_CLOSE,0,',','.')))
             ;
             $h++;
+            $numering++;
         }
         $x = $i-1;
         $y= $h-1;
+        $yy = $h-2;
+        $indek = 'A'.$y.':'.'C'.$y;
+        $indekfilter = 'A'.$yy.':'.'C'.$yy;
             $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
             $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
             $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
@@ -638,8 +643,8 @@
             $spreadsheet->getActiveSheet()->getStyle('A5:E'.$x)->applyFromArray($this->ss_formatter('body'));
             $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
 
-            $spreadsheet->getActiveSheet()->getStyle('A'.$h.':C'.$y)->applyFromArray($this->ss_formatter('body'));
-            // $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
+            $spreadsheet->getActiveSheet()->getStyle(''.$indek.'')->applyFromArray($this->ss_formatter('body'));
+            $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
         
 
             $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));
