@@ -402,9 +402,9 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        $data->MESSAGE_IN,
-                        $data->MESSAGE_OUT,
-                        $data->COF
+                        strval(number_format($data->MESSAGE_IN,0,',','.')),
+                        strval(number_format($data->MESSAGE_OUT,0,',','.')),
+                        strval(number_format($data->COF,0,',','.'))
                     ); 
                 }
                 return $result;

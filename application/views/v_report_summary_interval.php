@@ -37,7 +37,6 @@
                                 <div class="col-sm-auto ml-2">
                                     <div class="form-group row">
                                         <select class="form-control" id="interval">
-                                            <option value="">All Interval</option>
                                             <option value="1">1 Jam</option>
                                             <option value="2">3 Jam</option>
                                             <option value="3">6 Jam</option>
@@ -82,13 +81,14 @@
                                 <thead class="text-center text-white bg-head">
                                     <tr>
                                         <td class="wd-15p border-bottom-0" width="20">No</td>
-                                        <td class="wd-15p border-bottom-0">Interval</td>
+                                        <td class="wd-15p border-bottom-0" width="100">Date</td>
+                                        <td class="wd-15p border-bottom-0"  width="100">Interval</td>
                                         <td class="wd-15p border-bottom-0">ART</td>
                                         <td class="wd-15p border-bottom-0">AHT</td>
                                         <td class="wd-15p border-bottom-0">AST</td>
                                         <td class="wd-15p border-bottom-0" width="100">Message In</td>
                                         <td class="wd-15p border-bottom-0" width="100">Message Out</td>
-                                        <td class="wd-15p border-bottom-0" width="130">Reminder Message</td>
+                                        <td class="wd-15p border-bottom-0">Total Session (COF)</td>
                                     </tr>
                                 </thead>
                                 <tbody>
