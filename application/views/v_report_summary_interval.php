@@ -87,7 +87,7 @@
                                         <th class="wd-15p border-bottom-0">AST</th>
                                         <th class="wd-15p border-bottom-0" width="100">Message In</th>
                                         <th class="wd-15p border-bottom-0" width="100">Message Out</th>
-                                        <th class="wd-15p border-bottom-0" width="130">Reminder Message</th>
+                                        <th class="wd-15p border-bottom-0" width="130">COF</th>
                                     </tr>
                                 </thead>
                                 <tbody>

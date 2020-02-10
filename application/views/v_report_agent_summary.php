@@ -82,7 +82,8 @@
                                 <thead class="bg-head text-white text-center">
                                     <tr>
                                         <td class="border-bottom-0">Date</td>
-                                        <td class="border-bottom-0">ID Agent</td>
+                                        <td class="border-bottom-0">Agent ID</td>
+                                        <td class="border-bottom-0">Agent Name</td>
                                         <td class="border-bottom-0">Instagram</td>
                                         <td class="border-bottom-0">FB</td>
                                         <td class="border-bottom-0">Telegram</td>
@@ -96,8 +97,6 @@
                                         <td class="border-bottom-0">Chatbot</td>
                                         <td class="border-bottom-0">Live Chat</td>
                                         <td class="border-bottom-0">WA</td>
-                                        <td class="border-bottom-0">Total Create</td>
-                                        <td class="border-bottom-0">AHT</td>
                                         <td class="border-bottom-0">Total Handling</td>
                                     </tr>
                                 </thead>
@@ -105,28 +104,7 @@
                                     <tr>
                                         <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">Agent Name</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -145,28 +123,7 @@
                                     <tr>
                                         <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">Agent Name</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -185,8 +142,7 @@
                                     <tr>
                                         <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
-                                        <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">Agent Name</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
@@ -205,8 +161,64 @@
                                     <tr>
                                         <td class="text-center">2020-01-01</td>
                                         <td class="text-center">AD205A</td>
+                                        <td class="text-center">Agent Name</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">AD205A</td>
+                                        <td class="text-center">Agent Name</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">AD205A</td>
+                                        <td class="text-center">Agent Name</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                        <td class="text-center">200</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">AD205A</td>
+                                        <td class="text-center">Agent Name</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
