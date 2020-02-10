@@ -31,7 +31,7 @@
                                              <div class="input-group-text">
                                                  <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                              </div>
-                                         </div><input class="form-control fc-datepicker" id="starts-date"
+                                         </div><input class="form-control fc-datepicker" id="start-date"
                                              placeholder="Start Date" type="text">
                                      </div>
                                  </div>
@@ -153,7 +153,7 @@
                          <div class="row">
                              <div class="col-md-12 col-lg-6 col-xl-6">
                                  <!-- <div class="card"> -->
-                                 <div class="card overflow-hidden">
+                                 <div class="card overflow-hidden" style="height:434px !important;">
 
                                      <div class="card-body">
 
