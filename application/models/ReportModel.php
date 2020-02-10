@@ -154,18 +154,13 @@ Class ReportModel extends CI_Model {
                 $id = 1;
                 foreach( $query->result() as $data)
                 {
-                    $result = array(
+                    $result[] = array(
                         
-                        $data->TANGGAL,
-                        $data->INTERVAL_TIME_START.'-'.$data->INTERVAL_TIME_END,
-                        // strval(number_format($data->TOTAL_SESSION,0,'.',',')),
-                        $data->ART,
-                        $data->AHT,
-                        $data->AST,
-                        $data->MESSAGE_IN,
-                        $data->MESSAGE_OUT,
-                        $data->COF
+                        $id,
+                        $data->CHANNEL_NAME,
+                        strval(number_format($data->T_CLOSE,0,',','.'))
                     ); 
+                    $id++;
                 }
                 
                 return $result;

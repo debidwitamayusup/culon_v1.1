@@ -96,7 +96,7 @@
                                              <th>Date</th>
                                              <th>Channel</th>
                                              <th>Status</th>
-                                             <th>Jumlah Ticket</th>
+                                             <th class="text-center">Jumlah Ticket</th>
                                          </tr>
                                      </thead>
                                      <tbody class="table-sm text-center">
@@ -164,7 +164,7 @@
                                                      <tr>
                                                          <th width="20">No</th>
                                                          <th>Channel</th>
-                                                         <th>Jumlah</th>
+                                                         <th class="text-center">Jumlah</th>
                                                      </tr>
                                                  </thead>
                                                  <tbody class="table-sm text-center">

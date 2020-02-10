@@ -36,8 +36,9 @@ $(document).ready(function () {
     getTenant('')
     $('#start-date').datepicker("setDate", v_params_today);
     $('#end-date').datepicker("setDate", v_params_today);
-    drawTableCloseTicket(v_params_today, v_params_today, '', '');
-    drawTableCloseTicketPerChannel(v_params_today, v_params_today, '', '');
+    drawTableCloseTicket('', v_params_today, v_params_today, '');
+    drawTableCloseTicketPerChannel('',v_params_today, v_params_today, '');
+    callCloseTicketPie('', v_params_today, v_params_today);
 
     tenantFromFilter = $('#layanan_name').val();
     startDateFromFilter = $('#start-date').val();
@@ -86,6 +87,128 @@ function getTenant(date){
             alert("error");
         },
     });
+}
+
+function callCloseTicketPie(tenant_id, start_date, end_date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportDiagramsController/ReportingDiagramsSSClose',
+        data: {
+            tenant_id: tenant_id,
+            start_time: start_date,
+            end_time: end_date
+        },
+
+        success: function (r) {
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            drawPieChart(response)
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawPieChart(response){
+    //pie chart Ticket Channel
+var ctx = document.getElementById( "pieChartSumChannel" );
+ctx.height = 262;
+var myChart = new Chart( ctx, {
+    type: 'pie',
+    data: {
+        datasets: [ {
+            data: response.data.TOTAL,
+            backgroundColor: response.data.CHANNEL_COLOR,
+            hoverBackgroundColor: response.data.CHANNEL_COLOR
+
+                        } ],
+        labels: response.data.CHANNEL_NAME
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        
+        legend:{
+                display : false
+        },
+        pieceLabel:{
+            render : 'legend',
+            fontColor : '#000',
+            position : 'outside',
+            segment : true
+        },
+        // legendCallback : function (chart, index){
+        //     var allData = chart.data.datasets[0].data;
+        //     // console.log(chart)
+        //     var legendHtml = [];
+        //     legendHtml.push('<ul><div class="row ml-3">');
+        //     allData.forEach(function(data,index){
+        //         var label = chart.data.labels[index];
+        //         var dataLabel = allData[index];
+        //         var background = chart.data.datasets[0].backgroundColor[index]
+        //         var total = 0;
+        //         for (var i in allData){
+        //             total += parseInt(allData[i]);
+        //         }
+
+        //         // console.log(total)
+        //         var percentage = Math.round((dataLabel / total) * 100);
+        //         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+        //         legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
+        legendCallback: function (chart, index) {
+            // console.log(chart);
+            var allData = chart.data.datasets[0].data;
+            var legendHtml = [];
+            legendHtml.push('<ul><div class="row ml-2">');
+            allData.forEach(function (data, index) {
+                if (allData[index] != 0) {
+                    var label = chart.data.labels[index];
+                    var dataLabel = allData[index];
+                    var background = chart.data.datasets[0].backgroundColor[index];
+                    var total = 0;
+                    for (var i in allData) {
+                        total += parseInt(allData[i]);
+                    }
+                    // var percentage = Math.round((dataLabel / total) * 100);
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
+
+                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
+                    legendHtml.push('</li>');
+                }else{
+                    var label = chart.data.labels[index];
+                    var dataLabel = allData[index];
+                    var background = chart.data.datasets[0].backgroundColor[index];
+                    var total = 0;
+                    for (var i in allData) {
+                        total += parseInt(allData[i]);
+                    }
+                    // var percentage = Math.round((dataLabel / total) * 100);
+                    if(dataLabel != 0){
+                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    }else{
+                        var percentage = Math.round((dataLabel / total) * 100);
+                    }
+
+                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
+                    legendHtml.push('</li>');
+                }
+            })
+            legendHtml.push('</ul></div>');
+            return legendHtml.join("");
+        },
+    }
+});
+var myLegendContainer = document.getElementById("legend");
+myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
 function drawTableCloseTicket(tenant_id, start_date, end_date, channel){
@@ -213,6 +336,7 @@ function setDatePicker() {
         
         drawTableCloseTicket($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
         drawTableCloseTicketPerChannel($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
+        callCloseTicketPie($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
     
@@ -224,98 +348,98 @@ $(function ($) {
     $('#tableSumChannel').dataTable();
 
 
-//pie chart Ticket Channel
-var ctx = document.getElementById( "pieChartSumChannel" );
-ctx.height = 262;
-var myChart = new Chart( ctx, {
-    type: 'pie',
-    data: {
-        datasets: [ {
-            data: [ 15, 35, 40,20,50,30,15,30,40,50,70,90],
-            backgroundColor: [
-                            "#467fcf",
-                            "#fbc0d5",
-                            "#31a550",
-                            "#e41313",
-                            "#3866a6",
-                            "#45aaf2",
-                            "#6574cd",
-                            "#343a40",
-                            "#607d8b",
-                            "#31a550",
-                            "#ff9933",
-                            "#80cbc4"
-                            ],
-            hoverBackgroundColor: [
-                            "#467fcf",
-                            "#fbc0d5",
-                            "#31a550",
-                            "#e41313",
-                            "#3866a6",
-                            "#45aaf2",
-                            "#6574cd",
-                            "#343a40",
-                            "#607d8b",
-                            "#31a550",
-                            "#ff9933",
-                            "#80cbc4"
-                            ]
+// //pie chart Ticket Channel
+// var ctx = document.getElementById( "pieChartSumChannel" );
+// ctx.height = 262;
+// var myChart = new Chart( ctx, {
+//     type: 'pie',
+//     data: {
+//         datasets: [ {
+//             data: [ 15, 35, 40,20,50,30,15,30,40,50,70,90],
+//             backgroundColor: [
+//                             "#467fcf",
+//                             "#fbc0d5",
+//                             "#31a550",
+//                             "#e41313",
+//                             "#3866a6",
+//                             "#45aaf2",
+//                             "#6574cd",
+//                             "#343a40",
+//                             "#607d8b",
+//                             "#31a550",
+//                             "#ff9933",
+//                             "#80cbc4"
+//                             ],
+//             hoverBackgroundColor: [
+//                             "#467fcf",
+//                             "#fbc0d5",
+//                             "#31a550",
+//                             "#e41313",
+//                             "#3866a6",
+//                             "#45aaf2",
+//                             "#6574cd",
+//                             "#343a40",
+//                             "#607d8b",
+//                             "#31a550",
+//                             "#ff9933",
+//                             "#80cbc4"
+//                             ]
 
-                        } ],
-        labels: [
-                            "Facebook",
-                            "Instagram",
-                            "Line",
-                            "Email",
-                            "Messenger",
-                            "Twitter",
-                            "Twitter DM",
-                            "Telegram",
-                            "Live Chat",
-                            "Whatsapp",
-                            "Voice",
-                            "SMS"
-                ]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
+//                         } ],
+//         labels: [
+//                             "Facebook",
+//                             "Instagram",
+//                             "Line",
+//                             "Email",
+//                             "Messenger",
+//                             "Twitter",
+//                             "Twitter DM",
+//                             "Telegram",
+//                             "Live Chat",
+//                             "Whatsapp",
+//                             "Voice",
+//                             "SMS"
+//                 ]
+//     },
+//     options: {
+//         responsive: true,
+//         maintainAspectRatio: false,
         
-        legend:{
-                display : false
-        },
-        pieceLabel:{
-            render : 'legend',
-            fontColor : '#000',
-            position : 'outside',
-            segment : true
-        },
-        legendCallback : function (chart, index){
-            var allData = chart.data.datasets[0].data;
-            // console.log(chart)
-            var legendHtml = [];
-            legendHtml.push('<ul><div class="row ml-3">');
-            allData.forEach(function(data,index){
-                var label = chart.data.labels[index];
-                var dataLabel = allData[index];
-                var background = chart.data.datasets[0].backgroundColor[index]
-                var total = 0;
-                for (var i in allData){
-                    total += parseInt(allData[i]);
-                }
+//         legend:{
+//                 display : false
+//         },
+//         pieceLabel:{
+//             render : 'legend',
+//             fontColor : '#000',
+//             position : 'outside',
+//             segment : true
+//         },
+//         legendCallback : function (chart, index){
+//             var allData = chart.data.datasets[0].data;
+//             // console.log(chart)
+//             var legendHtml = [];
+//             legendHtml.push('<ul><div class="row ml-3">');
+//             allData.forEach(function(data,index){
+//                 var label = chart.data.labels[index];
+//                 var dataLabel = allData[index];
+//                 var background = chart.data.datasets[0].backgroundColor[index]
+//                 var total = 0;
+//                 for (var i in allData){
+//                     total += parseInt(allData[i]);
+//                 }
 
-                // console.log(total)
-                var percentage = Math.round((dataLabel / total) * 100);
-                legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
-            })
-            legendHtml.push('</ul></div>');
-            return legendHtml.join("");
-        },
-    }
-});
-var myLegendContainer = document.getElementById("legend");
-myLegendContainer.innerHTML = myChart.generateLegend();
+//                 // console.log(total)
+//                 var percentage = Math.round((dataLabel / total) * 100);
+//                 legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+//                 legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
+//             })
+//             legendHtml.push('</ul></div>');
+//             return legendHtml.join("");
+//         },
+//     }
+// });
+// var myLegendContainer = document.getElementById("legend");
+// myLegendContainer.innerHTML = myChart.generateLegend();
 
 $(function ($) {
         // Return with commas in between
