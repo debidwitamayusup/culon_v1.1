@@ -16,21 +16,20 @@
              </div>
 
              <!----First Rows--->
-
              <div class="row">
-                 <div class="col-md-12 col-lg-12">
+                 <div class="col-md-12">
                      <div class="card overflow-hidden">
                          <div class="card-header-small">
                              <h5 class="card-title-small card-pt10">Summary Status Close Ticket</h5>
                          </div>
                          <div class="card-body">
-                             <div class="row mb-2">
-                                 <div class="col-sm-auto h6 mt-3">Date</div>
+                             <div class="row">
+                                 <div class="col-sm-auto h6 mt-3 ml-1">Date</div>
                                  <div class="col-xs-auto ml-1">
                                      <div class="input-group" style="width:150px">
                                          <div class="input-group-prepend">
                                              <div class="input-group-text">
-                                                 <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+                                                 <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                              </div>
                                          </div><input class="form-control fc-datepicker" id="start-date"
                                              placeholder="Start Date" type="text">
@@ -70,23 +69,24 @@
                                  <div class="col-sm-auto ml-1">
                                      <div class="form-group row">
                                          <select class="form-control" id="layanan_name">
-                                                <!-- <option value="">All Tenant</option>
+                                             <!-- <option value="">All Tenant</option>
                                                 <option value="12">Whatsapp</option>
                                                 <option value="6">Facebook</option> -->
                                          </select>
                                      </div>
                                  </div>
                                  <div class="col-xs-auto ml-1">
-                                     <button class="btn btn-sm btn-dark" type="button" style="height:35px"
+                                     <button class="btn btn-sm btn-dark" type="button" style="height:36px"
                                          id="btn-go"><i class="fas fa-filter"></i></button>
 
                                  </div>
                                  <div class="col-xs-auto ml-1">
-                                     <button class="btn btn-sm btn-primary" type="button" style="height:35px"
+                                     <button class="btn btn-sm btn-primary" type="button" style="height:36px"
                                          id="btn-export"><i class="fas fa-download mr-2"></i>Export</button>
 
                                  </div>
                              </div>
+
                              <div class="table-responsive" style="padding:10px 8px 10px 8px;">
                                  <table class="table table-striped table-bordered fontNunito12" id="tableSumClose"
                                      width="100%">
@@ -143,6 +143,7 @@
                  </div>
              </div>
 
+
              <div class="row">
                  <div class="col-md-12 col-lg-12">
                      <div class="card overflow-hidden">
@@ -152,7 +153,7 @@
                          <div class="row">
                              <div class="col-md-12 col-lg-6 col-xl-6">
                                  <!-- <div class="card"> -->
-                                 <div class="card overflow-hidden">
+                                 <div class="card overflow-hidden" style="height:434px !important;">
 
                                      <div class="card-body">
 

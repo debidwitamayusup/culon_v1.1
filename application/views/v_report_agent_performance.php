@@ -80,7 +80,8 @@
                                             <th class="wd-15p border-bottom-0" width="130">Date</th>
                                             <th class="wd-15p border-bottom-0">Total Agent</th>
                                             <th class="wd-15p border-bottom-0">AHT</th>
-                                            <th class="wd-15p border-bottom-0">SHT</th>
+                                            <th class="wd-15p border-bottom-0">ART</th>
+                                            <th class="wd-15p border-bottom-0">AST</th>
                                             <th class="wd-15p border-bottom-0">SCR</th>
                                             <th class="wd-15p border-bottom-0">Last Day</th>
                                             <th class="wd-15p border-bottom-0">Today</th>
@@ -95,116 +96,127 @@
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                         </tr>
                                         <tr>
-                                            <td class="text-center">2020-01-01</td>
+                                        <td class="text-center">2020-01-01</td>
                                             <td class="text-right">100</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
                                             <td class="text-center">00:30:00</td>
+                                            <td class="text-center">30%</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
                                             <td class="text-right">200</td>
