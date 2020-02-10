@@ -104,7 +104,7 @@ Class ReportModel extends CI_Model {
                         $data->TANGGAL,
                         $data->CHANNEL_NAME,
                         $data->STATUS,
-                        $data->T_CLOSE
+                        strval(number_format($data->T_CLOSE,0,',','.'))
                     );
                     $id++;
                 }
@@ -157,7 +157,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->CHANNEL_NAME,
-                        $data->T_CLOSE
+                        strval(number_format($data->T_CLOSE,0,',','.'))
                     );
                     $id++;
                 }
@@ -402,9 +402,9 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        $data->MESSAGE_IN,
-                        $data->MESSAGE_OUT,
-                        $data->COF
+                        strval(number_format($data->MESSAGE_IN,0,',','.')),
+                        strval(number_format($data->MESSAGE_OUT,0,',','.')),
+                        strval(number_format($data->COF,0,',','.'))
                     ); 
                 }
                 return $result;

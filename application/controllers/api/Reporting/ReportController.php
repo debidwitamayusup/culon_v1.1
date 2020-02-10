@@ -12,7 +12,7 @@
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
         }
-        #region :: Raga
+#region :: Raga
         function ss_formatter($src)
         {
             if($src =='header') {
@@ -110,21 +110,19 @@
 
         public function ReportingSCloseTicket_post()
         {
-
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $t_start = $this->security->xss_clean($this->input->post('start_date'));
+            $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSCloseTicket($tid,$d_start,$d_end,$channel,$meth);
-            
+            $res = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
+    
             if ($res) {
                 $this->response([
                     'status'  => TRUE,
                     'message' => 'Data available!',
-                    'data'    => $res,
-
+                    'data'    => $res
                         ], REST_Controller::HTTP_OK);
                     }
             else {
@@ -138,19 +136,19 @@
 
         public function ReportingSClosePerCh_post()
         {
-
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $t_start = $this->security->xss_clean($this->input->post('start_date'));
+            $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$d_start,$d_end,$channel,$meth);
+            $res = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
+    
             if ($res) {
                 $this->response([
                     'status'  => TRUE,
                     'message' => 'Data available!',
-                    'data'    => $res,
+                    'data'    => $res
                         ], REST_Controller::HTTP_OK);
                     }
             else {
@@ -161,14 +159,14 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
-
+        
         public function ReportingSInterval_post()
         {
 
-            $interval = $this->security->xss_clean($this->input->post('interval'));
-            $date = $this->security->xss_clean($this->input->post('tanggal'));
-            $chn = $this->security->xss_clean($this->input->post('channel'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $interval = $this->security->xss_clean($this->input->post('interval'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
 
             $meth = 'data';
             //token
@@ -548,6 +546,116 @@
                 exit;
         }
 
-        #endregion Raga
+#endregion Raga
+
+#region :: debi
+    public function EXPORTSCLOSE_get()
+    {
+
+        $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+        $t_start = $this->security->xss_clean($this->input->get('start_date'));
+        $t_end = $this->security->xss_clean($this->input->get('end_date'));
+        $chn = $this->security->xss_clean($this->input->get('channel_id'));
+        $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+        $meth = 'excel';
+        $name = $this->security->xss_clean($this->input->get('name'));
+
+        $data = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
+        $dataPerChn = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+        ->setLastModifiedBy('INFOMEDIA')
+        ->setTitle('Office 2007 XLSX Document')
+        ->setSubject('Office 2007 XLSX Document')
+        ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+        ->setKeywords('office 2007 openxml php')
+        ->setCategory('result file');
+
+        if (!$tid){
+            $tid = 'All Tenant';
+        }
+
+        $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('A1','Summary Close Ticket - '.$tid)
+        ->setCellValue('A2','Export Time ')
+        ->setCellValue('A3','Export By ')
+        ->setCellValue('B2',date('d-m-Y H:i:s'))
+        ->setCellValue('B3', $name)
+        ->setCellValue('C2','Filter Start ')
+        ->setCellValue('C3','Filter End ')
+        ->setCellValue('D2', $t_start)
+        ->setCellValue('D3', $t_end)
+        ->setCellValue('A4', 'NO')
+        ->setCellValue('B4', 'DATE')
+        ->setCellValue('C4', 'CHANNEL')
+        ->setCellValue('D4', 'STATUS')
+        ->setCellValue('E4', 'TICKETS')
+        ;
+
+        $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
+        $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+        $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+        $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+        $spreadsheet->getActiveSheet()->getStyle('A4:E4')->applyFromArray($this->ss_formatter('header'));
+
+        $i=5; foreach($data as $datas) {
+
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A'.$i, $i-4)
+            ->setCellValue('B'.$i, $datas->TANGGAL)
+            ->setCellValue('C'.$i, $datas->CHANNEL_NAME)
+            ->setCellValue('D'.$i, $datas->STATUS)
+            ->setCellValue('E'.$i, strval(number_format($datas->T_CLOSE,0,',','.')))
+            ;
+            $i++;
+        }
+        //for per channel
+        $j=$i+3; 
+        $spreadsheet->setActiveSheetIndex(0)
+        ->setCellValue('A'.$j, 'NO')
+        ->setCellValue('B'.$j, 'CHANNEL')
+        ->setCellValue('C'.$j, 'JUMLAH')
+        ;
+        $spreadsheet->getActiveSheet()->getStyle('A10:C10')->applyFromArray($this->ss_formatter('header'));
+        $h=$j+1;
+        foreach($dataPerChn as $dataschn){
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A'.$h, $h)
+            ->setCellValue('B'.$h, $dataschn->CHANNEL_NAME)
+            ->setCellValue('C'.$h, strval(number_format($dataschn->T_CLOSE,0,',','.')))
+            ;
+            $h++;
+        }
+        $x = $i-1;
+        $y= $h-1;
+            $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
+            $spreadsheet->getActiveSheet()->getStyle('A5:E'.$x)->applyFromArray($this->ss_formatter('body'));
+            $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
+
+            $spreadsheet->getActiveSheet()->getStyle('A'.$h.':C'.$y)->applyFromArray($this->ss_formatter('body'));
+            // $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
+        
+
+            $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));
+            $spreadsheet->setActiveSheetIndex(0);
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="Summary Ticket Close "'.date('d-m-Y H').'".xlsx"');
+            header('Cache-Control: max-age=0');
+            header('Cache-Control: max-age=1');
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+            header('Cache-Control: cache, must-revalidate'); 
+            header('Pragma: public'); 
+            $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+            exit;
+    }
+#endregion debi
     }
 ?>

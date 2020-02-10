@@ -38,7 +38,7 @@
                                  </div>
                                  <div class="col-sm-auto h6 mt-3 ml-1">to</div>
                                  <div class="col-xs-auto ml-1">
-                                     <div class="input-group" style="width:130px">
+                                     <div class="input-group" style="width:150px">
                                          <div class="input-group-prepend">
                                              <div class="input-group-text">
                                                  <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -49,7 +49,7 @@
                                  </div>
                                  <div class="col-sm-auto ml-3">
                                      <div class="form-group row">
-                                         <select class="form-control">
+                                         <select class="form-control" id="channel_name">
                                              <option value="">All Channel</option>
                                              <option value="12">Whatsapp</option>
                                              <option value="6">Facebook</option>
@@ -69,10 +69,10 @@
                                  </div>
                                  <div class="col-sm-auto ml-1">
                                      <div class="form-group row">
-                                         <select class="form-control" id="tenantName">
-                                             <option value="">All Tenant</option>
-                                             <option value="12">Whatsapp</option>
-                                             <option value="6">Facebook</option>
+                                         <select class="form-control" id="layanan_name">
+                                                <!-- <option value="">All Tenant</option>
+                                                <option value="12">Whatsapp</option>
+                                                <option value="6">Facebook</option> -->
                                          </select>
                                      </div>
                                  </div>
