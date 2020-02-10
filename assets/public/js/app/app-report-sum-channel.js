@@ -82,12 +82,13 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
         },
         columnDefs: [
             { className: "text-center", targets: 0 },
-            { className: "text-center", targets: 1 },
-            { className: "text-center", targets: 2 },
-            { className: "text-center", targets: 3 },
-            { className: "text-center", targets: 4 },
-            { className: "text-center", targets: 5 }
-        ], 
+            { className: "text-left", targets: 1 },
+            { className: "text-right", targets: 2 },
+            { className: "text-right", targets: 3 },
+            { className: "text-right", targets: 4 },
+            { className: "text-right", targets: 5 }
+        ],
+        lengthMenu: [ 13, 25, 50, 75, 100 ],
         destroy: true
     });
 }
@@ -103,16 +104,16 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
     //         "end_time": end_time,
     //         "name": name,
     //         "chart_img": baseImg
-    //     }
-        // ,
+        // }
+    //     ,
 
-        // success: function (r) {
-        //     alert("exported")
-        // },
-        // error: function (r) {
-        //     //console.log(r);
-        //     alert("error");
-        // },
+    //     success: function (r) {
+    //         alert("exported")
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("error");
+    //     },
     // });
     // const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
     // const data = {
@@ -266,9 +267,13 @@ function drawPieChartSumChannel(response){
                         for (var i in allData){
                             total += parseInt(allData[i]);
                         }
-
+                         if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total) * 100).toFixed(1);  
+                        }else{   
+                            var percentage = Math.round((dataLabel / total) * 100);                            
+                         }
                         // console.log(total)
-                        var percentage = Math.round((dataLabel / total) * 100);
+                        
                         legendHtml.push('<li class="col-md-12 col-lg-4 col-sm-4 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
                     } else {
@@ -279,9 +284,13 @@ function drawPieChartSumChannel(response){
                         for (var i in allData){
                             total += parseInt(allData[i]);
                         }
-
+                        if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total) * 100).toFixed(1);     
+                         }else{
+                            var percentage = Math.round((dataLabel / total) * 100);                            
+                         }
                         // console.log(total)
-                        var percentage = Math.round((dataLabel / total) * 100);
+                        // var percentage = Math.round((dataLabel / total) * 100);
                         legendHtml.push('<li class="col-md-12 col-lg-4 col-sm-4 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+'0'+ '%</span>');
                     }

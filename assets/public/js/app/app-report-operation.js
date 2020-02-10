@@ -121,7 +121,7 @@ function exportTablePerformOps(tenant_id, channel_id, month, name){
         exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
     });
 
-    $('#btn-go').click(function(){
+    $('#btn-go ').click(function(){
         tenantFromFilter = $('#layanan_name').val();
         channelFromFilter = $('#channel_name').val();
         monthFromFilter = $('#month_name').val();

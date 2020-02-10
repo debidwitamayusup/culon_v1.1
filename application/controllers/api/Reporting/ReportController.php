@@ -12,7 +12,7 @@
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
         }
-
+#region :: Raga
         function ss_formatter($src)
         {
             if($src =='header') {
@@ -85,12 +85,94 @@
         public function ReportingSC_post()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $meth = 'data';
             //token
             $res = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function ReportingSCloseTicket_post()
+        {
+
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $meth = 'data';
+            //token
+            $res = $this->module_model->get_datareportSCloseTicket($tid,$d_start,$d_end,$channel,$meth);
+            
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res,
+
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function ReportingSClosePerCh_post()
+        {
+
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $meth = 'data';
+            //token
+            $res = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$d_start,$d_end,$channel,$meth);
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res,
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function ReportingSInterval_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $interval = $this->security->xss_clean($this->input->post('interval'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
+
+            $meth = 'data';
+            //token
+            $res = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
     
             if ($res) {
                 $this->response([
@@ -163,29 +245,31 @@
         }
 
         // Export ke excel
-        public function EXPORTSC_post()
+        public function EXPORTSC_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_time'));
-            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
-            $chart = $this->security->xss_clean($this->input->post('chart_img'));
-            $imageData = base64_decode(substr($chart,22));
-            $chart_img = imagecreatefromstring($imageData);
-            $gdImage = @imagecreatetruecolor(120, 20) or die('Cannot Initialize new GD image stream');
-            $textColor = imagecolorallocate($gdImage, 255, 255, 255);
-            imagestring($gdImage, 1, 5, 5,  'Created with PhpSpreadsheet', $textColor);
+            $name = $this->security->xss_clean($this->input->get('name'));
 
-            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-            $drawing->setName('Chart');
-            $drawing->setDescription('Chart');
-            $drawing->setCoordinates('H2');
-            $drawing->setImageResource($chart_img);
-            $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_JPEG);
-            $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
-            $drawing->setHeight(36);
-
+            #region - 1st part sub image to spreadsheet
+                // $chart = $this->security->xss_clean($this->input->post('chart_img'));
+                // $imageData = base64_decode($chart);
+                // $chart_img = imagecreatefromstring($imageData);
+                // $white = imagecolorallocate($chart_img, 255, 255, 255);
+                // imagecolortransparent($chart_img, $white);
+                // imagesavealpha($chart_img,true);
+                // imagealphablending($chart_img, true); 
+            
+                // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                // $drawing->setName('Chart');
+                // $drawing->setDescription('Chart');
+                // $drawing->setCoordinates('H2');
+                // $drawing->setImageResource($chart_img);
+                // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+            #endregion 
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
             $spreadsheet = new Spreadsheet();
@@ -214,14 +298,15 @@
             ->setCellValue('D3', $t_end)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'CHANNEL_NAME')
-            ->setCellValue('C4', 'UNIQUE CUSTOMER')
-            ->setCellValue('D4', 'TOTAL SESSION')
-            ->setCellValue('E4', 'MESSAGE IN')
-            ->setCellValue('F4', 'MESSAGE OUT')
+            ->setCellValue('C4', 'MESSAGE IN')
+            ->setCellValue('D4', 'MESSAGE OUT')
+            ->setCellValue('E4', 'UNIQUE CUSTOMER')
+            ->setCellValue('F4', 'TOTAL SESSION')
             ;
 
-            $drawing->setWorksheet($spreadsheet->getActiveSheet());
-            
+            #region - 2nd part sub image to spreadsheet
+                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+            #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
             $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
@@ -258,15 +343,18 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
+                $filename = $name.'"Summary Channel Report "'.date('d-m-Y H').'".xlsx"';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="Summary Channel Report "'.date('d-m-Y H').'".xlsx"');
+                header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
                 header('Cache-Control: max-age=1');
                 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                $path = APPPATH.'public/reportdata';
+                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                // $writer->save($path.$filename);
                 $writer->save('php://output');
                 exit;
         }
@@ -459,5 +547,7 @@
                 $writer->save('php://output');
                 exit;
         }
+
+#endregion Raga
     }
 ?>

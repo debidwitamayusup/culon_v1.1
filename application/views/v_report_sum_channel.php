@@ -68,8 +68,8 @@
                                                      </select>
                                                  </div>
                                              </div>
-                                             <div class="col-sm-auto ml-1">
-                                                 <div class="form-group row">
+                                             <!-- <div class="col-sm-auto ml-1"> -->
+                                                 <!-- <div class="form-group row">
                                                      <select class="form-control" style="width:130px">
                                                          <option value="">All Channel</option>
                                                         <option value="12">Whatsapp</option>
@@ -86,8 +86,8 @@
                                                         <option value="4">SMS</option>
                                                         <option value="15">Chatbot</option> 
                                                      </select>
-                                                 </div>
-                                             </div>
+                                                 </div> -->
+                                             <!-- </div> -->
                                              
                                              <div class="col-xs-auto ml-1">
                                                  <button class="btn btn-sm btn-dark" type="button" style="height:35px"
@@ -107,12 +107,12 @@
                                              class="table table-striped table-bordered fontNunito11" width="100%">
                                              <thead class="bg-head text-white text-center">
                                                  <tr>
-                                                     <td class="wd-15p border-bottom-0" width="20">No</td>
-                                                     <td class="wd-15p border-bottom-0">Channel</td>
-                                                     <td class="wd-15p border-bottom-0">Unique Customers</td>
-                                                     <td class="wd-15p border-bottom-0">Total Sessions</td>
-                                                     <td class="wd-15p border-bottom-0">Message In</td>
-                                                     <td class="wd-15p border-bottom-0">Message Out</td>
+                                                     <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Channel</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Unique Customers</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Total Sessions</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Message In</td>
+                                                     <td class="wd-15p border-bottom-0 text-center">Message Out</td>
                                                  </tr>
                                              </thead>
                                              <tbody class="table-sm">
