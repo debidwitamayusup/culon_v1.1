@@ -6,7 +6,8 @@ var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
 var channelFromFilter = '';
-var monthFromFilter = '';
+var startDateFromFilter = '';
+var endDateFromFilter = '';
 var tenants = [];
 if (o < 10) {
   o = '0' + o;
@@ -37,6 +38,11 @@ $(document).ready(function () {
     $('#end-date').datepicker("setDate", v_params_today);
     drawTableCloseTicket(v_params_today, v_params_today, '', '');
     drawTableCloseTicketPerChannel(v_params_today, v_params_today, '', '');
+
+    tenantFromFilter = $('#layanan_name').val();
+    startDateFromFilter = $('#start-date').val();
+    endDateFromFilter = $('#end-date').val();
+    channelFromFilter = $('#channel_name').val();
 });
 
 function monthNumToName(month) {
@@ -127,7 +133,32 @@ function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel
 }
 
 function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSCLOSE?tenant_id='+tenant_id+'&channel_id='+channel_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+'&channel_name='+channelToName(channel_id)
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/ReportingSCloseTicket',
+        data: {
+            tenant_id: tenant_id,
+            start_date: start_date,
+            end_date: end_date,
+            channel_id: channel_id
+        },
+
+        success: function (r) {
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            if (response.status != false){
+                window.location = base_url + 'api/Reporting/ReportController/EXPORTSCLOSE?tenant_id='+tenant_id+'&channel_id='+channel_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+'&channel_name='+channelToName(channel_id)
+            }else{
+                alert("Can't Export Empty Table!");
+            }
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+    
 }
 
 function setDatePicker() {
