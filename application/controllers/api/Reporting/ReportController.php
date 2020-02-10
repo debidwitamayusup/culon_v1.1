@@ -262,6 +262,7 @@
             // print_r($data);
             // exit;
             // echo json_encode($data);
+            // exit;
             // $j=0;
             // foreach ($data as $datas) {
             //     $test[] = $datas[0]->TANGGAL;

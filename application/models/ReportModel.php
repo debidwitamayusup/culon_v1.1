@@ -179,11 +179,17 @@ Class ReportModel extends CI_Model {
             $x = 1;
             for($i=0;$i<24;$i= $i+$interval_v)
             {
-                $data = array(
-                    $x
-                );
-                $x++;
-                $result[] = array_merge($data,$this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth));               
+                if ($meth == 'data') {      
+                    $data = array(
+                        $x
+                    );
+                    
+                    $x++;
+                    $result[] = array_merge($data,$this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth));
+                }else{
+                    $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
+                }
+            
             }
             return $result;
         }

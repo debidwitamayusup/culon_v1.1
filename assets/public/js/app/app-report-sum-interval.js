@@ -72,7 +72,7 @@ function drawTableSumInterval(tanggal,interval,channel){
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channelToName(channel)+'&name='+name;
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name;
 }
 
 function setDatePicker() {
