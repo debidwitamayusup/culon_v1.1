@@ -67,18 +67,22 @@ Class ReportModel extends CI_Model {
     {
         if($interval_v==1 || $interval_v==3 || $interval_v ==6)
         {
+            
             $x = 1;
             for($i=0;$i<24;$i= $i+$interval_v)
-            {
-                $data = array(
-                    $x
-                );
-                $x++;
-                $result[] = array_merge($data,$this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth));
-                 
-                
+            {   
+                if ($meth == 'data') {      
+                    $data = array(
+                        $x
+                    );
+                    
+                    $x++;
+                    $result[] = array_merge($data,$this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth));
+                }else{
+                    $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
+                }
             }
-            return $result;
+                return $result;
         }
         return false;
     }
@@ -158,7 +162,6 @@ Class ReportModel extends CI_Model {
                         
                         $data->TANGGAL,
                         $data->INTERVAL_TIME_START.'-'.$data->INTERVAL_TIME_END,
-                        // strval(number_format($data->TOTAL_SESSION,0,'.',',')),
                         $data->ART,
                         $data->AHT,
                         $data->AST,
@@ -235,8 +238,7 @@ Class ReportModel extends CI_Model {
             else
             {
                 return $query->result();
-            }
-            
+            }  
         }
 
         return false;
