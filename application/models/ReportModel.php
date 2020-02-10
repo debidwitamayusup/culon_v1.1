@@ -158,6 +158,7 @@ Class ReportModel extends CI_Model {
                         
                         $data->TANGGAL,
                         $data->INTERVAL_TIME_START.'-'.$data->INTERVAL_TIME_END,
+                        // strval(number_format($data->TOTAL_SESSION,0,'.',',')),
                         $data->ART,
                         $data->AHT,
                         $data->AST,
