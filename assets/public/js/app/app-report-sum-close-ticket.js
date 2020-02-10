@@ -126,6 +126,10 @@ function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel
     });
 }
 
+function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, name){
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSCLOSE?tenant_id='+tenant_id+'&channel_id='+channel_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+'&channel_name='+channelToName(channel_id)
+}
+
 function setDatePicker() {
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
@@ -165,13 +169,13 @@ function setDatePicker() {
         // }
     });
 
-    // $('#btn-export').click(function(){
-    //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-    //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
-    // });
+    $('#btn-export').click(function(){
+        // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
+        exportTableCloseTicket(tenantFromFilter, startDateFromFilter, endDateFromFilter, channelFromFilter, sessionParams.NAME);
+    });
 
     $('#btn-go ').click(function(){
-        tenantFromFilter = $('#tenant-id').val();
+        tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         channelFromFilter = $('#channel_name').val();
