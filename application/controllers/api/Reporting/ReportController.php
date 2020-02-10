@@ -110,21 +110,19 @@
 
         public function ReportingSCloseTicket_post()
         {
-
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $t_start = $this->security->xss_clean($this->input->post('start_date'));
+            $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSCloseTicket($tid,$d_start,$d_end,$channel,$meth);
-            
+            $res = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
+    
             if ($res) {
                 $this->response([
                     'status'  => TRUE,
                     'message' => 'Data available!',
-                    'data'    => $res,
-
+                    'data'    => $res
                         ], REST_Controller::HTTP_OK);
                     }
             else {
@@ -138,19 +136,19 @@
 
         public function ReportingSClosePerCh_post()
         {
-
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $t_start = $this->security->xss_clean($this->input->post('start_date'));
+            $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $channel = $this->security->xss_clean($this->input->post('channel'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$d_start,$d_end,$channel,$meth);
+            $res = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
+    
             if ($res) {
                 $this->response([
                     'status'  => TRUE,
                     'message' => 'Data available!',
-                    'data'    => $res,
+                    'data'    => $res
                         ], REST_Controller::HTTP_OK);
                     }
             else {
@@ -161,7 +159,7 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
-
+        
         public function ReportingSInterval_post()
         {
 
