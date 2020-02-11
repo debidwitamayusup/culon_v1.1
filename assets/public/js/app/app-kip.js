@@ -223,18 +223,7 @@ function drawChartSubCategory(response){
 	$('#chart-no-data').remove();
 	$('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
 	var color = [];
-	// color[0] = "#A5B0B6";
-	// color[1] = "#009E8C";
-	// color[2] = "#00436D";
 	color = ['#A5B0B6', '#009E8C','#00436D'];
-	console.log(response);
-	
-	var fromResponse = response.data;
-	// response.data[i].forEach(function (value, index) {
-	// 	label_lng.push(value.sub_category_lng);
-	// 	label.push(value.sub_category_lng);
-	// 	data.push(value.total_kip);
-	// });
 
 	var i = 0;
 	category_kip.forEach(function (value, index) {
@@ -252,19 +241,18 @@ function drawChartSubCategory(response){
 			'</div>' +
 			'');
 		
-			var label = [];
-			var label_lng = [];
-			var data = [];
-			response.data[i].forEach(function (value, index) {
-				label_lng.push(value.sub_category_lng);
-				label.push(value.sub_category);
-				data.push(value.total_kip);
-			});
-		// horizontal bar chart komplain
+		var label = [];
+		var label_lng = [];
+		var data = [];
+		response.data[i].forEach(function (value, index) {
+			label_lng.push(value.sub_category_lng);
+			label.push(value.sub_category);
+			data.push(value.total_kip);
+		});
+		
 		if (fromResponse[i].length == 0){
 			$('#echart' + value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else{
-			console.log(data);
 			var chartdatasub = [{
 				label: label_lng,
 				data: data,
@@ -272,10 +260,11 @@ function drawChartSubCategory(response){
 				hoverBackgroundColor: color[i],
 				hoverBorderWidth: 0
 			}]
-			console.log(chartdatasub);
+
 			var numberWithCommas = function (x) {
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			};
+			
 			var bar_ctx = document.getElementById('echart' + value);
 			
 			var bar_chart = new Chart(bar_ctx, {
@@ -294,6 +283,14 @@ function drawChartSubCategory(response){
 							right: 0,
 							top: 0,
 							bottom: 0
+						}
+					},
+					tooltips: {
+						mode: 'label',
+						callbacks: {
+							label: function (tooltipItem, data) {
+								return numberWithCommas(tooltipItem.xLabel) + ": " +  data.datasets[tooltipItem.datasetIndex].label;
+							}
 						}
 					},
 					scales: {
