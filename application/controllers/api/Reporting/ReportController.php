@@ -761,8 +761,10 @@
 
             $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
         
+            // print_r($data[0][0]->TANGGAL);
+            // exit;
             
-            if($data)
+            if($data[0][0])
             {
                 $spreadsheet = new Spreadsheet();
 
