@@ -295,15 +295,15 @@
             ->setCellValue('C3','Filter Channel ')
             ->setCellValue('D2', $date)
             ->setCellValue('D3', $chn2)
-            ->setCellValue('A4', 'NO')
-            ->setCellValue('B4', 'DATE')
+            ->setCellValue('A4', 'No.')
+            ->setCellValue('B4', 'Date')
             ->setCellValue('C4', 'Interval')
             ->setCellValue('D4', 'ART')
             ->setCellValue('E4', 'AHT')
             ->setCellValue('F4', 'AST')
             ->setCellValue('G4', 'Message In')
             ->setCellValue('H4', 'Message Out')
-            ->setCellValue('I4', 'Tottal Session (COF)')
+            ->setCellValue('I4', 'Total Session (COF)')
             ;
 
             #region - 2nd part sub image to spreadsheet

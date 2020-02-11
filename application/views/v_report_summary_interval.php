@@ -80,8 +80,8 @@
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
-                                        <td class="wd-15p border-bottom-0 text-center" width="75">DATE</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="20">No.</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="75">Date</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="100">Interval</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="60">ART</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="60">AHT</td>
