@@ -119,7 +119,32 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
 }
 
 function exportTableAgentPerform(tenant_id, start_time, end_time, name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSPA?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPA?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTSPA',
+        data: {
+            tenant_id: tenant_id,
+            start_time: start_time,
+            end_time: end_time,
+            name: name
+        },
+
+        success: function (r) {
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            if (response.status != false){
+                window.location = response.Link
+            }else{
+                alert("Can't Export Empty Table!");
+            }
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
 }
 
 function setDatePicker() {

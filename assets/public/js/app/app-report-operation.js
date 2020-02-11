@@ -111,7 +111,34 @@ function drawTablePerformOps(tenant_id, channel_id, month){
 }
 
 function exportTablePerformOps(tenant_id, channel_id, month, name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
+    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTSPO',
+        data: {
+            tenant_id: tenant_id,
+            channel_id: channel_id,
+            month: month,
+            name: name,
+            channel_name: channelToName(channel_id),
+            month_name: monthNumToName(month)
+        },
+
+        success: function (r) {
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            if (response.status != false){
+                window.location = response.Link
+            }else{
+                alert("Can't Export Empty Table!");
+            }
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
 }
 
 //jquery

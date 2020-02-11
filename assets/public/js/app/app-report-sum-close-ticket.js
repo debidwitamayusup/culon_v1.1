@@ -205,10 +205,18 @@ var myChart = new Chart( ctx, {
             legendHtml.push('</ul></div>');
             return legendHtml.join("");
         },
+        animation: {
+            onComplete : done
+        }
     }
 });
 var myLegendContainer = document.getElementById("legend");
 myLegendContainer.innerHTML = myChart.generateLegend();
+
+//generate chart to base 64 image
+function done(){
+    baseImg = myChart.toBase64Image();
+}
 }
 
 function drawTableCloseTicket(tenant_id, start_date, end_date, channel){
@@ -255,15 +263,18 @@ function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel
     });
 }
 
-function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, name){
+function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, name, baseImg){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/ReportingSCloseTicket',
+        url: base_url + 'api/Reporting/ReportController/EXPORTSCLOSE',
         data: {
             tenant_id: tenant_id,
             start_date: start_date,
             end_date: end_date,
-            channel_id: channel_id
+            channel_id: channel_id,
+            name: name,
+            channel_name: channelToName(channel_id),
+            baseImg: baseImg
         },
 
         success: function (r) {
@@ -271,7 +282,8 @@ function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, nam
             // var response = JSON.parse(r);
             var response = r;
             if (response.status != false){
-                window.location = base_url + 'api/Reporting/ReportController/EXPORTSCLOSE?tenant_id='+tenant_id+'&channel_id='+channel_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+'&channel_name='+channelToName(channel_id)
+                window.location = response.Link
+                // console.log(response);
             }else{
                 alert("Can't Export Empty Table!");
             }
@@ -325,7 +337,7 @@ function setDatePicker() {
 
     $('#btn-export').click(function(){
         // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-        exportTableCloseTicket(tenantFromFilter, startDateFromFilter, endDateFromFilter, channelFromFilter, sessionParams.NAME);
+        exportTableCloseTicket(tenantFromFilter, startDateFromFilter, endDateFromFilter, channelFromFilter, sessionParams.NAME, baseImg.substr(22));
     });
 
     $('#btn-go ').click(function(){
@@ -343,103 +355,6 @@ function setDatePicker() {
 })(jQuery);
 
 $(function ($) {
-
-    $('#tableSumClose').dataTable();
-    $('#tableSumChannel').dataTable();
-
-
-// //pie chart Ticket Channel
-// var ctx = document.getElementById( "pieChartSumChannel" );
-// ctx.height = 262;
-// var myChart = new Chart( ctx, {
-//     type: 'pie',
-//     data: {
-//         datasets: [ {
-//             data: [ 15, 35, 40,20,50,30,15,30,40,50,70,90],
-//             backgroundColor: [
-//                             "#467fcf",
-//                             "#fbc0d5",
-//                             "#31a550",
-//                             "#e41313",
-//                             "#3866a6",
-//                             "#45aaf2",
-//                             "#6574cd",
-//                             "#343a40",
-//                             "#607d8b",
-//                             "#31a550",
-//                             "#ff9933",
-//                             "#80cbc4"
-//                             ],
-//             hoverBackgroundColor: [
-//                             "#467fcf",
-//                             "#fbc0d5",
-//                             "#31a550",
-//                             "#e41313",
-//                             "#3866a6",
-//                             "#45aaf2",
-//                             "#6574cd",
-//                             "#343a40",
-//                             "#607d8b",
-//                             "#31a550",
-//                             "#ff9933",
-//                             "#80cbc4"
-//                             ]
-
-//                         } ],
-//         labels: [
-//                             "Facebook",
-//                             "Instagram",
-//                             "Line",
-//                             "Email",
-//                             "Messenger",
-//                             "Twitter",
-//                             "Twitter DM",
-//                             "Telegram",
-//                             "Live Chat",
-//                             "Whatsapp",
-//                             "Voice",
-//                             "SMS"
-//                 ]
-//     },
-//     options: {
-//         responsive: true,
-//         maintainAspectRatio: false,
-        
-//         legend:{
-//                 display : false
-//         },
-//         pieceLabel:{
-//             render : 'legend',
-//             fontColor : '#000',
-//             position : 'outside',
-//             segment : true
-//         },
-//         legendCallback : function (chart, index){
-//             var allData = chart.data.datasets[0].data;
-//             // console.log(chart)
-//             var legendHtml = [];
-//             legendHtml.push('<ul><div class="row ml-3">');
-//             allData.forEach(function(data,index){
-//                 var label = chart.data.labels[index];
-//                 var dataLabel = allData[index];
-//                 var background = chart.data.datasets[0].backgroundColor[index]
-//                 var total = 0;
-//                 for (var i in allData){
-//                     total += parseInt(allData[i]);
-//                 }
-
-//                 // console.log(total)
-//                 var percentage = Math.round((dataLabel / total) * 100);
-//                 legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-//                 legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
-//             })
-//             legendHtml.push('</ul></div>');
-//             return legendHtml.join("");
-//         },
-//     }
-// });
-// var myLegendContainer = document.getElementById("legend");
-// myLegendContainer.innerHTML = myChart.generateLegend();
 
 $(function ($) {
         // Return with commas in between
