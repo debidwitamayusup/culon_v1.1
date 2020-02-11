@@ -360,4 +360,11 @@ class main extends CI_Controller {
 		$this->load->view('v_report_detail_ticket');
 	}
 
+	public function report_close_v2(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_close_ticket_v2');
+	}
+
 }
