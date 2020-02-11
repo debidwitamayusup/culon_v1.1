@@ -257,27 +257,29 @@
             $name = $this->security->xss_clean($this->input->post('name'));
             
 
-            #region - 1st part sub image to spreadsheet
-                // $chart = $this->security->xss_clean($this->input->post('chart_img'));
-                // $imageData = base64_decode($chart);
-                // $chart_img = imagecreatefromstring($imageData);
-                // $white = imagecolorallocate($chart_img, 255, 255, 255);
-                // imagecolortransparent($chart_img, $white);
-                // imagesavealpha($chart_img,true);
-                // imagealphablending($chart_img, true); 
-            
-                // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-                // $drawing->setName('Chart');
-                // $drawing->setDescription('Chart');
-                // $drawing->setCoordinates('H2');
-                // $drawing->setImageResource($chart_img);
-                // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-                // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
-            #endregion 
+           
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
+        
+        if ($data) {
             $spreadsheet = new Spreadsheet();
-
+             #region - 1st part sub image to spreadsheet
+                $chart = $this->security->xss_clean($this->input->post('chart_img'));
+                $imageData = base64_decode($chart);
+                $chart_img = imagecreatefromstring($imageData);
+                $white = imagecolorallocate($chart_img, 255, 255, 255);
+                imagecolortransparent($chart_img, $white);
+                imagesavealpha($chart_img,true);
+                imagealphablending($chart_img, true); 
+            
+                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                $drawing->setName('Chart');
+                $drawing->setDescription('Chart');
+                $drawing->setCoordinates('H2');
+                $drawing->setImageResource($chart_img);
+                $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+            #endregion 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
             ->setLastModifiedBy('INFOMEDIA')
             ->setTitle('Office 2007 XLSX Document')
@@ -309,7 +311,7 @@
             ;
 
             #region - 2nd part sub image to spreadsheet
-                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+                $drawing->setWorksheet($spreadsheet->getActiveSheet());
             #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
@@ -362,7 +364,7 @@
                 //$writer->save('php://output');
                 $res = base_url().'public/reportdata/'.$filename;
 
-                if ($res) {
+                
                     $this->response([
                         'status'  => TRUE,
                         'message' => 'Report Stored!',
