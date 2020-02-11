@@ -255,7 +255,6 @@
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
             $name = $this->security->xss_clean($this->input->post('name'));
-
             
 
             #region - 1st part sub image to spreadsheet
@@ -357,11 +356,12 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $path = '/Applications/XAMPP/xamppfiles/htdocs/dashboard_on4/public/reportdata/';
+                $path = FCPATH.'public/reportdata/';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
                 $writer->save($path.$filename);
                 //$writer->save('php://output');
-                $res = $path.$filename;
+                $res = base_url().'public/reportdata/'.$filename;
+
                 if ($res) {
                     $this->response([
                         'status'  => TRUE,
@@ -376,8 +376,6 @@
                         'Link'    => false
                             ], REST_Controller::HTTP_OK);
                 }
-
-                exit;
         }
 
         public function EXPORTSPO_get()
