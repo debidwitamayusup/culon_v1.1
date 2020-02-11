@@ -250,7 +250,7 @@ function drawChartSubCategory(response){
 			data.push(value.total_kip);
 		});
 		
-		if (fromResponse[i].length == 0){
+		if (response.data[i].length == 0){
 			$('#echart' + value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
 		}else{
 			var chartdatasub = [{
@@ -260,11 +260,10 @@ function drawChartSubCategory(response){
 				hoverBackgroundColor: color[i],
 				hoverBorderWidth: 0
 			}]
-
+			
 			var numberWithCommas = function (x) {
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			};
-			
 			var bar_ctx = document.getElementById('echart' + value);
 			
 			var bar_chart = new Chart(bar_ctx, {
