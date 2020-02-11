@@ -254,8 +254,8 @@
             $t_start = $this->security->xss_clean($this->input->get('start_time'));
             $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
-
+            $name = $this->security->xss_clean($this->input->post('name'));
+            
             #region - 1st part sub image to spreadsheet
                 // $chart = $this->security->xss_clean($this->input->post('chart_img'));
                 // $imageData = base64_decode($chart);
@@ -355,11 +355,27 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $path = APPPATH.'public/reportdata';
+
+                $path = FCPATH.'public/reportdata/';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                // $writer->save($path.$filename);
-                $writer->save('php://output');
-                exit;
+                $writer->save($path.$filename);
+                //$writer->save('php://output');
+                $res = base_url().'public/reportdata/'.$filename;
+
+                if ($res) {
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+                        }
+                else {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Report Storing Failed!',
+                        'Link'    => false
+                            ], REST_Controller::HTTP_OK);
+                }
         }
 
         public function EXPORTSPO_get()
