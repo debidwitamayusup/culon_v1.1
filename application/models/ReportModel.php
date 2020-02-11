@@ -193,7 +193,10 @@ Class ReportModel extends CI_Model {
                  
                 
             }
-            return $result;
+
+            if($result){
+            return $result;}
+            else {return false;}
         }
         return false;
     }
@@ -419,7 +422,7 @@ Class ReportModel extends CI_Model {
                 return $query->result();
             }
         }
-        return false;
+        return array();
     }
 
     #endregion :: additional-function

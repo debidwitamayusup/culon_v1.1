@@ -248,13 +248,15 @@
         }
 
         // Export ke excel
-        public function EXPORTSC_get()
+        public function EXPORTSC_post()
         {
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->get('start_time'));
-            $t_end = $this->security->xss_clean($this->input->get('end_time'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $name = $this->security->xss_clean($this->input->post('name'));
+
+            
 
             #region - 1st part sub image to spreadsheet
                 // $chart = $this->security->xss_clean($this->input->post('chart_img'));
@@ -346,7 +348,7 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.' SC Report '.date('d-m-Y H').'.xlsx';
+                $filename = $name.'SC Report'.date('d-m-Y H').'.xlsx';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                 header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
@@ -355,10 +357,26 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $path = APPPATH.'public/reportdata';
+                $path = '/Applications/XAMPP/xamppfiles/htdocs/dashboard_on4/public/reportdata/';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                // $writer->save($path.$filename);
-                $writer->save('php://output');
+                $writer->save($path.$filename);
+                //$writer->save('php://output');
+                $res = $path.$filename;
+                if ($res) {
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+                        }
+                else {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Report Storing Failed!',
+                        'Link'    => false
+                            ], REST_Controller::HTTP_OK);
+                }
+
                 exit;
         }
 
