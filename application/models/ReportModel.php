@@ -155,7 +155,6 @@ Class ReportModel extends CI_Model {
                 foreach( $query->result() as $data)
                 {
                     $result[] = array(
-                        
                         $id,
                         $data->CHANNEL_NAME,
                         strval(number_format($data->T_CLOSE,0,',','.'))
@@ -181,11 +180,11 @@ Class ReportModel extends CI_Model {
             $x = 1;
             for($i=0;$i<24;$i= $i+$interval_v)
             {
-                if($meth == 'data')
-                {
+                if ($meth == 'data') {      
                     $data = array(
                         $x
                     );
+                    
                     $x++;
                     $datareport = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                     if($datareport)
@@ -200,15 +199,13 @@ Class ReportModel extends CI_Model {
                 }else{
                     $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                 }
-                 
-                
             }
-
             if($result)
             {
                 return $result;
+            }else{
+                return false;
             }
-            else {return false;}
         }
         return false;
     }
