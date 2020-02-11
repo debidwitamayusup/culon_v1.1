@@ -217,7 +217,104 @@ function callDataSubCategory(params, index,year,tenant_id){
 	});
 }
 
-function drawChartSubCategory(response) {
+function drawChartSubCategory(response){
+	//destroy div row content
+	$('#content-sub-category').remove(); // this is my <div> element
+	$('#chart-no-data').remove();
+	$('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
+	var color = [];
+	// color[0] = "#A5B0B6";
+	// color[1] = "#009E8C";
+	// color[2] = "#00436D";
+	color = ['#A5B0B6', '#009E8C','#00436D'];
+	console.log(response);
+	
+	var fromResponse = response.data;
+	// response.data[i].forEach(function (value, index) {
+	// 	label_lng.push(value.sub_category_lng);
+	// 	label.push(value.sub_category_lng);
+	// 	data.push(value.total_kip);
+	// });
+
+	var i = 0;
+	category_kip.forEach(function (value, index) {
+		$('#content-sub-category').append('' +
+			'<div class="col-lg-4 col-md-12">' +
+			'<div class="card">' +
+			'<div class="card-header-small bg-red">' +
+			'<h6 class="card-title-small card-pt10">' + value + '</h6>' +
+			'</div>' +
+			'<div class="card-body">' +
+			'<canvas id="echart' + value + '" class="chartsh overflow-hidden"></canvas>' +
+			// '<canvas id="echart'+value+'" class="chartsh overflow-hidden"></canvas>'+
+			'</div>' +
+			'</div>' +
+			'</div>' +
+			'');
+		
+			var label = [];
+			var label_lng = [];
+			var data = [];
+			response.data[i].forEach(function (value, index) {
+				label_lng.push(value.sub_category_lng);
+				label.push(value.sub_category);
+				data.push(value.total_kip);
+			});
+		// horizontal bar chart komplain
+		if (fromResponse[i].length == 0){
+			$('#echart' + value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+		}else{
+			console.log(data);
+			var chartdatasub = [{
+				label: label_lng,
+				data: data,
+				backgroundColor: color[i],
+				hoverBackgroundColor: color[i],
+				hoverBorderWidth: 0
+			}]
+			console.log(chartdatasub);
+			var numberWithCommas = function (x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			};
+			var bar_ctx = document.getElementById('echart' + value);
+			
+			var bar_chart = new Chart(bar_ctx, {
+				// type: 'bar',
+				type: 'horizontalBar',
+				data: {
+					labels: label,
+					datasets: chartdatasub
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					layout: {
+							padding: {
+							left: 50,
+							right: 0,
+							top: 0,
+							bottom: 0
+						}
+					},
+					scales: {
+						yAxes: [ {
+							ticks: {
+								beginAtZero: true,
+								//padding:50,
+							}
+										} ]
+					},
+					legend:{
+						display:false
+					}
+				}
+			} );;		
+		}
+		i++;
+	});
+}
+
+function drawChartSubCategory_old(response) {
 	//destroy div row content
 	$('#content-sub-category').remove(); // this is my <div> element
 	$('#chart-no-data').remove();
@@ -804,216 +901,130 @@ function addCommas(commas) {
         callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
     });
 
-	// var komplain = [20,20,20,20,20,20,20,20,20,20,20,20,20];
-	// var informasi = [40,40,40,40,40,40,40,40,40,40,40,40,40];
-	// var permintaan = [60,60,60,60,60,60,60,60,60,60,60,60,60];
-	// var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram","SMS","Messenger","Live Chat","Line","Instagram","Facebook","Email","ChatBot"];
-
-	// var bar_ctx = document.getElementById('horizontalBarKIP');
-
-	// var bar_chart = new Chart(bar_ctx, {
-	// 	// type: 'bar',
-	// 	type: 'horizontalBar',
-	// 	data: {
-	// 		labels: LabelX,
-	// 		datasets: [{
-	// 				label: 'Komplain',
-	// 				data: komplain,
-	// 				backgroundColor: "#A5B0B6",
-	// 				hoverBackgroundColor: "#A5B0B6",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Informasi',
-	// 				data: informasi,
-	// 				backgroundColor: "#009E8C",
-	// 				hoverBackgroundColor: "#009E8C",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Permintaan',
-	// 				data: permintaan,
-	// 				backgroundColor: "#00436D",
-	// 				hoverBackgroundColor: "#00436D",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 		]
-	// 	},
-	// 	options: {
-	// 		responsive : true,
-	// 		maintainAspectRatio:false,
-	// 		animation: {
-	// 			duration: 10,
-	// 		},
-	// 		tooltips: {
-	// 			mode: 'label',
-	// 			callbacks: {
-	// 				label: function (tooltipItem, data) {
-	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-	// 				}
+	// // horizontal bar chart komplain
+    // var ctx = document.getElementById( "horizontaklBarKomplain" );
+    // ctx.height = 100;
+    // var myChart = new Chart( ctx, {
+    //     type: 'horizontalBar',
+    //     data: {
+    //         labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+    //         datasets: [
+    //             {
+    //                 label: "Total",
+    //                 data: [ 15000, 6000, 6000, 9000, 10000],
+    //                 borderColor: "#A5B0B6",
+    //                 borderWidth: "0",
+    //                 backgroundColor: "#A5B0B6"
+    //                         }
+    //                     ]
+    //     },
+    //     options: {
+	// 		responsive: true,
+	// 		maintainAspectRatio: false,
+	// 		layout: {
+	// 				padding: {
+	// 				left: 50,
+	// 				right: 0,
+	// 				top: 0,
+	// 				bottom: 0
 	// 			}
 	// 		},
-	// 		scales: {
-	// 			xAxes: [{
-	// 				stacked: true,
-	// 				gridLines: {
-	// 					display: false
-	// 				},
-	// 			}],
-	// 			yAxes: [{
-	// 				stacked: true,
-	// 				ticks: {
-	// 					callback: function (value) {
-	// 						return numberWithCommas(value);
-	// 					},
-	// 				},
-	// 			}],
+    //         scales: {
+    //             yAxes: [ {
+    //                 ticks: {
+    //                     beginAtZero: true,
+	// 					//padding:50,
+    //                 }
+    //                             } ]
 	// 		},
-	// 		legend: {
-	// 			display: false,
-				
+	// 		legend:{
+	// 			display:false
 	// 		}
-	// 	},
-	// 	// plugins: [{
-	// 	// 	beforeInit: function (chart) {
-	// 	// 		chart.data.labels.forEach(function (value, index, array) {
-	// 	// 			var a = [];
-	// 	// 			a.push(value.slice(0, 5));
-	// 	// 			var i = 1;
-	// 	// 			while (value.length > (i * 5)) {
-	// 	// 				a.push(value.slice(i * 5, (i + 1) * 5));
-	// 	// 				i++;
-	// 	// 			}
-	// 	// 			array[index] = a;
-	// 	// 		})
-	// 	// 	}
-	// 	// }]
-	// });
-
-	// horizontal bar chart komplain
-    var ctx = document.getElementById( "horizontaklBarKomplain" );
-    ctx.height = 100;
-    var myChart = new Chart( ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
-            datasets: [
-                {
-                    label: "Total",
-                    data: [ 15000, 6000, 6000, 9000, 10000],
-                    borderColor: "#A5B0B6",
-                    borderWidth: "0",
-                    backgroundColor: "#A5B0B6"
-                            }
-                        ]
-        },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			layout: {
-					padding: {
-					left: 50,
-					right: 0,
-					top: 0,
-					bottom: 0
-				}
-			},
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true,
-						//padding:50,
-                    }
-                                } ]
-			},
-			legend:{
-				display:false
-			}
-        }
-	} );
+    //     }
+	// } );
 
 	// Horizontal Bar Chart Informasi
-	var ctx = document.getElementById( "horizontaklBarInformasi" );
-    ctx.height = 100;
-    var myChart = new Chart( ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
-            datasets: [
-                {
-                    label: "Total",
-                    data: [ 15000, 6000, 6000, 9000, 10000],
-                    borderColor: "#009E8C",
-                    borderWidth: "0",
-                    backgroundColor: "#009E8C"
-                            }
-                        ]
-        },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			layout: {
-					padding: {
-					left: 50,
-					right: 0,
-					top: 0,
-					bottom: 0
-				}
-			},
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true,
-						//padding:50,
-                    }
-                                } ]
-			},
-			legend:{
-				display:false
-			}
-        }
-	} );
+	// var ctx = document.getElementById( "horizontaklBarInformasi" );
+    // ctx.height = 100;
+    // var myChart = new Chart( ctx, {
+    //     type: 'horizontalBar',
+    //     data: {
+    //         labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+    //         datasets: [
+    //             {
+    //                 label: "Total",
+    //                 data: [ 15000, 6000, 6000, 9000, 10000],
+    //                 borderColor: "#009E8C",
+    //                 borderWidth: "0",
+    //                 backgroundColor: "#009E8C"
+    //                         }
+    //                     ]
+    //     },
+    //     options: {
+	// 		responsive: true,
+	// 		maintainAspectRatio: false,
+	// 		layout: {
+	// 				padding: {
+	// 				left: 50,
+	// 				right: 0,
+	// 				top: 0,
+	// 				bottom: 0
+	// 			}
+	// 		},
+    //         scales: {
+    //             yAxes: [ {
+    //                 ticks: {
+    //                     beginAtZero: true,
+	// 					//padding:50,
+    //                 }
+    //                             } ]
+	// 		},
+	// 		legend:{
+	// 			display:false
+	// 		}
+    //     }
+	// } );
 
-	// Horizontal Bar Chart Permintaan
-	var ctx = document.getElementById( "horizontaklBarPermintaan" );
-    ctx.height = 100;
-    var myChart = new Chart( ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
-            datasets: [
-                {
-                    label: "Total",
-                    data: [ 15000, 6000, 6000, 9000, 10000],
-                    borderColor: "#00436D",
-                    borderWidth: "0",
-                    backgroundColor: "#00436D"
-                            }
-                        ]
-        },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			layout: {
-					padding: {
-					left: 50,
-					right: 0,
-					top: 0,
-					bottom: 0
-				}
-			},
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true,
-						//padding:50,
-                    }
-                                } ]
-			},
-			legend:{
-				display:false
-			}
-        }
-	} );
+	// // Horizontal Bar Chart Permintaan
+	// var ctx = document.getElementById( "horizontaklBarPermintaan" );
+    // ctx.height = 100;
+    // var myChart = new Chart( ctx, {
+    //     type: 'horizontalBar',
+    //     data: {
+    //         labels: [ "TV/UseeTV", "Wifi ID", "Bisa Browsing", "Wed", "Internet" ],
+    //         datasets: [
+    //             {
+    //                 label: "Total",
+    //                 data: [ 15000, 6000, 6000, 9000, 10000],
+    //                 borderColor: "#00436D",
+    //                 borderWidth: "0",
+    //                 backgroundColor: "#00436D"
+    //                         }
+    //                     ]
+    //     },
+    //     options: {
+	// 		responsive: true,
+	// 		maintainAspectRatio: false,
+	// 		layout: {
+	// 				padding: {
+	// 				left: 50,
+	// 				right: 0,
+	// 				top: 0,
+	// 				bottom: 0
+	// 			}
+	// 		},
+    //         scales: {
+    //             yAxes: [ {
+    //                 ticks: {
+    //                     beginAtZero: true,
+	// 					//padding:50,
+    //                 }
+    //                             } ]
+	// 		},
+	// 		legend:{
+	// 			display:false
+	// 		}
+    //     }
+	// } );
 	
 })(jQuery);
