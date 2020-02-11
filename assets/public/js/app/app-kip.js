@@ -278,7 +278,7 @@ function drawChartSubCategory(response){
 					maintainAspectRatio: false,
 					layout: {
 							padding: {
-							left: 50,
+							left: 3,
 							right: 0,
 							top: 0,
 							bottom: 0
@@ -356,7 +356,7 @@ function drawChartSubCategory_old(response) {
 				top: '6',
 				right: '20',
 				bottom: '20',
-				left: '60',
+				left: '30',
 			},
 			xAxis: {
 				type: 'value',
