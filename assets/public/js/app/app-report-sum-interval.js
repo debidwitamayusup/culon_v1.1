@@ -72,7 +72,24 @@ function drawTableSumInterval(tanggal,interval,channel){
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name;
+    $.ajax({
+        type:'POST',
+        url: base_url + 'api/Reporting/ReportController/ReportingSInterval',
+        data:{
+            tanggal: tanggal,
+            interval: interval,
+            channel: channel
+        },
+
+        success: function(r){
+            var response = r;
+            if (response.status != false) {
+                window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name;
+            } else {
+                alert("Can't Export Empty Table!");
+            }
+        }
+    })    
 }
 
 function setDatePicker() {
