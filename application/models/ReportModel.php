@@ -189,7 +189,6 @@ Class ReportModel extends CI_Model {
                 }else{
                     $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                 }
-            
             }
             return $result;
         }
