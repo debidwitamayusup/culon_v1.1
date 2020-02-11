@@ -223,7 +223,7 @@ function drawPieChartSumChannel(response){
     // console.log(response);
 
     var ctx1 = document.getElementById( "pieChartReportSumChannel1" );
-    ctx1.height = 300;
+    ctx1.height = 340;
     var myChart1 = new Chart( ctx1, {
         type: 'pie',
         data: {
