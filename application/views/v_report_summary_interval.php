@@ -38,8 +38,8 @@
                                     <div class="form-group row">
                                         <select class="form-control" id="interval">
                                             <option value="1">1 Jam</option>
-                                            <option value="2">3 Jam</option>
-                                            <option value="3">6 Jam</option>
+                                            <option value="3">3 Jam</option>
+                                            <option value="6">6 Jam</option>
                                         </select>
                                     </div>
                                 </div>

@@ -248,156 +248,35 @@
         }
 
         // Export ke excel
-        public function EXPORTSI_get()
+        public function EXPORTSC_post()
         {
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $date = $this->security->xss_clean($this->input->get('tanggal'));
-            $interval = $this->security->xss_clean($this->input->get('interval'));
-            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
-            $chn = $this->security->xss_clean($this->input->get('channel'));
-            $name = $this->security->xss_clean($this->input->get('name'));
-
-            $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
-            // print_r($data);
-            // exit;
-            // echo json_encode($data);
-            // exit;
-            // $j=0;
-            // foreach ($data as $datas) {
-            //     $test[] = $datas[0]->TANGGAL;
-            //     $j++;
-            // }
-            // var_dump($test);
-            // die();
-
-            $spreadsheet = new Spreadsheet();
-
-            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
-            ->setLastModifiedBy('INFOMEDIA')
-            ->setTitle('Office 2007 XLSX Document')
-            ->setSubject('Office 2007 XLSX Document')
-            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
-            ->setKeywords('office 2007 openxml php')
-            ->setCategory('result file');
-
-            if (!$tid){
-                $tid = 'oct_telkomcare';
-            }
-
-            $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1','Summary Interval - '.$tid)
-            ->setCellValue('A2','Export Time ')
-            ->setCellValue('A3','Export By ')
-            ->setCellValue('B2',date('d-m-Y H:i:s'))
-            ->setCellValue('B3', $name)
-            ->setCellValue('C2','Filter Date ')
-            ->setCellValue('C3','Filter Channel ')
-            ->setCellValue('D2', $date)
-            ->setCellValue('D3', $chn2)
-            ->setCellValue('A4', 'No.')
-            ->setCellValue('B4', 'Date')
-            ->setCellValue('C4', 'Interval')
-            ->setCellValue('D4', 'ART')
-            ->setCellValue('E4', 'AHT')
-            ->setCellValue('F4', 'AST')
-            ->setCellValue('G4', 'Message In')
-            ->setCellValue('H4', 'Message Out')
-            ->setCellValue('I4', 'Total Session (COF)')
-            ;
-
-            #region - 2nd part sub image to spreadsheet
-                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
-            #endregion           
-
-            $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
-            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
-            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
-            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-            $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
-
-
-            $i=5;
-            $j=0;
-            foreach($data as $datas) {
-                // print_r($datas[0]);
-                // exit;
-                $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $i-4)
-                ->setCellValue('B'.$i, $datas[0]->TANGGAL)
-                ->setCellValue('C'.$i, $datas[0]->INTERVAL_TIME_START.'-'.$datas[0]->INTERVAL_TIME_END)
-                ->setCellValue('D'.$i, $datas[0]->ART)
-                ->setCellValue('E'.$i, $datas[0]->AHT)
-                ->setCellValue('F'.$i, $datas[0]->AST)
-                ->setCellValue('G'.$i, $datas[0]->MESSAGE_IN)
-                ->setCellValue('H'.$i, $datas[0]->MESSAGE_OUT)
-                ->setCellValue('I'.$i, $datas[0]->COF)
-                ;
-                $j++;
-                $i++;
-            }
-            $x = $i-1;
-                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
-
-                $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
-
-                $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
-
-                $spreadsheet->getActiveSheet()->setTitle('S Interval -  '.date('d-m-Y H'));
-                $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.' Summary Intevral Report '.date('d-m-Y H').'.xlsx';
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename='.$filename);
-                header('Cache-Control: max-age=0');
-                header('Cache-Control: max-age=1');
-                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
-                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
-                header('Cache-Control: cache, must-revalidate'); 
-                header('Pragma: public'); 
-                $path = APPPATH.'public/reportdata';
-                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                // $writer->save($path.$filename);
-                $writer->save('php://output');
-                exit;
-        }
-
-        public function EXPORTSC_get()
-        {
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->get('start_time'));
-            $t_end = $this->security->xss_clean($this->input->get('end_time'));
-            $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
-
-            #region - 1st part sub image to spreadsheet
-                // $chart = $this->security->xss_clean($this->input->post('chart_img'));
-                // $imageData = base64_decode($chart);
-                // $chart_img = imagecreatefromstring($imageData);
-                // $white = imagecolorallocate($chart_img, 255, 255, 255);
-                // imagecolortransparent($chart_img, $white);
-                // imagesavealpha($chart_img,true);
-                // imagealphablending($chart_img, true); 
-            
-                // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-                // $drawing->setName('Chart');
-                // $drawing->setDescription('Chart');
-                // $drawing->setCoordinates('H2');
-                // $drawing->setImageResource($chart_img);
-                // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-                // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
-            #endregion 
+            $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
+        
+        if ($data) {
             $spreadsheet = new Spreadsheet();
-
+             #region - 1st part sub image to spreadsheet
+                $chart = $this->security->xss_clean($this->input->post('chart_img'));
+                $imageData = base64_decode($chart);
+                $chart_img = imagecreatefromstring($imageData);
+                $white = imagecolorallocate($chart_img, 255, 255, 255);
+                imagecolortransparent($chart_img, $white);
+                imagesavealpha($chart_img,true);
+                imagealphablending($chart_img, true); 
+            
+                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                $drawing->setName('Chart');
+                $drawing->setDescription('Chart');
+                $drawing->setCoordinates('H2');
+                $drawing->setImageResource($chart_img);
+                $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+            #endregion 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
             ->setLastModifiedBy('INFOMEDIA')
             ->setTitle('Office 2007 XLSX Document')
@@ -429,7 +308,7 @@
             ;
 
             #region - 2nd part sub image to spreadsheet
-                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+                $drawing->setWorksheet($spreadsheet->getActiveSheet());
             #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
@@ -476,11 +355,27 @@
                 header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
-                $path = APPPATH.'public/reportdata';
+
+                $path = FCPATH.'public/reportdata/';
                 $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                // $writer->save($path.$filename);
-                $writer->save('php://output');
-                exit;
+                $writer->save($path.$filename);
+                //$writer->save('php://output');
+                $res = base_url().'public/reportdata/'.$filename;
+
+                
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+                        }
+                else {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Report Storing Failed!',
+                        'Link'    => false
+                            ], REST_Controller::HTTP_OK);
+                }
         }
 
         public function EXPORTSPO_get()
@@ -788,5 +683,128 @@
             exit;
     }
 #endregion debi
+
+#region :: risyad
+        public function EXPORTSI_get()
+        {
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $date = $this->security->xss_clean($this->input->get('tanggal'));
+            $interval = $this->security->xss_clean($this->input->get('interval'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $meth = 'excel';
+            $chn = $this->security->xss_clean($this->input->get('channel'));
+            $name = $this->security->xss_clean($this->input->get('name'));
+
+            $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
+            // print_r($data);
+            // exit;
+            // echo json_encode($data);
+            // exit;
+            // $j=0;
+            // foreach ($data as $datas) {
+            //     $test[] = $datas[0]->TANGGAL;
+            //     $j++;
+            // }
+            // var_dump($test);
+            // die();
+
+            $spreadsheet = new Spreadsheet();
+
+            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+            ->setLastModifiedBy('INFOMEDIA')
+            ->setTitle('Office 2007 XLSX Document')
+            ->setSubject('Office 2007 XLSX Document')
+            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+            ->setKeywords('office 2007 openxml php')
+            ->setCategory('result file');
+
+            if (!$tid){
+                $tid = 'oct_telkomcare';
+            }
+
+            $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1','Summary Interval - '.$tid)
+            ->setCellValue('A2','Export Time ')
+            ->setCellValue('A3','Export By ')
+            ->setCellValue('B2',date('d-m-Y H:i:s'))
+            ->setCellValue('B3', $name)
+            ->setCellValue('C2','Filter Date ')
+            ->setCellValue('C3','Filter Channel ')
+            ->setCellValue('D2', $date)
+            ->setCellValue('D3', $chn2)
+            ->setCellValue('A4', 'No.')
+            ->setCellValue('B4', 'Date')
+            ->setCellValue('C4', 'Interval')
+            ->setCellValue('D4', 'ART')
+            ->setCellValue('E4', 'AHT')
+            ->setCellValue('F4', 'AST')
+            ->setCellValue('G4', 'Message In')
+            ->setCellValue('H4', 'Message Out')
+            ->setCellValue('I4', 'Total Session (COF)')
+            ;
+
+            #region - 2nd part sub image to spreadsheet
+                //$drawing->setWorksheet($spreadsheet->getActiveSheet());
+            #endregion           
+
+            $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
+            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+            $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
+
+
+            $i=5;
+            $j=0;
+            foreach($data as $datas) {
+                // print_r($datas[0]);
+                // exit;
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $i-4)
+                ->setCellValue('B'.$i, $datas[0]->TANGGAL)
+                ->setCellValue('C'.$i, $datas[0]->INTERVAL_TIME_START.'-'.$datas[0]->INTERVAL_TIME_END)
+                ->setCellValue('D'.$i, $datas[0]->ART)
+                ->setCellValue('E'.$i, $datas[0]->AHT)
+                ->setCellValue('F'.$i, $datas[0]->AST)
+                ->setCellValue('G'.$i, $datas[0]->MESSAGE_IN)
+                ->setCellValue('H'.$i, $datas[0]->MESSAGE_OUT)
+                ->setCellValue('I'.$i, $datas[0]->COF)
+                ;
+                $j++;
+                $i++;
+            }
+            $x = $i-1;
+                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+
+                $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
+
+                $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
+
+                $spreadsheet->getActiveSheet()->setTitle('S Interval -  '.date('d-m-Y H'));
+                $spreadsheet->setActiveSheetIndex(0);
+                $filename = $name.' Summary Intevral Report '.date('d-m-Y H').'.xlsx';
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename='.$filename);
+                header('Cache-Control: max-age=0');
+                header('Cache-Control: max-age=1');
+                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                header('Cache-Control: cache, must-revalidate'); 
+                header('Pragma: public'); 
+                $path = APPPATH.'public/reportdata';
+                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                // $writer->save($path.$filename);
+                $writer->save('php://output');
+                exit;
+        }
+#endregion risyad
     }
 ?>

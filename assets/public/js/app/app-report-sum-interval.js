@@ -39,17 +39,11 @@ function channelToName(channel_id){
 }
 
 function drawTableSumInterval(tanggal,interval,channel){
-    // console.log(tenantFromFilter);
-    // console.log(channelFromFilter);
-    // console.log(monthFromFilter);
 	$('#tableReportSumInterval').DataTable({
-        // processing : true,
-        // serverSide : true,
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSInterval',
             type : 'POST',
             data :{
-                // tenant_id: tenant_id,
                 tanggal: tanggal,
                 interval: interval,
                 channel: channel
@@ -72,7 +66,24 @@ function drawTableSumInterval(tanggal,interval,channel){
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name+'&channel_name='+channelToName(channel);
+    $.ajax({
+        type:'POST',
+        url: base_url + 'api/Reporting/ReportController/ReportingSInterval',
+        data:{
+            tanggal: tanggal,
+            interval: interval,
+            channel: channel
+        },
+
+        success: function(r){
+            var response = r;
+            if (response.status != false) {
+                window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name+'&channel_name='+channelToName(channel);
+            } else {
+                alert("Can't Export Empty Table!");
+            }
+        }
+    })    
 }
 
 function setDatePicker() {

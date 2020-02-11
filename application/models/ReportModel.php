@@ -155,7 +155,6 @@ Class ReportModel extends CI_Model {
                 foreach( $query->result() as $data)
                 {
                     $result[] = array(
-                        
                         $id,
                         $data->CHANNEL_NAME,
                         strval(number_format($data->T_CLOSE,0,',','.'))
@@ -175,25 +174,38 @@ Class ReportModel extends CI_Model {
 
     public function get_datareportSInterval($tid,$chn,$interval_v,$date,$meth)
     {
+        
         if($interval_v==1 || $interval_v==3 || $interval_v ==6)
         {
             $x = 1;
             for($i=0;$i<24;$i= $i+$interval_v)
             {
-                if($meth == 'data')
-                {
+                if ($meth == 'data') {      
                     $data = array(
                         $x
                     );
+                    
                     $x++;
-                    $result[] = array_merge($data,$this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth));
+                    $datareport = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
+                    if($datareport)
+                    {
+                        $result[] = array_merge($data,$datareport);
+                    }
+                    else{
+                        $result = false;
+                        break;
+                    }
+
                 }else{
                     $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                 }
-                 
-                
             }
-            return $result;
+            if($result)
+            {
+                return $result;
+            }else{
+                return false;
+            }
         }
         return false;
     }
