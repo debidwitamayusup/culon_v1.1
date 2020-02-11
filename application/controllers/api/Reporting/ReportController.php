@@ -258,7 +258,7 @@
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
         
-        if ($data) {
+            if ($data) {
             $spreadsheet = new Spreadsheet();
              #region - 1st part sub image to spreadsheet
                 $chart = $this->security->xss_clean($this->input->post('chart_img'));
@@ -378,15 +378,15 @@
                         }
         }
 
-        public function EXPORTSPO_get()
+        public function EXPORTSPO_post()
         {
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $chn = $this->security->xss_clean($this->input->get('channel_id'));
-            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
-            $mnth = $this->security->xss_clean($this->input->get('month'));
-            $mnth2 = $this->security->xss_clean($this->input->get('month_name'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
+            $mnth = $this->security->xss_clean($this->input->post('month'));
+            $mnth2 = $this->security->xss_clean($this->input->post('month_name'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
             if($data)
@@ -494,14 +494,14 @@
             
         }
 
-        public function EXPORTSPA_get()
+        public function EXPORTSPA_post()
         {
 
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->get('start_time'));
-            $t_end = $this->security->xss_clean($this->input->get('end_time'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_time'));
+            $t_end = $this->security->xss_clean($this->input->post('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportSPA($tid,$t_start,$t_end,$meth);
             if($data)
@@ -613,16 +613,16 @@
 #endregion Raga
 
 #region :: debi
-    public function EXPORTSCLOSE_get()
+    public function EXPORTSCLOSE_post()
     {
 
-        $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-        $t_start = $this->security->xss_clean($this->input->get('start_date'));
-        $t_end = $this->security->xss_clean($this->input->get('end_date'));
-        $chn = $this->security->xss_clean($this->input->get('channel_id'));
-        $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+        $t_start = $this->security->xss_clean($this->input->post('start_date'));
+        $t_end = $this->security->xss_clean($this->input->post('end_date'));
+        $chn = $this->security->xss_clean($this->input->post('channel_id'));
+        $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
         $meth = 'excel';
-        $name = $this->security->xss_clean($this->input->get('name'));
+        $name = $this->security->xss_clean($this->input->post('name'));
 
         $data = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
         $dataPerChn = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
@@ -749,17 +749,19 @@
 #endregion debi
 
 #region :: risyad
-        public function EXPORTSI_get()
+        public function EXPORTSI_post()
         {
-            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
-            $date = $this->security->xss_clean($this->input->get('tanggal'));
-            $interval = $this->security->xss_clean($this->input->get('interval'));
-            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $interval = $this->security->xss_clean($this->input->post('interval'));
+            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
             $meth = 'excel';
-            $chn = $this->security->xss_clean($this->input->get('channel'));
-            $name = $this->security->xss_clean($this->input->get('name'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
+            $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
+        
+            
             if($data)
             {
                 $spreadsheet = new Spreadsheet();
