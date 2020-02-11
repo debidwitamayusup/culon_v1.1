@@ -71,9 +71,9 @@ function drawTableSumInterval(tanggal,interval,channel){
     // console.log(data);
 }
 
-// function exportTablePerformOps(tenant_id, channel_id, month, name){
-//     window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
-// }
+function exportTableSumInterval(tanggal,interval,channel,name){
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+name+'&channel_name='+channelToName(channel);
+}
 
 function setDatePicker() {
     $(".datepicker").datepicker({
@@ -100,10 +100,13 @@ function setDatePicker() {
         //  v_start_date = this.value;
         // }
     });
-    // $('#btn-export').click(function(){
-    //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-    //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
-    // });
+    $('#btn-export').click(function(){
+        dateFromFilter = $('#input-date').val();
+        intervalFromFilter = $('#interval').val();
+        channelFromFilter = $('#channel_name').val();
+
+        exportTableSumInterval(dateFromFilter, intervalFromFilter, channelFromFilter, sessionParams.NAME);
+    });
 
     $('#btn-go').click(function(){
         dateFromFilter = $('#input-date').val();
