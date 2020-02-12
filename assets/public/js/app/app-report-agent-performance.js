@@ -106,7 +106,7 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-center", targets: 2 },
+			{ className: "text-left", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-right", targets: 4 },
 			{ className: "text-center", targets: 5 },

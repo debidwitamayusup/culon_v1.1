@@ -347,7 +347,8 @@ Class ReportModel extends CI_Model {
 
         if($interval_v == 3)
         {
-            $this->db->select("a.tanggal as TANGGAL, 
+            $this->db->select("
+             a.tanggal as TANGGAL, 
             CONCAT(SUBSTRING(`a`.`interval`,1,2),':00:00')  as `INTERVAL_TIME_START`,
             CONCAT(LPAD(SUBSTRING(`a`.`interval`,1,2)+3,2,0),':00:00')  as `INTERVAL_TIME_END`, 
             SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
@@ -414,7 +415,7 @@ Class ReportModel extends CI_Model {
                 {
                     $result = array(
                         
-                        $data->TANGGAL,
+                        // $data->TANGGAL,
                         $data->INTERVAL_TIME_START.'-'.$data->INTERVAL_TIME_END,
                         $data->ART,
                         $data->AHT,

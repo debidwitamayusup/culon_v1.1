@@ -92,13 +92,13 @@
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <td class="wd-15p border-bottom-0" width="20">No</td>
-                                        <td class="wd-15p border-bottom-0">Date</td>
-                                        <td class="wd-15p border-bottom-0">COF</td>
-                                        <td class="wd-15p border-bottom-0">ART</td>
-                                        <td class="wd-15p border-bottom-0">AHT</td>
-                                        <td class="wd-15p border-bottom-0">AST</td>
-                                        <td class="wd-15p border-bottom-0">SCR</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
+                                        <td class="wd-15p border-bottom-0 text-center">Date</td>
+                                        <td class="wd-15p border-bottom-0 text-center">COF</td>
+                                        <td class="wd-15p border-bottom-0 text-center">ART</td>
+                                        <td class="wd-15p border-bottom-0 text-center">AHT</td>
+                                        <td class="wd-15p border-bottom-0 text-center">AST</td>
+                                        <td class="wd-15p border-bottom-0 text-center">SCR</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -202,4 +202,4 @@
 
             <?php $this->load->view('temp/footer');?>
             <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-report-operation.js"></script>
+            <script src="<?=base_url()?>assets/public/js/app/app-report-perform-operation.js"></script>
