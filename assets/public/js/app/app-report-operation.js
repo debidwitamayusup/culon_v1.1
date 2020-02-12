@@ -82,9 +82,7 @@ function getTenant(date){
 }
 
 function drawTablePerformOps(tenant_id, channel_id, month){
-    // console.log(tenantFromFilter);
-    // console.log(channelFromFilter);
-    // console.log(monthFromFilter);
+    $("#filter-loader").fadeIn("slow");
 	$('#tableOperation2').DataTable({
         // processing : true,
         // serverSide : true,
@@ -108,10 +106,12 @@ function drawTablePerformOps(tenant_id, channel_id, month){
 		], 
         destroy: true
     });
+    $("#filter-loader").fadeOut("slow");
 }
 
 function exportTablePerformOps(tenant_id, channel_id, month, name){
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Reporting/ReportController/EXPORTSPO',
@@ -133,10 +133,12 @@ function exportTablePerformOps(tenant_id, channel_id, month, name){
             }else{
                 alert("Can't Export Empty Table!");
             }
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             //console.log(r);
             alert("error");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }
