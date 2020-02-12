@@ -294,7 +294,7 @@ function drawChartSubCategory(response){
 								if (/\s/.test(dataset)) {
 									var teks = '';
 									for (var i = 0; i < dataset.length; i++) {
-										if (dataset[i] == " ") {
+										if (dataset[i] == "|") {
 											teks = teks + '\n';
 
 										} else if (dataset[i] == "|") {
