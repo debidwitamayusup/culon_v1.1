@@ -5,9 +5,9 @@ $(document).ready(function () {
     var d = new Date();
     var n = d.getFullYear();
     $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
-    var data_chart = callGraphYear('ShowAll', n, v_params_tenant);
-    var data_graph = callDataPercentage(n, v_params_tenant);
-    var data_table = callDataTableAvg(n, v_params_tenant);
+    var data_chart = callGraphYear('ShowAll', n, '');
+    var data_graph = callDataPercentage(n, '');
+    var data_table = callDataTableAvg(n, '');
     var data_year = callYear();
 });
 
@@ -461,9 +461,9 @@ function destroyChartPercentage() {
         destroyChartInterval();
         destroyChartPercentage();
 
-        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), v_params_tenant);
-        callDataPercentage($("#dateTahun").val(), v_params_tenant);
-        callDataTableAvg($("#dateTahun").val(), v_params_tenant);
+        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), '');
+        callDataPercentage($("#dateTahun").val(), '');
+        callDataTableAvg($("#dateTahun").val(), '');
     });
 })(jQuery);
 

@@ -63,7 +63,7 @@ function getTenant(date){
 }
 
 function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
     $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
@@ -88,7 +88,7 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
         lengthMenu: [ 13, 25, 50, 75, 100 ],
         destroy: true
     });
-    $("#filter-loader").fadeOut("slow");
+    // $("#filter-loader").fadeOut("slow");
 }
 
 function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
@@ -195,7 +195,7 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/Reporting/ReportDiagramsController/ReportingDiagramsSC',
@@ -208,12 +208,12 @@ function callDrawPieChart(tenant_id, start_time, end_time){
             var response = r;
             // console.log(response.data.TOTAL);
             drawPieChartSumChannel(response);
-            $("#filter-loader").fadeOut("slow");
+            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             alert("error");
-            $("#filter-loader").fadeOut("slow");
+            // $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -384,9 +384,10 @@ function getBase64Image(img) {
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        
+        $("#filter-loader").fadeIn("slow");
         drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+        $("#filter-loader").fadeOut("slow");
     });
 
     

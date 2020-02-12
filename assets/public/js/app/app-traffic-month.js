@@ -24,9 +24,9 @@ $(document).ready(function () {
     // drawStackedBar('month', '', n, m, v_params_tenant);
 
 
-    stackedBarInterval('month', '', n, m, v_params_tenant);
-    callDataPercentage($("#month").val(), m, v_params_tenant);
-    callDataTableAvg($("#month").val(), m), v_params_tenant;
+    stackedBarInterval('month', '', n, m, '');
+    callDataPercentage($("#month").val(), m, '');
+    callDataTableAvg($("#month").val(), m), '';
 });
 
 function monthNumToName(month) {
@@ -387,13 +387,13 @@ function destroyChartPercentage() {
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), '');
             }else{
                 // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), '');
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+            callDataPercentage($("#month").val(), $("#dropdownYear").val(), '');
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), '');
         });
 })(jQuery);
 
