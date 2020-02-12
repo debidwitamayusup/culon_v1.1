@@ -1551,10 +1551,10 @@ class Stc_Model extends CI_Model
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
+			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
+			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query->row();
