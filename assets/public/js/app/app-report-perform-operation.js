@@ -33,7 +33,7 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     getTenant('')
-    drawTablePerformOps(v_params_tenant,'','');
+    drawTablePerformOps('','','');
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });

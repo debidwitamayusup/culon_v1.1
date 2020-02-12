@@ -39,7 +39,7 @@ $(document).ready(function () {
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
-    drawTableAgentPerform(v_params_tenant,v_params_today,v_params_today);
+    drawTableAgentPerform('',v_params_today,v_params_today);
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });

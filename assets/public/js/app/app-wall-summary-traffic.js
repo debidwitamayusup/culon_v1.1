@@ -13,15 +13,16 @@ if (n < 10) {
 
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
-
+//get yesterday
+var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', '2020-01-24', 0, '');
-    callSumPerTenant('day', '2020-01-24', 0, '');
+    callSumAllTenant('day', v_params_yesterday, 0, '');
+    callSumPerTenant('day', v_params_yesterday, 0, '');
     // drawIntervalChart();
-    callIntervalTraffic('day','2020-01-24',0, '', '');
-    getTenant('2020-01-24');
+    callIntervalTraffic('day',v_params_yesterday,0, '', '');
+    getTenant(v_params_yesterday);
 
     $('#check-all-channel').prop('checked',false);
     $("input:checkbox.checklist-channel").prop('checked',false);
@@ -1117,7 +1118,7 @@ function fromTemplate(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic('day', '2020-01-24',0,list_channel, $('#tenant_id').val());
+        callIntervalTraffic('day', v_params_yesterday,0,list_channel, $('#tenant_id').val());
     });
 
     //checked channel
@@ -1136,22 +1137,22 @@ function fromTemplate(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic('day','2020-01-24',0, list_channel, $('#tenant_id').val());
+        callIntervalTraffic('day',v_params_yesterday,0, list_channel, $('#tenant_id').val());
     });
 
     $("select#tenant_id").change(function(){
         // destroyChartInterval();
          // destroyChartInterval();
         var selectedTenant = $(this).children("option:selected").val();
-        // callTableCOFByChannel('2020-01-24', selectedTenant);
-        callSumAllTenant('day', '2020-01-24', 0, selectedTenant);
-        callSumPerTenant('day', '2020-01-24', 0, selectedTenant);
+        // callTableCOFByChannel(v_params_yesterday, selectedTenant);
+        callSumAllTenant('day', v_params_yesterday, 0, selectedTenant);
+        callSumPerTenant('day', v_params_yesterday, 0, selectedTenant);
         // drawIntervalChart();
-        callIntervalTraffic('day','2020-01-24',0, '', selectedTenant);
+        callIntervalTraffic('day',v_params_yesterday,0, '', selectedTenant);
         $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
-        // getTenant('2020-01-24');
+        // getTenant(v_params_yesterday);
     });
     
     // Horizontal Bar Wallboard Summary Traffic yang baru 
