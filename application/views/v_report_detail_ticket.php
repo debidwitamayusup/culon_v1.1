@@ -25,8 +25,7 @@
                          </div>
                          <div class="card-body">
                              <div class="row mb-2">
-                                 <div class="col-sm-auto h6 mt-3">Date</div>
-                                 <div class="col-xs-auto ml-1">
+                                <div class="col-xs-auto ml-1">
                                      <div class="input-group" style="width:150px">
                                          <div class="input-group-prepend">
                                              <div class="input-group-text">
@@ -36,8 +35,8 @@
                                              placeholder="Start Date" type="text">
                                      </div>
                                  </div>
-                                 <div class="col-sm-auto h6 mt-3 ml-1">to</div>
-                                 <div class="col-xs-auto ml-1">
+                                 <div class="col-sm-auto h6 mt-3">to</div>
+                                 <div class="col-xs-auto">
                                      <div class="input-group" style="width:130px">
                                          <div class="input-group-prepend">
                                              <div class="input-group-text">
@@ -89,7 +88,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">2</td>
@@ -98,7 +97,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">3</td>
@@ -107,7 +106,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">4</td>
@@ -116,7 +115,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">5</td>
@@ -125,7 +124,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">6</td>
@@ -134,7 +133,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">7</td>
@@ -143,7 +142,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">8</td>
@@ -152,7 +151,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">9</td>
@@ -161,7 +160,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">CC</td>
                                          </tr>
                                          <tr>
                                              <td class="text-center">10</td>
@@ -170,7 +169,7 @@
                                              <td class="text-center">2020-01-19</td>
                                              <td class="text-center">ALL</td>
                                              <td class="text-center">Open</td>
-                                             <td class="text-right">400</td>
+                                             <td class="text-center">Unit I</td>
                                          </tr>
                                      </tbody>
                                  </table>

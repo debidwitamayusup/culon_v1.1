@@ -23,18 +23,6 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-auto h6 mt-3">Layanan</div>
-                                <div class="col-sm-auto">
-                                    <div class="form-group row">
-                                        <select class="form-control" id="layanan_name">
-                                            <!-- <option value="ShowAll">Semua Layanan</option>
-                                            <option value="1">Telkom Care</option>
-                                            <option value="2">BRI</option>
-                                            <option value="3">Telkomsel</option> -->
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-auto h6 ml-7 mt-3">Date</div>
                                 <div class="col-xs-auto ml-1">
                                     <div class="input-group" style="width:150px">
                                         <div class="input-group-prepend">
@@ -45,8 +33,8 @@
                                             type="text" id="start-date">
                                     </div>
                                 </div>
-                                <div class="col-sm-auto h6 ml-1 mt-3">to</div>
-                                <div class="col-xs-auto ml-1">
+                                <div class="col-sm-auto h6 mt-3">to</div>
+                                <div class="col-xs-auto">
                                     <div class="input-group" style="width:150px">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -56,6 +44,17 @@
                                             type="text" id="end-date">
                                     </div>
                                 </div>
+                                <div class="col-sm-auto ml-3">
+                                    <div class="form-group row">
+                                        <select class="form-control" id="layanan_name">
+                                            <!-- <option value="ShowAll">Semua Layanan</option>
+                                            <option value="1">Telkom Care</option>
+                                            <option value="2">BRI</option>
+                                            <option value="3">Telkomsel</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-auto ml-1">
                                     <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
                                             class="fas fa-filter"></i></button>
