@@ -377,7 +377,7 @@ function getBase64Image(img) {
         endDateFromFilter = $('#end-date').val();
         // var base64 = getBase64Image(document.getElementById("legend1"));
         // console.log(base64);
-        // exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
+        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
     });
 
     $('#btn-go').click(function(){

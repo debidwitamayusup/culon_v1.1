@@ -282,7 +282,7 @@ function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, nam
             channel_id: channel_id,
             name: name,
             channel_name: channelToName(channel_id),
-            baseImg: baseImg
+            chart_img: baseImg
         },
 
         success: function (r) {
