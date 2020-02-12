@@ -253,7 +253,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->TANGGAL,
-                        strval(number_format($data->COF,0,',','.')),
+                        strval(number_format($data->COF,0,'.',',')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
@@ -420,9 +420,9 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        strval(number_format($data->MESSAGE_IN,0,',','.')),
-                        strval(number_format($data->MESSAGE_OUT,0,',','.')),
-                        strval(number_format($data->COF,0,',','.'))
+                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
+                        strval(number_format($data->MESSAGE_OUT,0,'.',',')),
+                        strval(number_format($data->COF,0,'.',','))
                     ); 
                 }
                 return $result;

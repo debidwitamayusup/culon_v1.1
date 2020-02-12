@@ -610,142 +610,169 @@
             }
         }
 
+
 #endregion Raga
 
 #region :: debi
-    public function EXPORTSCLOSE_post()
-    {
-
-        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-        $t_start = $this->security->xss_clean($this->input->post('start_date'));
-        $t_end = $this->security->xss_clean($this->input->post('end_date'));
-        $chn = $this->security->xss_clean($this->input->post('channel_id'));
-        $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
-        $meth = 'excel';
-        $name = $this->security->xss_clean($this->input->post('name'));
-
-        $data = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
-        $dataPerChn = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
-      
-
-        if($data)
+        public function EXPORTSCLOSE_post()
         {
-            $spreadsheet = new Spreadsheet();
-            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
-            ->setLastModifiedBy('INFOMEDIA')
-            ->setTitle('Office 2007 XLSX Document')
-            ->setSubject('Office 2007 XLSX Document')
-            ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
-            ->setKeywords('office 2007 openxml php')
-            ->setCategory('result file');
 
-            if (!$tid){
-                $tid = 'All Tenant';
-            }
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $t_start = $this->security->xss_clean($this->input->post('start_date'));
+            $t_end = $this->security->xss_clean($this->input->post('end_date'));
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->post('name'));
 
-            $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1','Summary Close Ticket - '.$tid)
-            ->setCellValue('A2','Export Time ')
-            ->setCellValue('A3','Export By ')
-            ->setCellValue('B2',date('d-m-Y H:i:s'))
-            ->setCellValue('B3', $name)
-            ->setCellValue('C2','Filter Start ')
-            ->setCellValue('C3','Filter End ')
-            ->setCellValue('D2', $t_start)
-            ->setCellValue('D3', $t_end)
-            ->setCellValue('A4', 'NO')
-            ->setCellValue('B4', 'DATE')
-            ->setCellValue('C4', 'CHANNEL')
-            ->setCellValue('D4', 'STATUS')
-            ->setCellValue('E4', 'TICKETS')
-            ;
+            $data = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
+            $dataPerChn = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
+        
 
-            $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
-            $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
-            $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
-            $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-            $spreadsheet->getActiveSheet()->getStyle('A4:E4')->applyFromArray($this->ss_formatter('header'));
+            if($data)
+            {
+                $spreadsheet = new Spreadsheet();
 
-            $i=5; foreach($data as $datas) {
+                $chart = $this->security->xss_clean($this->input->post('chart_img'));
+
+                if($chart)
+                {
+                    $imageData = base64_decode($chart);
+                    $chart_img = imagecreatefromstring($imageData);
+                    $white = imagecolorallocate($chart_img, 255, 255, 255);
+                    imagecolortransparent($chart_img, $white);
+                    imagesavealpha($chart_img,true);
+                    imagealphablending($chart_img, true); 
+                
+                    $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                    $drawing->setName('Chart');
+                    $drawing->setDescription('Chart');
+                    $drawing->setCoordinates('H2');
+                    $drawing->setImageResource($chart_img);
+                    $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                    $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
+                }
+
+                $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+                ->setLastModifiedBy('INFOMEDIA')
+                ->setTitle('Office 2007 XLSX Document')
+                ->setSubject('Office 2007 XLSX Document')
+                ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+                ->setKeywords('office 2007 openxml php')
+                ->setCategory('result file');
+
+                if (!$tid){
+                    $tid = 'All Tenant';
+                }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $i-4)
-                ->setCellValue('B'.$i, $datas->TANGGAL)
-                ->setCellValue('C'.$i, $datas->CHANNEL_NAME)
-                ->setCellValue('D'.$i, $datas->STATUS)
-                ->setCellValue('E'.$i, strval(number_format($datas->T_CLOSE,0,',','.')))
+                ->setCellValue('A1','Summary Close Ticket - '.$tid)
+                ->setCellValue('A2','Export Time ')
+                ->setCellValue('A3','Export By ')
+                ->setCellValue('B2',date('d-m-Y H:i:s'))
+                ->setCellValue('B3', $name)
+                ->setCellValue('C2','Filter Start ')
+                ->setCellValue('C3','Filter End ')
+                ->setCellValue('D2', $t_start)
+                ->setCellValue('D3', $t_end)
+                ->setCellValue('A4', 'NO')
+                ->setCellValue('B4', 'DATE')
+                ->setCellValue('C4', 'CHANNEL')
+                ->setCellValue('D4', 'STATUS')
+                ->setCellValue('E4', 'TICKETS')
                 ;
-                $i++;
-            }
-            //for table per channel
-            $j=$i+3; 
-            $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A'.$j, 'NO')
-            ->setCellValue('B'.$j, 'CHANNEL')
-            ->setCellValue('C'.$j, 'JUMLAH')
-            ;
-            $spreadsheet->getActiveSheet()->getStyle('A'.$j.':C'.$j.'')->applyFromArray($this->ss_formatter('header'));
-            $h=$j+1;
-            $numering = 1;
-            foreach($dataPerChn as $dataschn){
+
+                $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
+                $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:E4')->applyFromArray($this->ss_formatter('header'));
+
+                $i=5; foreach($data as $datas) {
+
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, $i-4)
+                    ->setCellValue('B'.$i, $datas->TANGGAL)
+                    ->setCellValue('C'.$i, $datas->CHANNEL_NAME)
+                    ->setCellValue('D'.$i, $datas->STATUS)
+                    ->setCellValue('E'.$i, strval(number_format($datas->T_CLOSE,0,',','.')))
+                    ;
+                    $i++;
+                }
+                //for table per channel
+                $j=$i+3; 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A'.$h, $numering)
-                ->setCellValue('B'.$h, $dataschn->CHANNEL_NAME)
-                ->setCellValue('C'.$h, strval(number_format($dataschn->T_CLOSE,0,',','.')))
+                ->setCellValue('A'.$j, 'NO')
+                ->setCellValue('B'.$j, 'CHANNEL')
+                ->setCellValue('C'.$j, 'JUMLAH')
                 ;
-                $h++;
-                $numering++;
-            }
-                $x = $i-1;
-                $y= $h-1;
-                $yy = $h-2;
-                $indek = 'A'.$y.':'.'C'.$y;
-                $indekfilter = 'A'.$yy.':'.'C'.$yy;
-                $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                $spreadsheet->getActiveSheet()->getStyle('A'.$j.':C'.$j.'')->applyFromArray($this->ss_formatter('header'));
+                $h=$j+1;
+                $numering = 1;
+                foreach($dataPerChn as $dataschn){
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$h, $numering)
+                    ->setCellValue('B'.$h, $dataschn->CHANNEL_NAME)
+                    ->setCellValue('C'.$h, strval(number_format($dataschn->T_CLOSE,0,',','.')))
+                    ;
+                    $h++;
+                    $numering++;
+                }
+                    $x = $i-1;
+                    $y= $h-1;
+                    $yy = $h-2;
+                    $indek = 'A'.$y.':'.'C'.$y;
+                    $indekfilter = 'A'.$yy.':'.'C'.$yy;
+                    $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
 
-                $spreadsheet->getActiveSheet()->getStyle('A5:E'.$x)->applyFromArray($this->ss_formatter('body'));
-                $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
+                    $spreadsheet->getActiveSheet()->getStyle('A5:E'.$x)->applyFromArray($this->ss_formatter('body'));
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:E'.$x);
 
-                $spreadsheet->getActiveSheet()->getStyle(''.$indek.'')->applyFromArray($this->ss_formatter('body'));
-                // $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
-            
-
-                $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));
-                $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.'Summary Ticket Close '.date('d-m-Y H').'.xlsx';
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename='.$filename);
-                header('Cache-Control: max-age=0');
-                header('Cache-Control: max-age=1');
-                header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
-                header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
-                header('Cache-Control: cache, must-revalidate'); 
-                header('Pragma: public'); 
-                $path = FCPATH.'public/reportdata/';
-                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                $res = base_url().'public/reportdata/'.$filename;
+                    $spreadsheet->getActiveSheet()->getStyle(''.$indek.'')->applyFromArray($this->ss_formatter('body'));
+                    // $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
                     
+                    if($chart)
+                    {
+                        $drawing->setWorksheet($spreadsheet->getActiveSheet());
+                    }
+                    
+
+                    $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));
+                    $spreadsheet->setActiveSheetIndex(0);
+                    $filename = $name.'Summary Ticket Close '.date('d-m-Y H').'.xlsx';
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename='.$filename);
+                    header('Cache-Control: max-age=0');
+                    header('Cache-Control: max-age=1');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                    header('Cache-Control: cache, must-revalidate'); 
+                    header('Pragma: public'); 
+                    $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer->save($path.$filename);
+                        //$writer->save('php://output');
+                    $res = base_url().'public/reportdata/'.$filename;
+                        
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+            }
+            else
+            {
                 $this->response([
-                    'status'  => TRUE,
-                    'message' => 'Report Stored!',
-                    'Link'    => $res
+                    'status'  => FALSE,
+                    'message' => 'Report Storing Failed!',
+                    'Link'    => false
                         ], REST_Controller::HTTP_OK);
+            }
         }
-        else
-        {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'Report Storing Failed!',
-                'Link'    => false
-                    ], REST_Controller::HTTP_OK);
-        }
-    }
 #endregion debi
 
 #region :: risyad
