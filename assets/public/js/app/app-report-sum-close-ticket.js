@@ -90,7 +90,7 @@ function getTenant(date){
 }
 
 function callCloseTicketPie(tenant_id, start_date, end_date){
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Reporting/ReportDiagramsController/ReportingDiagramsSSClose',
@@ -105,12 +105,12 @@ function callCloseTicketPie(tenant_id, start_date, end_date){
             // var response = JSON.parse(r);
             var response = r;
             drawPieChart(response);
-            $("#filter-loader").fadeOut("slow");
+            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             //console.log(r);
             alert("error");
-            $("#filter-loader").fadeOut("slow");
+            // $("#filter-loader").fadeOut("slow");
         },
     });
 }
@@ -223,7 +223,7 @@ function done(){
 }
 
 function drawTableCloseTicket(tenant_id, start_date, end_date, channel){
-    $("#filter-loader").fadeIn("slow"); 
+    // $("#filter-loader").fadeIn("slow"); 
     $('#tableSumClose').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSCloseTicket',
@@ -244,11 +244,11 @@ function drawTableCloseTicket(tenant_id, start_date, end_date, channel){
 		], 
         destroy: true
     });
-    $("#filter-loader").fadeOut("slow");
+    // $("#filter-loader").fadeOut("slow");
 }
 
 function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel){
-    $("#filter-loader").fadeIn("slow");
+    // $("#filter-loader").fadeIn("slow");
     $('#tableSumChannel').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSClosePerCh',
@@ -267,7 +267,7 @@ function drawTableCloseTicketPerChannel(tenant_id, start_date, end_date, channel
 		], 
         destroy: true
     });
-    $("#filter-loader").fadeOut("slow");
+    // $("#filter-loader").fadeOut("slow");
 }
 
 function exportTableCloseTicket(tenant_id, start_date, end_date, channel_id, name, baseImg){
@@ -355,10 +355,11 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         channelFromFilter = $('#channel_name').val();
-        
+        $("#filter-loader").fadeIn("slow");
         drawTableCloseTicket($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
         drawTableCloseTicketPerChannel($('#layanan_name').val(),  $('#start-date').val(), $('#end-date').val(), $('#channel_name').val());
         callCloseTicketPie($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        $("#filter-loader").fadeOut("slow");
     });
 
     
