@@ -56,7 +56,7 @@ function drawTableSumInterval(tanggal,interval,channel){
 			{ className: "text-center", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-center", targets: 4 },
-			{ className: "text-center", targets: 5 },
+			{ className: "text-right", targets: 5 },
 			{ className: "text-right", targets: 6 },
             { className: "text-right", targets: 7},
             // { className: "text-right", targets: 8}
