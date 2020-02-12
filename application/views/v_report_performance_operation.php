@@ -23,8 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-auto h6 mt-3">Layanan</div>
-                                <div class="col-sm-auto">
+                                <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="layanan_name">
                                             <!-- <option value="">Semua Layanan</option>
@@ -34,8 +33,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-auto h6 ml-2 mt-3">Channel</div>
-                                <div class="col-sm-auto">
+                                <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channel_name">
                                             <option value="">All Channel</option>
@@ -55,8 +53,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-auto h6 ml-3 mt-3">Month</div>
-                                <div class="col-sm-auto">
+                                 <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="month_name">
                                             <option value="">All Month</option>

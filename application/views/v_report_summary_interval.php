@@ -82,13 +82,13 @@
                                     <tr>
                                         <td class="wd-15p border-bottom-0 text-center" width="20">No.</td>
                                         <!-- <td class="wd-15p border-bottom-0 text-center" width="75">Date</td> -->
-                                        <td class="wd-15p border-bottom-0 text-center" width="100">Interval</td>
-                                        <td class="wd-15p border-bottom-0 text-center" width="60">ART</td>
-                                        <td class="wd-15p border-bottom-0 text-center" width="60">AHT</td>
-                                        <td class="wd-15p border-bottom-0 text-center" width="60">AST</td>
-                                        <td class="wd-15p border-bottom-0 text-center">Message In</td>
-                                        <td class="wd-15p border-bottom-0 text-center">Message Out</td>
-                                        <td class="wd-15p border-bottom-0 text-center">Total Session (COF)</td>
+                                        <td class="wd-15p border-bottom-0 text-center">Interval</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="80">ART</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="80">AHT</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="80">AST</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="100">Message In</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="100">Message Out</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="150">Total Session (COF)</td>
                                     </tr>
                                 </thead>
                                 <tbody>
