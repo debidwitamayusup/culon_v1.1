@@ -39,6 +39,7 @@ function channelToName(channel_id){
 }
 
 function drawTableSumInterval(tanggal,interval,channel){
+    $("#filter-loader").fadeIn("slow");
 	$('#tableReportSumInterval').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSInterval',
@@ -62,10 +63,12 @@ function drawTableSumInterval(tanggal,interval,channel){
 		], 
         destroy: true
     });
+    $("#filter-loader").fadeOut("slow");
     // console.log(data);
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type:'POST',
         url: base_url + 'api/Reporting/ReportController/EXPORTSI',
@@ -85,9 +88,11 @@ function exportTableSumInterval(tanggal,interval,channel,name){
             } else {
                 alert("Can't Export Empty Table!");
             }
+            $("#filter-loader").fadeOut("slow");
         },
         error: function(r){
             alert(error);
+            $("#filter-loader").fadeOut("slow");
         }
     })    
 }
