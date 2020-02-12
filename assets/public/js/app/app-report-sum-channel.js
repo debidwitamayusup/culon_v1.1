@@ -63,10 +63,7 @@ function getTenant(date){
 }
 
 function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
-    // console.log(tenantFromFilter);
-    // console.log(channelFromFilter);
-    // console.log(monthFromFilter);
-    // console.log(baseImg);
+    $("#filter-loader").fadeIn("slow");
     $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
@@ -91,9 +88,11 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
         lengthMenu: [ 13, 25, 50, 75, 100 ],
         destroy: true
     });
+    $("#filter-loader").fadeOut("slow");
 }
 
 function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
+    $("#filter-loader").fadeIn("slow");
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
     $.ajax({
         type: 'POST',
@@ -114,10 +113,12 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
             }else{
                 alert("Can't Export Empty Data");
             }
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             //console.log(r);
             alert("can't export");
+            $("#filter-loader").fadeOut("slow");
         },
     });
     // const Url = base_url + 'api/Reporting/ReportController/EXPORTSC';
@@ -194,6 +195,7 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/Reporting/ReportDiagramsController/ReportingDiagramsSC',
@@ -205,13 +207,13 @@ function callDrawPieChart(tenant_id, start_time, end_time){
         success: function (r) {
             var response = r;
             // console.log(response.data.TOTAL);
-
             drawPieChartSumChannel(response);
+            $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             alert("error");
-            // $("#filter-loader").fadeOut("slow");
+            $("#filter-loader").fadeOut("slow");
         },
     });
 }

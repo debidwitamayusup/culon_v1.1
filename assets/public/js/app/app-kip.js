@@ -288,7 +288,29 @@ function drawChartSubCategory(response){
 						mode: 'label',
 						callbacks: {
 							label: function (tooltipItem, data) {
-								return numberWithCommas(tooltipItem.xLabel) + ": " +  data.datasets[tooltipItem.datasetIndex].label;
+								var xLabel = numberWithCommas(tooltipItem.xLabel);
+								var dataset = data.datasets[tooltipItem.datasetIndex].label;
+								// return xLabel + ": " +  dataset;
+								if (/\s/.test(dataset)) {
+									var teks = '';
+									for (var i = 0; i < dataset.length; i++) {
+										if (dataset[i] == " ") {
+											teks = teks + '\n';
+
+										} else if (dataset[i] == "|") {
+											break;
+
+										} else {
+											teks = teks + dataset[i];
+										}
+										if (i == 11) {
+											break;
+										}
+									}
+									return teks;
+								} else {
+									return dataset;
+								}
 							}
 						}
 					},
