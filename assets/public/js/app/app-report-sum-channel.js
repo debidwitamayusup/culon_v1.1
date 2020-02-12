@@ -330,6 +330,17 @@ function setDatePicker() {
     });
 }
 
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  }
+
+
 (function ($) {
     var date = new Date();
     date.setDate(date.getDate() > 0);
@@ -362,8 +373,9 @@ function setDatePicker() {
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        console.log(startDateFromFilter);
-        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
+        // var base64 = getBase64Image(document.getElementById("legend1"));
+        // console.log(base64);
+        // exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
     });
 
     $('#btn-go').click(function(){
