@@ -383,7 +383,7 @@ Class ReportModel extends CI_Model {
         }
         
 
-        $this->db->from('rpt_summ_interval a');
+        $this->db->from('rpt_summ_interval_tsel a');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
