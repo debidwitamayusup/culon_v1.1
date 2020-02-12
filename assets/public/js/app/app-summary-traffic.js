@@ -39,7 +39,7 @@ $(document).ready(function () {
     sessionStorage.removeItem('paramsSession');
     sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, v_params_this_year, 0, v_params_tenant);
+    loadContent(params_time, v_params_this_year, 0, '');
     // $('#tag-time').html(v_params_this_year);
     // $("#btn-month").prop("class","btn btn-light btn-sm");
     // $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -588,7 +588,7 @@ function setDatePicker(){
             // console.log(this.value);
             v_date = this.value;
 
-            loadContent('day', v_date, 0, v_params_tenant);
+            loadContent('day', v_date, 0, '');
         }
     });
 
@@ -597,7 +597,7 @@ function setDatePicker(){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0, v_params_tenant)
+        loadContent(params_time, v_params_this_year, 0, '')
         // $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
         // callSummaryInteraction(params_time,v_date);
@@ -628,7 +628,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m, v_params_tenant);
+        loadContent(params_time, n, m, '');
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -650,7 +650,7 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0, v_params_tenant);
+        loadContent(params_time, m, 0, '');
         callYear();
         $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -675,7 +675,7 @@ function setDatePicker(){
         // console.log(this.value);
         v_date = this.value;
         
-        loadContent('day', v_date, 0, v_params_tenant);
+        loadContent('day', v_date, 0, '');
         }
     });
 
@@ -728,6 +728,6 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
     });
 })(jQuery);

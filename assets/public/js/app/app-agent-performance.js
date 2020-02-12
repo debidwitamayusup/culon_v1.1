@@ -14,11 +14,11 @@ var v_parmas_tenant = 'oct_telkomcare';
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
-    performanceBySkill('day', v_params_this_year, 0, v_parmas_tenant);
-    drawDataTable('day', v_params_this_year, 0, v_parmas_tenant);
-    bestOfFiveCOF('COF','day', v_params_this_year, 0, v_parmas_tenant);
-    bestOfFiveAHT('AHT','day', v_params_this_year, 0, v_parmas_tenant);
-    bestOfFiveART('ART','day', v_params_this_year, 0, v_parmas_tenant);
+    performanceBySkill('day', v_params_this_year, 0, '');
+    drawDataTable('day', v_params_this_year, 0, '');
+    bestOfFiveCOF('COF','day', v_params_this_year, 0, '');
+    bestOfFiveAHT('AHT','day', v_params_this_year, 0, '');
+    bestOfFiveART('ART','day', v_params_this_year, 0, '');
     $('#btn-day').prop("class","btn btn-red btn-sm");
     $('#input-date-filter').datepicker("setDate", v_params_this_year);
     $('#select-month option[value='+n+']').attr('selected','selected');
@@ -393,11 +393,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         // v_date = getToday();
         v_date = '2019-12-01';
         // console.log(params_time);
-        performanceBySkill('day', v_params_this_year, 0, v_parmas_tenant);
-        drawDataTable('day', v_params_this_year, 0, v_parmas_tenant);
-        bestOfFiveCOF('COF','day', v_params_this_year, 0, v_parmas_tenant);
-        bestOfFiveAHT('AHT','day', v_params_this_year, 0, v_parmas_tenant);
-        bestOfFiveART('ART','day', v_params_this_year, 0, v_parmas_tenant);
+        performanceBySkill('day', v_params_this_year, 0, '');
+        drawDataTable('day', v_params_this_year, 0, '');
+        bestOfFiveCOF('COF','day', v_params_this_year, 0, '');
+        bestOfFiveAHT('AHT','day', v_params_this_year, 0, '');
+        bestOfFiveART('ART','day', v_params_this_year, 0, '');
 
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -416,11 +416,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         // v_date = getMonth();
         // callSummaryInteraction(params_time, v_date);
         // callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-        performanceBySkill('month', n, m, v_parmas_tenant);
-        drawDataTable('month', n, m, v_parmas_tenant);
-        bestOfFiveCOF('COF','month', n, m, v_parmas_tenant);
-        bestOfFiveAHT('AHT','month', n, m, v_parmas_tenant);
-        bestOfFiveART('ART','month', n, m, v_parmas_tenant);
+        performanceBySkill('month', n, m, '');
+        drawDataTable('month', n, m, '');
+        bestOfFiveCOF('COF','month', n, m, '');
+        bestOfFiveAHT('AHT','month', n, m, '');
+        bestOfFiveART('ART','month', n, m, '');
         // callSummaryInteraction('month', '12', '2019');
         // console.log($("#select-year-only").val());
         callYearOnMonth();
@@ -441,11 +441,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         v_params_time = 'year';
         // console.log(params_time);
         // v_date = getYear();
-        performanceBySkill('year', m, 0, v_parmas_tenant);
-        drawDataTable('year',  m, 0, v_parmas_tenant);
-        bestOfFiveCOF('COF','year',  m, 0, v_parmas_tenant);
-        bestOfFiveAHT('AHT','year', m, 0, v_parmas_tenant);
-        bestOfFiveART('ART','year',  m, 0, v_parmas_tenant);
+        performanceBySkill('year', m, 0, '');
+        drawDataTable('year',  m, 0, '');
+        bestOfFiveCOF('COF','year',  m, 0, '');
+        bestOfFiveAHT('AHT','year', m, 0, '');
+        bestOfFiveART('ART','year',  m, 0, '');
         callYear();
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -466,11 +466,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            performanceBySkill('day', v_date, 0, v_parmas_tenant);
-            drawDataTable('day',  v_date, 0, v_parmas_tenant);
-            bestOfFiveCOF('COF','day',  v_date, 0, v_parmas_tenant);
-            bestOfFiveAHT('AHT','day', v_date, 0, v_parmas_tenant);
-            bestOfFiveART('ART','day',  v_date, 0, v_parmas_tenant);
+            performanceBySkill('day', v_date, 0, '');
+            drawDataTable('day',  v_date, 0, '');
+            bestOfFiveCOF('COF','day',  v_date, 0, '');
+            bestOfFiveAHT('AHT','day', v_date, 0, '');
+            bestOfFiveART('ART','day',  v_date, 0, '');
         }
     });
 
@@ -501,18 +501,18 @@ function drawDataTable(params_time, index, params_year, tenant_id){
     $('#select-year-only').change(function(){
         v_year = $(this).val();
         // console.log(this.value);
-        performanceBySkill('year',v_year, 0, v_parmas_tenant);
-        drawDataTable('year',  v_year, 0, v_parmas_tenant);
-        bestOfFiveCOF('COF','year',  v_year, 0, v_parmas_tenant);
-        bestOfFiveAHT('AHT','year', v_year, 0, v_parmas_tenant);
-        bestOfFiveART('ART','year',  v_year, 0, v_parmas_tenant);
+        performanceBySkill('year',v_year, 0, '');
+        drawDataTable('year',  v_year, 0, '');
+        bestOfFiveCOF('COF','year',  v_year, 0, '');
+        bestOfFiveAHT('AHT','year', v_year, 0, '');
+        bestOfFiveART('ART','year',  v_year, 0, '');
     });
 
     $('#btn-go').click(function(){
-        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), v_parmas_tenant);
-        drawDataTable('month',  $("#select-month").val(), $("#select-year-on-month").val(), v_parmas_tenant);
-        bestOfFiveCOF('COF','month',  $("#select-month").val(), $("#select-year-on-month").val(), v_parmas_tenant);
-        bestOfFiveAHT('AHT','month',  $("#select-month").val(), $("#select-year-on-month").val(), v_parmas_tenant);
-        bestOfFiveART('ART','month',  $("#select-month").val(), $("#select-year-on-month").val(), v_parmas_tenant);
+        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+        drawDataTable('month',  $("#select-month").val(), $("#select-year-on-month").val(), '');
+        bestOfFiveCOF('COF','month',  $("#select-month").val(), $("#select-year-on-month").val(), '');
+        bestOfFiveAHT('AHT','month',  $("#select-month").val(), $("#select-year-on-month").val(), '');
+        bestOfFiveART('ART','month',  $("#select-month").val(), $("#select-year-on-month").val(), '');
     });
 })(jQuery);
