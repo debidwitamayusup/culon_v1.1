@@ -33,7 +33,8 @@
                                         </div><input class="form-control fc-datepicker" placeholder="Start Date" type="text">
                                     </div>
                                 </div>
-                                <div class="col-xs-auto ml-1">
+                                <div class="col-sm-auto h6 mt-3">to</div>
+                                <div class="col-xs-auto">
                                     <div class="input-group" style="width:130px">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -63,12 +64,12 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-auto ml-1">
-                                    <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                    <button class="btn btn-sm btn-dark" type="button" style="height:36px" id="btn-go"><i
                                             class="fas fa-filter"></i></button>
 
                                 </div>
                                 <div class="col-xs-auto ml-1">
-                                    <button class="btn btn-sm btn-primary" type="button" style="height:35px"
+                                    <button class="btn btn-sm btn-primary" type="button" style="height:36px"
                                         id="btn-go"><i class="fas fa-download mr-2"></i>Export</button>
 
                                 </div>
