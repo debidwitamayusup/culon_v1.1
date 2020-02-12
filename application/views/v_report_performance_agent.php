@@ -70,17 +70,17 @@
                         <div class="table-responsive" style="padding:12px;">
                             <table id="tableOperation1" class="table table-striped table-bordered fontNunito12"
                                 width="100%">
-                                <thead class="text-center text-white bg-head">
+                                <thead class="text-white bg-head">
                                     <tr>
-                                        <td class="wd-15p border-bottom-0" width="20">No</td>
-                                        <td class="wd-15p border-bottom-0">Agent ID</td>
-                                        <td class="wd-15p border-bottom-0">Agent Name</td>
-                                        <td class="wd-15p border-bottom-0">Skill</td>
-                                        <td class="wd-15p border-bottom-0">COF</td>
-                                        <td class="wd-15p border-bottom-0">ART</td>
-                                        <td class="wd-15p border-bottom-0">AHT</td>
-                                        <td class="wd-15p border-bottom-0">AST</td>
-                                        <td class="wd-15p border-bottom-0">SCR</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
+                                        <td class="wd-15p border-bottom-0 text-center">Agent ID</td>
+                                        <td class="wd-15p border-bottom-0 text-center">Agent Name</td>
+                                        <td class="wd-15p border-bottom-0 text-center">Skill</td>
+                                        <td class="wd-15p border-bottom-0 text-center">COF</td>
+                                        <td class="wd-15p border-bottom-0 text-center">ART</td>
+                                        <td class="wd-15p border-bottom-0 text-center">AHT</td>
+                                        <td class="wd-15p border-bottom-0 text-center">AST</td>
+                                        <td class="wd-15p border-bottom-0 text-center">SCR</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -197,10 +197,9 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>
             <?php $this->load->view('temp/footer');?>
             <!--Plugin -->
-            <script src="<?=base_url()?>assets/public/js/app/app-report-agent-performance.js"></script>
+            <script src="<?=base_url()?>assets/public/js/app/app-report-perform-agent.js"></script>

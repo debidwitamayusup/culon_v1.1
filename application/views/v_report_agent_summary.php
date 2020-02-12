@@ -44,7 +44,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-auto ml-1">
+                                <!-- <div class="col-sm-auto ml-1">
                                     <div class="form-group row">
                                         <select class="form-control" id="channelName">
                                              <option value="">All Channel</option>
@@ -63,7 +63,7 @@
                                              <option value="15">Chatbot</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                
                                 <div class="col-xs-auto ml-1">
                                     <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
