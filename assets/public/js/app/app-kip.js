@@ -290,27 +290,27 @@ function drawChartSubCategory(response){
 							label: function (tooltipItem, data) {
 								var xLabel = numberWithCommas(tooltipItem.xLabel);
 								var dataset = data.datasets[tooltipItem.datasetIndex].label;
-								// return xLabel + ": " +  dataset;
-								if (/\s/.test(dataset)) {
-									var teks = '';
-									for (var i = 0; i < dataset.length; i++) {
-										if (dataset[i] == "|") {
-											teks = teks + '\n';
+								return xLabel + ": " +  dataset;
+								// if (/\s/.test(dataset)) {
+								// 	var teks = '';
+								// 	for (var i = 0; i < dataset.length; i++) {
+								// 		if (dataset[i] == "|") {
+								// 			teks = teks + '\n';
 
-										} else if (dataset[i] == "|") {
-											break;
+								// 		} else if (dataset[i] == "|") {
+								// 			break;
 
-										} else {
-											teks = teks + dataset[i];
-										}
-										if (i == 11) {
-											break;
-										}
-									}
-									return teks;
-								} else {
-									return dataset;
-								}
+								// 		} else {
+								// 			teks = teks + dataset[i];
+								// 		}
+								// 		if (i == 11) {
+								// 			break;
+								// 		}
+								// 	}
+								// 	return teks;
+								// } else {
+								// 	return dataset;
+								// }
 							}
 						}
 					},
@@ -318,6 +318,13 @@ function drawChartSubCategory(response){
 						yAxes: [ {
 							ticks: {
 								beginAtZero: true,
+								callback: function(label) {
+						          if (/\s/.test(label)) {
+						            return label.split(" ");
+						          }else{
+						            return label;
+						          }              
+						        }
 								//padding:50,
 							}
 										} ]
