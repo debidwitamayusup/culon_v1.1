@@ -438,12 +438,10 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             var commas = response.data.total_interaction;
-            //var functionCommas = commas;
-            // console.log(commasaddCommas);
-            // console.log(response);
-            alert("AAAAA")
-            console.log(response.data.total_interaction)
-            $("#total-interaction").html(response.data.total_interaction);  
+            var functionCommas = addCommas(commas);
+            // console.log(commas);
+            console.log(response);
+            $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },
         error: function (r) {
