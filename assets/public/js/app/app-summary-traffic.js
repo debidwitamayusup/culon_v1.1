@@ -440,7 +440,7 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
             var commas = response.data.total_interaction;
             var functionCommas = addCommas(commas);
             // console.log(commas);
-            // console.log(response);
+            console.log(response);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },
