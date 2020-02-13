@@ -209,3 +209,5 @@
 							<?php $this->load->view('temp/footer');?>
 							<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
 							<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+
+					<!-- For Test -->
