@@ -16,17 +16,17 @@
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_1.jpg"
 											data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_2.jpg"
 											data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_3.jpg"
 											data-holder-rendered="true">
 									</div>
 								</div>
