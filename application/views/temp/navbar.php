@@ -6,15 +6,15 @@
 			
 			<a class="header-brand">
 				<img alt="logo" class="header-brand-img main-logo float-left"
-					src="<?= base_url()?>assets/images/brand/logo_logos.png">
+					src="<?= base_url()?>assets/images/brand/white-logo.png">
 			</a>
-			<a aria-label="Hide Sidebar" style="color: #000" class="app-sidebar__toggle" data-toggle="sidebar"
+			<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar"
 				href="#"></a>
 			<!-- Sidebar toggle button-->
 			<div class="d-flex order-lg-2 ml-auto">
 				<div class="d-sm-flex d-none">
 					<a class="nav-link icon full-screen-link">
-						<i style="color: #000" href="#" class="fe fe-minimize fullscreen-button"></i>
+						<i href="#" class="fe fe-minimize fullscreen-button"></i>
 					</a>
 				</div>
 				<div class="dropdown">
@@ -54,4 +54,3 @@
 <!-- filter loarder -->
 <div id="filter-loader" style="display:none"><img src="<?= base_url()?>assets/images/svgs/loader.svg" alt="loader">
 </div>
-
