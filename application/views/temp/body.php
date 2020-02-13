@@ -4,6 +4,35 @@
 			<div class="page-main">
 				<div class=" app-content mt-6">
 					<div class="side-app">
+
+						<div class="col-md-12 col-xl-12 mt-1 mb-3">
+							<div id="carousel-indicators" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-indicators" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-indicators" data-slide-to="1" class="">
+									</li>
+									<li data-target="#carousel-indicators" data-slide-to="2" class="">
+									</li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<img class="d-block w-100 h-100" alt=""
+											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											data-holder-rendered="true">
+									</div>
+									<div class="carousel-item">
+										<img class="d-block w-100 h-100" alt=""
+											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											data-holder-rendered="true">
+									</div>
+									<div class="carousel-item">
+										<img class="d-block w-100 h-100" alt=""
+											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											data-holder-rendered="true">
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="page-header d-flex bd-highlight">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item active" aria-current="page">
@@ -27,14 +56,16 @@
 								<div class="bd-highlight">
 									<!-- daily -->
 									<div id="filter-date" class="mt-1 mr-0">
-										<input id="input-date-filter" class="w-55 ml-auto form-control form-control-sm fc-datepicker"
+										<input id="input-date-filter"
+											class="w-55 ml-auto form-control form-control-sm fc-datepicker"
 											placeholder="MM/DD/YYYY" type="text">
 									</div>
 
 									<!-- monthly -->
 									<div id="filter-month" class="row mt-1 mr-0">
 										<div class="col-md-auto">
-											<select name="select-month" id="select-month" class="form-control form-control-sm">
+											<select name="select-month" id="select-month"
+												class="form-control form-control-sm">
 												<option value="1">January</option>
 												<option value="2">February</option>
 												<option value="3">March</option>
@@ -49,163 +80,132 @@
 												<option value="12">December</option>
 											</select>
 										</div>
+										<!-- Monthly -->
 										<div>
 											<select name="select-year-on-month" id="select-year-on-month"
 												class="form-control form-control-sm">
-												<!-- <option value="2020">2020</option>
-												<option value="2019">2019</option> -->
-												<!-- <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option> -->
 											</select>
 										</div>
+										<!-- Monthly -->
 										<div>
 											<span class="col-auto">
-												<button class="btn btn-sm btn-dark" type="button" style="height:29px" id="btn-go"><i
-														 class="fe fe-arrow-right text-white"></i></button>
+												<button class="btn btn-sm btn-dark" type="button" style="height:29px"
+													id="btn-go"><i class="fe fe-arrow-right text-white"></i></button>
 											</span>
 										</div>
 									</div>
 
 									<!-- yearly -->
 									<div id="filter-year" class="mt-1 mr-0">
-										<select name="select-year-only" id="select-year-only" class="form-control form-control-sm">
-											<!-- <option value="2020">2020</option>
-											<option value="2019" selected>2019</option> -->
-											<!-- <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option> -->
+										<select name="select-year-only" id="select-year-only"
+											class="form-control form-control-sm">
 										</select>
+									</div>
+									<!-- yearly -->
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-12 col-lg-12 col-md-12">
+								<div class="row mt-2">
+									<div class="col-md-3 text-center">
+										<div class="card-custom overflow-hidden">
+											<div class="card-header bg-light-3">
+												<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
+											</div>
+											<div class="card-body dash2">
+												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+													data-thickness="10" data-color="#d9dbdc99">
+													<div class="chart-circle-value fs">
+														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
+													</div>
+												</div>
+												<span class="count-numbers counter num-font" id="total-interaction"></span>
+												<span class="count-name">Data</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3 text-center">
+										<div class="card-custom overflow-hidden">
+											<div class="card-header bg-light-3">
+												<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
+											</div>
+											<div class="card-body dash2">
+												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+													data-thickness="10" data-color="#d9dbdc99">
+													<div class="chart-circle-value fs">
+														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+													</div>
+												</div>
+												<span class="count-numbers counter num-font" id="unique-customer"></span>
+												<span class="count-name">Data</span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3 text-center">
+										<div class="card-custom overflow-hidden">
+											<div class="card-header bg-light-3">
+												<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
+											</div>
+											<div class="card-body dash2">
+												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+													data-thickness="10" data-color="#d9dbdc99">
+													<div class="chart-circle-value fs">
+														<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
+													</div>
+												</div>
+												<span class="count-numbers counter num-font" id="msg-in"></span>
+												<span class="count-name">Data</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3 text-center">
+										<div class="card-custom overflow-hidden">
+											<div class="card-header bg-light-3">
+												<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
+											</div>
+											<div class="card-body dash2">
+												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+													data-thickness="10" data-color="#d9dbdc99">
+													<div class="chart-circle-value fs">
+														<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
+													</div>
+												</div>
+												<span class="count-numbers counter num-font" id="msg-out"></span>
+												<span class="count-name">Data</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 						<div class="row">
-							<div class="col-xl-6 col-lg-6 col-md-12">
+							<div class="col-xl-4 col-lg-4 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-header-small">
 										<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
 									</div>
 									<div class="card-pie">
 										<div class="canvas-con">
-											<div id="legend" class="legend-con"></div>
-											<div class="canvas-con-inner" id="canvas-pie">
+											<div id="legend" class="legend-con mb-3 mt-3"></div>
+											<div class="canvas-con-inner mb-4" id="canvas-pie">
 												<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 											</div>
 										</div>
-										<div id="legend" class="legend-con"></div>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-6 col-lg-6 col-md-12">
+							<div class="col-xl-8 col-lg-8 col-md-12">
 								<div class="card overflow-hidden">
-									<div class="card-header-small">
-										<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Interaction</h5>
-									</div>
-									<div class="card-body">
-										<div class="row mt-2">
-											<div class="col-md-6 text-center">
-												<div class="card-custom overflow-hidden">
-													<div class="card-header bg-red">
-														<h6 class="text-white card-body">Total Session</h6>
-													</div>
-													<div class="card-body">
-														<h2 class="mb-4 mt-3 num-font" id="total-interaction"></h2>
-														<span class="text-muted mb-5">Session</span>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 text-center">
-												<div class="card-custom overflow-hidden">
-													<div class="card-header bg-red">
-														<h6 class="text-white card-body">Unique Customer</h6>
-													</div>
-													<div class="card-body">
-														<h2 class="mb-4 mt-3 num-font" id="unique-customer"></h2>
-														<span class="text-muted mb-5">Customer</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row mt-2 mb-2">
-											<div class="col-md-6 text-center">
-												<div class="card-custom overflow-hidden">
-													<div class="card-header bg-red">
-														<h6 class="card-body text-white">Message In</h6>
-													</div>
-													<div class="card-body">
-														<h2 class="mb-4 mt-3 num-font" id="msg-in"></h2>
-														<span class="text-muted mb-5">Interaction</span>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 text-center">
-												<div class="card-custom overflow-hidden">
-													<div class="card-header bg-red">
-														<h6 class="card-body text-white">Message Out</h6>
-													</div>
-													<div class="card-body">
-														<h2 class="mb-4 mt-3 num-font" id="msg-out"></h2>
-														<span class="text-muted mb-5">Interaction</span>
-													</div>
-												</div>
-											</div>
+									<div class="card-body" id="card-baru" style="padding:5px;">
+										<div class="row" id="row-baru">											
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<!---! Kolom Channel--->
-							<div class="col-xl-12 col-lg-12 col-md-12">
-								<div class="card overflow-hidden">
-									<div class="card-body" style="padding:20px;" id="card-baru">
-										<div class="row" id="row-baru">
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- <div class="card">
-					<div class="card-header" id="headingTwo">
-						<h2 class="mb-0">
-							<span>Collapsible Group Item #2</span>
-							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-plus-circle"></i></button>
-						</h2>
-					</div>
-					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						<div class="card-body">
-							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_day">Daily</a></div>
-							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_month">Monthly</a></div>
-							<div class="slide-item ml-3"><a href="<?=base_url()?>main/this_year">Yearly</a></div>
-						</div>
-					</div>
-				</div> -->
-						<!---Baris Kedua!-->
-						<!--
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card box-widget widget-user">
-								<div class="card-header bg-red">
-									<h3 class="card-title text-white">Unique Customer per Channel</h3>
-								</div>
-								<div class="box-footer">
-									<div class="row">
-										<div class="col-md-12" id="card-unique-customer-per-channel">
-											<div class="row" id="retres-unique">
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>-->
-						<?php $this->load->view('temp/footer');?>
-						<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-						<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+							<?php $this->load->view('temp/footer');?>
+							<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+							<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>

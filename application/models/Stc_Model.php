@@ -290,6 +290,7 @@ class Stc_Model extends CI_Model
 		, IFNULL(b.scr,0) as sla
 		, m_channel.channel_color
 		, m_channel.icon_dashboard
+		, m_channel.image_icon
 		
 		FROM m_channel 
 		-- LEFT JOIN (
@@ -316,10 +317,27 @@ class Stc_Model extends CI_Model
         // }
 		// $this->createLogSql();
 
-		
+		if($query->num_rows() > 0 )
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel' => $data->channel,
+					'total' => $data->total,
+					'total_session' => $data->total_session,
+					'msg_in'=> $data->msg_in,
+					'msg_out'=> $data->msg_out,
+					'sla'=> $data->sla,
+					'channel_color'=> $data->channel_color,
+					'icon_dashboard' => $data->icon_dashboard,
+					'image_icon' => base_url().'assets/images/ICON/'.$data->image_icon
 
-
-		return $query->result();
+				);
+			}
+			return $result;
+		}
+		return false;
+		// return $query->result();
 
 
 		// return $str;
