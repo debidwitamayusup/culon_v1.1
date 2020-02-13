@@ -102,7 +102,7 @@ class SummaryMonth extends CI_Controller {
 
 		$params= "month";
         $index = $month;
-        $avgIntervalTable = $this->Stc_Model->getAverageIntervalToday($params, $index, $year);
+        $avgIntervalTable = $this->Stc_Model->getAverageIntervalMonth($params, $index, $year);
 
 		if($avgIntervalTable){
             $response = array(

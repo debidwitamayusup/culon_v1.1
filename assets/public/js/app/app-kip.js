@@ -28,7 +28,7 @@ $(document).ready(function () {
 	channel_id = '';
 	$('#btn-day').prop("class", "btn btn-red btn-sm");
 	// loadContent(params_time, v_date, 0);
-	loadContent(params_time, v_params_this_year, 0, v_params_tenant);
+	loadContent(params_time, v_params_this_year, 0, '');
 	// ------datepiker
 	$('#input-date-filter').datepicker("setDate", v_params_this_year);
 	$('#select-month option[value=' + n + ']').attr('selected', 'selected');
@@ -290,27 +290,27 @@ function drawChartSubCategory(response){
 							label: function (tooltipItem, data) {
 								var xLabel = numberWithCommas(tooltipItem.xLabel);
 								var dataset = data.datasets[tooltipItem.datasetIndex].label;
-								// return xLabel + ": " +  dataset;
-								if (/\s/.test(dataset)) {
-									var teks = '';
-									for (var i = 0; i < dataset.length; i++) {
-										if (dataset[i] == "|") {
-											teks = teks + '\n';
+								return xLabel + ": " +  dataset;
+								// if (/\s/.test(dataset)) {
+								// 	var teks = '';
+								// 	for (var i = 0; i < dataset.length; i++) {
+								// 		if (dataset[i] == "|") {
+								// 			teks = teks + '\n';
 
-										} else if (dataset[i] == "|") {
-											break;
+								// 		} else if (dataset[i] == "|") {
+								// 			break;
 
-										} else {
-											teks = teks + dataset[i];
-										}
-										if (i == 11) {
-											break;
-										}
-									}
-									return teks;
-								} else {
-									return dataset;
-								}
+								// 		} else {
+								// 			teks = teks + dataset[i];
+								// 		}
+								// 		if (i == 11) {
+								// 			break;
+								// 		}
+								// 	}
+								// 	return teks;
+								// } else {
+								// 	return dataset;
+								// }
 							}
 						}
 					},
@@ -318,6 +318,13 @@ function drawChartSubCategory(response){
 						yAxes: [ {
 							ticks: {
 								beginAtZero: true,
+								callback: function(label) {
+						          if (/\s/.test(label)) {
+						            return label.split(" ");
+						          }else{
+						            return label;
+						          }              
+						        }
 								//padding:50,
 							}
 										} ]
@@ -805,8 +812,8 @@ function addCommas(commas) {
 		// v_date = getToday();
 		v_date = '2019-12-01';
         // console.log(params_time);
-		callSummaryInteraction(params_time, v_params_this_year, v_params_tenant);
-		$('#input-date-filter').datepicker("setDate", v_params_this_year, v_params_tenant);
+		callSummaryInteraction(params_time, v_params_this_year, '');
+		$('#input-date-filter').datepicker("setDate", v_params_this_year, '');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
 		$(this).prop("class","btn btn-red btn-sm");
@@ -827,7 +834,7 @@ function addCommas(commas) {
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		callSummaryInteraction(params_time, n, m, v_params_tenant);
+		callSummaryInteraction(params_time, n, m, '');
 		callYearOnMonth();
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
@@ -849,7 +856,7 @@ function addCommas(commas) {
 		params_time = 'year';
 		// console.log(params_time);
 		// v_date = getYear();
-		callSummaryInteraction(params_time, m, 0, v_params_tenant);
+		callSummaryInteraction(params_time, m, 0, '');
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -866,7 +873,7 @@ function addCommas(commas) {
 	$('#channel_name').change(function () {
 		channel_id = $('#channel_name').val();
 		// console.log(value);
-		callDataSubCategory(params_time, v_date, v_params_tenant);
+		callDataSubCategory(params_time, v_date, '');
 	});
 
 	var date = new Date();
@@ -880,7 +887,7 @@ function addCommas(commas) {
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			callSummaryInteraction(params_time, v_date,0,v_params_tenant);
+			callSummaryInteraction(params_time, v_date,0,'');
         }
 	});
 
@@ -902,11 +909,11 @@ function addCommas(commas) {
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
 		// console.log(this.value);
-		callSummaryInteraction('year', v_year, 0, v_params_tenant);
+		callSummaryInteraction('year', v_year, 0, '');
 	});
 
 	$('#btn-go').click(function () {
-		callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+		callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
 	});
 
 
@@ -916,7 +923,7 @@ function addCommas(commas) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	};
 	$('#btn-go').click(function(){
-        callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), v_params_tenant);
+        callSummaryInteraction('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
     });
 
 	// // horizontal bar chart komplain

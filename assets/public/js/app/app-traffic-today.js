@@ -20,9 +20,9 @@ $(document).ready(function () {
     list_channel = values;
 
     // var data_chart = callIntervalTraffic(v_date, []);
-    var data_chart = callIntervalTraffic(v_date, list_channel, v_params_tenant);
-    var data_table_avg = callDataTableAvg(v_date, v_params_tenant);
-    var data_percentage = callDataPercentage(v_date, v_params_tenant);
+    var data_chart = callIntervalTraffic(v_date, list_channel, '');
+    var data_table_avg = callDataTableAvg(v_date, '');
+    var data_percentage = callDataPercentage(v_date, '');
     
 });
 
@@ -366,9 +366,9 @@ function destroyChartPercentage(){
             v_date = this.value;
             
             //re draw
-            callIntervalTraffic(this.value, list_channel, v_params_tenant);
-            callDataTableAvg(this.value, v_params_tenant);
-            callDataPercentage(this.value, v_params_tenant);
+            callIntervalTraffic(this.value, list_channel, '');
+            callDataTableAvg(this.value, '');
+            callDataPercentage(this.value, '');
         }
     });
 
@@ -384,7 +384,7 @@ function destroyChartPercentage(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic(v_date, list_channel, v_params_tenant);
+        callIntervalTraffic(v_date, list_channel, '');
     });
 
     //checked channel
@@ -403,7 +403,7 @@ function destroyChartPercentage(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic(v_date, list_channel, v_params_tenant);
+        callIntervalTraffic(v_date, list_channel, '');
     });
     
 })(jQuery);

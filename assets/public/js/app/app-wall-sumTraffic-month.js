@@ -17,7 +17,7 @@ var v_params_this_year = m + '-' + n + '-' + (o);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage(n,'oct_telkomcare',m);
+    callDataPercentage(n,'',m);
     callIntervalTraffic(n,'', '');
     callTableInterval(n,'');
     $("#filter-loader").fadeOut("slow");

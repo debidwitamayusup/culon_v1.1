@@ -290,6 +290,7 @@ class Stc_Model extends CI_Model
 		, IFNULL(b.scr,0) as sla
 		, m_channel.channel_color
 		, m_channel.icon_dashboard
+		, m_channel.image_icon
 		
 		FROM m_channel 
 		-- LEFT JOIN (
@@ -316,10 +317,27 @@ class Stc_Model extends CI_Model
         // }
 		// $this->createLogSql();
 
-		
+		if($query->num_rows() > 0 )
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel' => $data->channel,
+					'total' => $data->total,
+					'total_session' => $data->total_session,
+					'msg_in'=> $data->msg_in,
+					'msg_out'=> $data->msg_out,
+					'sla'=> $data->sla,
+					'channel_color'=> $data->channel_color,
+					'icon_dashboard' => $data->icon_dashboard,
+					'image_icon' => base_url().'assets/images/ICON/'.$data->image_icon
 
-
-		return $query->result();
+				);
+			}
+			return $result;
+		}
+		return false;
+		// return $query->result();
 
 
 		// return $str;
@@ -711,13 +729,13 @@ class Stc_Model extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval as time');
-		$this->db->from('rpt_summ_interval');
+		$this->db->select('rpt_summ_interval_tsel.interval as time');
+		$this->db->from('rpt_summ_interval_tsel');
 		if($tid)
 		{
-			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+			$this->db->where('rpt_summ_interval_tsel.tenant_id', $tid);
 		}
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
 
@@ -770,16 +788,16 @@ class Stc_Model extends CI_Model
 			return array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 		}
 
-		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
+		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(SUM(rpt_summ_interval_tsel.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
 		if($tid)
 		{
-			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+			$this->db->where('rpt_summ_interval_tsel.tenant_id', $tid);
 		}
-		$this->db->where('rpt_summ_interval.tanggal', $date);
+		$this->db->where('rpt_summ_interval_tsel.tanggal', $date);
 		$this->db->where_in('m_channel.channel_name',$channel);
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
 		
@@ -817,11 +835,11 @@ class Stc_Model extends CI_Model
 	{
 		
 
-		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.tot_agent),0) as total');
+		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(SUM(rpt_summ_interval_tsel.tot_agent),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
-		$this->db->where('rpt_summ_interval.tanggal', $date);
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
+		$this->db->where('rpt_summ_interval_tsel.tanggal', $date);
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
 		
@@ -859,13 +877,13 @@ class Stc_Model extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval as time');
-		$this->db->from('rpt_summ_interval');
+		$this->db->select('rpt_summ_interval_tsel.interval as time');
+		$this->db->from('rpt_summ_interval_tsel');
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
 
@@ -919,17 +937,17 @@ class Stc_Model extends CI_Model
 		}
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
+		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(AVG(rpt_summ_interval_tsel.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
-		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
-		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
+		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id);
+		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
 		$this->db->where_in('m_channel.channel_name',$channel);
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
@@ -969,13 +987,13 @@ class Stc_Model extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval as time');
-		$this->db->from('rpt_summ_interval');
+		$this->db->select('rpt_summ_interval_tsel.interval as time');
+		$this->db->from('rpt_summ_interval_tsel');
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
 
@@ -1030,17 +1048,17 @@ class Stc_Model extends CI_Model
 		}
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
+		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(AVG(rpt_summ_interval_tsel.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
-		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
-		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
+		$this->db->where('MONTH(rpt_summ_interval_tsel.tanggal)', $month_id);
+		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
 		$this->db->where_in('m_channel.channel_name',$channel);
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
@@ -1080,18 +1098,18 @@ class Stc_Model extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('rpt_summ_interval.interval , COALESCE(AVG(rpt_summ_interval.case_session),0) as total');
+		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(AVG(rpt_summ_interval_tsel.case_session),0) as total');
 		$this->db->from('m_channel');
-		$this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
-		$this->db->where('MONTH(rpt_summ_interval.tanggal)', $month_id);
-		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
+		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
+		$this->db->where('MONTH(rpt_summ_interval_tsel.tanggal)', $month_id);
+		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
 
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
 
-		$this->db->group_by('rpt_summ_interval.interval','ASC');
+		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
@@ -1129,6 +1147,89 @@ class Stc_Model extends CI_Model
 
 
 	public function getAverageIntervalToday($params, $index, $year=0)
+	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval_tsel.tenant_id ='" .$tid."'";
+		}
+
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		
+		$where = "";
+		$art = "";
+		$aht = "";
+		$ast = "";
+		if($params == 'day'){
+
+			$where = "rpt_summ_interval_tsel.tanggal= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.aht))),2,7) AS aht";
+		}else if($params == 'month'){
+
+			$where = "MONTH(rpt_summ_interval_tsel.tanggal)= '".$index."' AND YEAR(rpt_summ_interval_tsel.tanggal)= '".$year."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.aht))),2,7) AS aht";
+		}else if($params == 'year'){
+
+			$where = "YEAR(rpt_summ_interval_tsel.tanggal)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval_tsel.aht))),2,7) AS aht";
+		}
+		$query = $this->db->query("SELECT 
+		m_channel.channel_name
+		, m_channel.icon_dashboard
+		, m_channel.channel_color 
+		, IFNULL(a.art, '-') as art 
+		, IFNULL(a.aht, '-') as aht 
+		, IFNULL(a.ast, '-') as ast
+		, IFNULL(a.scr, '-') as scr
+		FROM m_channel 
+		LEFT JOIN (
+			SELECT rpt_summ_interval_tsel.channel_id
+			, $art
+			, $aht
+			, $ast
+			, round(AVG(rpt_summ_interval_tsel.scr), 2) as scr
+			, rpt_summ_interval_tsel.tanggal as date 
+			FROM rpt_summ_interval_tsel
+			WHERE $where $where2
+			GROUP BY rpt_summ_interval_tsel.channel_id
+		)as a on a.channel_id = m_channel.channel_id  
+		ORDER BY m_channel.channel_name
+		");	
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				if($data->scr != '-')
+				{
+					$scr = $data->scr.'%';
+				}
+				else{
+					$scr = '-';
+				}
+				
+				$content[] = array(
+					'channel_name'=> $data->channel_name,
+					'icon_dashboard'=> $data->icon_dashboard,
+					'channel_color'=> $data->channel_color,
+					'art'=> $data->art,
+					'aht'=> $data->aht,
+					'ast'=> $data->ast,
+					'scr'=> $scr
+				);
+			}
+		}
+
+    	return $content;
+	}
+
+	public function getAverageIntervalMonth($params, $index, $year=0)
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$where2 = "";
@@ -1244,7 +1345,7 @@ class Stc_Model extends CI_Model
 		$where2 = "";
 		
 		if ($tid) {
-			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+			$where2 = "AND rpt_summ_interval_tsel.tenant_id ='" .$tid."'";
 		}
 
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
@@ -1257,9 +1358,9 @@ class Stc_Model extends CI_Model
 			SELECT channel_id,
 			SUM(case_session) total,
 			SUM(case_session) as rate
-			FROM rpt_summ_interval
-			WHERE DATE(rpt_summ_interval.tanggal) = '".$date."' $where2
-			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			FROM rpt_summ_interval_tsel
+			WHERE DATE(rpt_summ_interval_tsel.tanggal) = '".$date."' $where2
+			GROUP BY rpt_summ_interval_tsel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
@@ -1269,7 +1370,7 @@ class Stc_Model extends CI_Model
 	public function getPercentageIntervalTodayWallDay($date){
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		if ($tid) {
-			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+			$where2 = "AND rpt_summ_interval_tsel.tenant_id ='" .$tid."'";
 		}else{
 			$where2 = "";
 		}
@@ -1283,9 +1384,9 @@ class Stc_Model extends CI_Model
 			LEFT JOIN (
 			SELECT channel_id,
 			SUM(case_session) as rate
-			FROM rpt_summ_interval
-			WHERE rpt_summ_interval.tanggal = '".$date."' ".$where2."
-			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			FROM rpt_summ_interval_tsel
+			WHERE rpt_summ_interval_tsel.tanggal = '".$date."' ".$where2."
+			GROUP BY rpt_summ_interval_tsel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
 			GROUP BY m_channel.channel_name
 			");
 			
@@ -1449,16 +1550,16 @@ class Stc_Model extends CI_Model
 		$date = date('Y-m-d',strtotime($day));
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		
-		$this->db->select('rpt_summ_interval.case_session as total');
-		$this->db->from('rpt_summ_interval');
-		$this->db->where('rpt_summ_interval.tanggal',$date);
-		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		$this->db->select('rpt_summ_interval_tsel.case_session as total');
+		$this->db->from('rpt_summ_interval_tsel');
+		$this->db->where('rpt_summ_interval_tsel.tanggal',$date);
+		$this->db->where('rpt_summ_interval_tsel.channel_id',$channel);
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
 
-		//$this->db->group_by('rpt_summ_interval.channel_id')
+		//$this->db->group_by('rpt_summ_interval_tsel.channel_id')
 		$query = $this->db->get();
 		
 		
@@ -1483,16 +1584,16 @@ class Stc_Model extends CI_Model
 
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-		$this->db->select('SUM(rpt_summ_interval.case_session) as total');
-		$this->db->from('rpt_summ_interval');
-		$this->db->where('WEEK(rpt_summ_interval.tanggal)', $week_id);
-		$this->db->where('YEAR(rpt_summ_interval.tanggal)', date('Y'));
-		$this->db->where('rpt_summ_interval.channel_id',$channel);
+		$this->db->select('SUM(rpt_summ_interval_tsel.case_session) as total');
+		$this->db->from('rpt_summ_interval_tsel');
+		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id);
+		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
+		$this->db->where('rpt_summ_interval_tsel.channel_id',$channel);
 		if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
-		$this->db->group_by('rpt_summ_interval.channel_id');
+		$this->db->group_by('rpt_summ_interval_tsel.channel_id');
 		$query = $this->db->get();
 
 		// print_r($this->db->last_query());
@@ -1551,10 +1652,10 @@ class Stc_Model extends CI_Model
 		}else if($params == 'month'){
 			$this->db->where('MONTH(tanggal)', $index);
 			$this->db->where('YEAR(tanggal)', $params_year);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
+			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
-			$this->db->where('b.tenant_id', 'oct_telkomcare');
+			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
 		$query = $this->db->get();
     	return $query->row();

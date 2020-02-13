@@ -13,11 +13,13 @@ if (n < 10) {
 
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
+//get yesterday
+var v_params_yesterday =m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
-    callTableCOFByChannel('2020-01-24', '');
-    getTenant('2020-01-24');
+    callTableCOFByChannel(v_params_yesterday, '');
+    getTenant(v_params_yesterday);
     // getTenant(v_params_today);
     // callTableCOFByChannel(v_params_today);
 
@@ -193,7 +195,7 @@ function drawTableCOFByChannel(response){
         // destroyChartInterval();
          // destroyChartInterval();
         var selectedTenant = $(this).children("option:selected").val();
-        // callTableCOFByChannel('2020-01-24', selectedTenant);
+        // callTableCOFByChannel(v_params_yesterday, selectedTenant);
         callTableCOFByChannel(v_params_today, selectedTenant);
     });
 })(jQuery);
