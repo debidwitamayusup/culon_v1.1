@@ -290,6 +290,7 @@ class Stc_Model extends CI_Model
 		, IFNULL(b.scr,0) as sla
 		, m_channel.channel_color
 		, m_channel.icon_dashboard
+		, m_channel.image_icon
 		
 		FROM m_channel 
 		-- LEFT JOIN (
@@ -316,10 +317,27 @@ class Stc_Model extends CI_Model
         // }
 		// $this->createLogSql();
 
-		
+		if($query->num_rows() > 0 )
+		{
+			foreach($query->result() as $data)
+			{
+				$result[] = array(
+					'channel' => $data->channel,
+					'total' => $data->total,
+					'total_session' => $data->total_session,
+					'msg_in'=> $data->msg_in,
+					'msg_out'=> $data->msg_out,
+					'sla'=> $data->sla,
+					'channel_color'=> $data->channel_color,
+					'icon_dashboard' => $data->icon_dashboard,
+					'image_icon' => base_url().'assets/images/ICON/'.$data->image_icon
 
-
-		return $query->result();
+				);
+			}
+			return $result;
+		}
+		return false;
+		// return $query->result();
 
 
 		// return $str;
@@ -1180,6 +1198,89 @@ class Stc_Model extends CI_Model
 			FROM rpt_summ_interval_tsel
 			WHERE $where $where2
 			GROUP BY rpt_summ_interval_tsel.channel_id
+		)as a on a.channel_id = m_channel.channel_id  
+		ORDER BY m_channel.channel_name
+		");	
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+				if($data->scr != '-')
+				{
+					$scr = $data->scr.'%';
+				}
+				else{
+					$scr = '-';
+				}
+				
+				$content[] = array(
+					'channel_name'=> $data->channel_name,
+					'icon_dashboard'=> $data->icon_dashboard,
+					'channel_color'=> $data->channel_color,
+					'art'=> $data->art,
+					'aht'=> $data->aht,
+					'ast'=> $data->ast,
+					'scr'=> $scr
+				);
+			}
+		}
+
+    	return $content;
+	}
+
+	public function getAverageIntervalMonth($params, $index, $year=0)
+	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		$where2 = "";
+		if ($tid) {
+			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+		}
+
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		
+		$where = "";
+		$art = "";
+		$aht = "";
+		$ast = "";
+		if($params == 'day'){
+
+			$where = "rpt_summ_interval.tanggal= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+		}else if($params == 'month'){
+
+			$where = "MONTH(rpt_summ_interval.tanggal)= '".$index."' AND YEAR(rpt_summ_interval.tanggal)= '".$year."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+		}else if($params == 'year'){
+
+			$where = "YEAR(rpt_summ_interval.tanggal)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+		}
+		$query = $this->db->query("SELECT 
+		m_channel.channel_name
+		, m_channel.icon_dashboard
+		, m_channel.channel_color 
+		, IFNULL(a.art, '-') as art 
+		, IFNULL(a.aht, '-') as aht 
+		, IFNULL(a.ast, '-') as ast
+		, IFNULL(a.scr, '-') as scr
+		FROM m_channel 
+		LEFT JOIN (
+			SELECT rpt_summ_interval.channel_id
+			, $art
+			, $aht
+			, $ast
+			, round(AVG(rpt_summ_interval.scr), 2) as scr
+			, rpt_summ_interval.tanggal as date 
+			FROM rpt_summ_interval
+			WHERE $where $where2
+			GROUP BY rpt_summ_interval.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	
