@@ -4,7 +4,6 @@
 			<div class="page-main">
 				<div class=" app-content mt-6">
 					<div class="side-app">
-
 						<div class="col-md-12 col-xl-12 mt-1 mb-3">
 							<div id="carousel-indicators" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
@@ -205,7 +204,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<?php $this->load->view('temp/footer');?>
-							<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-							<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
