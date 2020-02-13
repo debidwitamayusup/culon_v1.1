@@ -238,18 +238,18 @@ function drawCardInteractionNew(value){
                             '<img src="'+value.image_icon+'" style="height:50px">'+
                         '</div>'+
                     '</div>'+
-                    '<div class="d-flex text-center">'+
-                        '<div class="mt-2 text-white font10  font-weight-extrabold">'+value.channel+'</div>'+
+                    '<div class="d-flex">'+
+                        '<div class="mt-2 ml-1 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
-                '<div class="col-sm-auto mb-2 ml-1">'+
+                '<div class="col-sm-auto mb-2">'+
                     '<h6 class="text-white font-weight-normal font10">Unique Customer </h6>'+
                     '<h6 class="text-white font-weight-normal font10">Total Session</h6>'+
                     '<h6 class="text-white font-weight-normal font10">Message In</h6>'+
                     '<h6 class="text-white font-weight-normal font10">Message Out</h6>'+
                     '<h6 class="text-white font-weight-normal font10">SLA</h6>'+
                 '</div>'+
-                '<div class="col-sm-auto text-right ml-1">'+
+                '<div class="col-sm-auto text-right">'+
                     '<h6 class="text-white font10">'+addCommas(value.total)+'</h6>'+
                     '<h6 class="text-white font10">'+addCommas(value.total_session)+'</h6>'+
                     '<h6 class="text-white font10">'+addCommas(value.msg_in)+'</h6>'+
@@ -305,7 +305,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 328;
+    ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -347,7 +347,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
+                legendHtml.push('<ul><div class="row mb-3">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
