@@ -229,34 +229,32 @@ function drawCardInteraction(value){
 function drawCardInteractionNew(value){
     // draw
     $('#row-baru').append(''+
-    '<div class="col-xl-4 col-lg-6 col-md-12">'+
-        '<div class="mini-stat-summary clearfix rounded" style="background-color: '+value.channel_color+'">'+
+    '<div class="col-xl-4 col-lg-4 col-md-12">'+
+        '<div class="mini-stat-summary clearfix rounded" style="background: '+value.channel_color+'">'+
             '<div class="row">'+
-                '<div class="col-lg-4 ml-1">'+
+                '<div class="col-xs-4 mr-1 ml-2">'+
                     '<div class="d-flex flex-row text-center">'+
                         '<div class="bd-highlight">'+
-                            '<span class="mini-stat-icon bg-light">'+
-                                '<i class="'+value.icon_dashboard+'" style="color: '+value.channel_color+'"></i>'+
-                            '</span>'+  
+                            '<img src="'+value.image_icon+'" style="height:50px">'+
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 ml-1 text-white font-weight-extrabold">'+value.channel+'</div>'+
+                        '<div class="mt-2 ml-1 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
-                '<div class="col-md-auto mb-2">'+
-                    '<h6 class="text-white font-weight-normal font-13">Unique Customer</h6>'+
-                    '<h6 class="text-white font-weight-normal font-13">Total Session</h6>'+
-                    '<h6 class="text-white font-weight-normal font-13">Message In</h6>'+
-                    '<h6 class="text-white font-weight-normal font-13">Message Out</h6>'+
-                    '<h6 class="text-white font-weight-normal font-13">SLA</h6>'+
+                '<div class="col-sm-auto mb-2">'+
+                    '<h6 class="text-white font-weight-normal font10">Unique Customer </h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Total Session</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Message In</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Message Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">SLA</h6>'+
                 '</div>'+
-                '<div class="col-md-auto text-right ml-1">'+
-                    '<h6 class="text-white font-13">'+addCommas(value.total)+'</h6>'+
-                    '<h6 class="text-white font-13">'+addCommas(value.total_session)+'</h6>'+
-                    '<h6 class="text-white font-13">'+addCommas(value.msg_in)+'</h6>'+
-                    '<h6 class="text-white font-13">'+addCommas(value.msg_out)+'</h6>'+
-                    '<h6 class="text-white font-13">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
+                '<div class="col-sm-auto text-right">'+
+                    '<h6 class="text-white font10">'+addCommas(value.total)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.total_session)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.msg_in)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.msg_out)+'</h6>'+
+                    '<h6 class="text-white font10">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+
@@ -622,7 +620,7 @@ function setDatePicker(){
         params_time = 'month';
         // var arg ='option '+n+'';
         // $('#select-month').val(arg)
-        console.log('dwe'+n);
+        // console.log('dwe'+n);
         // $( '#select-month' ).find('option[value='+n+']').attr('selected','selected')
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
