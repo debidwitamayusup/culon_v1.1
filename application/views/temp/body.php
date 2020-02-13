@@ -116,7 +116,7 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
 													</div>
 												</div>
 												<span class="count-numbers num-font" id="total-interaction"></span>
@@ -133,7 +133,7 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 													</div>
 												</div>
 												<span class="count-numbers num-font" id="unique-customer"></span>

@@ -205,7 +205,7 @@ function getYear(){
     return year;
 }
 
-function loadContent(params, index_time, params_year, tenant_id){
+async function loadContent(params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time, params_year, tenant_id);
     callTotalInteraction(params, index_time, params_year, tenant_id);
