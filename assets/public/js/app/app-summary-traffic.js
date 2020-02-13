@@ -205,7 +205,7 @@ function getYear(){
     return year;
 }
 
-function loadContent(params, index_time, params_year, tenant_id){
+async function loadContent(params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time, params_year, tenant_id);
     callTotalInteraction(params, index_time, params_year, tenant_id);
@@ -438,10 +438,12 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             var commas = response.data.total_interaction;
-            var functionCommas = addCommas(commas);
-            // console.log(commas);
+            //var functionCommas = commas;
+            // console.log(commasaddCommas);
             // console.log(response);
-            $("#total-interaction").html(functionCommas);  
+            alert("AAAAA")
+            console.log(response.data.total_interaction)
+            $("#total-interaction").html(response.data.total_interaction);  
             // console.log(functionCommas);
         },
         error: function (r) {

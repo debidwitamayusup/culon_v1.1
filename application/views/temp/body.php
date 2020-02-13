@@ -116,7 +116,7 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
 													</div>
 												</div>
 												<span class="count-numbers counter num-font" id="total-interaction"></span>
@@ -133,10 +133,10 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="unique-customer"></span>
+												<span class="count-numbers counter num-font" id="unique-customer">-</span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -154,7 +154,7 @@
 														<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="msg-in"></span>
+												<span class="count-numbers counter num-font" id="msg-in">-</span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -171,7 +171,7 @@
 														<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="msg-out"></span>
+												<span class="count-numbers counter num-font" id="msg-out">-</span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
