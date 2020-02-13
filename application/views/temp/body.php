@@ -4,7 +4,6 @@
 			<div class="page-main">
 				<div class=" app-content mt-6">
 					<div class="side-app">
-
 						<div class="col-md-12 col-xl-12 mt-1 mb-3">
 							<div id="carousel-indicators" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
@@ -532,7 +531,7 @@
 														<div class="col-xs-4 mr-1 ml-2">
 															<div class="d-flex flex-row text-center">
 																<div class="bd-highlight">
-																	<img src="<?=base_url()?>assets/images/ICON/img_wa.png"
+																	<img src="<?=base_url()?>assets/images/ICON/img_chatbot.png"
 																		style="height:50px">
 																</div>
 															</div>
@@ -640,7 +639,7 @@
 														<div class="col-xs-4 mr-1 ml-2">
 															<div class="d-flex flex-row text-center">
 																<div class="bd-highlight">
-																	<img src="<?=base_url()?>assets/images/ICON/img_email.png"
+																	<img src="<?=base_url()?>assets/images/ICON/img_sms.png"
 																		style="height:50px">
 																</div>
 															</div>
@@ -675,7 +674,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<?php $this->load->view('temp/footer');?>
-							<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-							<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
