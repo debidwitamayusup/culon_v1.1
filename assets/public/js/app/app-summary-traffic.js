@@ -239,7 +239,7 @@ function drawCardInteractionNew(value){
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 ml-1 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
+                        '<div class="mt-2 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-sm-auto mb-2">'+

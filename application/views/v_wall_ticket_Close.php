@@ -45,7 +45,7 @@
 									<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>
 								</div> -->
 								<div class="card-body">
-									<canvas id="BarWallTicketCloseMonth" height="203"></canvas>
+									<canvas id="BarWallTicketCloseMonth" height="452"></canvas>
 								</div>
 							</div>
 						</div>

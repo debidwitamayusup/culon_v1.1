@@ -391,19 +391,19 @@ function drawTableData(response){
 
         $('#wall-today-tbl').find('tfoot').append('<tr>'+
             '<td colspan="2">TOTAL</td>'+
-            '<td class="text-right">'+sumFb+'</td>'+
-            '<td class="text-right">'+sumWA+'</td>'+
-            '<td class="text-right">'+sumTw+'</td>'+
-            '<td class="text-right">'+sumEmail+'</td>'+
-            '<td class="text-right">'+sumTel+'</td>'+
-            '<td class="text-right">'+sumLine+'</td>'+
-            '<td class="text-right">'+sumVoice+'</td>'+
-            '<td class="text-right">'+sumInst+'</td>'+
-            '<td class="text-right">'+sumMes+'</td>'+
-            '<td class="text-right">'+sumTwDM+'</td>'+
-            '<td class="text-right">'+sumLive+'</td>'+
-            '<td class="text-right">'+sumSms+'</td>'+
-            '<td class="text-right">'+sumChatBot+'</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTw)+'</td>'+
+            '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumSms)+'</td>'+
+            '<td class="text-right">'+addCommas(sumChatBot)+'</td>'+
             '</tr>');
 
     }else{
