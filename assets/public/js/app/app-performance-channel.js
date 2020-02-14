@@ -218,7 +218,7 @@ function summaryChannel(params, index, params_year, tenant_id){
         },
         success: function (response) {
             // var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             drawChartSumChannel(response);
         },
         error: function (r) {
@@ -437,7 +437,7 @@ function drawChartSumChannel(response) {
 					mode: 'label',
 					callbacks: {
 						label: function (tooltipItem, data) {
-							return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
+							return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel) + " Seconds";
 						}
 					}
 				},
