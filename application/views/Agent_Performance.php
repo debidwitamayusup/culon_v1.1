@@ -1,5 +1,4 @@
 
-
 	<body class="app">
 
 <!-- Global Loader-->
@@ -9,7 +8,7 @@
     <div class="page-main">
 
         
-    <div class=" app-content">
+    <div class=" app-content" style="margin-left:100px;">
             <div class="side-app">
 
                 <!--Page Header-->
