@@ -124,7 +124,7 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
         $this->db->select('tenant_id');
-        $this->db->from('rpt_summary_scr');
+        $this->db->from('rpt_summ_interval_tsel');
         if($params == 'day')
         {
             $this->db->where('tanggal',$index);
@@ -362,24 +362,24 @@ Class WallboardModel extends CI_Model {
 
     function Traffic_opsdata($params,$index,$params_year,$tid,$channel)
     {
-        $this->db->select('IFNULL(SUM(rpt_summary_scr.cof),0) AS cof');
-        $this->db->from('rpt_summary_scr');
-        $this->db->join('m_channel','m_channel.channel_id = rpt_summary_scr.channel_id');
+        $this->db->select('IFNULL(SUM(rpt_summ_interval_tsel.case_session),0) AS cof');
+        $this->db->from('rpt_summ_interval_tsel');
+        $this->db->join('m_channel','m_channel.channel_id = rpt_summ_interval_tsel.channel_id');
         if($params == 'day')
         {
-            $this->db->where('rpt_summary_scr.tanggal',$index);
+            $this->db->where('rpt_summ_interval_tsel.tanggal',$index);
         }
         if($params == 'month')
         {
-            $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
-            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
+            $this->db->where('MONTH(rpt_summ_interval_tsel.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)',$params_year);
         }
         if($params == 'year')
         {
-            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)',$index);
         }
-        $this->db->where('rpt_summary_scr.tenant_id',$tid);
-        $this->db->where('rpt_summary_scr.channel_id',$channel);
+        $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
+        $this->db->where('rpt_summ_interval_tsel.channel_id',$channel);
         $query = $this->db->get();
 
 
@@ -425,31 +425,31 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
         if($tid){
-            $this->db->select('rpt_summary_scr.cof as TOTAL');
+            $this->db->select('rpt_summ_interval_tsel.case_session as TOTAL');
         }else{
-            $this->db->select('SUM(rpt_summary_scr.cof) as TOTAL');
+            $this->db->select('SUM(rpt_summ_interval_tsel.case_session) as TOTAL');
         }
 		
-        $this->db->from('rpt_summary_scr');
+        $this->db->from('rpt_summ_interval_tsel');
         if($params == 'day')
         {
-            $this->db->where('rpt_summary_scr.tanggal',$index);
+            $this->db->where('rpt_summ_interval_tsel.tanggal',$index);
         }
         if($params == 'month')
         {
-            $this->db->where('MONTH(rpt_summary_scr.tanggal)',$index);
-            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$params_year);
+            $this->db->where('MONTH(rpt_summ_interval_tsel.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)',$params_year);
         }
         if($params == 'year')
         {
-            $this->db->where('YEAR(rpt_summary_scr.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)',$index);
         }
         if($tid)
         {
-            $this->db->where('rpt_summary_scr.tenant_id',$tid);
+            $this->db->where('rpt_summ_interval_tsel.tenant_id',$tid);
         }
 
-		$this->db->where('rpt_summary_scr.channel_id',$channel);
+		$this->db->where('rpt_summ_interval_tsel.channel_id',$channel);
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)
