@@ -1,5 +1,4 @@
 
-
 	<body class="app">
 
 <!-- Global Loader-->
