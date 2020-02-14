@@ -98,6 +98,28 @@ function callTableCOFByChannel(date, search){
     });
 }
 
+function timestrToSec(timestr) {
+  var parts = timestr.split(":");
+  return (parts[0] * 3600) +
+         (parts[1] * 60) +
+         (+parts[2]);
+}
+
+function pad(num) {
+  if(num < 10) {
+    return "0" + num;
+  } else {
+    return "" + num;
+  }
+}
+
+function formatTime(seconds) {
+  return [pad(Math.floor(seconds/3600)),
+          pad(Math.floor(seconds/60)%60),
+          pad(seconds%60),
+          ].join(":");
+}
+
 function drawTableCOFByChannel(response){
     // console.log(response);
     $("#mytbody").empty();
@@ -161,7 +183,15 @@ function drawTableCOFByChannel(response){
              sumAHT+= (response.data[i].SUMAHT || 0);
              sumAST+= (response.data[i].SUMAST || 0);
              sumSCR+= parseInt((response.data[i].SUMSCR || 0));
+
+            time1 = response.data[i].SUMART;
+            time2 = response.data[i].SUMAHT;
+            time3 = response.data[i].SUMAST;
+            var sumTime = formatTime(timestrToSec(time1) + timestrToSec(time2) + timestrToSec(time3));
+
+            console.log(sumTime);
         }
+
         
         $('#tabelCOFByChannel').find('tfoot').append('<tr>'+
             '<td colspan="2" class="text-right">TOTAL</td>'+
@@ -178,9 +208,9 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-right">'+sumART+'</td>'+
-            '<td class="text-right">'+sumAHT+'</td>'+
-            '<td class="text-right">'+sumAST+'</td>'+
+            '<td class="text-right">'+formatTime(timestrToSec(sumART))+'</td>'+
+            '<td class="text-right">'+formatTime(timestrToSec(sumAHT))+'</td>'+
+            '<td class="text-right">'+formatTime(timestrToSec(sumAST))+'</td>'+
             '<td class="text-right">'+addCommas(sumSCR)+'</td>'+
             '</tr>');
     }else{
