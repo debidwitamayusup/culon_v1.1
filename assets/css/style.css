@@ -20818,7 +20818,7 @@ svg {
 	text-transform: capitalize;
 	opacity: 0.5;
 	display: block;
-	font-size: 18px;
+	font-size: 14px;
 }
 .chart-dropshadow {
 	-webkit-filter:  drop-shadow(-6px 9px 4px rgba(199, 199, 199, 0.2));

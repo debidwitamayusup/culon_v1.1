@@ -16,18 +16,15 @@
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/banner_1.jpg"
-											data-holder-rendered="true">
+											src="<?=base_url()?>assets/images/brand/banner_1.jpg" data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/banner_2.jpg"
-											data-holder-rendered="true">
+											src="<?=base_url()?>assets/images/brand/banner_2.jpg" data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/banner_3.jpg"
-											data-holder-rendered="true">
+											src="<?=base_url()?>assets/images/brand/banner_3.jpg" data-holder-rendered="true">
 									</div>
 								</div>
 							</div>
@@ -110,23 +107,6 @@
 									<div class="col-md-3 text-center">
 										<div class="card-custom overflow-hidden">
 											<div class="card-header bg-light-3">
-												<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
-											</div>
-											<div class="card-body dash2">
-												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-													data-thickness="10" data-color="#d9dbdc99">
-													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
-													</div>
-												</div>
-												<span class="count-numbers num-font" id="total-interaction"></span>
-												<span class="count-name">Data</span>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3 text-center">
-										<div class="card-custom overflow-hidden">
-											<div class="card-header bg-light-3">
 												<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
 											</div>
 											<div class="card-body dash2">
@@ -137,10 +117,28 @@
 													</div>
 												</div>
 												<span class="count-numbers num-font" id="unique-customer"></span>
-												<span class="count-name">Data</span>
+												<span class="count-name">Customer</span>
 											</div>
 										</div>
 									</div>
+									<div class="col-md-3 text-center">
+										<div class="card-custom overflow-hidden">
+											<div class="card-header bg-light-3">
+												<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
+											</div>
+											<div class="card-body dash2">
+												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+													data-thickness="10" data-color="#d9dbdc99">
+													<div class="chart-circle-value fs">
+														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+													</div>
+												</div>
+												<span class="count-numbers num-font" id="total-interaction"></span>
+												<span class="count-name">Session</span>
+											</div>
+										</div>
+									</div>
+
 
 									<div class="col-md-3 text-center">
 										<div class="card-custom overflow-hidden">
@@ -155,7 +153,7 @@
 													</div>
 												</div>
 												<span class="count-numbers num-font" id="msg-in"></span>
-												<span class="count-name">Data</span>
+												<span class="count-name">Interaction</span>
 											</div>
 										</div>
 									</div>
@@ -172,7 +170,7 @@
 													</div>
 												</div>
 												<span class="count-numbers num-font" id="msg-out"></span>
-												<span class="count-name">Data</span>
+												<span class="count-name">Interaction</span>
 											</div>
 										</div>
 									</div>
@@ -198,7 +196,7 @@
 							<div class="col-xl-8 col-lg-8 col-md-12">
 								<div class="card overflow-hidden">
 									<div class="card-body" id="card-baru" style="padding:5px;">
-										<div class="row" id="row-baru">											
+										<div class="row" id="row-baru">
 										</div>
 									</div>
 								</div>
