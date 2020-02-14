@@ -13,10 +13,10 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/images/brand/logo_info_ico.ico" />
 
 		<!--Bootstrap.min css-->
-		<link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/css/bootstrap.min.css">
 
 		<!-- Custom scroll bar css-->
-		<link href="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/plugin/jquery.mCustomScrollbar.css" rel="stylesheet" />
 		<link href="<?php echo base_url();?>assets/css/color-styles.css" rel="stylesheet" />
 
 		<!-- Dashboard css -->
@@ -24,7 +24,7 @@
         <link href="<?php echo base_url()?>assets/css/app.css" rel="stylesheet"/>
 
 		<!--Font Awesome css-->
-		<link href="<?php echo base_url();?>assets/plugins/fontawesome-free/css/all.css" rel="stylesheet">
+		<link href="<?php echo base_url();?>assets/css/iconfonts/plugin.css" rel="stylesheet" />
 
 		<!---Font icons css-->
 		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
