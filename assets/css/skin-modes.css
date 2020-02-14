@@ -7,7 +7,7 @@
     background: #212724 !important;
 }
 .default-menu .side-menu__icon{
-	background: rgba(255,255,255,0.2);
+	background: rgba(30, 30, 30, 0.836);
 }
 .default-menu .resp-vtabs li:hover{
 	background: #212724 !important;
@@ -42,7 +42,11 @@
 	color: #089e60;
 }
 .app-sidebar .side-menu .side-menu__item .side-menu__icon{
-	background:none;
+	/* background: rgba(255,255,255,0.2); */
+	background: #d9dbdc99;
+	width:30px;
+	color: #000;
+	/* background : none; */
 }
 
 

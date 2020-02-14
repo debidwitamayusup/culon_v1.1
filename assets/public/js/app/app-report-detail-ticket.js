@@ -1,0 +1,3 @@
+$(function($){
+    $('#tableDetailTicket').dataTable();
+})

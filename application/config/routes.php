@@ -54,6 +54,24 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'main/index';
-$route['traffic_channel'] = 'main/traffic_channel';
-$route['user_agent'] = 'main/user_agent';
 $route['ticket'] = 'main/ticket';
+$route['left_menu'] = 'main/left_menu';
+
+//Summary Trafic Channel
+$route['Summary-Traffic/cardMain'] = 'api/SummaryTraffic/SummaryTrafficChannel/cardMain';
+$route['Summary-Traffic/uniqueCustomerPerChannel'] = 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel';
+// $route['Traffic-Channel'] = 'TrafficInterval/index';
+// $route['Average-Time'] = 'AverageTime/index';
+// $route['Case-I-O'] = 'CaseInOut/index';
+
+//summary today
+$route['Summary-Traffic-Today/IntervalTrafficToday'] = 'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday';
+$route['Summary-Traffic-Today/AverageIntervalToday'] = 'api/SummaryTraffic/SummaryToday/getAverageInterval';
+$route['Summary-Traffic-Today/PercentageTrafficToday'] = 'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday';
+
+//Agent Performance
+$route['Summary_Call_Agent'] = 'AgentPerformance/index';
+//Operation Performance
+
+
+//Summary Ticket

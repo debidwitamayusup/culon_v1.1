@@ -1,43 +1,43 @@
-(function($) {
-    "use strict";
+(function ($) {
+	"use strict";
 
 	$(".sparkline_bar1").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#089e60'
 	});
-	
+
 	$(".sparkline_bar2").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#1396cc'
 	});
-	
+
 	$(".sparkline_bar3").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
 		},
 		barColor: '#cc66ff'
 	});
-	
+
 	$(".sparkline_bar4").sparkline([5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 2], {
 		type: 'bar',
 		height: 50,
-		width:180,
+		width: 180,
 		barSpacing: 5,
 		colorMap: {
 			'9': '#a1a1a1'
@@ -45,87 +45,11 @@
 		barColor: '#ff9933'
 	});
 
-
-
-	//line chart
-    var ctx = document.getElementById( "lineChart" );
-
-    var myChart = new Chart( ctx, {
-        type: 'line',
-        data: {
-            labels: [ "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" ],
-            datasets: [
-                {
-                    label: "Visitors",
-                    borderColor: "rgb(8,158,96,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(8,158,96,0.5)",
-                    data: [ 10, 60, 30, 90, 120, 76, 35]
-                            },
-                {
-                    label: "Returning Visitors",
-                    borderColor: "rgb(19, 150, 204,0.9)",
-                    borderWidth: "2",
-                    backgroundColor: "rgb(19, 150, 204,0.5)",
-                    pointHighlightStroke: "rgb(19, 150, 204)",
-                    data: [22, 88, 68, 140, 60, 80, 95]
-                            }
-                        ]
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            }
-
-        }
-    } );
-
-
-	//pie chart
-    var ctx = document.getElementById( "pieChart" );
-    ctx.height = 290;
-    var myChart = new Chart( ctx, {
-        type: 'pie',
-        data: {
-            datasets: [ {
-                data: [ 85, 48, 59, 37, 70],
-                backgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933",
-									"#283142"
-                                ],
-                hoverBackgroundColor: [
-                                    "#089e60",
-                                    "#1396cc",
-                                    "#cc66ff",
-                                    "#ff9933"
-                                ]
-
-                            } ],
-            labels: [
-                            "Google",
-                            "IE",
-                            "Firefox",
-							"Opera",
-							"Safari"
-                        ]
-        },
-        options: {
-            responsive: true,
-			maintainAspectRatio: false,
-        }
-    } );
+	//document.getElementById('legend').innerHTML = myChart.generateLegend();
 
 	/*---Morris (#graph5)---*/
+	/*
+	Comment date : 12/2/2019
 	Morris.Bar({
 		barGap:4,
 		barSizeRatio:0.33,
@@ -169,4 +93,3 @@
 	/*---Morris (#graph5) closed---*/
 
 })(jQuery);
-

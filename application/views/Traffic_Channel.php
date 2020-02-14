@@ -9,7 +9,7 @@
     <div class="page-main">
 
         
-    <div class=" app-content" style="margin-left:100px;">
+    <div class=" app-content">
             <div class="side-app">
 
                 <!--Page Header-->
