@@ -27,7 +27,6 @@
 		<link href="<?php echo base_url();?>assets/css/iconfonts/plugin.css" rel="stylesheet" />
 
 		<!---Font icons css-->
-		<link href="<?php echo base_url();?>assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 		<title>Sign in</title>
 </head>
