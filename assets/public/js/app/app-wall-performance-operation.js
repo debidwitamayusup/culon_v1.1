@@ -157,9 +157,9 @@ function drawTableCOFByChannel(response){
              sumLive+= parseInt((response.data[i]['Live Chat'] || 0));
              sumSms+= parseInt((response.data[i].SMS || 0));
              sumCOF+= parseInt((response.data[i].SUMCOF || 0));
-             sumART+= parseInt((response.data[i].SUMART || 0));
-             sumAHT+= parseInt((response.data[i].SUMAHT || 0));
-             sumAST+= parseInt((response.data[i].SUMAST || 0));
+             sumART+= (response.data[i].SUMART || 0);
+             sumAHT+= (response.data[i].SUMAHT || 0);
+             sumAST+= (response.data[i].SUMAST || 0);
              sumSCR+= parseInt((response.data[i].SUMSCR || 0));
         }
         
@@ -178,9 +178,9 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-right">'+addCommas(sumART)+'</td>'+
-            '<td class="text-right">'+addCommas(sumAHT)+'</td>'+
-            '<td class="text-right">'+addCommas(sumAST)+'</td>'+
+            '<td class="text-right">'+sumART+'</td>'+
+            '<td class="text-right">'+sumAHT+'</td>'+
+            '<td class="text-right">'+sumAST+'</td>'+
             '<td class="text-right">'+addCommas(sumSCR)+'</td>'+
             '</tr>');
     }else{
