@@ -5,21 +5,21 @@
 		<script src="<?php echo base_url();?>assets/js/vendors/selectize.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/vendors/jquery.tablesorter.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/vendors/circle-progress.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/jquery.rating/jquery.rating-stars.js"></script>
+		<script src="<?php echo base_url();?>assets/js/vendors/jquery.rating/jquery.rating-stars.js"></script>
 
 		<!--Bootstrap.min js-->
-		<script src="<?php echo base_url();?>assets/plugins/bootstrap/popper.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/vendors/popper.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.min.js"></script>
 
 		<!-- Custom scroll bar js-->
-		<script src="<?php echo base_url();?>assets/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/vendors/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 		<!--Peitychart js-->
-		<script src="<?php echo base_url();?>assets/plugins/peitychart/jquery.peity.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/peitychart/jquery.peity.min.js"></script>
 
 		<!--Counters js-->
-		<script src="<?php echo base_url();?>assets/plugins/counters/counterup.min.js"></script>
-		<script src="<?php echo base_url();?>assets/plugins/counters/waypoints.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/counters/counterup.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/counters/waypoints.min.js"></script>
 
 		<!-- Custom js -->
 		<script src="<?php echo base_url();?>assets/js/custom.js"></script>
