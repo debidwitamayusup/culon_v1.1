@@ -81,6 +81,8 @@ function drawStackedBar(params, index, params_year, tenant_id) {
                     datasets: dataStacked,
                 },
                 options: {
+                    responsive :true,
+                    maintainAspectRatio: false,
                     animation: {
                         duration: 10,
                     },
