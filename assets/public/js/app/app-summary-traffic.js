@@ -205,7 +205,7 @@ function getYear(){
     return year;
 }
 
-function loadContent(params, index_time, params_year, tenant_id){
+async function loadContent(params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
     callSummaryInteraction(params, index_time, params_year, tenant_id);
     callTotalInteraction(params, index_time, params_year, tenant_id);
@@ -239,7 +239,7 @@ function drawCardInteractionNew(value){
                         '</div>'+
                     '</div>'+
                     '<div class="d-flex">'+
-                        '<div class="mt-2 ml-1 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
+                        '<div class="mt-2 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-sm-auto mb-2">'+
@@ -305,7 +305,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 280;
+    ctx.height = 300;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -347,7 +347,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
+                legendHtml.push('<ul><div class="row mb-3">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -440,7 +440,7 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
             var commas = response.data.total_interaction;
             var functionCommas = addCommas(commas);
             // console.log(commas);
-            // console.log(response);
+            console.log(response);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },

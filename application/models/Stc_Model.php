@@ -796,7 +796,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('rpt_summ_interval_tsel.tenant_id', $tid);
 		}
 		$this->db->where('rpt_summ_interval_tsel.tanggal', $date);
-		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->where('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
@@ -806,12 +806,14 @@ class Stc_Model extends CI_Model
 
 		if($query->num_rows()>0)
 		{
-			
+			$indx=0;
 			for($inx = 0;$inx < 24; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				if(str_pad(strval($inx), 2, '0', STR_PAD_LEFT)  == substr($query->row($indx)->interval,0,2))
 				{
-					array_push($result,$query->row($inx)->total);
+					// print_r(str_pad(strval($inx), 2, '0', STR_PAD_LEFT)  .'-'. substr($query->row($indx)->interval,0,2).'|');
+					array_push($result,$query->row($indx)->total);
+					$indx++;
 				}
 				else
 				{
@@ -1070,12 +1072,13 @@ class Stc_Model extends CI_Model
 
 		if($query->num_rows()>0)
 		{
-			
+			$indx=0;
 			for($inx = 0;$inx < 24; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($indx)->interval,0,2))
 				{
-					array_push($result,ROUND($query->row($inx)->total,0));
+					array_push($result,ROUND($query->row($indx)->total,0));
+					$indx++;
 				}
 				else
 				{
@@ -1234,7 +1237,7 @@ class Stc_Model extends CI_Model
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$where2 = "";
 		if ($tid) {
-			$where2 = "AND rpt_summ_interval.tenant_id ='" .$tid."'";
+			$where2 = "AND rpt_summary_scr.tenant_id ='" .$tid."'";
 		}
 
 		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -1245,22 +1248,22 @@ class Stc_Model extends CI_Model
 		$ast = "";
 		if($params == 'day'){
 
-			$where = "rpt_summ_interval.tanggal= '".$index."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+			$where = "rpt_summary_scr.tanggal= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
 		}else if($params == 'month'){
 
-			$where = "MONTH(rpt_summ_interval.tanggal)= '".$index."' AND YEAR(rpt_summ_interval.tanggal)= '".$year."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+			$where = "MONTH(rpt_summary_scr.tanggal)= '".$index."' AND YEAR(rpt_summary_scr.tanggal)= '".$year."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
 		}else if($params == 'year'){
 
-			$where = "YEAR(rpt_summ_interval.tanggal)= '".$index."'";
-			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.art))),2,7) AS art";
-			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.ast))),2,7) AS ast";
-			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summ_interval.aht))),2,7) AS aht";
+			$where = "YEAR(rpt_summary_scr.tanggal)= '".$index."'";
+			$art = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.art))),2,7) AS art";
+			$ast = "SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.ast))),2,7) AS ast";
+			$aht =	"SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_scr.aht))),2,7) AS aht";
 		}
 		$query = $this->db->query("SELECT 
 		m_channel.channel_name
@@ -1272,15 +1275,15 @@ class Stc_Model extends CI_Model
 		, IFNULL(a.scr, '-') as scr
 		FROM m_channel 
 		LEFT JOIN (
-			SELECT rpt_summ_interval.channel_id
+			SELECT rpt_summary_scr.channel_id
 			, $art
 			, $aht
 			, $ast
-			, round(AVG(rpt_summ_interval.scr), 2) as scr
-			, rpt_summ_interval.tanggal as date 
-			FROM rpt_summ_interval
+			, round(AVG(rpt_summary_scr.scr), 2) as scr
+			, rpt_summary_scr.tanggal as date 
+			FROM rpt_summary_scr
 			WHERE $where $where2
-			GROUP BY rpt_summ_interval.channel_id
+			GROUP BY rpt_summary_scr.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
 		ORDER BY m_channel.channel_name
 		");	

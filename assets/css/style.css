@@ -2223,7 +2223,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 	padding: 0.25rem 0.5rem;
 	font-size: 0.875rem;
 	line-height: 1.33333333;
-	border-radius: 7px;
+	border-radius: 5px;
 }
 /* custom btn sm -> border-radius : 3px to 7px */
 .btn-block {
@@ -22488,8 +22488,8 @@ div[data-acc-step]:not(.open) .badge-primary {
 
 .mini-stat-summary{
 	padding: 14px 3px 3px 3px;
-	margin-bottom: 9px;
-	height: 125px;
+	margin-bottom: 4px;
+	height: 110px;
 }
 
 /*box filter time*/

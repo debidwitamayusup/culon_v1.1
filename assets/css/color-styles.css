@@ -856,7 +856,7 @@ a.chip:hover {
 /*----- Menu-Styles ----- */
 .slide.is-expanded [data-toggle='slide'] , .slide .side-menu__item.active {
 	background: #151414 !important;
-	color: #fff !important;
+	color:#0c0c0c !important;
 }
 .side-menu .side-menu__item:hover{
 	background: #089e60 !important;

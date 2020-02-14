@@ -4,7 +4,6 @@
 			<div class="page-main">
 				<div class=" app-content mt-6">
 					<div class="side-app">
-
 						<div class="col-md-12 col-xl-12 mt-1 mb-3">
 							<div id="carousel-indicators" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
@@ -17,17 +16,17 @@
 								<div class="carousel-inner">
 									<div class="carousel-item active">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_1.jpg"
 											data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_2.jpg"
 											data-holder-rendered="true">
 									</div>
 									<div class="carousel-item">
 										<img class="d-block w-100 h-100" alt=""
-											src="<?=base_url()?>assets/images/brand/Dashboard_12.jpg"
+											src="<?=base_url()?>assets/images/brand/banner_3.jpg"
 											data-holder-rendered="true">
 									</div>
 								</div>
@@ -117,10 +116,10 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="total-interaction"></span>
+												<span class="count-numbers num-font" id="total-interaction"></span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -134,10 +133,10 @@
 												<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 													data-thickness="10" data-color="#d9dbdc99">
 													<div class="chart-circle-value fs">
-														<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+														<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="unique-customer"></span>
+												<span class="count-numbers num-font" id="unique-customer"></span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -155,7 +154,7 @@
 														<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="msg-in"></span>
+												<span class="count-numbers num-font" id="msg-in"></span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -172,7 +171,7 @@
 														<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
 													</div>
 												</div>
-												<span class="count-numbers counter num-font" id="msg-out"></span>
+												<span class="count-numbers num-font" id="msg-out"></span>
 												<span class="count-name">Data</span>
 											</div>
 										</div>
@@ -205,7 +204,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<?php $this->load->view('temp/footer');?>
-							<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-							<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+					</div>
+					<?php $this->load->view('temp/footer');?>
+					<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+					<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>

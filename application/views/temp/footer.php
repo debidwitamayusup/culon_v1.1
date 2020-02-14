@@ -18,9 +18,6 @@
 
 <!--Jquery js -->
 <script src="<?= base_url()?>assets/js/vendors/jquery-3.2.1.min.js"></script>
-<!-- <script src="<?= base_url()?>assets/js/vendors/jquery-ui.js"></script>
-<script src="<?= base_url()?>assets/js/vendors/jquery-3.3.1.js"></script>
-<script src="<?= base_url()?>assets/js/bootstrap/bootstrap.js"></script> -->
 
 <!--Jquery.Sparkline js -->
 <script src="<?= base_url()?>assets/js/vendors/jquery.sparkline.min.js"></script>
@@ -77,7 +74,6 @@
 
 <!-- Chart js -->
 <script src="<?=base_url()?>assets/js/chart/chart.bundle.js"></script>
-<!-- <script scr="<?=base_url()?>assets/js/vendors/echart.js"></script>-->
 <script src="<?=base_url()?>assets/js/chart/echart.js"></script> 
 
 <!--Jquery.knob js-->
