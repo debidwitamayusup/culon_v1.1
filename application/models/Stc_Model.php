@@ -796,7 +796,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('rpt_summ_interval_tsel.tenant_id', $tid);
 		}
 		$this->db->where('rpt_summ_interval_tsel.tanggal', $date);
-		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->where('m_channel.channel_name',$channel);
 		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$result = array();
@@ -806,12 +806,14 @@ class Stc_Model extends CI_Model
 
 		if($query->num_rows()>0)
 		{
-			
+			$indx=0;
 			for($inx = 0;$inx < 24; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				if(str_pad(strval($inx), 2, '0', STR_PAD_LEFT)  == substr($query->row($indx)->interval,0,2))
 				{
-					array_push($result,$query->row($inx)->total);
+					// print_r(str_pad(strval($inx), 2, '0', STR_PAD_LEFT)  .'-'. substr($query->row($indx)->interval,0,2).'|');
+					array_push($result,$query->row($indx)->total);
+					$indx++;
 				}
 				else
 				{
@@ -1070,12 +1072,13 @@ class Stc_Model extends CI_Model
 
 		if($query->num_rows()>0)
 		{
-			
+			$indx=0;
 			for($inx = 0;$inx < 24; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($indx)->interval,0,2))
 				{
-					array_push($result,ROUND($query->row($inx)->total,0));
+					array_push($result,ROUND($query->row($indx)->total,0));
+					$indx++;
 				}
 				else
 				{

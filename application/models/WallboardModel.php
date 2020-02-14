@@ -550,12 +550,13 @@ Class WallboardModel extends CI_Model {
 
 		if($query->num_rows()>0)
 		{
-
+            $indx=0;
 			for($inx = 0;$inx < 24; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($inx)->interval,0,2))
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr($query->row($indx)->interval,0,2))
 				{
-					array_push($result,$query->row($inx)->total);
+                    array_push($result,$query->row($indx)->total);
+                    $indx++;
 				}
 				else
 				{
@@ -726,8 +727,8 @@ Class WallboardModel extends CI_Model {
     {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
-        $this->db->select('IFNULL(SUM(cof),0) as cof');
-        $this->db->from('rpt_summary_scr');
+        $this->db->select('IFNULL(SUM(case_session),0) as cof');
+        $this->db->from('rpt_summ_interval_tsel');
         $this->db->where('MONTH(tanggal)',$month);
         $this->db->where('YEAR(tanggal)',$year);
         $this->db->where('channel_id',$channel_id);
