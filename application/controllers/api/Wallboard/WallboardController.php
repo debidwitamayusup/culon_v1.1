@@ -384,9 +384,29 @@ class WallboardController extends REST_Controller {
 
         public function summaryPerformanceNasionalBar_post()
         {
-            $date = $this->security->xss_clean($this->input->post('date', true));
 
             $data = $this->module_model->summary_performance_nas_bar($date);
+
+            if ($data) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'dates' => 'Not found',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function summaryPerformanceNasionalPie_post()
+        {
+            $data = $this->module_model->summary_performance_nas_pie();
 
             if ($data) {
                 $this->response([

@@ -1121,6 +1121,59 @@ Class WallboardModel extends CI_Model {
 
             return FALSE;
         }
+
+        public function summary_performance_nas_pie()
+    {
+        $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
+		$this->db->from('m_channel');
+		$query = $this->db->get();
+
+        $res_channel = array();
+        $res_color = array();
+		$res_tot = array();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+                array_push($res_channel,$data->channel_name);
+                array_push($res_color,$data->channel_color);
+				array_push($res_tot,$this->get_cof_performance_piechart($data->channel_id));
+			}
+
+			$result = array(
+                'channel_name' => $res_channel,
+                'color' => $res_color,
+				'total' => $res_tot
+			);
+		}
+
+		return $result;
+    }
+
+    function get_cof_performance_piechart($channel) //summ
+	{
+        $date = $this->security->xss_clean($this->input->post('date', true));
+        $this->db->select('SUM(wall_traffic.cof) as TOTAL');
+		
+        $this->db->from('wall_traffic');
+        if($date)
+        {
+            $this->db->where('DATE(wall_traffic.lup)',$date);
+        }
+        $this->db->where('wall_traffic.channel_id',$channel);
+		$query = $this->db->get();
+
+		if($query->num_rows()>0)
+		{
+			return $query->row()->TOTAL;
+		}
+		else
+		{
+			return '0';
+		}
+
+    }
     #endregion debi
 
 }
