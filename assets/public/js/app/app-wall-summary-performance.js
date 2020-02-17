@@ -1,11 +1,25 @@
 var base_url = $('#base_url').val();
 
-
-$(document).ready(function()){
-    callThreeTable();
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
 }
 
-function callThreeTable(){
+var v_params_this_year = m + '-' + n + '-' + (o);
+
+$(document).ready(function()){
+    $("#filter-loader").fadeIn("slow");
+    callThreeTable('2020-02-16');
+    $("#filter-loader").fadeOut("slow");
+}
+
+function callThreeTable(date){
     $.ajax({
         type: 'POST',
         url: base_url + '',
@@ -29,7 +43,7 @@ function callThreeTable(){
 }
 
 function drawTableRealTime(){
-    
+
 }
 
 $(function($){
