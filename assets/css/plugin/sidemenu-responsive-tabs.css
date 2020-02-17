@@ -104,7 +104,7 @@ h2.resp-tab-title:last-child {
 }
 .resp-vtabs li.active{
 	border-right:0 !important;
-	color:#fff;
+	color:rgb(110, 107, 107);
 	background: #dcd5d599 !important;
 }
 .resp-vtabs li:hover{
