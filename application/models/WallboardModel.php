@@ -1113,7 +1113,7 @@ Class WallboardModel extends CI_Model {
 
                     $result[] = array(
                         'TENANT_NAME' => $data->tenant_name,
-                        'TOTAL' => strval(number_format($data->total,0,'.',','))
+                        'TOTAL' => $data->total
                     );
                 }
                 return $result;

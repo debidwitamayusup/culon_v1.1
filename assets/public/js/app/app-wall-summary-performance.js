@@ -16,6 +16,8 @@ var v_params_this_year = m + '-' + n + '-' + (o);
 $(document).ready(function(){
     $("#filter-loader").fadeIn("slow");
     callThreeTable('');
+    callPieChartSummary('');
+    callBarLayanan('');
     $("#filter-loader").fadeOut("slow");
 });
 
@@ -24,15 +26,11 @@ function callThreeTable(date){
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
-            date: date
+            date: date,
         },
         success: function (r) {
             var response = r;
-            // console.log(response);
-            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
             drawTableRealTime(response);
-            // drawChartDaily(response);
-            // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
@@ -61,6 +59,145 @@ function drawTableRealTime(response){
                 '</tr>');
         };
     }
+}
+
+function callPieChartSummary(){
+    $.ajax({
+        type: 'POST',
+        url: base_url + '',
+        data:{
+
+        },
+        success: function (r) {
+            var response = r;
+            drawPieChartSummary(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawPieChartSummary(){
+
+}
+
+function callBarLayanan(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalBar',
+        data: {
+            date: date,
+        },
+        success: function (r) {
+            var response = r;
+            // console.log(response);
+            drawBarLayanan(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawBarLayanan(response){
+    // $('#BarWallPerformance').remove(); // this is my <canvas> element
+    // $('#BarWallPerformanceDiv').append('<canvas id="BarWallPerformance" class="h-400"></canvas>');
+
+    var numberWithCommas = function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    // console.log(response);
+    var dataLayanan = [];
+    var LabelX = [];
+    response.data.forEach(function(value){
+        dataLayanan.push(value.TOTAL);
+        LabelX.push(value.TENANT_NAME);
+    });
+    // console.log(response.data[0].TOTAL);
+
+    var bar_ctx = document.getElementById('BarWallPerformance');
+    // console.log(dataLayanan);
+    var bar_chart = new Chart(bar_ctx, {
+        type: 'bar',
+        // type: 'horizontalBar',
+        data: {
+            labels: LabelX,
+            datasets: [{
+                    label: 'Layanan',
+                    data: dataLayanan,
+                    backgroundColor: "#3866A6",
+                    hoverBackgroundColor: "#3866A6",
+                    hoverBorderWidth: 0
+                }
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Traffic by Layanan',
+                fontSize:14
+            },
+            animation: {
+                duration: 10,
+            },
+            tooltips: {
+                mode: 'label',
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                    }
+                }
+            },
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        fontSize: 10
+                    }
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        callback: function (value) {
+                            return numberWithCommas(value);
+                        },
+                    },
+                }],
+            },
+            legend: {
+                display: false,
+                labels: {
+                    boxWidth: 10,
+                }
+            }
+        },
+        // plugins: [{
+        //  beforeInit: function (chart) {
+        //      chart.data.labels.forEach(function (value, index, array) {
+        //          var a = [];
+        //          a.push(value.slice(0, 5));
+        //          var i = 1;
+        //          while (value.length > (i * 5)) {
+        //              a.push(value.slice(i * 5, (i + 1) * 5));
+        //              i++;
+        //          }
+        //          array[index] = a;
+        //      })
+        //  }
+        // }]
+    });
+    console.log(dataLayanan);
 }
 
 $(function($){
@@ -310,88 +447,88 @@ $(function($){
 
      // Vertical Bar Wallboard Summary Traffic Week yang baru 
     // Return with commas in between
-    var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+    // var numberWithCommas = function (x) {
+    //     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // };
 
-    var dataLayanan = [20, 10, 15, 13, 9, 12, 14,12, 11, 10, 20, 23, 20, 12,11, 14, 16, 17, 13, 18, 12,20, 7, 18, 11, 20, 11, 10,9,20];
-    var LabelX = ["Telkom", "Telkomsel", "BRI", "Lay 4", "Lay 5", "Lay 6", "Lay 7", "Lay 8", "Lay 9", "Lay 10", "Lay 11", "Lay 12", "Lay 13", "Lay 14", "Lay 15", "Lay 16", "Lay 17", "Lay 18", "Lay 19", "Lay 20", "Lay 21", "Lay 22", "Lay 23", "Lay 24", "Lay 25", "Lay 26", "Lay 27", "Lay 28", "Lay 29", "Lay 30"];
+    // var dataLayanan = [20, 10, 15, 13, 9, 12, 14,12, 11, 10, 20, 23, 20, 12,11, 14, 16, 17, 13, 18, 12,20, 7, 18, 11, 20, 11, 10,9,20];
+    // var LabelX = ["Telkom", "Telkomsel", "BRI", "Lay 4", "Lay 5", "Lay 6", "Lay 7", "Lay 8", "Lay 9", "Lay 10", "Lay 11", "Lay 12", "Lay 13", "Lay 14", "Lay 15", "Lay 16", "Lay 17", "Lay 18", "Lay 19", "Lay 20", "Lay 21", "Lay 22", "Lay 23", "Lay 24", "Lay 25", "Lay 26", "Lay 27", "Lay 28", "Lay 29", "Lay 30"];
 
-    var bar_ctx = document.getElementById('BarWallPerformance');
+    // var bar_ctx = document.getElementById('BarWallPerformance');
 
-    var bar_chart = new Chart(bar_ctx, {
-        type: 'bar',
-        // type: 'horizontalBar',
-        data: {
-            labels: LabelX,
-            datasets: [{
-                    label: 'Layanan',
-                    data: dataLayanan,
-                    backgroundColor: "#3866a6",
-                    hoverBackgroundColor: "#3866a6",
-                    hoverBorderWidth: 0
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            title: {
-                display: true,
-                text: 'Traffic by Layanan',
-                fontSize:14
-            },
-            animation: {
-                duration: 10,
-            },
-            tooltips: {
-                mode: 'label',
-                callbacks: {
-                    label: function (tooltipItem, data) {
-                        return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
-                    }
-                }
-            },
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                    gridLines: {
-                        display: false
-                    },
-                    ticks: {
-                        fontSize: 10
-                    }
-                }],
-                yAxes: [{
-                    stacked: true,
-                    ticks: {
-                        callback: function (value) {
-                            return numberWithCommas(value);
-                        },
-                    },
-                }],
-            },
-            legend: {
-                display: false,
-                labels: {
-                    boxWidth: 10,
-                }
-            }
-        },
-        // plugins: [{
-        // 	beforeInit: function (chart) {
-        // 		chart.data.labels.forEach(function (value, index, array) {
-        // 			var a = [];
-        // 			a.push(value.slice(0, 5));
-        // 			var i = 1;
-        // 			while (value.length > (i * 5)) {
-        // 				a.push(value.slice(i * 5, (i + 1) * 5));
-        // 				i++;
-        // 			}
-        // 			array[index] = a;
-        // 		})
-        // 	}
-        // }]
-    });
+    // var bar_chart = new Chart(bar_ctx, {
+    //     type: 'bar',
+    //     // type: 'horizontalBar',
+    //     data: {
+    //         labels: LabelX,
+    //         datasets: [{
+    //                 label: 'Layanan',
+    //                 data: dataLayanan,
+    //                 backgroundColor: "#3866a6",
+    //                 hoverBackgroundColor: "#3866a6",
+    //                 hoverBorderWidth: 0
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         responsive: true,
+    //         maintainAspectRatio: false,
+    //         title: {
+    //             display: true,
+    //             text: 'Traffic by Layanan',
+    //             fontSize:14
+    //         },
+    //         animation: {
+    //             duration: 10,
+    //         },
+    //         tooltips: {
+    //             mode: 'label',
+    //             callbacks: {
+    //                 label: function (tooltipItem, data) {
+    //                     return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+    //                 }
+    //             }
+    //         },
+    //         scales: {
+    //             xAxes: [{
+    //                 stacked: true,
+    //                 gridLines: {
+    //                     display: false
+    //                 },
+    //                 ticks: {
+    //                     fontSize: 10
+    //                 }
+    //             }],
+    //             yAxes: [{
+    //                 stacked: true,
+    //                 ticks: {
+    //                     callback: function (value) {
+    //                         return numberWithCommas(value);
+    //                     },
+    //                 },
+    //             }],
+    //         },
+    //         legend: {
+    //             display: false,
+    //             labels: {
+    //                 boxWidth: 10,
+    //             }
+    //         }
+    //     },
+    //     // plugins: [{
+    //     // 	beforeInit: function (chart) {
+    //     // 		chart.data.labels.forEach(function (value, index, array) {
+    //     // 			var a = [];
+    //     // 			a.push(value.slice(0, 5));
+    //     // 			var i = 1;
+    //     // 			while (value.length > (i * 5)) {
+    //     // 				a.push(value.slice(i * 5, (i + 1) * 5));
+    //     // 				i++;
+    //     // 			}
+    //     // 			array[index] = a;
+    //     // 		})
+    //     // 	}
+    //     // }]
+    // });
 
 });

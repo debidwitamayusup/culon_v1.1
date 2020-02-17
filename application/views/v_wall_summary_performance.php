@@ -409,7 +409,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body" id="BarWallPerformanceDiv">
                                     <canvas id="BarWallPerformance" class="h-400"></canvas>
                                 </div>
                             </div>

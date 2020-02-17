@@ -211,6 +211,7 @@ function callDataPercentage(month, tenant_id, params_year){
 
 function drawChartPercentageMonth(response){
     destroyChartPercentage();
+    console.log(response);
     var data_label = [];
     var data_rate = [];
     var data_color = [];
@@ -219,6 +220,7 @@ function drawChartPercentageMonth(response){
         data_rate.push(value.rate);
         data_color.push(getColorChannel(value.channel_name));
     });
+    console.log(data_rate);
     var obj = [{
         label: "data",
         data: data_rate,
