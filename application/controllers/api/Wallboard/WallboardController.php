@@ -331,7 +331,7 @@ class WallboardController extends REST_Controller {
 
     }
 
-    // debi
+    #region :: debi
     public function summaryTicketCloseWall_post()
     {
         $month = $this->security->xss_clean($this->input->post('index', true));
@@ -358,5 +358,30 @@ class WallboardController extends REST_Controller {
                     ], REST_Controller::HTTP_OK);
         }
     }
+
+    
+        public function summaryPerformanceNasional_post()
+        {
+            $date = $this->security->xss_clean($this->input->post('date', true));
+
+            $data = $this->module_model->summary_performance_nasional($date);
+
+            if ($data) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'dates' => 'Not found',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+    #endregion debi
 
 }

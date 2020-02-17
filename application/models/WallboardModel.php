@@ -1055,4 +1055,38 @@ Class WallboardModel extends CI_Model {
         return $result;
     }
 
+    #region :: debi
+        public function summary_performance_nasional($date){
+            $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+            $this->db->select('m_tenant.tenant_name, wall_traffic.tenant_id, SUM(wall_traffic.queue) queue, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(wall_traffic.waiting))),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(wall_traffic.aht))),2,7) AS aht, SUM(wall_traffic.offered) offered, AVG(wall_traffic.scr) scr');
+            $this->db->from('m_tenant');
+            $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
+            $this->db->where('DATE(lup)', $date);
+            $this->db->group_by('wall_traffic.tenant_id');
+            $query = $this->db->get();
+            
+            // print_r($this->db->last_query());
+            // exit;
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $data)
+                {
+
+                    $result[] = array(
+                        'TENANT_NAME' => $data->tenant_name,
+                        'QUEUE' => strval(number_format($data->queue,0,'.',',')),
+                        'WAITING' => $data->waiting,
+                        'AHT' => $data->aht,
+                        'OFFERED' => strval(number_format($data->offered,0,'.',',')),
+                        'SCR' => round($data->scr,2).'%'
+                    );
+                }
+                return $result;
+            }
+
+            return FALSE;
+            }
+    #endregion debi
+
 }

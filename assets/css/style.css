@@ -22505,6 +22505,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 	font-size:14px !important;
 }
 
+.font12{
+	font-size: 12px !important;
+}
+
 .font10{
 	font-size:10px !important;
 }
