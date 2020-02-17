@@ -24,13 +24,13 @@ function callThreeTable(date){
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
-
+            date: date
         },
         success: function (r) {
             var response = r;
-            console.log(response);
+            // console.log(response);
             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
-            // drawTableRealTime(response);
+            drawTableRealTime(response);
             // drawChartDaily(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -42,8 +42,25 @@ function callThreeTable(date){
     });
 }
 
-function drawTableRealTime(){
-
+function drawTableRealTime(response){
+    // for (var i = 0; i < 10; i++) {
+    //     console.log(response.data[i].TENANT_NAME);
+    // }
+    // console.log(response.data[0].TENANT_NAME);
+    $('#mytbody_1').empty();
+    if (response.data.length != 0) {
+        for (var i = 0; i < 10; i++) {
+            $('#mytable_1').find('tbody').append('<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].OFFERED || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].SCR || 0)+'</td>'+
+                '</tr>');
+        };
+    }
 }
 
 $(function($){
