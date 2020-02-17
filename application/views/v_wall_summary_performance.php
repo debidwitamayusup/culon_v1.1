@@ -34,7 +34,7 @@
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
-                                            <td>Antrian</td>
+                                            <td>Queue</td>
                                             <td>Waiting</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
@@ -145,7 +145,7 @@
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
-                                            <td>Antrian</td>
+                                            <td>Queue</td>
                                             <td>Waiting</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
@@ -256,7 +256,7 @@
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
-                                            <td>Antrian</td>
+                                            <td>Queue</td>
                                             <td>Waiting</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
@@ -356,6 +356,22 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6 class="font12">Total COF : 8181</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="font12">Rata-rata SCR : 40%</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="font12">Average Waiting : 00:09:00</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="font12">Average Handling Time : 00:09:00</h6>
                             </div>
                         </div>
                     </div>
