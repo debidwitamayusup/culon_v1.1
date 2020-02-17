@@ -15,7 +15,7 @@ var v_params_this_year = m + '-' + n + '-' + (o);
 
 $(document).ready(function(){
     $("#filter-loader").fadeIn("slow");
-    callThreeTable('2020-02-16');
+    callThreeTable('');
     $("#filter-loader").fadeOut("slow");
 });
 

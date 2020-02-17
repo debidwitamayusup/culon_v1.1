@@ -362,9 +362,8 @@ class WallboardController extends REST_Controller {
     
         public function summaryPerformanceNasional_post()
         {
-            $date = $this->security->xss_clean($this->input->post('date', true));
-
-            $data = $this->module_model->summary_performance_nasional($date);
+            $data = $this->module_model->summary_performance_nasional();
+            
 
             if ($data) {
                 $this->response([
