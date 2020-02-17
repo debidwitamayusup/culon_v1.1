@@ -406,21 +406,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header-small">
-                        <h5 class="card-title-small card-pt10">Traffic by Layanan</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="BarWallPerformance" class="h-400"></canvas>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <canvas id="BarWallPerformance" class="h-400"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->
