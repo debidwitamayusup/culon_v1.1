@@ -271,6 +271,11 @@ $(function($){
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Traffic by Layanan',
+                fontSize:14
+            },
             animation: {
                 duration: 10,
             },
