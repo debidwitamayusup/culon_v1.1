@@ -34,14 +34,17 @@
 
 <!-- Custom scroll bar Js-->
 <script src="<?= base_url()?>assets/js/vendors/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="<?=base_url()?>assets/js/vendors/left-menu.js"></script>
+
 
 <!-- Side menu js -->
-<script src="<?= base_url()?>assets/js/vendors/sidemenu.js"></script>
+<!-- <script src="<?= base_url()?>assets/js/vendors/sidemenu.js"></script> -->
+
+<!--Sidemenu js-->
+<script src="<?=base_url()?>assets/js/vendors/side-menu.js"></script>
 
 <!-- Sidemenu-responsive-tabs js-->
 <script src="<?=base_url()?>assets/js/vendors/sidemenu-responsive-tabs.js"></script>
-<!-- <script src="<?=base_url()?>assets/js/left-menu.js"></script> -->
+<script src="<?=base_url()?>assets/js/left-menu.js"></script>
 
 <!--Select2 js -->
 <script src="<?=base_url()?>assets/js/vendors/select2.full.min.js"></script>
@@ -74,7 +77,7 @@
 
 <!-- Chart js -->
 <script src="<?=base_url()?>assets/js/chart/chart.bundle.js"></script>
-<script src="<?=base_url()?>assets/js/chart/echart.js"></script> 
+<script src="<?=base_url()?>assets/js/chart/echart.js"></script>
 
 <!--Jquery.knob js-->
 <script src="<?=base_url()?>assets/js/othercharts/jquery.knob.js"></script>
@@ -84,11 +87,16 @@
 <script src="<?=base_url()?>assets/js/vendors/sidebar.js"></script>
 
 <!---Accordion Js-->
-<script src="<?=base_url()?>assets/js/accordion/accordion.min.js"></script>
-<script src="<?=base_url()?>assets/js/accordion/accordion.js"></script>
+<!-- <script src="<?=base_url()?>assets/js/accordion/accordion.min.js"></script>
+<script src="<?=base_url()?>assets/js/accordion/accordion.js"></script> -->
+
 <!-- custom js -->
 <script src="<?= base_url()?>assets/js/custom.js"></script>
 <script src="<?= base_url()?>assets/public/js/app/app-navbar.js"></script>
 
 <!-- Show percentage on piechart-->
 <script src="https://rawgit.com/beaver71/Chart.PieceLabel.js/master/build/Chart.PieceLabel.min.js"></script>
+
+</body>
+
+</html>
