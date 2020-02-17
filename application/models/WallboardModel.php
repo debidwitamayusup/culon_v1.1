@@ -1061,7 +1061,7 @@ Class WallboardModel extends CI_Model {
             $this->db->select('m_tenant.tenant_name, wall_traffic.tenant_id, SUM(wall_traffic.queue) queue, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(wall_traffic.waiting))),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(wall_traffic.aht))),2,7) AS aht, SUM(wall_traffic.offered) offered, AVG(wall_traffic.scr) scr');
             $this->db->from('m_tenant');
             $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
-            $this->db->where('DATE(lup)', $date);
+            $this->db->where('DATE(wall_traffic.lup)', $date);
             $this->db->group_by('wall_traffic.tenant_id');
             $query = $this->db->get();
             
@@ -1087,6 +1087,32 @@ Class WallboardModel extends CI_Model {
 
             return FALSE;
             }
+        
+        public function summary_performance_nas_bar($date)
+        {
+            $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+            $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_traffic.offered) total');
+            $this->db->from('m_tenant');
+            $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
+            $this->db->where('DATE(wall_traffic.lup)', $date);
+            $this->db->group_by('wall_traffic.tenant_id');
+            $query = $this->db->get();
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $data)
+                {
+
+                    $result[] = array(
+                        'TENANT_NAME' => $data->tenant_name,
+                        'TOTAL' => strval(number_format($data->total,0,'.',','))
+                    );
+                }
+                return $result;
+            }
+
+            return FALSE;
+        }
     #endregion debi
 
 }

@@ -382,6 +382,29 @@ class WallboardController extends REST_Controller {
                         ], REST_Controller::HTTP_OK);
             }
         }
+
+        public function summaryPerformanceNasionalBar_post()
+        {
+            $date = $this->security->xss_clean($this->input->post('date', true));
+
+            $data = $this->module_model->summary_performance_nas_bar($date);
+
+            if ($data) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'dates' => 'Not found',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
     #endregion debi
 
 }
