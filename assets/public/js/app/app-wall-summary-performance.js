@@ -13,24 +13,24 @@ if (n < 10) {
 
 var v_params_this_year = m + '-' + n + '-' + (o);
 
-$(document).ready(function()){
+$(document).ready(function(){
     $("#filter-loader").fadeIn("slow");
     callThreeTable('2020-02-16');
     $("#filter-loader").fadeOut("slow");
-}
+});
 
 function callThreeTable(date){
     $.ajax({
         type: 'POST',
-        url: base_url + '',
+        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
 
         },
         success: function (r) {
-            var response = JSON.parse(r);
-            // console.log(response);
+            var response = r;
+            console.log(response);
             // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
-            drawTableRealTime(response);
+            // drawTableRealTime(response);
             // drawChartDaily(response);
             // $("#filter-loader").fadeOut("slow");
         },
