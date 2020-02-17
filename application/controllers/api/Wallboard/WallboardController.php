@@ -385,7 +385,7 @@ class WallboardController extends REST_Controller {
         public function summaryPerformanceNasionalBar_post()
         {
 
-            $data = $this->module_model->summary_performance_nas_bar($date);
+            $data = $this->module_model->summary_performance_nas_bar();
 
             if ($data) {
                 $this->response([
