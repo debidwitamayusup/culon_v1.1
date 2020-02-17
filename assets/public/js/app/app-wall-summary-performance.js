@@ -1,3 +1,37 @@
+var base_url = $('#base_url').val();
+
+
+$(document).ready(function()){
+    callThreeTable();
+}
+
+function callThreeTable(){
+    $.ajax({
+        type: 'POST',
+        url: base_url + '',
+        data: {
+
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            drawTableRealTime(response);
+            // drawChartDaily(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawTableRealTime(){
+    
+}
+
 $(function($){
     //pie chart Ticket Channel
     var ctx = document.getElementById( "pieChartChannel" );

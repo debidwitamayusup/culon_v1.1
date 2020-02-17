@@ -29,8 +29,8 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
-                                    id="mytable">
-                                    <thead class="text-center text-white bg-head">
+                                    id="mytableLeft">
+                                    <thead class="text-center text-white bg-head" id="leftThead">
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
@@ -41,8 +41,8 @@
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-sm">
-                                        <tr>
+                                    <tbody class="table-sm" id="leftTbody">
+                                        <!-- <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-left">Telkom</td>
                                             <td class="text-right">10</td>
@@ -131,7 +131,7 @@
                                             <td class="text-center">00:09:00</td>
                                             <td class="text-right">450</td>
                                             <td class="text-right">50%</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
