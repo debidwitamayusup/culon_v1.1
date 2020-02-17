@@ -1154,7 +1154,7 @@ Class WallboardModel extends CI_Model {
     function get_cof_performance_piechart($channel) //summ
 	{
         $date = $this->security->xss_clean($this->input->post('date', true));
-        $this->db->select('SUM(wall_traffic.cof) as TOTAL');
+        $this->db->select('IFNULL(SUM(wall_traffic.cof),0) as TOTAL');
 		
         $this->db->from('wall_traffic');
         if($date)
