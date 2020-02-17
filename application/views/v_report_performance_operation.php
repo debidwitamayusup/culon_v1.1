@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-</div>
-        <?php $this->load->view('temp/footer');?>
-        <!--Plugin -->
-        <script src="<?=base_url()?>assets/public/js/app/app-report-perform-operation.js"></script>
+    </div>
+    <?php $this->load->view('temp/footer');?>
+    <!--Plugin -->
+    <script src="<?=base_url()?>assets/public/js/app/app-report-perform-operation.js"></script>
