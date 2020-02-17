@@ -249,7 +249,7 @@ $(function($){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
-    var dataLayanan = [20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20,20];
+    var dataLayanan = [20, 10, 15, 13, 9, 12, 14,12, 11, 10, 20, 23, 20, 12,11, 14, 16, 17, 13, 18, 12,20, 7, 18, 11, 20, 11, 10,9,20];
     var LabelX = ["Telkom", "Telkomsel", "BRI", "Lay 4", "Lay 5", "Lay 6", "Lay 7", "Lay 8", "Lay 9", "Lay 10", "Lay 11", "Lay 12", "Lay 13", "Lay 14", "Lay 15", "Lay 16", "Lay 17", "Lay 18", "Lay 19", "Lay 20", "Lay 21", "Lay 22", "Lay 23", "Lay 24", "Lay 25", "Lay 26", "Lay 27", "Lay 28", "Lay 29", "Lay 30"];
 
     var bar_ctx = document.getElementById('BarWallPerformance');
