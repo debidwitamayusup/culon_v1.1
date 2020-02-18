@@ -57,7 +57,89 @@ function drawTableRealTime(response){
                     '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                     '<td class="text-right">'+(response.data[i].OFFERED || 0)+'</td>'+
                     '<td class="text-right">'+(response.data[i].SCR || 0)+'</td>'+
-                '</tr>');
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+2+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+3+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+4+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+5+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+6+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+7+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+8+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+9+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td class="text-center">'+10+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>'
+                );
         };
     }
 }
