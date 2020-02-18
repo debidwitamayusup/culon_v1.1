@@ -307,11 +307,19 @@ function drawLineChart(response){
             responsive: true,
             maintainAspectRatio: false,
             legend:{
-                position:'top',
-                labels:{
-                    boxWidth:10
-                }
+                display:false
             },
+            title: {
+                    display: true,
+                    text: 'Summary Traffic Interval',
+                    fontSize:14
+            },
+            // legend:{
+            //     position:'top',
+            //     labels:{
+            //         boxWidth:10
+            //     }
+            // },
             barRoundness: 1,
             scales: {
                 yAxes: [ {
