@@ -1174,6 +1174,103 @@ Class WallboardModel extends CI_Model {
 		}
 
     }
+
+    public function get_interval_performance_nas(){
+        $this->db->select('wall_traffic.starttime as time');
+		$this->db->from('wall_traffic');
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$times = array();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+                if (strlen($data->time) == 3){
+                    array_push($times,"0".substr($data->time,0,1).':00:00');
+                }else{
+                    array_push($times,substr($data->time,0,2).':00:00');
+                }
+			}
+
+			if($channel)
+			{
+				foreach($channel as $channels)
+				{
+					$serials[] =  array(
+						'label'=>$channels,
+						'data'=>$this->get_availdata_performance_nas($channels)
+					);
+				}
+			}
+			else
+			{
+				$serials[] =  array(
+					'label'=>'Facebook',
+					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+				);
+			}
+		}
+
+		$result = array(
+					'label_time' => $times,
+					'series' => $serials
+                );
+
+
+
+		return $result;
+    }
+
+    public function get_availdata_performance_nas($channel)
+    {
+        $date = $this->security->xss_clean($this->input->post('date'));
+
+		if(!$channel)
+		{
+			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+
+		$this->db->select('wall_traffic.starttime , COALESCE(SUM(wall_traffic.cof),0) as total');
+		$this->db->from('m_channel');
+        $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
+
+
+		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$result = array();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+            $indx=0;
+			for($inx = 0;$inx < 24; $inx++)
+			{
+				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr(str_pad($query->row($indx)->starttime,2, '0', STR_PAD_LEFT),0,2))
+				{
+                    print_r(substr(str_pad($query->row($indx)->starttime,2, '0', STR_PAD_LEFT),0,2));
+                    array_push($result,$query->row($indx)->total);
+                    $indx++;
+				}
+				else
+				{
+					array_push($result,'0');
+				}
+
+			}
+
+		}
+		else
+		{
+			$result = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+
+
+		return $result;
+    }
     #endregion debi
 
 }
