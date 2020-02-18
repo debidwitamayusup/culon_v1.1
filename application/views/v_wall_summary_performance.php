@@ -153,7 +153,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-sm" id="mytbody_2">
-                                        <tr>
+                                        <!-- <tr>
                                             <td class="text-center">11</td>
                                             <td class="text-left"></td>
                                             <td class="text-right"></td>
@@ -242,7 +242,7 @@
                                             <td class="text-center"></td>
                                             <td class="text-right"></td>
                                             <td class="text-right"></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -264,7 +264,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-sm" id="mytbody_3">
-                                        <tr>
+                                        <!-- <tr>
                                             <td class="text-center">21</td>
                                             <td class="text-left"></td>
                                             <td class="text-right"></td>
@@ -353,7 +353,7 @@
                                             <td class="text-center"></td>
                                             <td class="text-right"></td>
                                             <td class="text-right"></td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
