@@ -1,3 +1,68 @@
+var base_url = $('#base_url').val();
+
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+var v_params_this_year = m + '-' + n + '-' + (o);
+
+$(document).ready(function(){
+    $("#filter-loader").fadeIn("slow");
+    callThreeTable('');
+    $("#filter-loader").fadeOut("slow");
+});
+
+function callThreeTable(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
+        data: {
+            date: date
+        },
+        success: function (r) {
+            var response = r;
+            // console.log(response);
+            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            drawTableRealTime(response);
+            // drawChartDaily(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawTableRealTime(response){
+    // for (var i = 0; i < 10; i++) {
+    //     console.log(response.data[i].TENANT_NAME);
+    // }
+    // console.log(response.data[0].TENANT_NAME);
+    $('#mytbody_1').empty();
+    if (response.data.length != 0) {
+        for (var i = 0; i < 10; i++) {
+            $('#mytable_1').find('tbody').append('<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].OFFERED || 0)+'</td>'+
+                    '<td class="text-right">'+(response.data[i].SCR || 0)+'</td>'+
+                '</tr>');
+        };
+    }
+}
+
 $(function($){
     //pie chart Ticket Channel
     var ctx = document.getElementById( "pieChartChannel" );
@@ -249,7 +314,7 @@ $(function($){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
-    var dataLayanan = [20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20,20,20];
+    var dataLayanan = [20, 10, 15, 13, 9, 12, 14,12, 11, 10, 20, 23, 20, 12,11, 14, 16, 17, 13, 18, 12,20, 7, 18, 11, 20, 11, 10,9,20];
     var LabelX = ["Telkom", "Telkomsel", "BRI", "Lay 4", "Lay 5", "Lay 6", "Lay 7", "Lay 8", "Lay 9", "Lay 10", "Lay 11", "Lay 12", "Lay 13", "Lay 14", "Lay 15", "Lay 16", "Lay 17", "Lay 18", "Lay 19", "Lay 20", "Lay 21", "Lay 22", "Lay 23", "Lay 24", "Lay 25", "Lay 26", "Lay 27", "Lay 28", "Lay 29", "Lay 30"];
 
     var bar_ctx = document.getElementById('BarWallPerformance');

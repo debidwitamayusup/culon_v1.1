@@ -29,8 +29,8 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
-                                    id="mytable">
-                                    <thead class="text-center text-white bg-head">
+                                    id="mytable_1">
+                                    <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
@@ -41,8 +41,8 @@
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-sm">
-                                        <tr>
+                                    <tbody class="table-sm" id="mytbody_1">
+                                        <!-- <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-left">Telkom</td>
                                             <td class="text-right">10</td>
@@ -131,7 +131,7 @@
                                             <td class="text-center">00:09:00</td>
                                             <td class="text-right">450</td>
                                             <td class="text-right">50%</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -140,8 +140,8 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
-                                    id="mytable">
-                                    <thead class="text-center text-white bg-head">
+                                    id="mytable_2">
+                                    <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
@@ -152,7 +152,7 @@
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-sm">
+                                    <tbody class="table-sm" id="mytbody_2">
                                         <tr>
                                             <td class="text-center">11</td>
                                             <td class="text-left">Telkom</td>
@@ -251,8 +251,8 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
-                                    id="mytable">
-                                    <thead class="text-center text-white bg-head">
+                                    id="mytable_3">
+                                    <thead class="text-center text-white bg-head" id="mythead_3">
                                         <tr>
                                             <td>No</td>
                                             <td>Layanan</td>
@@ -263,7 +263,7 @@
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-sm">
+                                    <tbody class="table-sm" id="mytbody_3">
                                         <tr>
                                             <td class="text-center">21</td>
                                             <td class="text-left">Telkom</td>
