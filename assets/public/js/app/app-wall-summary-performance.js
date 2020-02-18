@@ -19,8 +19,22 @@ $(document).ready(function(){
     callPieChartSummary('');
     callBarLayanan('');
     callLineChart('');
+    callTotalTable('');
     $("#filter-loader").fadeOut("slow");
 });
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
 function callThreeTable(date){
     $.ajax({
@@ -49,16 +63,29 @@ function drawTableRealTime(response){
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 10; i++) {
-            $('#mytable_1').find('tbody').append('<tr>'+
+            if (response.data[i]){
+                $('#mytable_1').find('tbody').append('<tr>'+
+                        '<td class="text-center">'+(i+1)+'</td>'+
+                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                    '</tr>');
+            }else{
+                $('#mytable_1').find('tbody').append(
+                '<tr>'+
                     '<td class="text-center">'+(i+1)+'</td>'+
-                    '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                    '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                    '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
-                    '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                    '<td class="text-right">'+(response.data[i].OFFERED || 0)+'</td>'+
-                    '<td class="text-right">'+(response.data[i].SCR || 0)+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
                 '</tr>');
-        };
+            }
+        }
     }
 }
 
@@ -274,7 +301,7 @@ function callLineChart(channel){
         },
         success: function (r) {
             var response = r;
-            console.log(response);
+            // console.log(response);
             drawLineChart(response);
         },
         error: function (r) {
@@ -325,6 +352,77 @@ function drawLineChart(response){
             }
         }
     });
+}
+
+function callTotalTable(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
+        data: {
+            date: date
+        },
+        success: function (r) {
+            var response = r;
+            drawTotalTable(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function timestrToSec(timestr) {
+  var parts = timestr.split(":");
+  return (parts[0] * 3600) +
+         (parts[1] * 60) +
+         (+parts[2]);
+}
+
+function pad(num) {
+  if(num < 10) {
+    return "0" + num;
+  } else {
+    return "" + num;
+  }
+}
+
+function formatTime(seconds) {
+  return [pad(Math.floor(seconds/3600)),
+          pad(Math.floor(seconds/60)%60),
+          pad(seconds%60),
+          ].join(":");
+}
+
+function drawTotalTable(response){
+        var sumCOF = 0;
+        var sumSCR = '';
+        var sumWaiting = '';
+        var sumAHT = '';
+
+        for (var i = 0; i < response.data.length; i++) {
+            sumCOF+= parseInt((response.data[i].OFFERED || 0));
+            // console.log(sumCOF);
+            sumSCR+= ((response.data[i].SCR || 0));
+            sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
+            sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
+
+            $('#rowDiv').append(''+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+sumSCR+'%</h6>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="avgWaiting">Average Waiting : '+sumWaiting+'</h6>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="avgHT">Average Handling Time : '+sumAHT+'</h6>'+
+                '</div>'
+            );
+        }
 }
 
 $(function($){

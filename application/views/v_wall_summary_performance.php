@@ -44,93 +44,93 @@
                                     <tbody class="table-sm" id="mytbody_1">
                                         <!-- <tr>
                                             <td class="text-center">1</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">2</td>
-                                            <td class="text-left">Telkomsel</td>
+                                            <td class="text-left">sel</td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">3</td>
                                             <td class="text-left">BRI</td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">4</td>
-                                            <td class="text-left">Exim</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">5</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">6</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">7</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">8</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">9</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">10</td>
-                                            <td class="text-left">Telkom</td>
+                                            <td class="text-left"></td>
                                             <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr> -->
                                     </tbody>
                                 </table>
@@ -155,93 +155,93 @@
                                     <tbody class="table-sm" id="mytbody_2">
                                         <tr>
                                             <td class="text-center">11</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">12</td>
-                                            <td class="text-left">Telkomsel</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">13</td>
-                                            <td class="text-left">BRI</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">14</td>
-                                            <td class="text-left">Exim</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">15</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">16</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">17</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">18</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">19</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">20</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -266,93 +266,93 @@
                                     <tbody class="table-sm" id="mytbody_3">
                                         <tr>
                                             <td class="text-center">21</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">22</td>
-                                            <td class="text-left">Telkomsel</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">23</td>
-                                            <td class="text-left">BRI</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">24</td>
-                                            <td class="text-left">Exim</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">25</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">26</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">27</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">28</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">29</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center">30</td>
-                                            <td class="text-left">Telkom</td>
-                                            <td class="text-right">10</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-center">00:09:00</td>
-                                            <td class="text-right">450</td>
-                                            <td class="text-right">50%</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-right"></td>
+                                            <td class="text-right"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -360,19 +360,19 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h6 class="font12">Total COF : 8181</h6>
+                        <div class="row" id="rowDiv">
+                            <!-- <div class="col-md-3">
+                                <h6 class="font12" id="totalCOF">Total COF : 8181</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Rata-rata SCR : 40%</h6>
+                                <h6 class="font12" id="rataSCR">Rata-rata SCR : 40%</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Average Waiting : 00:09:00</h6>
+                                <h6 class="font12" id="avgWaiting">Average Waiting : 00:09:00</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Average Handling Time : 00:09:00</h6>
-                            </div>
+                                <h6 class="font12" id="avgHT">Average Handling Time : 00:09:00</h6>
+                            </div> -->
                         </div>
                     </div>
                 </div>
