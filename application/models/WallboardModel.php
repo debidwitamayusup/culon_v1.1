@@ -1113,7 +1113,7 @@ Class WallboardModel extends CI_Model {
 
                     $result[] = array(
                         'TENANT_NAME' => $data->tenant_name,
-                        'TOTAL' => strval(number_format($data->total,0,'.',','))
+                        'TOTAL' => $data->total,
                     );
                 }
                 return $result;
@@ -1173,6 +1173,95 @@ Class WallboardModel extends CI_Model {
 			return '0';
 		}
 
+    }
+
+    public function get_interval_performance_nas(){
+        $this->db->select('wall_traffic.starttime as time');
+		$this->db->from('wall_traffic');
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$times = array();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+                if (strlen($data->time) == 3){
+                    array_push($times,"0".substr($data->time,0,1).':00:00');
+                }else{
+                    array_push($times,substr($data->time,0,2).':00:00');
+                }
+			}
+
+			// if($channel)
+			// {
+			// 	foreach($channel as $channels)
+			// 	{
+					// $serials[] =  array(
+					// 	'label'=>$channels,
+					// 	'data'=>$this->get_availdata_performance_nas($channels)
+					// );
+			// 	}
+			// }
+			// else
+			// {
+			// 	$serials[] =  array(
+			// 		'label'=>'Facebook',
+			// 		'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+			// 	);
+			// }
+		}
+
+		$result = array(
+					'label_time' => $times,
+					'series' => $this->get_availdata_performance_nas()
+                );
+
+
+
+		return $result;
+    }
+
+    public function get_availdata_performance_nas()
+    {
+
+
+		$this->db->select('wall_traffic.starttime , COALESCE(SUM(wall_traffic.cof),0) as total');
+		$this->db->from('wall_traffic');
+        // $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
+		// $this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$result = array();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+            $indx=0;
+			for($inx = 1;$inx < 25; $inx++)
+			{
+				if(strval($inx)  == substr($query->row($indx)->starttime,0,-2))
+				{
+                    array_push($result,$query->row($indx)->total);
+                    $indx++;
+				}
+				else
+				{
+                    array_push($result,'0');
+				}
+
+			}
+
+		}
+		else
+		{
+			$result = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+
+
+		return $result;
     }
     #endregion debi
 

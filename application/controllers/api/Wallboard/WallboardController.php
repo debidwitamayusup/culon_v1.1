@@ -385,7 +385,7 @@ class WallboardController extends REST_Controller {
         public function summaryPerformanceNasionalBar_post()
         {
 
-            $data = $this->module_model->summary_performance_nas_bar($date);
+            $data = $this->module_model->summary_performance_nas_bar();
 
             if ($data) {
                 $this->response([
@@ -407,6 +407,28 @@ class WallboardController extends REST_Controller {
         public function summaryPerformanceNasionalPie_post()
         {
             $data = $this->module_model->summary_performance_nas_pie();
+
+            if ($data) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'dates' => 'Not found',
+                    'data'    => $data
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function summaryPerformanceNasionalInterval_post()
+        {
+            $channel = $this->security->xss_clean($this->input->post('channel', true));
+            $data = $this->module_model->get_interval_performance_nas();
 
             if ($data) {
                 $this->response([
