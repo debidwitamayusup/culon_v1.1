@@ -1175,7 +1175,7 @@ Class WallboardModel extends CI_Model {
 
     }
 
-    public function get_interval_performance_nas($channel){
+    public function get_interval_performance_nas(){
         $this->db->select('wall_traffic.starttime as time');
 		$this->db->from('wall_traffic');
 		$this->db->group_by('wall_traffic.starttime','ASC');
@@ -1193,28 +1193,28 @@ Class WallboardModel extends CI_Model {
                 }
 			}
 
-			if($channel)
-			{
-				foreach($channel as $channels)
-				{
-					$serials[] =  array(
-						'label'=>$channels,
-						'data'=>$this->get_availdata_performance_nas($channels)
-					);
-				}
-			}
-			else
-			{
-				$serials[] =  array(
-					'label'=>'Facebook',
-					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-				);
-			}
+			// if($channel)
+			// {
+			// 	foreach($channel as $channels)
+			// 	{
+					// $serials[] =  array(
+					// 	'label'=>$channels,
+					// 	'data'=>$this->get_availdata_performance_nas($channels)
+					// );
+			// 	}
+			// }
+			// else
+			// {
+			// 	$serials[] =  array(
+			// 		'label'=>'Facebook',
+			// 		'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+			// 	);
+			// }
 		}
 
 		$result = array(
 					'label_time' => $times,
-					'series' => $serials
+					'series' => $this->get_availdata_performance_nas()
                 );
 
 
@@ -1222,21 +1222,14 @@ Class WallboardModel extends CI_Model {
 		return $result;
     }
 
-    public function get_availdata_performance_nas($channel)
+    public function get_availdata_performance_nas()
     {
-        $date = $this->security->xss_clean($this->input->post('date'));
 
-		if(!$channel)
-		{
-			return array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
-		}
 
 		$this->db->select('wall_traffic.starttime , COALESCE(SUM(wall_traffic.cof),0) as total');
-		$this->db->from('m_channel');
-        $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
-
-
-		$this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->from('wall_traffic');
+        // $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
+		// $this->db->where_in('m_channel.channel_name',$channel);
 		$this->db->group_by('wall_traffic.starttime','ASC');
 		$query = $this->db->get();
 		$result = array();
