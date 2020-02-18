@@ -427,7 +427,8 @@ class WallboardController extends REST_Controller {
 
         public function summaryPerformanceNasionalInterval_post()
         {
-            $data = $this->module_model->summary_performance_nas_pie();
+            $channel = $this->security->xss_clean($this->input->post('channel', true));
+            $data = $this->module_model->get_interval_performance_nas($channel);
 
             if ($data) {
                 $this->response([

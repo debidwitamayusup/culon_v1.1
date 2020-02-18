@@ -1175,7 +1175,7 @@ Class WallboardModel extends CI_Model {
 
     }
 
-    public function get_interval_performance_nas(){
+    public function get_interval_performance_nas($channel){
         $this->db->select('wall_traffic.starttime as time');
 		$this->db->from('wall_traffic');
 		$this->db->group_by('wall_traffic.starttime','ASC');
@@ -1247,17 +1247,16 @@ Class WallboardModel extends CI_Model {
 		if($query->num_rows()>0)
 		{
             $indx=0;
-			for($inx = 0;$inx < 24; $inx++)
+			for($inx = 1;$inx < 25; $inx++)
 			{
-				if(str_pad(strval($inx), 1, '0', STR_PAD_LEFT)  == substr(str_pad($query->row($indx)->starttime,2, '0', STR_PAD_LEFT),0,2))
+				if(strval($inx)  == substr($query->row($indx)->starttime,0,-2))
 				{
-                    print_r(substr(str_pad($query->row($indx)->starttime,2, '0', STR_PAD_LEFT),0,2));
                     array_push($result,$query->row($indx)->total);
                     $indx++;
 				}
 				else
 				{
-					array_push($result,'0');
+                    array_push($result,'0');
 				}
 
 			}
