@@ -309,11 +309,6 @@ function drawLineChart(response){
             legend:{
                 display:false
             },
-            title: {
-                    display: true,
-                    text: 'Summary Traffic Interval',
-                    fontSize:14
-            },
             // legend:{
             //     position:'top',
             //     labels:{
