@@ -866,7 +866,7 @@ a.chip:hover {
 }
 .app-sidebar .side-menu li a.active{
 	background: #dcd5d599 !important;
-	color: #fff !important;
+	color: #000 !important;
 }
 
 
