@@ -360,20 +360,20 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <!-- <div class="row">
-                            <div class="col-md-3">
-                                <h6 class="font12">Total COF : 8181</h6>
+                        <div class="row" id="rowDiv">
+                            <!-- <div class="col-md-3">
+                                <h6 class="font12" id="totalCOF">Total COF : 8181</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Rata-rata SCR : 40%</h6>
+                                <h6 class="font12" id="rataSCR">Rata-rata SCR : 40%</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Average Waiting : </h6>
+                                <h6 class="font12" id="avgWaiting">Average Waiting : 00:09:00</h6>
                             </div>
                             <div class="col-md-3">
-                                <h6 class="font12">Average Handling Time : </h6>
-                            </div>
-                        </div> -->
+                                <h6 class="font12" id="avgHT">Average Handling Time : 00:09:00</h6>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
