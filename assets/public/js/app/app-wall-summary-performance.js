@@ -292,8 +292,8 @@ function drawBarLayanan(response){
             datasets: [{
                     label: 'Layanan',
                     data: dataLayanan,
-                    backgroundColor: "#3866A6",
-                    hoverBackgroundColor: "#3866A6",
+                    backgroundColor: "#ff0000",
+                    hoverBackgroundColor: "#ff0000",
                     hoverBorderWidth: 0
                 }
             ],
@@ -382,6 +382,8 @@ function callLineChart(channel){
 }
 
 function drawLineChart(response){
+    $('#lineWallSumPerform').remove();
+    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  class="h-400"></canvas>');
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',
@@ -478,7 +480,7 @@ function drawTotalTable(response){
         for (var i = 0; i < response.data.length; i++) {
             sumCOF+= parseInt((response.data[i].OFFERED || 0));
             // console.log(sumCOF);
-            sumSCR+= ((response.data[i].SCR || 0));
+            sumSCR+= parseFloat((response.data[i].SCR || 0));
             sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
             sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
 

@@ -400,7 +400,7 @@
                         </div>
                         <div class="col-lg-8 col-md-12">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body" id="lineWallSumPerformDiv">
                                     <canvas id="lineWallSumPerform" style="height:424px"></canvas>
                                 </div>
                             </div>
