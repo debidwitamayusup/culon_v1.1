@@ -1,74 +1,142 @@
-Sidebar menu-->
-<div class="app sidebar-mini" data-toggle="sidebar"></div>
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-	<ul class="side-menu">
-		<li class="slide">
-			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon fe fe-grid icon-resize"></i>
-				<span class="side-menu__label label-icon-resize">Wallboard</span>
-				<i class="angle fas fa-angle-right"></i>
-			</a>
-			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_day">Traffic by Today</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_week">Traffic by Week</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_sumTraffic_month">Traffic by Month</a></li>
-				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_status_nonClose">Summary Status Today (Non
-						Close)</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_ticket_Close">Summary Ticket (Close)</a></li>
-				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/wall_performance_operation">Summary Performance
-						Operation</a></li>
+	<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
+		<div class="first-sidemenu">
+			<ul class="resp-tabs-list hor_1">
+				<li data-toggle="tooltip" data-placement="right" title="Wallboard">
+					<div class="side-menutext"><i class="side-menu__icon fe fe-grid"></i>
+						<h6 class="font10 mt-1">Wallboard</h6><span class="side-menu__label">Wallboard</span>
+					</div>
+				</li>
+				<li data-toggle="tooltip" data-placement="right" title="Dashboard">
+					<div class="side-menutext"><i class="side-menu__icon fe fe-home"></i>
+						<h6 class="font10 mt-1">Dashboard</h6><span class="side-menu__label">Dashboard</span>
+					</div>
+				</li>
 
+				<li data-toggle="tooltip" data-placement="right" title="Report">
+					<div class="side-menutext"><i class="side-menu__icon fe fe-book"></i>
+						<h6 class="font10 mt-1">Report</h6><span class="side-menu__label">Report</span>
+					</div>
+				</li>
 			</ul>
-		</li>
-		<li class="slide">
-			<a class="side-menu__item" data-toggle="slide" href="#" aria-expanded="true">
-				<i class="side-menu__icon fe fe-home icon-resize"></i>
-				<span class="side-menu__label label-icon-resize">Dashboard</span>
-				<i class="angle fas fa-angle-right"></i>
-			</a>
+		</div>
+		<div class="second-sidemenu">
+			<div class="d-flex bd-highlight">
+				<div class="ml-auto bd-highlight">
+					<a aria-label="Hide Sidebar" class="app-sidebar__toggle float-right"
+						data-toggle="sidebar" href="#"></a>
+				</div>
+			</div>
+			<div class="resp-tabs-container hor_1">
+				<div class="resp-tab-content-active">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
+							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary Performance Operation</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary Performance</a>
+							<div class="side-menu p-0">
+								<div class="slide submenu">
+									<a class="side-menu__item" data-toggle="slide" href="#"><span
+											class="side-menu__label"> Traffic Interval</span><i
+											class="angle fa fa-angle-down"></i></a>
+									<ul class="slide-menu submenu-list">
+										<li>
+											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic by Today</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/wall_sumTraffic_week" class="slide-item">Traffic by This Week</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/wall_sumTraffic_month" class="slide-item">Traffic by This Month</a>
+										</li>
+									</ul>
+								</div>
+								<div class="slide submenu">
+									<a class="side-menu__item" data-toggle="slide" href="#"><span
+											class="side-menu__label"> Ticket</span><i
+											class="angle fa fa-angle-down"></i></a>
+									<ul class="slide-menu submenu-list">
+										<li>
+											<a href="<?=base_url()?>main/wall_status_nonClose" class="slide-item">Summary Status Today (Non Close)</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/wall_ticket_Close" class="slide-item">Summary Ticket (Close)</a>
+										</li>
 
-			<ul class="slide-menu" id="accordion">
-				<li><a class="slide-item" href="<?= base_url()?>main/home">Traffic by Channel</a></li>
-				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/summary_traffic">Summary Traffic</a></li>
-				<hr>
-				<li><a class="slide-item" href="<?=base_url()?>main/this_day">Traffic Interval Daily</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/this_month">Traffic Interval Monthly</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/this_year">Traffic Interval Yearly</a></li>
-				<hr>
+									</ul>
+								</div>
+							</div>
 
-				<li><a class="slide-item" href="<?=base_url()?>main/kip">KIP</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/performance_channel">Performance by Channel</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/agent_performance">Agent Performance</a></li>
-
-			</ul>
-		</li>
-		<li class="slide">
-			<a class="side-menu__item" data-toggle="slide" href="#">
-				<i class="side-menu__icon fe fe-book icon-resize"></i>
-				<span class="side-menu__label label-icon-resize">Report</span>
-				<i class="angle fas fa-angle-right"></i>
-			</a>
-			<ul class="slide-menu">
-				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_channel">Summary Channel</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_close_ticket">Summary Close
-						Ticket</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_detail_ticket">Detail Ticket</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_summary_interval">Summary Interval</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_log">Agent Log</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_performance">Agent Performance</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_agent_summary">Agent Summary</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_performance_agent">Summary Performance
-						Agent</a></li>
-				<li><a class="slide-item" href="<?=base_url()?>main/report_performance_operation">Summary Performance
-						Operation</a></li>
-			</ul>
-		</li>
-	</ul>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="row">
+						<div class="col-md-12">
+							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-home mr-1"></i></i>Dashboard
+							</h5> -->
+							<a href="<?= base_url()?>main/home" class="slide-item">Traffic by Channel</a>
+							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
+							<div class="side-menu p-0">
+								<div class="slide submenu">
+									<a class="side-menu__item" data-toggle="slide" href="#"><span
+											class="side-menu__label">Traffic Interval</span><i
+											class="angle fa fa-angle-down"></i></a>
+									<ul class="slide-menu submenu-list">
+										<li>
+											<a href="<?=base_url()?>main/this_day" class="slide-item">Traffic Interval Daily</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/this_month" class="slide-item">Traffic Interval Monthly</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/this_year" class="slide-item">Traffic Interval Yearly</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="side-menu p-0">
+								<div class="slide submenu">
+									<a class="side-menu__item" data-toggle="slide" href="#"><span
+											class="side-menu__label">Operation Performance</span><i
+											class="angle fa fa-angle-down"></i></a>
+									<ul class="slide-menu submenu-list">
+										<li>
+											<a href="<?=base_url()?>main/kip" class="slide-item">KIP</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/performance_channel" class="slide-item">Performance by Channel</a>
+										</li>
+										<li>
+											<a href="<?=base_url()?>main/agent_performance" class="slide-item">Agent Performance</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="row">
+						<div class="col-md-12">
+							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-book mr-1"></i>Report</h5> -->
+							<a href="<?=base_url()?>main/report_summary_channel" class="slide-item">Summary Channel</a>
+							<a href="<?=base_url()?>main/report_summary_close_ticket" class="slide-item">Summary Close Ticket</a>
+							<a href="<?=base_url()?>main/report_detail_ticket" class="slide-item">Detail Ticket </a>
+							<a href="<?=base_url()?>main/report_summary_interval" class="slide-item">Summary Interval</a>
+							<a href="<?=base_url()?>main/report_agent_log" class="slide-item">Agent Log</a>
+							<a href="<?=base_url()?>main/report_agent_performance" class="slide-item">Agent Performance</a>
+							<a href="<?=base_url()?>main/report_agent_summary" class="slide-item">Agent Summary</a>
+							<a href="<?=base_url()?>main/report_performance_agent" class="slide-item">Summary Performance Agent</a>
+							<a href="<?=base_url()?>main/report_performance_operation" class="slide-item">Summary Performance Operation</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </aside>
-
-<body class="app sidebar-mini sidenav-toggled">
-	<!-- <body class="sidenav-toggled"> -->
+<!--sidemenu end-->

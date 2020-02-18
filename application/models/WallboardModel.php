@@ -1055,4 +1055,214 @@ Class WallboardModel extends CI_Model {
         return $result;
     }
 
+    #region :: debi
+        public function summary_performance_nasional(){
+            $date = $this->security->xss_clean($this->input->post('date', true));
+
+            $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+            $this->db->select('m_tenant.tenant_name, wall_traffic.tenant_id, SUM(wall_traffic.queue) queue, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.art)),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.aht)),2,7) AS aht, SUM(wall_traffic.cof) offered, AVG(wall_traffic.scr) scr');
+            $this->db->from('m_tenant');
+            $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
+            if ($date){
+                $this->db->where('DATE(wall_traffic.lup)', $date);
+            }
+            $this->db->group_by('wall_traffic.tenant_id');
+            $query = $this->db->get();
+            
+            // print_r($this->db->last_query());
+            // exit;
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $data)
+                {
+
+                    $result[] = array(
+                        'TENANT_NAME' => $data->tenant_name,
+                        'QUEUE' => strval(number_format($data->queue,0,'.',',')),
+                        'WAITING' => $data->waiting,
+                        'AHT' => $data->aht,
+                        'OFFERED' => strval(number_format($data->offered,0,'.',',')),
+                        'SCR' => round($data->scr,2).'%'
+                    );
+                }
+                return $result;
+            }
+
+            return FALSE;
+            }
+        
+        public function summary_performance_nas_bar()
+        {
+            $date = $this->security->xss_clean($this->input->post('date', true));
+
+            $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+            $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_traffic.cof) total');
+            $this->db->from('m_tenant');
+            $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
+            if ($date){
+                $this->db->where('DATE(wall_traffic.lup)', $date);
+            }
+            $this->db->group_by('wall_traffic.tenant_id');
+            $query = $this->db->get();
+
+            if($query->num_rows() > 0)
+            {
+                foreach($query->result() as $data)
+                {
+
+                    $result[] = array(
+                        'TENANT_NAME' => $data->tenant_name,
+                        'TOTAL' => $data->total,
+                    );
+                }
+                return $result;
+            }
+
+            return FALSE;
+        }
+
+        public function summary_performance_nas_pie()
+    {
+        $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
+		$this->db->from('m_channel');
+		$query = $this->db->get();
+
+        $res_channel = array();
+        $res_color = array();
+		$res_tot = array();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+                array_push($res_channel,$data->channel_name);
+                array_push($res_color,$data->channel_color);
+				array_push($res_tot,$this->get_cof_performance_piechart($data->channel_id));
+			}
+
+			$result = array(
+                'channel_name' => $res_channel,
+                'color' => $res_color,
+				'total' => $res_tot
+			);
+		}
+
+		return $result;
+    }
+
+    function get_cof_performance_piechart($channel) //summ
+	{
+        $date = $this->security->xss_clean($this->input->post('date', true));
+        $this->db->select('IFNULL(SUM(wall_traffic.cof),0) as TOTAL');
+		
+        $this->db->from('wall_traffic');
+        if($date)
+        {
+            $this->db->where('DATE(wall_traffic.lup)',$date);
+        }
+        $this->db->where('wall_traffic.channel_id',$channel);
+		$query = $this->db->get();
+
+		if($query->num_rows()>0)
+		{
+			return $query->row()->TOTAL;
+		}
+		else
+		{
+			return '0';
+		}
+
+    }
+
+    public function get_interval_performance_nas(){
+        $this->db->select('wall_traffic.starttime as time');
+		$this->db->from('wall_traffic');
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$times = array();
+
+		if($query->num_rows()>0)
+		{
+			foreach($query->result() as $data)
+			{
+                if (strlen($data->time) == 3){
+                    array_push($times,"0".substr($data->time,0,1).':00:00');
+                }else{
+                    array_push($times,substr($data->time,0,2).':00:00');
+                }
+			}
+
+			// if($channel)
+			// {
+			// 	foreach($channel as $channels)
+			// 	{
+					// $serials[] =  array(
+					// 	'label'=>$channels,
+					// 	'data'=>$this->get_availdata_performance_nas($channels)
+					// );
+			// 	}
+			// }
+			// else
+			// {
+			// 	$serials[] =  array(
+			// 		'label'=>'Facebook',
+			// 		'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+			// 	);
+			// }
+		}
+
+		$result = array(
+					'label_time' => $times,
+					'series' => $this->get_availdata_performance_nas()
+                );
+
+
+
+		return $result;
+    }
+
+    public function get_availdata_performance_nas()
+    {
+
+
+		$this->db->select('wall_traffic.starttime , COALESCE(SUM(wall_traffic.cof),0) as total');
+		$this->db->from('wall_traffic');
+        // $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
+		// $this->db->where_in('m_channel.channel_name',$channel);
+		$this->db->group_by('wall_traffic.starttime','ASC');
+		$query = $this->db->get();
+		$result = array();
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+            $indx=0;
+			for($inx = 1;$inx < 25; $inx++)
+			{
+				if(strval($inx)  == substr($query->row($indx)->starttime,0,-2))
+				{
+                    array_push($result,$query->row($indx)->total);
+                    $indx++;
+				}
+				else
+				{
+                    array_push($result,'0');
+				}
+
+			}
+
+		}
+		else
+		{
+			$result = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+		}
+
+
+		return $result;
+    }
+    #endregion debi
+
 }

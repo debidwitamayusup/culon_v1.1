@@ -32,8 +32,9 @@
 	<link href="<?php echo base_url();?>assets/css/plugin/jquery.mCustomScrollbar.css" rel="stylesheet" />
 
 	<!-- Sidemenu Css -->
-	<link href="<?php echo base_url();?>assets/css/plugin/sidemenu.css" rel="stylesheet">
-	
+	<!-- <link href="<?php echo base_url();?>assets/css/plugin/sidemenu.css" rel="stylesheet"> -->
+	<link href="<?php echo base_url()?>assets/css/plugin/side-menu.css" rel="stylesheet">
+
 	<!--Sidemenu-responsive-tabs  css -->
 	<link href="<?php echo base_url()?>assets/css/plugin/sidemenu-responsive-tabs.css" rel="stylesheet">
 
@@ -64,7 +65,6 @@
 	<!--Chartist css-->
 	<link href="<?php echo base_url();?>assets/css/chart/chartist.css" rel="stylesheet"/>
 	<link href="<?php echo base_url();?>assets/css/chart/chartist-plugin-tooltip.css" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
 	<input type="hidden" id="base_url" name="base_url" value="<?php echo base_url()?>">
-
-</html>

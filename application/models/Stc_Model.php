@@ -942,7 +942,7 @@ class Stc_Model extends CI_Model
 		$this->db->select('rpt_summ_interval_tsel.interval , COALESCE(AVG(rpt_summ_interval_tsel.case_session),0) as total');
 		$this->db->from('m_channel');
 		$this->db->join('rpt_summ_interval_tsel','rpt_summ_interval_tsel.channel_id = m_channel.channel_id');
-		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id);
+		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id+1);
 		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
 		if($tid)
         {
@@ -1589,7 +1589,7 @@ class Stc_Model extends CI_Model
 
 		$this->db->select('SUM(rpt_summ_interval_tsel.case_session) as total');
 		$this->db->from('rpt_summ_interval_tsel');
-		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id);
+		$this->db->where('WEEK(rpt_summ_interval_tsel.tanggal)', $week_id+1);
 		$this->db->where('YEAR(rpt_summ_interval_tsel.tanggal)', date('Y'));
 		$this->db->where('rpt_summ_interval_tsel.channel_id',$channel);
 		if($tid)

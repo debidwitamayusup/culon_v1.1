@@ -163,7 +163,7 @@ function drawTableCOFByChannel(response){
                 '<td class="text-right">'+addCommas(response.data[i].SUMART || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAHT || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAST || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMSCR || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMSCR || 0)+' %</td>'+
                 '</tr>');
 
              sumFb+= parseInt((response.data[i].Facebook || 0));
@@ -179,17 +179,17 @@ function drawTableCOFByChannel(response){
              sumLive+= parseInt((response.data[i]['Live Chat'] || 0));
              sumSms+= parseInt((response.data[i].SMS || 0));
              sumCOF+= parseInt((response.data[i].SUMCOF || 0));
-             sumART+= (response.data[i].SUMART || 0);
-             sumAHT+= (response.data[i].SUMAHT || 0);
-             sumAST+= (response.data[i].SUMAST || 0);
-             sumSCR+= parseInt((response.data[i].SUMSCR || 0));
+             sumART+= formatTime(timestrToSec(response.data[i].SUMART || 0));
+             sumAHT+= formatTime(timestrToSec(response.data[i].SUMAHT || 0));
+             sumAST+= formatTime(timestrToSec(response.data[i].SUMAST || 0));
+             sumSCR+= parseFloat((response.data[i].SUMSCR || 0));
 
-            time1 = response.data[i].SUMART;
-            time2 = response.data[i].SUMAHT;
-            time3 = response.data[i].SUMAST;
-            var sumTime = formatTime(timestrToSec(time1) + timestrToSec(time2) + timestrToSec(time3));
+            // time1 = response.data[i].SUMART;
+            // time2 = response.data[i].SUMAHT;
+            // time3 = response.data[i].SUMAST;
+            // var sumTime = formatTime(timestrToSec(time1) + timestrToSec(time2) + timestrToSec(time3));
 
-            console.log(sumTime);
+            // console.log(sumTime);
         }
 
         
@@ -208,10 +208,10 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-right">'+formatTime(timestrToSec(sumART))+'</td>'+
-            '<td class="text-right">'+formatTime(timestrToSec(sumAHT))+'</td>'+
-            '<td class="text-right">'+formatTime(timestrToSec(sumAST))+'</td>'+
-            '<td class="text-right">'+addCommas(sumSCR)+'</td>'+
+            '<td class="text-right">'+sumART+'</td>'+
+            '<td class="text-right">'+sumAHT+'</td>'+
+            '<td class="text-right">'+sumAST+'</td>'+
+            '<td class="text-right">'+addCommas(sumSCR)+' %</td>'+
             '</tr>');
     }else{
         $('#tabelCOFByChannel').find('tbody').append('<tr>'+
