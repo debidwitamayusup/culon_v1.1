@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-filter"></i></button>
 
                             </div>
@@ -61,8 +61,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive" style="padding:8px !important;">
-                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito10">
+                    <div class="table-responsive" style="padding:5px !important;">
+                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>

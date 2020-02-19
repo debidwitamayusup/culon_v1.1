@@ -24,7 +24,7 @@ h2.resp-accordion {
 }
 .resp-tab-content {
     display: none;
-    padding: 0px 10px 0 10px;
+    padding: 20px 10px 0 10px;
     padding-bottom: 0;
 }
 .resp-tab-active {
