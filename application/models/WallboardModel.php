@@ -649,15 +649,10 @@ Class WallboardModel extends CI_Model {
 
     }
 
-    public function Tenantscrget($date)
+    public function Tenantscrget()
     {
         $this->db->select('tenant_id');
-        $this->db->from('rpt_summary_scr');
-        if($date)
-        {
-            $this->db->where('tanggal',$date);
-        }
-        $this->db->group_by('tenant_id');
+        $this->db->from('m_tenant');
         $query = $this->db->get();
 
         if($query->num_rows() > 0)
