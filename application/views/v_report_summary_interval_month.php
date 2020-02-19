@@ -22,9 +22,9 @@
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="month_name">
-                                        <option value="ShowAll">All Month</option>
+                                        <option value="">All Month</option>
                                         <option value="1">January</option>
-                                        <option value="2">Februari</option>
+                                        <option value="2">February</option>
                                         <option value="3">March</option>
                                         <option value="4">April</option>
                                         <option value="5">May</option>
@@ -41,10 +41,10 @@
                             <div class="col-sm-auto ml-2">
                                 <div class="form-group row">
                                     <select class="form-control" id="layanan_name">
-                                        <option value="ShowAll">All Layanan</option>
+                                        <!-- <option value="ShowAll">All Layanan</option>
                                         <option value="1">Telkom</option>
                                         <option value="2">Telkomsel</option>
-                                        <option value="3">BRI</option>
+                                        <option value="3">BRI</option> -->
                                     </select>
                                 </div>
                             </div>

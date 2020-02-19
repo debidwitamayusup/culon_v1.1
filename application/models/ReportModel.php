@@ -587,9 +587,9 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal',$index);   
         }else if($params == 'month'){
             if($index){
-                $this->db->where('MONTH(a.tanggal)',$index);
-                $this->db->where('YEAR(a.tanggal) = YEAR(CURDATE())');
+                $this->db->where('MONTH(a.tanggal)',$index);   
             }
+            $this->db->where('YEAR(a.tanggal) = YEAR(CURDATE())');
         }
 
         $this->db->group_by('TANGGAL');

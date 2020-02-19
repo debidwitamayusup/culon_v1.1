@@ -24,9 +24,10 @@ var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    // getTenant('')
+    getTenant('')
     $('#input-date').datepicker("setDate", '1');
-    drawTableSumInterval('month', '','1','');
+    $('#month_name option[value=' + n + ']').attr('selected', 'selected');
+    drawTableSumInterval('month', n,'1','');
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
@@ -38,7 +39,7 @@ function channelToName(channel_id){
     return 'All Channel'
 }
 
-function drawTableSumInterval(params, index,interval,channel){
+function drawTableSumInterval(params, index,interval,channel, tenant_id){
     $("#filter-loader").fadeIn("slow");
 	$('#tableReportSumIntervalMonth').DataTable({
         ajax: {
@@ -48,7 +49,8 @@ function drawTableSumInterval(params, index,interval,channel){
                 params: params,
                 index: index,
                 interval: interval,
-                channel: channel
+                channel: channel,
+                tenant_id: tenant_id
             }
         },
         columnDefs: [
@@ -61,11 +63,41 @@ function drawTableSumInterval(params, index,interval,channel){
 			{ className: "text-right", targets: 6 },
             { className: "text-right", targets: 7},
             // { className: "text-right", targets: 8}
-		], 
+        ],
+        paging: false,
         destroy: true
     });
     $("#filter-loader").fadeOut("slow");
     // console.log(data);
+}
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
+            // var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
+                }
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
@@ -136,7 +168,7 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
         
-        drawTableSumInterval('month',$('#month_name').val(), '1', $('#channel_name').val());
+        drawTableSumInterval('month',$('#month_name').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
     });
 
     
