@@ -212,7 +212,9 @@ function drawBarLayanan(response){
         LabelX.push(value.TENANT_NAME);
     });
     // console.log(response.data[0].TOTAL);
-
+    for (var i = LabelX.length; i < 30; i++){
+        LabelX.push("");
+    }
     var bar_ctx = document.getElementById('BarWallPerformance');
     // console.log(dataLayanan);
     var bar_chart = new Chart(bar_ctx, {
@@ -252,11 +254,14 @@ function drawBarLayanan(response){
                 xAxes: [{
                     stacked: true,
                     gridLines: {
-                        display: false
+                        display: true
                     },
                     ticks: {
                         fontSize: 10
-                    }
+                    },
+                    barPercentage: 1,
+                    // barThickness: 30,
+                    maxBarThickness: 40
                 }],
                 yAxes: [{
                     stacked: true,
