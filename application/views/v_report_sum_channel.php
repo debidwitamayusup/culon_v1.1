@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="table-responsive" style="padding:10px 15px 10px 15px;">
+                                <div class="table-responsive h-450" style="padding:10px 15px 10px 15px;">
                                     <table id="tableSumChannel" class="table table-striped table-bordered fontNunito11"
                                         width="100%">
                                         <thead class="bg-head text-white text-center">
