@@ -375,7 +375,7 @@ function callLineChart(channel){
 
 function drawLineChart(response){
     $('#lineWallSumPerform').remove();
-    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  class="h-400"></canvas>');
+    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:425px"></canvas>');
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',
