@@ -1077,8 +1077,8 @@ Class WallboardModel extends CI_Model {
                         'QUEUE' => strval(number_format($data->queue,0,'.',',')),
                         'WAITING' => $data->waiting,
                         'AHT' => $data->aht,
-                        'OFFERED' => strval(number_format($data->offered,0,'.',',')),
-                        'SCR' => round($data->scr,2).'%'
+                        'OFFERED' => $data->offered,
+                        'SCR' => round($data->scr,2)
                     );
                 }
                 return $result;
