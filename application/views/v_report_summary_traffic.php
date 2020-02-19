@@ -61,8 +61,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive" style="padding:8px !important;">
-                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito10">
+                    <div class="table-responsive" style="padding:5px !important;">
+                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>
