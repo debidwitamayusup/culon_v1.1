@@ -667,6 +667,28 @@ Class WallboardModel extends CI_Model {
         return false;
     }
 
+    public function Tenantscrfilter()
+    {
+        $this->db->select('tenant_id,tenant_name');
+        $this->db->from('m_tenant');
+        $query = $this->db->get();
+
+        
+        if($query->num_rows() > 0)
+        {
+            $result = array();
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'TENANT_ID'=> $data->tenant_id,
+                    'TENANT_NAME'=> $data->tenant_name
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
     public function Channel_data()
     {
         $this->db->select('channel_name, channel_color');
