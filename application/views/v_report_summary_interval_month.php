@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table id="tableReportSumIntervalMonth" class="table table-striped table-bordered fontNunito12"
+                            <table id="tableReportSumIntervalMonth" class="table-sm table table-striped table-bordered fontNunito12"
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>

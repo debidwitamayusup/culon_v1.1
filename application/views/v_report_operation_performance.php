@@ -66,7 +66,7 @@
                         <h5 class="card-title-small card-pt10">Summary by Date</h5>
                     </div>
                     <div class="table-responsive" style="padding:12px;">
-                        <table id="tableOperationPerform1" class="table table-striped table-bordered fontNunito12"
+                        <table id="tableOperationPerform1" class="table table-sm table-striped table-bordered fontNunito12"
                             width="100%">
                             <thead class="text-center text-white bg-head">
                                 <tr>

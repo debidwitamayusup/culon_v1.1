@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table id="tableReportKIP" class="table table-striped table-bordered fontNunito12">
+                            <table id="tableReportKIP" class="table table-sm table-striped table-bordered fontNunito12">
                                 <thead class="bg-head text-center text-white">
                                     <tr>
                                         <th class="wd-15p border-bottom-0" width="20">No</th>
