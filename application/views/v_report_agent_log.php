@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
-                        <table id="tableAgent" class="table table-striped table-bordered fontNunito11">
+                        <table id="tableAgent" class="table table-sm table-striped table-bordered fontNunito11">
                             <thead class="bg-head text-white align-middle text-center">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>

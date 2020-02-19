@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
-                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito11">
+                        <table id="reportAgentPerformance" class="table table-sm table-striped table-bordered fontNunito11">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td class="wd-15p border-bottom-0" width="20">No</td>
