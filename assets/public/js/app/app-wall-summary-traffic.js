@@ -18,7 +18,7 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', v_params_yesterday, 0, 'oct_bri');
+    callSumAllTenant('day', v_params_yesterday, 0, '');
     callSumPerTenant('day', v_params_yesterday, 0, '');
     // drawIntervalChart();
     callIntervalTraffic('day',v_params_yesterday,0, '', '');
@@ -227,7 +227,8 @@ function drawPieChartSumAllTenant(response){
                     for (var i in allData) {
                         total += parseInt(Number(allData[i]));
                     }
-
+                    // console.log(dataLabel+":")
+                    // console.log(total);
                     // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
                     if(dataLabel != 0){
@@ -245,7 +246,8 @@ function drawPieChartSumAllTenant(response){
                     for (var i in allData) {
                         total += parseInt(Number(allData[i]));
                     }
-
+                    // console.log(dataLabel+"/")
+                    // console.log(total);
                     // console.log(total)
                     // var percentage = Math.round((dataLabel / total) * 100);
                     if(dataLabel != 0){

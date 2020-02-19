@@ -300,7 +300,7 @@ function drawPieChartSumAllTenant(response){
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
-                        var dataLabel = allData[index];
+                        var dataLabel = Number(allData[index]);
                         var background = chart.data.datasets[0].backgroundColor[index]
                         var total = 0;
                         for (var i in allData) {
@@ -308,11 +308,15 @@ function drawPieChartSumAllTenant(response){
                         }
 
                         // console.log(Number(dataLabel))
-                        
+                        console.log(dataLabel+":")
+                        console.log(total);
                         if(dataLabel != 0){
                             var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
                         }else{
                             var percentage = Math.round((dataLabel / total) * 100);
+                        }
+                        if(isNaN(percentage) == true){
+                            percentage = 0;
                         }
                         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
@@ -322,15 +326,18 @@ function drawPieChartSumAllTenant(response){
                         var background = chart.data.datasets[0].backgroundColor[index]
                         var total = 0;
                         for (var i in allData) {
-                            total += parseInt(allData[i]);
+                            total += parseInt(Number(allData[i]));
                         }
 
-                        // console.log(total)
+                        console.log(dataLabel+"/")
+                        console.log(total);
+                        
                         // var percentage = Math.round((dataLabel / total) * 100);
                         if(dataLabel != 0){
                         var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
                         }else{
-                            var percentage = Math.round((dataLabel / total) * 100);
+                            // var percentage = Math.round((dataLabel / total) * 100);
+                            percentage = 0;
                         }
                         legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + '0' + '%</span>');
