@@ -87,6 +87,62 @@ function drawTableRealTime(response){
             }
         }
     }
+
+    $('#mytbody_2').empty();
+    if (response.data.length != 0) {
+        for (var i = 10; i < 20; i++) {
+            if (response.data[i]){
+                $('#mytable_2').find('tbody').append('<tr>'+
+                        '<td class="text-center">'+(i+1)+'</td>'+
+                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                    '</tr>');
+            }else{
+                $('#mytable_2').find('tbody').append(
+                '<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>');
+            }
+        }
+    }
+
+    $('#mytbody_3').empty();
+    if (response.data.length != 0) {
+        for (var i = 20; i < 30; i++) {
+            if (response.data[i]){
+                $('#mytable_3').find('tbody').append('<tr>'+
+                        '<td class="text-center">'+(i+1)+'</td>'+
+                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                    '</tr>');
+            }else{
+                $('#mytable_3').find('tbody').append(
+                '<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
+                '</tr>');
+            }
+        }
+    }
 }
 
 function callPieChartSummary(){
@@ -225,8 +281,8 @@ function drawBarLayanan(response){
             datasets: [{
                     label: 'Layanan',
                     data: dataLayanan,
-                    backgroundColor: "#3866A6",
-                    hoverBackgroundColor: "#3866A6",
+                    backgroundColor: "#ff0000",
+                    hoverBackgroundColor: "#ff0000",
                     hoverBorderWidth: 0
                 }
             ],
@@ -318,6 +374,8 @@ function callLineChart(channel){
 }
 
 function drawLineChart(response){
+    $('#lineWallSumPerform').remove();
+    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  class="h-400"></canvas>');
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',
@@ -409,7 +467,7 @@ function drawTotalTable(response){
         for (var i = 0; i < response.data.length; i++) {
             sumCOF+= parseInt((response.data[i].OFFERED || 0));
             // console.log(sumCOF);
-            sumSCR+= ((response.data[i].SCR || 0));
+            sumSCR+= parseFloat((response.data[i].SCR || 0));
             sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
             sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
 
