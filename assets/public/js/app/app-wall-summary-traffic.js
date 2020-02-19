@@ -40,7 +40,7 @@ $(document).ready(function () {
 function getTenant(date){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
             "date" : date
         },
@@ -55,7 +55,7 @@ function getTenant(date){
             var i;
             // console.log(response);
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
                 $('#tenant_id').html(html);
             
