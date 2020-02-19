@@ -305,7 +305,7 @@ Class ReportModel extends CI_Model {
         }
         if($d_end)
         {
-            $this->db->where('a.tanggal <=',$d_ens);
+            $this->db->where('a.tanggal <=',$d_end);
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
