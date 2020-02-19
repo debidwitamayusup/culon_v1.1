@@ -274,7 +274,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportOPS($tid, $chn, $d_start, $d_end ,$meth)
+    public function get_datareportOPS($tid, $d_start, $d_end ,$meth)
     {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -295,14 +295,11 @@ Class ReportModel extends CI_Model {
         {
             $this->db->where('a.tenant_id',$tid);
         }
-        if($chn)
-        {
-            $this->db->where('a.channel_id',$chn);
-        }
         if($d_start)
         {
             $this->db->where('a.tanggal > ',$d_start);
         }
+
         if($d_end)
         {
             $this->db->where('a.tanggal <=',$d_end);
@@ -409,6 +406,106 @@ Class ReportModel extends CI_Model {
             {
                 return $query->result();
             }      
+        }
+        return false;
+    }
+
+    public function get_datareportTraffic($tid, $d_start, $d_end ,$meth)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        $this->db->select('a.tanggal as TANGGAL');
+        $this->db->from('rpt_summary_scr a');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+       
+        if($d_start)
+        {
+            $this->db->where('a.tanggal > ',$d_start);
+        }
+        if($d_end)
+        {
+            $this->db->where('a.tanggal <=',$d_end);
+            
+        }
+        $this->db->where('YEAR(a.tanggal)',$year);
+
+        $this->db->group_by('a.tanggal');
+        $query = $this->db->get();
+
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        'ID' => $id,
+                        'TANGGAL' => $data->TANGGAL,
+                        'DATA' => $this->data_reportTraffic($data->TANGGAL,$tid, $meth)
+                    );
+                    $id++;
+                }
+                return $result;
+            }
+           
+        }
+
+        return false;
+    }
+
+    function data_reportTraffic($dt ,$tid, $meth)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        $this->db->select('a.tanggal as TANGGAL,
+        b.channel_id as CHANNEL_ID,
+        b.channel_name as CHANNEL_NAME,
+        SUM(a.cof) as COF,
+        AVG(a.scr) as SCR
+        ');
+
+        $this->db->from('rpt_summary_scr a');
+        $this->db->join('m_channel b','b.channel_id = a.channel_id');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+       
+        if($dt)
+        {
+            $this->db->where('a.tanggal ',$dt);
+        }
+        $this->db->where('YEAR(a.tanggal)',$year);
+
+        $this->db->group_by('a.tanggal, a.channel_id');
+        $query = $this->db->get();
+
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+               
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        
+                        'CHANNEL_NAME' => $data->CHANNEL_NAME,
+                        'COF' => strval(number_format($data->COF,0,'.',',')),
+                        'SCR' => round($data->SCR,2).'%'
+                    );
+                    
+                }
+                
+                return $result;
+            }
         }
         return false;
     }
