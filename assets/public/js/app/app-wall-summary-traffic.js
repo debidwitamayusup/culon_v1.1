@@ -18,7 +18,7 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', v_params_yesterday, 0, '');
+    callSumAllTenant('day', v_params_yesterday, 0, 'oct_bri');
     callSumPerTenant('day', v_params_yesterday, 0, '');
     // drawIntervalChart();
     callIntervalTraffic('day',v_params_yesterday,0, '', '');
