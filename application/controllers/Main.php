@@ -333,11 +333,11 @@ class main extends CI_Controller {
 		$this->load->view('v_report_agent_summary');
 	}
 
-	public function report_performance_operation(){
+	public function report_operation_performance(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
-		$this->load->view('v_report_performance_operation');
+		$this->load->view('v_report_operation_performance');
 	}
 
 	public function report_performance_agent(){
@@ -353,6 +353,20 @@ class main extends CI_Controller {
 		$this->load->view('v_report_detail_cwc');
 	}
 	
+	public function report_summary_traffic(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_summary_traffic');
+	}
+
+	public function report_summary_interval_month(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_summary_interval_month');
+	}
+
 	public function report_summary_close_ticket(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
@@ -372,6 +386,13 @@ class main extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_report_close_ticket_v2');
+	}
+
+	public function report_summary_kip(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_report_summary_kip');
 	}
 
 }

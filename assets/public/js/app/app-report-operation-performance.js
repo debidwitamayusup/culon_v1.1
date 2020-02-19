@@ -158,5 +158,9 @@ function exportTablePerformOps(tenant_id, channel_id, month, name){
         drawTablePerformOps($('#layanan_name').val(), $('#channel_name').val(), $('#month_name').val());
     });
 
+    $('#tableOperationPerform1').dataTable();
+
+    $('#tableOperationPerform2').dataTable();
+
     
 })(jQuery);

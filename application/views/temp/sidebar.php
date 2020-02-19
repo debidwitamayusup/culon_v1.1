@@ -123,15 +123,14 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-book mr-1"></i>Report</h5> -->
-							<a href="<?=base_url()?>main/report_summary_channel" class="slide-item">Summary Channel</a>
-							<a href="<?=base_url()?>main/report_summary_close_ticket" class="slide-item">Summary Close Ticket</a>
-							<a href="<?=base_url()?>main/report_detail_ticket" class="slide-item">Detail Ticket </a>
-							<a href="<?=base_url()?>main/report_summary_interval" class="slide-item">Summary Interval</a>
 							<a href="<?=base_url()?>main/report_agent_log" class="slide-item">Agent Log</a>
 							<a href="<?=base_url()?>main/report_agent_performance" class="slide-item">Agent Performance</a>
-							<a href="<?=base_url()?>main/report_agent_summary" class="slide-item">Agent Summary</a>
-							<a href="<?=base_url()?>main/report_performance_agent" class="slide-item">Summary Performance Agent</a>
-							<a href="<?=base_url()?>main/report_performance_operation" class="slide-item">Summary Performance Operation</a>
+							<a href="<?=base_url()?>main/report_operation_performance" class="slide-item">Operation Performance</a>
+							<a href="<?=base_url()?>main/report_summary_traffic" class="slide-item">Summary Traffic</a>
+							<a href="<?=base_url()?>main/report_summary_channel" class="slide-item">Summary Channel</a>
+							<a href="<?=base_url()?>main/report_summary_interval" class="slide-item">Summary Interval</a>
+							<a href="<?=base_url()?>main/report_summary_interval_month" class="slide-item">Summary Interval by Month</a>
+							<a href="<?=base_url()?>main/report_summary_kip" class="slide-item">Summary KIP</a>							
 						</div>
 					</div>
 				</div>

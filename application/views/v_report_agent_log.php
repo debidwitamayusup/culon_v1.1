@@ -25,7 +25,8 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="Date From" type="text">
+                                    </div><input class="form-control fc-datepicker" placeholder="Start Date"
+                                        type="text">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
@@ -35,36 +36,26 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="Date To" type="text">
+                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-2">
                                 <div class="form-group row">
-                                    <select class="form-control" id="agent_name">
-                                        <option value="ShowAll">All Agent</option>
-                                        <option value="agent1">Agent 1</option>
-                                        <option value="agent2">Agent 2</option>
-                                        <option value="agent3">Agent 3</option>
+                                    <select class="form-control" id="layanan_name">
+                                        <option value="ShowAll">All Layanan</option>
+                                        <option value="1">Telkom</option>
+                                        <option value="2">Telkomsel</option>
+                                        <option value="3">BRI</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
-                                    <select class="form-control" id="channel_name">
-                                        <option value="ShowAll">All Channel</option>
-                                        <option value="Whatsapp">Whatsapp</option>
-                                        <option value="Twitter">Twitter</option>
-                                        <option value="Facebook">Facebook</option>
-                                        <option value="Email">Email</option>
-                                        <option value="Telegram">Telegram</option>
-                                        <option value="Line">Line</option>
-                                        <option value="Voice">Voice</option>
-                                        <option value="Instagram">Instagram</option>
-                                        <option value="Messenger">Messenger</option>
-                                        <option value="Twitter DM">Twitter DM</option>
-                                        <option value="Live Chat">Live Chat</option>
-                                        <option value="SMS">SMS</option>
-                                        <option value="Chatbot">Chatbot</option>
+                                    <select class="form-control" id="skill">
+                                        <option value="ShowAll">Skill</option>
+                                        <option value="1">All</option>
+                                        <option value="2">Voice</option>
+                                        <option value="3">Sosmed</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,147 +70,171 @@
 
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table id="tableAgent" class="table table-striped table-bordered fontNunito10">
-                                <thead class="bg-head text-white align-middle text-center">
-                                    <tr>
-                                        <th class="wd-15p border-bottom-0" width="130">Date
-                                        </th>
-                                        <th class="wd-15p border-bottom-0">ID Agent</th>
-                                        <th class="wd-15p border-bottom-0">Nama</th>
-                                        <th class="wd-15p border-bottom-0">ART</th>
-                                        <th class="wd-15p border-bottom-0">AHT</th>
-                                        <th class="wd-15p border-bottom-0">AST</th>
-                                        <th class="wd-15p border-bottom-0">Login Time</th>
-                                        <th class="wd-15p border-bottom-0">Logout Time</th>
-                                        <th class="wd-15p border-bottom-0">Duration</th>
-                                    </tr>
-                                </thead>
-                                <tbody style="font-size:12px !important;">
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2020-01-01</td>
-                                        <td class="text-center">AD2061</td>
-                                        <td class="text-center">No Name</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                        <td class="text-center">00:00:00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    </div>
+                    <div class="table-responsive" style="padding:8px !important;">
+                        <table id="tableAgent" class="table table-striped table-bordered fontNunito10">
+                            <thead class="bg-head text-white align-middle text-center">
+                                <tr>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent ID</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent Name</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Login Time</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Logout Time</th>
+                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Staffed Time</th>
+                                    <th colspan="5" class="wd-15p border-bottom-1">AUX</th>
+                                </tr>
+                                <tr>
+                                    <th>Istirahat</th>
+                                    <th>Ibadah</th>
+                                    <th>Briefing</th>
+                                    <th>Lain-lain</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:12px !important;">
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">9</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">AD2061</td>
+                                    <td class="text-left">No Name</td>
+                                    <td class="text-center">All</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                    <td class="text-center">00:01:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
