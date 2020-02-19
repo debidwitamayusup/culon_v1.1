@@ -107,7 +107,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-center">10-11</td>
                                         <td class="text-right">00:00:00</td>
@@ -206,7 +206,7 @@
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">90%</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
