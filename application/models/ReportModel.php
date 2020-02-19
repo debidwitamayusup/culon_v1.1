@@ -413,9 +413,6 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    
-
-
     #endregion :: Raga
     #region :: additional-function
     function datareportSInterval($tid,$chn,$interval_v,$interval_s,$interval_e,$date,$meth)
