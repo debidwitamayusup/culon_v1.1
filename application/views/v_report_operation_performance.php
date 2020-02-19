@@ -20,7 +20,7 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="Start Date"
+                                    </div><input class="form-control fc-datepicker" id="start-date" placeholder="Start Date"
                                         type="text">
                                 </div>
                             </div>
@@ -31,16 +31,16 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text">
+                                    </div><input class="form-control fc-datepicker" id="end-date" placeholder="End Date" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
-                                    <select class="form-control">
-                                        <option value="">All Layanan</option>
+                                    <select class="form-control" id="layanan_name">
+                                        <!-- <option value="">All Layanan</option>
                                         <option value="oct_telkomcare">Telkom Care</option>
                                         <option value="oct_bri">BRI</option>
-                                        <option value="oct_telkomsel">Telkomsel</option>
+                                        <option value="oct_telkomsel">Telkomsel</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">2020-01-01</td>
                                     <td class="text-right">200</td>
@@ -202,7 +202,7 @@
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">100%</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
