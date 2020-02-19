@@ -72,29 +72,31 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
-                        <table id="tableAgent" class="table table-striped table-bordered fontNunito10">
+                        <table id="tableAgent" class="table table-striped table-bordered fontNunito11">
                             <thead class="bg-head text-white align-middle text-center">
                                 <tr>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent ID</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent Name</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Login Time</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Logout Time</th>
-                                    <th rowspan="2" class="wd-15p border-bottom-0 align-middle">Staffed Time</th>
-                                    <th colspan="5" class="wd-15p border-bottom-1">AUX</th>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent ID</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent Name</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Login Time</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Logout Time</td>
+                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Staffed Time</td>
+                                    <td colspan="5" class="wd-15p border-bottom-1">AUX</td>
                                 </tr>
                                 <tr>
-                                    <th>Istirahat</th>
-                                    <th>Ibadah</th>
-                                    <th>Briefing</th>
-                                    <th>Lain-lain</th>
-                                    <th>Total</th>
+                                    <td>Istirahat</td>
+                                    <td>Ibadah</td>
+                                    <td>Briefing</td>
+                                    <td>Lain-lain</td>
+                                    <td>Total</td>
                                 </tr>
                             </thead>
-                            <tbody style="font-size:12px !important;">
+                            <tbody>
                                 <tr>
                                     <td class="text-center">1</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -109,6 +111,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">2</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -123,6 +126,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">3</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -137,6 +141,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">4</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -151,6 +156,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">5</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -165,6 +171,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">6</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -179,6 +186,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">7</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -193,6 +201,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">8</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -207,6 +216,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">9</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
@@ -221,6 +231,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">10</td>
+                                    <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
                                     <td class="text-left">No Name</td>
                                     <td class="text-center">All</td>
