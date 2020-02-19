@@ -247,6 +247,33 @@
             }
         }
 
+        public function ReportingOPS_post()
+        {
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $chn = $this->security->xss_clean($this->input->post('channel_id'));
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $meth = 'data';
+
+            //token
+            $res = $this->module_model->get_datareportOPS($tid,$chn,$d_start,$d_end,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
         // Export ke excel
         public function EXPORTSC_post()
         {
