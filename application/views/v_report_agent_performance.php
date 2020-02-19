@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-filter"></i></button>
 
                             </div>
@@ -75,17 +75,17 @@
                         <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito11">
                             <thead class="bg-head text-center text-white">
                                 <tr>
-                                    <th class="wd-15p border-bottom-0" width="20">No</th>
-                                    <th class="wd-15p border-bottom-0">Agent ID</th>
-                                    <th class="wd-15p border-bottom-0">Agent Name</th>
-                                    <th class="wd-15p border-bottom-0">Skill</th>
-                                    <th class="wd-15p border-bottom-0">Offered</th>
-                                    <th class="wd-15p border-bottom-0">Handled</th>
-                                    <th class="wd-15p border-bottom-0">Unhandled</th>
-                                    <th class="wd-15p border-bottom-0">ART</th>
-                                    <th class="wd-15p border-bottom-0">AHT</th>
-                                    <th class="wd-15p border-bottom-0">AST</th>
-                                    <th class="wd-15p border-bottom-0">SCR</th>
+                                    <td class="wd-15p border-bottom-0" width="20">No</td>
+                                    <td class="wd-15p border-bottom-0">Agent ID</td>
+                                    <td class="wd-15p border-bottom-0">Agent Name</td>
+                                    <td class="wd-15p border-bottom-0">Skill</td>
+                                    <td class="wd-15p border-bottom-0">Offered</td>
+                                    <td class="wd-15p border-bottom-0">Handled</td>
+                                    <td class="wd-15p border-bottom-0">Unhandled</td>
+                                    <td class="wd-15p border-bottom-0">ART</td>
+                                    <td class="wd-15p border-bottom-0">AHT</td>
+                                    <td class="wd-15p border-bottom-0">AST</td>
+                                    <td class="wd-15p border-bottom-0">SCR</td>
                                 </tr>
                             </thead>
                             <tbody>

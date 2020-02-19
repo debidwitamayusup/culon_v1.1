@@ -187,10 +187,13 @@
 	/* content: "\e907"; */
 	content: "\ea00";
     transition: all .25s;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-family: 'feather';
     position: relative;
-	top:5px;
+	top:11px;
+	padding: 7px;
+	background: #ddd;
+	border-radius:40px;
 }
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
 	text-decoration: none;

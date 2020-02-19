@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-filter"></i></button>
 
                             </div>
