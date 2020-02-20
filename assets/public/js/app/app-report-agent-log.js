@@ -16,12 +16,10 @@ if (n < 10) {
 }
 
 var v_params_today= m + '-' + n + '-' + (o);
-// var startDateFromFilter = v_params_today;
-// var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
-$(document).ready(function (){
-	getTenant('')
+$(document).ready(function(){
+    getTenant('');
     $('#start-date').datepicker("setDate", v_params_today);
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
@@ -54,59 +52,55 @@ function getTenant(date){
 }
 
 function setDatePicker() {
-	$(".datepicker").datepicker({
-		format: "yyyy-mm-dd",
-		todayHighlight: true,
-		autoclose: true
-	}).attr("readonly", "readonly").css({
-		"cursor": "pointer",
-		"background": "white"
-	});
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({
+        "cursor": "pointer",
+        "background": "white"
+    });
 }
 
-(function($) {
-	var date = new Date();
-	date.setDate(date.getDate() > 0);
-	$('#start-date').datepicker({
-		dateFormat: 'yy-mm-dd',
-		maxDate: 'now',
-		showTodayButton: true,
-		showClear: true,
-		// minDate: date,
-		// onSelect: function (dateText) {
-		// 	// console.log(this.value);
-		// 	v_start_date = this.value;
+(function ($) {
+    var date = new Date();
+    date.setDate(date.getDate() > 0);
+    $('#start-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_start_date = this.value;
         // }
     });
 
     $('#end-date').datepicker({
-		dateFormat: 'yy-mm-dd',
-		maxDate: 'now',
-		showTodayButton: true,
-		showClear: true,
-		// minDate: date,
-		// onSelect: function (dateText) {
-		// 	// console.log(this.value);
-		// 	v_end_date = this.value;
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_end_date = this.value;
         // }
     });
 
-    $('#btn-export').click(function(){
-        // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-        tenantFromFilter = $('#layanan_name').val();
-        startDateFromFilter = $('#start-date').val();
-        endDateFromFilter = $('#end-date').val();
-        console.log(startDateFromFilter);
-        // exportTableAgentPerform(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
-    });
+    // $('#btn-export').click(function(){
+    //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
+    //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
+    // });
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
-        startDateFromFilter = $('#start-date').val();
-        endDateFromFilter = $('#end-date').val();
+        // channelFromFilter = $('#channel_name').val();
+        // monthFromFilter = $('#month_name').val();
         
-        // drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
-    $('#tableAgent').DataTable();
-});
+    // $('#tableSummaryTraffic').dataTable();    
+})(jQuery);
