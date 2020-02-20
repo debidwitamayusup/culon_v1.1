@@ -110,7 +110,7 @@
                                 <td>SCR</td>
                                 </tr>
                             </thead>
-                            <tbody id="#mytbody">
+                            <tbody id="mytbody">
                                 <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">2019-10-01</td>
