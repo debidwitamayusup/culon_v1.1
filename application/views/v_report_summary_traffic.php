@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive" style="padding:5px !important;">
+                    <div class="table-responsive" style="padding:1px !important;">
                         <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
                                 <tr>
@@ -110,6 +110,7 @@
                                 <td>SCR</td>
                                 </tr>
                             </thead>
+<<<<<<< HEAD
                             <tbody id="mytbody">
                                 <!-- <tr>
                                     <td class="text-center">1</td>
@@ -261,6 +262,10 @@
                                     <td class="text-right">90</td>
                                     <td class="text-center">90%</td>
                                 </tr> -->
+=======
+                            <tbody id="#mytbody">
+                             
+>>>>>>> origin/elsa-dev
                             </tbody>
                         </table>
                     </div>
