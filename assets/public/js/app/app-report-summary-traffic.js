@@ -67,7 +67,7 @@ function callTableSummaryTraffic(tenant_id,start_date,end_date){
         },
         success: function (r) {
             var response = r;
-            console.log(response);
+            // console.log(response);
             drawTableSumTraffic(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -106,16 +106,19 @@ function drawTableSumTraffic(response){
                 '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
                 '<td class="text-right">'+response.data[i].DATA[9].COF+'</td>'+
                 '<td class="text-center">'+response.data[i].DATA[9].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[10].COF+'</td>'+
+                '<td class="text-center">'+response.data[i].DATA[10].SCR+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[11].COF+'</td>'+
+                '<td class="text-center">'+response.data[i].DATA[11].SCR+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[12].COF+'</td>'+
+                '<td class="text-center">'+response.data[i].DATA[12].SCR+'</td>'+
             '</tr>')
 		}
-	} else {
-
+	}else{
+        $('#tableSummaryTraffic').find('tbody').append('<tr>'+
+           '<td class="text-center" colspan=28> No Data Available </td>'+
+        '</tr>');
+        console.log(response);
 	}
 }
 
@@ -164,9 +167,9 @@ function setDatePicker() {
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
-        // channelFromFilter = $('#channel_name').val();
-        // monthFromFilter = $('#month_name').val();
-        
+        startDateFromFilter = $('#start-date').val();
+        endDateFromFilter = $('#end-date').val();
+
         callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
