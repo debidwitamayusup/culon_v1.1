@@ -22,9 +22,9 @@
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="month_name">
-                                        <option value="ShowAll">All Month</option>
+                                        <option value="">All Month</option>
                                         <option value="1">January</option>
-                                        <option value="2">Februari</option>
+                                        <option value="2">February</option>
                                         <option value="3">March</option>
                                         <option value="4">April</option>
                                         <option value="5">May</option>
@@ -41,10 +41,10 @@
                             <div class="col-sm-auto ml-2">
                                 <div class="form-group row">
                                     <select class="form-control" id="layanan_name">
-                                        <option value="ShowAll">All Layanan</option>
+                                        <!-- <option value="ShowAll">All Layanan</option>
                                         <option value="1">Telkom</option>
                                         <option value="2">Telkomsel</option>
-                                        <option value="3">BRI</option>
+                                        <option value="3">BRI</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table id="tableReportSumInterval" class="table table-striped table-bordered fontNunito12"
+                            <table id="tableReportSumIntervalMonth" class="table-sm table table-striped table-bordered fontNunito12"
                                 width="100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
@@ -108,94 +108,104 @@
                                 </thead>
                                 <tbody>
                                     <!-- <tr>
-                                        <td class="text-center">00:00:00</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">10-11</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">03:00:00</td>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">11-12</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">06:00:00</td>
+                                        <td class="text-center">3</td>
+                                        <td class="text-center">12-13</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">09:00:00</td>
+                                        <td class="text-center">4</td>
+                                        <td class="text-center">13-14</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">12:00:00</td>
+                                        <td class="text-center">5</td>
+                                        <td class="text-center">15-16</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">15:00:00</td>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">17-18</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">18:00-10.30</td>
+                                        <td class="text-center">7</td>
+                                        <td class="text-center">18-19</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">21:00-10.30</td>
+                                        <td class="text-center">8</td>
+                                        <td class="text-center">20-21</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">24:00-10.30</td>
+                                        <td class="text-center">9</td>
+                                        <td class="text-center">22-23</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-center">27:00-10.30</td>
+                                        <td class="text-center">10</td>
+                                        <td class="text-center">24-25</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-right">00:00:00</td>
                                         <td class="text-center">200</td>
                                         <td class="text-center">200</td>
-                                        <td class="text-center">200</td>
+                                        <td class="text-center">90%</td>
                                     </tr> -->
                                 </tbody>
                             </table>
@@ -219,4 +229,4 @@
     </div>
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->
-    <script src="<?=base_url()?>assets/public/js/app/app-report-sum-interval.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-report-sum-interval-month.js"></script>

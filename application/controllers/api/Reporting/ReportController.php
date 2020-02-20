@@ -164,13 +164,14 @@
         {
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $params = $this->security->xss_clean($this->input->post('params'));
+            $index = $this->security->xss_clean($this->input->post('index'));
             $interval = $this->security->xss_clean($this->input->post('interval'));
             $chn = $this->security->xss_clean($this->input->post('channel'));
 
             $meth = 'data';
             //token
-            $res = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
+            $res = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$params, $index,$meth);
             // print_r($res);
             // exit;
 
