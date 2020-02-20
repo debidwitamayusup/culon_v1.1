@@ -466,29 +466,34 @@ Class ReportModel extends CI_Model {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('a.tanggal as TANGGAL,
-        b.channel_id as CHANNEL_ID,
-        b.channel_name as CHANNEL_NAME,
-        SUM(a.cof) as COF,
-        AVG(a.scr) as SCR
-        ');
-
+        //subquery
+        $this->db->select('a.tenant_id, a.channel_id ,a.tanggal, SUM(a.cof) as cof , avg(a.scr) as scr');
         $this->db->from('rpt_summary_scr a');
-        $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
             $this->db->where('a.tenant_id',$tid);
         }
-       
         if($dt)
         {
             $this->db->where('a.tanggal ',$dt);
         }
         $this->db->where('YEAR(a.tanggal)',$year);
-
         $this->db->group_by('a.tanggal, a.channel_id');
+        $this->db->get();
+        $subquery = $this->db->last_query();
+
+        //mainquery
+        $this->db->select('IFNULL(a.tanggal,"'.$dt.'") as TANGGAL,
+        b.channel_id as CHANNEL_ID,
+        b.channel_name as CHANNEL_NAME,
+        IFNULL(a.cof,0) as COF,
+        IFNULL(a.scr,0) as SCR
+        ');
+        $this->db->from('m_channel b');
+        $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
         $query = $this->db->get();
 
+        
 
         if($query->num_rows() > 0)
         {
