@@ -16,8 +16,8 @@ if (n < 10) {
 }
 
 var v_params_today= m + '-' + n + '-' + (o);
-var startDateFromFilter = v_params_today;
-var endDateFromFilter = v_params_today;
+// var startDateFromFilter = v_params_today;
+// var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function (){
@@ -64,7 +64,7 @@ function setDatePicker() {
 	});
 }
 
-$(function(e) {
+(function($) {
 	var date = new Date();
 	date.setDate(date.getDate() > 0);
 	$('#start-date').datepicker({
