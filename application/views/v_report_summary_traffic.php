@@ -67,8 +67,10 @@
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Voice</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Email</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Live Chat</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">SMS</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Telegram</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Facebook</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Messenger</td>
@@ -78,8 +80,6 @@
                                     <td colspan="2" class="wd-15p border-bottom-0">Whatsapp</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Twitter DM</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Chatbot</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Voice</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">SMS</td>
                                 </tr>
                                 <tr>
                                 <td>COF</td>
@@ -110,8 +110,162 @@
                                 <td>SCR</td>
                                 </tr>
                             </thead>
+<<<<<<< HEAD
+                            <tbody id="mytbody">
+                                <!-- <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">2019-10-01</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">2019-10-01</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">2019-10-01</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">2019-10-01</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">2019-10-01</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                    <td class="text-right">90</td>
+                                    <td class="text-center">90%</td>
+                                </tr> -->
+=======
                             <tbody id="#mytbody">
                              
+>>>>>>> origin/elsa-dev
                             </tbody>
                         </table>
                     </div>
