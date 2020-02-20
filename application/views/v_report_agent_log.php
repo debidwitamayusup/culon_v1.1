@@ -26,7 +26,7 @@
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
                                     </div><input class="form-control fc-datepicker" placeholder="Start Date"
-                                        type="text">
+                                        type="text" id="start-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
@@ -36,7 +36,7 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text">
+                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text" id="end-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-2">
