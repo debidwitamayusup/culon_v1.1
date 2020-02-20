@@ -90,8 +90,8 @@
                                         <th class="wd-15p border-bottom-0">Jumlah</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="mytbody">
+                                    <!-- <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-center">Kategori</td>
                                         <td class="text-right">90</td>
@@ -140,11 +140,11 @@
                                         <td class="text-center">10</td>
                                         <td class="text-center">Kategori</td>
                                         <td class="text-right">90</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
-                                <tfoot class="bg-total text-right ">
-                                    <th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold" width="20">Total</th>
-                                    <th class="wd-15p border-bottom-0 font-weight-extrabold">90</th>
+                                <tfoot class="bg-total text-right " id="mytfoot">
+                                    <!-- <th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold" width="20">Total</th>
+                                    <th class="wd-15p border-bottom-0 font-weight-extrabold">90</th> -->
                                 </tfoot>
                             </table>
                         </div>
