@@ -459,6 +459,54 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    public function get_datareportKIP($tid, $cid, $d_start,$d_end,$meth)
+    {
+
+        $this->db->select('category, SUM(jumlah) as jumlah');
+        $this->db->from('rpt_summ_kip2');
+        if($cid)
+        {
+            $this->db->where('channel_id',$cid);
+        }
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        if($d_start)
+        {
+            $this->db->where('tanggal >= ',$d_start);
+        }
+        if($d_end)
+        {
+            $this->db->where('tanggal <=',$d_end);
+        }
+        $this->db->group_by('category');
+
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        'ID' => $id,
+                        'CATEGORY' => $data->category,
+                        'JUMLAH' => $data->jumlah
+                    );
+                    $id++;
+                }
+                return $result;
+            }
+           
+        }
+
+        return false;
+
+    }
+
     function data_reportTraffic($dt ,$tid, $meth)
     {
         $year = date('Y');
@@ -490,8 +538,6 @@ Class ReportModel extends CI_Model {
         $this->db->from('m_channel b');
         $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
         $query = $this->db->get();
-
-        
 
         if($query->num_rows() > 0)
         {
