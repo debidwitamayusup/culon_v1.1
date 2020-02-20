@@ -297,7 +297,7 @@ Class ReportModel extends CI_Model {
         }
         if($d_start)
         {
-            $this->db->where('a.tanggal > ',$d_start);
+            $this->db->where('a.tanggal >= ',$d_start);
         }
 
         if($d_end)
@@ -310,6 +310,8 @@ Class ReportModel extends CI_Model {
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
+        print_r($this->db->last_query());
+        exit;
 
         if($query->num_rows() > 0)
         {
