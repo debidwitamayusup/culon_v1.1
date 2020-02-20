@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>

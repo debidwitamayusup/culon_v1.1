@@ -20,23 +20,23 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
                                     </div><input class="form-control fc-datepicker" placeholder="Start Date"
-                                        type="text" id="start-date">
+                                        type="text">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text" id="end-date">
+                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-2">
@@ -65,7 +65,7 @@
 
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-export"><i
+                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-download mr-2"></i>Export</button>
 
                             </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
                         <table id="tableAgent" class="table table-sm table-striped table-bordered fontNunito11">
-                            <thead class="bg-head text-white align-middle text-center">
+                            <thead class="bg-head text-white text-center">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
