@@ -38,11 +38,7 @@ function getTenant(date){
 
         success: function (r) {
             var data_option = [];
-            //dont parse response if using rest controller
-            // var response = JSON.parse(r);
             var response = r;
-            // console.log(response);
-            // tenants = response.data;
             var html = '<option value="">All Tenant</option>';
             // var html = '';
                 for(i=0; i<response.data.length; i++){
