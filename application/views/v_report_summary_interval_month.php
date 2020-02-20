@@ -22,16 +22,15 @@
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="month_name">
-                                        <option value="">All Month</option>
-                                        <option value="1">January</option>
-                                        <option value="2">February</option>
-                                        <option value="3">March</option>
-                                        <option value="4">April</option>
-                                        <option value="5">May</option>
-                                        <option value="6">June</option>
-                                        <option value="7">July</option>
-                                        <option value="8">August</option>
-                                        <option value="9">September</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
                                         <option value="10">October</option>
                                         <option value="11">November</option>
                                         <option value="12">December</option>
@@ -96,7 +95,7 @@
                                     <tr>
                                         <td class="wd-15p border-bottom-0 text-center" width="20">No.</td>
                                         <!-- <td class="wd-15p border-bottom-0 text-center" width="75">Date</td> -->
-                                        <td class="wd-15p border-bottom-0 text-center" width="200">Interval</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="200">Days</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">ART</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">AHT</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">AST</td>

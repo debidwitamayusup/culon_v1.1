@@ -172,7 +172,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportSInterval($tid,$chn,$interval_v,$params,$index,$meth)
+    public function get_datareportSInterval($tid,$chn,$interval_v,$date,$meth)
     {
         
         if($interval_v==1 || $interval_v==3 || $interval_v ==6)
@@ -186,7 +186,7 @@ Class ReportModel extends CI_Model {
                     );
                     
                     $x++;
-                    $datareport = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$params, $index,$meth);
+                    $datareport = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                     if($datareport)
                     {
                         $result[] = array_merge($data,$datareport);
@@ -197,7 +197,7 @@ Class ReportModel extends CI_Model {
                     }
 
                 }else{
-                    $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$params, $index,$meth);
+                    $result[] = $this->datareportSInterval($tid,$chn,$interval_v,$i,$i+$interval_v,$date,$meth);
                 }
             }
             if($result)
@@ -305,13 +305,13 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$d_end);
             
         }
-        $this->db->where('YEAR(a.tanggal)',$year);
+        // $this->db->where('YEAR(a.tanggal)',$year);
 
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
-        print_r($this->db->last_query());
-        exit;
+        // print_r($this->db->last_query());
+        // exit;
 
         if($query->num_rows() > 0)
         {
@@ -513,8 +513,37 @@ Class ReportModel extends CI_Model {
     }
 
     #endregion :: Raga
+
+    #region :: debi
+    public function get_datareportSIntervalMonth($tid,$chn,$month,$meth)
+    {
+        
+                if ($meth == 'data') {    
+                    
+                    $datareport = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
+                    if($datareport)
+                    {
+                        $result = $datareport;
+                    }
+                    else{
+                        $result = false;
+                    }
+
+                }else{
+                    $result[] = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
+                }
+
+            if($result)
+            {
+                return $result;
+            }else{
+                return false;
+            }
+    }
+    #endregion :: debi
+
     #region :: additional-function
-    function datareportSInterval($tid,$chn,$interval_v,$interval_s,$interval_e,$params, $index,$meth)
+    function datareportSInterval($tid,$chn,$interval_v,$interval_s,$interval_e,$date,$meth)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
@@ -529,7 +558,7 @@ Class ReportModel extends CI_Model {
             SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
             SUM(a.case_in) as MESSAGE_IN,
             SUM(a.case_out) as MESSAGE_OUT,
-            SUM(a.case_session) as COF");
+            AVG(a.scr) as SCR");
         }
         if($interval_v == 6)
         {
@@ -541,11 +570,10 @@ Class ReportModel extends CI_Model {
             SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
             SUM(a.case_in) as MESSAGE_IN,
             SUM(a.case_out) as MESSAGE_OUT,
-            SUM(a.case_session) as COF");
+            AVG(a.scr) as SCR");
         }
         if($interval_v == 1)
         {
-            if($params == 'day'){
                 $this->db->select("a.tanggal as TANGGAL, 
                 CONCAT(SUBSTRING(`a`.`interval`,1,2),':00:00')  as `INTERVAL_TIME_START`,
                 CONCAT(LPAD(SUBSTRING(`a`.`interval`,1,2)+1,2,0),':00:00')  as `INTERVAL_TIME_END`, 
@@ -554,18 +582,7 @@ Class ReportModel extends CI_Model {
                 SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
                 SUM(a.case_in) as MESSAGE_IN,
                 SUM(a.case_out) as MESSAGE_OUT,
-                SUM(a.case_session) as COF");
-            }else if($params == 'month'){
-                $this->db->select("MONTH(a.tanggal) as TANGGAL, 
-                CONCAT(SUBSTRING(`a`.`interval`,1,2),':00:00')  as `INTERVAL_TIME_START`,
-                CONCAT(LPAD(SUBSTRING(`a`.`interval`,1,2)+1,2,0),':00:00')  as `INTERVAL_TIME_END`, 
-                SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
-                SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
-                SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
-                SUM(a.case_in) as MESSAGE_IN,
-                SUM(a.case_out) as MESSAGE_OUT,
-                SUM(a.case_session) as COF");
-            }
+                AVG(a.scr) as SCR");
         }
         
 
@@ -584,25 +601,22 @@ Class ReportModel extends CI_Model {
             $this->db->where('SUBSTRING(a.interval,1,2) >= ',$interval_s);
             $this->db->where('SUBSTRING(a.interval,1,2) < ',$interval_e);
         }
-        if($params == 'day')
-        {
-            $this->db->where('a.tanggal',$index);   
-        }else if($params == 'month'){
-            if($index){
-                $this->db->where('MONTH(a.tanggal)',$index);   
-            }
-            $this->db->where('YEAR(a.tanggal) = YEAR(CURDATE())');
-        }
+        
+        $this->db->where('a.tanggal',$date);   
 
         $this->db->group_by('TANGGAL');
         $query = $this->db->get();
 
+        // print_r($this->db->last_query());
+        // exit;
+        
         if($query->num_rows() > 0)
         {
             if($meth == 'data')
             {   
                 foreach( $query->result() as $data)
                 {
+                   
                     $result = array(
                         
                         // $data->TANGGAL,
@@ -612,7 +626,7 @@ Class ReportModel extends CI_Model {
                         $data->AST,
                         strval(number_format($data->MESSAGE_IN,0,'.',',')),
                         strval(number_format($data->MESSAGE_OUT,0,'.',',')),
-                        strval(number_format($data->COF,0,'.',','))
+                        round(number_format($data->SCR,2)).'%'
                     ); 
                 }
                 return $result;
@@ -625,6 +639,68 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    function datareportSIntervalMonth($tid,$chn,$month,$meth)
+    {
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+            
+        $this->db->select("MONTH(a.tanggal) as BULAN, a.tanggal as TANGGAL,
+                            SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
+                            SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
+                            SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
+                            SUM(a.case_in) as MESSAGE_IN,
+                            SUM(a.case_out) as MESSAGE_OUT,
+                            AVG(a.SCR) as SCR");
+        $this->db->from('rpt_summ_interval_tsel a');
+        // $this->db->join('m_channel b','b.channel_id = a.channel_id');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+        if($chn)
+        {
+            $this->db->where('a.channel_id',$chn);
+        }
+
+        $this->db->where('MONTH(a.tanggal)',$month);   
+        $this->db->where('YEAR(a.tanggal) = YEAR(CURDATE())');
+
+        $this->db->group_by('TANGGAL');
+        $query = $this->db->get();
+
+        // print_r($this->db->last_query());
+        // exit;
+        
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $i=1;
+                foreach( $query->result() as $data)
+                {
+                   
+                    $result[] = array(
+                        $i,
+                        substr($data->TANGGAL,8),
+                        $data->ART,
+                        $data->AHT,
+                        $data->AST,
+                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
+                        strval(number_format($data->MESSAGE_OUT,0,'.',',')),
+                        round(number_format($data->SCR,2)).'%'
+                    ); 
+                    $i++;
+                }
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }
+        }
+        return false;
+    }
     #endregion :: additional-function
+
+    
 }
 ?>
