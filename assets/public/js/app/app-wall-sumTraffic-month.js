@@ -327,9 +327,6 @@ function drawTableData(response){
     $("#mytbody").empty();
     // $("#mytfoot").empty();
     if(response.data.length != 0){ 
-        // console.log(response)
-        // console.log(response.data[12].total_interval)  
-        // var i = 0;
         console.log(response);
         for (var i = 0; i < response.dates.length; i++) {
             $('#wall-month-tbl').find('tbody').append('<tr>'+

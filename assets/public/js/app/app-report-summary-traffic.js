@@ -96,34 +96,13 @@ function drawTableSumTraffic(response){
                 '<td class="text-center">'+(i+1)+'</td>'+
                 '<td class="text-center">'+response.data[i].TANGGAL+'</td>'+
                 tdCOFSCR
-                // '<td class="text-right">'+response.data[i].DATA[1].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[1].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[2].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[2].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[3].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[3].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[4].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[4].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[5].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[5].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[6].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[6].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[7].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[7].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[9].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[9].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
-                // '<td class="text-right">'+response.data[i].DATA[8].COF+'</td>'+
-                // '<td class="text-center">'+response.data[i].DATA[8].SCR+'</td>'+
             +'</tr>')
 		}
 	} else {
-
+        $('#tableSummaryTraffic').find('tbody').append('<tr>'+
+           '<td class="text-center" colspan=28> No Data Available </td>'+
+        '</tr>');
+        console.log(response);
 	}
 }
 
