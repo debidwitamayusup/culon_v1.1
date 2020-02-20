@@ -626,7 +626,7 @@ Class ReportModel extends CI_Model {
                         $data->AST,
                         strval(number_format($data->MESSAGE_IN,0,'.',',')),
                         strval(number_format($data->MESSAGE_OUT,0,'.',',')),
-                        round(number_format($data->SCR,2)).'%'
+                        round($data->SCR,2).'%'
                     ); 
                 }
                 return $result;
@@ -686,7 +686,7 @@ Class ReportModel extends CI_Model {
                         $data->AST,
                         strval(number_format($data->MESSAGE_IN,0,'.',',')),
                         strval(number_format($data->MESSAGE_OUT,0,'.',',')),
-                        round(number_format($data->SCR,2)).'%'
+                        round($data->SCR,2).'%'
                     ); 
                     $i++;
                 }
