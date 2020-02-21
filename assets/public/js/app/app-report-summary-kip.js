@@ -97,7 +97,6 @@ function callTableKIP(start_date,end_date, tenant_id, channel_id){
         },
         success: function (r) {
             var response = r;
-            console.log(response);
             drawTableKIP(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -144,6 +143,38 @@ function setDatePicker() {
 	});
 }
 
+
+function exportTableKIP(start_date, end_date, tenant_id, channel_id, name){
+    $("#filter-loader").fadeIn("slow");
+    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTKIP',
+        data: {
+            start_date: start_date,
+            end_date: end_date,
+            tenant_id: tenant_id,
+            channel_id: channel_id,
+            name: name,
+            channel_name: channelToName(channel_id)
+        }
+        ,
+        success: function (r) {
+            if (r.status != false){
+                window.location = r.Link;
+            }else{
+                alert("Can't Export Empty Data");
+            }
+            $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("can't export");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 (function($) {
 	var date = new Date();
     date.setDate(date.getDate() > 0);
@@ -175,16 +206,15 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
 
-        // exportTableSumInterval(dateFromFilter, intervalFromFilter, channelFromFilter, sessionParams.NAME);
+        exportTableKIP(startDateFromFilter, endDateFromFilter, tenantFromFilter, channelFromFilter, sessionParams.NAME);
     });
 
     $('#btn-go').click(function(){
-        dateFromFilter = $('#input-date').val();
-        intervalFromFilter = $('#interval').val();
+        startDateFromFilter = $("#start-date").val();
+        endDateFromFilter = $("#end-date").val();
+        tenantFromFilter = $("#layanan_name").val();
         channelFromFilter = $('#channel_name').val();
         
         callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
-
-    
 })(jQuery);
