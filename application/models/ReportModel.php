@@ -426,7 +426,7 @@ Class ReportModel extends CI_Model {
        
         if($d_start)
         {
-            $this->db->where('a.tanggal > ',$d_start);
+            $this->db->where('a.tanggal >= ',$d_start);
         }
         if($d_end)
         {

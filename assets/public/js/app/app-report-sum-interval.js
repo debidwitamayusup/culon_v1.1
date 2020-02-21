@@ -139,7 +139,7 @@ function setDatePicker() {
     });
 }
 
-$(function($) {
+(function($) {
 	var date = new Date();
     date.setDate(date.getDate() > 0);
     $('#input-date').datepicker({

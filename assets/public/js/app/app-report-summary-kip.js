@@ -110,7 +110,7 @@ function callTableKIP(start_date,end_date, tenant_id, channel_id){
 
 function drawTableKIP(response){
     $("#mytbody").empty();
-
+    $("#mytfoot").empty();
 	if (response.data.length != 0) {
         var total=0;
 		for (var i = 0; i < response.data.length; i++) {
@@ -180,7 +180,7 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
         
-        callTableKIP($('start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
+        callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
 
     
