@@ -116,12 +116,12 @@ function drawTableKIP(response){
 		for (var i = 0; i < response.data.length; i++) {
 			$('#tableReportKIP').find('tbody').append('<tr>'+
                 '<td class="text-center">'+(i+1)+'</td>'+
-                '<td class="text-center">'+response.data[i].CATEGORY+'</td>'+
+                '<td class="text-left">'+response.data[i].CATEGORY+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].JUMLAH)+'</td>'+
             +'</tr>')
             total += parseInt(response.data[i].JUMLAH || 0)
         }
-        $('#tableReportKIP').find('tfoot').append('+<th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold" width="20">Total</th>'+
+        $('#tableReportKIP').find('tfoot').append('+<th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold text-center" width="20">Total</th>'+
         '<th class="wd-15p border-bottom-0 font-weight-extrabold">'+addCommas(total)+'</th>')
 	} else {
         $('#tableReportKIP').find('tbody').append('<tr>'+
