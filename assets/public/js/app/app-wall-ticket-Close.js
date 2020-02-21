@@ -19,7 +19,7 @@ function addCommas(commas) {
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
@@ -55,7 +55,7 @@ function drawStackedBar(params, index, params_year, tenant_id) {
             console.log(response);
             
             var numberWithCommas = function (x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             };
 
             var dataStacked = [];
@@ -185,7 +185,7 @@ function drawHorizontalChart(response) {
                             //       return value;
                             value = value.toString();
                             value = value.split(/(?=(?:...)*$)/);
-                            value = value.join(',');
+                            value = value.join('.');
                             return value;
                         }
                     }

@@ -34,7 +34,7 @@ function addCommas(commas)
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
@@ -300,7 +300,7 @@ function drawChartPercentageToday(response){
                            //       return value;
                             value = value.toString();
                             value = value.split(/(?=(?:...)*$)/);
-                            value = value.join(',');
+                            value = value.join('.');
                             return value;
                         }
                     }
