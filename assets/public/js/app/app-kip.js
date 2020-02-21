@@ -262,7 +262,7 @@ function drawChartSubCategory(response){
 			}]
 			
 			var numberWithCommas = function (x) {
-				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 			};
 			var bar_ctx = document.getElementById('echart' + value);
 			
@@ -580,7 +580,7 @@ function drawPieChart(response) {
 							// console.log(data);
 							value = value.toString();
 							value = value.split(/(?=(?:...)*$)/);
-							value = value.join(',');
+							value = value.join('.');
 							return data.labels[tooltipItem.index] + ': ' + value;
 						}
 					} // end callbacks:
@@ -683,7 +683,7 @@ function drawKipPerChannelChart(response) {
 
 		});
 		var numberWithCommas = function (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         };
 		var bar_ctx = document.getElementById('horizontalBarKIP');
 		
@@ -713,6 +713,11 @@ function drawKipPerChannelChart(response) {
 						stacked: true,
 						gridLines: {
 							display: false
+						},
+						ticks: {
+							callback: function (value) {
+								return numberWithCommas(value);
+							},
 						},
 					}],
 					yAxes: [{
@@ -798,7 +803,7 @@ function addCommas(commas) {
 	x2 = x.length > 1 ? '.' + x[1] : '';
 	var rgx = /(\d+)(\d{3})/;
 	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		x1 = x1.replace(rgx, '$1' + '.' + '$2');
 	}
 	return x1 + x2;
 }

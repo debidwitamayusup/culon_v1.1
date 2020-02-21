@@ -129,7 +129,7 @@ function callSumPerTenant(params, index, params_year, tenant_id){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            // console.log(response);
+            console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},900000);
             drawChartPerTenant(response);
@@ -202,7 +202,7 @@ function drawPieChartSumAllTenant(response){
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
-                        value = value.join(',');
+                        value = value.join('.');
                         return data.labels[tooltipItem.index]+': '+ value;
                     }
               } // end callbacks:
@@ -269,118 +269,17 @@ function drawPieChartSumAllTenant(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
-// function drawChartPerTenant(response){
-//     let arrTenant = [], dataTotal = [], dataChannel = [];
-
-//     var j=0;
-//     response.data.forEach(function(value,index){
-//         arrTenant.push(value.TENANT_ID);
-//         // value.forEach(function(value,index){
-//         //     dataTotal.push(value.DATA);
-//         // });
-//         // for (var i = 0; i < response.data['0']['DATA'].length; i++) {
-//         // response.data[i].DATA.forEach(function(value, index){
-//         j.toString();
-//         dataTotal.push(response.data[j]['DATA']);
-//         // });
-//         j++;
-//         // }        
-//     });
-//     console.log(dataTotal)
-//     // response.data.DATA.forEach(function(value,index){
-//     //     dataTotal.push(value.DATA);
-//     // });
-//     dataChannel = response.channel;
-//     // response.channel.forEach(function(value,index){
-//     //     dataChannel.push(value.channel);
-//     // });
-//     console.log(response.data[0].DATA[0]);
-//     var color = ['#e41313','#467fcf','#fbc0d5','#31a550','#607d8b','#3866a6','#80cbc4','#343a40','#45aaf2','#6574cd','#ff9933','#089e60','#6e273e'];
-
-//     var dataStacked = [];
-//     var datasetStacked = "";
-//     for (var i = 0; i < response.data.length; i++) {
-//         datasetStacked = {
-//                     label: dataChannel[i],
-//                     data: dataTotal[i],
-//                     backgroundColor: color[i],
-//                     hoverBackgroundColor: color[i],
-//                     hoverBorderWidth: 0
-//                 }
-//                 dataStacked.push(datasetStacked);
-//     }
-//     console.log(color);
-
-//     // console.log(response.data);
-//     var numberWithCommas = function (x) {
-//         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-//     };
-
-//     var bar_ctx = document.getElementById('horizontalBarWallSummary');
-
-//     var bar_chart = new Chart(bar_ctx, {
-//         // type: 'bar',
-//         type: 'horizontalBar',
-//         data: {
-//             labels: arrTenant,
-//             datasets: dataStacked
-//         },
-//         options: {
-//             responsive: true,
-//             maintainAspectRatio: false,
-//             animation: {
-//                 duration: 10,
-//             },
-//             // tooltips: {
-//             //     mode: 'label',
-//             //     callbacks: {
-//             //         label: function (tooltipItem, data) {
-//             //             return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-//             //         }
-//             //     }
-//             // },
-//             scales: {
-//                 xAxes: [{
-//                     stacked: true,
-//                     gridLines: {
-//                         display: false
-//                     },
-//                 }],
-//                 yAxes: [{
-//                     stacked: true,
-//                     ticks: {
-//                         callback: function (value) {
-//                             return numberWithCommas(value);
-//                         },
-//                     },
-//                 }],
-//             },
-//             legend: {
-//                 display: true,
-//                 position: "top",
-//                 align: "start",
-//                 labels: {
-//                     boxWidth: 10
-//                 }
-//             }
-//         },
-//         // plugins: [{
-//         //  beforeInit: function (chart) {
-//         //      chart.data.labels.forEach(function (value, index, array) {
-//         //          var a = [];
-//         //          a.push(value.slice(0, 5));
-//         //          var i = 1;
-//         //          while (value.length > (i * 5)) {
-//         //              a.push(value.slice(i * 5, (i + 1) * 5));
-//         //              i++;
-//         //          }
-//         //          array[index] = a;
-//         //      })
-//         //  }
-//         // }]
-//     });
-
-// }
+function addCommas(commas) {
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
 
 function drawChartPerTenant(response){
     // destroyHorizontalChart();
@@ -411,6 +310,7 @@ function drawChartPerTenant(response){
         dataLive.push(response.data[i].DATA[2]);
         dataChatbot.push(response.data[i].DATA[12]);
     }
+
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{
          name: 'Whatsapp',
@@ -479,6 +379,7 @@ function drawChartPerTenant(response){
          data: dataChatbot
     }];
     /*----echartTicketUnit----*/
+
     var optionWallSummary = {
         tooltip: {
             trigger: 'axis',

@@ -40,7 +40,7 @@ function addCommas(commas) {
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
@@ -228,7 +228,7 @@ function drawChartPercentageMonth(response) {
                             //       return value;
                             value = value.toString();
                             value = value.split(/(?=(?:...)*$)/);
-                            value = value.join(',');
+                            value = value.join('.');
                             return value;
                         }
                     }
@@ -421,7 +421,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
         // Return with commas in between
         var numberWithCommas = function (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         };
 
         var dataStacked = [];
