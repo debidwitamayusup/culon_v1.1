@@ -118,6 +118,7 @@ Class ReportModel extends CI_Model {
         }
         return false;
     }
+
     public function get_datareportSCloseTicket_PerCh($tid,$d_start,$d_end,$channel,$meth)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -455,6 +456,10 @@ Class ReportModel extends CI_Model {
                 }
                 return $result;
             }
+            else
+            {
+                return array($this->data_reportTraffic($data->TANGGAL,$tid, $meth));
+            }
            
         }
 
@@ -512,6 +517,41 @@ Class ReportModel extends CI_Model {
 
     }
 
+   
+
+
+    #endregion :: Raga
+
+    #region :: debi
+    public function get_datareportSIntervalMonth($tid,$chn,$month,$meth)
+    {
+        
+                if ($meth == 'data') {    
+                    
+                    $datareport = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
+                    if($datareport)
+                    {
+                        $result = $datareport;
+                    }
+                    else{
+                        $result = false;
+                    }
+
+                }else{
+                    $result[] = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
+                }
+
+            if($result)
+            {
+                return $result;
+            }else{
+                return false;
+            }
+    }
+    #endregion :: debi
+
+    #region :: additional-function
+
     function data_reportTraffic($dt ,$tid, $meth)
     {
         $year = date('Y');
@@ -566,37 +606,6 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    #endregion :: Raga
-
-    #region :: debi
-    public function get_datareportSIntervalMonth($tid,$chn,$month,$meth)
-    {
-        
-                if ($meth == 'data') {    
-                    
-                    $datareport = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
-                    if($datareport)
-                    {
-                        $result = $datareport;
-                    }
-                    else{
-                        $result = false;
-                    }
-
-                }else{
-                    $result[] = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
-                }
-
-            if($result)
-            {
-                return $result;
-            }else{
-                return false;
-            }
-    }
-    #endregion :: debi
-
-    #region :: additional-function
     function datareportSInterval($tid,$chn,$interval_v,$interval_s,$interval_e,$date,$meth)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
