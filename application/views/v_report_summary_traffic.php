@@ -110,7 +110,7 @@
                                 <td>SCR</td>
                                 </tr>
                             </thead>
-                            <tbody id="#mytbody">
+                            <tbody id="mytbody">
                              
                             </tbody>
                         </table>
