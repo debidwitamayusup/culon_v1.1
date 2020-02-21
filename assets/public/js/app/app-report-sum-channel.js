@@ -85,7 +85,9 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
             { className: "text-right", targets: 4 },
             { className: "text-right", targets: 5 }
         ],
-        lengthMenu: [ 13, 25, 50, 75, 100 ],
+        // lengthMenu: [ 13, 25, 50, 75, 100 ],
+        paging: false,
+        searching: false,
         destroy: true
     });
     // $("#filter-loader").fadeOut("slow");
