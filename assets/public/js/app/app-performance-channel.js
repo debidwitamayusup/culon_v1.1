@@ -175,7 +175,7 @@ function addCommas(commas) {
 	x2 = x.length > 1 ? '.' + x[1] : '';
 	var rgx = /(\d+)(\d{3})/;
 	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		x1 = x1.replace(rgx, '$1' + '.' + '$2');
 	}
 	return x1 + x2;
 }
@@ -295,7 +295,7 @@ function drawChartSumService(response) {
 						label: function (tooltipItem, data) {
 							var value = data.datasets[0].data[tooltipItem.index];
 							if (parseInt(value) >= 1000) {
-								return 'seconds: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+								return 'seconds: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 							} else {
 								return 'seconds: ' + value;
 							}
@@ -338,7 +338,7 @@ function drawChartSumService(response) {
 								//      	return value;
 								value = value.toString();
 								value = value.split(/(?=(?:...)*$)/);
-								value = value.join(',');
+								value = value.join('.');
 								return value;
 							}
 						},
@@ -349,7 +349,7 @@ function drawChartSumService(response) {
 							beginAtZero: true,
 							callback: function (value, index, values) {
 								if (parseInt(value) >= 1000) {
-									return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+									return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 								} else {
 									return value;
 								}
@@ -393,7 +393,7 @@ function drawChartSumChannel(response) {
 		var labeling = ["ART", "AHT", "AST"];
 
 		var numberWithCommas = function (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         };
 
         response.data.forEach(function(value, index){

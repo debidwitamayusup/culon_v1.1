@@ -330,7 +330,7 @@ function drawChartAndCard(response){
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
-                        value = value.join(',');
+                        value = value.join('.');
                         return data.labels[tooltipItem.index]+': '+ value;
                     }
               } // end callbacks:
@@ -412,16 +412,16 @@ function addCommas(commas)
     commas += '';
     x = commas.split('.');
     x1 = x[0];
-    x2 = x.length > 1 ? ',' + x[1] : '';
+    x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 function callTotalInteraction(params, index_time, params_year, tenant_id){
