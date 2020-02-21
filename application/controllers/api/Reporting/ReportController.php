@@ -164,7 +164,7 @@
         {
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $date = $this->security->xss_clean($this->input->post('date'));
+            $date = $this->security->xss_clean($this->input->post('tanggal'));
             $interval = $this->security->xss_clean($this->input->post('interval'));
             $chn = $this->security->xss_clean($this->input->post('channel'));
 
@@ -801,40 +801,168 @@
             }
             
         }
+
+        public function EXPORTTRF_post()
+        {
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $name = $this->security->xss_clean($this->input->post('name'));
+            $meth = 'data';
+
+            //token
+            $data = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth);
+
+            // print_r($data[0]['DATA'][0]['CHANNEL_NAME']);
+
+            
+            // // for($char = 'A';$char != 'AA';$char++)
+            // // {
+            // //     print_r($char);
+            // // }
+            // exit;
+
+            // for tanggal -> $data[0]['TANGGAL']
+            // for 
+
+            if ($data) {
+                $spreadsheet = new Spreadsheet();
+                 
+                $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+                ->setLastModifiedBy('INFOMEDIA')
+                ->setTitle('Office 2007 XLSX Document')
+                ->setSubject('Office 2007 XLSX Document')
+                ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+                ->setKeywords('office 2007 openxml php')
+                ->setCategory('result file');
+    
+                if (!$tid){
+                    $tid = 'All Tenant';
+                }
+    
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A1','Summary Traffic - '.$tid)
+                ->setCellValue('A2','Export Time ')
+                ->setCellValue('A3','Export By ')
+                ->setCellValue('B2',date('d-m-Y H:i:s'))
+                ->setCellValue('B3', $name)
+                ->setCellValue('C2','Filter Start ')
+                ->setCellValue('C3','Filter END ')
+                ->setCellValue('D2', $d_start)
+                ->setCellValue('D3', $d_end)
+                ->setCellValue('A4', 'NO')
+                ->setCellValue('B4', 'TANGGAL')
+                ;
+                
+                $z = 0;
+                for($y=3;$y<=28;$y++)
+                {
+                    if($z<13)
+                    {
+                        $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($y,4)->setValue($data[0]['DATA'][$z]['CHANNEL_NAME']);
+                    }
+                    
+                    $z++;
+                    $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($y,5)->setValue('COF');
+                    $y++;
+                    $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($y,5)->setValue('SCR');
+                }
+                
+
+                $spreadsheet->getActiveSheet()->mergeCells('A1:AB1');
+                $spreadsheet->getActiveSheet()->mergeCells('A4:A5');
+                $spreadsheet->getActiveSheet()->mergeCells('B4:B5');
+                $spreadsheet->getActiveSheet()->mergeCells('C4:D4');
+                $spreadsheet->getActiveSheet()->mergeCells('E4:F4');
+                $spreadsheet->getActiveSheet()->mergeCells('G4:H4');
+                $spreadsheet->getActiveSheet()->mergeCells('I4:J4');
+                $spreadsheet->getActiveSheet()->mergeCells('K4:L4');
+                $spreadsheet->getActiveSheet()->mergeCells('M4:N4');
+                $spreadsheet->getActiveSheet()->mergeCells('O4:P4');
+                $spreadsheet->getActiveSheet()->mergeCells('Q4:R4');
+                $spreadsheet->getActiveSheet()->mergeCells('S4:T4');
+                $spreadsheet->getActiveSheet()->mergeCells('U4:V4');
+                $spreadsheet->getActiveSheet()->mergeCells('W4:X4');
+                $spreadsheet->getActiveSheet()->mergeCells('Y4:Z4');
+                $spreadsheet->getActiveSheet()->mergeCells('AA4:AB4');
+
+                $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:AB5')->applyFromArray($this->ss_formatter('header'));
+    
+    
+                $i=6; 
+                foreach($data as $datas) {
+                   
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, $i-4)
+                    ->setCellValue('B'.$i, $datas['TANGGAL']);
+
+                    $i2=3;
+                    foreach($datas['DATA'] as $datas2)
+                    {
+                        $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($i2, $i)->setValue($datas2['COF']);
+                        $i2 ++;
+                        $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($i2, $i)->setValue($datas2['SCR']);
+                        $i2 ++;
+                    }
+                   
+                    $i++;
+                }
+                $x = $i-1;
+
+                    for($char = 'A';$char != 'AA';$char++)
+                    {
+                        $spreadsheet->getActiveSheet()->getColumnDimension($char)->setAutoSize(true);
+                    }
+                    $spreadsheet->getActiveSheet()->getColumnDimension('AA')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('AB')->setAutoSize(true);
+    
+    
+                    $spreadsheet->getActiveSheet()->getStyle('A5:AB'.$x)->applyFromArray($this->ss_formatter('body'));
+    
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A5:AB'.$x);
+    
+                    $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
+                    $spreadsheet->setActiveSheetIndex(0);
+                    $filename = $name.' SC Report '.date('d-m-Y H').'.xlsx';
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename='.$filename);
+                    header('Cache-Control: max-age=0');
+                    header('Cache-Control: max-age=1');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                    header('Cache-Control: cache, must-revalidate'); 
+                    header('Pragma: public'); 
+    
+                    $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer->save($path.$filename);
+                    //$writer->save('php://output');
+                    $res = base_url().'public/reportdata/'.$filename;
+    
+                    
+                        $this->response([
+                            'status'  => TRUE,
+                            'message' => 'Report Stored!',
+                            'Link'    => $res
+                                ], REST_Controller::HTTP_OK);
+                            }
+                            else {
+                                $this->response([
+                                    'status'  => FALSE,
+                                    'message' => 'Report Storing Failed!',
+                                    'Link'    => false
+                                        ], REST_Controller::HTTP_OK);
+                            }
+        }
         
 
 #endregion Raga
 
 #region :: debi
-    public function ReportingSIntervalMonth_post()
-    {
-
-        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-        $month = $this->security->xss_clean($this->input->post('month'));
-        $chn = $this->security->xss_clean($this->input->post('channel'));
-
-        $meth = 'data';
-        //token
-        $res = $this->module_model->get_datareportSIntervalMonth($tid,$chn,$month,$meth);
-        // print_r($res);
-        // exit;
-
-        if ($res) {
-            $this->response([
-                'status'  => TRUE,
-                'message' => 'Data available!',
-                'data'    => $res
-                    ], REST_Controller::HTTP_OK);
-                }
-        else {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'Not Found!',
-                'data'    => array()
-                    ], REST_Controller::HTTP_OK);
-        }
-    }
-
         public function EXPORTSCLOSE_post()
         {
 
