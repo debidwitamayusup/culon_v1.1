@@ -25,11 +25,50 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     getTenant('')
-    $('#input-date').datepicker("setDate", v_params_today);
-    drawTableSumInterval(v_params_today,'1','', '');
+    console.log(n);
+    // $('#input-date').datepicker("setDate", '1');
+    $('#month_name option[value=' + n + ']').attr('selected', 'selected');
+    drawTableSumInterval( n,'','');
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
+
+function channelToName(channel_id){
+    if (channel_id){
+        return channels[channel_id - 1] || '';
+    }
+    return 'All Channel'
+}
+
+function drawTableSumInterval(month ,channel, tenant_id){
+    $("#filter-loader").fadeIn("slow");
+	$('#tableReportSumIntervalMonth').DataTable({
+        ajax: {
+            url : base_url + 'api/Reporting/ReportController/ReportingSIntervalMonth',
+            type : 'POST',
+            data :{
+               month: month,
+                channel: channel,
+                tenant_id: tenant_id
+            }
+        },
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-center", targets: 1 },
+			{ className: "text-center", targets: 2 },
+			{ className: "text-center", targets: 3 },
+			{ className: "text-center", targets: 4 },
+			{ className: "text-right", targets: 5 },
+			{ className: "text-right", targets: 6 },
+            { className: "text-right", targets: 7},
+            // { className: "text-right", targets: 8}
+        ],
+        paging: false,
+        destroy: true
+    });
+    $("#filter-loader").fadeOut("slow");
+    // console.log(data);
+}
 
 function getTenant(date){
     $.ajax({
@@ -58,44 +97,6 @@ function getTenant(date){
             alert("error");
         },
     });
-}
-
-function channelToName(channel_id){
-    if (channel_id){
-        return channels[channel_id - 1] || '';
-    }
-    return 'All Channel'
-}
-
-function drawTableSumInterval(date,interval,channel, tenant_id){
-    $("#filter-loader").fadeIn("slow");
-	$('#tableReportSumInterval').DataTable({
-        ajax: {
-            url : base_url + 'api/Reporting/ReportController/ReportingSInterval',
-            type : 'POST',
-            data :{
-                date: date,
-                interval: interval,
-                channel: channel,
-                tenant_id: tenant_id
-            }
-        },
-        columnDefs: [
-			{ className: "text-center", targets: 0 },
-			{ className: "text-center", targets: 1 },
-			{ className: "text-center", targets: 2 },
-			{ className: "text-center", targets: 3 },
-			{ className: "text-center", targets: 4 },
-			{ className: "text-right", targets: 5 },
-			{ className: "text-right", targets: 6 },
-            { className: "text-right", targets: 7},
-            // { className: "text-right", targets: 8}
-        ], 
-        paging: false,
-        destroy: true
-    });
-    $("#filter-loader").fadeOut("slow");
-    // console.log(data);
 }
 
 function exportTableSumInterval(tanggal,interval,channel,name){
@@ -139,7 +140,7 @@ function setDatePicker() {
     });
 }
 
-(function($) {
+(function ($) {
 	var date = new Date();
     date.setDate(date.getDate() > 0);
     $('#input-date').datepicker({
@@ -154,7 +155,7 @@ function setDatePicker() {
         // }
     });
     $('#btn-export').click(function(){
-        dateFromFilter = $('#input-date').val();
+        dateFromFilter = $('#month_name').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
 
@@ -166,7 +167,7 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
         
-        drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
+        drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
     });
 
     

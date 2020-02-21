@@ -164,7 +164,7 @@
         {
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $date = $this->security->xss_clean($this->input->post('tanggal'));
+            $date = $this->security->xss_clean($this->input->post('date'));
             $interval = $this->security->xss_clean($this->input->post('interval'));
             $chn = $this->security->xss_clean($this->input->post('channel'));
 
@@ -806,6 +806,35 @@
 #endregion Raga
 
 #region :: debi
+    public function ReportingSIntervalMonth_post()
+    {
+
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+        $month = $this->security->xss_clean($this->input->post('month'));
+        $chn = $this->security->xss_clean($this->input->post('channel'));
+
+        $meth = 'data';
+        //token
+        $res = $this->module_model->get_datareportSIntervalMonth($tid,$chn,$month,$meth);
+        // print_r($res);
+        // exit;
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+                }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'data'    => array()
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
         public function EXPORTSCLOSE_post()
         {
 

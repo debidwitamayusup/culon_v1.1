@@ -154,7 +154,7 @@
                             style="font-size:12px" id="wall-month-tbl">
                             <thead class="text-center bg-head">
                                 <tr>
-                                    <td rowspan="2" class="text-white font-weight-extrabold">Dates</td>
+                                    <td rowspan="2" class="text-white font-weight-extrabold">Days</td>
                                     <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
                                     <td colspan="14" class="text-white font-weight-extrabold">Channel</td>
                                 </tr>

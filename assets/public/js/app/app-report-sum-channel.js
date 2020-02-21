@@ -36,7 +36,7 @@ $(document).ready(function () {
 function getTenant(date){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
             "date" : date
         },
@@ -51,7 +51,7 @@ function getTenant(date){
             var html = '<option value="">All Tenant</option>';
             // var html = '';
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
                 $('#tenant-id').html(html);
         },
@@ -63,7 +63,7 @@ function getTenant(date){
 }
 
 function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
-    // $("#filter-loader").fadeIn("slow");
+    $("#filter-loader").fadeIn("slow");
     $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
@@ -85,7 +85,9 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
             { className: "text-right", targets: 4 },
             { className: "text-right", targets: 5 }
         ],
-        lengthMenu: [ 13, 25, 50, 75, 100 ],
+        // lengthMenu: [ 13, 25, 50, 75, 100 ],
+        paging: false,
+        searching: false,
         destroy: true
     });
     // $("#filter-loader").fadeOut("slow");
@@ -195,7 +197,7 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
-    // $("#filter-loader").fadeIn("slow");
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/Reporting/ReportDiagramsController/ReportingDiagramsSC',
@@ -318,6 +320,7 @@ function drawPieChartSumChannel(response){
     function done(){
         baseImg = myChart1.toBase64Image();
     }
+    $("#filter-loader").fadeOut("slow");
 }
 
 
@@ -384,7 +387,7 @@ function getBase64Image(img) {
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        $("#filter-loader").fadeIn("slow");
+        // $("#filter-loader").fadeIn("slow");
         drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         $("#filter-loader").fadeOut("slow");

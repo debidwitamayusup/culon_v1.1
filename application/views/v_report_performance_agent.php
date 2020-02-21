@@ -23,8 +23,7 @@
                                         <div class="input-group-text">
                                             <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="Start Date" type="text"
-                                        id="start-date">
+                                    </div><input class="form-control fc-datepicker" placeholder="Start Date" type="text" id="start-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>

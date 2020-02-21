@@ -32,8 +32,12 @@ var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    drawTablePerformOps('','','');
+    getTenant('');
+    $('#start-date').datepicker("setDate", v_params_today);
+    $('#end-date').datepicker("setDate", v_params_today);
+    startDateFromFilter = v_params_today;
+    endDateFromFilter = v_params_today;
+    drawTablePerformOps('',v_params_today,v_params_today);
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
@@ -55,7 +59,7 @@ function channelToName(channel_id){
 function getTenant(date){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
             "date" : date
         },
@@ -70,7 +74,7 @@ function getTenant(date){
             var html = '<option value="">All Tenant</option>';
             // var html = '';
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
                 $('#layanan_name').html(html);
         },
@@ -81,7 +85,7 @@ function getTenant(date){
     });
 }
 
-function drawTablePerformOps(tenant_id, channel_id, month){
+function drawTablePerformOps_old(tenant_id, channel_id, month){
     $("#filter-loader").fadeIn("slow");
 	$('#tableOperation2').DataTable({
         // processing : true,
@@ -103,6 +107,36 @@ function drawTablePerformOps(tenant_id, channel_id, month){
 			{ className: "text-center", targets: 4 },
 			{ className: "text-center", targets: 5 },
 			{ className: "text-right", targets: 6 }
+		], 
+        destroy: true
+    });
+    $("#filter-loader").fadeOut("slow");
+}
+
+function drawTablePerformOps(tenant_id, start_date, end_date){
+    $("#filter-loader").fadeIn("slow");
+	$('#tableOperationPerform1').DataTable({
+        // processing : true,
+        // serverSide : true,
+        ajax: {
+            url : base_url + 'api/Reporting/ReportController/ReportingOPS',
+            type : 'POST',
+            data :{
+                tenant_id: tenant_id,
+                start_date: start_date,
+                end_date: end_date
+            }
+        },
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-center", targets: 1 },
+			{ className: "text-right", targets: 2 },
+			{ className: "text-right", targets: 3 },
+			{ className: "text-right", targets: 4 },
+			{ className: "text-center", targets: 5 },
+			{ className: "text-center", targets: 6 },
+			{ className: "text-center", targets: 7 },
+			{ className: "text-right", targets: 8 }
 		], 
         destroy: true
     });
@@ -143,19 +177,56 @@ function exportTablePerformOps(tenant_id, channel_id, month, name){
     });
 }
 
+function setDatePicker() {
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({
+        "cursor": "pointer",
+        "background": "white"
+    });
+}
+
 //jquery
 (function ($) {
+    var date = new Date();
+    date.setDate(date.getDate() > 0);
+    $('#start-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_start_date = this.value;
+        // }
+    });
+
+    $('#end-date').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        // onSelect: function (dateText) {
+        //  // console.log(this.value);
+        //  v_end_date = this.value;
+        // }
+    });
+
     $('#btn-export').click(function(){
         // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
         exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
     });
 
-    $('#btn-go ').click(function(){
+    $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
         channelFromFilter = $('#channel_name').val();
         monthFromFilter = $('#month_name').val();
         
-        drawTablePerformOps($('#layanan_name').val(), $('#channel_name').val(), $('#month_name').val());
+        drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
     $('#tableOperationPerform1').dataTable();

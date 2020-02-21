@@ -20,23 +20,23 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
                                     </div><input class="form-control fc-datepicker" placeholder="Start Date"
-                                        type="text">
+                                        type="text" id="start-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:130px">
+                                <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text">
+                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text" id="end-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-2">
@@ -50,36 +50,36 @@
                                 </div>
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-filter"></i></button>
 
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-go"><i
+                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-export"><i
                                         class="fas fa-download mr-2"></i>Export</button>
 
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive" style="padding:8px !important;">
-                        <table id="reportAgentPerformance" class="table table-striped table-bordered fontNunito10">
+                    <div class="table-responsive" style="padding:1px !important;">
+                        <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Whatsapp</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Instagram</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Twitter</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Twitter DM</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Facebook</td>
-                                    <td colspan="2"class="wd-15p border-bottom-0">Messenger</td>
-                                    <td colspan="2"class="wd-15p border-bottom-0">Email</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Telegram</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Line</td>
-                                    <td colspan="2" class="wd-15p border-bottom-0">Chatbot</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Voice</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Email</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">Live Chat</td>
                                     <td colspan="2" class="wd-15p border-bottom-0">SMS</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Telegram</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Facebook</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Messenger</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Twitter</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Line</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Instagram</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Whatsapp</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Twitter DM</td>
+                                    <td colspan="2" class="wd-15p border-bottom-0">Chatbot</td>
                                 </tr>
                                 <tr>
                                 <td>COF</td>
@@ -110,8 +110,8 @@
                                 <td>SCR</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="mytbody">
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">2019-10-01</td>
                                     <td class="text-right">90</td>
@@ -260,7 +260,7 @@
                                     <td class="text-center">90%</td>
                                     <td class="text-right">90</td>
                                     <td class="text-center">90%</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

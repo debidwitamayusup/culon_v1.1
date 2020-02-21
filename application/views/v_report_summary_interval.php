@@ -20,7 +20,7 @@
                      <div class="card-body">
                          <div class="row">
                              <div class="col-xs-auto ml-1">
-                                 <div class="input-group" style="width:150px">
+                                 <div class="input-group" style="width:140px">
                                      <div class="input-group-prepend">
                                          <div class="input-group-text">
                                              <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -69,7 +69,7 @@
                                  </div>
                              </div>
                              <div class="col-xs-auto ml-1">
-                                 <button class="btn btn-sm btn-dark" type="button" style="height:35px" id="btn-go"><i
+                                 <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                          class="fas fa-filter"></i></button>
 
                              </div>
@@ -81,7 +81,7 @@
                          </div>
 
                          <div class="table-responsive">
-                             <table id="tableReportSumInterval" class="table table-striped table-bordered fontNunito12"
+                             <table id="tableReportSumInterval" class="table table-sm table-striped table-bordered fontNunito12"
                                  width="100%">
                                  <thead class="text-center text-white bg-head">
                                      <tr>
@@ -97,7 +97,7 @@
                                          </td>
                                      </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody id="mytbody">
                                      <!-- <tr>
                                         <td class="text-center">00:00:00</td>
                                         <td class="text-right">00:00:00</td>

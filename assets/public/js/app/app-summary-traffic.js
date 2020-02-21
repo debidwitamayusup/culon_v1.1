@@ -232,7 +232,7 @@ function drawCardInteractionNew(value){
     '<div class="col-xl-4 col-lg-4 col-md-12">'+
         '<div class="mini-stat-summary clearfix rounded" style="background: '+value.channel_color+'">'+
             '<div class="row">'+
-                '<div class="col-xs-4 mr-1 ml-2">'+
+                '<div class="col-sm-3 mr-1 ml-2">'+
                     '<div class="d-flex flex-row text-center">'+
                         '<div class="bd-highlight">'+
                             '<img src="'+value.image_icon+'" style="height:50px">'+

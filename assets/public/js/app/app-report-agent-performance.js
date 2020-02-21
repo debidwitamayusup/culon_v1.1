@@ -61,7 +61,7 @@ function channelToName(channel_id){
 function getTenant(date){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/GetTennantscr',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
             "date" : date
         },
@@ -76,7 +76,7 @@ function getTenant(date){
             var html = '<option value="">All Tenant</option>';
             // var html = '';
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i]+'>'+response.data[i]+'</option>';
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
                 $('#layanan_name').html(html);
         },
