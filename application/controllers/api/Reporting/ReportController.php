@@ -330,9 +330,6 @@
             }
         }
 
-        
-        
-
         // Export ke excel
         public function EXPORTSC_post()
         {
@@ -696,6 +693,114 @@
             }
         }
 
+        public function EXPORTKIP_post()
+        {
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $cid = $this->security->xss_clean($this->input->post('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->post('name'));
+
+            $data = $this->module_model->get_datareportKIP($tid,$cid,$d_start,$d_end,$meth);
+            if($data)
+            {
+                $spreadsheet = new Spreadsheet();
+
+                $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+                ->setLastModifiedBy('INFOMEDIA')
+                ->setTitle('Office 2007 XLSX Document')
+                ->setSubject('Office 2007 XLSX Document')
+                ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+                ->setKeywords('office 2007 openxml php')
+                ->setCategory('result file');
+
+                if (!$tid){
+                    $tid = 'All Tenant';
+                }
+
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A1','Summary KIP - '.$tid)
+                ->setCellValue('A2','Export Time ')
+                ->setCellValue('A3','Export By ')
+                ->setCellValue('B2',date('d-m-Y H:i:s'))
+                ->setCellValue('B3', $name)
+                ->setCellValue('C2','Start Date')
+                ->setCellValue('C3','End Date ')
+                ->setCellValue('D2', $d_start)
+                ->setCellValue('D3', $d_end)
+                ->setCellValue('A4', 'NO')
+                ->setCellValue('B4', 'KATEGORI')
+                ->setCellValue('C4', 'JUMLAH')
+                ;
+
+                $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
+                $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:C4')->applyFromArray($this->ss_formatter('header'));
+
+                $asw = 0;
+                $i=5; 
+                foreach($data as $datas) {
+
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, $i-4)
+                    ->setCellValue('B'.$i, $datas->category)
+                    ->setCellValue('C'.$i, strval(number_format($datas->jumlah,0,'.',',')))
+                    ;
+                    $asw = $asw+$datas->jumlah;
+                    $i++;
+                }
+                $x = $i-1;
+                    $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                    
+
+                    $spreadsheet->getActiveSheet()->getStyle('A5:C'.$x)->applyFromArray($this->ss_formatter('body'));
+
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:C'.$x);
+
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('B'.$i , 'TOTAL');
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('C'.$i , strval(number_format($asw,0,'.',',')));
+
+                    $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
+                    $spreadsheet->setActiveSheetIndex(0);
+                    $filename = $name.'Summary KIP Report'.date('d-m-Y H').'.xlsx';
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename='.$filename);
+                    header('Cache-Control: max-age=0');
+                    header('Cache-Control: max-age=1');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                    header('Cache-Control: cache, must-revalidate'); 
+                    header('Pragma: public'); 
+                 
+
+                    $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer->save($path.$filename);
+                    //$writer->save('php://output');
+                    $res = base_url().'public/reportdata/'.$filename;
+
+                
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+                }
+            else {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Report Storing Failed!',
+                        'Link'    => false
+                            ], REST_Controller::HTTP_OK);
+            }
+            
+        }
         
 
 #endregion Raga

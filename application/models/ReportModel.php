@@ -502,6 +502,9 @@ Class ReportModel extends CI_Model {
                 }
                 return $result;
             }
+            else{
+                return $query->result();
+            }
            
         }
 
