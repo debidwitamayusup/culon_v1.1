@@ -19,7 +19,7 @@
                      </div>
                      <div class="card-body">
                          <div class="row">
-                             <div class="col-xs-auto ml-1">
+                             <div class="col-xs-auto ml-1" style="margin-bottom:0px !important;">
                                  <div class="input-group" style="width:140px">
                                      <div class="input-group-prepend">
                                          <div class="input-group-text">
