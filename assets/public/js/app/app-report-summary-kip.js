@@ -121,7 +121,7 @@ function drawTableKIP(response){
             +'</tr>')
             total += parseInt(response.data[i].JUMLAH || 0)
         }
-        $('#tableReportKIP').find('tfoot').append('+<th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold text-center" width="20">Total</th>'+
+        $('#tableReportKIP').find('tfoot').append('<th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold text-center" width="20">Total</th>'+
         '<th class="wd-15p border-bottom-0 font-weight-extrabold">'+addCommas(total)+'</th>')
         $("#filter-loader ").fadeOut("slow");
 	} else {

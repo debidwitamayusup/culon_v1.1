@@ -4,7 +4,7 @@ var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
-var dateFromFilter = '';
+var monthFromFilter = '';
 var intervalFromFilter = '';
 var channelFromFilter = '';
 if (o < 10) {
@@ -12,6 +12,19 @@ if (o < 10) {
 } 
 if (n < 10) {
   n = '0' + n;
+}
+
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+];
+
+function monthNumToName(month) {
+    if(month){
+        return months[month - 1] || '';
+    }
+    return 'All Month';
 }
 
 var channels = [
@@ -99,17 +112,17 @@ function getTenant(date){
     });
 }
 
-function exportTableSumInterval(tanggal,interval,channel,name){
+function exportTableSumIntervalMonth(month,channel,name){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
         type:'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTSI',
+        url: base_url + 'api/Reporting/ReportController/EXPORTSIMONTH',
         data:{
-            tanggal: tanggal,
-            interval: interval,
+            month: month,
             channel: channel,
             name: name,
-            channel_name: channelToName(channel)
+            channel_name: channelToName(channel),
+            month_name: monthNumToName(month)
         },
 
         success: function(r){
@@ -117,6 +130,7 @@ function exportTableSumInterval(tanggal,interval,channel,name){
             
             if (response.status != false) {
                 window.location = response.Link
+                // console.log(response);
             } else {
                 alert("Can't Export Empty Table!");
             }
@@ -155,15 +169,15 @@ function setDatePicker() {
         // }
     });
     $('#btn-export').click(function(){
-        dateFromFilter = $('#month_name').val();
+        monthFromFilter = $('#month_name').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
 
-        // exportTableSumInterval(dateFromFilter, intervalFromFilter, channelFromFilter, sessionParams.NAME);
+        exportTableSumIntervalMonth(monthFromFilter, channelFromFilter, sessionParams.NAME);
     });
 
     $('#btn-go').click(function(){
-        dateFromFilter = $('#input-date').val();
+        monthFromFilter = $('#month_name').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
         
