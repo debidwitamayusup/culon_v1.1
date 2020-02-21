@@ -85,6 +85,7 @@ function channelToName(channel_id){
 }
 
 function callTableKIP(start_date,end_date, tenant_id, channel_id){
+    $("#filter-loader").fadeIn("slow");
 	$.ajax({
 		url : base_url + 'api/Reporting/ReportController/ReportingKIP',
         type : 'POST',
@@ -123,10 +124,12 @@ function drawTableKIP(response){
         }
         $('#tableReportKIP').find('tfoot').append('+<th colspan="2" class="wd-15p border-bottom-0 font-weight-extrabold" width="20">Total</th>'+
         '<th class="wd-15p border-bottom-0 font-weight-extrabold">'+addCommas(total)+'</th>')
+        $("#filter-loader ").fadeOut("slow");
 	} else {
         $('#tableReportKIP').find('tbody').append('<tr>'+
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
+        $("#filter-loader ").fadeOut("slow");
 	}
 }
 

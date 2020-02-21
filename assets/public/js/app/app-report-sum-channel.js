@@ -63,7 +63,7 @@ function getTenant(date){
 }
 
 function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
-    // $("#filter-loader").fadeIn("slow");
+    $("#filter-loader").fadeIn("slow");
     $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
@@ -197,7 +197,7 @@ function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
 }
 
 function callDrawPieChart(tenant_id, start_time, end_time){
-    // $("#filter-loader").fadeIn("slow");
+    $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'post',
         url: base_url+'api/Reporting/ReportDiagramsController/ReportingDiagramsSC',
@@ -320,6 +320,7 @@ function drawPieChartSumChannel(response){
     function done(){
         baseImg = myChart1.toBase64Image();
     }
+    $("#filter-loader").fadeOut("slow");
 }
 
 
@@ -386,7 +387,7 @@ function getBase64Image(img) {
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        $("#filter-loader").fadeIn("slow");
+        // $("#filter-loader").fadeIn("slow");
         drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         $("#filter-loader").fadeOut("slow");

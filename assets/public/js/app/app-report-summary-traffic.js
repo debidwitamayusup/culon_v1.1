@@ -57,6 +57,7 @@ function getTenant(date){
 }
 
 function callTableSummaryTraffic(tenant_id,start_date,end_date){
+    $("#filter-loader").fadeIn("slow");
 	$.ajax({
 		url : base_url + 'api/Reporting/ReportController/ReportingSTraffic',
         type : 'POST',
@@ -96,13 +97,14 @@ function drawTableSumTraffic(response){
                 '<td class="text-center">'+(i+1)+'</td>'+
                 '<td class="text-center">'+response.data[i].TANGGAL+'</td>'+
                 tdCOFSCR
-            +'</tr>')
+            +'</tr>');
+            $("#filter-loader").fadeOut("slow");
 		}
 	} else {
         $('#tableSummaryTraffic').find('tbody').append('<tr>'+
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
-        console.log(response);
+        $("#filter-loader").fadeOut("slow");
 	}
 }
 
