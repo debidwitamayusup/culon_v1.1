@@ -60,7 +60,7 @@ function drawTableSumInterval(month ,channel, tenant_id){
             url : base_url + 'api/Reporting/ReportController/ReportingSIntervalMonth',
             type : 'POST',
             data :{
-               month: month,
+                month: month,
                 channel: channel,
                 tenant_id: tenant_id
             }
