@@ -287,11 +287,13 @@
 
             //token
             $res = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$amt,$pge,$meth);
+            $count_d =  $this->module_model->get_maxrowTraffic($tid,$d_start,$d_end);
     
             if ($res) {
                 $this->response([
                     'status'  => TRUE,
                     'message' => 'Data available!',
+                    'max_row' => $count_d,
                     'data'    => $res
                         ], REST_Controller::HTTP_OK);
             }

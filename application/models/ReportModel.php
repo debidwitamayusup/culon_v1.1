@@ -554,6 +554,39 @@ Class ReportModel extends CI_Model {
 
     #region :: additional-function
 
+    public function get_maxrowTraffic($tid, $d_start, $d_end)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        $this->db->select('Count(a.tanggal) as MAXROWS');
+        $this->db->from('rpt_summary_scr a');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+       
+        if($d_start)
+        {
+            $this->db->where('a.tanggal >= ',$d_start);
+        }
+        if($d_end)
+        {
+            $this->db->where('a.tanggal <=',$d_end);
+            
+        }
+        $this->db->where('YEAR(a.tanggal)',$year);
+        $query = $this->db->get();
+        
+        if($query->row = 1)
+        {
+            return $query->row()->MAXROWS;
+        }
+        return FALSE;
+
+
+    }
+
     function data_reportTraffic($dt ,$tid, $meth)
     {
         $year = date('Y');
@@ -764,6 +797,8 @@ Class ReportModel extends CI_Model {
         }
         return false;
     }
+
+
     #endregion :: additional-function
 
     
