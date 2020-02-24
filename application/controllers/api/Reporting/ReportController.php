@@ -301,6 +301,7 @@
                 $this->response([
                     'status'  => FALSE,
                     'message' => 'Not Found!',
+                    'max_row' => 0,
                     'data'    => array()
                         ], REST_Controller::HTTP_OK);
             }
