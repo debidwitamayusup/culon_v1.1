@@ -67,14 +67,14 @@ function channelToName(channel_id){
     return 'All Channel'
 }
 
-function drawTableSumInterval(date,interval,channel, tenant_id){
+function drawTableSumInterval(tanggal,interval,channel, tenant_id){
     $("#filter-loader").fadeIn("slow");
 	$('#tableReportSumInterval').DataTable({
         ajax: {
             url : base_url + 'api/Reporting/ReportController/ReportingSInterval',
             type : 'POST',
             data :{
-                date: date,
+                tanggal: tanggal,
                 interval: interval,
                 channel: channel,
                 tenant_id: tenant_id

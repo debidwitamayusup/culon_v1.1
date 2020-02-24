@@ -591,7 +591,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         
                         'CHANNEL_NAME' => $data->CHANNEL_NAME,
-                        'COF' => strval(number_format($data->COF,0,'.',',')),
+                        'COF' => strval(number_format($data->COF,0,',','.')),
                         'SCR' => round($data->SCR,2).'%'
                     );
                     

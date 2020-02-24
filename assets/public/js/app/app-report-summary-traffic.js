@@ -108,6 +108,35 @@ function drawTableSumTraffic(response){
 	}
 }
 
+function exportTableSumTraffic(start_date, end_date, tenant_id, name){
+    $("#filter-loader").fadeIn("slow");
+    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTTRF',
+        data: {
+            start_date: start_date,
+            end_date: end_date,
+            tenant_id: tenant_id,
+            name: name
+        }
+        ,
+        success: function (r) {
+            if (r.status != false){
+                window.location = r.Link;
+            }else{
+                alert("Can't Export Empty Data");
+            }
+            $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("can't export");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 function setDatePicker() {
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
@@ -146,15 +175,15 @@ function setDatePicker() {
         // }
     });
 
-    // $('#btn-export').click(function(){
-    //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-    //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
-    // });
+    $('#btn-export').click(function(){
+        // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
+        exportTableSumTraffic(startDateFromFilter, endDateFromFilter, tenantFromFilter, sessionParams.NAME);
+    });
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
-        // channelFromFilter = $('#channel_name').val();
-        // monthFromFilter = $('#month_name').val();
+        startDateFromFilter = $('#start-date').val();
+        endDateFromFilter = $("#end-date").val();
         
         callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
