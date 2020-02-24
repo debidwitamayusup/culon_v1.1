@@ -1196,7 +1196,7 @@ class Stc_Model extends CI_Model
 			, $art
 			, $aht
 			, $ast
-			, round(AVG(rpt_summ_interval_tsel.scr), 2) as scr
+			, AVG(rpt_summ_interval_tsel.scr) as scr
 			, rpt_summ_interval_tsel.tanggal as date 
 			FROM rpt_summ_interval_tsel
 			WHERE $where $where2
@@ -1211,7 +1211,7 @@ class Stc_Model extends CI_Model
 			{
 				if($data->scr != '-')
 				{
-					$scr = $data->scr.'%';
+					$scr = strval(number_format($data->scr,2,',','.')).'%';
 				}
 				else{
 					$scr = '-';
@@ -1279,7 +1279,7 @@ class Stc_Model extends CI_Model
 			, $art
 			, $aht
 			, $ast
-			, round(AVG(rpt_summary_scr.scr), 2) as scr
+			, AVG(rpt_summary_scr.scr) as scr
 			, rpt_summary_scr.tanggal as date 
 			FROM rpt_summary_scr
 			WHERE $where $where2
@@ -1294,7 +1294,7 @@ class Stc_Model extends CI_Model
 			{
 				if($data->scr != '-')
 				{
-					$scr = $data->scr.'%';
+					$scr = strval(number_format($data->scr,2,',','.')).'%';
 				}
 				else{
 					$scr = '-';

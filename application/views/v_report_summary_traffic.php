@@ -61,6 +61,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div id="index_native" class="box"></div> -->
                     <div class="table-responsive" style="padding:1px !important;">
                         <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
@@ -264,7 +265,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -272,3 +272,4 @@
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->
     <script src="<?=base_url()?>assets/public/js/app/app-report-summary-traffic.js"></script>
+    <!-- <script src="<?=base_url()?>assets/js/paginator.js"></script> -->

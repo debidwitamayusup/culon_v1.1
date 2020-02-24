@@ -105,7 +105,14 @@ function drawTableSumTraffic(response){
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
         $("#filter-loader").fadeOut("slow");
-	}
+    }
+    
+    // var config = {
+    //     table: document.getElementById("tableSummaryTraffic"),
+    //     box: document.getElementById("index_native"),
+    //     active_class: "color_page"
+    // };
+    // paginator(config);
 }
 
 function exportTableSumTraffic(start_date, end_date, tenant_id, name){
