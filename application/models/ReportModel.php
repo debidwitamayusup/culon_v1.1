@@ -517,9 +517,6 @@ Class ReportModel extends CI_Model {
 
     }
 
-   
-
-
     #endregion :: Raga
 
     #region :: debi
