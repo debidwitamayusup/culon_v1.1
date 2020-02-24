@@ -24,6 +24,7 @@ $(document).ready(function(){
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
+    $('#tableAgent').dataTable();
 });
 
 function getTenant(date){

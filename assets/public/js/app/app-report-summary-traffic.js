@@ -7,6 +7,8 @@ var m = d.getFullYear();
 var tenantFromFilter = '';
 var v_start_date = '';
 var v_end_date = '';
+var pagingFilter = '';
+var s = 0;
 var tenants = [];
 if (o < 10) {
   o = '0' + o;
@@ -24,7 +26,8 @@ $(document).ready(function(){
 	$('#end-date').datepicker("setDate", v_params_today);
 	startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
-    callTableSummaryTraffic('',v_params_today,v_params_today);
+    callTableSummaryTraffic('',v_params_today,v_params_today,'10', '0');
+    pagingFilters = $('#pagingFilter').val();
 });
 
 function getTenant(date){
@@ -56,7 +59,7 @@ function getTenant(date){
     });
 }
 
-function callTableSummaryTraffic(tenant_id,start_date,end_date){
+function callTableSummaryTraffic(tenant_id,start_date,end_date,ammount,page){
     $("#filter-loader").fadeIn("slow");
 	$.ajax({
 		url : base_url + 'api/Reporting/ReportController/ReportingSTraffic',
@@ -64,12 +67,14 @@ function callTableSummaryTraffic(tenant_id,start_date,end_date){
         data :{
             tenant_id: tenant_id,
             start_date: start_date,
-            end_date: end_date
+            end_date: end_date,
+            ammount: ammount,
+            page: page
         },
         success: function (r) {
             var response = r;
             console.log(response);
-            drawTableSumTraffic(response);
+            drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount, page);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -80,10 +85,16 @@ function callTableSummaryTraffic(tenant_id,start_date,end_date){
 	});
 }
 
-function drawTableSumTraffic(response){
+function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount, page){
     $("#mytbody").empty();
-    
-    
+    var s = ammount;
+    var h = 0;
+
+    if (page == 0){
+        h = 0;
+    }else{
+        h = (s*Number(page));
+    }
 
 	if (response.data.length != 0) {
 		for (var i = 0; i < response.data.length; i++) {
@@ -92,12 +103,12 @@ function drawTableSumTraffic(response){
                 tdCOFSCR += '<td class="text-right">'+response.data[i].DATA[j].COF+'</td>'+
                             '<td class="text-center">'+response.data[i].DATA[j].SCR+'</td>'
             }
-            console.log(tdCOFSCR);
 			$('#tableSummaryTraffic').find('tbody').append('<tr>'+
-                '<td class="text-center">'+(i+1)+'</td>'+
+                '<td class="text-center">'+(h+1)+'</td>'+
                 '<td class="text-center">'+response.data[i].TANGGAL+'</td>'+
                 tdCOFSCR
             +'</tr>');
+            h++;
             $("#filter-loader").fadeOut("slow");
 		}
 	} else {
@@ -105,7 +116,31 @@ function drawTableSumTraffic(response){
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
         $("#filter-loader").fadeOut("slow");
-	}
+    }   
+
+    var totalPage = Math.ceil(response.max_row/$('#pagingFilter').val());
+    var varA = "";
+    for (var k = 0; k < totalPage; k++){
+        // var callFunction = callTableSummaryTraffic(tenant_id, start_date, end_date, pagingFilters, k);
+        console.log($('#pagingFilter').val())
+        varA += '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+(k+1)+'</a>'
+        // console.log(varA);
+        // $("#paging").append("<a href='#' onclick='return callTableSummaryTraffic"+(tenant_id, start_date, end_date, pagingFilters, k)+"'>"+(k+1)+"</a>");
+    }
+    // console.log(varA);
+    $("#paging").empty();
+    $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
+        varA+
+        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+totalPage+"'"+')">&raquo;</a>'
+    );
+    
+    // var config = {
+    //     table: document.getElementById("tableSummaryTraffic"),
+    //     box: document.getElementById("index_native"),
+    //     active_class: "color_page"
+    // };
+    // paginator(config);
+    
 }
 
 function exportTableSumTraffic(start_date, end_date, tenant_id, name){
@@ -185,8 +220,13 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $("#end-date").val();
         
-        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
     });
+
+    // change date picker
+        $("select#pagingFilter").change(function(){
+            callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
+        });
 
     // $('#tableSummaryTraffic').dataTable();    
 })(jQuery);

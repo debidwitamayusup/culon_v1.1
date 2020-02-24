@@ -61,6 +61,14 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div id="index_native" class="box"></div> -->
+                    <div>
+                        <select class="form-control" id="pagingFilter">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
                     <div class="table-responsive" style="padding:1px !important;">
                         <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
@@ -264,11 +272,34 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <div id="paging" class="pagination">
+                        <!-- <a href="#">&laquo</a>
+                        <a href="javascript:myFunc('0')">1</a>
+                        <a href="javascript:myFunc('1')">2</a>
+                        <a href="javascript:myFunc('2')">3</a>
+                        <a href="#">&raquo</a> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        }
+
+        .pagination a.active {
+        background-color: dodgerblue;
+        color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->
     <script src="<?=base_url()?>assets/public/js/app/app-report-summary-traffic.js"></script>
+    <!-- <script src="<?=base_url()?>assets/js/paginator.js"></script> -->

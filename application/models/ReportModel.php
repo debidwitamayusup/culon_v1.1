@@ -561,7 +561,7 @@ Class ReportModel extends CI_Model {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('IFNULL(COUNT(DISTINCT a.tanggal),0) as MAXROWS');
+        $this->db->select('COUNT(DISTINCT a.tanggal) as MAXROWS');
         $this->db->from('rpt_summary_scr a');
         if($tid)
         {
@@ -578,7 +578,6 @@ Class ReportModel extends CI_Model {
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
-        
         $query = $this->db->get();
         
         // print_r($this->db->last_query());
