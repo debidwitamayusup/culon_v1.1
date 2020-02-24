@@ -416,6 +416,8 @@ Class ReportModel extends CI_Model {
     public function get_datareportTraffic($tid, $d_start, $d_end,$amt,$pge ,$meth)
     {
         $year = date('Y');
+        $pge = $pge*$amt;
+
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         $this->db->select('a.tanggal as TANGGAL');
@@ -559,7 +561,7 @@ Class ReportModel extends CI_Model {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('Count(a.tanggal) as MAXROWS');
+        $this->db->select('COUNT(DISTINCT a.tanggal) as MAXROWS');
         $this->db->from('rpt_summary_scr a');
         if($tid)
         {
@@ -576,8 +578,11 @@ Class ReportModel extends CI_Model {
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
+        $this->db->group_by('a.tanggal');
         $query = $this->db->get();
         
+        // print_r($this->db->last_query());
+        // exit;
         if($query->row = 1)
         {
             return $query->row()->MAXROWS;
