@@ -578,7 +578,7 @@ Class ReportModel extends CI_Model {
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
-        $this->db->group_by('a.tanggal');
+        
         $query = $this->db->get();
         
         // print_r($this->db->last_query());
