@@ -413,7 +413,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportTraffic($tid, $d_start, $d_end ,$meth)
+    public function get_datareportTraffic($tid, $d_start, $d_end,$amt,$pge ,$meth)
     {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -435,6 +435,11 @@ Class ReportModel extends CI_Model {
             
         }
         $this->db->where('YEAR(a.tanggal)',$year);
+        if($amt)
+        {
+            $this->db->limit($amt,$pge);
+        }
+       
 
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
@@ -516,9 +521,6 @@ Class ReportModel extends CI_Model {
         return false;
 
     }
-
-   
-
 
     #endregion :: Raga
 

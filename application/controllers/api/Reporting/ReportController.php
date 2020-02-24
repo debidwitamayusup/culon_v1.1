@@ -281,10 +281,12 @@
             
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $amt = $this->security->xss_clean($this->input->post('ammount'));
+            $pge = $this->security->xss_clean($this->input->post('page'));
             $meth = 'data';
 
             //token
-            $res = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth);
+            $res = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$amt,$pge,$meth);
     
             if ($res) {
                 $this->response([
@@ -963,34 +965,34 @@
 #endregion Raga
 
 #region :: debi
-public function ReportingSIntervalMonth_post()
-{
+        public function ReportingSIntervalMonth_post()
+        {
 
-    $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-    $month = $this->security->xss_clean($this->input->post('month'));
-    $chn = $this->security->xss_clean($this->input->post('channel'));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $month = $this->security->xss_clean($this->input->post('month'));
+            $chn = $this->security->xss_clean($this->input->post('channel'));
 
-    $meth = 'data';
-    //token
-    $res = $this->module_model->get_datareportSIntervalMonth($tid,$chn,$month,$meth);
-    // print_r($res);
-    // exit;
+            $meth = 'data';
+            //token
+            $res = $this->module_model->get_datareportSIntervalMonth($tid,$chn,$month,$meth);
+            // print_r($res);
+            // exit;
 
-    if ($res) {
-        $this->response([
-            'status'  => TRUE,
-            'message' => 'Data available!',
-            'data'    => $res
-                ], REST_Controller::HTTP_OK);
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+                    }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
             }
-    else {
-        $this->response([
-            'status'  => FALSE,
-            'message' => 'Not Found!',
-            'data'    => array()
-                ], REST_Controller::HTTP_OK);
-    }
-}
+        }
 
 
         public function EXPORTSCLOSE_post()
