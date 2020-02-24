@@ -118,7 +118,7 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
         $("#filter-loader").fadeOut("slow");
     }   
 
-    var totalPage = Math.round(response.max_row/$('#pagingFilter').val(),0);
+    var totalPage = Math.ceil(response.max_row/$('#pagingFilter').val());
     var varA = "";
     for (var k = 0; k < totalPage; k++){
         // var callFunction = callTableSummaryTraffic(tenant_id, start_date, end_date, pagingFilters, k);
@@ -129,9 +129,9 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     }
     // console.log(varA);
     $("#paging").empty();
-    $("#paging").append('<a href="#">&laquo;</a>'+
+    $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
         varA+
-        '<a href="#">&raquo;</a>'
+        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+totalPage+"'"+')">&raquo;</a>'
     );
     
     // var config = {
