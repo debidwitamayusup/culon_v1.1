@@ -202,9 +202,12 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     }
 
     indexDot = rangeWithDots.indexOf('...');
+    console.log('indexDot='+indexDot);
+    console.log(rangeWithDots);
+    console.log('rangewithdotlength= '+rangeWithDots.length);
     for (var k = 0; k < rangeWithDots.length; k++){
         if (k != indexDot){
-            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+rangeWithDots[k]+'</a></li>'
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+(rangeWithDots[k]-1)+"'"+')">'+rangeWithDots[k]+'</a></li>'
         }else{
             varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">...</a></li>'
         }
