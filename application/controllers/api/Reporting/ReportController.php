@@ -250,7 +250,6 @@
         public function ReportingOPS_post()
         {
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-           
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
             $meth = 'data';
