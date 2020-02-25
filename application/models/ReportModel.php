@@ -275,7 +275,79 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-   
+    public function get_datareportOPS($tid, $d_start, $d_end ,$meth)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+//QUERY - 
+// SUM(a.handling) as HANDLED,
+//(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+
+        $this->db->select('a.tanggal as TANGGAL, 
+        SUM(a.cof) as OFFERED,
+      
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
+        AVG(a.scr) as SCR,
+        ');
+
+        $this->db->from('v_rpt_summ_agent a');
+        // $this->db->join('m_channel b','b.channel_id = a.channel_id');
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+        if($d_start)
+        {
+            $this->db->where('a.tanggal >= ',$d_start);
+        }
+
+        if($d_end)
+        {
+            $this->db->where('a.tanggal <=',$d_end);
+            
+        }
+        // $this->db->where('YEAR(a.tanggal)',$year);
+
+        $this->db->group_by('a.tanggal');
+        $query = $this->db->get();
+
+        // print_r($this->db->last_query());
+        // exit;
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->TANGGAL,
+                        strval(number_format($data->OFFERED,0,'.',',')),
+                        0,//strval(number_format($data->HANDLED,0,'.',',')),
+                        0,//strval(number_format($data->UNHANDLED,0,'.',',')),
+                        // $data->COF,
+                        $data->ART,
+                        $data->AHT,
+                        $data->AST,
+                        round($data->SCR,2).'%'
+                    );
+                    $id++;
+                }
+                
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }  
+        }
+        return FALSE;
+    }
     
     public function get_datareportOPS2 ($tid, $d_start, $d_end ,$meth)
     {
@@ -334,6 +406,83 @@ Class ReportModel extends CI_Model {
                         0,//strval(number_format($data->HANDLED,0,'.',',')),
                         0,//strval(number_format($data->UNHANDLED,0,'.',',')),
                         // $data->COF,
+                        $data->ART,
+                        $data->AHT,
+                        $data->AST,
+                        round($data->SCR,2).'%'
+                    );
+                    $id++;
+                }
+                
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }  
+        }
+
+        return false;
+    }
+
+    public function get_datareportAP ($tid, $d_start, $d_end ,$meth)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        //QUERY - 
+        // SUM(a.handling) as HANDLED,
+        //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+        $this->db->select('a.agentid as AGENTID,
+        a.agentName as AGENTNAME,
+        a.skill_name as SKILLNAME,
+        SUM(a.cof) as OFFERED,
+      
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
+        SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
+        AVG(a.scr) as SCR,
+        ');
+
+        $this->db->from('v_rpt_summ_agent a');
+        
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+        if($d_start)
+        {
+            $this->db->where('a.tanggal >= ',$d_start);
+        }
+
+        if($d_end)
+        {
+            $this->db->where('a.tanggal <=',$d_end);
+            
+        }
+       
+
+        $this->db->group_by('a.agentid');
+        $query = $this->db->get();
+
+ 
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->AGENTID,
+                        $data->AGENTNAME,
+                        $data->SKILLNAME,
+                        strval(number_format($data->OFFERED,0,'.',',')),
+                        0,//strval(number_format($data->HANDLED,0,'.',',')),
+                        0,//strval(number_format($data->UNHANDLED,0,'.',',')),
+                        
                         $data->ART,
                         $data->AHT,
                         $data->AST,
