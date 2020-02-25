@@ -115,24 +115,37 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
         $('#tableSummaryTraffic').find('tbody').append('<tr>'+
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
+        $("#paging").empty();
+        $("#paging").append('<a disabled="">&laquo;</a>'+
+            '<a disabled="">1</a>'+
+            '<a disabled="">&raquo;</a>');
         $("#filter-loader").fadeOut("slow");
     }   
 
     var totalPage = Math.ceil(response.max_row/$('#pagingFilter').val());
     var varA = "";
-    for (var k = 0; k < totalPage; k++){
-        // var callFunction = callTableSummaryTraffic(tenant_id, start_date, end_date, pagingFilters, k);
-        console.log($('#pagingFilter').val())
-        varA += '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+(k+1)+'</a>'
-        // console.log(varA);
-        // $("#paging").append("<a href='#' onclick='return callTableSummaryTraffic"+(tenant_id, start_date, end_date, pagingFilters, k)+"'>"+(k+1)+"</a>");
-    }
-    // console.log(varA);
-    $("#paging").empty();
-    $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
-        varA+
-        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+totalPage+"'"+')">&raquo;</a>'
-    );
+    var pagDot = pagination(page, totalPage, tenant_id, start_date, end_date, ammount);
+    // var indexDot = pagDot.indexOf('...');
+    // console.log(pagDot);
+    // for (var k = 0; k < totalPage; k++){
+    //     // var callFunction = callTableSummaryTraffic(tenant_id, start_date, end_date, pagingFilters, k);
+    //     console.log($('#pagingFilter').val())
+    //     if (k != indexDot){
+    //         varA += '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+(k+1)+'</a>'
+    //     }else{
+    //         varA += '<a href="javascript:pagination('+"'"+(indexDot-1)+"','"+totalPage+"'"+')">...</a>'
+    //     }
+    //     // console.log(varA);
+    //     // $("#paging").append("<a href='#' onclick='return callTableSummaryTraffic"+(tenant_id, start_date, end_date, pagingFilters, k)+"'>"+(k+1)+"</a>");
+    // }
+    // // console.log(varA);
+    // $("#paging").empty();
+    // $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
+    //     varA+
+    //     '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+totalPage+"'"+')">&raquo;</a>'
+    // );
+    
+
     
     // var config = {
     //     table: document.getElementById("tableSummaryTraffic"),
@@ -141,6 +154,56 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     // };
     // paginator(config);
     
+}
+
+function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
+    var delta = 2,
+        range = [],
+        rangeWithDots = [],
+        l,
+        varA = "",
+        indexDot;
+
+    range.push(1);  
+
+    if (nrOfPages <= 1){
+ 	return range;
+    }
+
+    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
+        if (i < nrOfPages && i > 1) {
+            range.push(i);
+        }
+    }  
+    range.push(nrOfPages);
+
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    indexDot = rangeWithDots.indexOf('...');
+    for (var k = 0; k < rangeWithDots.length; k++){
+        if (k != indexDot){
+            varA += '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+rangeWithDots[k]+'</a>'
+        }else{
+            varA += '<a href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">...</a>'
+        }
+    }
+    $("#paging").empty();
+    $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
+        varA+
+        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+nrOfPages+"'"+')">&raquo;</a>'
+    );
+
+    // return rangeWithDots;
 }
 
 function exportTableSumTraffic(start_date, end_date, tenant_id, name){
