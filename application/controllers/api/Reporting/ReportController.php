@@ -81,6 +81,26 @@
 
             return $result;
         }
+
+        public function OptionSkill_post()
+        {
+            $res = $this->module_model->get_skill();
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
         
         public function ReportingSC_post()
         {
