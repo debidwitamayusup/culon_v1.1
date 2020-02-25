@@ -278,7 +278,7 @@
                         </table>
                     </div>
                     <div class="d-flex bd-highlight mb-2">
-                        <div class="p-2 bd-highlight">Showing 1 to 3 of 3 entries</div>
+                        <div id="showing" class="p-2 bd-highlight">Showing 0 to 0 of 0 entries</div>
                         <div class="ml-auto p-2 bd-highlight">
                         
                         <ul class="pagination" id="paging">
