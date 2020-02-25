@@ -110,7 +110,7 @@ function getSkill(){
     });
 }
 
-function drawTableAgentPerform(tenant_id, start_time, end_time, skill){
+function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
     $("#filter-loader").fadeIn("slow");
 	$('#reportAgentPerformance').DataTable({
         ajax: {
@@ -118,15 +118,15 @@ function drawTableAgentPerform(tenant_id, start_time, end_time, skill){
             type : 'POST',
             data :{
                 tenant_id: tenant_id,
-                start_time: start_time,
-                end_time: end_time,
+                start_date: start_date,
+                end_date: end_date,
                 skill: skill
             }
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-center", targets: 2 },
+			{ className: "text-left", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-right", targets: 4 },
 			{ className: "text-right", targets: 5 },
