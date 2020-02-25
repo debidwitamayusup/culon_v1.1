@@ -34,12 +34,12 @@ var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
+    // getTenant('');
     $('#start-date').datepicker("setDate", v_params_today);
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
-    drawTableAgentPerform(v_params_tenant,v_params_today,v_params_today);
+    drawTableAgentPerform('',v_params_today,v_params_today);
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
@@ -91,11 +91,11 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
     // console.log(tenantFromFilter);
     // console.log(channelFromFilter);
     // console.log(monthFromFilter);
-	$('#tableOperation1').DataTable({
+	$('#reportAgentPerformance').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
-            url : base_url + 'api/Reporting/ReportController/ReportingSPA',
+            url : base_url + 'api/Reporting/ReportController/ReportingAP',
             type : 'POST',
             data :{
                 tenant_id: tenant_id,
@@ -106,13 +106,15 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-left", targets: 2 },
+			{ className: "text-center", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-right", targets: 4 },
-			{ className: "text-center", targets: 5 },
-			{ className: "text-center", targets: 6 },
+			{ className: "text-right", targets: 5 },
+			{ className: "text-right", targets: 6 },
 			{ className: "text-center", targets: 7 },
-			{ className: "text-right", targets: 8 }
+			{ className: "text-center", targets: 8 },
+			{ className: "text-center", targets: 9 },
+			{ className: "text-right", targets: 10 },
 		], 
         destroy: true
     });
