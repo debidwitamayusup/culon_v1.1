@@ -67,7 +67,7 @@
                         <div class="col-xs-auto ml-2 mt-1">
                             Show
                         </div>
-                        <div class="col-xs-auto">
+                        <div class="col-xs-auto ml-1">
                             <div class="form-group-row">
                                 <select class="form-control-sm" id="pagingFilter">
                                     <option value="10">10</option>
@@ -76,7 +76,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-xs-auto mt-1">
+                        <div class="col-xs-auto mt-1 ml-1">
                         entries
                     </div>
                     </div>
