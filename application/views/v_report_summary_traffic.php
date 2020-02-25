@@ -64,7 +64,10 @@
                     </div>
                     <!-- <div id="index_native" class="box"></div> -->
                     <div class="row">
-                        <div class="col-sm-auto ml-1">
+                        <div class="col-xs-auto ml-2 mt-1">
+                            Show
+                        </div>
+                        <div class="col-xs-auto ml-1">
                             <div class="form-group-row">
                                 <select class="form-control-sm" id="pagingFilter">
                                     <option value="10">10</option>
@@ -73,7 +76,11 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-xs-auto mt-1 ml-1">
+                        entries
                     </div>
+                    </div>
+                    
                     <div class="table-responsive" style="padding:1px !important;">
                         <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
                             <thead class="bg-head text-center text-white">
@@ -280,9 +287,9 @@
                     <div class="d-flex bd-highlight mb-2">
                         <div id="showing" class="p-2 bd-highlight">Showing 0 to 0 of 0 entries</div>
                         <div class="ml-auto p-2 bd-highlight">
-                        
-                        <ul class="pagination" id="paging">
-                            <!-- <li class="page-item page-prev disabled">
+
+                            <ul class="pagination" id="paging">
+                                <!-- <li class="page-item page-prev disabled">
                                 <a class="page-link" href="#" tabindex="-1">Prev</a>
                             </li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -293,11 +300,11 @@
                             <li class="page-item page-next">
                                 <a class="page-link" href="#">Next</a>
                             </li> -->
-                        </ul>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-12 col-xl-4">
-                       
+
 
                     </div>
                     <!-- <div id="paging" class="pagination"> -->
