@@ -120,7 +120,7 @@ function drawTablePerformOps(tenant_id, start_date, end_date){
         // processing : true,
         // serverSide : true,
         ajax: {
-            url : base_url + 'api/Reporting/ReportController/ReportingOPS2',
+            url : base_url + 'api/Reporting/ReportController/ReportingOPS',
             type : 'POST',
             data :{
                 tenant_id: tenant_id,

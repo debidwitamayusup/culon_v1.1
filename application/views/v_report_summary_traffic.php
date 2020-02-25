@@ -281,8 +281,8 @@
                         <div class="p-2 bd-highlight">Showing 1 to 3 of 3 entries</div>
                         <div class="ml-auto p-2 bd-highlight">
                         
-                        <ul class="pagination ">
-                            <li class="page-item page-prev disabled">
+                        <ul class="pagination" id="paging">
+                            <!-- <li class="page-item page-prev disabled">
                                 <a class="page-link" href="#" tabindex="-1">Prev</a>
                             </li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -292,7 +292,7 @@
                             <li class="page-item"><a class="page-link" href="#">5</a></li>
                             <li class="page-item page-next">
                                 <a class="page-link" href="#">Next</a>
-                            </li>
+                            </li> -->
                         </ul>
                         </div>
                     </div>
