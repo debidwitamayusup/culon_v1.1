@@ -10,7 +10,7 @@
 				<!-- Navbar Right Menu-->
 				<div class="container-fluid">
 					<div class="d-flex">
-						<a class="header-brand" href="index.html">
+						<a class="header-brand" href="#">
 							<img alt="logo" class="header-brand-img main-logo"
 								src="<?=base_url()?>assets/images/brand/white-logo.png">
 						</a>
