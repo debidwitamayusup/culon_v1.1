@@ -38,6 +38,7 @@ $(document).ready(function () {
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
     drawTablePerformOps('',v_params_today,v_params_today);
+    drawTablePerformOpsBySkill('', v_params_today, v_params_today);
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
@@ -119,7 +120,7 @@ function drawTablePerformOps(tenant_id, start_date, end_date){
         // processing : true,
         // serverSide : true,
         ajax: {
-            url : base_url + 'api/Reporting/ReportController/ReportingOPS',
+            url : base_url + 'api/Reporting/ReportController/ReportingOPS2',
             type : 'POST',
             data :{
                 tenant_id: tenant_id,
@@ -137,6 +138,37 @@ function drawTablePerformOps(tenant_id, start_date, end_date){
 			{ className: "text-center", targets: 6 },
 			{ className: "text-center", targets: 7 },
 			{ className: "text-right", targets: 8 }
+		], 
+        destroy: true
+    });
+    $("#filter-loader").fadeOut("slow");
+}
+
+function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
+    $("#filter-loader").fadeIn("slow");
+	$('#tableOperationPerform2').DataTable({
+        // processing : true,
+        // serverSide : true,
+        ajax: {
+            url : base_url + 'api/Reporting/ReportController/ReportingOPS2',
+            type : 'POST',
+            data :{
+                tenant_id: tenant_id,
+                start_date: start_date,
+                end_date: end_date
+            }
+        },
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-center", targets: 1 },
+			{ className: "text-center", targets: 2 },
+			{ className: "text-right", targets: 3 },
+			{ className: "text-right", targets: 4 },
+			{ className: "text-right", targets: 5 },
+			{ className: "text-center", targets: 6 },
+			{ className: "text-center", targets: 7 },
+            { className: "text-center", targets: 8 },
+            { className: "text-right", targets: 9 },
 		], 
         destroy: true
     });
@@ -227,6 +259,7 @@ function setDatePicker() {
         monthFromFilter = $('#month_name').val();
         
         drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
     $('#tableOperationPerform1').dataTable();
