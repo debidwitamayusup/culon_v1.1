@@ -10,7 +10,7 @@ class OperationModel extends CI_Model
     public function get_all_channel(){
         $this->db->select('*');
         $this->db->from('m_channel');
-        $this->db->order_by('channel_name', 'ASC');
+        $this->db->order_by('channel_id', 'ASC');
         $query = $this->db->get();
 
 		return $query->result();
@@ -108,7 +108,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
-        order by m_channel.channel_name desc
+        order by m_channel.channel_id ASC
         ");	
 
         // $this->createLogSql();
