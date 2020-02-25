@@ -63,6 +63,26 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    public function get_skill()
+    {
+        $this->db->select('a.skill_id, a.skill_name');
+        $this->db->from('group_skill a');
+        $query = $this->db->get();
+
+       if($query->num_rows() > 0)
+        {
+            foreach( $query->result() as $data)
+            {
+                $result[] = array(
+                    'SKILL_ID'=> $data->skill_id,
+                    'SKILL_NAME' => $data->skill_name
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
     public function get_datareportSCloseTicket($tid,$d_start,$d_end,$channel,$meth)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -280,9 +300,9 @@ Class ReportModel extends CI_Model {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-//QUERY - 
-// SUM(a.handling) as HANDLED,
-//(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+        //QUERY - 
+        // SUM(a.handling) as HANDLED,
+        //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
 
         $this->db->select('a.tanggal as TANGGAL, 
         SUM(a.cof) as OFFERED,
