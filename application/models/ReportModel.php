@@ -275,16 +275,18 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportOPS($tid, $d_start, $d_end ,$meth)
+   
+    
+    public function get_datareportOPS2 ($tid, $d_start, $d_end ,$meth)
     {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-//QUERY - 
-// SUM(a.handling) as HANDLED,
-//(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
-
-        $this->db->select('a.tanggal as TANGGAL, 
+        //QUERY - 
+        // SUM(a.handling) as HANDLED,
+        //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+        $this->db->select('a.skill_id as SKILLID,
+        a.skill_name as SKILLNAME,
         SUM(a.cof) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
@@ -311,7 +313,7 @@ Class ReportModel extends CI_Model {
         }
         // $this->db->where('YEAR(a.tanggal)',$year);
 
-        $this->db->group_by('a.tanggal');
+        $this->db->group_by('a.skill_id');
         $query = $this->db->get();
 
         // print_r($this->db->last_query());
@@ -326,7 +328,8 @@ Class ReportModel extends CI_Model {
                 {
                     $result[] = array(
                         $id,
-                        $data->TANGGAL,
+                        $data->SKILLID,
+                        $data->SKILLNAME,
                         strval(number_format($data->OFFERED,0,'.',',')),
                         0,//strval(number_format($data->HANDLED,0,'.',',')),
                         0,//strval(number_format($data->UNHANDLED,0,'.',',')),
