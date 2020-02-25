@@ -131,156 +131,6 @@
                                 </tr>
                             </thead>
                             <tbody id="mytbody">
-                                <!-- <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">2019-10-01</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">2019-10-01</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">2019-10-01</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4</td>
-                                    <td class="text-center">2019-10-01</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">5</td>
-                                    <td class="text-center">2019-10-01</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                    <td class="text-right">90</td>
-                                    <td class="text-center">90%</td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -289,31 +139,14 @@
                         <div class="ml-auto p-2 bd-highlight">
 
                             <ul class="pagination" id="paging">
-                                <!-- <li class="page-item page-prev disabled">
-                                <a class="page-link" href="#" tabindex="-1">Prev</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item page-next">
-                                <a class="page-link" href="#">Next</a>
-                            </li> -->
+                                
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-12 col-xl-4">
+                    <!-- <div class="col-md-12 col-xl-4">
 
 
-                    </div>
-                    <!-- <div id="paging" class="pagination"> -->
-                    <!-- <a href="#">&laquo</a>
-                        <a href="javascript:myFunc('0')">1</a>
-                        <a href="javascript:myFunc('1')">2</a>
-                        <a href="javascript:myFunc('2')">3</a>
-                        <a href="#">&raquo</a> -->
-                    <!-- </div> -->
+                    </div> -->
                 </div>
             </div>
         </div>

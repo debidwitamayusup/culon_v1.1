@@ -215,7 +215,7 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     '</li>'+
         varA+
         '<li class="page-item page-next">'+
-        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+nrOfPages+"'"+')">&raquo;</a>'+
+        '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+(nrOfPages-1)+"'"+')">&raquo;</a>'+
         '</li>'
     );
     
