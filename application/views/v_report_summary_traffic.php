@@ -18,15 +18,15 @@
                         <h5 class="card-title-small card-pt10">Summary Traffic</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row mb-2">
+                        <div class="row">
                             <div class="col-xs-auto ml-1">
                                 <div class="input-group" style="width:140px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="Start Date"
-                                        type="text" id="start-date">
+                                    </div><input class="form-control fc-datepicker" placeholder="Start Date" type="text"
+                                        id="start-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
@@ -36,7 +36,8 @@
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text" id="end-date">
+                                    </div><input class="form-control fc-datepicker" placeholder="End Date" type="text"
+                                        id="end-date">
                                 </div>
                             </div>
                             <div class="col-sm-auto ml-2">
@@ -55,19 +56,23 @@
 
                             </div>
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-export"><i
-                                        class="fas fa-download mr-2"></i>Export</button>
+                                <button class="btn btn-sm btn-primary" type="button" style="height:35px"
+                                    id="btn-export"><i class="fas fa-download mr-2"></i>Export</button>
 
                             </div>
                         </div>
                     </div>
                     <!-- <div id="index_native" class="box"></div> -->
-                    <div>
-                        <select class="form-control" id="pagingFilter">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-sm-auto ml-1">
+                            <div class="form-group-row">
+                                <select class="form-control-sm" id="pagingFilter">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive" style="padding:1px !important;">
                         <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
@@ -90,32 +95,32 @@
                                     <td colspan="2" class="wd-15p border-bottom-0">Chatbot</td>
                                 </tr>
                                 <tr>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
-                                <td>COF</td>
-                                <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
+                                    <td>COF</td>
+                                    <td>SCR</td>
                                 </tr>
                             </thead>
                             <tbody id="mytbody">
@@ -272,32 +277,57 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="paging" class="pagination">
-                        <!-- <a href="#">&laquo</a>
+                    <div class="d-flex bd-highlight mb-2">
+                        <div class="p-2 bd-highlight">Showing 1 to 3 of 3 entries</div>
+                        <div class="ml-auto p-2 bd-highlight">
+                        
+                        <ul class="pagination ">
+                            <li class="page-item page-prev disabled">
+                                <a class="page-link" href="#" tabindex="-1">Prev</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item page-next">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xl-4">
+                       
+
+                    </div>
+                    <!-- <div id="paging" class="pagination"> -->
+                    <!-- <a href="#">&laquo</a>
                         <a href="javascript:myFunc('0')">1</a>
                         <a href="javascript:myFunc('1')">2</a>
                         <a href="javascript:myFunc('2')">3</a>
                         <a href="#">&raquo</a> -->
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
     </div>
     <style>
         .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
         }
 
         .pagination a.active {
-        background-color: dodgerblue;
-        color: white;
+            background-color: dodgerblue;
+            color: white;
         }
 
-        .pagination a:hover:not(.active) {background-color: #ddd;}
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
     </style>
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->
