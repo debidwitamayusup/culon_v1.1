@@ -303,10 +303,11 @@
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $skillz = $this->security->xss_clean($this->input->post('skill'));
             $meth = 'data';
 
             //token
-            $res = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$meth);
+            $res = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$skillz,$meth);
     
             if ($res) {
                 $this->response([
