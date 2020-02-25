@@ -224,7 +224,7 @@ Class ReportModel extends CI_Model {
         AVG(a.scr) as SCR');
 
         $this->db->from('rpt_summary_scr a');
-        // $this->db->join('m_channel b','b.channel_id = a.channel_id');
+        //$this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
             $this->db->where('a.tenant_id',$tid);
@@ -275,22 +275,27 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportOPS($tid, $d_start, $d_end ,$meth)
+   
+    
+    public function get_datareportOPS2 ($tid, $d_start, $d_end ,$meth)
     {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('a.tanggal as TANGGAL, 
+        //QUERY - 
+        // SUM(a.handling) as HANDLED,
+        //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+        $this->db->select('a.skill_id as SKILLID,
+        a.skill_name as SKILLNAME,
         SUM(a.cof) as OFFERED,
-        SUM(a.handling) as HANDLED,
-        (SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+      
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
         AVG(a.scr) as SCR,
         ');
 
-        $this->db->from('rpt_summary_scr a');
+        $this->db->from('v_rpt_summ_agent a');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
@@ -308,7 +313,7 @@ Class ReportModel extends CI_Model {
         }
         // $this->db->where('YEAR(a.tanggal)',$year);
 
-        $this->db->group_by('a.tanggal');
+        $this->db->group_by('a.skill_id');
         $query = $this->db->get();
 
         // print_r($this->db->last_query());
@@ -323,10 +328,11 @@ Class ReportModel extends CI_Model {
                 {
                     $result[] = array(
                         $id,
-                        $data->TANGGAL,
+                        $data->SKILLID,
+                        $data->SKILLNAME,
                         strval(number_format($data->OFFERED,0,'.',',')),
-                        strval(number_format($data->HANDLED,0,'.',',')),
-                        strval(number_format($data->UNHANDLED,0,'.',',')),
+                        0,//strval(number_format($data->HANDLED,0,'.',',')),
+                        0,//strval(number_format($data->UNHANDLED,0,'.',',')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,

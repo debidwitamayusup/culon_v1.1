@@ -250,13 +250,38 @@
         public function ReportingOPS_post()
         {
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-           
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
             $meth = 'data';
 
             //token
             $res = $this->module_model->get_datareportOPS($tid,$d_start,$d_end,$meth);
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function ReportingOPS2_post()
+        {
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $meth = 'data';
+
+            //token
+            $res = $this->module_model->get_datareportOPS2($tid,$d_start,$d_end,$meth);
     
             if ($res) {
                 $this->response([
