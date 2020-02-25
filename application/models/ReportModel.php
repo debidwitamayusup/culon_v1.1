@@ -442,7 +442,7 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$d_end);
             
         }
-        $this->db->where('YEAR(a.tanggal)',$year);
+        // $this->db->where('YEAR(a.tanggal)',$year);
         if($amt)
         {
             $this->db->limit($amt,$pge);
@@ -583,7 +583,7 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$d_end);
             
         }
-        $this->db->where('YEAR(a.tanggal)',$year);
+        // $this->db->where('YEAR(a.tanggal)',$year);
         $query = $this->db->get();
         
         // print_r($this->db->last_query());
