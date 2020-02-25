@@ -425,7 +425,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportAP ($tid, $d_start, $d_end ,$meth)
+    public function get_datareportAP ($tid, $d_start, $d_end ,$skillz,$meth)
     {
         $year = date('Y');
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
@@ -460,7 +460,10 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$d_end);
             
         }
-       
+        if($skillz)
+       {
+        $this->db->where('a.skill_id',$skillz);
+       }
 
         $this->db->group_by('a.agentid');
         $query = $this->db->get();
