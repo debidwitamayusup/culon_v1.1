@@ -51,10 +51,10 @@
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="skill">
-                                        <option value="ShowAll">Skill</option>
+                                        <!-- <option value="ShowAll">Skill</option>
                                         <option value="1">All</option>
                                         <option value="2">Voice</option>
-                                        <option value="3">Sosmed</option>
+                                        <option value="3">Sosmed</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">TD001</td>
                                     <td class="text-left">No Name</td>
@@ -217,7 +217,7 @@
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">30%</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

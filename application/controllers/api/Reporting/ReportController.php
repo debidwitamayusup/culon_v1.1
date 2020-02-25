@@ -81,6 +81,26 @@
 
             return $result;
         }
+
+        public function OptionSkill_post()
+        {
+            $res = $this->module_model->get_skill();
+    
+            if ($res) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'Data available!',
+                    'data'    => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Not Found!',
+                    'data'    => array()
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
         
         public function ReportingSC_post()
         {
@@ -303,10 +323,11 @@
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $skillz = $this->security->xss_clean($this->input->post('skill'));
             $meth = 'data';
 
             //token
-            $res = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$meth);
+            $res = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$skillz,$meth);
     
             if ($res) {
                 $this->response([

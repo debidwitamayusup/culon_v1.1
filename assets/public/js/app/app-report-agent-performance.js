@@ -35,11 +35,12 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     getTenant('')
+    getSkill()
     $('#start-date').datepicker("setDate", v_params_today);
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
-    drawTableAgentPerform('',v_params_today,v_params_today);
+    drawTableAgentPerform('',v_params_today,v_params_today, '1');
     // $('#tableOperation2').dataTable();
     // callTablePerformOps(v_params_tenant, '', n);
 });
@@ -87,7 +88,29 @@ function getTenant(date){
     });
 }
 
-function drawTableAgentPerform(tenant_id, start_time, end_time){
+function getSkill(){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/OptionSkill',
+
+        success: function (r) {
+            var data_option = [];
+            var response = r;
+            // var html = '<option value="">All Skill</option>';
+            var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].SKILL_ID+'>'+response.data[i].SKILL_NAME+'</option>';
+                }
+                $('#skill').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
     $("#filter-loader").fadeIn("slow");
 	$('#reportAgentPerformance').DataTable({
         ajax: {
@@ -95,14 +118,15 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
             type : 'POST',
             data :{
                 tenant_id: tenant_id,
-                start_time: start_time,
-                end_time: end_time
+                start_date: start_date,
+                end_date: end_date,
+                skill: skill
             }
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-center", targets: 2 },
+			{ className: "text-left", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-right", targets: 4 },
 			{ className: "text-right", targets: 5 },
@@ -202,7 +226,7 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         
-        drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#skill').val());
     });
 
     $('#reportAgentPerformance').dataTable();

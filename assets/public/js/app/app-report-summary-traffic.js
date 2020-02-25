@@ -221,8 +221,19 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     
     // $('"#li'+Number((currentPage+1))+'"').prop("class","page-item active");
     var forID = "#li"+(Number(currentPage)+1).toString();
-    console.log(forID);
     $(""+forID+"").prop("class","page-item active");
+    $("#app-content").on('mouseover', 'a', function (e) {
+        var $link = $(this),
+            href = $link.attr('href') || $link.data("href");
+    
+        $link.off('click.chrome');
+        $link.on('click.chrome', function () {
+            window.location.href = href;
+        })
+        .attr('data-href', href) //keeps track of the href value
+        .css({ cursor: 'pointer' })
+        .removeAttr('href'); // <- this is what stops Chrome to display status bar
+    });
     // return rangeWithDots;
 }
 
@@ -267,6 +278,8 @@ function setDatePicker() {
 }
 
 (function ($) {
+    
+
     var date = new Date();
     date.setDate(date.getDate() > 0);
     $('#start-date').datepicker({
