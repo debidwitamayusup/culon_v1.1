@@ -89,11 +89,13 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     $("#mytbody").empty();
     var s = ammount;
     var h = 0;
+    var t = 0;
 
     if (page == 0){
         h = 0;
     }else{
         h = (s*Number(page));
+        t = (s*Number(page));
     }
 
 	if (response.data.length != 0) {
@@ -130,6 +132,11 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     var totalPage = Math.ceil(response.max_row/$('#pagingFilter').val());
     var varA = "";
     var pagDot = pagination(page, totalPage, tenant_id, start_date, end_date, ammount);
+    if (response.max_row != 0){
+        $("#showing").html('Showing '+(t+1)+' to '+h+' of '+response.max_row+' entries');
+    }else{
+        $("#showing").html('Showing 0 to 0 of 0 entries');
+    }
     // var indexDot = pagDot.indexOf('...');
     // console.log(pagDot);
     // for (var k = 0; k < totalPage; k++){
@@ -197,7 +204,7 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     indexDot = rangeWithDots.indexOf('...');
     for (var k = 0; k < rangeWithDots.length; k++){
         if (k != indexDot){
-            varA += '<li class="page-item"><a class="page-link" href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+rangeWithDots[k]+'</a></li>'
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+rangeWithDots[k]+'</a></li>'
         }else{
             varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">...</a></li>'
         }
@@ -211,7 +218,11 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
         '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+nrOfPages+"'"+')">&raquo;</a>'+
         '</li>'
     );
-
+    
+    // $('"#li'+Number((currentPage+1))+'"').prop("class","page-item active");
+    var forID = "#li"+(Number(currentPage)+1).toString();
+    console.log(forID);
+    $(""+forID+"").prop("class","page-item active");
     // return rangeWithDots;
 }
 
