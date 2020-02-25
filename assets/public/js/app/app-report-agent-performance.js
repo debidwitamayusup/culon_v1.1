@@ -89,9 +89,9 @@ function getTenant(date){
 
 function drawTableAgentPerform(tenant_id, start_time, end_time){
     $("#filter-loader").fadeIn("slow");
-	$('#tableOperation1').DataTable({
+	$('#reportAgentPerformance').DataTable({
         ajax: {
-            url : base_url + 'api/Reporting/ReportController/ReportingSPA',
+            url : base_url + 'api/Reporting/ReportController/ReportingAP',
             type : 'POST',
             data :{
                 tenant_id: tenant_id,
@@ -102,13 +102,15 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-left", targets: 2 },
+			{ className: "text-center", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-right", targets: 4 },
-			{ className: "text-center", targets: 5 },
-			{ className: "text-center", targets: 6 },
+			{ className: "text-right", targets: 5 },
+			{ className: "text-right", targets: 6 },
 			{ className: "text-center", targets: 7 },
-			{ className: "text-right", targets: 8 }
+			{ className: "text-center", targets: 8 },
+			{ className: "text-center", targets: 9 },
+			{ className: "text-right", targets: 10 },
 		], 
         destroy: true
     });
