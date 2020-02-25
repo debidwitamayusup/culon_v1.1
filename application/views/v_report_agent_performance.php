@@ -51,10 +51,10 @@
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="skill">
-                                        <option value="ShowAll">Skill</option>
+                                        <!-- <option value="ShowAll">Skill</option>
                                         <option value="1">All</option>
                                         <option value="2">Voice</option>
-                                        <option value="3">Sosmed</option>
+                                        <option value="3">Sosmed</option> -->
                                     </select>
                                 </div>
                             </div>
