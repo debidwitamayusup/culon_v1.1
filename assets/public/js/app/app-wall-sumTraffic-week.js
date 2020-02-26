@@ -20,21 +20,21 @@ $(document).ready(function () {
     // $("#filter-loader").fadeIn("slow");
 
     getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    getTrafficInterval(params_week,'', '');
-    getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
-    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "Chat Bot"], '');
+    getTrafficInterval(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    // getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
 
-    $('#check-all-channel').prop('checked', false);
-    $("input:checkbox.checklist-channel").prop('checked', false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
-        values = [],
-        type = [];
-    Array.prototype.forEach.call(checkboxes, function (el) {
-        values.push(el.value);
-        type.push($(el).data('type'));
-    });
-    // console.log(values);
-    list_channel = values;
+    // $('#check-all-channel').prop('checked', false);
+    // $("input:checkbox.checklist-channel").prop('checked', false);
+    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
+    //     values = [],
+    //     type = [];
+    // Array.prototype.forEach.call(checkboxes, function (el) {
+    //     values.push(el.value);
+    //     type.push($(el).data('type'));
+    // });
+    // // console.log(values);
+    // list_channel = values;
 });
 
 function addCommas(commas) {
@@ -79,9 +79,9 @@ function getSummTrafficByChannel(week, arr_channel, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
             //hit url for interval 900000 (15 minutes)
             // setTimeout(function(){callDataPercentage(date);},900000);
+            setTimeout(function(){getSummTrafficByChannel(week, arr_channel, tenant_id);},5000)
             drawSummTrafficByChannel(response);
             // fromTemplate(response);
         },
@@ -125,6 +125,7 @@ function drawSummTrafficByChannel(response){
             datasets: obj,
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -177,7 +178,7 @@ function getTrafficInterval(week,arr_channel, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            setTimeout(function(){callIntervalTraffic(week, '');},900000);
+            setTimeout(function(){getTrafficInterval(week, arr_channel, tenant_id);},5000);
             drawTrafficInterval(response);
             // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
@@ -223,16 +224,15 @@ function drawTrafficInterval(response) {
                 datasets: data
             },
             options: {
+                animation: false,
                 responsive: true,
                 maintainAspectRatio: false,
-                // legend:{
-                //     position:'bottom',
-                //     labels:{
-                //         boxWidth:10
-                //     }
-                // },
-                legend: {
-                    display: false
+                legend:{
+                    display: true,
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
                 },
                 barRoundness: 1,
                 scales: {
@@ -313,7 +313,6 @@ function drawTableTraffic(response) {
             '<td class="text-right">' + addCommas(sun) + '</td>' +
             '</tr>');
     } else {
-        s
         $('#mytable').find('tbody').append('<tr>' +
             '<td colspan=6> No Data </td>' +
             '</tr>');
@@ -324,8 +323,6 @@ function drawTableTraffic(response) {
 
 function drawChartDaily(week,arr_channel, tenant_id){
     // Horizontal Bar
-    $('#echartWeek').remove();
-    $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
     var base_url = $('#base_url').val();
 
     $.ajax({
@@ -338,8 +335,10 @@ function drawChartDaily(week,arr_channel, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
-
+            setTimeout(function(){drawChartDaily(week, arr_channel, tenant_id);},5000);
+            drawTableTraffic(response);
+            $('#echartWeek').remove();
+            $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
             let dataWa = [],
                 dataFB = [],
                 dataDM = [],
@@ -438,6 +437,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
             }];
 
             var option6 = {
+                animation: false,
                 grid: {
                     top: '25%',
                     right: '3%',

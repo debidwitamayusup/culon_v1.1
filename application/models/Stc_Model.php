@@ -307,7 +307,7 @@ class Stc_Model extends CI_Model
 			where $where2 $where3
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
-		ORDER BY m_channel.channel_id ASC";
+		ORDER BY m_channel.sequence ASC";
 
 		$query = $this->db->query($str);
 		// $CI = & get_instance();
@@ -771,7 +771,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
-					'total_agent' => array($this->get_availdata_tot_agent($date)),
+					// 'total_agent' => array($this->get_availdata_tot_agent($date)),
 					'series' => $serials
 			)
 		);

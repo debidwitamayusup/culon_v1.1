@@ -262,14 +262,14 @@ class WallboardController extends REST_Controller {
 
         $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
         $res_timeval = $this->module_model->getalldateinmonth($month);
-        $tot = $this->module_model->getallagentpermonth($month);
+        // $tot = $this->module_model->getallagentpermonth($month);
 
         if ($res) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
                 'dates' => $res_timeval,
-                'total_agent' => $tot,
+                // 'total_agent' => $tot,
                 'data'    => $res
                     ], REST_Controller::HTTP_OK);
         }
@@ -278,7 +278,7 @@ class WallboardController extends REST_Controller {
                 'status'  => FALSE,
                 'message' => 'Not Found!',
                 'dates' => 'EMPTY',
-                'total_agent' => 'EMPTY',
+                // 'total_agent' => 'EMPTY',
                 'data'    => 'EMPTY'
                     ], REST_Controller::HTTP_OK);
         }
