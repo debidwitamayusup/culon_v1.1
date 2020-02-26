@@ -51,6 +51,33 @@ class Stc_Model extends CI_Model
 		return $query->result();
 	} 
 
+	function get_channel_array(){
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+		//summary_channel
+		// $this->db->select('channel_name');
+		// $this->db->from('summary_channel');
+		// $this->db->group_by('channel_name');
+		// $this->db->order_by('channel_name');
+
+		//rpt_summary_scr
+		$this->db->select('a.channel_name');
+		$this->db->from('m_channel a');
+		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
+		$this->db->group_by('channel_name');
+		$this->db->order_by('a.sequence','ASC');
+		$query = $this->db->get();
+		$result = array();
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($result,$data->channel_name);
+			}
+			return $result;
+		}
+		return false;
+	} 
+
 	public function get_channel_negation($arr){
 		$this->db->select('a.channel_name as channel, 0 as total');
 		$this->db->from('m_channel a');

@@ -7,6 +7,7 @@ class WallboardController extends REST_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('WallboardModel', 'module_model');
+       
     }
 
     public function SummaryTicketStatusNC_post(){
@@ -255,10 +256,31 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function SPOKIP_post()
+    {
+        $tanggal = $this->security->xss_clean($this->input->post('date'));
+        $res = $this->module_model->getSPOstatsticket($tanggal);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
     public function GetInvalMonthTable_post()
     {
         $channels = $this->security->xss_clean($this->input->post('channel'));
         $month = $this->security->xss_clean($this->input->post('month'));
+        
 
         $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
         $res_timeval = $this->module_model->getalldateinmonth($month);

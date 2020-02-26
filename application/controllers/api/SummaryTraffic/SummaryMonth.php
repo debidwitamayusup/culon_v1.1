@@ -123,7 +123,10 @@ class SummaryMonth extends CI_Controller {
 
         $month_id =   $this->security->xss_clean($this->input->post('month', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
-
+		if(!$channel)
+        {
+            $channel = $this->Stc_Model->get_channel_array();
+        }
 
         $result = $this->Stc_Model->get_traffic_interval_monthly($month_id, $channel);
         
