@@ -468,7 +468,7 @@
 	line-height:35px;
 	margin:0 auto;
     border-radius: 7px;
-    background: rgba(121, 106, 106, 0.29);
+    background: rgba(255,255,255);
 }
 
 /* custom */
@@ -562,7 +562,7 @@
 }
 @media (min-width: 768px) {
 	.sidebar-mini.sidenav-toggled .app-content {
-		margin-left: 76px;
+		margin-left: 68px;
 	}
 	.sidebar-mini.sidenav-toggled1 .app-content {
 		margin-left: 0;
@@ -756,21 +756,21 @@
 }
 .first-sidemenu{
 	position:fixed;
-	width:80px;
+	width:72px;
 	height:100vh;
 	z-index:5;
 	padding-bottom:70px;
-	background:#FFF;
+	background:#939597;
 }
 .second-sidemenu{
 	position:fixed;
 	width:200px;
 	background: #f5f0f0;
 	height:100%;
-	left:80px;
+	left:73px;
 	z-index:4;
 	padding-bottom:70px;
-	border-right:1px solid #cbcee8;
+	/* border-right:1px solid #cbcee8; */
 	box-shadow: 0 8px 16px 0 rgba(113,126,195, .25);
 }
 .side-menu .slide.is-expanded .angle {
@@ -820,7 +820,7 @@
 	visibility:visible;
 }
 .app.sidebar-mini.sidenav-toggled4 .app-content{
-	margin-left: 76px;
+	margin-left: 268px;
 }
 .toggle{
 	padding-top:9px;
