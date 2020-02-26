@@ -795,7 +795,8 @@ Class ReportModel extends CI_Model {
         b.channel_id as CHANNEL_ID,
         b.channel_name as CHANNEL_NAME,
         IFNULL(a.cof,0) as COF,
-        IFNULL(a.scr,0) as SCR
+        IFNULL(a.scr,0) as SCR,
+        b.channel_category as CATEGORY
         ');
         $this->db->from('m_channel b');
         $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
@@ -811,6 +812,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         
                         'CHANNEL_NAME' => $data->CHANNEL_NAME,
+                        'CHANNEL_CATEGORY' => $data->CATEGORY,
                         'COF' => strval(number_format($data->COF,0,',','.')),
                         'SCR' => round($data->SCR,2).'%'
                     );
