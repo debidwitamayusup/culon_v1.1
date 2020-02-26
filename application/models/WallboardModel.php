@@ -764,6 +764,8 @@ Class WallboardModel extends CI_Model {
     }
 
 
+
+
     public function get_traffic_interval_monthly($month,$channel)
 	{
         $year = date('Y');
@@ -807,7 +809,7 @@ Class WallboardModel extends CI_Model {
 
         for($i = 1; $i <= $numdateofmonth;$i++)
 		{
-			array_push($arr_time, $i);
+			array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.str_pad(strval($i), 2, '0', STR_PAD_LEFT));
         }
 
         return $arr_time;
@@ -1073,6 +1075,55 @@ Class WallboardModel extends CI_Model {
         }
 
         return $result;
+    }
+
+    public function getSPOstatsticket($tanggal)
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $this->db->select('tenant_id');
+        $this->db->from('m_tenant');
+        if($tid)
+        {
+            $this->db->where('tenant_id',$tid);
+        }
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+		{
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'TENANT_ID' => $data->tenant_id,
+                    'SUMMARY' => $this->getSPOdata($tanggal,$data->tenant_id)
+                );
+            }
+           return $result;
+        }
+        return false;
+    }
+
+    public function getSPOdata($tanggal,$tid)
+    {
+        $this->db->select('IFNULL(SUM(jumlah),0) as total, category');
+        $this->db->from('rpt_summ_kip2');
+        $this->db->where('tanggal',$tanggal);
+        $this->db->where('tenant_id',$tid);
+        $this->db->group_by('category');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+		{
+            foreach($query->result() as $data)
+            {
+                $datas[] = array(
+                    'KATEGORI' => $data->category,
+                    'TOTAL' => $data->total
+                );
+            }
+           return $datas;
+        }
+        return array();
     }
 
     #region :: debi
