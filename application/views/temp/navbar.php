@@ -10,7 +10,7 @@
 				<!-- Navbar Right Menu-->
 				<div class="container-fluid">
 					<div class="d-flex">
-						<a class="header-brand" href="index.html">
+						<a class="header-brand" href="#">
 							<img alt="logo" class="header-brand-img main-logo"
 								src="<?=base_url()?>assets/images/brand/white-logo.png">
 						</a>
@@ -30,7 +30,7 @@
 							<div class="dropdown">
 								<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
 									<span class="avatar avatar-md brround cover-image"
-										data-image-src="<?= base_url()?>assets/images/brand/user.jpg"></span>
+										data-image-src="<?= base_url()?>public/user/unknown-avatar.jpg"></span>
 								</a>
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 									<div class="drop-heading">

@@ -5,19 +5,19 @@
 		<div class="first-sidemenu">
 			<ul class="resp-tabs-list hor_1">
 				<li data-toggle="tooltip" data-placement="right" title="Wallboard">
-					<div class="side-menutext"><i class="side-menu__icon fe fe-grid"></i>
-						<h6 class="font10 mt-1">Wallboard</h6><span class="side-menu__label">Wallboard</span>
+					<div class="side-menutext"><i class="side-menu__icon fe fe-monitor"></i>
+						<h6 class="font10 mt-1 text-white">Wallboard</h6><span class="side-menu__label">Wallboard</span>
 					</div>
 				</li>
 				<li data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<div class="side-menutext"><i class="side-menu__icon fe fe-home"></i>
-						<h6 class="font10 mt-1">Dashboard</h6><span class="side-menu__label">Dashboard</span>
+					<div class="side-menutext"><i class="side-menu__icon fe fe-grid"></i>
+						<h6 class="font10 mt-1 text-white">Dashboard</h6><span class="side-menu__label">Dashboard</span>
 					</div>
 				</li>
 
 				<li data-toggle="tooltip" data-placement="right" title="Report">
-					<div class="side-menutext"><i class="side-menu__icon fe fe-book"></i>
-						<h6 class="font10 mt-1">Report</h6><span class="side-menu__label">Report</span>
+					<div class="side-menutext"><i class="side-menu__icon si si-layers" style="line-height:2.4"></i>
+						<h6 class="font10 mt-1 text-white">Report</h6><span class="side-menu__label">Report</span>
 					</div>
 				</li>
 			</ul>

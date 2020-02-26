@@ -141,7 +141,6 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     // console.log(pagDot);
     // for (var k = 0; k < totalPage; k++){
     //     // var callFunction = callTableSummaryTraffic(tenant_id, start_date, end_date, pagingFilters, k);
-    //     console.log($('#pagingFilter').val())
     //     if (k != indexDot){
     //         varA += '<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+k+"'"+')">'+(k+1)+'</a>'
     //     }else{
@@ -150,7 +149,6 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
     //     // console.log(varA);
     //     // $("#paging").append("<a href='#' onclick='return callTableSummaryTraffic"+(tenant_id, start_date, end_date, pagingFilters, k)+"'>"+(k+1)+"</a>");
     // }
-    // // console.log(varA);
     // $("#paging").empty();
     // $("#paging").append('<a href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+0+"'"+')">&laquo;</a>'+
     //     varA+
@@ -222,7 +220,6 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
         '</li>'
     );
     
-    // $('"#li'+Number((currentPage+1))+'"').prop("class","page-item active");
     var forID = "#li"+(Number(currentPage)+1).toString();
     $(""+forID+"").prop("class","page-item active");
     $("#app-content").on('mouseover', 'a', function (e) {
@@ -233,14 +230,14 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
         $link.on('click.chrome', function () {
             window.location.href = href;
         })
-        .attr('data-href', href) //keeps track of the href value
+        .attr('data-href', href) 
         .css({ cursor: 'pointer' })
-        .removeAttr('href'); // <- this is what stops Chrome to display status bar
+        .removeAttr('href'); 
     });
     // return rangeWithDots;
 }
 
-function exportTableSumTraffic(start_date, end_date, tenant_id, name){
+function exportTableSumTraffic(start_date, end_date, tenant_id, name, ammount, page){
     $("#filter-loader").fadeIn("slow");
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
     $.ajax({
@@ -250,7 +247,9 @@ function exportTableSumTraffic(start_date, end_date, tenant_id, name){
             start_date: start_date,
             end_date: end_date,
             tenant_id: tenant_id,
-            name: name
+            name: name,
+            ammount: ammount,
+            page: page
         }
         ,
         success: function (r) {

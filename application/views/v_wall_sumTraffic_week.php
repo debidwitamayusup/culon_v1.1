@@ -34,7 +34,7 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Hours)</h5>
                     </div>
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group m-0">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card-body" id="lineWallsumTrafficWeekDiv">
                         <canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>
                     </div>
