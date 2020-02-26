@@ -98,6 +98,34 @@ function callTableCOFByChannel(date, search){
     });
 }
 
+function callTableStatusTicket(date){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/Wallboard/WallboardController/SPOKIP',
+        data: {
+            date: date,
+        },
+        success: function (r) {
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            setTimeout(function(){callTableStatusTicket(date);},5000);
+            drawTableStatusTicket(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawTableStatusTicket(response){
+    
+}
+
 function timestrToSec(timestr) {
   var parts = timestr.split(":");
   return (parts[0] * 3600) +

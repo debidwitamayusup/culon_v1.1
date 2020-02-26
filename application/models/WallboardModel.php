@@ -342,8 +342,9 @@ Class WallboardModel extends CI_Model {
 
     function Traffic_opschannel($params,$index,$params_year,$tid)
     {
-        $this->db->select('channel_id');
+        $this->db->select('channel_id, sequence');
         $this->db->from('m_channel');
+        $this->db->order_by('sequence');
         $query = $this->db->get();
 
         $result = array();
