@@ -3329,10 +3329,17 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 /* custom */
 .widget-user .widget-user-header {
-    padding: 12px;
-    height: 50px;
+    padding: 6px;
+	height: 30px;
+	border: 2px solid #d4cdcd;
     /* border-top-right-radius: 12px;
     border-top-left-radius: 12px; */
+}
+
+.widget-user .widget-user-rtc {
+    margin-top: 0;
+    font-size: 13px;
+    color:#000;
 }
 
 .widget-user .widget-user-username {
@@ -3362,7 +3369,9 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     border: 3px solid #fff;
 }
 .widget-user .box-footer {
-    padding-top: 0px;
+	padding-top: 0px;
+	border:2px solid #d4cdcd !important;
+	border-top: 0px !important;
 }
 
 
@@ -3372,6 +3381,14 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     height: 120px;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
+}
+
+.widget-user-default .widget-user-rtc {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 300;
+    color:#000;
 }
 
 .widget-user-default .widget-user-username {
@@ -3411,6 +3428,20 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     padding: 0;
     font-size: 21px;
 }
+
+/* custom */
+.description-box {
+    display: block;
+    margin: 6px 4.3px;
+    text-align: center;
+}
+.description-box>.description-header {
+    margin: 0;
+    padding: 0;
+	font-size: 12px;
+	font-weight: 600;
+}
+
 .description-block>.description-text {
     text-transform: uppercase;
 }
@@ -8117,6 +8148,22 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 /* custom border */
+.border-right-rtc{
+	border-right:2px solid #d4cdcd !important;
+}
+
+.border-top-rtc{
+	border-top: 2px solid #d4cdcd !important;
+}
+
+.border-bottom-rtc{
+	border-bottom:2px solid #d4cdcd !important;
+}
+
+.border-left-rtc{
+	border-left:2px solid #d4cdcd !important;
+}
+s
 .border-right-2{
 	border-right:1.5px solid #0f0f0f !important;
 }
@@ -8187,6 +8234,17 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .rounded-circle {
 	border-radius: 50% !important;
 }
+
+.rounded-circle2{
+	border-radius:50%;
+	border: 1px solid #decfcf;
+	width: 35%;
+	padding: 8px;
+	margin-top: 0.6rem;
+	margin-bottom: 6px;
+	margin-left: 30%;
+}
+
 .rounded-0 {
 	border-radius: 0 !important;
 }
@@ -14335,6 +14393,15 @@ btn-cust{
 	width: 100%;
 	border-radius:7px;
 }
+
+.card-box {
+	position: relative;
+	margin-top: 0.6rem;
+	margin-bottom: 0.6rem;
+	width: 100%;
+	border-radius:7px;
+} 
+
 .overflow-hidden{
 	overflow:hidden
 }
@@ -22843,3 +22910,10 @@ background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Fir
 	font-size:9px;
 }
 
+.font-bold{
+	font-weight:600;
+}
+
+.font-normal{
+	font-weight:400;
+}

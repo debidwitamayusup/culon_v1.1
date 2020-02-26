@@ -69,7 +69,8 @@
 									</ul>
 								</div>
 							</div>
-
+							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring Realtime</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
 						</div>
 					</div>
 				</div>

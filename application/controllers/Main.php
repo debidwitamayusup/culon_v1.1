@@ -295,6 +295,20 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_wall_summary_performance');
 	}
+
+	public function wall_monitoring_realtime(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_wall_monitoring_realtime');
+	}
+
+	public function wall_agent_monitoring(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_wall_agent_monitoring');
+	}
 	// report
 
 	public function report_summary_ticket(){
