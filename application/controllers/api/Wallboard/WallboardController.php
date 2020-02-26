@@ -7,6 +7,7 @@ class WallboardController extends REST_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('WallboardModel', 'module_model');
+       
     }
 
     public function SummaryTicketStatusNC_post(){
@@ -279,6 +280,7 @@ class WallboardController extends REST_Controller {
     {
         $channels = $this->security->xss_clean($this->input->post('channel'));
         $month = $this->security->xss_clean($this->input->post('month'));
+        
 
         $res = $this->module_model->get_traffic_interval_monthly($month,$channels);
         $res_timeval = $this->module_model->getalldateinmonth($month);
