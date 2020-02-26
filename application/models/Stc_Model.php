@@ -771,7 +771,7 @@ class Stc_Model extends CI_Model
 			'status' => true,
 			'data' => array(
 					'label_time' => $times,
-					'total_agent' => array($this->get_availdata_tot_agent($date)),
+					// 'total_agent' => array($this->get_availdata_tot_agent($date)),
 					'series' => $serials
 			)
 		);

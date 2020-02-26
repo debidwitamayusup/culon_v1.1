@@ -18,8 +18,8 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
-    callTableCOFByChannel(v_params_yesterday, '');
-    getTenant(v_params_yesterday);
+    callTableCOFByChannel('2020-02-24', '');
+    getTenant('2020-02-24');
     // getTenant(v_params_today);
     // callTableCOFByChannel(v_params_today);
 

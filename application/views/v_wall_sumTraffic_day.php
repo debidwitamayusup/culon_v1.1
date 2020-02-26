@@ -36,7 +36,7 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Traffic by Interval</h5>
                     </div>
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group m-0">
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card-body" id="lineWallsumTrafficDayDiv">
                         <canvas id="lineWallsumTrafficDay" class="h-400"></canvas>
                     </div>
@@ -156,7 +156,6 @@
                             <thead class="text-center bg-head">
                                 <tr>
                                     <td rowspan="2" class="font-weight-extrabold text-white">Time</td>
-                                    <td rowspan="2" class="font-weight-extrabold text-white">Total<br>Agent</td>
                                     <td colspan="13" class="font-weight-extrabold text-white">Channel</td>
                                 </tr>
                                 <tr>

@@ -885,6 +885,9 @@ Class WallboardModel extends CI_Model {
 		$this->db->order_by('DAY(rpt_summ_interval_tsel.tanggal)','ASC');
 		$query = $this->db->get();
 
+        // print_r($this->db->last_query());
+        // exit;
+
 		$result = array();
 		if($query->num_rows()>0)
 		{

@@ -35,7 +35,7 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Traffic by Interval Monthly (Hours)</h5>
                     </div>
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group m-0">
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="card-body" id="lineWallsumTrafficMonthDiv">
                         <canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>
                     </div>
@@ -155,7 +155,7 @@
                             <thead class="text-center bg-head">
                                 <tr>
                                     <td rowspan="2" class="text-white font-weight-extrabold">Days</td>
-                                    <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td>
+                                    <!-- <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td> -->
                                     <td colspan="14" class="text-white font-weight-extrabold">Channel</td>
                                 </tr>
                                 <tr>

@@ -18,25 +18,21 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    // callDataPercentage('2020-01-24', '');
-    // callIntervalTraffic('2020-01-24','', '');
-    // callTableInterval('2020-01-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    // getTenant('2020-01-24');
-    callDataPercentage(v_params_yesterday, '');
-    callIntervalTraffic(v_params_yesterday,'', '');
-    callTableInterval(v_params_yesterday,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    getTenant(v_params_yesterday);
+    callDataPercentage('2020-02-24', '');
+    callIntervalTraffic('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    getTenant('');
     $("#filter-loader").fadeOut("slow");
 
-    $('#check-all-channel').prop('checked',false);
-    $("input:checkbox.checklist-channel").prop('checked',false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
-        values.push(el.value);
-        type.push($(el).data('type'));
-    });
+    // $('#check-all-channel').prop('checked',false);
+    // $("input:checkbox.checklist-channel").prop('checked',false);
+    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    // Array.prototype.forEach.call(checkboxes, function(el) {
+    //     values.push(el.value);
+    //     type.push($(el).data('type'));
+    // });
     // console.log(values);
-    list_channel = values;
+    // list_channel = values;
 });
 
 function getTenant(date){
@@ -105,6 +101,7 @@ function getColorChannel(channel){
 
     return color[channel];
 }
+
 function destroyChartPercentage(){
     //destroy chart percentage
     $('#barWallTrafficDay').remove(); // this is my <canvas> element
@@ -126,36 +123,8 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(date, '', tenant_id);},900000);
+            setTimeout(function(){callIntervalTraffic(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], tenant_id);},5000);
             drawChartToday(response);
-            // drawTableData(response);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            alert("error");
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
-
-function callTableInterval(date, arr_channel, tenant_id){
-    // console.log(+arr_channel);
-    // $("#filter-loader").fadeIn("slow");
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
-        data: {
-            date: date,
-            arr_channel: arr_channel,
-            tenant_id: tenant_id
-        },
-        success: function (r) {
-            var response = JSON.parse(r);
-            // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableInterval(date, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"], tenant_id);},900000);
-            // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
@@ -206,15 +175,16 @@ function drawChartToday(response){
                 datasets: data
             },
             options: {
+                animation: false,
                 responsive: true,
                 maintainAspectRatio: false,
-                // legend:{
-                //     position:'bottom',
-                //     labels:{
-                //         boxWidth:10
-                //     }
-                // },
-                legend : false,
+                legend:{
+                    display: true,
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
                 barRoundness:  1,
                 scales: {
                     yAxes: [ {
@@ -240,7 +210,7 @@ function callDataPercentage(date, tenant_id){
             var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callDataPercentage(date);},900000);
+            setTimeout(function(){callDataPercentage(date);},5000);
             drawChartPercentageToday(response);
             // fromTemplate(response);
         },
@@ -280,6 +250,7 @@ function drawChartPercentageToday(response){
             datasets: obj,
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -344,7 +315,6 @@ function drawChartPercentageToday(response){
 
 function drawTableData(response){
     var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
-    console.log(response);
     var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
     var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
     var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
@@ -358,7 +328,7 @@ function drawTableData(response){
     var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
     var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
     var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
-    var sumTotAgent = response.data.total_agent[0].map(Number).reduce(summarize);
+    
 
     //summarize per channel
     function summarize(total, num) {
@@ -372,7 +342,6 @@ function drawTableData(response){
         for (var i = 0; i < 24; i++) {
             $('#wall-today-tbl').find('tbody').append('<tr>'+
             '<td>'+tagTime[i]+'</td>'+
-            '<td class="text-right">'+response.data.total_agent[0][i]+'</td>'+
             '<td class="text-right">'+response.data.series[0].data[i]+'</td>'+
             '<td class="text-right">'+response.data.series[1].data[i]+'</td>'+
             '<td class="text-right">'+response.data.series[2].data[i]+'</td>'+
@@ -390,7 +359,7 @@ function drawTableData(response){
         }
 
         $('#wall-today-tbl').find('tfoot').append('<tr>'+
-            '<td colspan="2">TOTAL</td>'+
+            '<td>TOTAL</td>'+
             '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
@@ -614,38 +583,38 @@ function fromTemplate(response) {
 (function ($) {
     
     // checked all channel
-    $('#check-all-channel').click(function(){
-        $("input:checkbox.checklist-channel").prop('checked',this.checked);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
+    // $('#check-all-channel').click(function(){
+    //     $("input:checkbox.checklist-channel").prop('checked',this.checked);
+    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    //     Array.prototype.forEach.call(checkboxes, function(el) {
+    //         values.push(el.value);
+    //         type.push($(el).data('type'));
+    //     });
+    //     // console.log(values);
+    //     list_channel = values;
 
-        // call data
-        callIntervalTraffic(v_params_yesterday,list_channel);
-    });
+    //     // call data
+    //     callIntervalTraffic(v_params_yesterday,list_channel);
+    // });
 
     //checked channel
-    $('.checklist-channel').click(function(){
-        $('#check-all-channel').prop( "checked", false );
+    // $('.checklist-channel').click(function(){
+    //     $('#check-all-channel').prop( "checked", false );
         
-        var checkedValues = $('input:checkbox:checked').map(function() {
-            return this.value;
-        }).get();
+    //     var checkedValues = $('input:checkbox:checked').map(function() {
+    //         return this.value;
+    //     }).get();
 
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
-        // call data
-        callIntervalTraffic(v_params_yesterday, list_channel);
-    });
+    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    //     Array.prototype.forEach.call(checkboxes, function(el) {
+    //         values.push(el.value);
+    //         type.push($(el).data('type'));
+    //     });
+    //     // console.log(values);
+    //     list_channel = values;
+    //     // call data
+    //     callIntervalTraffic(v_params_yesterday, list_channel);
+    // });
 
     $("select#tenant_id").change(function(){
         // destroyChartInterval();

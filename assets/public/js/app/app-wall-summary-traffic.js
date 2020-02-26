@@ -18,10 +18,10 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', v_params_yesterday, 0, '');
-    callSumPerTenant('day', v_params_yesterday, 0, '');
+    callSumAllTenant('day', '2020-02-24', 0, '');
+    callSumPerTenant('day', '2020-02-24', 0, '');
     // drawIntervalChart();
-    callIntervalTraffic('day',v_params_yesterday,0, '', '');
+    callIntervalTraffic('day','2020-02-24',0, '', '');
     getTenant(v_params_yesterday);
 
     $('#check-all-channel').prop('checked',false);
