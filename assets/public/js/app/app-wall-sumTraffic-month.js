@@ -100,7 +100,6 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
         error: function (r) {
             // console.log(r);
             // alert("error");
-            window.location = base_url+'api/Main/error_page'
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -127,9 +126,9 @@ function callTableInterval(month, tennant_id){
         },
         error: function (r) {
             // console.log(r);
-            // alert("error");
-            window.location = base_url+'api/Main/error_page'
+            alert("error");
             // $("#filter-loader").fadeOut("slow");
+            setTimeout(function(){callTableInterval(month, tennant_id);}, 5000);
         },
     });
 }
