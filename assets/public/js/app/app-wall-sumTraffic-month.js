@@ -99,7 +99,8 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
+            window.location = base_url+'api/Main/error_page'
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -119,14 +120,15 @@ function callTableInterval(month, tennant_id){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableInterval(month, tenant_id);}, 5000);
+            setTimeout(function(){callTableInterval(month, tennant_id);}, 5000);
             // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
+            window.location = base_url+'api/Main/error_page'
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -200,9 +202,15 @@ function callDataPercentage(month, tenant_id, params_year){
             setTimeout(function(){callDataPercentage(month, tenant_id, params_year);},5000);
             drawChartPercentageMonth(response);
         },
-        error: function (r) {
-            // console.log(r);
-            alert("error");
+        error: function (r, jqXHR, textStatus, errorThrown) {
+            
+                console.log('jqXHR:');
+                console.log(jqXHR);
+                console.log('textStatus:');
+                console.log(textStatus);
+                console.log('errorThrown:');
+                console.log(errorThrown);
+
         },
     });
 }
@@ -210,7 +218,7 @@ function callDataPercentage(month, tenant_id, params_year){
 
 function drawChartPercentageMonth(response){
     destroyChartPercentage();
-    console.log(response);
+    // console.log(response);
     var data_label = [];
     var data_rate = [];
     var data_color = [];
@@ -219,7 +227,7 @@ function drawChartPercentageMonth(response){
         data_rate.push(value.rate);
         data_color.push(getColorChannel(value.channel_name));
     });
-    console.log(data_rate);
+    // console.log(data_rate);
     var obj = [{
         label: "data",
         data: data_rate,
@@ -366,7 +374,7 @@ function drawTableData(response){
             '<td class="text-right">'+addCommas(sumChat)+'</td>'+
             '</tr>');
 
-        setTimeout(function(){callTableInterval(n, '');}, 5000);
+        // setTimeout(function(){callTableInterval(n, '');}, 5000);
     }else{
         $('#table_avg_traffic').find('tbody').append('<tr>'+
             '<td colspan=6> No Data </td>'+
