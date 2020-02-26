@@ -809,7 +809,7 @@ Class WallboardModel extends CI_Model {
 
         for($i = 1; $i <= $numdateofmonth;$i++)
 		{
-			array_push($arr_time, $i);
+			array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.str_pad(strval($i), 2, '0', STR_PAD_LEFT));
         }
 
         return $arr_time;
