@@ -2,23 +2,22 @@
 	"use strict";
 
 	var slideMenu = $('.side-menu');
-	// $('.app').addClass('sidebar-mini');
-	$('.app').addClass('sidebar-mini sidenav-toggled');
-
+	$('.app').addClass('sidebar-mini');
+	
 	// Toggle Sidebar
 	$(document).on("click", "[data-toggle='sidebar']", function(event) {
 		event.preventDefault();
 		$('.app').toggleClass('sidenav-toggled');
 		$('.app').removeClass('sidenav-toggled4');
 	});
-	// $(document).on("click", ".sidenav-toggled .app-sidebar__toggle", function(event) {
-	// 	event.preventDefault();
-	// 	$('.app').toggleClass('sidenav-toggled1');
-	// });
+	$(document).on("click", ".sidenav-toggled .app-sidebar__toggle", function(event) {
+		event.preventDefault();
+		$('.app').toggleClass('sidenav-toggled1');
+	});
 	$(document).on("click", ".sidenav-toggled .resp-tab-item", function(event) {
 		event.preventDefault();
 		$('.app').addClass('sidenav-toggled4');
-		// $('.app').removeClass('sidenav-toggled1');
+		$('.app').removeClass('sidenav-toggled1');
 		$('.app').removeClass('sidenav-toggled');
 	});
 	

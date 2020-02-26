@@ -59,7 +59,9 @@ class main extends CI_Controller {
 	}
 
 	public function error_page(){
+		$this->load->view('temp/header');
 		$this->load->view('503');
+		$this->load->view('temp/footer');
 	}
 	
 	public function this_day(){
