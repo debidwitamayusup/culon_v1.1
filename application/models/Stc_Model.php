@@ -64,7 +64,7 @@ class Stc_Model extends CI_Model
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
 		$this->db->group_by('channel_name');
-		$this->db->order_by('a.channel_id','ASC');
+		$this->db->order_by('a.sequence','ASC');
 		$query = $this->db->get();
 		$result = array();
 		if($query->num_rows() > 0)
