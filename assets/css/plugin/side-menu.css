@@ -74,8 +74,8 @@
 }
 @media (min-width: 768px) {
 	.app-content {
-		/* margin-left: 272px; */
-		margin-left: 76px;
+		margin-left: 272px;
+		/* margin-left: 76px; */
 	}
 }
 @media (max-width: 767px) and (min-width: 568px){

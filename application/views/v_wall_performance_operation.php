@@ -284,7 +284,7 @@
                         <h5 class="card-title-small card-pt10">Summary Status Ticket</h5>
                     </div>
                     <div class="table-responsive table-bordered" style="padding:5px 5px 12px 5px;">
-                        <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10">
+                        <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10" id="tableStatusTicket">
                             <thead class="text-center bg-head">
                                 <tr>
                                     <td rowspan="2" class="font-weight-extrabold text-white">No</td>
@@ -306,7 +306,7 @@
                                     <td class="bg-column2">Reclose</td>
                                 </tr>
                             </thead>
-                            <tbody class="table-sm text-center">
+                            <tbody class="table-sm text-center" id="mytbody2">
                                 <tr>
                                     <td>1</td>
                                     <td class="text-left">Telkom</td>
@@ -443,7 +443,7 @@
                                     <td class="text-right">50</td>
                                 </tr>
                             </tbody>
-                            <tfoot class="bg-total font-weight-extrabold text-center">
+                            <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot2">
                                 <tr>
                                     <td colspan="2">Total</td>
                                     <td class="text-right">50</td>

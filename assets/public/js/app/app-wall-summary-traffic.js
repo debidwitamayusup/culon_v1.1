@@ -21,18 +21,18 @@ $(document).ready(function () {
     callSumAllTenant('day', '2020-02-24', 0, '');
     callSumPerTenant('day', '2020-02-24', 0, '');
     // drawIntervalChart();
-    callIntervalTraffic('day','2020-02-24',0, '', '');
+    callIntervalTraffic('day','2020-02-24',0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
     getTenant(v_params_yesterday);
 
-    $('#check-all-channel').prop('checked',false);
-    $("input:checkbox.checklist-channel").prop('checked',false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
-        values.push(el.value);
-        type.push($(el).data('type'));
-    });
-    // console.log(values);
-    list_channel = values;
+    // $('#check-all-channel').prop('checked',false);
+    // $("input:checkbox.checklist-channel").prop('checked',false);
+    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    // Array.prototype.forEach.call(checkboxes, function(el) {
+    //     values.push(el.value);
+    //     type.push($(el).data('type'));
+    // });
+    // // console.log(values);
+    // list_channel = values;
 
    $("#filter-loader").fadeOut("slow");
 });
@@ -160,7 +160,7 @@ function callIntervalTraffic(params, index, params_year, channel, tenant_id){
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, '', tenant_id);},900000);
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
             drawLineChart(r);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -313,65 +313,65 @@ function drawChartPerTenant(response){
 
     /*----echart Wallboard Summary Traffic----*/
     var chartWallSummary = [{
-         name: 'Whatsapp',
+         name: 'Voice',
          type: 'bar',
          stack: 'Stack',
-         data: dataWa
+         data: dataVoice
      }, {
-         name: 'Facebook',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataFB
-     },{
-         name: 'Twitter',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTwitter
-     },{
-         name: 'Twitter DM',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataDM
-     },{
-         name: 'Instagram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataIg
-     },{
-         name: 'Messenger',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataMessenger
-     },{
-         name: 'Telegram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTelegram
-     },{
-         name: 'Line',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLine
-     },{
          name: 'Email',
          type: 'bar',
          stack: 'Stack',
          data: dataEmail
      },{
-         name: 'Voice',
+         name: 'Live Chat',
          type: 'bar',
          stack: 'Stack',
-         data: dataVoice
+         data: dataLive
      },{
          name: 'SMS',
          type: 'bar',
          stack: 'Stack',
          data: dataSMS
      },{
-         name: 'Live Chat',
+         name: 'Telegram',
          type: 'bar',
          stack: 'Stack',
-         data: dataLive
+         data: dataTelegram
+     },{
+         name: 'Facebook',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataFB
+     },{
+         name: 'Messenger',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataMessenger
+     },{
+         name: 'Twitter',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataTwitter
+     },{
+         name: 'Line',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataLine
+     },{
+         name: 'Instagram',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataIg
+     },{
+         name: 'Whatsapp',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataWa
+     },{
+         name: 'Twitter DM',
+         type: 'bar',
+         stack: 'Stack',
+         data: dataDM
     },{
          name: 'Chat Bot',
          type: 'bar',
@@ -421,7 +421,7 @@ function drawChartPerTenant(response){
             // bottom: 10,
             left: 'center',
             top: 'auto',
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
+            data: ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'Chat Bot'],
             itemWidth :12,
             padding: [10, 10,40, 10]
             
@@ -483,7 +483,7 @@ function drawChartPerTenant(response){
             }
         },
         series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+        color: ['#ff9933', '#e41313', '#607d8b', '#80cbc4', '#343a40', '#467fcf', '#3866a6', '#45aaf2', '#31a550', '#d56dfc', '#089e60', '#6574cd', '#6e273e']
     };
     var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
     var barChartWallSummary = echarts.init(chartWallSummary);
@@ -530,13 +530,13 @@ function drawLineChart(response){
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                // legend:{
-                //     position:'bottom',
-                //     labels:{
-                //         boxWidth:10
-                //     }
-                // },
-                legend : false,
+                legend:{
+                    display: true,
+                    position:'bottom',
+                    labels:{
+                        boxWidth:10
+                    }
+                },
                 barRoundness:  1,
                 scales: {
                     yAxes: [ {
@@ -1031,38 +1031,38 @@ function fromTemplate(){
 (function ($) {
     
     // checked all channel
-    $('#check-all-channel').click(function(){
-        $("input:checkbox.checklist-channel").prop('checked',this.checked);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
+    // $('#check-all-channel').click(function(){
+    //     $("input:checkbox.checklist-channel").prop('checked',this.checked);
+    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    //     Array.prototype.forEach.call(checkboxes, function(el) {
+    //         values.push(el.value);
+    //         type.push($(el).data('type'));
+    //     });
+    //     // console.log(values);
+    //     list_channel = values;
 
-        // call data
-        callIntervalTraffic('day', v_params_yesterday,0,list_channel, $('#tenant_id').val());
-    });
+    //     // call data
+    //     callIntervalTraffic('day', v_params_yesterday,0,list_channel, $('#tenant_id').val());
+    // });
 
     //checked channel
-    $('.checklist-channel').click(function(){
-        $('#check-all-channel').prop( "checked", false );
+    // $('.checklist-channel').click(function(){
+    //     $('#check-all-channel').prop( "checked", false );
         
-        var checkedValues = $('input:checkbox:checked').map(function() {
-            return this.value;
-        }).get();
+    //     var checkedValues = $('input:checkbox:checked').map(function() {
+    //         return this.value;
+    //     }).get();
 
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
-        // call data
-        callIntervalTraffic('day',v_params_yesterday,0, list_channel, $('#tenant_id').val());
-    });
+    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+    //     Array.prototype.forEach.call(checkboxes, function(el) {
+    //         values.push(el.value);
+    //         type.push($(el).data('type'));
+    //     });
+    //     // console.log(values);
+    //     list_channel = values;
+    //     // call data
+    //     callIntervalTraffic('day',v_params_yesterday,0, list_channel, $('#tenant_id').val());
+    // });
 
     $("select#tenant_id").change(function(){
         // destroyChartInterval();

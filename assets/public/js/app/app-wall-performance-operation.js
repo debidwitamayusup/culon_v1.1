@@ -19,6 +19,7 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     callTableCOFByChannel('2020-02-24', '');
+    // callTableStatusTicket('2020-01-20');
     getTenant('2020-02-24');
     // getTenant(v_params_today);
     // callTableCOFByChannel(v_params_today);
@@ -96,6 +97,45 @@ function callTableCOFByChannel(date, search){
             // $("#filter-loader").fadeOut("slow");
         },
     });
+}
+
+function callTableStatusTicket(date){
+    $.ajax({
+        type: 'post',
+        url: base_url+'api/Wallboard/WallboardController/SPOKIP',
+        data: {
+            date: date,
+        },
+        success: function (r) {
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            //hit url for interval 900000 (15 minutes)
+            // setTimeout(function(){callTableStatusTicket(date);},5000);
+            drawTableStatusTicket(response);
+            // $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            // console.log(r);
+            alert("error");
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
+function drawTableStatusTicket(response){
+    $("#mytbody2").empty();
+    $("#mytfoot2").empty();
+    console.log(response.data[4].SUMMARY[0].TOTAL)
+    for (var i = 0; i < response.data.length; i++) {
+        $('#tableStatusTicket').find('tbody').append('<tr>'+
+                '<td>'+(i+1)+'</td>'+
+                '<td class="text-left">'+response.data[i].TENANT_ID+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
+                '</tr>');
+    }
 }
 
 function timestrToSec(timestr) {
