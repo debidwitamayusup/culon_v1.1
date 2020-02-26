@@ -33,6 +33,7 @@ class Stc_Model extends CI_Model
     }
 
 	public function get_all_channel(){
+		$this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 		//summary_channel
 		// $this->db->select('channel_name');
 		// $this->db->from('summary_channel');
@@ -44,7 +45,7 @@ class Stc_Model extends CI_Model
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
 		$this->db->group_by('channel_name');
-		$this->db->order_by('channel_name');
+		$this->db->order_by('a.channel_id','ASC');
 		$query = $this->db->get();
 
 		return $query->result();
@@ -1202,7 +1203,7 @@ class Stc_Model extends CI_Model
 			WHERE $where $where2
 			GROUP BY rpt_summ_interval_tsel.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
-		ORDER BY m_channel.channel_name
+		ORDER BY m_channel.channel_id
 		");	
 
 		if($query->num_rows()>0)
@@ -1285,7 +1286,7 @@ class Stc_Model extends CI_Model
 			WHERE $where $where2
 			GROUP BY rpt_summary_scr.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
-		ORDER BY m_channel.channel_name
+		ORDER BY m_channel.channel_id
 		");	
 
 		if($query->num_rows()>0)
@@ -1364,7 +1365,8 @@ class Stc_Model extends CI_Model
 			FROM rpt_summ_interval_tsel
 			WHERE DATE(rpt_summ_interval_tsel.tanggal) = '".$date."' $where2
 			GROUP BY rpt_summ_interval_tsel.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
-			GROUP BY m_channel.channel_name");
+			GROUP BY m_channel.channel_name
+			ORDER BY m_channel.channel_id ASC");
 
 		return $query->result();
 	}
