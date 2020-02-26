@@ -307,7 +307,7 @@ class Stc_Model extends CI_Model
 			where $where2 $where3
 			GROUP BY channel_id 
 		)as b on b.channel_id = m_channel.channel_id   
-		ORDER BY m_channel.channel_id ASC";
+		ORDER BY m_channel.sequence ASC";
 
 		$query = $this->db->query($str);
 		// $CI = & get_instance();
