@@ -90,6 +90,7 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callIntervalTraffic(month, arr_channel, tenant_id );},5000);
@@ -98,9 +99,8 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
-            // console.log(r);
-            // alert("error");
-            // $("#filter-loader").fadeOut("slow");
+            $('#modalError').modal('show');
+            setTimeout(function(){callIntervalTraffic(month, arr_channel, tenant_id );},5000);
         },
     });
 }
@@ -117,6 +117,7 @@ function callTableInterval(month, tennant_id){
         },
         success: function (r) {
             var response = r;
+            $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             setTimeout(function(){callTableInterval(month, tennant_id);}, 5000);
@@ -126,8 +127,8 @@ function callTableInterval(month, tennant_id){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
-            // $("#filter-loader").fadeOut("slow");
+            // setTimeout(function(){ alert("Oops Something Went Wrong..."); }, 3000);
+            $('#modalError').modal('show');
             setTimeout(function(){callTableInterval(month, tennant_id);}, 5000);
         },
     });
@@ -198,18 +199,13 @@ function callDataPercentage(month, tenant_id, params_year){
         },
         success: function (r) {
             var response = r;
+            $('#modalError').modal('hide');
             setTimeout(function(){callDataPercentage(month, tenant_id, params_year);},5000);
             drawChartPercentageMonth(response);
         },
-        error: function (r, jqXHR, textStatus, errorThrown) {
-            
-                console.log('jqXHR:');
-                console.log(jqXHR);
-                console.log('textStatus:');
-                console.log(textStatus);
-                console.log('errorThrown:');
-                console.log(errorThrown);
-
+        error: function (r) {
+            $('#modalError').modal('show');
+            setTimeout(function(){callDataPercentage(month, tenant_id, params_year);},5000);
         },
     });
 }
