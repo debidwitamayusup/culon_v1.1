@@ -57,6 +57,10 @@ class main extends CI_Controller {
 		$this->load->view('v_forgot');
 		$this->load->view('login_temp/footer');
 	}
+
+	public function error_page(){
+		$this->load->view('503');
+	}
 	
 	public function this_day(){
 		$this->load->view('temp/header');
