@@ -1085,7 +1085,8 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
         $this->db->select('tenant_id');
-        $this->db->from('m_tenant');
+        $this->db->from('rpt_summ_kip2'); //m_tenant swap back when data available
+        $this->db->group_by('tenant_id');        
         if($tid)
         {
             $this->db->where('tenant_id',$tid);
