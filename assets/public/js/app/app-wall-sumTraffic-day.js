@@ -19,7 +19,7 @@ $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
     callDataPercentage(v_params_yesterday, '');
-    callIntervalTraffic(v_params_yesterday,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    callIntervalTraffic(v_params_yesterday,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], '');
     // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
     getTenant('');
     $("#filter-loader").fadeOut("slow");
@@ -336,19 +336,19 @@ function drawChartPercentageToday(response){
 
 function drawTableData(response){
     var tagTime=["00:00:00 - 01:00:00", "01:00:00 - 02:00:00", "02:00:00 - 03:00:00", "03:00:00 - 04:00:00", "04:00:00 - 05:00:00", "05:00:00 - 06:00:00", "06:00:00 - 07:00:00", "07:00:00 - 08:00:00", "08:00:00 - 09:00:00", "09:00:00 - 10:00:00", "10:00:00 - 11:00:00", "11:00:00 - 12:00:00", "12:00:00 - 13:00:00", "13:00:00 - 14:00:00", "14:00:00 - 15:00:00", "15:00:00 - 16:00:00", "16:00:00 - 17:00:00", "17:00:00 - 18:00:00", "18:00:00 - 19:00:00", "19:00:00 - 20:00:00", "20:00:00 - 21:00:00", "21:00:00 - 22:00:00", "22:00:00 - 23:00:00", "23:00:00 - 00:00:00"];
-    var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
-    var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
-    var sumTw = response.data.series[2].data.map(Number).reduce(summarize);
-    var sumEmail = response.data.series[3].data.map(Number).reduce(summarize);
-    var sumTel = response.data.series[4].data.map(Number).reduce(summarize);
+    var sumVoice = response.data.series[0].data.map(Number).reduce(summarize);
+    var sumLive = response.data.series[1].data.map(Number).reduce(summarize);
+    var sumTwDM = response.data.series[2].data.map(Number).reduce(summarize);
+    var sumMes = response.data.series[3].data.map(Number).reduce(summarize);
+    var sumWA = response.data.series[4].data.map(Number).reduce(summarize);
     var sumLine = response.data.series[5].data.map(Number).reduce(summarize);
-    var sumVoice = response.data.series[6].data.map(Number).reduce(summarize);
-    var sumInst = response.data.series[7].data.map(Number).reduce(summarize);
-    var sumMes = response.data.series[8].data.map(Number).reduce(summarize);
-    var sumTwDM = response.data.series[9].data.map(Number).reduce(summarize);
-    var sumLive = response.data.series[10].data.map(Number).reduce(summarize);
-    var sumSms = response.data.series[11].data.map(Number).reduce(summarize); 
-    var sumChatBot = response.data.series[12].data.map(Number).reduce(summarize); 
+    var sumTel = response.data.series[6].data.map(Number).reduce(summarize);
+    var sumChatBot = response.data.series[7].data.map(Number).reduce(summarize);
+    var sumInst = response.data.series[8].data.map(Number).reduce(summarize);
+    var sumFb = response.data.series[9].data.map(Number).reduce(summarize);
+    var sumTw = response.data.series[10].data.map(Number).reduce(summarize);
+    var sumEmail = response.data.series[11].data.map(Number).reduce(summarize); 
+    var sumSms = response.data.series[12].data.map(Number).reduce(summarize); 
     
 
     //summarize per channel
@@ -381,19 +381,19 @@ function drawTableData(response){
 
         $('#wall-today-tbl').find('tfoot').append('<tr>'+
             '<td>TOTAL</td>'+
-            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumChatBot)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
             '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
-            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
-            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
-            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
-            '<td class="text-right">'+addCommas(sumChatBot)+'</td>'+
             '</tr>');
 
     }else{
