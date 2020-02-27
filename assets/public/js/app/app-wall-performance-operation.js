@@ -19,7 +19,7 @@ var v_params_yesterday =m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     callTableCOFByChannel('2020-02-24', '');
-    // callTableStatusTicket('2020-01-20');
+    callTableStatusTicket('2020-01-20');
     getTenant('2020-02-24');
     // getTenant(v_params_today);
     // callTableCOFByChannel(v_params_today);
@@ -69,7 +69,8 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){getTenant(date);},5000);
         },
     });
 }
@@ -87,13 +88,15 @@ function callTableCOFByChannel(date, search){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableCOFByChannel(date);},900000);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTableCOFByChannel(date, search);},5000);
             drawTableCOFByChannel(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callTableCOFByChannel(date, search);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -111,13 +114,15 @@ function callTableStatusTicket(date){
             var response = r;
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            // setTimeout(function(){callTableStatusTicket(date);},5000);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTableStatusTicket(date);},5000);
             drawTableStatusTicket(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callTableStatusTicket(date);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -126,14 +131,23 @@ function callTableStatusTicket(date){
 function drawTableStatusTicket(response){
     $("#mytbody2").empty();
     $("#mytfoot2").empty();
-    console.log(response.data[4].SUMMARY[0].TOTAL)
+    // console.log(response.data[4].SUMMARY[0].TOTAL)
     for (var i = 0; i < response.data.length; i++) {
+        console.log(response.data[0].SUMMARY[0]['TOTAL'])
         $('#tableStatusTicket').find('tbody').append('<tr>'+
                 '<td>'+(i+1)+'</td>'+
                 '<td class="text-left">'+response.data[i].TENANT_ID+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[i].TOTAL || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[0]['TOTAL'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[1]['TOTAL'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[2]['TOTAL'] || 0)+'</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
                 '</tr>');
     }
 }
@@ -203,7 +217,7 @@ function drawTableCOFByChannel(response){
                 '<td class="text-right">'+addCommas(response.data[i].SUMART || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAHT || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAST || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMSCR || 0)+' %</td>'+
+                '<td class="text-right">'+(response.data[i].SUMSCR).replace(".",",") || 0+' %</td>'+
                 '</tr>');
 
              sumFb+= parseInt((response.data[i].Facebook || 0));
@@ -223,6 +237,7 @@ function drawTableCOFByChannel(response){
              sumAHT+= formatTime(timestrToSec(response.data[i].SUMAHT || 0));
              sumAST+= formatTime(timestrToSec(response.data[i].SUMAST || 0));
              sumSCR+= parseFloat((response.data[i].SUMSCR || 0));
+             var avgSCR = (sumSCR / response.data.length)    
 
             // time1 = response.data[i].SUMART;
             // time2 = response.data[i].SUMAHT;
@@ -248,10 +263,10 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-center">'+sumART+'</td>'+
-            '<td class="text-center">'+sumAHT+'</td>'+
-            '<td class="text-center">'+sumAST+'</td>'+
-            '<td class="text-right">'+addCommas(sumSCR)+' %</td>'+
+            '<td class="text-center">'+sumART.toString().substring(1)+'</td>'+
+            '<td class="text-center">'+sumAHT.toString().substring(1)+'</td>'+
+            '<td class="text-center">'+sumAST.toString().substring(1)+'</td>'+
+            '<td class="text-right">'+(avgSCR).toString().replace(".",",")+' %</td>'+
             '</tr>');
     }else{
         $('#tabelCOFByChannel').find('tbody').append('<tr>'+

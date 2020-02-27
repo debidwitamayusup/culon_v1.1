@@ -186,6 +186,7 @@ function getTrafficInterval(week,arr_channel, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
+            $('#modalError').modal('hide');
             setTimeout(function(){getTrafficInterval(week, arr_channel, tenant_id);},5000);
             drawTrafficInterval(response);
             // drawTableTraffic(response);
@@ -193,7 +194,8 @@ function getTrafficInterval(week,arr_channel, tenant_id){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){getTrafficInterval(week, arr_channel, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -275,14 +277,16 @@ function getTableChart(week,arr_channel, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
-            // setTimeout(function(){callIntervalTraffic(week, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},20000);
+            $('#modalError').modal('hide');
+            setTimeout(function(){getTableChart(week, arr_channel, tenant_id);},5000);
             drawTableTraffic(response);
             // drawChartDaily(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){getTableChart(week, arr_channel, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -351,6 +355,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            $('#modalError').modal('hide');
             setTimeout(function(){drawChartDaily(week, arr_channel, tenant_id);},5000);
             drawTableTraffic(response);
             $('#echartWeek').remove();
@@ -538,7 +543,8 @@ function drawChartDaily(week,arr_channel, tenant_id){
             barChart6.setOption(option6);
         },
         error: function (r) {
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){drawChartDaily(week, arr_channel, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         }
     });

@@ -156,35 +156,18 @@ if (!function_exists('object_to_array')) {
 
 if (!function_exists('generate_code_customer')) {
 
-    function generate_code_customer($handphone = '') {
-        if (!$handphone) {
+    function generate_code_customer($id = '') {
+        if (!$id) {
             return FALSE;
         }
 
-        $code = substr($handphone, -4) . date('d') . date('m') . substr(date('Y'), -2) . random_string('numeric', 2);
+        $code = substr($id, -4) . date('d') . date('m') . substr(date('Y'), -2) . random_string('numeric', 2);
 
         return $code;
     }
 
 }
 
-/*
- * ---------------------------------------------------------------
- * GENERATE CODE VEHICLE
- * ---------------------------------------------------------------
- */
-
-if (!function_exists('generate_code_vehicle')) {
-
-    function generate_code_vehicle($nopol = '') {
-        if (!$nopol) {
-            return FALSE;
-        }
-
-        $code = substr($nopol, -4) . date('d') . date('m') . substr(date('Y'), -2) . random_string('numeric', 2);
-
-        return $code;
-    }
 
 }
 
@@ -197,38 +180,17 @@ if (!function_exists('generate_code_vehicle')) {
 
 if (!function_exists('generate_code_driver')) {
 
-    function generate_code_driver($handphone = '', $ktp = '') {
-        if (!$handphone) {
+    function generate_code_driver($id = '', $id2 = '') {
+        if (!$id) {
             return FALSE;
         }
-        elseif (!$ktp) {
+        elseif (!$id2) {
             return FALSE;
         }
 
-        $code = substr($handphone, -4) . date('d') . date('m') . substr(date('Y'), -2) . substr($ktp, -4);
+        $code = substr($id, -4) . date('d') . date('m') . substr(date('Y'), -2) . substr($id2, -4);
         return $code;
     }
-}
-
-/*
- * ---------------------------------------------------------------
- * GENERATE CODE EMPLOYEE
- * FORMAT : DD-MM-YY-RANDOM 3 digit
- * ---------------------------------------------------------------
- */
-
-if (!function_exists('generate_code_employee')) {
-
-    function generate_code_employee($handphone = '') {
-        if (!$handphone) {
-            return FALSE;
-        }
-
-        $code = date('d') . date('m') . date('y') . random_string('numeric', 3);
-
-        return $code;
-    }
-
 }
 
 /*
@@ -288,12 +250,11 @@ if (!function_exists('images_url')) {
 if (!function_exists('SendSMS')) {
 
     function SendSMS($phone, $msg = '') {
-        $userkey = 'free';
-        $passkey = 'free';
+        $userkey = 'user_free';
+        $passkey = 'pwd_free';
         $message = $msg;
 
-        //$url = "https://reguler.zenziva.net/apps/smsapibalance.php"; // Cek Balance
-        $url = "https://reguler.zenziva.net/apps/smsapi.php"; // Action
+        $url = "https://reguler.zenziva.net/apps/smsapi.php"; 
 
         $curlHandle = curl_init();
         curl_setopt($curlHandle, CURLOPT_URL, $url);

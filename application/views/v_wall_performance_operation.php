@@ -99,7 +99,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center" id="mytbody2">
-                                <tr>
+                                <!-- <tr>
                                     <td>1</td>
                                     <td class="text-left">Telkom</td>
                                     <td class="text-right">50</td>
@@ -224,6 +224,7 @@
                                     <td class="text-right">50</td>
                                     <td class="text-right">50</td>
                                     <td class="text-right">50</td>
+                                    <td class="text-right">50</td> -->
                                 </tr>
                             </tbody>
                             <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot2">

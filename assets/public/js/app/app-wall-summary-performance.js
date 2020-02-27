@@ -45,11 +45,14 @@ function callThreeTable(date){
         },
         success: function (r) {
             var response = r;
+            $('#modalError').modal('hide');
+            setTimeout(function(){callThreeTable(date);},5000);
             drawTableRealTime(response);
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callThreeTable(date);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -154,12 +157,15 @@ function callPieChartSummary(){
         },
         success: function (r) {
             var response = r;
+            $('#modalError').modal('hide');
+            setTimeout(function(){callPieChartSummary();},5000);
             // console.log(response);
             drawPieChartSummary(response);
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callPieChartSummary();},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -181,6 +187,7 @@ function drawPieChartSummary(response){
             labels: response.data.channel_name
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
             
@@ -242,11 +249,14 @@ function callBarLayanan(date){
         success: function (r) {
             var response = r;
             // console.log(response);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callBarLayanan(date);},5000);
             drawBarLayanan(response);
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callBarLayanan(date);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -288,6 +298,7 @@ function drawBarLayanan(response){
             ],
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
             layout: {
@@ -374,11 +385,14 @@ function callLineChart(channel){
         success: function (r) {
             var response = r;
             // console.log(response);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callLineChart(channel);},5000);
             drawLineChart(response);
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callLineChart(channel);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -405,6 +419,7 @@ function drawLineChart(response){
                 }]
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
             layout: {
@@ -445,11 +460,14 @@ function callTotalTable(date){
         },
         success: function (r) {
             var response = r;
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTotalTable(date);},5000);
             drawTotalTable(response);
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callTotalTable(date);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -489,7 +507,7 @@ function drawTotalTable(response){
             sumSCR+= parseFloat((response.data[i].SCR || 0));
             sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
             sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
-
+            $('#rowDiv').empty();
             $('#rowDiv').append(''+
                 '<div class="col-md-3">'+
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
