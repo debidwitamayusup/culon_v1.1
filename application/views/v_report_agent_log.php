@@ -79,7 +79,7 @@
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent ID</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent Name</td>
-                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</td>
+                                    <!-- <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</td> -->
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Login Time</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Logout Time</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Staffed Time</td>
@@ -94,7 +94,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
@@ -243,7 +243,7 @@
                                     <td class="text-center">00:01:00</td>
                                     <td class="text-center">00:01:00</td>
                                     <td class="text-center">00:01:00</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

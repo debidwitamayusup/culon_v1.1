@@ -533,17 +533,17 @@ Class ReportModel extends CI_Model {
         //QUERY - 
         // SUM(a.handling) as HANDLED,
         //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
-        $this->db->select('a.agent_id as AGENTID,
+        $this->db->select('a.tanggal as TANGGAL,
+        a.agent_id as AGENTID,
         a.agent_name as AGENTNAME,
-        a.skill_name as SKILLNAME,
-        a.login_time as LOGIN,
-        a.logout_time as LOGOUT,
-        a.staff_time as STAFFTIME,
-        a.aux_istirahat as AISTIRAHAT,
-        a.aux_ibadah as AIBADAH,
-        a.aux_briefing as ABRIEFING,
-        a.aux_toilet as ALAINLAIN,
-        a.aux_tot as ATOTAL,
+        TIME(a.login_time ) as LOGIN,
+        TIME(a.logout_time ) as LOGOUT,
+        SEC_TO_TIME(a.staff_time) as STAFFTIME,
+        SEC_TO_TIME(a.aux_istirahat) as AISTIRAHAT,
+        SEC_TO_TIME(a.aux_ibadah) as AIBADAH,
+        SEC_TO_TIME(a.aux_briefing) as ABRIEFING,
+        SEC_TO_TIME(a.aux_toilet) as ALAINLAIN,
+        SEC_TO_TIME(a.aux_tot) as ATOTAL,
         ');
 
         $this->db->from('rpt_agent_log a');
@@ -573,9 +573,9 @@ Class ReportModel extends CI_Model {
                 {
                     $result[] = array(
                         $id,
+                        $data->TANGGAL,
                         $data->AGENTID,
                         $data->AGENTNAME,
-                        $data->SKILLNAME,
                         $data->LOGIN,
                         $data->LOGOUT,
                         $data->STAFFTIME,
