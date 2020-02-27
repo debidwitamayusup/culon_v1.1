@@ -780,7 +780,7 @@ Class WallboardModel extends CI_Model {
 			$this->db->where('m_channel.channel_name',$channel);
         }
         $this->db->order_by('m_channel.channel_category DESC, m_channel.channel_id ASC');
-        
+
         $query = $this->db->get();
 
 		if($query->num_rows() > 0)
@@ -1085,7 +1085,8 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
         $this->db->select('tenant_id');
-        $this->db->from('m_tenant');
+        $this->db->from('rpt_summ_kip2'); //m_tenant swap back when data available
+        $this->db->group_by('tenant_id');        
         if($tid)
         {
             $this->db->where('tenant_id',$tid);
@@ -1096,6 +1097,7 @@ Class WallboardModel extends CI_Model {
 		{
             foreach($query->result() as $data)
             {
+                //change tenant 
                 $result[] = array(
                     'TENANT_ID' => $data->tenant_id,
                     'SUMMARY' => $this->getSPOdata($tanggal,$data->tenant_id)
