@@ -33,6 +33,19 @@ $(document).ready(function () {
     // callTablePerformOps(v_params_tenant, '', n);
 });
 
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
 function getTenant(date){
     $.ajax({
         type: 'POST',
@@ -88,7 +101,10 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
         // lengthMenu: [ 13, 25, 50, 75, 100 ],
         paging: false,
         searching: false,
-        destroy: true
+        destroy: true,
+        fnInfoCallback: function( oSettings, iStart, iEnd, iMax, iTotal, sPre ) {
+            return "Showing "+addCommas(iStart) +" to "+ addCommas(iEnd) +" from " + addCommas(iTotal)+" entries";
+        },
     });
     // $("#filter-loader").fadeOut("slow");
 }
@@ -284,7 +300,7 @@ function drawPieChartSumChannel(response){
                         // console.log(total)
                         
                         legendHtml.push('<li class="col-md-12 col-lg-4 col-sm-4 col-xl-4">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+(percentage.toString()).replace('.',',')+ '%</span>');
                     } else {
                         var label = chart.data.labels[index];
                         var dataLabel = allData[index];

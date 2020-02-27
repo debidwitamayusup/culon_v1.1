@@ -49,7 +49,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-auto ml-1">
+                            <!-- <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
                                     <select class="form-control" id="skill">
                                         <option value="ShowAll">Skill</option>
@@ -58,7 +58,7 @@
                                         <option value="3">Sosmed</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-auto ml-1">
                                 <button class="btn btn-sm btn-grey" type="button" style="height:35px" id="btn-go"><i
                                         class="fas fa-filter"></i></button>
@@ -79,7 +79,7 @@
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Date</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent ID</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Agent Name</td>
-                                    <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</td>
+                                    <!-- <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Skill</td> -->
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Login Time</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Logout Time</td>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle">Staffed Time</td>
@@ -94,7 +94,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">2019-01-10</td>
                                     <td class="text-center">AD2061</td>
@@ -243,7 +243,7 @@
                                     <td class="text-center">00:01:00</td>
                                     <td class="text-center">00:01:00</td>
                                     <td class="text-center">00:01:00</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

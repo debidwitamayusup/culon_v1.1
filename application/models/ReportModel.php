@@ -45,10 +45,10 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->CHANNEL_NAME,
-                        strval(number_format($data->UNIQUE_CUSTOMER,0,'.',',')),
-                        strval(number_format($data->TOTAL_SESSION,0,'.',',')),
-                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
-                        strval(number_format($data->MESSAGE_OUT,0,'.',','))
+                        strval(number_format($data->UNIQUE_CUSTOMER,0,',','.')),
+                        strval(number_format($data->TOTAL_SESSION,0,',','.')),
+                        strval(number_format($data->MESSAGE_IN,0,',','.')),
+                        strval(number_format($data->MESSAGE_OUT,0,',','.'))
                     );
                     $id++;
                 }
@@ -525,6 +525,78 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    public function get_datareportAL ($tid, $d_start, $d_end,$meth)
+    {
+        $year = date('Y');
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        //QUERY - 
+        // SUM(a.handling) as HANDLED,
+        //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
+        $this->db->select('a.tanggal as TANGGAL,
+        a.agent_id as AGENTID,
+        a.agent_name as AGENTNAME,
+        TIME(a.login_time ) as LOGIN,
+        TIME(a.logout_time ) as LOGOUT,
+        SEC_TO_TIME(a.staff_time) as STAFFTIME,
+        SEC_TO_TIME(a.aux_istirahat) as AISTIRAHAT,
+        SEC_TO_TIME(a.aux_ibadah) as AIBADAH,
+        SEC_TO_TIME(a.aux_briefing) as ABRIEFING,
+        SEC_TO_TIME(a.aux_toilet) as ALAINLAIN,
+        SEC_TO_TIME(a.aux_tot) as ATOTAL,
+        ');
+
+        $this->db->from('rpt_agent_log a');
+        
+        if($tid)
+        {
+            $this->db->where('a.tenant_id',$tid);
+        }
+        if($d_start)
+        {
+            $this->db->where('a.tanggal >= ',$d_start);
+        }
+
+        if($d_end)
+        {
+            $this->db->where('a.tanggal <=',$d_end);
+            
+        }
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            if($meth == 'data')
+            {   
+                $id = 1;
+                foreach( $query->result() as $data)
+                {
+                    $result[] = array(
+                        $id,
+                        $data->TANGGAL,
+                        $data->AGENTID,
+                        $data->AGENTNAME,
+                        $data->LOGIN,
+                        $data->LOGOUT,
+                        $data->STAFFTIME,
+                        $data->AISTIRAHAT,
+                        $data->AIBADAH,
+                        $data->ABRIEFING,
+                        $data->ALAINLAIN,
+                        $data->ATOTAL
+                    );
+                    $id++;
+                }
+                return $result;
+            }
+            else
+            {
+                return $query->result();
+            }  
+        }
+        return false;
+    }
+
     public function get_datareportSPA($tid, $t_start,$t_end,$meth)
     {
         //$year = date('Y');
@@ -786,9 +858,12 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal ',$dt);
         }
         $this->db->where('YEAR(a.tanggal)',$year);
+        $this->db->where_not_in('a.channel_id', '1');
         $this->db->group_by('a.tanggal, a.channel_id');
         $this->db->get();
         $subquery = $this->db->last_query();
+        // print_r($subquery);
+        // exit;
 
         //mainquery
         $this->db->select('IFNULL(a.tanggal,"'.$dt.'") as TANGGAL,
@@ -799,6 +874,7 @@ Class ReportModel extends CI_Model {
         b.channel_category as CATEGORY
         ');
         $this->db->from('m_channel b');
+        $this->db->where_not_in('b.channel_id', '1');
         $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
         $query = $this->db->get();
 

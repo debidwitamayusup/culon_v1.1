@@ -24,8 +24,22 @@ $(document).ready(function(){
     $('#end-date').datepicker("setDate", v_params_today);
     startDateFromFilter = v_params_today;
     endDateFromFilter = v_params_today;
+    callTableAgentLog(v_params_today, v_params_today, '');
     $('#tableAgent').dataTable();
 });
+
+function addCommas(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
 
 function getTenant(date){
     $.ajax({
@@ -50,6 +64,41 @@ function getTenant(date){
             alert("error");
         },
     });
+}
+
+function callTableAgentLog(start_date, end_date, tenant_id){
+    console.log('asup')
+    $("#filter-loader").fadeIn("slow");
+	$('#tableAgent').DataTable({
+        ajax: {
+            url : base_url + 'api/Reporting/ReportController/ReportingAL',
+            type : 'POST',
+            data :{
+                tenant_id: tenant_id,
+                start_date: start_date,
+                end_date: end_date
+            }
+        },
+        columnDefs: [
+			{ className: "text-center", targets: 0 },
+			{ className: "text-center", targets: 1 },
+			{ className: "text-center", targets: 2 },
+			{ className: "text-left", targets: 3 },
+			{ className: "text-center", targets: 4 },
+			{ className: "text-center", targets: 5 },
+			{ className: "text-center", targets: 6 },
+			{ className: "text-center", targets: 7 },
+			{ className: "text-center", targets: 8 },
+			{ className: "text-center", targets: 9 },
+			{ className: "text-center", targets: 10 },
+			{ className: "text-center", targets: 11 },
+		], 
+        destroy: true,
+        fnInfoCallback: function( oSettings, iStart, iEnd, iMax, iTotal, sPre ) {
+            return "Showing "+addCommas(iStart) +" to "+ addCommas(iEnd) +" from " + addCommas(iTotal)+" entries";
+        },
+    });
+    $("#filter-loader").fadeOut("slow");
 }
 
 function setDatePicker() {
@@ -97,10 +146,10 @@ function setDatePicker() {
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
-        // channelFromFilter = $('#channel_name').val();
-        // monthFromFilter = $('#month_name').val();
+        startDateFromFilter = $('#start-date').val();
+        endDateFromFilter = $('#end-date').val();
         
-        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
     });
 
     // $('#tableSummaryTraffic').dataTable();    

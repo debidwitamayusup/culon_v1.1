@@ -14,13 +14,13 @@ if (n < 10) {
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-1);
+var v_params_yesterday =m + '-' + n + '-' + (o-2);
 
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
-    callTableCOFByChannel('2020-02-24', '');
+    callTableCOFByChannel(v_params_yesterday, '');
     callTableStatusTicket('2020-01-20');
-    getTenant('2020-02-24');
+    getTenant(v_params_yesterday);
     // getTenant(v_params_today);
     // callTableCOFByChannel(v_params_today);
 
@@ -140,7 +140,6 @@ function drawTableStatusTicket(response){
                 '<td class="text-right">'+addCommas(response.data[i].SUMMARY[0]['TOTAL'] || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMMARY[1]['TOTAL'] || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMMARY[2]['TOTAL'] || 0)+'</td>'+
-                '<td class="text-center">-</td>'+
                 '<td class="text-center">-</td>'+
                 '<td class="text-center">-</td>'+
                 '<td class="text-center">-</td>'+

@@ -14,14 +14,14 @@ if (n < 10) {
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-1);
+var v_params_yesterday =m + '-' + n + '-' + (o-2);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callSumAllTenant('day', '2020-02-24', 0, '');
-    callSumPerTenant('day', '2020-02-24', 0, '');
+    callSumAllTenant('day', v_params_yesterday, 0, '');
+    callSumPerTenant('day', v_params_yesterday, 0, '');
     // drawIntervalChart();
-    callIntervalTraffic('day','2020-02-24',0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
+    callIntervalTraffic('day',v_params_yesterday,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
     getTenant(v_params_yesterday);
 
     // $('#check-all-channel').prop('checked',false);

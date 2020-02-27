@@ -14,12 +14,12 @@ if (n < 10) {
 //get today
 var v_params_yesterday= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-1);
+var v_params_yesterday =m + '-' + n + '-' + (o-2);
 $(document).ready(function () {
     $("#filter-loader").fadeIn("slow");
     // fromTemplate();
-    callDataPercentage('2020-02-24', '');
-    callIntervalTraffic('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+    callDataPercentage(v_params_yesterday, '');
+    callIntervalTraffic(v_params_yesterday,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
     // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
     getTenant('');
     $("#filter-loader").fadeOut("slow");
