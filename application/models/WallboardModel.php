@@ -779,7 +779,7 @@ Class WallboardModel extends CI_Model {
 		{
 			$this->db->where('m_channel.channel_name',$channel);
         }
-        $this->db->order_by('m_channel.channel_category DESC, m_channel.channel_id ASC');
+        $this->db->order_by('m_channel.channel_category DESC, m_channel.sequence_by_rtc ASC');
 
         $query = $this->db->get();
 

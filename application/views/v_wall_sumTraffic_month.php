@@ -153,26 +153,29 @@
                     <div class="table-responsive table-bordered" style="padding:5px;">
                         <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito12"
                             style="font-size:12px" id="wall-month-tbl">
-                            <thead class="text-center bg-head">
+                            <thead class="text-center bg-head table-sm">
                                 <tr>
-                                    <td rowspan="2" class="text-white font-weight-extrabold">Days</td>
+                                    <td rowspan="3" class="text-white font-weight-extrabold">Date</td>
                                     <!-- <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td> -->
                                     <td colspan="14" class="text-white font-weight-extrabold">Channel</td>
                                 </tr>
                                 <tr>
-                                    <td class="bg-column">Facebook</td>
+                                    <td class="bg-column" rowspan="2">Voice</td>
+                                    <td colspan="7" class="text-white font-weight-extrabold">RTC</td>
+                                    <td colspan="6" class="text-white font-weight-extrabold">Non RTC</td>
+                                <tr>
+                                    <td class="bg-column">Live Chat</td>
+                                    <td class="bg-column">Twitter DM</td>
+                                    <td class="bg-column">Messenger</td>
                                     <td class="bg-column">Whatsapp</td>
+                                    <td class="bg-column">Line</td>
+                                    <td class="bg-column">Telegram</td>
+                                    <td class="bg-column">Chat Bot</td>
+                                    <td class="bg-column">Instagram</td>
+                                    <td class="bg-column">Facebook</td>
                                     <td class="bg-column">Twitter</td>
                                     <td class="bg-column">Email</td>
-                                    <td class="bg-column">Telegram</td>
-                                    <td class="bg-column">Line</td>
-                                    <td class="bg-column">Voice</td>
-                                    <td class="bg-column">Instagram</td>
-                                    <td class="bg-column">Messenger</td>
-                                    <td class="bg-column">Twitter DM</td>
-                                    <td class="bg-column">Live Chat</td>
                                     <td class="bg-column">SMS</td>
-                                    <td class="bg-column">Chat Bot</td>
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center" id="mytbody">

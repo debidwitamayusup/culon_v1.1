@@ -324,19 +324,19 @@ function drawChartPercentageMonth(response){
 function drawTableData(response){
     // var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
 
-    var sumFb = response.data[5].total_interval.map(Number).reduce(summarize);
-    var sumWA = response.data[10].total_interval.map(Number).reduce(summarize);
-    var sumTw = response.data[7].total_interval.map(Number).reduce(summarize);
-    var sumEmail = response.data[1].total_interval.map(Number).reduce(summarize);
-    var sumTel = response.data[4].total_interval.map(Number).reduce(summarize);
-    var sumLine = response.data[8].total_interval.map(Number).reduce(summarize);
-    var sumVoice = response.data[0].total_interval.map(Number).reduce(summarize);
-    var sumInst = response.data[9].total_interval.map(Number).reduce(summarize);
-    var sumMes = response.data[6].total_interval.map(Number).reduce(summarize);
-    var sumTwDM = response.data[11].total_interval.map(Number).reduce(summarize);
-    var sumLive = response.data[2].total_interval.map(Number).reduce(summarize);
-    var sumSms = response.data[3].total_interval.map(Number).reduce(summarize);
-    var sumChat = response.data[12].total_interval.map(Number).reduce(summarize);
+    var sumVoice = response.data[12].total_interval.map(Number).reduce(summarize);
+    var sumLive = response.data[0].total_interval.map(Number).reduce(summarize);
+    var sumTwDM = response.data[1].total_interval.map(Number).reduce(summarize);
+    var sumMes = response.data[2].total_interval.map(Number).reduce(summarize);
+    var sumWA = response.data[3].total_interval.map(Number).reduce(summarize);
+    var sumLine = response.data[4].total_interval.map(Number).reduce(summarize);
+    var sumTel = response.data[5].total_interval.map(Number).reduce(summarize);
+    var sumChat = response.data[6].total_interval.map(Number).reduce(summarize);
+    var sumInst = response.data[7].total_interval.map(Number).reduce(summarize);
+    var sumFb = response.data[8].total_interval.map(Number).reduce(summarize);
+    var sumTw = response.data[9].total_interval.map(Number).reduce(summarize);
+    var sumEmail = response.data[10].total_interval.map(Number).reduce(summarize);
+    var sumSms = response.data[11].total_interval.map(Number).reduce(summarize);
     // var sumTotAgent = response.data.total_interval.map(Number).reduce(summarize);
     //summarize per channel
     function summarize(total, num) {
@@ -352,37 +352,37 @@ function drawTableData(response){
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+response.dates[i]+'</td>'+
             // '<td class="text-right">'+addCommas(response.total_agent[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[5].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[10].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[7].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[1].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[4].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[8].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[12].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[0].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[9].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[6].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[11].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[1].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[2].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[3].total_interval[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[12].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[4].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[5].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[6].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[7].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[8].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[9].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[10].total_interval[i])+'</td>'+
+            '<td class="text-right">'+addCommas(response.data[11].total_interval[i])+'</td>'+
             '</tr>');
         }
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
             '<td class="text-center">TOTAL</td>'+
-            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumChat)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
             '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
-            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
-            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
-            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
-            '<td class="text-right">'+addCommas(sumChat)+'</td>'+
             '</tr>');
 
         // setTimeout(function(){callTableInterval(n, '');}, 5000);
