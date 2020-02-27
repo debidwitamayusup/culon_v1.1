@@ -3,7 +3,7 @@
         <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-book mr-1"></i>Report</h4>
+                    <h4 class="page-title"><i class="si si-layers mr-1"></i>Report</h4>
                 </li>
                 <li class="breadcrumb-item active mt-2" aria-current="page">Summary KIP</li>
             </ol>
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table id="tableReportKIP" class="table table-sm table-striped table-bordered fontNunito12">
+                            <table id="tableReportKIP" class="table table-sm table-striped table-bordered fontNunito12" style="width:100%">
                                 <thead class="bg-head text-center text-white">
                                     <tr>
                                         <th class="wd-15p border-bottom-0" width="20">No</th>

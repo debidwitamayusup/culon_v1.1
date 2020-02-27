@@ -3,7 +3,7 @@
         <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-book mr-1"></i>Report</h4>
+                    <h4 class="page-title"><i class="si si-layers mr-1"></i>Report</h4>
                 </li>
                 <li class="breadcrumb-item active mt-2" aria-current="page">Agent Performance</li>
             </ol>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
-                        <table id="reportAgentPerformance" class="table table-sm table-striped table-bordered fontNunito11">
+                        <table id="reportAgentPerformance" class="table table-sm table-striped table-bordered fontNunito11" style="width:100%">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td class="wd-15p border-bottom-0" width="20">No</td>

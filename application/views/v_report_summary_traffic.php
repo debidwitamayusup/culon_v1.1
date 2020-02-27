@@ -3,7 +3,7 @@
         <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-book mr-1"></i>Report</h4>
+                    <h4 class="page-title"><i class="si si-layers mr-1"></i>Report</h4>
                 </li>
                 <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic</li>
             </ol>
@@ -82,7 +82,7 @@
                     </div>
                     
                     <div class="table-responsive" style="padding:1px !important;">
-                        <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9">
+                        <table id="tableSummaryTraffic" class="table table-striped table-bordered fontNunito9" style="width:100%">
                             <thead class="bg-head text-center text-white">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>

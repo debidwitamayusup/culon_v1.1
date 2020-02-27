@@ -7,7 +7,7 @@
                     <div class="page-header d-flex p-2 bd-highlight">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active" aria-current="page">
-                                <h4 class="page-title"><i class="fe fe-home mr-1"></i>Dashboard</h4>
+                                <h4 class="page-title"><i class="si si-layers mr-1"></i>Dashboard</h4>
                             </li>
                             <li class="breadcrumb-item active mt-2" aria-current="page">Call Work Code</li>
                         </ol>
@@ -16,7 +16,7 @@
                 </div>
 
                 <!----First Rows--->
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-header-small bg-red">
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="example-2" class="table table-striped table-bordered">
+                                    <table id="example-2" class="table table-striped table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">No</th>
