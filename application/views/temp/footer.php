@@ -17,9 +17,9 @@
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Error</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<div class="modal-header bg-red">
+				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-exclamation-triangle mr-1"></i>Error</h5>
+				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>

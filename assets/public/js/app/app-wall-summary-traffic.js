@@ -545,7 +545,7 @@ function drawLineChart(response){
                         left: 5,
                         right: 7,
                         top: 15,
-                        bottom: 0
+                        bottom: 10
                     }
                 },
                 legend:{
