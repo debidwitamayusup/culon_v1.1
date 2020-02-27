@@ -982,9 +982,9 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
-                        strval(number_format($data->MESSAGE_OUT,0,'.',',')),
-                        round($data->SCR,2).'%'
+                        strval(number_format($data->MESSAGE_IN,0,',','.')),
+                        strval(number_format($data->MESSAGE_OUT,0,',','.')),
+                        str_replace('.',',',strval(round($data->SCR,2))).'%'
                     ); 
                 }
                 return $result;
@@ -1042,9 +1042,9 @@ Class ReportModel extends CI_Model {
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        strval(number_format($data->MESSAGE_IN,0,'.',',')),
-                        strval(number_format($data->MESSAGE_OUT,0,'.',',')),
-                        round($data->SCR,2).'%'
+                        strval(number_format($data->MESSAGE_IN,0,',','.')),
+                        strval(number_format($data->MESSAGE_OUT,0,',','.')),
+                        str_replace('.',',',strval(round($data->SCR,2))).'%'
                     ); 
                     $i++;
                 }
