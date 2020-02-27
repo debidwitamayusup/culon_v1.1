@@ -858,9 +858,12 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal ',$dt);
         }
         $this->db->where('YEAR(a.tanggal)',$year);
+        $this->db->where_not_in('a.channel_id', '1');
         $this->db->group_by('a.tanggal, a.channel_id');
         $this->db->get();
         $subquery = $this->db->last_query();
+        // print_r($subquery);
+        // exit;
 
         //mainquery
         $this->db->select('IFNULL(a.tanggal,"'.$dt.'") as TANGGAL,
@@ -871,6 +874,7 @@ Class ReportModel extends CI_Model {
         b.channel_category as CATEGORY
         ');
         $this->db->from('m_channel b');
+        $this->db->where_not_in('b.channel_id', '1');
         $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
         $query = $this->db->get();
 
