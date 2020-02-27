@@ -580,7 +580,7 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
-        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) ART, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) as AHT, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST, AVG(scr) as SCR');
+        $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) as AHT, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST, ROUND(AVG(scr),2) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         if($src)
@@ -593,17 +593,17 @@ Class WallboardModel extends CI_Model {
 
         if($query->num_rows()>0)
         {
-            foreach($query->result() as $data)
+            foreach($query->result() as $datas)
             {
-                $t_id = $data->tenant_id;
+                $t_id = $datas->tenant_id;
 
                 $data = array(
-                    'TENANT_ID' => strtoupper($data->id),
-                    'SUMCOF' =>  $data->COF,
-                    'SUMART' => $data->ART,
-                    'SUMAHT' => $data->AHT,
-                    'SUMAST' => $data->AST,
-                    'SUMSCR' => $data->SCR
+                    'TENANT_ID' => strtoupper($datas->id),
+                    'SUMCOF' =>  $datas->COF,
+                    'SUMART' => $datas->ART,
+                    'SUMAHT' => $datas->AHT,
+                    'SUMAST' => $datas->AST,
+                    'SUMSCR' => $datas->SCR
                 );
 
                 $data2 = $this->SummPerformOps_sub($date,$t_id);

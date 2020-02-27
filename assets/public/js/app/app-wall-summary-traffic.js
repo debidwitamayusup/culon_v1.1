@@ -46,6 +46,7 @@ function getTenant(date){
         },
 
         success: function (r) {
+            $('#modalError').modal('hide');
             var data_option = [];
             // var response = JSON.parse(r);
             var response = r;
@@ -66,7 +67,8 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){getTenant(date);}, 5000);
         },
     });
 }
@@ -102,15 +104,17 @@ function callSumAllTenant(params, index, params_year, tenant_id){
             tenant_id: tenant_id
         },
         success: function (r) {
+            $('#modalError').modal('hide');
             // var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},900000);
             drawPieChartSumAllTenant(r);
+            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -129,15 +133,16 @@ function callSumPerTenant(params, index, params_year, tenant_id){
         success: function (r) {
             // var response = JSON.parse(r);
             var response = r;
-            console.log(response);
+            $('#modalError').modal('hide');
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},900000);
             drawChartPerTenant(response);
+            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -157,17 +162,19 @@ function callIntervalTraffic(params, index, params_year, channel, tenant_id){
             tenant_id: tenant_id
         },
         success: function (r) {
+            $('#modalError').modal('hide');
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
             drawLineChart(r);
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -190,6 +197,7 @@ function drawPieChartSumAllTenant(response){
             labels: response.data.channel_name
         },
         options: {
+            animation: false,
             responsive: true,
             maintainAspectRatio: false,
 
@@ -381,6 +389,7 @@ function drawChartPerTenant(response){
     /*----echartTicketUnit----*/
 
     var optionWallSummary = {
+        animation: false,
         tooltip: {
             trigger: 'axis',
             axisPointer: {       
@@ -528,6 +537,7 @@ function drawLineChart(response){
                 datasets: data
             },
             options: {
+                animation: false,
                 responsive: true,
                 maintainAspectRatio: false,
                 legend:{

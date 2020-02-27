@@ -281,7 +281,7 @@ function drawPieChartSumAllTenant(response){
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
-                        value = value.join('.');
+                        value = value.join(',');
                         return data.labels[tooltipItem.index]+': '+ value;
                     }
               } // end callbacks:
@@ -308,8 +308,8 @@ function drawPieChartSumAllTenant(response){
                         }
 
                         // console.log(Number(dataLabel))
-                        console.log(dataLabel+":")
-                        console.log(total);
+                        // console.log(dataLabel+":")
+                        // console.log(total);
                         if(dataLabel != 0){
                             var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
                         }else{
@@ -329,8 +329,8 @@ function drawPieChartSumAllTenant(response){
                             total += parseInt(Number(allData[i]));
                         }
 
-                        console.log(dataLabel+"/")
-                        console.log(total);
+                        // console.log(dataLabel+"/")
+                        // console.log(total);
                         
                         // var percentage = Math.round((dataLabel / total) * 100);
                         if(dataLabel != 0){
