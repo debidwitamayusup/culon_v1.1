@@ -3,7 +3,7 @@
         <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-book mr-1"></i>Report</h4>
+                    <h4 class="page-title"><i class="si si-layers mr-1"></i>Report</h4>
                 </li>
                 <li class="breadcrumb-item active mt-2" aria-current="page">Agent Log</li>
             </ol>
@@ -11,7 +11,7 @@
         <!--Page Header-->
 
         <!----First Rows--->
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header-small">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="padding:8px !important;">
-                        <table id="tableAgent" class="table table-sm table-striped table-bordered fontNunito11">
+                        <table id="tableAgent" class="table table-sm table-striped table-bordered fontNunito11" style="width:100%">
                             <thead class="bg-head text-white text-center">
                                 <tr>
                                     <td rowspan="2" class="wd-15p border-bottom-0 align-middle" width="20">No</td>

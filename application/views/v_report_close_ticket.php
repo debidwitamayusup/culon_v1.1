@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="table-responsive" style="padding:10px 8px 10px 8px;">
-                            <table class="table table-striped table-bordered fontNunito12" id="tableSumClose"
+                            <table class="table table-striped table-bordered fontNunito12" id="tableSumClose" style="width:100%"
                                 width="100%">
                                 <thead class="bg-head text-white text-center">
                                     <tr>
