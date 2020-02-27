@@ -568,8 +568,8 @@ pre code {
 	position: relative;
 	width: 100%;
 	min-height: 1px;
-	padding-right: 0.44rem;
-	padding-left: 0.44rem;
+	padding-right: 0.3rem;
+	padding-left: 0.3rem;
 }
 .col {
 	-ms-flex-preferred-size: 0;

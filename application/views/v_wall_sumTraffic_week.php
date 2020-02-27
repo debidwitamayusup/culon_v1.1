@@ -3,22 +3,23 @@
         <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+                    <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
                 </li>
                 <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by Week</li>
             </ol>
+            <div class="d-flex bd-highlight">
+                <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+                <div class="p-2 bd-highlight">
+                    <select class="form-control" id="channel_name">
+                        <option value="#">Layanan</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <!-- <div class="d-flex bd-highlight">
-                    <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-                    <div class="p-2 bd-highlight">
-                        <select class="form-control" id="channel_name">
-                            <option value="#">Layanan</option>
-                        </select>
-                    </div>
-                </div> -->
+
         <!--Page Header-->
         <!---Next Rows---->
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-12 col-lg-4">
                 <div class="card">
                     <div class="card-header-small">
@@ -139,7 +140,7 @@
                         </div>
                     </div> -->
                     <div class="card-body" id="lineWallsumTrafficWeekDiv">
-                        <canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>
+                        <canvas id="lineWallsumTrafficWeek"></canvas>
                     </div>
                 </div>
             </div>
@@ -154,7 +155,7 @@
                             <thead class="text-center text-white bg-head" style="font-size:11px;">
                                 <tr>
                                     <td rowspan="2" class="text-middle">No</td>
-                                    <td rowspan="2" class="text-middle">Channel</td>
+                                    <td rowspan="2" class="text-middle" width="100">Channel</td>
                                     <td colspan="7">Day</td>
                                 </tr>
                                 <tr>

@@ -4,7 +4,7 @@
             <div class="flex-grow-1 bd-highlight">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+                        <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
                     </li>
                     <li class="breadcrumb-item active mt-2" aria-current="page">Monitoring Realtime
                     </li>
@@ -14,7 +14,7 @@
         </div>
 
         <!-- first row -->
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-6">
                 <div class="card">
                     <div class="row">
@@ -22,7 +22,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
@@ -156,7 +156,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -172,7 +172,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
@@ -294,7 +294,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -302,7 +302,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -310,7 +310,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -369,7 +369,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
@@ -428,7 +428,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -436,7 +436,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -444,7 +444,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -503,7 +503,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
@@ -565,7 +565,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -573,7 +573,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -581,7 +581,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -640,7 +640,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
@@ -699,7 +699,7 @@
                             <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
                             <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total Queue</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -707,7 +707,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Avg SCR</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -715,7 +715,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="ml-1 col-sm-7">
+                                <div class="ml-2 col-sm-7">
                                     <h6 class="font12 font-normal">Total COF</h6>
                                 </div>
                                 <div class="col-sm-auto">
@@ -774,7 +774,7 @@
                             </div>
                         </div>
                         <div class="col-md-auto">
-                        <div class="card-box box-widget widget-user"
+                            <div class="card-box box-widget widget-user"
                                 style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
                                 <div class="widget-user-header">
                                     <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>

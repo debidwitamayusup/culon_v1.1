@@ -4,7 +4,7 @@
 			<div class="flex-grow-1 bd-highlight">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active" aria-current="page">
-						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+						<h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
 					</li>
 					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic
 					</li>
@@ -21,7 +21,7 @@
 		</div>
 		<!--Page Header-->
 		<!----Baris Pertama----!-->
-		<div class="row">
+		<div class="row mt-2">
 			<div class="col-xl-6 col-lg-6 col-md-12">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">

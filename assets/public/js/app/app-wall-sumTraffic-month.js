@@ -68,7 +68,7 @@ function getColorChannel(channel){
 function destroyChartInterval(){
     // destroy chart interval 
     $('#lineWallsumTrafficMonth').remove(); // this is my <canvas> element
-    $('#lineWallsumTrafficMonthDiv').append('<canvas id="lineWallsumTrafficMonth" class="h-400"></canvas>');
+    $('#lineWallsumTrafficMonthDiv').append('<canvas id="lineWallsumTrafficMonth" class="h-500"></canvas>');
 }
 
 function destroyChartPercentage(){
@@ -168,6 +168,14 @@ function drawChartToday(response){
                 animation: false,
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 0,
+                        top: 20,
+                        bottom:10
+                    }
+                },
                 legend:{
                     display: true,
                     position:'bottom',
@@ -243,6 +251,14 @@ function drawChartPercentageMonth(response){
         },
         options: {
             animation: false,
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    bottom: 5
+                }
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {

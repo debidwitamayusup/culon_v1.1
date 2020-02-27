@@ -4,7 +4,7 @@
             <div class="flex-grow-1 bd-highlight">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">
-                        <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Wallboard</h4>
+                        <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
                     </li>
                     <li class="breadcrumb-item active mt-2" aria-current="page">Agent Monitoring
                     </li>
@@ -13,7 +13,7 @@
             <!--Page Header-->
         </div>
 
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                 <div class="d-flex bd-highlight">

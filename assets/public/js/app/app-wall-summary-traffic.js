@@ -530,6 +530,14 @@ function drawLineChart(response){
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 7,
+                        top: 15,
+                        bottom: 0
+                    }
+                },
                 legend:{
                     display: true,
                     position:'bottom',

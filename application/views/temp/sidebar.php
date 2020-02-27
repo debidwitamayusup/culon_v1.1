@@ -25,8 +25,8 @@
 		<div class="second-sidemenu">
 			<div class="d-flex bd-highlight">
 				<div class="ml-auto bd-highlight">
-					<a aria-label="Hide Sidebar" class="app-sidebar__toggle float-right"
-						data-toggle="sidebar" href="#"></a>
+					<a aria-label="Hide Sidebar" class="app-sidebar__toggle float-right" data-toggle="sidebar"
+						href="#"></a>
 				</div>
 			</div>
 			<div class="resp-tabs-container hor_1">
@@ -35,8 +35,10 @@
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary Performance Operation</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary Performance</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
+								Performance Operation</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
+								Performance</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
@@ -44,13 +46,16 @@
 											class="angle fa fa-angle-down"></i></a>
 									<ul class="slide-menu submenu-list">
 										<li>
-											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic by Today</a>
+											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic
+												by Today</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/wall_sumTraffic_week" class="slide-item">Traffic by This Week</a>
+											<a href="<?=base_url()?>main/wall_sumTraffic_week"
+												class="slide-item">Traffic by This Week</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/wall_sumTraffic_month" class="slide-item">Traffic by This Month</a>
+											<a href="<?=base_url()?>main/wall_sumTraffic_month"
+												class="slide-item">Traffic by This Month</a>
 										</li>
 									</ul>
 								</div>
@@ -60,16 +65,19 @@
 											class="angle fa fa-angle-down"></i></a>
 									<ul class="slide-menu submenu-list">
 										<li>
-											<a href="<?=base_url()?>main/wall_status_nonClose" class="slide-item">Summary Status Today (Non Close)</a>
+											<a href="<?=base_url()?>main/wall_status_nonClose"
+												class="slide-item">Summary Status Today (Non Close)</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/wall_ticket_Close" class="slide-item">Summary Ticket (Close)</a>
+											<a href="<?=base_url()?>main/wall_ticket_Close" class="slide-item">Summary
+												Ticket (Close)</a>
 										</li>
 
 									</ul>
 								</div>
 							</div>
-							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring Realtime</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
+								Realtime</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
 						</div>
 					</div>
@@ -88,13 +96,16 @@
 											class="angle fa fa-angle-down"></i></a>
 									<ul class="slide-menu submenu-list">
 										<li>
-											<a href="<?=base_url()?>main/this_day" class="slide-item">Traffic Interval Daily</a>
+											<a href="<?=base_url()?>main/this_day" class="slide-item">Traffic Interval
+												Daily</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/this_month" class="slide-item">Traffic Interval Monthly</a>
+											<a href="<?=base_url()?>main/this_month" class="slide-item">Traffic Interval
+												Monthly</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/this_year" class="slide-item">Traffic Interval Yearly</a>
+											<a href="<?=base_url()?>main/this_year" class="slide-item">Traffic Interval
+												Yearly</a>
 										</li>
 									</ul>
 								</div>
@@ -109,10 +120,12 @@
 											<a href="<?=base_url()?>main/kip" class="slide-item">KIP</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/performance_channel" class="slide-item">Performance by Channel</a>
+											<a href="<?=base_url()?>main/performance_channel"
+												class="slide-item">Performance by Channel</a>
 										</li>
 										<li>
-											<a href="<?=base_url()?>main/agent_performance" class="slide-item">Agent Performance</a>
+											<a href="<?=base_url()?>main/agent_performance" class="slide-item">Agent
+												Performance</a>
 										</li>
 									</ul>
 								</div>
@@ -125,13 +138,17 @@
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-book mr-1"></i>Report</h5> -->
 							<a href="<?=base_url()?>main/report_agent_log" class="slide-item">Agent Log</a>
-							<a href="<?=base_url()?>main/report_agent_performance" class="slide-item">Agent Performance</a>
-							<a href="<?=base_url()?>main/report_operation_performance" class="slide-item">Operation Performance</a>
+							<a href="<?=base_url()?>main/report_agent_performance" class="slide-item">Agent
+								Performance</a>
+							<a href="<?=base_url()?>main/report_operation_performance" class="slide-item">Operation
+								Performance</a>
 							<a href="<?=base_url()?>main/report_summary_traffic" class="slide-item">Summary Traffic</a>
 							<a href="<?=base_url()?>main/report_summary_channel" class="slide-item">Summary Channel</a>
-							<a href="<?=base_url()?>main/report_summary_interval" class="slide-item">Summary Interval</a>
-							<a href="<?=base_url()?>main/report_summary_interval_month" class="slide-item">Summary Interval by Month</a>
-							<a href="<?=base_url()?>main/report_summary_kip" class="slide-item">Summary KIP</a>							
+							<a href="<?=base_url()?>main/report_summary_interval" class="slide-item">Summary
+								Interval</a>
+							<a href="<?=base_url()?>main/report_summary_interval_month" class="slide-item">Summary
+								Interval by Month</a>
+							<a href="<?=base_url()?>main/report_summary_kip" class="slide-item">Summary KIP</a>
 						</div>
 					</div>
 				</div>

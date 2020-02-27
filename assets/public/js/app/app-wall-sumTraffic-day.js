@@ -140,7 +140,7 @@ function destroyChartInterval(){
     // destroy chart interval 
     $('#lineWallsumTrafficDay').remove(); // this is my <canvas> element
     // $('#chart-no-data').remove(); // this is my <canvas> element
-    $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay"  class="h-400"></canvas>');
+    $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay"  class="h-500"></canvas>');
 }
 
 function drawChartToday(response){
@@ -149,7 +149,7 @@ function drawChartToday(response){
     var data = [];
     if(!response.data.series){
         $('#lineWallsumTrafficDay').remove(); // this is my <canvas> element
-        $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay" class="h-400"></canvas>');
+        $('#lineWallsumTrafficDayDiv').append('<canvas id="lineWallsumTrafficDay" class="h-500"></canvas>');
     }else{
         response.data.series.forEach(function (value, index) {
             var obj = {
@@ -175,6 +175,14 @@ function drawChartToday(response){
                 datasets: data
             },
             options: {
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 0,
+                        top: 20,
+                        bottom:10
+                    }
+                },
                 animation: false,
                 responsive: true,
                 maintainAspectRatio: false,
@@ -252,6 +260,14 @@ function drawChartPercentageToday(response){
         options: {
             animation: false,
             responsive: true,
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    bottom: 5
+                }
+            },
             maintainAspectRatio: false,
             scales: {
                 yAxes: [{
@@ -314,7 +330,7 @@ function drawChartPercentageToday(response){
 }
 
 function drawTableData(response){
-    var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
+    var tagTime=["00:00:00 - 01:00:00", "01:00:00 - 02:00:00", "02:00:00 - 03:00:00", "03:00:00 - 04:00:00", "04:00:00 - 05:00:00", "05:00:00 - 06:00:00", "06:00:00 - 07:00:00", "07:00:00 - 08:00:00", "08:00:00 - 09:00:00", "09:00:00 - 10:00:00", "10:00:00 - 11:00:00", "11:00:00 - 12:00:00", "12:00:00 - 13:00:00", "13:00:00 - 14:00:00", "14:00:00 - 15:00:00", "15:00:00 - 16:00:00", "16:00:00 - 17:00:00", "17:00:00 - 18:00:00", "18:00:00 - 19:00:00", "19:00:00 - 20:00:00", "20:00:00 - 21:00:00", "21:00:00 - 22:00:00", "22:00:00 - 23:00:00", "23:00:00 - 00:00:00"];
     var sumFb = response.data.series[0].data.map(Number).reduce(summarize);
     var sumWA = response.data.series[1].data.map(Number).reduce(summarize);
     var sumTw = response.data.series[2].data.map(Number).reduce(summarize);

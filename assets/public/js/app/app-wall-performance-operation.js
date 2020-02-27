@@ -185,7 +185,7 @@ function drawTableCOFByChannel(response){
         var sumSCR =0;
         for (var i = 0; i < response.data.length; i++) {
             $('#tabelCOFByChannel').find('tbody').append('<tr>'+
-                '<td>'+(i+1)+'</td>'+
+                '<td class="text-center">'+(i+1)+'</td>'+
                 '<td class="text-left">'+addCommas(response.data[i].TENANT_ID || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Facebook || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Whatsapp || 0)+'</td>'+
@@ -234,7 +234,7 @@ function drawTableCOFByChannel(response){
 
         
         $('#tabelCOFByChannel').find('tfoot').append('<tr>'+
-            '<td colspan="2" class="text-right">TOTAL</td>'+
+            '<td colspan="2" class="text-center">TOTAL</td>'+
             '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
@@ -248,9 +248,9 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-right">'+sumART+'</td>'+
-            '<td class="text-right">'+sumAHT+'</td>'+
-            '<td class="text-right">'+sumAST+'</td>'+
+            '<td class="text-center">'+sumART+'</td>'+
+            '<td class="text-center">'+sumAHT+'</td>'+
+            '<td class="text-center">'+sumAST+'</td>'+
             '<td class="text-right">'+addCommas(sumSCR)+' %</td>'+
             '</tr>');
     }else{

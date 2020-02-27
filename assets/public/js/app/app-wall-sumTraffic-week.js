@@ -126,6 +126,14 @@ function drawSummTrafficByChannel(response){
         },
         options: {
             animation: false,
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 10,
+                    bottom: 5
+                }
+            },
             responsive: true,
             maintainAspectRatio: false,
             scales: {
@@ -194,11 +202,11 @@ function getTrafficInterval(week,arr_channel, tenant_id){
 function drawTrafficInterval(response) {
     // destroy chart interval 
     $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-    $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-400"></canvas>');
+    $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
     var data = [];
     if (!response.data.series) {
         $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-        $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek" class="h-400"></canvas>');
+        $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek" class="h-500"></canvas>');
     } else {
         response.data.series.forEach(function (value, index) {
             var obj = {
@@ -226,6 +234,14 @@ function drawTrafficInterval(response) {
             options: {
                 animation: false,
                 responsive: true,
+                layout: {
+                    padding: {
+                        left: 5,
+                        right: 5,
+                        top: 18,
+                        bottom:10
+                    }
+                },
                 maintainAspectRatio: false,
                 legend:{
                     display: true,

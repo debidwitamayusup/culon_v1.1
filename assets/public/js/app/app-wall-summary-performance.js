@@ -290,6 +290,14 @@ function drawBarLayanan(response){
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 5,
+                    right: 12,
+                    top:0,
+                    bottom: 0
+                }
+            },
             title: {
                 display: true,
                 text: 'Traffic by Layanan',
@@ -321,6 +329,9 @@ function drawBarLayanan(response){
                 }],
                 yAxes: [{
                     stacked: true,
+                    gridLines: {
+                        display: true
+                    },
                     ticks: {
                         callback: function (value) {
                             return numberWithCommas(value);
@@ -375,7 +386,7 @@ function callLineChart(channel){
 
 function drawLineChart(response){
     $('#lineWallSumPerform').remove();
-    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:425px"></canvas>');
+    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:438px"></canvas>');
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',
@@ -396,6 +407,14 @@ function drawLineChart(response){
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 7,
+                    right: 5,
+                    top: 20,
+                    bottom: 0
+                }
+            },
             legend:{
                 display:false
             },
@@ -473,13 +492,13 @@ function drawTotalTable(response){
 
             $('#rowDiv').append(''+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
+                    '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                     '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+sumSCR+'%</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgWaiting">Average Waiting : '+sumWaiting+'</h6>'+
+                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+sumWaiting+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                     '<h6 class="font12" id="avgHT">Average Handling Time : '+sumAHT+'</h6>'+
