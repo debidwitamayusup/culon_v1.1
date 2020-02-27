@@ -38,7 +38,7 @@
 							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
 								Performance Operation</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
-								Performance</a>
+								Performance Realtime</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
