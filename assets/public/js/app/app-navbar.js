@@ -25,23 +25,21 @@ $(document).ready(function () {
                     var response = r;
                     // console.log(response);
                     // tenants = response.data;
-                    var html = '<option value="">All Tenant</option>';
+                    var html = '<option value="all">All Tenant</option>';
                     // var html = '';
                         for(i=0; i<response.data.length; i++){
                             html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                         }
-                        $('#tenant-id').html(html);
+                    $('#layanan_name').remove();
+                    $('#layanan_name_parent').html('<select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name">'+
+                            html+
+                        '</select>');
                 },
                 error: function (r) {
                     //console.log(r);
                     alert("error");
                 },
             });
-
-        $('#layanan_name').remove();
-        $('#layanan_name_parent').append('<select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name">'+
-              '<option value="#">All Tenant</option>'+
-          '</select>');
       console.log('nullss');
       }
 

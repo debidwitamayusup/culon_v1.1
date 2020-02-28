@@ -39,7 +39,7 @@ $(document).ready(function () {
         $("#btn-day").prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
-
+        console.log($('#layanan_name').val());
         loadContent(params_time, '2020-02-24', 0, '');
         // $('#tag-time').html(v_params_this_year);
         // $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -681,6 +681,10 @@ function setDatePicker(){
         }
     });
 
+    $('select#layanan_name').change(function(){
+            v_month = $(this).val();
+            console.log('masuk');
+        });
 
     /*select option month*/ 
     // $('select#select-month').change(function(){

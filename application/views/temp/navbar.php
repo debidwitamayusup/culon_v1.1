@@ -16,12 +16,12 @@
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
 							<div class="d-flex bd-highlight mr-4">
-								<div class="p-2 bd-highlight">
-									<select class="form-control-sm" style="border:0px; background:#f7efef;">
+								<div class="p-2 bd-highlight" id="layanan_name_parent">
+									<!-- <select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name"> -->
+										<!-- <option value="#">All Tenant</option>
 										<option value="#">All Tenant</option>
-										<option value="#">All Tenant</option>
-										<option value="#">All Tenant</option>
-									</select>
+										<option value="#">All Tenant</option> -->
+									<!-- </select> -->
 								</div>
 							</div>
 							<div class="d-sm-flex d-none">
