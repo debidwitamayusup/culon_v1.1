@@ -74,7 +74,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_1').find('tbody').append(
@@ -102,7 +102,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(
@@ -130,7 +130,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].SCR || 0)+'%</td>'+
+                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_3').find('tbody').append(
@@ -513,7 +513,7 @@ function drawTotalTable(response){
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+sumSCR+'%</h6>'+
+                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(sumSCR.toString()).replace('.',',')+'%</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                     '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+sumWaiting+'</h6>'+
