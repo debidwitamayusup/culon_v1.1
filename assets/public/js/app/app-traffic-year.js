@@ -1,15 +1,16 @@
 var base_url = $('#base_url').val();
 var v_params_tenant = 'oct_telkomcare';
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+var d = new Date();
+var n = d.getFullYear();
 $(document).ready(function () {
     if(sessionParams){
-        var d = new Date();
-        var n = d.getFullYear();
         $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
-        var data_chart = callGraphYear('ShowAll', n, '');
-        var data_graph = callDataPercentage(n, '');
+        var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
+        var data_graph = callDataPercentage(n, $('#layanan_name').val());
         var data_table = callDataTableAvg(n, '');
         var data_year = callYear();
+        getTenant('');
     }else{
         window.location = base_url
     }
@@ -440,6 +441,13 @@ function destroyChartPercentage() {
 
 //jquery
 (function ($) {
+    $('#layanan_name').change(function(){
+        //set check all channel
+        callGraphYear('ShowAll', n, $('#layanan_name').val());
+        callDataPercentage(n, $('#layanan_name').val());
+        callDataTableAvg(n, $('#layanan_name').val());
+        callYear();
+    });
     // change date picker
     // $("select#dateTahun").change(function(){
     //     destroyChartInterval();

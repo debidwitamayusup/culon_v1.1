@@ -9,7 +9,17 @@
 				<li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel</li>
 			</ol>
 			<div class="d-flex align-items-end flex-column bd-highlight">
+			 <div class="d-flex bd-highlight mr-4">
+				
+			</div>
 				<div class="bd-highlight">
+				<div class="p-2 bd-highlight" id="layanan_name_parent">
+					<select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name">
+						<!-- <option value="#">All Tenant</option>
+						<option value="#">All Tenant</option>
+						<option value="#">All Tenant</option> -->
+					</select>
+				</div>
 					<div class="card-options d-none d-sm-block">
 						<div class="btn-group text-center btn-sm">
 							<a href="#" class="btn btn-light btn-sm" id="btn-day">

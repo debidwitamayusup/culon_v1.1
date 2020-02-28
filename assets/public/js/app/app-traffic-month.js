@@ -15,6 +15,7 @@ $(document).ready(function () {
         destroyChartInterval();
         destroyChartPercentage();
         callYear();
+        getTenant('');
         $('#month option[value=' + n + ']').attr('selected', 'selected');
         // $('#dropdownYear option[value='+m+']').attr('selected','selected');
         // console.log('"'+n+'"');
@@ -31,6 +32,35 @@ $(document).ready(function () {
         window.location = base_url
     }
 });
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
+            // var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
+                }
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function monthNumToName(month) {
     return months[month - 1] || '';
@@ -351,6 +381,12 @@ function destroyChartPercentage() {
 }
 
     (function ($) {
+        $('#layanan_name').change(function(){
+            //set check all channel
+            stackedBarInterval('month', '', n, m, $('#layanan_name').val());
+            callDataPercentage($("#month").val(), m, $('#layanan_name').val());
+            callDataTableAvg($("#month").val(), m), $('#layanan_name').val();
+        });
         // $("select#month").change(function(){
         //     //destroy chart
         //     destroyChartInterval();
@@ -390,13 +426,13 @@ function destroyChartPercentage() {
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), '');
+                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }else{
                 // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), '');
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val(), '');
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), '');
+            callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
         });
 })(jQuery);
 

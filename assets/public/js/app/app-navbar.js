@@ -1,11 +1,11 @@
 var base_url = $('#base_url').val();
 let items = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    if(items.TENANT_ID != null){
-        $('#layanan_name_parent').remove();
-    }else{
-        getTenant('');
-    }
+    // if(items.TENANT_ID != null){
+    //     $('#layanan_name_parent').remove();
+    // }else{
+    //     getTenant('');
+    // }
 });
 
 function getTenant(date){
