@@ -245,7 +245,7 @@ function drawPieChartSumAllTenant(response){
                         var percentage = Math.round((dataLabel / total) * 100);
                     }
                     legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + (percentage.toString()).replace('.',',') + '%</span>');
                   } else {
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
