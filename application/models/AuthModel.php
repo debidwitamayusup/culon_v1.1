@@ -20,7 +20,7 @@ Class AuthModel extends CI_Model {
     }
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
-        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');
+        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID');
         $this->db->from('m_user');//('m_login');
         $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
         $this->db->where('is_active','1');
@@ -37,6 +37,7 @@ Class AuthModel extends CI_Model {
                 'NICK'          => $data->LONG_NAME,
                 'NAME'          => $data->LONG_NAME,
                 'PREVILAGE'     => $data->PREVILAGE,
+                'TENANT_ID'     => $data->TENANT_ID,
                 'PICTURE'       => APPPATH.'public\user\default-avatar.jpg',//APPPATH.'public\user'.$data->PICTURE,
               //  'UNIT'          => $data->UNIT_ID
 
