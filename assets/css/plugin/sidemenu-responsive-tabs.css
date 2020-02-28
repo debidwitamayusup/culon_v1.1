@@ -64,7 +64,7 @@ h2.resp-tab-title:last-child {
 /*-----------Vertical tabs-----------*/
 .resp-vtabs ul.resp-tabs-list {
     float: none;
-    margin-top: 0 !important;
+    margin-top: 17px !important;
 	color:#000;
 }
 .resp-vtabs .resp-tabs-list li {

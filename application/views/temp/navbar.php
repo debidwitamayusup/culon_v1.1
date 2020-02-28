@@ -15,7 +15,7 @@
 								src="<?=base_url()?>assets/images/brand/white-logo.png">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
-							<div class="d-flex bd-highlight mr-4">
+							<!-- <div class="d-flex bd-highlight mr-4">
 								<div class="p-2 bd-highlight">
 									<select class="form-control-sm" style="border:0px; background:#f7efef;">
 										<option value="#">All Tenant</option>
@@ -23,7 +23,7 @@
 										<option value="#">All Tenant</option>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<div class="d-sm-flex d-none">
 								<a href="#" class="nav-link icon full-screen-link">
 									<i class="fe fe-minimize fullscreen-button"></i>
