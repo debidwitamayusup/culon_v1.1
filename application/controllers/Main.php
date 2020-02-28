@@ -31,6 +31,13 @@ class main extends CI_Controller {
 		$this->load->view('login_temp/footer');
 	}
 
+	public function v_home(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_home');
+	}
+
 	public function home()
 	{
 		$this->load->view('temp/header');

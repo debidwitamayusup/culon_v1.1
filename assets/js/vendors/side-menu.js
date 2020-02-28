@@ -2,8 +2,9 @@
 	"use strict";
 
 	var slideMenu = $('.side-menu');
-	$('.app').addClass('sidebar-mini');
-	
+	// $('.app').addClass('sidebar-mini');
+	$('.app').addClass('sidebar-mini sidenav-toggled');
+
 	// Toggle Sidebar
 	$(document).on("click", "[data-toggle='sidebar']", function(event) {
 		event.preventDefault();
@@ -17,9 +18,10 @@
 	$(document).on("click", ".sidenav-toggled .resp-tab-item", function(event) {
 		event.preventDefault();
 		$('.app').addClass('sidenav-toggled4');
-		$('.app').removeClass('sidenav-toggled1');
+		// $('.app').removeClass('sidenav-toggled1');
 		$('.app').removeClass('sidenav-toggled');
 	});
+
 	
 	//mobile  Toggle Sidebar
 	if ( $(window).width() < 767) { 
@@ -50,9 +52,11 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
-	$('div div.row div.col-md-12 a.slide-item').on('click', function(){
-		$(this).parent().find("div div.row").removeClass("active");
-		$(this).addClass("active").parents("div:first").prop("class","active resp-tab-content-active");
-	})
+
+	$(document).on('click','div a.slide-item', function(){
+		$(this).parents('div').hasClass('resp-tab-content-active').removeClass('resp-tab-content-active');
+		$(this).parents('div:first').addClass('resp-tab-content-active');
+	});
+
 	   
 })();
