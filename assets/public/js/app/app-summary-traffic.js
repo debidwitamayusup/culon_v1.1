@@ -599,7 +599,7 @@ function setDatePicker(){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0, '')
+        loadContent(params_time, v_params_this_year, 0,  $('#layanan_name').val())
         // $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
         // callSummaryInteraction(params_time,v_date);
@@ -622,6 +622,8 @@ function setDatePicker(){
         var n = d.getMonth()+1;
         var m = d.getFullYear();
         params_time = 'month';
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'month');
         // var arg ='option '+n+'';
         // $('#select-month').val(arg)
         // console.log('dwe'+n);
@@ -630,7 +632,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m, '');
+        loadContent(params_time, n, m,  $('#layanan_name').val());
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -649,10 +651,12 @@ function setDatePicker(){
 
     // btn year
     $('#btn-year').click(function(){
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0, '');
+        loadContent(params_time, m, 0,  $('#layanan_name').val());
         callYear();
         $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -681,10 +685,19 @@ function setDatePicker(){
         }
     });
 
-    $('select#layanan_name').change(function(){
-            v_month = $(this).val();
-            console.log('masuk');
-        });
+    $('#layanan_name').change(function(){
+        let fromParams = sessionStorage.getItem('paramsSession');
+        if(fromParams == 'day'){
+            loadContent(fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
+        }else if(fromParams == 'month'){
+            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        }else if(fromParams == 'year'){
+            v_year = $(this).val();
+            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
+        }
+    });
+
+
 
     /*select option month*/ 
     // $('select#select-month').change(function(){

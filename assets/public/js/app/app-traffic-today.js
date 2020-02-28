@@ -21,9 +21,9 @@ $(document).ready(function () {
         list_channel = values;
 
         // var data_chart = callIntervalTraffic(v_date, []);
-        var data_chart = callIntervalTraffic(v_date, list_channel, '');
-        var data_table_avg = callDataTableAvg(v_date, '');
-        var data_percentage = callDataPercentage(v_date, '');
+        var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+        var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
+        var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
     }else{
         window.location = base_url
     }
@@ -370,10 +370,26 @@ function destroyChartPercentage(){
             v_date = this.value;
             
             //re draw
-            callIntervalTraffic(this.value, list_channel, '');
-            callDataTableAvg(this.value, '');
-            callDataPercentage(this.value, '');
+            callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
+            callDataTableAvg(this.value, $('#layanan_name').val());
+            callDataPercentage(this.value, $('#layanan_name').val());
         }
+    });
+
+    $('#layanan_name').change(function(){
+        //set check all channel
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
+        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+        callDataTableAvg(v_date, $('#layanan_name').val());
+        callDataPercentage(v_date, $('#layanan_name').val());
     });
 
     // checked all channel
@@ -388,7 +404,7 @@ function destroyChartPercentage(){
         list_channel = values;
 
         // call data
-        callIntervalTraffic(v_date, list_channel, '');
+        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
     });
 
     //checked channel
@@ -407,7 +423,7 @@ function destroyChartPercentage(){
         // console.log(values);
         list_channel = values;
         // call data
-        callIntervalTraffic(v_date, list_channel, '');
+        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
     });
     
 })(jQuery);

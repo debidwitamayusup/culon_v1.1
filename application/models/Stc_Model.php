@@ -766,7 +766,7 @@ class Stc_Model extends CI_Model
 		$this->db->group_by('rpt_summ_interval_tsel.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
-
+		$serials = array();
 		if($query->num_rows()>0)
 		{
 			foreach($query->result() as $data)
