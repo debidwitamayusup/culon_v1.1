@@ -156,23 +156,26 @@
                             id="wall-today-tbl">
                             <thead class="text-center bg-head">
                                 <tr>
-                                    <td rowspan="2" class="font-weight-extrabold text-white">Time</td>
+                                    <td rowspan="3" class="font-weight-extrabold text-white">Time</td>
                                     <td colspan="13" class="font-weight-extrabold text-white">Channel</td>
                                 </tr>
                                 <tr>
-                                    <td class="bg-column">Facebook</td>
+                                    <td class="bg-column" rowspan="2">Voice</td>
+                                    <td colspan="7" class="text-white font-weight-extrabold">RTC</td>
+                                    <td colspan="6" class="text-white font-weight-extrabold">Non RTC</td>
+                                <tr>
+                                    <td class="bg-column">Live Chat</td>
+                                    <td class="bg-column">Twitter DM</td>
+                                    <td class="bg-column">Messenger</td>
                                     <td class="bg-column">Whatsapp</td>
+                                    <td class="bg-column">Line</td>
+                                    <td class="bg-column">Telegram</td>
+                                    <td class="bg-column">Chat Bot</td>
+                                    <td class="bg-column">Instagram</td>
+                                    <td class="bg-column">Facebook</td>
                                     <td class="bg-column">Twitter</td>
                                     <td class="bg-column">Email</td>
-                                    <td class="bg-column">Telegram</td>
-                                    <td class="bg-column">Line</td>
-                                    <td class="bg-column">Voice</td>
-                                    <td class="bg-column">Instagram</td>
-                                    <td class="bg-column">Messenger</td>
-                                    <td class="bg-column">Twitter DM</td>
-                                    <td class="bg-column">Live Chat</td>
                                     <td class="bg-column">SMS</td>
-                                    <td class="bg-column">Chat Bot</td>
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center" id="mytbody">
