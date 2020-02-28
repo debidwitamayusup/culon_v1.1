@@ -663,10 +663,13 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
-    public function get_datareportTraffic($tid, $d_start, $d_end,$amt,$pge ,$meth)
+    public function get_datareportTraffic($tid, $d_start, $d_end,$meth, $amt,$pge)
     {
         $year = date('Y');
-        $pge = $pge*$amt;
+        if($pge){
+            $pge = $pge*$amt;
+        }
+        
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
@@ -695,7 +698,6 @@ Class ReportModel extends CI_Model {
 
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
-
 
         if($query->num_rows() > 0)
         {
@@ -877,7 +879,8 @@ Class ReportModel extends CI_Model {
         $this->db->where_not_in('b.channel_id', '1');
         $this->db->join('('.$subquery.') a' , 'a.channel_id = b.channel_id','LEFT');
         $query = $this->db->get();
-
+        // print_r($this->db->last_query());
+        // exit;
         if($query->num_rows() > 0)
         {
             if($meth == 'data')

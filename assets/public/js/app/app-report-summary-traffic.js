@@ -310,7 +310,7 @@ function setDatePicker() {
 
     $('#btn-export').click(function(){
         // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-        exportTableSumTraffic(startDateFromFilter, endDateFromFilter, tenantFromFilter, sessionParams.NAME);
+        exportTableSumTraffic(startDateFromFilter, endDateFromFilter, tenantFromFilter, sessionParams.NAME,'','');
     });
 
     $('#btn-go').click(function(){
