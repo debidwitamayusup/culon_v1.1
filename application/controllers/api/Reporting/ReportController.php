@@ -384,7 +384,7 @@
             $meth = 'data';
 
             //token
-            $res = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$amt,$pge,$meth);
+            $res = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth,$amt,$pge);
             $count_d =  $this->module_model->get_maxrowTraffic($tid,$d_start,$d_end);
     
             if ($res) {
@@ -487,10 +487,10 @@
             ->setCellValue('D3', $t_end)
             ->setCellValue('A4', 'NO')
             ->setCellValue('B4', 'CHANNEL_NAME')
-            ->setCellValue('C4', 'MESSAGE IN')
-            ->setCellValue('D4', 'MESSAGE OUT')
             ->setCellValue('E4', 'UNIQUE CUSTOMER')
             ->setCellValue('F4', 'TOTAL SESSION')
+            ->setCellValue('C4', 'MESSAGE IN')
+            ->setCellValue('D4', 'MESSAGE OUT')
             ;
 
             #region - 2nd part sub image to spreadsheet
@@ -511,7 +511,7 @@
                 ->setCellValue('A'.$i, $i-4)
                 ->setCellValue('B'.$i, $datas->CHANNEL_NAME)
                 ->setCellValue('C'.$i, $datas->UNIQUE_CUSTOMER)
-                ->setCellValue('D'.$i, strval(number_format($datas->TOTAL_SESSION,0,',','.')))
+                ->setCellValue('D'.$i, strval($datas->TOTAL_SESSION))
                 ->setCellValue('E'.$i, $datas->MESSAGE_IN)
                 ->setCellValue('F'.$i, $datas->MESSAGE_OUT)
                 ;
@@ -851,7 +851,7 @@
                     $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A'.$i, $i-4)
                     ->setCellValue('B'.$i, $datas->category)
-                    ->setCellValue('C'.$i, strval(number_format($datas->jumlah,0,'.',',')))
+                    ->setCellValue('C'.$i, strval($datas->jumlah))
                     ;
                     $asw = $asw+$datas->jumlah;
                     $i++;
@@ -867,7 +867,7 @@
                     $spreadsheet->getActiveSheet()->setAutoFilter('A4:C'.$x);
 
                     $spreadsheet->setActiveSheetIndex(0)->setCellValue('B'.$i , 'TOTAL');
-                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('C'.$i , strval(number_format($asw,0,'.',',')));
+                    $spreadsheet->setActiveSheetIndex(0)->setCellValue('C'.$i , strval($asw));
 
                     $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
@@ -912,11 +912,14 @@
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
             $name = $this->security->xss_clean($this->input->post('name'));
+            $amt = $this->security->xss_clean($this->input->post('ammount'));
+            $page = $this->security->xss_clean($this->input->post('page'));
             $meth = 'data';
 
             //token
-            $data = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth);
-
+            $data = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth, $amt, $page);
+            // print_r($data);
+            // exit;
             // print_r($data[0]['DATA'][0]['CHANNEL_NAME']);
 
             
@@ -961,7 +964,7 @@
                 $z = 0;
                 for($y=3;$y<=28;$y++)
                 {
-                    if($z<13)
+                    if($z<12)
                     {
                         $spreadsheet->getActiveSheet(0)->getCellByColumnAndRow($y,4)->setValue($data[0]['DATA'][$z]['CHANNEL_NAME']);
                     }
@@ -1000,7 +1003,7 @@
                 foreach($data as $datas) {
                    
                     $spreadsheet->setActiveSheetIndex(0)
-                    ->setCellValue('A'.$i, $i-4)
+                    ->setCellValue('A'.$i, $i-5)
                     ->setCellValue('B'.$i, $datas['TANGGAL']);
 
                     $i2=3;
@@ -1520,6 +1523,148 @@
 
             
         }
+
+        public function EXPORTAL_post()
+        {
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->post('name'));
+
+            $data = $this->module_model->get_datareportAL($tid,$d_start,$d_end,$meth);
+            // print_r($data);
+            // exit;
+            if($data)
+            {
+                $spreadsheet = new Spreadsheet();
+
+                $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+                ->setLastModifiedBy('INFOMEDIA')
+                ->setTitle('Office 2007 XLSX Document')
+                ->setSubject('Office 2007 XLSX Document')
+                ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+                ->setKeywords('office 2007 openxml php')
+                ->setCategory('result file');
+
+                if (!$tid){
+                    $tid = 'All Tenant';
+                }
+
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A1','Agent Log - '.$tid)
+                ->setCellValue('A2','Export Time ')
+                ->setCellValue('A3','Export By ')
+                ->setCellValue('B2',date('d-m-Y H:i:s'))
+                ->setCellValue('B3', $name)
+                ->setCellValue('C2','Start Date')
+                ->setCellValue('C3','End Date ')
+                ->setCellValue('D2', $d_start)
+                ->setCellValue('D3', $d_end)
+                ->setCellValue('A4', 'NO')
+                ->setCellValue('B4', 'DATE')
+                ->setCellValue('C4', 'AGENT ID')
+                ->setCellValue('D4', 'AGENT NAME')
+                ->setCellValue('E4', 'LOGIN TIME')
+                ->setCellValue('F4', 'LOGOUT TIME')
+                ->setCellValue('G4', 'STAFFED TIME')
+                ->setCellValue('H4', 'AUX')
+                ->setCellValue('H5', 'ISTIRAHAT')
+                ->setCellValue('I5', 'IBADAH')
+                ->setCellValue('J5', 'BRIEFING')
+                ->setCellValue('K5', 'LAI-LAIN')
+                ->setCellValue('L5', 'TOTAL')
+                ;
+
+                $spreadsheet->getActiveSheet()->mergeCells('A1:L1');
+                $spreadsheet->getActiveSheet()->mergeCells('A4:A5');
+                $spreadsheet->getActiveSheet()->mergeCells('B4:B5');
+                $spreadsheet->getActiveSheet()->mergeCells('C4:C5');
+                $spreadsheet->getActiveSheet()->mergeCells('D4:D5');
+                $spreadsheet->getActiveSheet()->mergeCells('E4:E5');
+                $spreadsheet->getActiveSheet()->mergeCells('F4:F5');
+                $spreadsheet->getActiveSheet()->mergeCells('G4:G5');
+                $spreadsheet->getActiveSheet()->mergeCells('H4:L4');
+                $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:L4')->applyFromArray($this->ss_formatter('header'));
+                $spreadsheet->getActiveSheet()->getStyle('A5:L5')->applyFromArray($this->ss_formatter('header'));
+
+                $asw = 0;
+                $i=6; 
+                foreach($data as $datas) {
+
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, $i-5)
+                    ->setCellValue('B'.$i, $datas->TANGGAL)
+                    ->setCellValue('C'.$i, $datas->AGENTID)
+                    ->setCellValue('D'.$i, $datas->AGENTNAME)
+                    ->setCellValue('E'.$i, $datas->LOGIN)
+                    ->setCellValue('F'.$i, $datas->LOGOUT)
+                    ->setCellValue('G'.$i, $datas->STAFFTIME)
+                    ->setCellValue('H'.$i, $datas->AISTIRAHAT)
+                    ->setCellValue('I'.$i, $datas->AIBADAH)
+                    ->setCellValue('J'.$i, $datas->ABRIEFING)
+                    ->setCellValue('K'.$i, $datas->ALAINLAIN)
+                    ->setCellValue('L'.$i, $datas->ATOTAL)
+                    ;
+                    $i++;
+                }
+                $x = $i-1;
+                    $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
+                    
+
+                    $spreadsheet->getActiveSheet()->getStyle('A6:L'.$x)->applyFromArray($this->ss_formatter('body'));
+
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A5:L'.$x);
+
+                    $spreadsheet->getActiveSheet()->setTitle('Agent Log -  '.date('d-m-Y H'));
+                    $spreadsheet->setActiveSheetIndex(0);
+                    $filename = $name.'Agent Log'.date('d-m-Y H').'.xlsx';
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename='.$filename);
+                    header('Cache-Control: max-age=0');
+                    header('Cache-Control: max-age=1');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                    header('Cache-Control: cache, must-revalidate'); 
+                    header('Pragma: public'); 
+                 
+
+                    $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer->save($path.$filename);
+                    //$writer->save('php://output');
+                    $res = base_url().'public/reportdata/'.$filename;
+
+                
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+                }
+            else {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Report Storing Failed!',
+                        'Link'    => false
+                            ], REST_Controller::HTTP_OK);
+            }
+            
+        }
 #endregion debi
 
 #region :: risyad
@@ -1534,9 +1679,9 @@
             $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
-            print_r($data);
+            // print_r($data);
             // print_r($data[0][0]->TANGGAL);
-            exit;
+            // exit;
             
             if($data[0][0])
             {

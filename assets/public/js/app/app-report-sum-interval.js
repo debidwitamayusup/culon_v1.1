@@ -115,7 +115,7 @@ function exportTableSumInterval(tanggal,interval,channel,name){
             var response = r;
             
             if (response.status != false) {
-                // window.location = response.Link
+                window.location = response.Link
             } else {
                 alert("Can't Export Empty Table!");
             }
