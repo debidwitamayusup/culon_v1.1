@@ -75,24 +75,7 @@
 				<div class="row mt-2">
 					<div class="col-md-3 text-center">
 						<div class="card-custom overflow-hidden">
-							<div class="card-header bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font" id="total-interaction"></span>
-								<span class="count-name">Data</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header bg-light-3">
+							<div class="card-header-small bg-light-3">
 								<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
 							</div>
 							<div class="card-body dash2">
@@ -103,17 +86,33 @@
 									</div>
 								</div>
 								<span class="count-numbers num-font" id="unique-customer"></span>
-								<span class="count-name">Data</span>
+								<span class="count-name">Customer</span>
 							</div>
 						</div>
 					</div>
-
 					<div class="col-md-3 text-center">
 						<div class="card-custom overflow-hidden">
-							<div class="card-header bg-light-3">
+							<div class="card-header-small bg-light-3">
+								<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
+							</div>
+							<div class="card-body dash2">
+								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+									data-thickness="10" data-color="#d9dbdc99">
+									<div class="chart-circle-value fs">
+										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+									</div>
+								</div>
+								<span class="count-numbers num-font" id="total-interaction"></span>
+								<span class="count-name">Session</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 text-center">
+						<div class="card-custom overflow-hidden">
+							<div class="card-header-small bg-light-3">
 								<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
 							</div>
-							<div class="card-body dash2">sudo
+							<div class="card-body dash2">
 								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
 									data-thickness="10" data-color="#d9dbdc99">
 									<div class="chart-circle-value fs">
@@ -121,13 +120,13 @@
 									</div>
 								</div>
 								<span class="count-numbers num-font" id="msg-in"></span>
-								<span class="count-name">Data</span>
+								<span class="count-name">interaction</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 text-center">
 						<div class="card-custom overflow-hidden">
-							<div class="card-header bg-light-3">
+							<div class="card-header-small bg-light-3">
 								<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
 							</div>
 							<div class="card-body dash2">
@@ -138,7 +137,7 @@
 									</div>
 								</div>
 								<span class="count-numbers num-font" id="msg-out"></span>
-								<span class="count-name">Data</span>
+								<span class="count-name">interaction</span>
 							</div>
 						</div>
 					</div>
