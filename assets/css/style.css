@@ -22934,3 +22934,14 @@ background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Fir
 	color: rgb(93, 94, 95);
 	font-weight	: 600;
 }
+
+.border-input{
+	background:#fff;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.border-input2{
+	border-top-right-radius:8px;
+	border-bottom-right-radius:8px;
+}
