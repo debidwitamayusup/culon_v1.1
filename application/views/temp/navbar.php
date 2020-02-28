@@ -15,26 +15,26 @@
 								src="<?=base_url()?>assets/images/brand/white-logo.png">
 						</a>
 						<div class="d-flex order-lg-2 ml-auto">
-						<div class="d-flex bd-highlight mr-4">
-							<div class="p-2 bd-highlight">
-								<select class="form-control-sm" style="border:0px; background:#f7efef;">
-									<option value="#">All Tenant</option>
-									<option value="#">All Tenant</option>
-									<option value="#">All Tenant</option>
-								</select>
+							<div class="d-flex bd-highlight mr-4">
+								<div class="p-2 bd-highlight">
+									<select class="form-control-sm" style="border:0px; background:#f7efef;">
+										<option value="#">All Tenant</option>
+										<option value="#">All Tenant</option>
+										<option value="#">All Tenant</option>
+									</select>
+								</div>
 							</div>
-						</div>
 							<div class="d-sm-flex d-none">
 								<a href="#" class="nav-link icon full-screen-link">
 									<i class="fe fe-minimize fullscreen-button"></i>
 								</a>
 								<div class="text-center mt-3">
-											<h6 class="text-white" id="NICKNAME_NAV" style="margin-bottom:0px"></h6>
-											<small class="text-white" id="PREVILAGE_NAV"></small>
-										</div>
+									<h6 class="text-white" id="NICKNAME_NAV" style="margin-bottom:0px"></h6>
+									<small class="text-white" id="PREVILAGE_NAV"></small>
+								</div>
 
 							</div>
-							
+
 							<!-- <div class="dropdown d-md-flex header-settings">
 								<a href="#" class="nav-link icon" data-toggle="sidebar-right"
 									data-target=".sidebar-right">
