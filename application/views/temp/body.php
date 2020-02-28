@@ -180,7 +180,7 @@
 					<div class="card-pie">
 						<div class="canvas-con">
 							<div id="legend" class="legend-con mb-3 mt-3"></div>
-							<div class="canvas-con-inner mb-4" id="canvas-pie">
+							<div class="canvas-con-inner mb-6" id="canvas-pie">
 								<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 							</div>
 						</div>
