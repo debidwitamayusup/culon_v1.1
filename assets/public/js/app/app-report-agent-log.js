@@ -67,7 +67,6 @@ function getTenant(date){
 }
 
 function callTableAgentLog(start_date, end_date, tenant_id){
-    console.log('asup')
     $("#filter-loader").fadeIn("slow");
 	$('#tableAgent').DataTable({
         ajax: {
@@ -99,6 +98,35 @@ function callTableAgentLog(start_date, end_date, tenant_id){
         },
     });
     $("#filter-loader").fadeOut("slow");
+}
+
+function exportTableAgentLog(tenant_id, start_date, end_date, name){
+    $("#filter-loader").fadeIn("slow");
+    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Reporting/ReportController/EXPORTAL',
+        data: {
+            tenant_id: tenant_id,
+            start_date: start_date,
+            end_date: end_date,
+            name: name
+        }
+        ,
+        success: function (r) {
+            if (r.status != false){
+                window.location = r.Link;
+            }else{
+                alert("Can't Export Empty Data");
+            }
+            $("#filter-loader").fadeOut("slow");
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("can't export");
+            $("#filter-loader").fadeOut("slow");
+        },
+    });
 }
 
 function setDatePicker() {
@@ -139,10 +167,9 @@ function setDatePicker() {
         // }
     });
 
-    // $('#btn-export').click(function(){
-    //     // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-    //     exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
-    // });
+    $('#btn-export').click(function(){
+        exportTableAgentLog(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
+    });
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#layanan_name').val();
