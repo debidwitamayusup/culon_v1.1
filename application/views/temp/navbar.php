@@ -46,8 +46,7 @@
 											class="dropdown-icon fe fe-power"></i>Log Out</button>
 								</div>
 							</div>
-							<h5 class="text-dark mb-1" id="NICKNAME_NAV"></h5>
-											<small class="text-muted" id="PREVILAGE_NAV"></small>
+							
 						</div>
 					</div>
 				</div>

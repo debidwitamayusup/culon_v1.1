@@ -258,8 +258,75 @@ form.convFormDynamic button.submit {
 .custom-control-input:focus~.custom-control-label::before {
 	box-shadow: 0 0 0 1px rgba(152, 166, 173, 0.1), 0 0 0 2px rgba(242,242,242, 0.25);
 }
+
+/* color checkbox */
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
 	background-color: #089e60 ;
+}
+
+/* email */
+.color_checkbox_channel1{
+	background-color: #e41313;
+}
+
+/* facebook */
+.color_checkbox_channel2{
+	background-color:#467fcf;
+}
+
+/* instagram */
+.color_checkbox_channel3{
+	background-color:#fbc0d5;
+}
+
+/* line */
+.color_checkbox_channel4{
+	background-color:#31a550;
+}
+
+/* live chat */
+.color_checkbox_channel5{
+	background-color:#607d8b;
+}
+
+/* messenger */
+.color_checkbox_channel6{
+	background-color:#3866a6;
+}
+
+/* sms */
+.color_checkbox_channel7{
+	background-color:#80cbc4;
+}
+
+/* telegram */
+.color_checkbox_channel8{
+	background-color:#343a40;
+}
+
+/* twitter */
+.color_checkbox_channel9{
+	background-color:#45aaf2;
+}
+
+/* twitter dm */
+.color_checkbox_channel10{
+	background-color:#6574cd;
+}
+
+/* voice */
+.color_checkbox_channel11{
+	background-color:#ff9933;
+}
+
+/* whatsapp */
+.color_checkbox_channel12{
+	background-color:#31a550;
+}
+
+/* chatbot */
+.color_checkbox_channel13{
+	background-color:#6e273e;
 }
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
 	background-color: #089e60 ;
