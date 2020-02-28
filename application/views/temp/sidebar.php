@@ -38,7 +38,7 @@
 							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
 								Performance Operation</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
-								Performance</a>
+								Performance Realtime</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
@@ -87,7 +87,7 @@
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-home mr-1"></i></i>Dashboard
 							</h5> -->
-							<a href="<?= base_url()?>main/home" class="slide-item">Traffic by Channel</a>
+							<a href="<?=base_url()?>main/home" class="slide-item">Traffic by Channel</a>
 							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">

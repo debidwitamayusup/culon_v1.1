@@ -5,7 +5,7 @@
                 <li class="breadcrumb-item active" aria-current="page">
                     <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
                 </li>
-                <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance
+                <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance Realtime
                 </li>
             </ol>
         </div>
@@ -24,7 +24,7 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Realtime</h5>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2 mb-2">
                         <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
@@ -35,7 +35,7 @@
                                             <td>No</td>
                                             <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td>ART (Waiting Time)</td>
+                                            <td >ART <br> (Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
                                             <td>SCR</td>
@@ -56,7 +56,7 @@
                                             <td>No</td>
                                             <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td>ART (Waiting Time)</td>
+                                            <td>ART <br> (Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
                                             <td>SCR</td>
@@ -77,7 +77,7 @@
                                             <td>No</td>
                                             <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td>ART (Waiting Time)</td>
+                                            <td>ART <br> (Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
                                             <td>SCR</td>

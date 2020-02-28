@@ -49,5 +49,10 @@
 
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
-	
+
+	$('div div.row div.col-md-12 a.slide-item').on('click', function(){
+		$(this).parent().find("div div.row").removeClass("active");
+		$(this).addClass("active").parents("div:first").prop("class","active resp-tab-content-active");
+	})
+	   
 })();
