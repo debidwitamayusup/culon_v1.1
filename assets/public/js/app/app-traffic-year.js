@@ -1,14 +1,18 @@
 var base_url = $('#base_url').val();
 var v_params_tenant = 'oct_telkomcare';
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    var d = new Date();
-    var n = d.getFullYear();
-    $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
-    var data_chart = callGraphYear('ShowAll', n, '');
-    var data_graph = callDataPercentage(n, '');
-    var data_table = callDataTableAvg(n, '');
-    var data_year = callYear();
+    if(sessionParams){
+        var d = new Date();
+        var n = d.getFullYear();
+        $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
+        var data_chart = callGraphYear('ShowAll', n, '');
+        var data_graph = callDataPercentage(n, '');
+        var data_table = callDataTableAvg(n, '');
+        var data_year = callYear();
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas) {

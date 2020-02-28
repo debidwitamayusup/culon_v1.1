@@ -24,11 +24,15 @@ var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    $('#input-date').datepicker("setDate", v_params_today);
-    drawTableSumInterval(v_params_today,'1','', '');
-    // $('#tableOperation2').dataTable();
-    // callTablePerformOps(v_params_tenant, '', n);
+    if(sessionParams){
+        getTenant('')
+        $('#input-date').datepicker("setDate", v_params_today);
+        drawTableSumInterval(v_params_today,'1','', '');
+        // $('#tableOperation2').dataTable();
+        // callTablePerformOps(v_params_tenant, '', n);
+    }else{
+        window.location = base_url;
+    }
 });
 
 function getTenant(date){

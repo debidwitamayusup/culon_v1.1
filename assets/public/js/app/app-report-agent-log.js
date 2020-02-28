@@ -17,15 +17,19 @@ if (n < 10) {
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function(){
-    getTenant('');
-    $('#start-date').datepicker("setDate", v_params_today);
-    $('#end-date').datepicker("setDate", v_params_today);
-    startDateFromFilter = v_params_today;
-    endDateFromFilter = v_params_today;
-    callTableAgentLog(v_params_today, v_params_today, '');
-    $('#tableAgent').dataTable();
+    if(sessionParams){
+        getTenant('');
+        $('#start-date').datepicker("setDate", v_params_today);
+        $('#end-date').datepicker("setDate", v_params_today);
+        startDateFromFilter = v_params_today;
+        endDateFromFilter = v_params_today;
+        callTableAgentLog(v_params_today, v_params_today, '');
+        $('#tableAgent').dataTable();
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas)

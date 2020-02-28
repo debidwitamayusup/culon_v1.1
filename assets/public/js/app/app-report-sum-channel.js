@@ -22,15 +22,19 @@ var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    $('#start-date').datepicker("setDate", v_params_today);
-    $('#end-date').datepicker("setDate", v_params_today);
-    startDateFromFilter = v_params_today;
-    endDateFromFilter = v_params_today;
-    drawTableSumChannel('',v_params_today,v_params_today);
-    callDrawPieChart('',v_params_today,v_params_today);
-    // $('#tableOperation2').dataTable();
-    // callTablePerformOps(v_params_tenant, '', n);
+    if(sessionParams){
+        getTenant('')
+        $('#start-date').datepicker("setDate", v_params_today);
+        $('#end-date').datepicker("setDate", v_params_today);
+        startDateFromFilter = v_params_today;
+        endDateFromFilter = v_params_today;
+        drawTableSumChannel('',v_params_today,v_params_today);
+        callDrawPieChart('',v_params_today,v_params_today);
+        // $('#tableOperation2').dataTable();
+        // callTablePerformOps(v_params_tenant, '', n);
+    }else{
+        window.location = base_url;
+    }
 });
 
 function addCommas(commas)

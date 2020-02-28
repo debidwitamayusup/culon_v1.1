@@ -22,39 +22,43 @@ if (n < 10) {
 
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $('#select-month option[value='+n+']').attr('selected','selected');
-    $('#dateTahun option[value='+m+']').attr('selected','selected');
+    if(sessionParams){
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#dateTahun option[value='+m+']').attr('selected','selected');
 
-    // v_date = getToday();
-    // v_month = getMonth();
-    // v_year = getYear();
-    params_time = 'day';
-    v_date = '2019-12-02';
-    v_month = getMonth();
-    v_year = getYear();
+        // v_date = getToday();
+        // v_month = getMonth();
+        // v_year = getYear();
+        params_time = 'day';
+        v_date = '2019-12-02';
+        v_month = getMonth();
+        v_year = getYear();
 
-    $("#btn-day").prop("class","btn btn-red btn-sm");
-    sessionStorage.removeItem('paramsSession');
-    sessionStorage.setItem('paramsSession', 'day');
+        $("#btn-day").prop("class","btn btn-red btn-sm");
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'day');
 
-    loadContent(params_time, '2020-02-24', 0, '');
-    // $('#tag-time').html(v_params_this_year);
-    // $("#btn-month").prop("class","btn btn-light btn-sm");
-    // $("#btn-year").prop("class","btn btn-light btn-sm");
-    // $("#btn-day").prop("class","btn btn-red btn-sm");
-    $('#input-date-filter').datepicker("setDate", v_params_this_year);
-    $('#filter-date').show();
-    $('#filter-month').hide();
-    $('#filter-year').hide();
-    setMonthPicker();
-    setYearPicker();
-    // loadContent(params_time, v_params_this_year);
-    // $('#tag-time').html(v_params_this_year);
-    // $("#btn-month").prop("class","btn btn-light btn-sm");
-    // $("#btn-year").prop("class","btn btn-light btn-sm");
-    // $("#btn-day").prop("class","btn btn-red btn-sm");
+        loadContent(params_time, '2020-02-24', 0, '');
+        // $('#tag-time').html(v_params_this_year);
+        // $("#btn-month").prop("class","btn btn-light btn-sm");
+        // $("#btn-year").prop("class","btn btn-light btn-sm");
+        // $("#btn-day").prop("class","btn btn-red btn-sm");
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+        setMonthPicker();
+        setYearPicker();
+        // loadContent(params_time, v_params_this_year);
+        // $('#tag-time').html(v_params_this_year);
+        // $("#btn-month").prop("class","btn btn-light btn-sm");
+        // $("#btn-year").prop("class","btn btn-light btn-sm");
+        // $("#btn-day").prop("class","btn btn-red btn-sm");
+    }else{
+        window.location = base_url
+    }
 
 });
 

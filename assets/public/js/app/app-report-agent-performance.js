@@ -34,15 +34,19 @@ var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    getSkill()
-    $('#start-date').datepicker("setDate", v_params_today);
-    $('#end-date').datepicker("setDate", v_params_today);
-    startDateFromFilter = v_params_today;
-    endDateFromFilter = v_params_today;
-    drawTableAgentPerform('',v_params_today,v_params_today, '1');
-    // $('#tableOperation2').dataTable();
-    // callTablePerformOps(v_params_tenant, '', n);
+    if(sessionParams){
+        getTenant('')
+        getSkill()
+        $('#start-date').datepicker("setDate", v_params_today);
+        $('#end-date').datepicker("setDate", v_params_today);
+        startDateFromFilter = v_params_today;
+        endDateFromFilter = v_params_today;
+        drawTableAgentPerform('',v_params_today,v_params_today, '1');
+        // $('#tableOperation2').dataTable();
+        // callTablePerformOps(v_params_tenant, '', n);
+    }else{
+        window.location = base_url;
+    }
 });
 
 function monthNumToName(month) {

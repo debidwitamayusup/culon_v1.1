@@ -37,13 +37,17 @@ var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    console.log(n);
-    // $('#input-date').datepicker("setDate", '1');
-    $('#month_name option[value=' + n + ']').attr('selected', 'selected');
-    drawTableSumInterval( n,'','');
-    // $('#tableOperation2').dataTable();
-    // callTablePerformOps(v_params_tenant, '', n);
+    if(sessionParams){
+        getTenant('')
+        console.log(n);
+        // $('#input-date').datepicker("setDate", '1');
+        $('#month_name option[value=' + n + ']').attr('selected', 'selected');
+        drawTableSumInterval( n,'','');
+        // $('#tableOperation2').dataTable();
+        // callTablePerformOps(v_params_tenant, '', n);
+    }else{
+        window.location = base_url;
+    }
 });
 
 function channelToName(channel_id){

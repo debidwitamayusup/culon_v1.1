@@ -13,36 +13,40 @@ if (n < 10) {
 
 //get yesterday
 var v_params_today= m + '-' + n + '-' + (o-1);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    // fromTemplate();
-    callSumAllTenant('day', v_params_today, 0);
-    callSumPerTenant('day', v_params_today, 0);
-    callIntervalTraffic('day',v_params_today,0, '');
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        callSumAllTenant('day', v_params_today, 0);
+        callSumPerTenant('day', v_params_today, 0);
+        callIntervalTraffic('day',v_params_today,0, '');
 
-    $('#check-all-channel').prop('checked',false);
-    $("input:checkbox.checklist-channel").prop('checked',false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
-        values.push(el.value);
-        type.push($(el).data('type'));
-    });
-    // console.log(values);
-    list_channel = values;
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
 
-    $('#input-date-filter').datepicker("setDate", v_params_today);
-    $("#btn-month").prop("class", "btn btn-light btn-sm");
-    $("#btn-year").prop("class", "btn btn-light btn-sm");
-    $("#btn-day").prop("class", "btn btn-red btn-sm");
+        $('#input-date-filter').datepicker("setDate", v_params_today);
+        $("#btn-month").prop("class", "btn btn-light btn-sm");
+        $("#btn-year").prop("class", "btn btn-light btn-sm");
+        $("#btn-day").prop("class", "btn btn-red btn-sm");
 
-    sessionStorage.removeItem('paramsSession');
-    sessionStorage.setItem('paramsSession', 'day');
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'day');
 
-    $('#filter-date').show();
-    $('#filter-month').hide();
-    $('#filter-year').hide();
-    $("#filter-loader").fadeOut("slow");
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+        $("#filter-loader").fadeOut("slow");
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas)

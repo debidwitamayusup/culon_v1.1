@@ -2,27 +2,31 @@ var base_url = $('#base_url').val();
 var v_date = '';
 var list_channel= [];
 var v_params_tenant = 'oct_telkomcare'
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    // set date
-    // v_date = getToday();
-    v_date = getYesterday();
-    $('#input-date').datepicker("setDate", v_date);
-    //set check all channel
-    $('#check-all-channel').prop('checked',false);
-    $("input:checkbox.checklist-channel").prop('checked',false);
-    var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    Array.prototype.forEach.call(checkboxes, function(el) {
-        values.push(el.value);
-        type.push($(el).data('type'));
-    });
-    // console.log(values);
-    list_channel = values;
+    if(sessionParams){
+        // set date
+        // v_date = getToday();
+        v_date = getYesterday();
+        $('#input-date').datepicker("setDate", v_date);
+        //set check all channel
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+            type.push($(el).data('type'));
+        });
+        // console.log(values);
+        list_channel = values;
 
-    // var data_chart = callIntervalTraffic(v_date, []);
-    var data_chart = callIntervalTraffic(v_date, list_channel, '');
-    var data_table_avg = callDataTableAvg(v_date, '');
-    var data_percentage = callDataPercentage(v_date, '');
+        // var data_chart = callIntervalTraffic(v_date, []);
+        var data_chart = callIntervalTraffic(v_date, list_channel, '');
+        var data_table_avg = callDataTableAvg(v_date, '');
+        var data_percentage = callDataPercentage(v_date, '');
+    }else{
+        window.location = base_url
+    }
     
 });
 

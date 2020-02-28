@@ -157,6 +157,7 @@ class AgentPerformModel extends CI_Model
 
 	public function getSAgentperformskills($src='',$param, $params_time, $index, $params_year) // table right - bottom need limit / offset
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7) AS ART,
 							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7) AS AHT,
@@ -165,7 +166,12 @@ class AgentPerformModel extends CI_Model
 							v_rpt_summ_agent.agentid AS AGENTID, v_rpt_summ_agent.agentName AS NAME, group_skill.skill_name AS SKILLNAME');//,v_rpt_summ_agent.profile_pic AS IMAGE //
 		$this->db->from('v_rpt_summ_agent');
 		$this->db->join('group_skill','v_rpt_summ_agent.skill_id = group_skill.skill_id');
-	
+		
+		if($tid)
+		{
+			$this->db->where('v_rpt_summ_agent.tenant_id',$tid);
+		}
+
 		if ($params_time == "day") {
 			$this->db->where('v_rpt_summ_agent.tanggal', $index);
 		}else if ($params_time == "month") {
@@ -264,6 +270,7 @@ class AgentPerformModel extends CI_Model
 	
 	public function getSAgentperformByskill($params, $index, $params_year)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7), "no data") as ART,
 			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7), "no data") as AHT,
@@ -272,7 +279,10 @@ class AgentPerformModel extends CI_Model
 		$this->db->from('v_rpt_summ_agent');
 		$this->db->join('group_skill','v_rpt_summ_agent.skill_id = group_skill.skill_id');
 		//$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
-
+		if($tid)
+		{
+			$this->db->where('v_rpt_summ_agent.tenant_id',$tid);
+		}
 		if ($params == "day") {
 			$this->db->where('v_rpt_summ_agent.tanggal = "'.$index.'"');
 		}else if ($params == "month") {

@@ -18,28 +18,32 @@ if (n < 10) {
 console.log(n);
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 var v_params_tenant = 'oct_telkomcare';
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
+	if(sessionParams){
+		params_time = 'day';
+		v_date = getToday();
+		v_month = getMonth();
+		v_year = getYear();
+		v_date = '2020-01-16';
+		channel_id = '';
+		$('#btn-day').prop("class", "btn btn-red btn-sm");
+		// loadContent(params_time, v_date, 0);
+		loadContent(params_time, v_params_this_year, 0, '');
+		// ------datepiker
+		$('#input-date-filter').datepicker("setDate", v_params_this_year);
+		$('#select-month option[value=' + n + ']').attr('selected', 'selected');
+		$('#select-year-on-month option[value=' + m + ']').attr('selected', 'selected');
+		$('#select-year-only option[value=' + m + ']').attr('selected', 'selected');
 
-	params_time = 'day';
-	v_date = getToday();
-	v_month = getMonth();
-	v_year = getYear();
-	v_date = '2020-01-16';
-	channel_id = '';
-	$('#btn-day').prop("class", "btn btn-red btn-sm");
-	// loadContent(params_time, v_date, 0);
-	loadContent(params_time, v_params_this_year, 0, '');
-	// ------datepiker
-	$('#input-date-filter').datepicker("setDate", v_params_this_year);
-	$('#select-month option[value=' + n + ']').attr('selected', 'selected');
-	$('#select-year-on-month option[value=' + m + ']').attr('selected', 'selected');
-	$('#select-year-only option[value=' + m + ']').attr('selected', 'selected');
-
-	$('#filter-date').show();
-	$('#filter-month').hide();
-	$('#filter-year').hide();
-	setMonthPicker();
-	setYearPicker();
+		$('#filter-date').show();
+		$('#filter-month').hide();
+		$('#filter-year').hide();
+		setMonthPicker();
+		setYearPicker();
+	}else{
+		window.location = base_url
+	}
 });
 
 

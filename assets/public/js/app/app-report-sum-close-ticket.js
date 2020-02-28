@@ -33,17 +33,21 @@ var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    getTenant('')
-    $('#start-date').datepicker("setDate", v_params_today);
-    $('#end-date').datepicker("setDate", v_params_today);
-    drawTableCloseTicket('', v_params_today, v_params_today, '');
-    drawTableCloseTicketPerChannel('',v_params_today, v_params_today, '');
-    callCloseTicketPie('', v_params_today, v_params_today);
+    if(sessionParams){
+        getTenant('')
+        $('#start-date').datepicker("setDate", v_params_today);
+        $('#end-date').datepicker("setDate", v_params_today);
+        drawTableCloseTicket('', v_params_today, v_params_today, '');
+        drawTableCloseTicketPerChannel('',v_params_today, v_params_today, '');
+        callCloseTicketPie('', v_params_today, v_params_today);
 
-    tenantFromFilter = $('#layanan_name').val();
-    startDateFromFilter = $('#start-date').val();
-    endDateFromFilter = $('#end-date').val();
-    channelFromFilter = $('#channel_name').val();
+        tenantFromFilter = $('#layanan_name').val();
+        startDateFromFilter = $('#start-date').val();
+        endDateFromFilter = $('#end-date').val();
+        channelFromFilter = $('#channel_name').val();
+    }else{
+        window.location = base_url;
+    }
 });
 
 function monthNumToName(month) {

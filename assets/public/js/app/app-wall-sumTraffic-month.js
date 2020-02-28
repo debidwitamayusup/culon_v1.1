@@ -13,24 +13,29 @@ if (n < 10) {
 
 //get today
 var v_params_this_year = m + '-' + n + '-' + (o);
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    // fromTemplate();
-    callDataPercentage(n,'',m);
-    callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    callTableInterval(n,'');
-    $("#filter-loader").fadeOut("slow");
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        callDataPercentage(n,'',m);
+        callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+        callTableInterval(n,'');
+        $("#filter-loader").fadeOut("slow");
 
-    // $('#check-all-channel').prop('checked',false);
-    // $("input:checkbox.checklist-channel").prop('checked',false);
-    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    // Array.prototype.forEach.call(checkboxes, function(el) {
-    //     values.push(el.value);
-    //     type.push($(el).data('type'));
-    // });
-    // console.log(values);
-    // list_channel = values;
+        // $('#check-all-channel').prop('checked',false);
+        // $("input:checkbox.checklist-channel").prop('checked',false);
+        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        // Array.prototype.forEach.call(checkboxes, function(el) {
+        //     values.push(el.value);
+        //     type.push($(el).data('type'));
+        // });
+        // console.log(values);
+        // list_channel = values;
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas)
@@ -322,7 +327,6 @@ function drawChartPercentageMonth(response){
 }
 
 function drawTableData(response){
-    // var tagTime=["00 - 01", "01 - 02", "02 - 03", "03 - 04", "04 - 05", "05 - 06", "06 - 07", "07 - 08", "08 - 09", "09 - 10", "10 - 11", "11 - 12", "12 - 13", "13 - 14", "14 - 15", "15 - 16", "16 - 17", "17 - 18", "18 - 19", "19 - 20", "20 - 21", "21 - 22", "22 - 23", "23 - 00"];
 
     var sumVoice = response.data[12].total_interval.map(Number).reduce(summarize);
     var sumLive = response.data[0].total_interval.map(Number).reduce(summarize);

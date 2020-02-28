@@ -8,25 +8,28 @@ var v_params_tenant = 'oct_telkomcare';
 var d = new Date();
 var n = d.getMonth() + 1;
 var m = d.getFullYear();
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
+    if(sessionParams){
+        //for dropdown selected
+        destroyChartInterval();
+        destroyChartPercentage();
+        callYear();
+        $('#month option[value=' + n + ']').attr('selected', 'selected');
+        // $('#dropdownYear option[value='+m+']').attr('selected','selected');
+        // console.log('"'+n+'"');
+        // console.log(m);
+        // callGraphicInterval('ShowAll', $("#month").val(), m);
+        // callGraphicInterval('ShowAll', '1', '2020');
+        // drawStackedBar('month', '', n, m, v_params_tenant);
 
-    //for dropdown selected
-    destroyChartInterval();
-    destroyChartPercentage();
-    callYear();
-    $('#month option[value=' + n + ']').attr('selected', 'selected');
-    // $('#dropdownYear option[value='+m+']').attr('selected','selected');
-    // console.log('"'+n+'"');
-    // console.log(m);
-    // callGraphicInterval('ShowAll', $("#month").val(), m);
-    // callGraphicInterval('ShowAll', '1', '2020');
-    // drawStackedBar('month', '', n, m, v_params_tenant);
 
-
-    stackedBarInterval('month', '', n, m, '');
-    callDataPercentage($("#month").val(), m, '');
-    callDataTableAvg($("#month").val(), m), '';
+        stackedBarInterval('month', '', n, m, '');
+        callDataPercentage($("#month").val(), m, '');
+        callDataTableAvg($("#month").val(), m), '';
+    }else{
+        window.location = base_url
+    }
 });
 
 function monthNumToName(month) {

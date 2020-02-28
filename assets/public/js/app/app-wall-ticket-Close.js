@@ -7,9 +7,13 @@ var base_url = $('#base_url').val();
 var d = new Date();
 var n = d.getMonth() + 1;
 var m = d.getFullYear();
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    drawStackedBar('month', '10', '2019', '');
+    if(sessionParams){
+        drawStackedBar('month', '10', '2019', '');
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas) {

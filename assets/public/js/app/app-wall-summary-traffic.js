@@ -15,26 +15,31 @@ if (n < 10) {
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-2);
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    // fromTemplate();
-    callSumAllTenant('day', v_params_yesterday, 0, '');
-    callSumPerTenant('day', v_params_yesterday, 0, '');
-    // drawIntervalChart();
-    callIntervalTraffic('day',v_params_yesterday,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
-    getTenant(v_params_yesterday);
+    if (sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        callSumAllTenant('day', v_params_yesterday, 0, '');
+        callSumPerTenant('day', v_params_yesterday, 0, '');
+        // drawIntervalChart();
+        callIntervalTraffic('day',v_params_yesterday,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
+        getTenant(v_params_yesterday);
 
-    // $('#check-all-channel').prop('checked',false);
-    // $("input:checkbox.checklist-channel").prop('checked',false);
-    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    // Array.prototype.forEach.call(checkboxes, function(el) {
-    //     values.push(el.value);
-    //     type.push($(el).data('type'));
-    // });
-    // // console.log(values);
-    // list_channel = values;
+        // $('#check-all-channel').prop('checked',false);
+        // $("input:checkbox.checklist-channel").prop('checked',false);
+        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        // Array.prototype.forEach.call(checkboxes, function(el) {
+        //     values.push(el.value);
+        //     type.push($(el).data('type'));
+        // });
+        // // console.log(values);
+        // list_channel = values;
 
-   $("#filter-loader").fadeOut("slow");
+        $("#filter-loader").fadeOut("slow");
+    }else{
+        window.location = base_url
+    }
 });
 
 function getTenant(date){

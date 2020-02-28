@@ -12,15 +12,19 @@ if (n < 10) {
 }
 
 var v_params_this_year = m + '-' + n + '-' + (o);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function(){
-    $("#filter-loader").fadeIn("slow");
-    callThreeTable('');
-    callPieChartSummary('');
-    callBarLayanan('');
-    callLineChart('');
-    callTotalTable('');
-    $("#filter-loader").fadeOut("slow");
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        callThreeTable('');
+        callPieChartSummary('');
+        callBarLayanan('');
+        callLineChart('');
+        callTotalTable('');
+        $("#filter-loader").fadeOut("slow");
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas)

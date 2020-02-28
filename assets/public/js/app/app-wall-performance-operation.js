@@ -15,16 +15,20 @@ if (n < 10) {
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-2);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    callTableCOFByChannel(v_params_yesterday, '');
-    callTableStatusTicket('2020-01-20');
-    getTenant(v_params_yesterday);
-    // getTenant(v_params_today);
-    // callTableCOFByChannel(v_params_today);
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        callTableCOFByChannel(v_params_yesterday, '');
+        callTableStatusTicket('2020-01-20');
+        getTenant(v_params_yesterday);
+        // getTenant(v_params_today);
+        // callTableCOFByChannel(v_params_today);
 
-   $("#filter-loader").fadeOut("slow");
+        $("#filter-loader").fadeOut("slow");
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas)
@@ -146,7 +150,7 @@ function drawTableStatusTicket(response){
                 '<td class="text-center">-</td>'+
                 '<td class="text-center">-</td>'+
                 '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+  
                 '</tr>');
     }
 }

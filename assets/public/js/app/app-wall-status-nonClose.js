@@ -13,13 +13,17 @@ if (n < 10) {
 
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    // fromTemplate();
-    callSumNonClose();
-    drawTableSumAgentPeformSkill();
-   $("#filter-loader").fadeOut("slow");
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        callSumNonClose();
+        drawTableSumAgentPeformSkill();
+        $("#filter-loader").fadeOut("slow");
+    }else{
+        window.location = base_url
+    }
 });
 
 function callSumNonClose(){

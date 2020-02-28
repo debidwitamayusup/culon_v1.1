@@ -12,23 +12,27 @@ if (n < 10) {
 }
 var v_parmas_tenant = 'oct_telkomcare';
 var v_params_this_year = m + '-' + n + '-' + (o-1);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    performanceBySkill('day', v_params_this_year, 0, '');
-    drawDataTable('day', v_params_this_year, 0, '');
-    bestOfFiveCOF('COF','day', v_params_this_year, 0, '');
-    bestOfFiveAHT('AHT','day', v_params_this_year, 0, '');
-    bestOfFiveART('ART','day', v_params_this_year, 0, '');
-    $('#btn-day').prop("class","btn btn-red btn-sm");
-    $('#input-date-filter').datepicker("setDate", v_params_this_year);
-    $('#select-month option[value='+n+']').attr('selected','selected');
-    $('#select-year-on-month option[value='+m+']').attr('selected','selected');
-    $('#select-year-only option[value='+m+']').attr('selected','selected');
-    $('#filter-date').show();
-    $('#filter-month').hide();
-    $('#filter-year').hide();
-    setMonthPicker();
-    setYearPicker();
+    if(sessionParams){
+        performanceBySkill('day', v_params_this_year, 0, '');
+        drawDataTable('day', v_params_this_year, 0, '');
+        bestOfFiveCOF('COF','day', v_params_this_year, 0, '');
+        bestOfFiveAHT('AHT','day', v_params_this_year, 0, '');
+        bestOfFiveART('ART','day', v_params_this_year, 0, '');
+        $('#btn-day').prop("class","btn btn-red btn-sm");
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
+        $('#select-year-only option[value='+m+']').attr('selected','selected');
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+        setMonthPicker();
+        setYearPicker();
+    }else{
+        window.location = base_url
+    }
 });
 
 //for dinamic dropdown year on month

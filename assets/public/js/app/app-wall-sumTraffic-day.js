@@ -15,24 +15,29 @@ if (n < 10) {
 var v_params_yesterday= m + '-' + n + '-' + (o);
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-2);
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    $("#filter-loader").fadeIn("slow");
-    // fromTemplate();
-    callDataPercentage(v_params_yesterday, '');
-    callIntervalTraffic(v_params_yesterday,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], '');
-    // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    getTenant('');
-    $("#filter-loader").fadeOut("slow");
+    if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        callDataPercentage(v_params_yesterday, '');
+        callIntervalTraffic(v_params_yesterday,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], '');
+        // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+        getTenant('');
+        $("#filter-loader").fadeOut("slow");
 
-    // $('#check-all-channel').prop('checked',false);
-    // $("input:checkbox.checklist-channel").prop('checked',false);
-    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    // Array.prototype.forEach.call(checkboxes, function(el) {
-    //     values.push(el.value);
-    //     type.push($(el).data('type'));
-    // });
-    // console.log(values);
-    // list_channel = values;
+        // $('#check-all-channel').prop('checked',false);
+        // $("input:checkbox.checklist-channel").prop('checked',false);
+        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        // Array.prototype.forEach.call(checkboxes, function(el) {
+        //     values.push(el.value);
+        //     type.push($(el).data('type'));
+        // });
+        // console.log(values);
+        // list_channel = values;
+    }else{
+        window.location = base_url;
+    }
 });
 
 function getTenant(date){

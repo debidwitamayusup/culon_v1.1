@@ -15,26 +15,30 @@ Date.prototype.getWeek = function () {
 var d = new Date();
 var params_week = d.getWeek() - 1;
 // console.log(params_week);
-
+const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    // $("#filter-loader").fadeIn("slow");
+    if(sessionParams){
+        // $("#filter-loader").fadeIn("slow");
 
-    getSummTrafficByChannel(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    getTrafficInterval(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    // getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-    drawChartDaily(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+        getSummTrafficByChannel(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
+        getTrafficInterval(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
+        // getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
+        drawChartDaily(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
 
-    // $('#check-all-channel').prop('checked', false);
-    // $("input:checkbox.checklist-channel").prop('checked', false);
-    // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
-    //     values = [],
-    //     type = [];
-    // Array.prototype.forEach.call(checkboxes, function (el) {
-    //     values.push(el.value);
-    //     type.push($(el).data('type'));
-    // });
-    // // console.log(values);
-    // list_channel = values;
+        // $('#check-all-channel').prop('checked', false);
+        // $("input:checkbox.checklist-channel").prop('checked', false);
+        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'),
+        //     values = [],
+        //     type = [];
+        // Array.prototype.forEach.call(checkboxes, function (el) {
+        //     values.push(el.value);
+        //     type.push($(el).data('type'));
+        // });
+        // // console.log(values);
+        // list_channel = values;
+    }else{
+        window.location = base_url
+    }
 });
 
 function addCommas(commas) {
