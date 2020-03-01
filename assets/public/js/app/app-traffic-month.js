@@ -25,7 +25,7 @@ $(document).ready(function () {
             $('#layanan_name').hide();
             stackedBarInterval('month', '', n, m, sessionParams.TENANT_ID);
             callDataPercentage($("#month").val(), m, sessionParams.TENANT_ID);
-            callDataTableAvg($("#month").val(), m), sessionParams.TENANT_ID;
+            callDataTableAvg($("#month").val(), m, sessionParams.TENANT_ID);
         }else{
             getTenant('');
             stackedBarInterval('month', '', n, m, $('#layanan_name').val());

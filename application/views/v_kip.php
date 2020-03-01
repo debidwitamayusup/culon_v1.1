@@ -10,10 +10,10 @@
                 </ol>
             </div>
             <div class="bd-highlight" style="margin-bottom:30px;">
-                <select class="form-control-sm" style="border-color:#efecec">
+                <select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+                    <!-- <option value="#">All Layanan</option>
                     <option value="#">All Layanan</option>
-                    <option value="#">All Layanan</option>
-                    <option value="#">All Layanan</option>
+                    <option value="#">All Layanan</option> -->
                 </select>
             </div>
             <div class="bd-highlight">
@@ -111,8 +111,21 @@
                     <div class="card-body">
                         <div class="row ml-1">
                             <div class="form-group row">
-                                <select class="form-control" id="channel_name">
-                                    <option value="">Show All</option>
+                                <select class="form-control" style="width:130px" id="channel_name">
+                                    <option value="">All Channel</option>
+                                    <option value="12">Whatsapp</option>
+                                    <option value="6">Facebook</option>
+                                    <option value="8">Twitter</option>
+                                    <option value="13">Twitter DM</option>
+                                    <option value="11">Instagram</option>
+                                    <option value="7">Messenger</option>
+                                    <option value="5">Telegram</option>
+                                    <option value="10">Line</option>
+                                    <option value="2">Email</option>
+                                    <option value="1">Voice</option>
+                                    <option value="3">Live Chat</option>
+                                    <option value="4">SMS</option>
+                                    <option value="15">Chatbot</option> 
                                 </select>
                             </div>
                         </div>
