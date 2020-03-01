@@ -7,8 +7,7 @@ $(document).ready(function () {
     if(sessionParams){
         // set date
         // v_date = getToday();
-        v_date = getYesterday();
-        getTenant('');
+        v_date = getToday();
         $('#input-date').datepicker("setDate", v_date);
         //set check all channel
         $('#check-all-channel').prop('checked',false);
@@ -22,9 +21,17 @@ $(document).ready(function () {
         list_channel = values;
 
         // var data_chart = callIntervalTraffic(v_date, []);
-        var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
-        var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
-        var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            var data_chart = callIntervalTraffic(v_date, list_channel, sessionParams.TENANT_ID);
+            var data_table_avg = callDataTableAvg(v_date, sessionParams.TENANT_ID);
+            var data_percentage = callDataPercentage(v_date, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+            var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
+            var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
+        }
     }else{
         window.location = base_url
     }
@@ -103,6 +110,18 @@ function getYesterday(){
     // today = '2019-05-22';
     return today;
 }
+
+function getToday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + (dd);
+    // today = '2019-05-22';
+    return today;
+}
+
 function getToday(){
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -398,11 +417,16 @@ function destroyChartPercentage(){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            
-            //re draw
-            callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
-            callDataTableAvg(this.value, $('#layanan_name').val());
-            callDataPercentage(this.value, $('#layanan_name').val());
+            if(sessionParams.TENANT_ID != null){
+                $('#layanan_name').hide();
+                callIntervalTraffic(v_date, list_channel, sessionParams.TENANT_ID);
+                callDataTableAvg(v_date, sessionParams.TENANT_ID);
+                callDataPercentage(v_date, sessionParams.TENANT_ID);
+            }else{
+                callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
+                callDataTableAvg(this.value, $('#layanan_name').val());
+                callDataPercentage(this.value, $('#layanan_name').val());
+            }
         }
     });
 
@@ -417,9 +441,16 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
-        callDataTableAvg(v_date, $('#layanan_name').val());
-        callDataPercentage(v_date, $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
+            callDataTableAvg($('#input-date').val(), sessionParams.TENANT_ID);
+            callDataPercentage($('#input-date').val(), sessionParams.TENANT_ID);
+        }else{
+            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+            callDataTableAvg($('#input-date').val(), $('#layanan_name').val());
+            callDataPercentage($('#input-date').val(), $('#layanan_name').val());
+        }
     });
 
     // checked all channel
@@ -432,9 +463,12 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-
-        // call data
-        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
+        }else{
+            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+        }
     });
 
     //checked channel
@@ -452,8 +486,12 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        // call data
-        callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
+        }else{
+            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+        }
     });
     
 })(jQuery);
