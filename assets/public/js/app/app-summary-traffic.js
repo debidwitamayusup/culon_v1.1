@@ -21,7 +21,7 @@ if (n < 10) {
 }
 
 //get yesterday
-var v_params_this_year = m + '-' + n + '-' + (o-1);
+var v_params_this_year = m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
@@ -39,24 +39,21 @@ $(document).ready(function () {
         $("#btn-day").prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
-        console.log($('#layanan_name').val());
-        loadContent(params_time, '2020-02-24', 0, '');
-        getTenant('');
-        // $('#tag-time').html(v_params_this_year);
-        // $("#btn-month").prop("class","btn btn-light btn-sm");
-        // $("#btn-year").prop("class","btn btn-light btn-sm");
-        // $("#btn-day").prop("class","btn btn-red btn-sm");
+
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+        }
+        
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $('#filter-date').show();
         $('#filter-month').hide();
         $('#filter-year').hide();
         setMonthPicker();
         setYearPicker();
-        // loadContent(params_time, v_params_this_year);
-        // $('#tag-time').html(v_params_this_year);
-        // $("#btn-month").prop("class","btn btn-light btn-sm");
-        // $("#btn-year").prop("class","btn btn-light btn-sm");
-        // $("#btn-day").prop("class","btn btn-red btn-sm");
     }else{
         window.location = base_url
     }
@@ -620,22 +617,24 @@ function setDatePicker(){
         onSelect: function (dateText) {
             // console.log(this.value);
             v_date = this.value;
-
-            loadContent('day', v_date, 0, '');
+            if(sessionParams.TENANT_ID != null){
+                loadContent('day', v_date, 0, sessionParams.TENANT_ID);
+            }else{
+                loadContent('day', v_date, 0, $('#layanan_name').val());
+            }
         }
     });
 
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-        // console.log(params_time);
-        // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0,  $('#layanan_name').val())
-        // $('#tag-time').html(v_params_this_year);
+
+        if(sessionParams.TENANT_ID != null){
+            loadContent('day', v_params_this_year, 0, sessionParams.TENANT_ID);
+        }else{
+            loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
+        }
         v_date='2019-12-01';
-        // callSummaryInteraction(params_time,v_date);
-        // loadContent(params_time, v_params_this_year)
-        // $('#tag-time').html(v_params_this_year);
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -663,7 +662,11 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m,  $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            loadContent('month', n,m, sessionParams.TENANT_ID);
+        }else{
+            loadContent('month', n,m, $('#layanan_name').val());
+        }
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -685,11 +688,12 @@ function setDatePicker(){
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
-        // console.log(params_time);
-        // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0,  $('#layanan_name').val());
         callYear();
-        $('#tag-time').html(m);
+        if(sessionParams.TENANT_ID != null){
+            loadContent('year', m,0, sessionParams.TENANT_ID);
+        }else{
+            loadContent('year', m,0, $('#layanan_name').val());
+        }
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -709,22 +713,35 @@ function setDatePicker(){
         // minDate: date,
         
         onSelect: function(dateText) {
-        // console.log(this.value);
-        v_date = this.value;
-        
-        loadContent('day', v_date, 0, '');
+            v_date = this.value;
+            if(sessionParams.TENANT_ID != null){
+                loadContent('day', v_date,0, sessionParams.TENANT_ID);
+            }else{
+                loadContent('day', v_date,0, $('#layanan_name').val());
+            }
         }
     });
 
     $('#layanan_name').change(function(){
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            loadContent(fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
+            if(sessionParams.TENANT_ID != null){
+                loadContent('day',  $('#input-date-filter').val(),0, sessionParams.TENANT_ID);
+            }else{
+                loadContent('day',  $('#input-date-filter').val(),0, $('#layanan_name').val());
+            }
         }else if(fromParams == 'month'){
-            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            if(sessionParams.TENANT_ID != null){
+                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+            }else{
+                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            }
         }else if(fromParams == 'year'){
-            v_year = $(this).val();
-            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
+            if(sessionParams.TENANT_ID != null){
+                loadContent('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
+            }else{
+                loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            }
         }
     });
 
@@ -767,7 +784,11 @@ function setDatePicker(){
         // sessionStorage.removeItem('paramsSession');
         // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-        loadContent('year', v_year, 0);
+        if(sessionParams.TENANT_ID != null){
+            loadContent('year', v_year,0, sessionParams.TENANT_ID);
+        }else{
+            loadContent('year', v_year,0, $('#layanan_name').val());
+        }
         // simmiriStatusTicket('year', v_year, 0);
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
@@ -778,6 +799,11 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+        if(sessionParams.TENANT_ID != null){
+            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+        }else{
+            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        }
+        
     });
 })(jQuery);
