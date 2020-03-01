@@ -52,7 +52,13 @@ $(document).ready(function () {
 		sessionStorage.removeItem('paramsSession');
 		sessionStorage.setItem('paramsSession', 'day');
 		// loadContent(params_time, v_date, 0);
-		loadContent(params_time, v_params_this_year, 0, '');
+		if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+			loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+		}
 		// ------datepiker
 		$('#input-date-filter').datepicker("setDate", v_params_this_year);
 		$('#select-month option[value=' + n + ']').attr('selected', 'selected');
@@ -69,6 +75,35 @@ $(document).ready(function () {
 	}
 
 });
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
+            // var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
+                }
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 //for dinamic dropdown year on month
 function callYearOnMonth() {
@@ -675,8 +710,13 @@ function setDatePicker() {
 		// v_date = getToday();
 		// v_date = '2019-12-01';
 		// console.log(params_time);
-
-		loadContent(params_time, v_params_this_year, '');
+		if(sessionParams.TENANT_ID != null){
+            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID);
+        }else{
+			loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+		}
+		sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'day');
         $("#btn-month").prop("class","btn btn-light btn-sm");
 		$("#btn-year").prop("class","btn btn-light btn-sm");
 		$('#input-date-filter').datepicker("setDate", v_params_this_year, '');
@@ -711,11 +751,16 @@ function setDatePicker() {
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n, m, '');
+		if(sessionParams.TENANT_ID != null){
+            loadContent(params_time, n,m, sessionParams.TENANT_ID);
+        }else{
+			loadContent(params_time, n,m, $('#layanan_name').val());
+		}
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
 		callYearOnMonth();
-		console.log(n);
+		sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'month');
 		$('#select-month option[value=' + n + ']').attr('selected', 'selected');
 		$('#select-year-on-month option[value=' + m + ']').attr('selected', 'selected');
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
@@ -735,12 +780,17 @@ function setDatePicker() {
 		// console.log(params_time);
 
 		// v_date = getYear();
-		loadContent(params_time, m, 0, '');
+		if(sessionParams.TENANT_ID != null){
+            loadContent(params_time, m, 0, sessionParams.TENANT_ID);
+        }else{
+			loadContent(params_time, m, 0, $('#layanan_name').val());
+		}
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
 		$(this).prop("class", "btn btn-red btn-sm");
-
+		sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'year');
 		$('#filter-date').hide();
 		$('#filter-month').hide();
 		$('#filter-year').show();
@@ -757,7 +807,11 @@ function setDatePicker() {
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent(params_time, v_date,0,'');
+			if(sessionParams.TENANT_ID != null){
+				loadContent('day', v_date, 0, sessionParams.TENANT_ID);
+			}else{
+				loadContent('day', v_date, 0, $('#layanan_name').val());
+			}
         }
 	});
 
@@ -778,106 +832,46 @@ function setDatePicker() {
 	// select option year
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
-		// console.log(this.value);
-		loadContent('year', v_year, 0, '');
+		if(sessionParams.TENANT_ID != null){
+            loadContent('year', v_year, 0, sessionParams.TENANT_ID);
+        }else{
+			loadContent('year', v_year, 0, $('#layanan_name').val());
+		}
 	});
 
 	$('#btn-go').click(function () {
-		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+		if(sessionParams.TENANT_ID != null){
+			loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+        }else{
+			loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+		}
 	});
 
+	$('#layanan_name').change(function () {
+		channel_id = $('#channel_name').val();
+		let fromParams = sessionStorage.getItem('paramsSession');
+        if(fromParams == 'day'){
+            if(sessionParams.TENANT_ID != null){
+				loadContent('day', $('#input-date-filter').val(),0, sessionParams.TENANT_ID, $("#layanan_name").val());
+            }else{
+				loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+            }
+        }else if(fromParams == 'month'){
+            if(sessionParams.TENANT_ID != null){
+                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+            }else{
+                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            }
+        }else if(fromParams == 'year'){
+            if(sessionParams.TENANT_ID != null){
+                loadContent('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
+            }else{
+                loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            }
+        }
+	});
 
-	// Horizontal Bar Performance by Channel yang baru 
-	// Return with commas in between
 	var numberWithCommas = function (x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	};
-
-	// var komplain = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
-	// var informasi = [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40];
-	// var permintaan = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60];
-	// var LabelX = ["Whatsapp", "Voice", "Twitter DM", "Twitter", "Telegram", "SMS", "Messenger", "Live Chat", "Line", "Instagram", "Facebook", "Email", "ChatBot"];
-
-	// var bar_ctx = document.getElementById('horizontalBarPerformanceChannel');
-
-	// var bar_chart = new Chart(bar_ctx, {
-	// 	// type: 'bar',
-	// 	type: 'horizontalBar',
-	// 	data: {
-	// 		labels: LabelX,
-	// 		datasets: [{
-	// 				label: 'Komplain',
-	// 				data: komplain,
-	// 				backgroundColor: "#A5B0B6",
-	// 				hoverBackgroundColor: "#A5B0B6",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Informasi',
-	// 				data: informasi,
-	// 				backgroundColor: "#009E8C",
-	// 				hoverBackgroundColor: "#009E8C",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Permintaan',
-	// 				data: permintaan,
-	// 				backgroundColor: "#00436D",
-	// 				hoverBackgroundColor: "#00436D",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 		]
-	// 	},
-	// 	options: {
-	// 		responsive: true,
-	// 		maintainAspectRatio: false,
-	// 		animation: {
-	// 			duration: 10,
-	// 		},
-	// 		tooltips: {
-	// 			mode: 'label',
-	// 			callbacks: {
-	// 				label: function (tooltipItem, data) {
-	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-	// 				}
-	// 			}
-	// 		},
-	// 		scales: {
-	// 			xAxes: [{
-	// 				stacked: true,
-	// 				gridLines: {
-	// 					display: false
-	// 				},
-	// 			}],
-	// 			yAxes: [{
-	// 				stacked: true,
-	// 				ticks: {
-	// 					callback: function (value) {
-	// 						return numberWithCommas(value);
-	// 					},
-	// 				},
-	// 			}],
-	// 		},
-	// 		legend: {
-	// 			display: true,
-	// 			labels: {
-	// 				boxWidth: 10
-	// 			}
-	// 		}
-	// 	},
-	// 	// plugins: [{
-	// 	// 	beforeInit: function (chart) {
-	// 	// 		chart.data.labels.forEach(function (value, index, array) {
-	// 	// 			var a = [];
-	// 	// 			a.push(value.slice(0, 5));
-	// 	// 			var i = 1;
-	// 	// 			while (value.length > (i * 5)) {
-	// 	// 				a.push(value.slice(i * 5, (i + 1) * 5));
-	// 	// 				i++;
-	// 	// 			}
-	// 	// 			array[index] = a;
-	// 	// 		})
-	// 	// 	}
-	// 	// }]
-	// });
 })(jQuery);

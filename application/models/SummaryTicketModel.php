@@ -206,9 +206,9 @@ class SummaryTicketModel extends CI_Model
 
 		return $query->result();
 	}
-
 	public function getSummaryAgentPerformSkill($src='')
 	{
+		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
 		$this->db->select('vunit as UNIT_NAME, hari_1 as DayA, hari_2 as DayB, hari_3 as DayC');
 		$this->db->from('v_summ_kip');
 		if($src)
