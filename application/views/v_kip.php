@@ -1,15 +1,23 @@
 <div class=" app-content">
     <div class="side-app">
         <div class="page-header d-flex bd-highlight">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
-                </li>
-                <!-- <li class="breadcrumb-item active mt-2" aria-current="page">Operation Performance</li> -->
-                <li class="breadcrumb-item active mt-2" aria-current="page">KIP</li>
-            </ol>
-            <div class="d-flex align-items-end flex-column bd-highlight">
-                <div class="bd-highlight">
+            <div class="mr-auto bd-highlight">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
+                    </li>
+                    <li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel</li>
+                </ol>
+            </div>
+            <div class="bd-highlight" style="margin-bottom:30px;">
+                <select class="form-control-sm" style="border-color:#efecec">
+                    <option value="#">All Layanan</option>
+                    <option value="#">All Layanan</option>
+                    <option value="#">All Layanan</option>
+                </select>
+            </div>
+            <div class="bd-highlight">
+                <div class="bd-highlight" style="margin-left:5px;">
                     <div class="card-options d-none d-sm-block">
                         <div class="btn-group text-center btn-sm">
                             <a href="#" class="btn btn-light btn-sm" id="btn-day">
@@ -46,20 +54,16 @@
                                 <option value="12">December</option>
                             </select>
                         </div>
+                        <!-- Monthly -->
                         <div>
                             <select name="select-year-on-month" id="select-year-on-month"
                                 class="form-control form-control-sm">
-                                <!-- <option value="2020">2020</option>
-                                        <option value="2019">2019</option> -->
-                                <!-- <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option> -->
                             </select>
                         </div>
+                        <!-- Monthly -->
                         <div>
                             <span class="col-auto">
-                                <button class="btn btn-sm btn-dark" style="height:29px" type="button" id="btn-go"><i
+                                <button class="btn btn-sm btn-dark" type="button" style="height:29px" id="btn-go"><i
                                         class="fe fe-arrow-right text-white"></i></button>
                             </span>
                         </div>
@@ -67,15 +71,10 @@
 
                     <!-- yearly -->
                     <div id="filter-year" class="mt-1 mr-0">
-                        <select name="select-year-only" id="select-year-only" class="form-control form-control">
-                            <!--  <option value="2020">2020</option>
-                                    <option value="2019" selected>2019</option> -->
-                            <!-- <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option> -->
+                        <select name="select-year-only" id="select-year-only" class="form-control form-control-sm">
                         </select>
                     </div>
+                    <!-- yearly -->
                 </div>
             </div>
         </div>

@@ -10,13 +10,13 @@
             </ol>
         </div>
         <!-- <div class="d-flex bd-highlight">
-							<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-							<div class="p-2 bd-highlight">
-								<select class="form-control" id="channel_name">
-									<option value="#">Layanan</option>
-								</select>
-							</div>
-						</div> -->
+            <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+            <div class="p-2 bd-highlight">
+                <select class="form-control" id="channel_name">
+                    <option value="#">Layanan</option>
+                </select>
+            </div>
+        </div> -->
         <!---Next Rows---->
         <div class="row mt-2">
             <div class="col-md-12 col-lg-12">
@@ -35,7 +35,7 @@
                                             <td>No</td>
                                             <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td >ART <br> (Waiting Time)</td>
+                                            <td>ART <br> (Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>Offered</td>
                                             <td>SCR</td>

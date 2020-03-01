@@ -1,25 +1,23 @@
 <div class=" app-content">
 	<div class="side-app">
-
 		<div class="page-header d-flex bd-highlight">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item active" aria-current="page">
-					<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
-				</li>
-				<li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel</li>
-			</ol>
-			<div class="d-flex align-items-end flex-column bd-highlight">
-			 <div class="d-flex bd-highlight mr-4">
-				
+			<div class="mr-auto bd-highlight">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active" aria-current="page">
+						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
+					</li>
+					<li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel</li>
+				</ol>
 			</div>
-				<div class="bd-highlight">
-				<div class="p-2 bd-highlight" id="layanan_name_parent">
-					<select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name">
-						<!-- <option value="#">All Tenant</option>
-						<option value="#">All Tenant</option>
-						<option value="#">All Tenant</option> -->
-					</select>
-				</div>
+			<div class="bd-highlight" style="margin-bottom:30px;">
+				<select class="form-control-sm" style="border-color:#efecec">
+					<option value="#">All Layanan</option>
+					<option value="#">All Layanan</option>
+					<option value="#">All Layanan</option>
+				</select>
+			</div>
+			<div class="bd-highlight">
+				<div class="bd-highlight" style="margin-left:5px;">
 					<div class="card-options d-none d-sm-block">
 						<div class="btn-group text-center btn-sm">
 							<a href="#" class="btn btn-light btn-sm" id="btn-day">
@@ -80,106 +78,107 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:-3px;">
-			<div class="col-xl-12 col-lg-12 col-md-12">
-				<div class="row mt-2">
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_user.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font" id="unique-customer"></span>
-								<span class="count-name">Customer</span>
-							</div>
+	</div>
+	<div class="row" style="margin-right:0px; margin-left:-3px;">
+		<div class="col-xl-12 col-lg-12 col-md-12">
+			<div class="row mt-2">
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
 						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
-									</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 								</div>
-								<span class="count-numbers num-font" id="total-interaction"></span>
-								<span class="count-name">Session</span>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font" id="msg-in"></span>
-								<span class="count-name">interaction</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font" id="msg-out"></span>
-								<span class="count-name">interaction</span>
-							</div>
+							<span class="count-numbers num-font" id="unique-customer"></span>
+							<span class="count-name">Customer</span>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row" style="margin-right:0px; margin-left:-1px;">
-			<div class="col-xl-4 col-lg-4 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
-					</div>
-					<div class="card-pie">
-						<div class="canvas-con">
-							<div id="legend" class="legend-con mb-3 mt-3"></div>
-							<div class="canvas-con-inner mb-6" id="canvas-pie">
-								<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+								</div>
 							</div>
+							<span class="count-numbers num-font" id="total-interaction"></span>
+							<span class="count-name">Session</span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-xl-8 col-lg-8 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-body" id="card-baru" style="padding:5px;">
-						<div class="row" id="row-baru">
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
+								</div>
+							</div>
+							<span class="count-numbers num-font" id="msg-in"></span>
+							<span class="count-name">interaction</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
+								</div>
+							</div>
+							<span class="count-numbers num-font" id="msg-out"></span>
+							<span class="count-name">interaction</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php $this->load->view('temp/footer');?>
-	<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-	<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+	<div class="row" style="margin-right:0px; margin-left:-1px;">
+		<div class="col-xl-4 col-lg-4 col-md-12">
+			<div class="card overflow-hidden">
+				<div class="card-header-small">
+					<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
+				</div>
+				<div class="card-pie">
+					<div class="canvas-con">
+						<div id="legend" class="legend-con mb-3 mt-3"></div>
+						<div class="canvas-con-inner mb-6" id="canvas-pie">
+							<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-8 col-lg-8 col-md-12">
+			<div class="card overflow-hidden">
+				<div class="card-body" id="card-baru" style="padding:5px;">
+					<div class="row" id="row-baru">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->load->view('temp/footer');?>
+<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
