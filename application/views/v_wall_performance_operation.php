@@ -12,12 +12,12 @@
             </div>
             <!-- </div> -->
             <div class="d-flex bd-highlight">
-                <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+                <!-- <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
                 <div class="p-2 bd-highlight">
-                    <select class="form-control" id="tenant_name">
+                    <select class="form-control" id="layanan_name">
                        
                     </select>
-                </div>
+                </div> -->
             </div>
             <!--Page Header-->
         </div>

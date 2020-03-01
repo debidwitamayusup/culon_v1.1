@@ -11,12 +11,12 @@
 				</ol>
 			</div>
 			<div class="d-flex bd-highlight">
-				<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-				<div class="p-2 bd-highlight">
+				<!-- <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div> -->
+				<!-- <div class="p-2 bd-highlight">
 					<select class="form-control" id="tenant_id">
 						
 					</select>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!--Page Header-->
@@ -63,7 +63,7 @@
 						<h5 class="card-title-small card-pt10">Interval Today (Hours)</h5>
 					</div>
 
-					<div class="card-body">
+					<!-- <div class="card-body">
 						<div class="row">
 							<div class="col-md-2">
 								<div class="form-group m-0">
@@ -166,7 +166,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="card-body" id="lineWallSummaryTrafficDiv">
 						<canvas id="lineWallSummaryTraffic" class="h-400"></canvas>
 					</div>

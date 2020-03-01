@@ -14,17 +14,21 @@ if (n < 10) {
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-2);
+var v_params_yesterday =m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if (sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
-        callSumAllTenant('day', v_params_yesterday, 0, '');
-        callSumPerTenant('day', v_params_yesterday, 0, '');
-        // drawIntervalChart();
-        callIntervalTraffic('day',v_params_yesterday,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
-        getTenant(v_params_yesterday);
+        if(sessionParams.TENANT_ID != null){
+            callSumAllTenant('day', v_params_today, 0,  sessionParams.TENANT_ID);
+            callSumPerTenant('day', v_params_today, 0,  sessionParams.TENANT_ID);
+            callIntervalTraffic('day',v_params_today,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'],  sessionParams.TENANT_ID);
+        }else{
+            callSumAllTenant('day', v_params_today, 0,  '');
+            callSumPerTenant('day', v_params_today, 0,  '');
+            callIntervalTraffic('day',v_params_today,0,  ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
+        }
 
         // $('#check-all-channel').prop('checked',false);
         // $("input:checkbox.checklist-channel").prop('checked',false);
