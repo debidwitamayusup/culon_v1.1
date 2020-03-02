@@ -10,7 +10,7 @@
 				</ol>
 			</div>
 			<div class="bd-highlight" style="margin-bottom:30px;" id="layanan_name_parent">
-				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+				<select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
 					<!-- <option value="#">All Layanan</option>
 					<option value="#">All Layanan</option>
 					<option value="#">All Layanan</option> -->
