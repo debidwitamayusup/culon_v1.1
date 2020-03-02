@@ -25,9 +25,15 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
-        getTenant('')
         $('#input-date').datepicker("setDate", v_params_today);
-        drawTableSumInterval(v_params_today,'1','', '');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            drawTableSumInterval(v_params_today,'1','', sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            drawTableSumInterval(v_params_today,'1','', $("#layanan_name").val());
+        }
+        
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -169,8 +175,11 @@ function setDatePicker() {
         dateFromFilter = $('#input-date').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
-        
-        drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), sessionParams.TENANT_ID);
+        }else{
+            drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
+        }
     });
 
     

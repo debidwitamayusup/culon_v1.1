@@ -27,10 +27,15 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
-        getTenant('')
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
-        callTableKIP(v_params_today,v_params_today, '', '')
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callTableKIP(v_params_today,v_params_today, sessionParams.TENANT_ID, '');
+        }else{
+            getTenant('');
+            callTableKIP(v_params_today,v_params_today, $("#layanan_name").val(), '');
+        }
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
     }else{
@@ -215,9 +220,13 @@ function exportTableKIP(start_date, end_date, tenant_id, channel_id, name){
     $('#btn-go').click(function(){
         startDateFromFilter = $("#start-date").val();
         endDateFromFilter = $("#end-date").val();
-        tenantFromFilter = $("#layanan_name").val();
         channelFromFilter = $('#channel_name').val();
-        
-        callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
+        if(sessionParams.TENANT_ID != null){
+            tenantFromFilter = sessionParams.TENANT_ID;
+            callTableKIP($('#start-date').val(), $('#end-date').val(), sessionParams.TENANT_ID, $('#channel_name').val());
+        }else{
+            tenantFromFilter = $("#layanan_name").val();
+            callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
+        }
     });
 })(jQuery);
