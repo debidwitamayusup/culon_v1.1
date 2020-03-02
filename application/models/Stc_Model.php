@@ -761,7 +761,7 @@ class Stc_Model extends CI_Model
 		$this->db->from('rpt_summ_interval');
 		if($tid)
 		{
-			$this->db->where('rpt_summ_interval.tenant_id', $tid);
+			$this->db->where_in('rpt_summ_interval.tenant_id', $tid);
 		}
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
