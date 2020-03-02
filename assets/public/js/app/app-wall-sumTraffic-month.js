@@ -269,9 +269,9 @@ function callDataPercentage(month, tenant_id, params_year){
             var response = r;
             $('#modalError').modal('hide');
             if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callDataPercentage(month, tenant_id, sessionParams.TENANT_ID);},5000);
+                setTimeout(function(){callDataPercentage(month, tenant_id, sessionParams.TENANT_ID, m);},5000);
             }else{
-                setTimeout(function(){callDataPercentage(month, tenant_id, $("#layanan_name").val());},5000);
+                setTimeout(function(){callDataPercentage(month, tenant_id, $("#layanan_name").val(),m);},5000);
             }
             
             drawChartPercentageMonth(response);
