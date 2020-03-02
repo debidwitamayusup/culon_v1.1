@@ -87,13 +87,17 @@
 				</div>
 				<div class="card-pie">
 					<div class="canvas-con">
+						<!-- <div id="legend" class="legend-con"></div>
+						<div class="canvas-con-inner" id="canvas-pie">
+							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+						</div> -->
 						<div class="row">
 							<div class="col-md-3">
 								<div id="legend" class="legend-con"></div>
 							</div>
 							<div class="col-md-9 mt-6">
 								<div class="canvas-con-inner" id="canvas-pie">
-									<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+									<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 								</div>
 							</div>
 						</div>

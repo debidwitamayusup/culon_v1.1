@@ -305,8 +305,8 @@ function drawPieChartSumAllTenant(response){
     // $('#legend').remove();
     // $('#mylegend').append('<div id="legend" class="legend-con"></div>');
 
-    var ctx = document.getElementById("pieSummaryTraffic");
-    ctx.height = 250;
+    var ctx = document.getElementById("pieDashSummaryTraffic");
+    ctx.height = 290;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -624,8 +624,8 @@ function destroyChartInterval(){
 }
 
 function destroyPieChart(){
-    $('#pieWallSummaryTraffic').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieDashSummaryTraffic').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
 }
 
 function destroyHorizontalChart(){
