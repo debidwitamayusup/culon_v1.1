@@ -17,15 +17,19 @@ if (n < 10) {
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function(){
     if(sessionParams){
-        getTenant('');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callTableAgentLog(v_params_today, v_params_today, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            callTableAgentLog(v_params_today, v_params_today, $("#layanan_name").val());
+        }
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        callTableAgentLog(v_params_today, v_params_today, '');
         $('#tableAgent').dataTable();
     }else{
         window.location = base_url
@@ -176,11 +180,17 @@ function setDatePicker() {
     });
 
     $('#btn-go').click(function(){
-        tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        
-        callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            tenantFromFilter = sessionParams.TENANT_ID;
+            callTableAgentLog($('#start-date').val(), $('#end-date').val(), sessionParams.TENANT_ID);
+        }else{
+            tenantFromFilter = $('#layanan_name').val();
+            getTenant('');
+            callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
+        }
     });
 
     // $('#tableSummaryTraffic').dataTable();    

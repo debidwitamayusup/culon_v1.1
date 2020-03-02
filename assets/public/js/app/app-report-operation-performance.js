@@ -38,8 +38,15 @@ $(document).ready(function () {
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        drawTablePerformOps('',v_params_today,v_params_today);
-        drawTablePerformOpsBySkill('', v_params_today, v_params_today);
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            drawTablePerformOps(sessionParams.TENANT_ID,v_params_today,v_params_today);
+            drawTablePerformOpsBySkill(sessionParams.TENANT_ID, v_params_today, v_params_today);
+        }else{
+            getTenant('');
+            drawTablePerformOps($("#layanan_name").val(),v_params_today,v_params_today);
+            drawTablePerformOpsBySkill($("#layanan_name").val(), v_params_today, v_params_today);
+        }
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -258,10 +265,19 @@ function setDatePicker() {
     });
 
     $('#btn-go').click(function(){
-        tenantFromFilter = $('#layanan_name').val();
         channelFromFilter = $('#channel_name').val();
         monthFromFilter = $('#month_name').val();
-        
+        if(sessionParams.TENANT_ID != null){
+            tenantFromFilter = sessionParams.TENANT_ID;
+            $('#layanan_name').hide();
+            drawTablePerformOps(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
+            drawTablePerformOpsBySkill(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
+        }else{
+            tenantFromFilter = $('#layanan_name').val();
+            getTenant('');
+            drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+            drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        }
         drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
         drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });

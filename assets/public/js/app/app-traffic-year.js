@@ -6,11 +6,19 @@ var n = d.getFullYear();
 $(document).ready(function () {
     if(sessionParams){
         $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
-        var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
-        var data_graph = callDataPercentage(n, $('#layanan_name').val());
-        var data_table = callDataTableAvg(n, '');
+        
         var data_year = callYear();
-        getTenant('');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            var data_chart = callGraphYear('ShowAll', n, sessionParams.TENANT_ID);
+            var data_graph = callDataPercentage(n, sessionParams.TENANT_ID);
+            var data_table = callDataTableAvg(n, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
+            var data_graph = callDataPercentage(n, $('#layanan_name').val());
+            var data_table = callDataTableAvg(n, $('#layanan_name').val());
+        }
     }else{
         window.location = base_url
     }
@@ -443,10 +451,16 @@ function destroyChartPercentage() {
 (function ($) {
     $('#layanan_name').change(function(){
         //set check all channel
-        callGraphYear('ShowAll', n, $('#layanan_name').val());
-        callDataPercentage(n, $('#layanan_name').val());
-        callDataTableAvg(n, $('#layanan_name').val());
         callYear();
+        if(sessionParams.TENANT_ID != null){
+            callGraphYear('ShowAll', $("#dateTahun").val(), sessionParams.TENANT_ID);
+            callDataPercentage($("#dateTahun").val(), sessionParams.TENANT_ID);
+            callDataTableAvg($("#dateTahun").val(), sessionParams.TENANT_ID);
+        }else{
+            callGraphYear('ShowAll', $("#dateTahun").val(), $('#layanan_name').val());
+            callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
+            callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
+        }
     });
     // change date picker
     // $("select#dateTahun").change(function(){
@@ -472,54 +486,14 @@ function destroyChartPercentage() {
     $('#btn-go').click(function () {
         destroyChartInterval();
         destroyChartPercentage();
-
-        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), '');
-        callDataPercentage($("#dateTahun").val(), '');
-        callDataTableAvg($("#dateTahun").val(), '');
+        if(sessionParams.TENANT_ID != null){
+            callGraphYear($("#channel_name").val(), $("#dateTahun").val(), sessionParams.TENANT_ID);
+            callDataPercentage($("#dateTahun").val(), sessionParams.TENANT_ID);
+            callDataTableAvg($("#dateTahun").val(), sessionParams.TENANT_ID);
+        }else{
+            callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
+            callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
+            callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
+        }
     });
 })(jQuery);
-
-// $(function($){
-//     // single bar chart
-//     var ctx = document.getElementById( "BarChartYear" );
-//     ctx.height = 200;
-//     var myChart = new Chart( ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ],
-//             datasets: [
-//                 {
-//                     label: "Total",
-//                     data: [ 40000,5000,8000,90000,10000,5000,7000,9000,5000,1000,1000,1000],
-//                     borderColor: "#9DCE9D",
-//                     borderWidth: "0",
-//                     backgroundColor: "#9DCE9D"
-//                             }
-//                         ]
-//         },
-//         options: {
-// 			responsive: true,
-//             maintainAspectRatio: false,
-//             legend:{
-//                 display : false
-//             },
-// 			layout: {
-// 					padding: {
-// 					left: 20,
-// 					right: 20,
-// 					top: 25,
-// 					bottom: 10
-// 				}
-// 			},
-//             scales: {
-//                 yAxes: [ {
-//                     ticks: {
-//                         beginAtZero: true,
-// 						//padding:50,
-//                     }
-//                                 } ]
-//             },
-//         }
-//     } );
-
-// });

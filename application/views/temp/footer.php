@@ -24,7 +24,9 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<p>Oops something goes wrong...</p>
+				<p>Oops something goes wrong...</p> <br>
+				<p>Please check your internet connection,</p><br>
+				<p>Or contact your IT support</p>
 			</div>
 		</div>
 	</div>

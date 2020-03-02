@@ -42,7 +42,13 @@ $(document).ready(function () {
         console.log(n);
         // $('#input-date').datepicker("setDate", '1');
         $('#month_name option[value=' + n + ']').attr('selected', 'selected');
-        drawTableSumInterval( n,'','');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            drawTableSumInterval( n,'',sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            drawTableSumInterval( n,'',$("#layanan_name").val());
+        }
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -184,8 +190,11 @@ function setDatePicker() {
         monthFromFilter = $('#month_name').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
-        
-        drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
+        if(sessionParams.TENANT_ID != null){
+            drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), sessionParams.TENANT_ID);
+        }else{
+            drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
+        }
     });
 
     

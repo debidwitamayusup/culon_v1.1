@@ -9,13 +9,13 @@
 					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic</li>
 				</ol>
 			</div>
-			<div class="bd-highlight" style="margin-bottom:30px;">
-				<select class="form-control-sm" style="border-color:#efecec">
+			<!-- <div class="bd-highlight" style="margin-bottom:30px;">
+				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
 					<option value="#">All Layanan</option>
 					<option value="#">All Layanan</option>
 					<option value="#">All Layanan</option>
 				</select>
-			</div>
+			</div> -->
 			<div class="bd-highlight">
 				<div class="bd-highlight" style="margin-left:5px;">
 					<div class="card-options d-none d-sm-block">
@@ -139,4 +139,4 @@
 </div>
 <?php $this->load->view('temp/footer');?>
 <!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>

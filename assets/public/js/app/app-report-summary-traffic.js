@@ -22,12 +22,17 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function(){
     if(sessionParams){
-        getTenant('');
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        callTableSummaryTraffic('',v_params_today,v_params_today,'10', '0');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callTableSummaryTraffic(sessionParams.TENANT_ID,v_params_today,v_params_today,'10', '0');
+        }else{
+            getTenant('');
+            callTableSummaryTraffic($("#layanan_name").val(),v_params_today,v_params_today,'10', '0');
+        }
         pagingFilters = $('#pagingFilter').val();
     }else{
         window.location = base_url;
@@ -321,13 +326,24 @@ function setDatePicker() {
         tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $("#end-date").val();
-        
-        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            callTableSummaryTraffic(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
+        }else{
+            getTenant('');
+            callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
+        }
     });
 
     // change date picker
         $("select#pagingFilter").change(function(){
-            callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
+            if(sessionParams.TENANT_ID != null){
+                $('#layanan_name').hide();
+                callTableSummaryTraffic(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
+            }else{
+                getTenant('');
+                callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
+            }
         });
 
     // $('#tableSummaryTraffic').dataTable();    

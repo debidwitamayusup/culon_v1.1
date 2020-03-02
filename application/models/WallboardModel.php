@@ -395,7 +395,7 @@ Class WallboardModel extends CI_Model {
     public function scr_pie_chart_channel($params,$index,$params_year)
     {
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
-		$this->db->from('m_channel');
+        $this->db->from('m_channel');
 		$query = $this->db->get();
 
         $res_channel = array();
@@ -424,7 +424,6 @@ Class WallboardModel extends CI_Model {
     function get_total_cof_piechart($params,$index,$params_year,$channel) //summ
 	{
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-
         if($tid){
             $this->db->select('rpt_summ_interval.case_session as TOTAL');
         }else{

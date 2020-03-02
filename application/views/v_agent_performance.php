@@ -10,10 +10,10 @@
                 </ol>
             </div>
             <div class="bd-highlight" style="margin-bottom:30px;">
-                <select class="form-control-sm" style="border-color:#efecec">
+                <select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+                    <!-- <option value="#">All Layanan</option>
                     <option value="#">All Layanan</option>
-                    <option value="#">All Layanan</option>
-                    <option value="#">All Layanan</option>
+                    <option value="#">All Layanan</option> -->
                 </select>
             </div>
             <div class="bd-highlight">

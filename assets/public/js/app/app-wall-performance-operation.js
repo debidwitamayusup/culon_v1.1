@@ -19,9 +19,14 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        callTableCOFByChannel(v_params_yesterday, '');
-        callTableStatusTicket('2020-01-20');
-        getTenant(v_params_yesterday);
+        if(sessionParams.TENANT_ID != null){
+            callTableCOFByChannel(v_params_today, sessionParams.TENANT_ID);
+            callTableStatusTicket(v_params_today, sessionParams.TENANT_ID);
+        }else{
+            callTableCOFByChannel(v_params_today,$("#layanan_name").val());
+            callTableStatusTicket(v_params_today, $("#layanan_name").val());    
+        }
+        getTenant();
         // getTenant(v_params_today);
         // callTableCOFByChannel(v_params_today);
 
@@ -106,12 +111,13 @@ function callTableCOFByChannel(date, search){
     });
 }
 
-function callTableStatusTicket(date){
+function callTableStatusTicket(date, tenant_id){
     $.ajax({
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/SPOKIP',
         data: {
             date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             // var response = JSON.parse(r);

@@ -15,19 +15,23 @@ $(document).ready(function () {
         destroyChartInterval();
         destroyChartPercentage();
         callYear();
-        getTenant('');
         $('#month option[value=' + n + ']').attr('selected', 'selected');
         // $('#dropdownYear option[value='+m+']').attr('selected','selected');
-        // console.log('"'+n+'"');
-        // console.log(m);
         // callGraphicInterval('ShowAll', $("#month").val(), m);
         // callGraphicInterval('ShowAll', '1', '2020');
         // drawStackedBar('month', '', n, m, v_params_tenant);
 
-
-        stackedBarInterval('month', '', n, m, '');
-        callDataPercentage($("#month").val(), m, '');
-        callDataTableAvg($("#month").val(), m), '';
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            stackedBarInterval('month', '', n, m, sessionParams.TENANT_ID);
+            callDataPercentage($("#month").val(), m, sessionParams.TENANT_ID);
+            callDataTableAvg($("#month").val(), m, sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            stackedBarInterval('month', '', n, m, $('#layanan_name').val());
+            callDataPercentage($("#month").val(), m, $('#layanan_name').val());
+            callDataTableAvg($("#month").val(), m, $('#layanan_name').val());
+        }
     }else{
         window.location = base_url
     }
@@ -382,10 +386,16 @@ function destroyChartPercentage() {
 
     (function ($) {
         $('#layanan_name').change(function(){
-            //set check all channel
-            stackedBarInterval('month', '', n, m, $('#layanan_name').val());
-            callDataPercentage($("#month").val(), m, $('#layanan_name').val());
-            callDataTableAvg($("#month").val(), m), $('#layanan_name').val();
+            if(sessionParams.TENANT_ID != null){
+                $('#layanan_name').hide();
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
+                callDataPercentage($("#month").val(),$("#dropdownYear").val(), sessionParams.TENANT_ID);
+                callDataTableAvg($("#month").val(),$("#dropdownYear").val(), sessionParams.TENANT_ID);
+            }else{
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                callDataPercentage($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
+                callDataTableAvg($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
+            }
         });
         // $("select#month").change(function(){
         //     //destroy chart
@@ -425,14 +435,26 @@ function destroyChartPercentage() {
         $('#btn-go').click(function(){
             destroyChartInterval();
             destroyChartPercentage(); 
-            if ($("#channel_name").val() == 'ShowAll') {
-                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            if(sessionParams.TENANT_ID != null){
+                if ($("#channel_name").val() == 'ShowAll') {
+                    stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
+                }else{
+                    // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                    stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
+                }
+                callDataPercentage($("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
+                callDataTableAvg($("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
             }else{
-                // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                if ($("#channel_name").val() == 'ShowAll') {
+                    stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                }else{
+                    // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                    stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                }
+                callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            
         });
 })(jQuery);
 

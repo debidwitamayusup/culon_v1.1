@@ -23,13 +23,19 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
-        getTenant('')
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        drawTableSumChannel('',v_params_today,v_params_today);
-        callDrawPieChart('',v_params_today,v_params_today);
+        if(sessionParams.TENANT_ID != null){
+            $('#tenant-id').hide();
+            drawTableSumChannel(sessionParams.TENANT_ID,v_params_today,v_params_today);
+            callDrawPieChart(sessionParams.TENANT_ID,v_params_today,v_params_today);
+        }else{
+            getTenant('');
+            drawTableSumChannel($("#layanan_name").val(),v_params_today,v_params_today);
+            callDrawPieChart($("#layanan_name").val(),v_params_today,v_params_today);
+        }
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -408,8 +414,13 @@ function getBase64Image(img) {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         // $("#filter-loader").fadeIn("slow");
-        drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
-        callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+        if(sessionParams.TENANT_ID != null){
+            drawTableSumChannel(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
+            callDrawPieChart(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
+        }else{
+            drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+            callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+        }
         $("#filter-loader").fadeOut("slow");
     });
 
