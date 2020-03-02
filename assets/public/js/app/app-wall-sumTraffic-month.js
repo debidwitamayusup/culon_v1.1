@@ -19,17 +19,15 @@ $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callDataPercentage(n,sessionParams.TENANT_ID,m);
-            callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], sessionParams.TENANT_ID);
-            callTableInterval(n,sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            callDataPercentage(n,$("#layanan_name").val(),m);
-            callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
-            callTableInterval(n,$("#layanan_name").val());
+            getTenant('', '');
         }
+
+        callDataPercentage(n,$("#layanan_name").val(),m);
+        callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
+        callTableInterval(n,$("#layanan_name").val());
         $("#filter-loader").fadeOut("slow");
 
         // $('#check-all-channel').prop('checked',false);
@@ -46,24 +44,23 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
-            $('#modalError').modal('hide');
             var data_option = [];
             //dont parse response if using rest controller
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -71,8 +68,7 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            setTimeout(function(){getTenant(date);},5000)
-            $('#modalError').modal('show');
+            alert("error");
         },
     });
 }
@@ -137,22 +133,14 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
             $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callIntervalTraffic(month, arr_channel, sessionParams.TENANT_ID );},5000);
-            }else{
-                setTimeout(function(){callIntervalTraffic(month, arr_channel, $("#layanan_name").val() );},5000);
-            }
+            setTimeout(function(){callIntervalTraffic(month, arr_channel, $("#layanan_name").val() );},5000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             $('#modalError').modal('show');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callIntervalTraffic(month, arr_channel, sessionParams.TENANT_ID );},5000);
-            }else{
-                setTimeout(function(){callIntervalTraffic(month, arr_channel, $("#layanan_name").val() );},5000);
-            }
+            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
         },
     });
 }
@@ -172,11 +160,7 @@ function callTableInterval(month, tennant_id){
             $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callTableInterval(month, sessionParams.TENANT_ID);}, 5000);
-            }else{
-                setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
-            }
+            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
             // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -185,11 +169,7 @@ function callTableInterval(month, tennant_id){
             // console.log(r);
             // setTimeout(function(){ alert("Oops Something Went Wrong..."); }, 3000);
             $('#modalError').modal('show');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callTableInterval(month, sessionParams.TENANT_ID);}, 5000);
-            }else{
-                setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
-            }
+            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
         },
     });
 }
@@ -268,21 +248,13 @@ function callDataPercentage(month, tenant_id, params_year){
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callDataPercentage(month, tenant_id, sessionParams.TENANT_ID, m);},5000);
-            }else{
-                setTimeout(function(){callDataPercentage(month, tenant_id, $("#layanan_name").val(),m);},5000);
-            }
+            setTimeout(function(){callDataPercentage(month, $("#layanan_name").val(),m);},5000);
             
             drawChartPercentageMonth(response);
         },
         error: function (r) {
             $('#modalError').modal('show');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callDataPercentage(month, tenant_id, sessionParams.TENANT_ID);},5000);
-            }else{
-                setTimeout(function(){callDataPercentage(month, tenant_id, $("#layanan_name").val());},5000);
-            }
+            setTimeout(function(){callDataPercentage(month,  $("#layanan_name").val(),m);},5000);
         },
     });
 }

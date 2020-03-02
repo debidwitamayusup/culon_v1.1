@@ -33,20 +33,17 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
-        getTenant('');
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            drawTablePerformOps(sessionParams.TENANT_ID,v_params_today,v_params_today);
-            drawTablePerformOpsBySkill(sessionParams.TENANT_ID, v_params_today, v_params_today);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            drawTablePerformOps($("#layanan_name").val(),v_params_today,v_params_today);
-            drawTablePerformOpsBySkill($("#layanan_name").val(), v_params_today, v_params_today);
+            getTenant('', '');
         }
+        drawTablePerformOps($("#layanan_name").val(),v_params_today,v_params_today);
+        drawTablePerformOpsBySkill($("#layanan_name").val(), v_params_today, v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -68,12 +65,13 @@ function channelToName(channel_id){
     return 'All Channel'
 }
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -83,8 +81,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -267,17 +264,7 @@ function setDatePicker() {
     $('#btn-go').click(function(){
         channelFromFilter = $('#channel_name').val();
         monthFromFilter = $('#month_name').val();
-        if(sessionParams.TENANT_ID != null){
-            tenantFromFilter = sessionParams.TENANT_ID;
-            $('#layanan_name').hide();
-            drawTablePerformOps(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
-            drawTablePerformOpsBySkill(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
-        }else{
-            tenantFromFilter = $('#layanan_name').val();
-            getTenant('');
-            drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
-            drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
-        }
+        tenantFromFilter = $('#layanan_name').val();
         drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
         drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });

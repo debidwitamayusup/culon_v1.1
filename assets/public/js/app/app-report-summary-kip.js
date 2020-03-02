@@ -29,13 +29,12 @@ $(document).ready(function () {
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callTableKIP(v_params_today,v_params_today, sessionParams.TENANT_ID, '');
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            callTableKIP(v_params_today,v_params_today, $("#layanan_name").val(), '');
+            getTenant('', '');
         }
+        callTableKIP(v_params_today,v_params_today, $("#layanan_name").val(), '');
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
     }else{
@@ -43,12 +42,13 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -58,8 +58,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -221,12 +220,7 @@ function exportTableKIP(start_date, end_date, tenant_id, channel_id, name){
         startDateFromFilter = $("#start-date").val();
         endDateFromFilter = $("#end-date").val();
         channelFromFilter = $('#channel_name').val();
-        if(sessionParams.TENANT_ID != null){
-            tenantFromFilter = sessionParams.TENANT_ID;
-            callTableKIP($('#start-date').val(), $('#end-date').val(), sessionParams.TENANT_ID, $('#channel_name').val());
-        }else{
-            tenantFromFilter = $("#layanan_name").val();
-            callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
-        }
+        tenantFromFilter = $("#layanan_name").val();
+        callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
 })(jQuery);

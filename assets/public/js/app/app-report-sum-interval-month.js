@@ -42,13 +42,12 @@ $(document).ready(function () {
         console.log(n);
         // $('#input-date').datepicker("setDate", '1');
         $('#month_name option[value=' + n + ']').attr('selected', 'selected');
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            drawTableSumInterval( n,'',sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            drawTableSumInterval( n,'',$("#layanan_name").val());
+            getTenant('', '');
         }
+        drawTableSumInterval( n,'',$("#layanan_name").val());
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -93,12 +92,13 @@ function drawTableSumInterval(month ,channel, tenant_id){
     // console.log(data);
 }
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -108,8 +108,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -190,11 +189,7 @@ function setDatePicker() {
         monthFromFilter = $('#month_name').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
-        if(sessionParams.TENANT_ID != null){
-            drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), sessionParams.TENANT_ID);
-        }else{
-            drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
-        }
+        drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
     });
 
     
