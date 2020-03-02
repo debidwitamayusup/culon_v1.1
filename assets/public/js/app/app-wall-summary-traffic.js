@@ -4,6 +4,7 @@ var v_date = '';
 var v_month = '';
 var v_year = '';
 var v_params_tenant = 'oct_telkomcare';
+var arr_tenant = [];
 var months = [
     'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September',
@@ -21,9 +22,13 @@ if (n < 10) {
 }
 
 //get yesterday
-var v_params_this_year = m + '-' + n + '-' + (o-1);
+var v_params_this_year = m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+    arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+}
 $(document).ready(function () {
+    console.log(arr_tenant);
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#dateTahun option[value='+m+']').attr('selected','selected');
@@ -39,24 +44,20 @@ $(document).ready(function () {
         $("#btn-day").prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
-        console.log($('#layanan_name').val());
-        loadContent(params_time, '2020-02-24', 0, '');
-        getTenant('');
-        // $('#tag-time').html(v_params_this_year);
-        // $("#btn-month").prop("class","btn btn-light btn-sm");
-        // $("#btn-year").prop("class","btn btn-light btn-sm");
-        // $("#btn-day").prop("class","btn btn-red btn-sm");
+
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
+        }else{
+            getTenant('', '');
+        }
+        loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+        
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $('#filter-date').show();
         $('#filter-month').hide();
         $('#filter-year').hide();
         setMonthPicker();
         setYearPicker();
-        // loadContent(params_time, v_params_this_year);
-        // $('#tag-time').html(v_params_this_year);
-        // $("#btn-month").prop("class","btn btn-light btn-sm");
-        // $("#btn-year").prop("class","btn btn-light btn-sm");
-        // $("#btn-day").prop("class","btn btn-red btn-sm");
     }else{
         window.location = base_url
     }
@@ -78,8 +79,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -382,7 +382,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
+                legendHtml.push('<ul><div class="row mb-5 mt-2">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -399,7 +399,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-6 col-lg-6">');
+                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
                         legendHtml.push('</li>');
                     }else{
@@ -417,7 +417,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-6 col-lg-6">');
+                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
                         legendHtml.push('</li>');
                     }
@@ -620,22 +620,15 @@ function setDatePicker(){
         onSelect: function (dateText) {
             // console.log(this.value);
             v_date = this.value;
-
-            loadContent('day', v_date, 0, '');
+            loadContent('day', v_date, 0, $('#layanan_name').val());
         }
     });
 
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-        // console.log(params_time);
-        // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0,  $('#layanan_name').val())
-        // $('#tag-time').html(v_params_this_year);
+        loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
         v_date='2019-12-01';
-        // callSummaryInteraction(params_time,v_date);
-        // loadContent(params_time, v_params_this_year)
-        // $('#tag-time').html(v_params_this_year);
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -663,7 +656,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m,  $('#layanan_name').val());
+        loadContent('month', n,m, $('#layanan_name').val());
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -685,11 +678,8 @@ function setDatePicker(){
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
-        // console.log(params_time);
-        // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0,  $('#layanan_name').val());
         callYear();
-        $('#tag-time').html(m);
+        loadContent('year', m,0, $('#layanan_name').val());
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -709,22 +699,19 @@ function setDatePicker(){
         // minDate: date,
         
         onSelect: function(dateText) {
-        // console.log(this.value);
-        v_date = this.value;
-        
-        loadContent('day', v_date, 0, '');
+            v_date = this.value;
+            loadContent('day', v_date,0, $('#layanan_name').val());
         }
     });
 
     $('#layanan_name').change(function(){
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            loadContent(fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
+            loadContent('day',  $('#input-date-filter').val(),0, $('#layanan_name').val());
         }else if(fromParams == 'month'){
             loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
-            v_year = $(this).val();
-            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
+            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
         }
     });
 
@@ -767,7 +754,7 @@ function setDatePicker(){
         // sessionStorage.removeItem('paramsSession');
         // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-        loadContent('year', v_year, 0);
+        loadContent('year', v_year,0, $('#layanan_name').val());
         // simmiriStatusTicket('year', v_year, 0);
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
@@ -778,6 +765,8 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        
+        
     });
 })(jQuery);

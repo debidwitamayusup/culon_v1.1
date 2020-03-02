@@ -128,11 +128,7 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callIntervalTraffic(date, arr_channel, sessionParams.TENANT_ID);},5000);
-            }else{
                 setTimeout(function(){callIntervalTraffic(date, arr_channel, $("#layanan_name").val());},5000);
-            }
             drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -140,11 +136,7 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callIntervalTraffic(date, arr_channel, sessionParams.TENANT_ID);},5000);
-            }else{
                 setTimeout(function(){callIntervalTraffic(date, arr_channel, $("#layanan_name").val());},5000);
-            }
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -233,22 +225,14 @@ function callDataPercentage(date, tenant_id){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callDataPercentage(date, sessionParams.TENANT_ID);},5000);
-            }else{
-                setTimeout(function(){callDataPercentage(date, $("#layanan_name").val());},5000);
-            }
+            setTimeout(function(){callDataPercentage(date, $("#layanan_name").val());},5000);
             drawChartPercentageToday(response);
             // fromTemplate(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            if(sessionParams.TENANT_ID != null){
-                setTimeout(function(){callDataPercentage(date, sessionParams.TENANT_ID);},5000);
-            }else{
-                setTimeout(function(){callDataPercentage(date, $("#layanan_name").val());},5000);
-            }
+            setTimeout(function(){callDataPercentage(date, $("#layanan_name").val());},5000);
         },
     });
 }

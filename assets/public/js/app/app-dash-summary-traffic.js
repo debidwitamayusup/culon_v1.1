@@ -305,7 +305,7 @@ function drawPieChartSumAllTenant(response){
     // $('#legend').remove();
     // $('#mylegend').append('<div id="legend" class="legend-con"></div>');
 
-    var ctx = document.getElementById("pieWallSummaryTraffic");
+    var ctx = document.getElementById("pieSummaryTraffic");
     ctx.height = 250;
     var myChart = new Chart(ctx, {
         type: 'pie',
@@ -367,7 +367,7 @@ function drawPieChartSumAllTenant(response){
                         if(isNaN(percentage) == true){
                             percentage = 0;
                         }
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-12">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
                     }else{
                         var label = chart.data.labels[index];
@@ -388,7 +388,7 @@ function drawPieChartSumAllTenant(response){
                             // var percentage = Math.round((dataLabel / total) * 100);
                             percentage = 0;
                         }
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-12">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + '0' + '%</span>');
                     }
                 })
