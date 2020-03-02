@@ -12,15 +12,23 @@ if (n < 10) {
 }
 
 var v_params_this_year = m + '-' + n + '-' + (o);
+var arr_tenant = [];
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+    for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+        arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+    }
+}else{
+    arr_tenant = [];
+}
 $(document).ready(function(){
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        callThreeTable('');
-        callPieChartSummary('');
-        callBarLayanan('');
-        callLineChart('');
-        callTotalTable('');
+        callThreeTable('', arr_tenant);
+        callPieChartSummary('', arr_tenant);
+        callBarLayanan('', arr_tenant);
+        callLineChart('', arr_tenant);
+        callTotalTable('', arr_tenant);
         $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url
@@ -40,23 +48,24 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function callThreeTable(date){
+function callThreeTable(date, tenant_id){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
             date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callThreeTable(date);},5000);
+            setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
             drawTableRealTime(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callThreeTable(date);},5000);
+            setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -152,24 +161,24 @@ function drawTableRealTime(response){
     }
 }
 
-function callPieChartSummary(){
+function callPieChartSummary(tenant_id){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalPie',
         data:{
-
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callPieChartSummary();},5000);
+            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
             // console.log(response);
             drawPieChartSummary(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callPieChartSummary();},5000);
+            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -243,24 +252,25 @@ function drawPieChartSummary(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
-function callBarLayanan(date){
+function callBarLayanan(date, tenant_id){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalBar',
         data: {
             date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = r;
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){callBarLayanan(date);},5000);
+            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
             drawBarLayanan(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callBarLayanan(date);},5000);
+            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -379,24 +389,25 @@ function drawBarLayanan(response){
     // console.log(dataLayanan);
 }
 
-function callLineChart(channel){
+function callLineChart(channel, tenant_id){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalInterval',
         data:{
-            channel: channel
+            channel: channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = r;
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){callLineChart(channel);},5000);
+            setTimeout(function(){callLineChart(channel, arr_tenant);},5000);
             drawLineChart(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callLineChart(channel);},5000);
+            setTimeout(function(){callLineChart(channel, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -455,23 +466,24 @@ function drawLineChart(response){
     });
 }
 
-function callTotalTable(date){
+function callTotalTable(date, tenant_id){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
-            date: date
+            date: date,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalTable(date);},5000);
+            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
             drawTotalTable(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTotalTable(date);},5000);
+            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });

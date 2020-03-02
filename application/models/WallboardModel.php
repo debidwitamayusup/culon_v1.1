@@ -1143,6 +1143,7 @@ Class WallboardModel extends CI_Model {
     #region :: debi
         public function summary_performance_nasional(){
             $date = $this->security->xss_clean($this->input->post('date', true));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
             $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
             $this->db->select('m_tenant.tenant_name, wall_traffic.tenant_id, SUM(wall_traffic.queue) queue, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.art)),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.aht)),2,7) AS aht, SUM(wall_traffic.cof) offered, AVG(wall_traffic.scr) scr');
@@ -1150,6 +1151,9 @@ Class WallboardModel extends CI_Model {
             $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
             if ($date){
                 $this->db->where('DATE(wall_traffic.lup)', $date);
+            }
+            if($tid){
+                $this->db->where_in('wall_traffic.tenant_id', $tid);
             }
             $this->db->group_by('wall_traffic.tenant_id');
             $query = $this->db->get();
@@ -1180,6 +1184,7 @@ Class WallboardModel extends CI_Model {
         public function summary_performance_nas_bar()
         {
             $date = $this->security->xss_clean($this->input->post('date', true));
+            $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
             $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
             $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_traffic.cof) total');
@@ -1187,6 +1192,9 @@ Class WallboardModel extends CI_Model {
             $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
             if ($date){
                 $this->db->where('DATE(wall_traffic.lup)', $date);
+            }
+            if($tid){
+                $this->db->where_in('wall_traffic.tenant_id', $tid);
             }
             $this->db->group_by('wall_traffic.tenant_id');
             $query = $this->db->get();
@@ -1238,6 +1246,7 @@ Class WallboardModel extends CI_Model {
 
     function get_cof_performance_piechart($channel) //summ
 	{
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
         $date = $this->security->xss_clean($this->input->post('date', true));
         $this->db->select('IFNULL(SUM(wall_traffic.cof),0) as TOTAL');
 		
@@ -1247,6 +1256,9 @@ Class WallboardModel extends CI_Model {
             $this->db->where('DATE(wall_traffic.lup)',$date);
         }
         $this->db->where('wall_traffic.channel_id',$channel);
+        if($tid){
+            $this->db->where_in('wall_traffic.tenant_id', $tid);
+        }
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)
@@ -1309,12 +1321,13 @@ Class WallboardModel extends CI_Model {
 
     public function get_availdata_performance_nas()
     {
-
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
 		$this->db->select('wall_traffic.starttime , COALESCE(SUM(wall_traffic.cof),0) as total');
 		$this->db->from('wall_traffic');
         // $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
-		// $this->db->where_in('m_channel.channel_name',$channel);
+        // $this->db->where_in('m_channel.channel_name',$channel);
+        $this->db->where_in('wall_traffic.tenant_id', $tid);
 		$this->db->group_by('wall_traffic.starttime','ASC');
 		$query = $this->db->get();
 		$result = array();
