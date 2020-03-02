@@ -18,10 +18,10 @@
 							<!-- <div class="d-flex bd-highlight mr-4">
 								<div class="p-2 bd-highlight" id="layanan_name_parent">
 									<select class="form-control-sm" style="border:0px; background:#f7efef;" id="layanan_name"> -->
-										<!-- <option value="#">All Tenant</option>
+							<!-- <option value="#">All Tenant</option>
 										<option value="#">All Tenant</option>
 										<option value="#">All Tenant</option> -->
-									<!-- </select>
+							<!-- </select>
 								</div>
 							</div> -->
 							<div class="d-sm-flex d-none">
@@ -29,8 +29,8 @@
 									<i class="fe fe-minimize fullscreen-button"></i>
 								</a>
 								<div class="text-center mt-3">
-									<h6 class="text-white" id="NICKNAME_NAV" style="margin-bottom:0px"></h6>
-									<small class="text-white" id="PREVILAGE_NAV"></small>
+									<h6 class="text-white" id="NICKNAME_NAV2" style="margin-bottom:0px"></h6>
+									<small class="text-white" id="PREVILAGE_NAV2"></small>
 								</div>
 
 							</div>
@@ -54,8 +54,10 @@
 										</div>
 									</div>
 									<div class="dropdown-divider m-0"></div>
-									<!-- <a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-user"></i>Profile</a>
-						<a class="dropdown-item" href="#"><i class="dropdown-icon fe fe-settings"></i>Setting</a> -->
+									<a class="dropdown-item" href="<?=base_url()?>main/change_profile"><i
+											class="dropdown-icon fe fe-user"></i>Change Profile</a>
+									<a class="dropdown-item" href="<?=base_url()?>main/change_password"><i class="dropdown-icon fe fe-settings"></i>Change
+										Password</a>
 									<button class="dropdown-item" id="btn-logout"><i
 											class="dropdown-icon fe fe-power"></i>Log Out</button>
 								</div>

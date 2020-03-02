@@ -161,7 +161,7 @@
 				</div>
 				<div class="card-pie">
 					<div class="canvas-con">
-						<div id="legend" class="legend-con mb-3 mt-3"></div>
+						<div id="legend" class="legend-con mb-2 mt-1"></div>
 						<div class="canvas-con-inner mb-6" id="canvas-pie">
 							<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 						</div>

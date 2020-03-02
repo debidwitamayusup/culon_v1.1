@@ -50,19 +50,26 @@
 <script src="<?= base_url()?>assets/js/vendors/popper.min.js"></script>
 <script src="<?= base_url()?>assets/js/bootstrap/bootstrap.min.js"></script>
 
-<!-- Custom scroll bar Js-->
-<script src="<?= base_url()?>assets/js/vendors/jquery.mCustomScrollbar.concat.min.js"></script>
-
-
-<!-- Side menu js -->
-<!-- <script src="<?= base_url()?>assets/js/vendors/sidemenu.js"></script> -->
-
 <!--Sidemenu js-->
 <script src="<?=base_url()?>assets/js/vendors/side-menu.js"></script>
 
 <!-- Sidemenu-responsive-tabs js-->
 <script src="<?=base_url()?>assets/js/vendors/sidemenu-responsive-tabs.js"></script>
 <script src="<?=base_url()?>assets/js/left-menu.js"></script>
+
+<!-- <script src="<?=base_url()?>assets/js/p-scroll/p-scroll.js"></script>
+<script src="<?=base_url()?>assets/js/p-scroll/p-scroll-leftmenu.js"></script> -->
+
+
+<!-- Custom scroll bar Js-->
+<script src="<?= base_url()?>assets/js/vendors/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<!-- Input Mask Plugin -->
+<script src="<?= base_url()?>assets/js/vendors/jquery.mask.min.js"></script>
+
+<!-- Side menu js -->
+<!-- <script src="<?= base_url()?>assets/js/vendors/sidemenu.js"></script> -->
+
 
 <!--Select2 js -->
 <script src="<?=base_url()?>assets/js/vendors/select2.full.min.js"></script>
@@ -86,8 +93,6 @@
 <script src="<?=base_url()?>assets/js/datatables/dataTables.bootstrap4.js"></script>
 <script src="<?=base_url()?>assets/js/datatables/dataTables.buttons.min.js"></script>
 
-<!-- Input Mask Plugin -->
-<script src="<?= base_url()?>assets/js/vendors/jquery.mask.min.js"></script>
 
 <!--Counters -->
 <script src="<?=base_url()?>assets/js/counters/counterup.min.js"></script>

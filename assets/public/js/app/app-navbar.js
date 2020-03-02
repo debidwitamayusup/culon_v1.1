@@ -44,6 +44,10 @@ function getTenant(date){
       $('#NICKNAME_NAV').html(items.NAME)
       $('#PREVILAGE_NAV').html(items.PREVILAGE)
     
+      //add id
+      $('#NICKNAME_NAV2').html(items.NAME);
+      $('#PREVILAGE_NAV2').html(items.PREVILAGE);   
+    
 
     //   $('#layanan_name').change(function(){
     //       loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
