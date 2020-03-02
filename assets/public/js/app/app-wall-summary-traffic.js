@@ -73,6 +73,7 @@ function getTenant(date){
         },
 
         success: function (r) {
+            $('#modalError').modal('hide');
             var data_option = [];
             //dont parse response if using rest controller
             // var response = JSON.parse(r);
@@ -87,7 +88,8 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){getTenant(date, userid);},5000);
         },
     });
 }
@@ -108,6 +110,7 @@ function callYearOnMonth()
         // },
 
         success: function (r) {
+            $('#modalError').modal('hide');
             var data_option = [];
             var dateTahun = $("#select-year-on-month");
             var response = JSON.parse(r);
@@ -141,7 +144,8 @@ function callYearOnMonth()
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callYearOnMonth();},5000);
         },
     });
 }
@@ -161,6 +165,7 @@ function callYear()
         // },
 
         success: function (r) {
+            $('#modalError').modal('hide');
             var data_option = [];
             var dateTahun = $("#select-year-only");
             var response = JSON.parse(r);
@@ -180,7 +185,8 @@ function callYear()
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callYear();},5000);
         },
     });
 }
@@ -304,15 +310,18 @@ function callSummaryInteraction(params, index_time, params_year, tenant_id){
             params: params,
             index: index_time,
             params_year: params_year,
-            tenant_id: tenant_id
+            tenant_id: $("#layanan_name").val()
         },
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
             drawChartAndCard(response);
         },
         error: function (r) {
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -475,13 +484,16 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
             var commas = response.data.total_interaction;
             var functionCommas = addCommas(commas);
             // console.log(commas);
-            console.log(response);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTotalInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },
         error: function (r) {
             // alert("error");
             // console.log(r);
+            $('#modalError').modal('show');
+            setTimeout(function(){callTotalInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -500,6 +512,8 @@ function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             var commas2 = response.data.total_unique_customer;
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTotalUniqueCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
             var functionCommas2 = addCommas(commas2);
             // console.log(response);
             $("#unique-customer").html(functionCommas2);
@@ -507,11 +521,13 @@ function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
         error: function (r) {
             // alert("error");
             // console.log(r);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callTotalUniqueCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
 
-function callAverageCustomer(params, index_time, params_year){
+function callAverageCustomer(params, index_time, params_year, tenant_id){
        //call avg customer
     $.ajax({
         type: 'post',
@@ -519,16 +535,21 @@ function callAverageCustomer(params, index_time, params_year){
         data: {
             params: params,
             index: index_time,
-            params_year: params_year
+            params_year: params_year,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
             // console.log(response);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callAverageCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
             $("#avg-customer").html(response.data.average_customer);
         },
         error: function (r) {
             // alert("error");
             // console.log(r);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callAverageCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -548,6 +569,8 @@ function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callUniqueCustomerPerChannel(params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(response.data[0].total_unique);
             // console.log(response.data);
             response.data.forEach(function (value, index) {
@@ -567,6 +590,8 @@ function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id
         error: function (r) {
             // alert("error");
             // console.log(r);
+            $('#modalError').modal('show');
+            setTimeout(function(){callUniqueCustomerPerChannel(params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -583,6 +608,8 @@ function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callSummaryCaseTotAgent(params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(response);
             $('#msg-in').html(addCommas(response.data.msg_in));
             $('#msg-out').html(addCommas(response.data.msg_out));
@@ -591,7 +618,8 @@ function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
             $('#sla').html(sla.toFixed(2)+" %");
         },
         error: function (r) {
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callSummaryCaseTotAgent(params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(r);
         },
     });
@@ -607,166 +635,7 @@ function setDatePicker(){
 
 //jquery
 (function ($) {
-
-    var date = new Date();
-    date.setDate(date.getDate() > 0);
-    $('#input-date-filter').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: 'now',
-        showTodayButton: true,
-        showClear: true,
-        // minDate: date,
-
-        onSelect: function (dateText) {
-            // console.log(this.value);
-            v_date = this.value;
-            loadContent('day', v_date, 0, $('#layanan_name').val());
-        }
-    });
-
-    // btn day
-    $('#btn-day').click(function(){
-        params_time = 'day';
-        loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
-        v_date='2019-12-01';
-        $('#input-date-filter').datepicker("setDate", v_params_this_year);
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-
-        $('#filter-date').show();
-        $('#filter-month').hide();
-        $('#filter-year').hide();
-    });
-
-    // btn month
-    $('#btn-month').click(function(){
-        var d = new Date();
-        var o = d.getDate();
-        var n = d.getMonth()+1;
-        var m = d.getFullYear();
-        params_time = 'month';
-        sessionStorage.removeItem('paramsSession');
-        sessionStorage.setItem('paramsSession', 'month');
-        // var arg ='option '+n+'';
-        // $('#select-month').val(arg)
-        // console.log('dwe'+n);
-        // $( '#select-month' ).find('option[value='+n+']').attr('selected','selected')
-        $('#select-month option[value='+n+']').attr('selected','selected');
-        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
-        // console.log(params_time);
-        // loadContent(params_time , '12');
-        loadContent('month', n,m, $('#layanan_name').val());
-        callYearOnMonth();
-        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
-        // $('#tag-time').html(monthNumToName(n)+' '+m);
-        // console.log(monthNumToName(n));
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $("#btn-year").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-
-        // document.getElementById("select-month").selected = "true"
-        // document.getElementById("select-year-on-month").selected = "true"
-
-        $('#filter-date').hide();
-        $('#filter-month').show();
-        $('#filter-year').hide();
-    });
-
-    // btn year
-    $('#btn-year').click(function(){
-        sessionStorage.removeItem('paramsSession');
-        sessionStorage.setItem('paramsSession', 'year');
-        params_time = 'year';
-        callYear();
-        loadContent('year', m,0, $('#layanan_name').val());
-        $("#btn-month").prop("class","btn btn-light btn-sm");
-        $("#btn-day").prop("class","btn btn-light btn-sm");
-        $(this).prop("class","btn btn-red btn-sm");
-        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
-        $('#filter-date').hide();
-        $('#filter-month').hide();
-        $('#filter-year').show();
-    });
-
-    var date = new Date();
-    date.setDate(date.getDate()>0);
-    $('#input-date-filter').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: 'now',
-        showTodayButton: true,
-        showClear: true,
-        // minDate: date,
-        
-        onSelect: function(dateText) {
-            v_date = this.value;
-            loadContent('day', v_date,0, $('#layanan_name').val());
-        }
-    });
-
     $('#layanan_name').change(function(){
-        let fromParams = sessionStorage.getItem('paramsSession');
-        if(fromParams == 'day'){
-            loadContent('day',  $('#input-date-filter').val(),0, $('#layanan_name').val());
-        }else if(fromParams == 'month'){
-            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        }else if(fromParams == 'year'){
-            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-        }
-    });
-
-
-
-    /*select option month*/ 
-    // $('select#select-month').change(function(){
-    //     v_month = $(this).val();
-    //     // console.log(value);
-    //     // callSummaryInteraction(params_time, v_month,v_year);
-    //     // sessionStorage.removeItem('paramsSession');
-    //     // sessionStorage.setItem('paramsSession', 'day');
-    //     // let fromParams = sessionStorage.getItem('paramsSession');
-
-    //     loadContent('month', v_month, $("#select-year-on-month").val());
-    //     // simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
-    //     // ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
-    //     // summaryTicketClose(0, fromParams, v_month, $("#select-year-on-month").val());
-    //     // simmiriUnit('month', v_month, $("#select-year-on-month").val());
-    // });
-    // $('select#select-year-on-month').change(function(){
-    //     v_year = $(this).val();
-    //     // console.log(value);
-    //     // sessionStorage.removeItem('paramsSession');
-    //     // sessionStorage.setItem('paramsSession', 'day');
-    //     // let fromParams = sessionStorage.getItem('paramsSession');
-
-    //     loadContent('month', $("#select-month").val(), v_year);
-    //     // simmiriStatusTicket(fromParams, $("#select-month").val(), v_year);
-    //     // ticketStatusUnit(fromParams, $("#select-month").val(), v_year);
-    //     // summaryTicketClose(0, fromParams, $("#select-month").val(), v_year);
-    //     // simmiriUnit('month', $("#select-month").val(), v_year);
-    // });
-    /**/ 
-
-    // select option year
-    $('#select-year-only').change(function(){
-        v_year = $(this).val();
-        // console.log(this.value);
-        // sessionStorage.removeItem('paramsSession');
-        // sessionStorage.setItem('paramsSession', 'day');
-        let fromParams = sessionStorage.getItem('paramsSession');
-        loadContent('year', v_year,0, $('#layanan_name').val());
-        // simmiriStatusTicket('year', v_year, 0);
-        // ticketStatusUnit('year', v_year, 0);
-        // summaryTicketClose(0, 'year', v_year, 0);
-        // simmiriUnit('year', v_year, 0);
-        $("#filter-date").hide();
-        $("#filter-month").hide();
-        $("#filter-year").show();
-    });
-
-    $('#btn-go').click(function(){
-        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        
-        
+        loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
     });
 })(jQuery);

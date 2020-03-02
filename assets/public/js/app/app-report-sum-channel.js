@@ -27,15 +27,13 @@ $(document).ready(function () {
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        if(sessionParams.TENANT_ID != null){
-            $('#tenant-id').hide();
-            drawTableSumChannel(sessionParams.TENANT_ID,v_params_today,v_params_today);
-            callDrawPieChart(sessionParams.TENANT_ID,v_params_today,v_params_today);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            drawTableSumChannel($("#layanan_name").val(),v_params_today,v_params_today);
-            callDrawPieChart($("#layanan_name").val(),v_params_today,v_params_today);
+            getTenant('', '');
         }
+        drawTableSumChannel($("#layanan_name").val(),v_params_today,v_params_today);
+        callDrawPieChart($("#layanan_name").val(),v_params_today,v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -56,12 +54,13 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -71,8 +70,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -414,13 +412,8 @@ function getBase64Image(img) {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         // $("#filter-loader").fadeIn("slow");
-        if(sessionParams.TENANT_ID != null){
-            drawTableSumChannel(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
-            callDrawPieChart(sessionParams.TENANT_ID, $('#start-date').val(), $('#end-date').val());
-        }else{
-            drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
-            callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
-        }
+        drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+        callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         $("#filter-loader").fadeOut("slow");
     });
 

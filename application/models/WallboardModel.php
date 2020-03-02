@@ -1327,7 +1327,9 @@ Class WallboardModel extends CI_Model {
 		$this->db->from('wall_traffic');
         // $this->db->join('wall_traffic','wall_traffic.channel_id = m_channel.channel_id');
         // $this->db->where_in('m_channel.channel_name',$channel);
-        $this->db->where_in('wall_traffic.tenant_id', $tid);
+        if($tid){
+            $this->db->where_in('wall_traffic.tenant_id', $tid);
+        }
 		$this->db->group_by('wall_traffic.starttime','ASC');
 		$query = $this->db->get();
 		$result = array();

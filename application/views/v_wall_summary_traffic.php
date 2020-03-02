@@ -9,14 +9,13 @@
 					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Today</li>
 				</ol>
 			</div>
-			<!-- <div class="d-flex bd-highlight"> -->
-				<!-- <div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div> -->
-				<!-- <div class="p-2 bd-highlight">
-					<select class="form-control" id="tenant_id">
-						
-					</select>
-				</div> -->
-			<!-- </div> -->
+			<div class="bd-highlight" style="margin-bottom:30px;" id="layanan_name_parent">
+				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+					<!-- <option value="#">All Layanan</option>
+					<option value="#">All Layanan</option>
+					<option value="#">All Layanan</option> -->
+				</select>
+			</div>
 		</div>
 	</div>
 	<div class="row" style="margin-right:0px; margin-left:-3px;">

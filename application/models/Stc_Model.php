@@ -437,6 +437,7 @@ class Stc_Model extends CI_Model
 
 	public function getAverageCustomer($params, $index)
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 		$this->db->select('SUM(total)/SUM(total_unique)  average_customer');
 		$this->db->from('summary_channel');
 		if($params == 'day'){
@@ -445,6 +446,9 @@ class Stc_Model extends CI_Model
 			$this->db->where('MONTH(date_time)', $index);
 		}else if($params == 'year'){
 			$this->db->where('YEAR(date_time)', $index);
+		}
+		if($tid){
+			$this->db->where('tenant_id', $tid);
 		}
 		$query = $this->db->get();
 		return $query;
@@ -1055,7 +1059,7 @@ class Stc_Model extends CI_Model
 					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 				);
 			}
-		}
+		
 
 		$result = array(
 			'status' => true,
@@ -1069,6 +1073,7 @@ class Stc_Model extends CI_Model
 
 		return $result;
 	}
+}
 
 	function get_availdata_permonth($month_id,$channel)
 	{
