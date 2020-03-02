@@ -14,7 +14,7 @@ if (n < 10) {
 //get yesterday
 var v_params_today= m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
-if(sessionParams.TENANT_ID.TENANT_ID != null){
+if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
     }
@@ -36,7 +36,7 @@ $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
-        if(sessionParams.TENANT_ID.TENANT_ID != null){
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
             getTenant('', sessionParams.USERID);
         }else{
             getTenant('', '');

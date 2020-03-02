@@ -15,21 +15,16 @@ var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            performanceBySkill('day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            drawDataTable('day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveART('ART','day', v_params_this_year, 0, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
-            drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
+            getTenant('', '');
         }
+        performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
+        drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
         sessionStorage.setItem('paramsSession', 'day');
         $('#btn-day').prop("class","btn btn-red btn-sm");
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -46,12 +41,13 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -61,8 +57,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -437,19 +432,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         // v_date = getToday();
         v_date = '2019-12-01';
         // console.log(params_time);
-        if(sessionParams.TENANT_ID != null){
-            performanceBySkill('day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            drawDataTable('day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','day', v_params_this_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveART('ART','day', v_params_this_year, 0, sessionParams.TENANT_ID);
-        }else{
-            performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
-            drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
-            bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
-        }
+        performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
+        drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -465,19 +452,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
     // btn month
     $('#btn-month').click(function(){
         v_params_time = 'month';
-        if(sessionParams.TENANT_ID != null){
-            performanceBySkill('month', n,m, sessionParams.TENANT_ID);
-            drawDataTable('month', n,m, sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','month', n,m, sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','month', n,m, sessionParams.TENANT_ID);
-            bestOfFiveART('ART','month', n,m, sessionParams.TENANT_ID);
-        }else{
-            performanceBySkill('month', n,m, $('#layanan_name').val());
-            drawDataTable('month', n,m, $('#layanan_name').val());
-            bestOfFiveCOF('COF','month', n,m, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','month', n,m, $('#layanan_name').val());
-            bestOfFiveART('ART','month', n,m, $('#layanan_name').val());
-		}
+        performanceBySkill('month', n,m, $('#layanan_name').val());
+        drawDataTable('month', n,m, $('#layanan_name').val());
+        bestOfFiveCOF('COF','month', n,m, $('#layanan_name').val());
+        bestOfFiveAHT('AHT','month', n,m, $('#layanan_name').val());
+        bestOfFiveART('ART','month', n,m, $('#layanan_name').val());
         callYearOnMonth();
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'month');
@@ -498,19 +477,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         v_params_time = 'year';
         // console.log(params_time);
         // v_date = getYear();
-        if(sessionParams.TENANT_ID != null){
-            performanceBySkill('year', m, 0, sessionParams.TENANT_ID);
-            drawDataTable('year', m, 0, sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','year', m, 0, sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','year', m, 0, sessionParams.TENANT_ID);
-            bestOfFiveART('ART','year', m, 0, sessionParams.TENANT_ID);
-        }else{
-            performanceBySkill('year', m, 0, $('#layanan_name').val());
-            drawDataTable('year', m, 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','year', m, 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','year', m, 0, $('#layanan_name').val());
-            bestOfFiveART('ART','year', m, 0, $('#layanan_name').val());
-		}
+        performanceBySkill('year', m, 0, $('#layanan_name').val());
+        drawDataTable('year', m, 0, $('#layanan_name').val());
+        bestOfFiveCOF('COF','year', m, 0, $('#layanan_name').val());
+        bestOfFiveAHT('AHT','year', m, 0, $('#layanan_name').val());
+        bestOfFiveART('ART','year', m, 0, $('#layanan_name').val());
         callYear();
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
@@ -533,19 +504,11 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            if(sessionParams.TENANT_ID != null){
-                performanceBySkill('day', v_date, 0, sessionParams.TENANT_ID);
-                drawDataTable('day', v_date, 0, sessionParams.TENANT_ID);
-                bestOfFiveCOF('COF','day', v_date, 0, sessionParams.TENANT_ID);
-                bestOfFiveAHT('AHT','day', v_date, 0, sessionParams.TENANT_ID);
-                bestOfFiveART('ART','day', v_date, 0, sessionParams.TENANT_ID);
-            }else{
-                performanceBySkill('day', v_date, 0, $('#layanan_name').val());
-                drawDataTable('day', v_date, 0, $('#layanan_name').val());
-                bestOfFiveCOF('COF','day', v_date, 0, $('#layanan_name').val());
-                bestOfFiveAHT('AHT','day', v_date, 0, $('#layanan_name').val());
-                bestOfFiveART('ART','day', v_date, 0, $('#layanan_name').val());
-            }
+            performanceBySkill('day', v_date, 0, $('#layanan_name').val());
+            drawDataTable('day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveCOF('COF','day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveAHT('AHT','day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveART('ART','day', v_date, 0, $('#layanan_name').val());
         }
     });
 
@@ -576,82 +539,42 @@ function drawDataTable(params_time, index, params_year, tenant_id){
     $('#select-year-only').change(function(){
         v_year = $(this).val();
         // console.log(this.value);
-        if(sessionParams.TENANT_ID != null){
-            performanceBySkill('year', v_year, 0, sessionParams.TENANT_ID);
-            drawDataTable('year', v_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','year', v_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','year', v_year, 0, sessionParams.TENANT_ID);
-            bestOfFiveART('ART','year', v_year, 0, sessionParams.TENANT_ID);
-        }else{
-            performanceBySkill('year', v_year, 0, $('#layanan_name').val());
-            drawDataTable('year', v_year, 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','year', v_year, 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','year', v_year, 0, $('#layanan_name').val());
-            bestOfFiveART('ART','year', v_year, 0, $('#layanan_name').val());
-		}
+        performanceBySkill('year', v_year, 0, $('#layanan_name').val());
+        drawDataTable('year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF('COF','year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT('AHT','year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveART('ART','year', v_year, 0, $('#layanan_name').val());
     });
 
     $('#btn-go').click(function(){
-        if(sessionParams.TENANT_ID != null){
-            performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-        }else{
-            performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-		}
+        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
     });
 
     $('#layanan_name').change(function () {
 		channel_id = $('#channel_name').val();
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            if(sessionParams.TENANT_ID != null){
-                performanceBySkill('day', $("#input-date-filter").val(), 0, sessionParams.TENANT_ID);
-                drawDataTable('day', $("#input-date-filter").val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveCOF('COF','day', $("#input-date-filter").val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveAHT('AHT','day', $("#input-date-filter").val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveART('ART','day', $("#input-date-filter").val(), 0, sessionParams.TENANT_ID);
-            }else{
-                performanceBySkill('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-                drawDataTable('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-                bestOfFiveCOF('COF','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-                bestOfFiveAHT('AHT','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-                bestOfFiveART('ART','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-            }
+            performanceBySkill('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            drawDataTable('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveCOF('COF','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveAHT('AHT','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveART('ART','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
         }else if(fromParams == 'month'){
-            if(sessionParams.TENANT_ID != null){
-                performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-                drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-                bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-                bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-                bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            }else{
-                performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-                drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-                bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-                bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-                bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            }
+            performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
-            if(sessionParams.TENANT_ID != null){
-                performanceBySkill('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-                drawDataTable('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveCOF('COF','year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveAHT('AHT','year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-                bestOfFiveART('ART','year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-            }else{
-                performanceBySkill('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-                drawDataTable('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-                bestOfFiveCOF('COF','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-                bestOfFiveAHT('AHT','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-                bestOfFiveART('ART','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            }
+            performanceBySkill('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            drawDataTable('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveCOF('COF','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveAHT('AHT','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveART('ART','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
         }
 	});
 })(jQuery);

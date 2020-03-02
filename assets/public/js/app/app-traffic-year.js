@@ -8,21 +8,47 @@ $(document).ready(function () {
         $('#dateTahun option[value = ' + n + ']').attr('selected', 'selected');
         
         var data_year = callYear();
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            var data_chart = callGraphYear('ShowAll', n, sessionParams.TENANT_ID);
-            var data_graph = callDataPercentage(n, sessionParams.TENANT_ID);
-            var data_table = callDataTableAvg(n, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
-            var data_graph = callDataPercentage(n, $('#layanan_name').val());
-            var data_table = callDataTableAvg(n, $('#layanan_name').val());
+            getTenant('', '');
         }
+        var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
+        var data_graph = callDataPercentage(n, $('#layanan_name').val());
+        var data_table = callDataTableAvg(n, $('#layanan_name').val());
     }else{
         window.location = base_url
     }
 });
+
+function getTenant(date, userid){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
+        data: {
+            "date" : date,
+            "userid" : userid
+        },
+
+        success: function (r) {
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+                var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
+                }
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function addCommas(commas) {
     commas += '';
@@ -452,15 +478,9 @@ function destroyChartPercentage() {
     $('#layanan_name').change(function(){
         //set check all channel
         callYear();
-        if(sessionParams.TENANT_ID != null){
-            callGraphYear('ShowAll', $("#dateTahun").val(), sessionParams.TENANT_ID);
-            callDataPercentage($("#dateTahun").val(), sessionParams.TENANT_ID);
-            callDataTableAvg($("#dateTahun").val(), sessionParams.TENANT_ID);
-        }else{
-            callGraphYear('ShowAll', $("#dateTahun").val(), $('#layanan_name').val());
-            callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
-            callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
-        }
+        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
+        callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
+        callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
     });
     // change date picker
     // $("select#dateTahun").change(function(){
@@ -486,14 +506,8 @@ function destroyChartPercentage() {
     $('#btn-go').click(function () {
         destroyChartInterval();
         destroyChartPercentage();
-        if(sessionParams.TENANT_ID != null){
-            callGraphYear($("#channel_name").val(), $("#dateTahun").val(), sessionParams.TENANT_ID);
-            callDataPercentage($("#dateTahun").val(), sessionParams.TENANT_ID);
-            callDataTableAvg($("#dateTahun").val(), sessionParams.TENANT_ID);
-        }else{
-            callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
-            callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
-            callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
-        }
+        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
+        callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
+        callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
     });
 })(jQuery);

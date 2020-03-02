@@ -21,28 +21,26 @@ $(document).ready(function () {
         // callGraphicInterval('ShowAll', '1', '2020');
         // drawStackedBar('month', '', n, m, v_params_tenant);
 
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            stackedBarInterval('month', '', n, m, sessionParams.TENANT_ID);
-            callDataPercentage($("#month").val(), m, sessionParams.TENANT_ID);
-            callDataTableAvg($("#month").val(), m, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            stackedBarInterval('month', '', n, m, $('#layanan_name').val());
-            callDataPercentage($("#month").val(), m, $('#layanan_name').val());
-            callDataTableAvg($("#month").val(), m, $('#layanan_name').val());
+            getTenant('', '');
         }
+        stackedBarInterval('month', '', n, m, $('#layanan_name').val());
+        callDataPercentage($("#month").val(), m, $('#layanan_name').val());
+        callDataTableAvg($("#month").val(), m, $('#layanan_name').val());
     }else{
         window.location = base_url
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -52,8 +50,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -386,16 +383,9 @@ function destroyChartPercentage() {
 
     (function ($) {
         $('#layanan_name').change(function(){
-            if(sessionParams.TENANT_ID != null){
-                $('#layanan_name').hide();
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
-                callDataPercentage($("#month").val(),$("#dropdownYear").val(), sessionParams.TENANT_ID);
-                callDataTableAvg($("#month").val(),$("#dropdownYear").val(), sessionParams.TENANT_ID);
-            }else{
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-                callDataPercentage($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
-                callDataTableAvg($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
-            }
+            stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            callDataPercentage($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
+            callDataTableAvg($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
         });
         // $("select#month").change(function(){
         //     //destroy chart
@@ -435,25 +425,14 @@ function destroyChartPercentage() {
         $('#btn-go').click(function(){
             destroyChartInterval();
             destroyChartPercentage(); 
-            if(sessionParams.TENANT_ID != null){
-                if ($("#channel_name").val() == 'ShowAll') {
-                    stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
-                }else{
-                    // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                    stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
-                }
-                callDataPercentage($("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
-                callDataTableAvg($("#month").val(), $("#dropdownYear").val(), sessionParams.TENANT_ID);
+            if ($("#channel_name").val() == 'ShowAll') {
+                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }else{
-                if ($("#channel_name").val() == 'ShowAll') {
-                    stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-                }else{
-                    // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                    stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-                }
-                callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-                callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }
+            callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             
         });
 })(jQuery);

@@ -10,23 +10,29 @@ if (o < 10) {
 if (n < 10) {
   n = '0' + n;
 }
-
+var arr_tenant = []
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-2);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+    for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+        arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+    }
+}else{
+    arr_tenant = [];
+}
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        if(sessionParams.TENANT_ID != null){
-            callTableCOFByChannel(v_params_today, sessionParams.TENANT_ID);
-            callTableStatusTicket(v_params_today, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            callTableCOFByChannel(v_params_today,$("#layanan_name").val());
-            callTableStatusTicket(v_params_today, $("#layanan_name").val());    
+            getTenant('', '');
         }
-        getTenant();
+        callTableCOFByChannel(v_params_today,arr_tenant);
+        callTableStatusTicket(v_params_today, arr_tenant);
         // getTenant(v_params_today);
         // callTableCOFByChannel(v_params_today);
 
@@ -49,37 +55,31 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
             var data_option = [];
+            //dont parse response if using rest controller
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
-            var html = '<option value="">Semua Layanan</option>';
-            // var html = '';
-            var i;
-            // console.log(response);
+            // tenants = response.data;
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
-                $('#tenant_name').html(html);
-            
-            // var option = $ ("<option />");
-            //     option.html(i);
-            //     option.val(i);
-            //     dateTahun.append(option);
+                $('#layanan_name').html(html);
         },
         error: function (r) {
             //console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){getTenant(date);},5000);
+            alert("error");
         },
     });
 }
@@ -98,14 +98,14 @@ function callTableCOFByChannel(date, search){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-            setTimeout(function(){callTableCOFByChannel(date, search);},5000);
+            setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
             drawTableCOFByChannel(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTableCOFByChannel(date, search);},5000);
+            setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -125,14 +125,14 @@ function callTableStatusTicket(date, tenant_id){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-            setTimeout(function(){callTableStatusTicket(date);},5000);
+            setTimeout(function(){callTableStatusTicket(date, arr_tenant);},5000);
             drawTableStatusTicket(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTableStatusTicket(date);},5000);
+            setTimeout(function(){callTableStatusTicket(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });

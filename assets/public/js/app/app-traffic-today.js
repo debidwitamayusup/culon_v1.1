@@ -19,19 +19,15 @@ $(document).ready(function () {
         });
         // console.log(values);
         list_channel = values;
-
-        // var data_chart = callIntervalTraffic(v_date, []);
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            var data_chart = callIntervalTraffic(v_date, list_channel, sessionParams.TENANT_ID);
-            var data_table_avg = callDataTableAvg(v_date, sessionParams.TENANT_ID);
-            var data_percentage = callDataPercentage(v_date, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
-            var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
-            var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
+            getTenant('', '');
         }
+        var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
+        var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
+        var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
+        
     }else{
         window.location = base_url
     }
@@ -51,12 +47,13 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -66,8 +63,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -417,16 +413,10 @@ function destroyChartPercentage(){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            if(sessionParams.TENANT_ID != null){
-                $('#layanan_name').hide();
-                callIntervalTraffic(v_date, list_channel, sessionParams.TENANT_ID);
-                callDataTableAvg(v_date, sessionParams.TENANT_ID);
-                callDataPercentage(v_date, sessionParams.TENANT_ID);
-            }else{
-                callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
-                callDataTableAvg(this.value, $('#layanan_name').val());
-                callDataPercentage(this.value, $('#layanan_name').val());
-            }
+            callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
+            callDataTableAvg(this.value, $('#layanan_name').val());
+            callDataPercentage(this.value, $('#layanan_name').val());
+            
         }
     });
 
@@ -441,16 +431,9 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
-            callDataTableAvg($('#input-date').val(), sessionParams.TENANT_ID);
-            callDataPercentage($('#input-date').val(), sessionParams.TENANT_ID);
-        }else{
-            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
-            callDataTableAvg($('#input-date').val(), $('#layanan_name').val());
-            callDataPercentage($('#input-date').val(), $('#layanan_name').val());
-        }
+        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+        callDataTableAvg($('#input-date').val(), $('#layanan_name').val());
+        callDataPercentage($('#input-date').val(), $('#layanan_name').val());
     });
 
     // checked all channel
@@ -463,12 +446,7 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
-        }else{
-            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
-        }
+        callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
     });
 
     //checked channel
@@ -486,12 +464,7 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
-        }else{
-            callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
-        }
+        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
     });
     
 })(jQuery);

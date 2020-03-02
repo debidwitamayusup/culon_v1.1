@@ -23,7 +23,15 @@ if (n < 10) {
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+    for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+        arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+    }
+}else{
+    arr_tenant = [];
+}
 $(document).ready(function () {
+<<<<<<< HEAD
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#dateTahun option[value='+m+']').attr('selected','selected');
@@ -57,18 +65,44 @@ $(document).ready(function () {
         // $("#btn-month").prop("class","btn btn-light btn-sm");
         // $("#btn-year").prop("class","btn btn-light btn-sm");
         // $("#btn-day").prop("class","btn btn-red btn-sm");
+=======
+    if (sessionParams){
+        $("#filter-loader").fadeIn("slow");
+        // fromTemplate();
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
+        }else{
+            getTenant('', '');
+        }
+            callSumAllTenant('day', v_params_today, 0,  arr_tenant);
+            callSumPerTenant('day', v_params_today, 0,  arr_tenant);
+            callIntervalTraffic('day',v_params_today,0,  ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], arr_tenant);
+
+        // $('#check-all-channel').prop('checked',false);
+        // $("input:checkbox.checklist-channel").prop('checked',false);
+        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
+        // Array.prototype.forEach.call(checkboxes, function(el) {
+        //     values.push(el.value);
+        //     type.push($(el).data('type'));
+        // });
+        // // console.log(values);
+        // list_channel = values;
+
+        $("#filter-loader").fadeOut("slow");
+>>>>>>> origin/debi-dev
     }else{
         window.location = base_url
     }
 
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -78,12 +112,17 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
+<<<<<<< HEAD
             var html = '<option value="">All Tenant</option>';
             // var html = '';
+=======
+                var html = '';
+>>>>>>> origin/debi-dev
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
                 $('#layanan_name').html(html);
+<<<<<<< HEAD
         },
         error: function (r) {
             //console.log(r);
@@ -177,6 +216,8 @@ function callYear()
             //     option.html(i);
             //     option.val(i);
             //     dateTahun.append(option);
+=======
+>>>>>>> origin/debi-dev
         },
         error: function (r) {
             //console.log(r);
@@ -777,7 +818,24 @@ function setDatePicker(){
         $("#filter-year").show();
     });
 
+<<<<<<< HEAD
     $('#btn-go').click(function(){
         loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+=======
+    $("select#tenant_id").change(function(){
+        // destroyChartInterval();
+         // destroyChartInterval();
+        var selectedTenant = $(this).children("option:selected").val();
+        // callTableCOFByChannel(v_params_yesterday, selectedTenant);
+        callSumAllTenant('day', v_params_yesterday, 0, selectedTenant);
+        callSumPerTenant('day', v_params_yesterday, 0, selectedTenant);
+        // drawIntervalChart();
+        callIntervalTraffic('day',v_params_yesterday,0, '', selectedTenant);
+        
+        $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
+        $('#check-all-channel').prop('checked',false);
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        // getTenant(v_params_yesterday);
+>>>>>>> origin/debi-dev
     });
 })(jQuery);

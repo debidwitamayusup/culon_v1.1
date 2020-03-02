@@ -21,15 +21,13 @@ $(document).ready(function () {
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
         // callTableInterval('2020-02-24',["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            callDataPercentage(v_params_today, sessionParams.TENANT_ID);
-            callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
+            getTenant('', '');
+        }
             callDataPercentage(v_params_today, $("#layanan_name").val());
             callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
-        }
         $("#filter-loader").fadeOut("slow");
 
         // $('#check-all-channel').prop('checked',false);
@@ -46,12 +44,13 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -61,8 +60,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -658,22 +656,17 @@ function fromTemplate(response) {
     //     callIntervalTraffic(v_params_yesterday, list_channel);
     // });
 
-    // $("#layanan_name").change(function(){
-    //     // destroyChartInterval();
-    //      // destroyChartInterval();
-    //     var selectedTenant = $(this).children("option:selected").val();
-    //     $('#check-all-channel').prop( "checked", false );
-    //     $("input:checkbox.checklist-channel").prop('checked',false);
-    //     // callTableCOFByChannel('2020-01-24', selectedTenant);
-    //     if(sessionParams.TENANT_ID != null){
-    //         callDataPercentage(v_params_today, sessionParams.TENANT_ID);
-    //         callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], sessionParams.TENANT_ID);
-    //     }else{
-    //         callDataPercentage(v_params_today, $("#layanan_name").val());
-    //         callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
-    //     }
-    //     $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
-    //     // getTenant('2020-01-24');
-    // });
+    $("#layanan_name").change(function(){
+        // destroyChartInterval();
+         // destroyChartInterval();
+        var selectedTenant = $(this).children("option:selected").val();
+        $('#check-all-channel').prop( "checked", false );
+        $("input:checkbox.checklist-channel").prop('checked',false);
+        // callTableCOFByChannel('2020-01-24', selectedTenant);
+        callDataPercentage(v_params_today, $("#layanan_name").val());
+        callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
+        $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
+        // getTenant('2020-01-24');
+    });
     
 })(jQuery);
