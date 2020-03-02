@@ -37,7 +37,7 @@ Class AuthModel extends CI_Model {
                 'NICK'          => $data->LONG_NAME,
                 'NAME'          => $data->LONG_NAME,
                 'PREVILAGE'     => $data->PREVILAGE,
-                'TENANT_ID'     => $data->TENANT_ID,
+                'TENANT_ID'     => $this->getTenantAccess($data->USERID),
                 'PICTURE'       => APPPATH.'public\user\default-avatar.jpg',//APPPATH.'public\user'.$data->PICTURE,
               //  'UNIT'          => $data->UNIT_ID
 
@@ -51,6 +51,31 @@ Class AuthModel extends CI_Model {
 
         return FALSE;
     }
+
+    public function getTenantAccess($userid)
+    {
+        $this->db->select('a.tenant_id, a.tenant_name');
+        $this->db->from('m_tenant a');
+        $this->db->join('m_akses b', 'a.tenant_id = b.tenant_id', 'left');
+        $this->db->where('b.userid', $userid);
+        $query = $this->db->get();
+
+        
+        if($query->num_rows() > 0)
+        {
+            $result = array();
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'TENANT_ID'=> $data->tenant_id,
+                    'TENANT_NAME'=> $data->tenant_name
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
     public function logoutapp($usr){
         
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');

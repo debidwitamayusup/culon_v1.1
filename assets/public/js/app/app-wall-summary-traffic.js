@@ -1,5 +1,5 @@
 var base_url = $('#base_url').val();
-
+var arr_tenant =[];
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -16,19 +16,25 @@ var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+    for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+        arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+    }
+}else{
+    arr_tenant = [];
+}
 $(document).ready(function () {
     if (sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
-        if(sessionParams.TENANT_ID != null){
-            callSumAllTenant('day', v_params_today, 0,  sessionParams.TENANT_ID);
-            callSumPerTenant('day', v_params_today, 0,  sessionParams.TENANT_ID);
-            callIntervalTraffic('day',v_params_today,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'],  sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            callSumAllTenant('day', v_params_today, 0,  '');
-            callSumPerTenant('day', v_params_today, 0,  '');
-            callIntervalTraffic('day',v_params_today,0,  ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
+            getTenant('', '');
         }
+            callSumAllTenant('day', v_params_today, 0,  arr_tenant);
+            callSumPerTenant('day', v_params_today, 0,  arr_tenant);
+            callIntervalTraffic('day',v_params_today,0,  ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], arr_tenant);
 
         // $('#check-all-channel').prop('checked',false);
         // $("input:checkbox.checklist-channel").prop('checked',false);
@@ -46,38 +52,31 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
-            $('#modalError').modal('hide');
             var data_option = [];
+            //dont parse response if using rest controller
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
-            var html = '<option value="">Semua Layanan</option>';
-            // var html = '';
-            var i;
-            // console.log(response);
+            // tenants = response.data;
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
-                $('#tenant_id').html(html);
-            
-            // var option = $ ("<option />");
-            //     option.html(i);
-            //     option.val(i);
-            //     dateTahun.append(option);
+                $('#layanan_name').html(html);
         },
         error: function (r) {
             //console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){getTenant(date);}, 5000);
+            alert("error");
         },
     });
 }
@@ -1100,6 +1099,7 @@ function fromTemplate(){
         callSumPerTenant('day', v_params_yesterday, 0, selectedTenant);
         // drawIntervalChart();
         callIntervalTraffic('day',v_params_yesterday,0, '', selectedTenant);
+        
         $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);

@@ -4,6 +4,7 @@ var v_date = '';
 var v_month = '';
 var v_year = '';
 var v_params_tenant = 'oct_telkomcare';
+var arr_tenant = [];
 var months = [
     'January', 'February', 'March', 'April', 'May',
     'June', 'July', 'August', 'September',
@@ -23,7 +24,11 @@ if (n < 10) {
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+for(var i=0; i < sessionParams.TENANT_ID.length; i++){
+    arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
+}
 $(document).ready(function () {
+    console.log(arr_tenant);
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#dateTahun option[value='+m+']').attr('selected','selected');
@@ -40,13 +45,12 @@ $(document).ready(function () {
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
 
-        if(sessionParams.TENANT_ID != null){
-            $('#layanan_name').hide();
-            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID);
+        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+            getTenant('', sessionParams.USERID);
         }else{
-            getTenant('');
-            loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+            getTenant('', '');
         }
+        loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
         
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $('#filter-date').show();
@@ -60,12 +64,13 @@ $(document).ready(function () {
 
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
@@ -75,8 +80,7 @@ function getTenant(date){
             var response = r;
             // console.log(response);
             // tenants = response.data;
-            var html = '<option value="">All Tenant</option>';
-            // var html = '';
+                var html = '';
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
@@ -617,23 +621,14 @@ function setDatePicker(){
         onSelect: function (dateText) {
             // console.log(this.value);
             v_date = this.value;
-            if(sessionParams.TENANT_ID != null){
-                loadContent('day', v_date, 0, sessionParams.TENANT_ID);
-            }else{
-                loadContent('day', v_date, 0, $('#layanan_name').val());
-            }
+            loadContent('day', v_date, 0, $('#layanan_name').val());
         }
     });
 
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-
-        if(sessionParams.TENANT_ID != null){
-            loadContent('day', v_params_this_year, 0, sessionParams.TENANT_ID);
-        }else{
-            loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
-        }
+        loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
         v_date='2019-12-01';
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -662,11 +657,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        if(sessionParams.TENANT_ID != null){
-            loadContent('month', n,m, sessionParams.TENANT_ID);
-        }else{
-            loadContent('month', n,m, $('#layanan_name').val());
-        }
+        loadContent('month', n,m, $('#layanan_name').val());
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -689,11 +680,7 @@ function setDatePicker(){
         sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
         callYear();
-        if(sessionParams.TENANT_ID != null){
-            loadContent('year', m,0, sessionParams.TENANT_ID);
-        }else{
-            loadContent('year', m,0, $('#layanan_name').val());
-        }
+        loadContent('year', m,0, $('#layanan_name').val());
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
         $(this).prop("class","btn btn-red btn-sm");
@@ -714,34 +701,18 @@ function setDatePicker(){
         
         onSelect: function(dateText) {
             v_date = this.value;
-            if(sessionParams.TENANT_ID != null){
-                loadContent('day', v_date,0, sessionParams.TENANT_ID);
-            }else{
-                loadContent('day', v_date,0, $('#layanan_name').val());
-            }
+            loadContent('day', v_date,0, $('#layanan_name').val());
         }
     });
 
     $('#layanan_name').change(function(){
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            if(sessionParams.TENANT_ID != null){
-                loadContent('day',  $('#input-date-filter').val(),0, sessionParams.TENANT_ID);
-            }else{
-                loadContent('day',  $('#input-date-filter').val(),0, $('#layanan_name').val());
-            }
+            loadContent('day',  $('#input-date-filter').val(),0, $('#layanan_name').val());
         }else if(fromParams == 'month'){
-            if(sessionParams.TENANT_ID != null){
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-            }else{
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            }
+            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
-            if(sessionParams.TENANT_ID != null){
-                loadContent('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
-            }else{
-                loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            }
+            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
         }
     });
 
@@ -784,11 +755,7 @@ function setDatePicker(){
         // sessionStorage.removeItem('paramsSession');
         // sessionStorage.setItem('paramsSession', 'day');
         let fromParams = sessionStorage.getItem('paramsSession');
-        if(sessionParams.TENANT_ID != null){
-            loadContent('year', v_year,0, sessionParams.TENANT_ID);
-        }else{
-            loadContent('year', v_year,0, $('#layanan_name').val());
-        }
+        loadContent('year', v_year,0, $('#layanan_name').val());
         // simmiriStatusTicket('year', v_year, 0);
         // ticketStatusUnit('year', v_year, 0);
         // summaryTicketClose(0, 'year', v_year, 0);
@@ -799,11 +766,8 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        if(sessionParams.TENANT_ID != null){
-            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
-        }else{
-            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        }
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        
         
     });
 })(jQuery);

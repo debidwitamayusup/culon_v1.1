@@ -140,7 +140,7 @@ Class WallboardModel extends CI_Model {
         }
         if($tid)
         {
-            $this->db->where('tenant_id',$tid);
+            $this->db->where_in('tenant_id',$tid);
         }
         $this->db->group_by('tenant_id');
         $query = $this->db->get();
@@ -446,7 +446,7 @@ Class WallboardModel extends CI_Model {
         }
         if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where_in('rpt_summ_interval.tenant_id',$tid);
         }
 
 		$this->db->where('rpt_summ_interval.channel_id',$channel);
@@ -536,7 +536,7 @@ Class WallboardModel extends CI_Model {
         }
         if($tid)
         {
-            $this->db->where('rpt_summ_interval.tenant_id',$tid);
+            $this->db->where_in('rpt_summ_interval.tenant_id',$tid);
         }
 
 
@@ -582,9 +582,10 @@ Class WallboardModel extends CI_Model {
         $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) as AHT, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST, ROUND(AVG(scr),2) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
+        $tidd = array();
         if($src)
         {
-            $this->db->where('tenant_id',$src);
+            $this->db->where_in('tenant_id',$src);
         }
         $this->db->group_by('tenant_id');
 
@@ -595,7 +596,7 @@ Class WallboardModel extends CI_Model {
             foreach($query->result() as $datas)
             {
                 $t_id = $datas->tenant_id;
-
+                $tidd = array_push($datas->tenant_id);
                 $data = array(
                     'TENANT_ID' => strtoupper($datas->id),
                     'SUMCOF' =>  $datas->COF,
@@ -605,7 +606,7 @@ Class WallboardModel extends CI_Model {
                     'SUMSCR' => $datas->SCR
                 );
 
-                $data2 = $this->SummPerformOps_sub($date,$t_id);
+                $data2 = $this->SummPerformOps_sub($date,$tidd);
 
                 $data3 = array_merge($data,$data2);
                 $result[] = $data3;
@@ -625,7 +626,7 @@ Class WallboardModel extends CI_Model {
         $this->db->from('m_channel');
         $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');
         $this->db->where('rpt_summary_scr.tanggal',$date);
-        $this->db->where('rpt_summary_scr.tenant_id',$tenant_id);
+        $this->db->where_in('rpt_summary_scr.tenant_id',$tenant_id);
         $this->db->where('cof IS NOT NULL');
         $this->db->or_where('cof IS NULL');
         $this->db->group_by('m_channel.channel_name');
@@ -669,8 +670,14 @@ Class WallboardModel extends CI_Model {
 
     public function Tenantscrfilter()
     {
-        $this->db->select('tenant_id,tenant_name');
-        $this->db->from('m_tenant');
+        $userid = $this->security->xss_clean($this->input->post('userid'));
+
+        $this->db->select('a.tenant_id, a.tenant_name');
+        $this->db->from('m_tenant a');
+        if($userid){
+            $this->db->join('m_akses b', 'a.tenant_id = b.tenant_id', 'left');
+            $this->db->where('b.userid', $userid);
+        }
         $query = $this->db->get();
 
         
@@ -1088,10 +1095,12 @@ Class WallboardModel extends CI_Model {
         $this->db->group_by('tenant_id');        
         if($tid)
         {
-            $this->db->where('tenant_id',$tid);
+            $this->db->where_in('tenant_id',$tid);
         }
         $query = $this->db->get();
 
+        // print_r($this->db->last_query());
+        // exit;
         if($query->num_rows() > 0)
 		{
             foreach($query->result() as $data)
@@ -1112,10 +1121,11 @@ Class WallboardModel extends CI_Model {
         $this->db->select('IFNULL(SUM(jumlah),0) as total, category');
         $this->db->from('rpt_summ_kip2');
         $this->db->where('tanggal',$tanggal);
-        $this->db->where('tenant_id',$tid);
+        $this->db->where_in('tenant_id',$tid);
         $this->db->group_by('category');
         $query = $this->db->get();
-
+        // print_r($this->db->last_query());
+        // exit;
         if($query->num_rows() > 0)
 		{
             foreach($query->result() as $data)
