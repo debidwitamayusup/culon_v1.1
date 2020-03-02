@@ -1,179 +1,123 @@
 <div class=" app-content">
 	<div class="side-app">
 		<div class="page-header d-flex bd-highlight">
-			<div class="flex-grow-1 bd-highlight">
+			<div class="mr-auto bd-highlight">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active" aria-current="page">
 						<h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
 					</li>
-					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic
-					</li>
+					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Today</li>
 				</ol>
 			</div>
-			<div class="d-flex bd-highlight">
-				<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
-				<div class="p-2 bd-highlight">
-					<select class="form-control" id="tenant_id">
-						
-					</select>
-				</div>
+			<div class="bd-highlight">
+				<select class="form-control-sm" style="border-color:#efecec">
+					<option value="#">All Layanan</option>
+					<option value="#">All Layanan</option>
+					<option value="#">All Layanan</option>
+				</select>
 			</div>
 		</div>
-		<!--Page Header-->
-		<!----Baris Pertama----!-->
-		<div class="row mt-2">
-			<div class="col-xl-6 col-lg-6 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10">Summary by Channel</h5>
-					</div>
-					<div class="card-pie">
-						<div class="canvas-con">
-							<div id="legend" class="legend-con"></div>
-							<div class="canvas-con-inner" id="canvas-pie">
-								<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+	</div>
+	<div class="row" style="margin-right:0px; margin-left:-3px;">
+		<div class="col-xl-12 col-lg-12 col-md-12">
+			<div class="row mt-2">
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_user.png">
+								</div>
 							</div>
-
+							<span class="count-numbers num-font" id="unique-customer"></span>
+							<span class="count-name">Customer</span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10">Traffic by Services OPS</h5>
-					</div>
-					<!-- chart yang baru -->
-					<!-- <div class="card-body">
-										<canvas id="horizontalBarWallSummary" width="600" height="392"></canvas>
-									</div> -->
-					<div class="card-body" id="echartWallSummaryTrafficDiv">
-						<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"
-							style="width:100%">
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
+								</div>
+							</div>
+							<span class="count-numbers num-font" id="total-interaction"></span>
+							<span class="count-name">Session</span>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<!---! Kolom Channel--->
-			<div class="col-xl-12 col-lg-12 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10">Interval Today (Hours)</h5>
-					</div>
-
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-2">
-								<div class="form-group m-0">
-									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input all-checklist"
-												id="check-all-channel" name="check-all" value="All">
-											<span class="custom-control-label">Show All</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Whatsapp">
-											<span class="custom-control-label">Whatsapp</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Twitter">
-											<span class="custom-control-label">Twitter</span>
-										</label>
-									</div>
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
 								</div>
 							</div>
-							<div class="col-md-2">
-								<div class="form-group m-0">
-									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Facebook">
-											<span class="custom-control-label">Facebook</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Email">
-											<span class="custom-control-label">Email</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Telegram">
-											<span class="custom-control-label">Telegram</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group m-0">
-									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Line">
-											<span class="custom-control-label">Line</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Voice">
-											<span class="custom-control-label">Voice</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Instagram">
-											<span class="custom-control-label">Instagram</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group m-0">
-									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Messenger">
-											<span class="custom-control-label">Messenger</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Twitter DM">
-											<span class="custom-control-label">Twitter DM</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Live Chat">
-											<span class="custom-control-label">Live Chat</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<div class="form-group m-0">
-									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="SMS">
-											<span class="custom-control-label">SMS</span>
-										</label>
-										<label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="ChatBot">
-											<span class="custom-control-label">Chat Bot</span>
-										</label>
-									</div>
-								</div>
-							</div>
+							<span class="count-numbers num-font" id="msg-in"></span>
+							<span class="count-name">interaction</span>
 						</div>
 					</div>
-					<div class="card-body" id="lineWallSummaryTrafficDiv">
-						<canvas id="lineWallSummaryTraffic" class="h-400"></canvas>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="card-custom overflow-hidden">
+						<div class="card-header-small bg-light-3">
+							<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
+						</div>
+						<div class="card-body dash2">
+							<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
+								data-thickness="10" data-color="#d9dbdc99">
+								<div class="chart-circle-value fs">
+									<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
+								</div>
+							</div>
+							<span class="count-numbers num-font" id="msg-out"></span>
+							<span class="count-name">interaction</span>
+						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php $this->load->view('temp/footer');?>
-	<script src="<?= base_url()?>assets/public/js/app/app-wall-summary-traffic.js"></script>
+	<div class="row" style="margin-right:0px; margin-left:-1px;">
+		<div class="col-xl-4 col-lg-4 col-md-12">
+			<div class="card overflow-hidden">
+				<div class="card-header-small">
+					<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
+				</div>
+				<div class="card-pie">
+					<div class="canvas-con">
+						<div id="legend" class="legend-con mt-3"></div>
+						<div class="canvas-con-inner mb-6" id="canvas-pie">
+							<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-8 col-lg-8 col-md-12">
+			<div class="card overflow-hidden">
+				<div class="card-body" id="card-baru" style="padding:5px;">
+					<div class="row" id="row-baru">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->load->view('temp/footer');?>
+<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+<script src="<?= base_url()?>assets/public/js/app/app-wall-summary-traffic.js"></script>

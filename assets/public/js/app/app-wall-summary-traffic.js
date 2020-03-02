@@ -1,5 +1,14 @@
 var base_url = $('#base_url').val();
-
+var params_time = '';
+var v_date = '';
+var v_month = '';
+var v_year = '';
+var v_params_tenant = 'oct_telkomcare';
+var months = [
+    'January', 'February', 'March', 'April', 'May',
+    'June', 'July', 'August', 'September',
+    'October', 'November', 'December'
+    ];
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -11,35 +20,47 @@ if (n < 10) {
   n = '0' + n;
 }
 
-//get today
-var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-2);
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    if (sessionParams){
-        $("#filter-loader").fadeIn("slow");
-        // fromTemplate();
-        callSumAllTenant('day', v_params_yesterday, 0, '');
-        callSumPerTenant('day', v_params_yesterday, 0, '');
-        // drawIntervalChart();
-        callIntervalTraffic('day',v_params_yesterday,0, ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'ChatBot'], '');
-        getTenant(v_params_yesterday);
+    if(sessionParams){
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#dateTahun option[value='+m+']').attr('selected','selected');
 
-        // $('#check-all-channel').prop('checked',false);
-        // $("input:checkbox.checklist-channel").prop('checked',false);
-        // var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        // Array.prototype.forEach.call(checkboxes, function(el) {
-        //     values.push(el.value);
-        //     type.push($(el).data('type'));
-        // });
-        // // console.log(values);
-        // list_channel = values;
+        // v_date = getToday();
+        // v_month = getMonth();
+        // v_year = getYear();
+        params_time = 'day';
+        v_date = '2019-12-02';
+        v_month = getMonth();
+        v_year = getYear();
 
-        $("#filter-loader").fadeOut("slow");
+        $("#btn-day").prop("class","btn btn-red btn-sm");
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'day');
+        console.log($('#layanan_name').val());
+        loadContent(params_time, '2020-02-24', 0, '');
+        getTenant('');
+        // $('#tag-time').html(v_params_this_year);
+        // $("#btn-month").prop("class","btn btn-light btn-sm");
+        // $("#btn-year").prop("class","btn btn-light btn-sm");
+        // $("#btn-day").prop("class","btn btn-red btn-sm");
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+        setMonthPicker();
+        setYearPicker();
+        // loadContent(params_time, v_params_this_year);
+        // $('#tag-time').html(v_params_this_year);
+        // $("#btn-month").prop("class","btn btn-light btn-sm");
+        // $("#btn-year").prop("class","btn btn-light btn-sm");
+        // $("#btn-day").prop("class","btn btn-red btn-sm");
     }else{
         window.location = base_url
     }
+
 });
 
 function getTenant(date){
@@ -51,19 +72,106 @@ function getTenant(date){
         },
 
         success: function (r) {
-            $('#modalError').modal('hide');
             var data_option = [];
+            //dont parse response if using rest controller
             // var response = JSON.parse(r);
             var response = r;
             // console.log(response);
-            var html = '<option value="">Semua Layanan</option>';
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
             // var html = '';
-            var i;
-            // console.log(response);
                 for(i=0; i<response.data.length; i++){
                     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
                 }
-                $('#tenant_id').html(html);
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+
+//for dinamic dropdown year on month
+function callYearOnMonth()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-on-month");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var monthOption = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-on-month').html(html);
+
+                // monthOption = '<option value="01">January</option>'+
+                //                 '<option value="02">February</option>'+
+                //                 '<option value="03">March</option>'+
+                //                 '<option value="04">April</option>'+
+                //                 '<option value="05">May</option>'+
+                //                 '<option value="06">June</option>'+
+                //                 '<option value="07">July</option>'+
+                //                 '<option value="08">August</option>'+
+                //                 '<option value="09">September</option>'+
+                //                 '<option value="10">October</option>'+
+                //                 '<option value="11">November</option>'+
+                //                 '<option value="12">December</option>';
+                // $('#select-month').html(monthOption);                            
+            // var option = $ ("<option />");
+            //     option.html(i);
+            //     option.val(i);
+            //     dateTahun.append(option);
+        },
+        error: function (r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
+
+//for dinamic dropdown year on year
+function callYear()
+{
+    var data = "";
+    var base_url = $('#base_url').val();
+    // console.log(year);
+
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/SummaryTraffic/SummaryYear/optionYear',
+        // data: {
+        //     "niceDate" : niceDate
+        // },
+
+        success: function (r) {
+            var data_option = [];
+            var dateTahun = $("#select-year-only");
+            var response = JSON.parse(r);
+
+            // var html = '<option value="2020">2020</option>';
+            var html = '';
+            var i;
+                for(i=0; i<response.data.niceDate.length; i++){
+                    html += '<option value='+response.data.niceDate[i]+'>'+response.data.niceDate[i]+'</option>';
+                }
+                $('#select-year-only').html(html);
             
             // var option = $ ("<option />");
             //     option.html(i);
@@ -72,13 +180,17 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){getTenant(date);}, 5000);
+            alert("error");
         },
     });
 }
 
-//function get data and draw
+//for convert numeric month to lettering month name
+function monthNumToName(month) {
+    return months[month - 1] || '';
+}
+
+//function
 function getColorChannel(channel){
     var color = [];
     color['Email'] = '#e41313';
@@ -92,126 +204,164 @@ function getColorChannel(channel){
     color['Twitter'] = '#45aaf2';
     color['Twitter DM'] = '#6574cd';
     color['Voice'] = '#ff9933';
-    color['Whatsapp'] = '#089e60';
+    color['Whatsapp'] = '#31a550';
     color['ChatBot'] = '#6e273e';
 
     return color[channel];
 }
 
-function callSumAllTenant(params, index, params_year, tenant_id){
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/Wallboard/WallboardController/TrafficOPSPieChart',
-        data: {
-            params: params,
-            index: index,
-            params_year: params_year,
-            tenant_id: tenant_id
-        },
-        success: function (r) {
-            $('#modalError').modal('hide');
-            // var response = JSON.parse(r);
-            //hit url for interval 900000 (15 minutes)
-            drawPieChartSumAllTenant(r);
-            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},5000);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){callSumAllTenant(params, index, params_year, tenant_id);},5000);
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
+function getToday(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy  + '-' + mm + '-' + (dd-1);
+    return today;
 }
 
-function callSumPerTenant(params, index, params_year, tenant_id){
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
-        data: {
-            params: params,
-            index: index,
-            params_year: params_year,
-            tenant_id: tenant_id
-        },
-        success: function (r) {
-            // var response = JSON.parse(r);
-            var response = r;
-            $('#modalError').modal('hide');
-            //hit url for interval 900000 (15 minutes)
-            drawChartPerTenant(response);
-            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},5000);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){callSumPerTenant(params, index, params_year, tenant_id);},5000);
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
+function getMonth(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var month = mm;
+    return month;
 }
 
-function callIntervalTraffic(params, index, params_year, channel, tenant_id){
-    // console.log(+arr_channel);
-    // $("#filter-loader").fadeIn("slow");
+function getYear(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    var year = yyyy;
+    return year;
+}
+
+async function loadContent(params, index_time, params_year, tenant_id){
+    $("#filter-loader").fadeIn("slow");
+    callSummaryInteraction(params, index_time, params_year, tenant_id);
+    callTotalInteraction(params, index_time, params_year, tenant_id);
+    callTotalUniqueCustomer(params, index_time, params_year, tenant_id);
+    // callAverageCustomer(params, index_time);
+    callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id);
+    callSummaryCaseTotAgent(params, index_time, params_year, tenant_id);
+    $("#filter-loader").fadeOut("slow");
+}
+
+function drawCardInteraction(value){
+    let classBg = value.channel == "Whatsapp" ? "bg-primary" : value.channel == "Email" ? "bg-danger" : value.channel == "Twitter" ? "bg-info" : value.channel == "Facebook" ? "bg-blue" : value.channel == "Telegram" ? "bg-dark" : value.channel == "Voice" ? "bg-warning" : value.channel == "Instagram" ? "bg-pink" : value.channel == "Facebook Messenger" ? "bg-blue-dark" : value.channel == "Twitter DM" ? "bg-indigo" : value.channel == "Line" ? "bg-success" : value.channel == "Live Chat" ? "bg-gray1" : value.channel == "SMS" ? "bg-blue-teal" : "";
+    
+    let classIcon = value.channel == "Whatsapp" ? "fab fa-whatsapp text-primary" : value.channel == "Email" ? "fa fa-envelope text-danger" : value.channel == "Twitter" ? "fab fa-twitter text-info" : value.channel == "Facebook" ? "fab fa-facebook text-blue" : value.channel == "Telegram" ? "fab fa-telegram text-dark" : value.channel == "Voice" ? "fa fa-microphone text-warning" : value.channel == "Instagram" ? "fab fa-instagram text-pink" : value.channel == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue" : value.channel == "Twitter DM" ? "fa fa-mail-bulk text-indigo" : value.channel == "ChatBot" ? "fe fe-messenger-square text-indigo" : value.channel == "Line" ? "fab fa-line text-success" : value.channel == "Live Chat" ? "fa fa-comments text-gray1" : value.channel == "SMS" ? "fa fa-envelope-open text-blue-teal" : "";
+    
+    var channel_name = (value.channel==='Facebook Messenger')?'Messenger':value.channel;
+    
+    $("#retres").append('<div class="col-md-4"><div class="mini-stat clearfix ' + classBg + ' rounded"><span class="mini-stat-icon"><i class="' + classIcon + '"></i></span> <div class = "mini-stat-info text-white text-right"><h3> ' + value.total + '</h3> ' + channel_name + '</div></div></div>')
+}
+
+function drawCardInteractionNew(value){
+    // draw
+    $('#row-baru').append(''+
+    '<div class="col-xl-4 col-lg-4 col-md-12">'+
+        '<div class="mini-stat-summary clearfix rounded" style="background: '+value.channel_color+'">'+
+            '<div class="row">'+
+                '<div class="col-sm-3 mr-1 ml-2">'+
+                    '<div class="d-flex flex-row text-center">'+
+                        '<div class="bd-highlight">'+
+                            '<img src="'+value.image_icon+'" style="height:50px">'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="d-flex">'+
+                        '<div class="mt-2 text-white font10 font-weight-extrabold">'+value.channel+'</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-sm-auto mb-2">'+
+                    '<h6 class="text-white font-weight-normal font10">Unique Customer </h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Total Session</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Message In</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">Message Out</h6>'+
+                    '<h6 class="text-white font-weight-normal font10">SLA</h6>'+
+                '</div>'+
+                '<div class="col-sm-auto text-right">'+
+                    '<h6 class="text-white font10">'+addCommas(value.total)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.total_session)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.msg_in)+'</h6>'+
+                    '<h6 class="text-white font10">'+addCommas(value.msg_out)+'</h6>'+
+                    '<h6 class="text-white font10">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>');
+}
+
+function callSummaryInteraction(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'post',
-        url: base_url+'api/Wallboard/WallboardController/IntervalToday',
+        url: base_url + 'Summary-Traffic/cardMain',
         data: {
             params: params,
-            index: index,
+            index: index_time,
             params_year: params_year,
-            channel: channel,
             tenant_id: tenant_id
         },
-        success: function (r) {
-            $('#modalError').modal('hide');
-            // var response = JSON.parse(r);
+        success: function (r) { 
+            var response = JSON.parse(r);
             // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            drawLineChart(r);
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
-            // drawTableData(response);
-            // $("#filter-loader").fadeOut("slow");
+            drawChartAndCard(response);
         },
         error: function (r) {
-            // console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){callIntervalTraffic(params, index, params_year, channel, tenant_id);},5000);
-            // $("#filter-loader").fadeOut("slow");
+            alert("error");
         },
     });
 }
 
-function drawPieChartSumAllTenant(response){
-    $('#pieWallSummaryTraffic').remove();
-    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
+function drawChartAndCard(response){
+    //destroy div piechart
+    $('#pieSummary').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
 
-    var ctx = document.getElementById("pieWallSummaryTraffic");
-    ctx.height = 250;
+    //destroy div card content
+    $('#row-baru').remove(); // this is my <div> element
+    $('#card-baru').append('<div id="row-baru" class="row"></div>');
+
+    let arrTotal = []
+    let arrChannel = []
+    let arrColor = []
+    
+    // draw card yang ada datanya
+    response.data.forEach(function (value, index) {
+        drawCardInteractionNew(value);
+        arrTotal.push(value.total_session);
+        arrChannel.push(value.channel);
+        arrColor.push(getColorChannel(value.channel));
+    });
+
+    // draw chart
+    var ctx = document.getElementById("pieSummary");
+    ctx.height = 298;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             datasets: [{
-                data: response.data.total,
-                backgroundColor: response.data.color,
-                hoverBackgroundColor: response.data.color
+                labels: arrTotal,
+                data: arrTotal,
+                backgroundColor: arrColor,
+                hoverBackgroundColor: arrColor
             }],
-            labels: response.data.channel_name
+            labels: arrChannel
         },
         options: {
-            animation: false,
-            responsive: true,
             maintainAspectRatio: false,
-
+            responsive: true,
             legend: {
                 display: false
             },
             tooltips: {
               callbacks: {
                     label: function(tooltipItem, data) {
+                        // var value = data.datasets[0].data[tooltipItem.index];
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
@@ -219,1061 +369,415 @@ function drawPieChartSumAllTenant(response){
                         return data.labels[tooltipItem.index]+': '+ value;
                     }
               } // end callbacks:
-            },
+            }, //end tooltips
             pieceLabel: {
                 render: 'legend',
                 fontColor: '#000',
                 position: 'outside',
-                segment: true
+                segment: true,
+                precision: 0,
+                showActualPercentages: true,
             },
             legendCallback: function (chart, index) {
+                // console.log(chart);
                 var allData = chart.data.datasets[0].data;
-                // console.log(chart)
                 var legendHtml = [];
                 legendHtml.push('<ul><div class="row ml-2">');
                 allData.forEach(function (data, index) {
-                  if (allData[index] != 0) {
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for (var i in allData) {
-                        total += parseInt(Number(allData[i]));
-                    }
-                    // console.log(dataLabel+":")
-                    // console.log(total);
-                    // console.log(total)
-                    // var percentage = Math.round((dataLabel / total) * 100);
-                    if(dataLabel != 0){
-                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                    if (allData[index] != 0) {
+                        var label = chart.data.labels[index];
+                        var dataLabel = allData[index];
+                        var background = chart.data.datasets[0].backgroundColor[index];
+                        var total = 0;
+                        for (var i in allData) {
+                            total += parseInt(allData[i]);
+                        }
+                        // var percentage = Math.round((dataLabel / total) * 100);
+                        if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                        }else{
+                            var percentage = Math.round((dataLabel / total) * 100);
+                        }
+
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
+                        legendHtml.push('</li>');
                     }else{
-                        var percentage = Math.round((dataLabel / total) * 100);
+                        var label = chart.data.labels[index];
+                        var dataLabel = allData[index];
+                        var background = chart.data.datasets[0].backgroundColor[index];
+                        var total = 0;
+                        for (var i in allData) {
+                            total += parseInt(allData[i]);
+                        }
+                        // var percentage = Math.round((dataLabel / total) * 100);
+                        if(dataLabel != 0){
+                            var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                        }else{
+                            var percentage = Math.round((dataLabel / total) * 100);
+                        }
+
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
+                        legendHtml.push('</li>');
                     }
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + (percentage.toString()).replace('.',',') + '%</span>');
-                  } else {
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for (var i in allData) {
-                        total += parseInt(Number(allData[i]));
-                    }
-                    // console.log(dataLabel+"/")
-                    // console.log(total);
-                    // console.log(total)
-                    // var percentage = Math.round((dataLabel / total) * 100);
-                    if(dataLabel != 0){
-                        var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
-                    }else{
-                        var percentage = Math.round((dataLabel / total) * 100);
-                    }
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + '0' + '%</span>');
-                  }
-                    
                 })
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");
+            },
+            //untuk onclick pada chart javascript
+            onClick: function(event, array) {
+                let element = this.getElementAtEvent(event);
+                if (element.length > 0) {
+                var series= element[0]._model.datasetLabel;
+                var label = element[0]._model.label;
+                var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
+                alert("Sessions of "+label+" is "+value);
+                }
             },
         }
     });
     var myLegendContainer = document.getElementById("legend");
     myLegendContainer.innerHTML = myChart.generateLegend();
+    
 }
 
-function addCommas(commas) {
+function addCommas(commas)
+{
     commas += '';
     x = commas.split('.');
     x1 = x[0];
     x2 = x.length > 1 ? '.' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
 }
 
-function drawChartPerTenant(response){
-    // destroyHorizontalChart();
-    $('#echartWallSummaryTraffic').remove(); // this is my <canvas> element
-    $('#echartWallSummaryTrafficDiv').append('<div id="echartWallSummaryTraffic" class="chartsh-traffic-ops overflow-hidden"></div>');
-    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot=[];
-
-    response.data.forEach(function (value, index) {
-            arrTenant.push(value.TENANT_ID);
-            // arrART.push(value.ART);
-            // arrAHT.push(value.AHT);
-            // arrAST.push(value.AST);
-            // arrSCR.push(value.SCR);
-        });
-    for (var i = 0; i < response.data.length; i++) {
-        // console.log()
-        dataWa.push(response.data[i].DATA[10]);
-        dataFB.push(response.data[i].DATA[5]);
-        dataDM.push(response.data[i].DATA[11]);
-        dataTwitter.push(response.data[i].DATA[7]);
-        dataIg.push(response.data[i].DATA[9]);
-        dataMessenger.push(response.data[i].DATA[6]);
-        dataTelegram.push(response.data[i].DATA[4]);
-        dataLine.push(response.data[i].DATA[8]);
-        dataEmail.push(response.data[i].DATA[1]);
-        dataVoice.push(response.data[i].DATA[0]);
-        dataSMS.push(response.data[i].DATA[3]);
-        dataLive.push(response.data[i].DATA[2]);
-        dataChatbot.push(response.data[i].DATA[12]);
-    }
-
-    /*----echart Wallboard Summary Traffic----*/
-    var chartWallSummary = [{
-         name: 'Voice',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataVoice
-     }, {
-         name: 'Email',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataEmail
-     },{
-         name: 'Live Chat',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLive
-     },{
-         name: 'SMS',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataSMS
-     },{
-         name: 'Telegram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTelegram
-     },{
-         name: 'Facebook',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataFB
-     },{
-         name: 'Messenger',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataMessenger
-     },{
-         name: 'Twitter',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTwitter
-     },{
-         name: 'Line',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLine
-     },{
-         name: 'Instagram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataIg
-     },{
-         name: 'Whatsapp',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataWa
-     },{
-         name: 'Twitter DM',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataDM
-    },{
-         name: 'Chat Bot',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataChatbot
-    }];
-    /*----echartTicketUnit----*/
-
-    var optionWallSummary = {
-        animation: false,
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {       
-                // type: 'shadow'
-                label: {
-                    show: false,
-                    formatter: function (value, index) {
-                            var teks = '';
-                            // console.log(value)
-                            if(value.value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value.value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value.value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value.value
-                            }
-                            return teks;
-                    }
-                }
-            },
-            position: function (pos, params, dom, rect, size) {
-                 // tooltip will be fixed on the right if mouse hovering on the left,
-                 // and on the left if hovering on the right.
-                 // console.log(pos);
-                 var obj = {top: pos[6]};
-                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                 return obj;
-             },
-        },
-        legend: {
-            // bottom: 10,
-            left: 'center',
-            top: 'auto',
-            data: ['Voice', 'Email', 'Live Chat', 'SMS', 'Telegram', 'Facebook', 'Messenger', 'Twitter', 'Line', 'Instagram', 'Whatsapp', 'Twitter DM', 'Chat Bot'],
-            itemWidth :12,
-            padding: [10, 10,40, 10]
-            
-        },
-        grid: {
-            top: '25%',
-            right: '3%',
-            bottom: '5%',
-            left: '1%',
-            containLabel: true,
-            width: 'auto'
-        },
-        xAxis: {
-            type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        yAxis: {
-            type: 'category',
-            data: arrTenant,
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0',
-                formatter: function (value, index) {
-                            var teks = '';
-                            if(value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value
-                            }
-                            return teks;
-                    }
-            }
-        },
-        series: chartWallSummary,
-        color: ['#ff9933', '#e41313', '#607d8b', '#80cbc4', '#343a40', '#467fcf', '#3866a6', '#45aaf2', '#31a550', '#d56dfc', '#089e60', '#6574cd', '#6e273e']
-    };
-    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
-    var barChartWallSummary = echarts.init(chartWallSummary);
-    barChartWallSummary.setOption(optionWallSummary);
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function destroyChartInterval(){
-    // destroy chart interval 
-    $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
-    // $('#chart-no-data').remove(); // this is my <canvas> element
-    $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic"  class="h-400"></canvas>');
-}
-
-function drawLineChart(response){
-    destroyChartInterval();
-    var data = [];
-    if(!response.data.series){
-        $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
-        $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic" class="h-400"></canvas>');
-    }else{
-        response.data.series.forEach(function (value, index) {
-            var obj = {
-                label: value.label,
-                data: value.data,
-                backgroundColor: 'transparent',
-                borderColor: getColorChannel(value.label),
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 4,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: getColorChannel(value.label),
-            };
-            data.push(obj);
-        });
-
-        // draw chart
-        var ctx = document.getElementById( "lineWallSummaryTraffic" );
-        var myChart = new Chart( ctx, {
-            type: 'line',
-            data: {
-                labels: response.data.label_time,
-                datasets: data
-            },
-            options: {
-                animation: false,
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 5,
-                        right: 7,
-                        top: 15,
-                        bottom: 10
-                    }
-                },
-                legend:{
-                    display: true,
-                    position:'bottom',
-                    labels:{
-                        boxWidth:10
-                    }
-                },
-                barRoundness:  1,
-                scales: {
-                    yAxes: [ {
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        } );
-    }
-}
-
-function drawIntervalChart(){
-    // Line Wall
-    var ctx = document.getElementById( "lineWallSummaryTraffic" );
-    var myChart = new Chart( ctx, {
-        type: 'line',
+function callTotalInteraction(params, index_time, params_year, tenant_id){
+    //call total interaction
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {
-            labels: [ "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"],
-            datasets: [ {
-                label: "Whatsapp",
-                data: [ 0,90,80,70,80,90,80,60,40,90,100,120,150,190,200,280,300,350,90,50,60,40,80,90,100],
-                backgroundColor: 'transparent',
-                borderColor: '#089e60',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#089e60',
-                    }, {
-                label: "Facebook",
-                data: [ 0,100,50,30,50,40,30,60,90,100,30,40,50,90,100,180,200,550,90,90,30,40,50,100,130 ],
-                backgroundColor: 'transparent',
-                borderColor: '#467fcf',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#467fcf',
-                 }, {
-                label: "Twitter",
-                data: [ 0,60,90,60,50,40,40,40,90,30,30,150,170,200,290,240,340,190,40,50,40,30,90,40,120],
-                backgroundColor: 'transparent',
-                borderColor: '#45aaf2',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#45aaf2',
-                    }, {
-                label: "Twitter DM",
-                data: [ 0,40,50,60,90,100,70,90,40,100,150,180,120,130,100,250,310,250,80,150,160,140,180,50,300 ],
-                backgroundColor: 'transparent',
-                borderColor: '#6574cd',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#6574cd',
-                    }, {
-                label: "Line",
-                data: [ 0,190,180,170,180,190,90,80,60,100,180,90,110,120,130,230,250,250,190,150,160,140,90,180,140 ],
-                backgroundColor: 'transparent',
-                borderColor: '#31a550',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#31a550',
-                    }, {
-                label: "Messenger",
-                data: [ 0,30,180,170,180,190,180,160,140,190,110,110,120,100,210,180,200,250,200,150,160,290,180,180,130 ],
-                backgroundColor: 'transparent',
-                borderColor: '#3866a6',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#3866a6',
-                    }, {
-                label: "Telegram",
-                data: [ 0,10,30,40,10,70,30,40,50,70,80,110,130,120,200,180,100,150,190,240,160,120,200,130,120],
-                backgroundColor: 'transparent',
-                borderColor: '#343a40',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#343a40',
-                    }, {
-                label: "Instagram",
-                data: [ 0,10,70,10,30,70,60,70,10,100,120,140,120,130,240,140,320,230,40,520,260,200,30,40,300 ],
-                backgroundColor: 'transparent',
-                borderColor: '#fbc0d5',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#fbc0d5',
-                    }, {
-                label: "Email",
-                data: [ 0,70,60,20,50,40,180,160,140,100,130,150,160,180,230,270,350,250,50,400,260,240,280,290,400 ],
-                backgroundColor: 'transparent',
-                borderColor: '#e41313',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#e41313',
-                    }, {
-                label: "Voice",
-                data: [ 0,70,50,60,70,80,90,60,60,50,130,130,100,200,250,260,100,50,70,150,160,140,180,190,120 ],
-                backgroundColor: 'transparent',
-                borderColor: '#ff9933',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#ff9933',
-                    },{
-                label: "SMS",
-                data: [ 0,190,180,170,180,190,180,160,140,100,150,150,180,180,250,200,350,150,100,90,80,50,70,60,120 ],
-                backgroundColor: 'transparent',
-                borderColor: '#80cbc4',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#80cbc4',
-                },{
-                label: "Live Chat",
-                data: [ 0,10,70,50,60,90,340,150,150,160,200,220,250,150,210,250,310,320,70,60,90,60,50,100,140 ],
-                backgroundColor: 'transparent',
-                borderColor: '#607d8b',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#607d8b',
-                    } ]
+            params: params,
+            index: index_time,
+            params_year: params_year,
+            tenant_id: tenant_id
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend:{
-                position:'bottom',
-                labels:{
-                    boxWidth:10
-                }
-            },
-            barRoundness: 1,
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true
-                        }
-                    }]
-            }
-        }
-    } );
-}
-
-function fromTemplate(){
-    "use strict";
-
-    //pie chart Ticket Channel
-    var ctx = document.getElementById("pieWallSummaryTraffic");
-    ctx.height = 250;
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [15, 35, 40, 20, 50, 30, 15, 30, 40, 50, 70, 90],
-                backgroundColor: [
-                    "#467fcf",
-                    "#fbc0d5",
-                    "#31a550",
-                    "#e41313",
-                    "#3866a6",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#343a40",
-                    "#607d8b",
-                    "#31a550",
-                    "#ff9933",
-                    "#80cbc4"
-                ],
-                hoverBackgroundColor: [
-                    "#467fcf",
-                    "#fbc0d5",
-                    "#31a550",
-                    "#e41313",
-                    "#3866a6",
-                    "#45aaf2",
-                    "#6574cd",
-                    "#343a40",
-                    "#607d8b",
-                    "#31a550",
-                    "#ff9933",
-                    "#80cbc4"
-                ]
-
-            }],
-            labels: [
-                "Facebook",
-                "Instagram",
-                "Line",
-                "Email",
-                "Messenger",
-                "Twitter",
-                "Twitter DM",
-                "Telegram",
-                "Live Chat",
-                "Whatsapp",
-                "Voice",
-                "SMS"
-            ]
+        success: function (r) {
+            var response = JSON.parse(r);
+            var commas = response.data.total_interaction;
+            var functionCommas = addCommas(commas);
+            // console.log(commas);
+            console.log(response);
+            $("#total-interaction").html(functionCommas);  
+            // console.log(functionCommas);
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-
-            legend: {
-                display: false
-            },
-            pieceLabel: {
-                render: 'legend',
-                fontColor: '#000',
-                position: 'outside',
-                segment: true
-            },
-            legendCallback: function (chart, index) {
-                var allData = chart.data.datasets[0].data;
-                // console.log(chart)
-                var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
-                allData.forEach(function (data, index) {
-                    var label = chart.data.labels[index];
-                    var dataLabel = allData[index];
-                    var background = chart.data.datasets[0].backgroundColor[index]
-                    var total = 0;
-                    for (var i in allData) {
-                        total += parseInt(allData[i]);
-                    }
-
-                    // console.log(total)
-                    var percentage = Math.round((dataLabel / total) * 100);
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
-                })
-                legendHtml.push('</ul></div>');
-                return legendHtml.join("");
-            },
-        }
+        error: function (r) {
+            // alert("error");
+            // console.log(r);
+        },
     });
-    var myLegendContainer = document.getElementById("legend");
-    myLegendContainer.innerHTML = myChart.generateLegend();
+}
 
-
-    /*----echart Wallboard Summary Traffic----*/
-    var chartWallSummary = [{
-        name: 'ART',
-        type: 'bar',
-        stack: 'Stack',
-        data: [12, 12, 12, 12, 12, 12, 12, 12, 12, 12,12,12]
-    }, {
-        name: 'AST',
-        type: 'bar',
-        stack: 'Stack',
-        data: [25, 25, 25, 25, 25, 25, 25, 25, 25, 25,25,25]
-    }, {
-        name: 'AHT',
-        type: 'bar',
-        stack: 'Stack',
-        data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40,40,40]
-    }, {
-        name: 'SCR',
-        type: 'bar',
-        stack: 'Stack',
-        data: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60,60,60]
-    }];
-    /*----echartTicketUnit----*/
-    var optionWallSummary = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {       
-                type: 'shadow'
-            }
-        },
-        legend: {
-            bottom: 10,
-            left: 'center',
-            data: ['ART', 'AST', 'AHT', 'SCR'],
-            labels:{
-                boxWidth:10
-            }
-        },
-        grid: {
-            top: '3%',
-            right: '3%',
-            bottom: '15%',
-            left: '20%',
-        },
-        xAxis: {
-            type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        yAxis: {
-            type: 'category',
-            data: ['Garuda', 'Pegadaian', 'Pegadaian', 'BRI', 'Garuda', 'Pegadaian', 'BRI', 'Garuda', 'Pegadaian', 'BRI', 'Garuda', 'Telkom'],
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        series: chartWallSummary,
-        color: ["#00206C", "#007C7A", "#0038DE", "#00CBC9"]
-    };
-    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
-    var barChartWallSummary = echarts.init(chartWallSummary);
-    barChartWallSummary.setOption(optionWallSummary);
-
-// Line Wall
-    var ctx = document.getElementById( "lineWallSummaryTraffic" );
-    var myChart = new Chart( ctx, {
-        type: 'line',
+function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
+       //call total unique customer
+       $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {
-            labels: [ "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"],
-            datasets: [ {
-                label: "Whatsapp",
-                data: [ 0,90,80,70,80,90,80,60,40,90,100,120,150,190,200,280,300,350,90,50,60,40,80,90,100],
-                backgroundColor: 'transparent',
-                borderColor: '#089e60',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#089e60',
-                    }, {
-                label: "Facebook",
-                data: [ 0,100,50,30,50,40,30,60,90,100,30,40,50,90,100,180,200,550,90,90,30,40,50,100,130 ],
-                backgroundColor: 'transparent',
-                borderColor: '#467fcf',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#467fcf',
-                 }, {
-                label: "Twitter",
-                data: [ 0,60,90,60,50,40,40,40,90,30,30,150,170,200,290,240,340,190,40,50,40,30,90,40,120],
-                backgroundColor: 'transparent',
-                borderColor: '#45aaf2',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#45aaf2',
-                    }, {
-                label: "Twitter DM",
-                data: [ 0,40,50,60,90,100,70,90,40,100,150,180,120,130,100,250,310,250,80,150,160,140,180,50,300 ],
-                backgroundColor: 'transparent',
-                borderColor: '#6574cd',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#6574cd',
-                    }, {
-                label: "Line",
-                data: [ 0,190,180,170,180,190,90,80,60,100,180,90,110,120,130,230,250,250,190,150,160,140,90,180,140 ],
-                backgroundColor: 'transparent',
-                borderColor: '#31a550',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#31a550',
-                    }, {
-                label: "Messenger",
-                data: [ 0,30,180,170,180,190,180,160,140,190,110,110,120,100,210,180,200,250,200,150,160,290,180,180,130 ],
-                backgroundColor: 'transparent',
-                borderColor: '#3866a6',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#3866a6',
-                    }, {
-                label: "Telegram",
-                data: [ 0,10,30,40,10,70,30,40,50,70,80,110,130,120,200,180,100,150,190,240,160,120,200,130,120],
-                backgroundColor: 'transparent',
-                borderColor: '#343a40',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#343a40',
-                    }, {
-                label: "Instagram",
-                data: [ 0,10,70,10,30,70,60,70,10,100,120,140,120,130,240,140,320,230,40,520,260,200,30,40,300 ],
-                backgroundColor: 'transparent',
-                borderColor: '#fbc0d5',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#fbc0d5',
-                    }, {
-                label: "Email",
-                data: [ 0,70,60,20,50,40,180,160,140,100,130,150,160,180,230,270,350,250,50,400,260,240,280,290,400 ],
-                backgroundColor: 'transparent',
-                borderColor: '#e41313',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#e41313',
-                    }, {
-                label: "Voice",
-                data: [ 0,70,50,60,70,80,90,60,60,50,130,130,100,200,250,260,100,50,70,150,160,140,180,190,120 ],
-                backgroundColor: 'transparent',
-                borderColor: '#ff9933',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#ff9933',
-                    },{
-                label: "SMS",
-                data: [ 0,190,180,170,180,190,180,160,140,100,150,150,180,180,250,200,350,150,100,90,80,50,70,60,120 ],
-                backgroundColor: 'transparent',
-                borderColor: '#80cbc4',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#80cbc4',
-                },{
-                label: "Live Chat",
-                data: [ 0,10,70,50,60,90,340,150,150,160,200,220,250,150,210,250,310,320,70,60,90,60,50,100,140 ],
-                backgroundColor: 'transparent',
-                borderColor: '#607d8b',
-                borderWidth: 3,
-                pointStyle: 'circle',
-                pointRadius: 5,
-                pointBorderColor: 'transparent',
-                pointBackgroundColor: '#607d8b',
-                    } ]
+            params: params,
+            index: index_time,
+            params_year: params_year,
+            tenant_id: tenant_id
         },
-        options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			legend:{
-                position:'bottom',
-                labels:{
-                    boxWidth:10
-                }
-            },
-            barRoundness: 1,
-            scales: {
-                yAxes: [ {
-                    ticks: {
-                        beginAtZero: true
-						}
-                    }]
-            }
-        }
-    } );
+        success: function (r) {
+            var response = JSON.parse(r);
+            var commas2 = response.data.total_unique_customer;
+            var functionCommas2 = addCommas(commas2);
+            // console.log(response);
+            $("#unique-customer").html(functionCommas2);
+        },
+        error: function (r) {
+            // alert("error");
+            // console.log(r);
+        },
+    });
+}
+
+function callAverageCustomer(params, index_time, params_year){
+       //call avg customer
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/average_customer',
+        data: {
+            params: params,
+            index: index_time,
+            params_year: params_year
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            $("#avg-customer").html(response.data.average_customer);
+        },
+        error: function (r) {
+            // alert("error");
+            // console.log(r);
+        },
+    });
+}
+
+function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id){
+    // destroy div card unique customer per channel
+    $('#retres-unique').remove(); // this is my <canvas> element
+    $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
+        data: {
+            params: params,
+            index: index_time,
+            params_year,
+            tenant_id: tenant_id
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response.data[0].total_unique);
+            // console.log(response.data);
+            response.data.forEach(function (value, index) {
+                let classBg = value.channel_name == "Whatsapp" ? "text-primary" : value.channel_name == "Email" ? "text-danger" : value.channel_name == "Twitter" ? "text-info" : value.channel_name == "Facebook" ? "text-blue" : value.channel_name == "Telegram" ? "text-dark" : value.channel_name == "Voice" ? "text-warning" : value.channel_name == "Instagram" ? "text-pink" : value.channel_name == "Facebook Messenger" ? "text-blue" : value.channel_name == "Twitter DM" ? "text-indigo" : value.channel_name == "Line" ? "text-success" : value.channel_name == "Live Chat" ? "text-gray1" : value.channel_name == "SMS" ? "text-blue-teal" : "";
+                let classIcon = value.channel_name == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel_name == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel_name == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel_name == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel_name == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel_name == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel_name == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel_name == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel_name == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel_name == "Line" ? "fab fa-line text-success plan-icon" : value.channel_name == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel_name == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
+
+                $("#retres-unique").append('<div class="col-xl-3 border-right"><div class="card-body text-center"><i class="' + classIcon + '"></i><div class="dash3"><h5 class="text-muted">' + value.channel_name + '</h5><h4 class="counter ' + classBg + ' num-font">' + value.total_unique + '</h4></div></div></div>')
+            });
+
+            response.data_empty.forEach(function (value, index) {
+                let classBg = value.channel == "Whatsapp" ? "text-primary" : value.channel == "Email" ? "text-danger" : value.channel == "Twitter" ? "text-info" : value.channel == "Facebook" ? "text-blue" : value.channel == "Telegram" ? "text-dark" : value.channel == "Voice" ? "text-warning" : value.channel == "Instagram" ? "text-pink" : value.channel == "Facebook Messenger" ? "text-blue" : value.channel== "Twitter DM" ? "text-indigo" : value.channel == "Line" ? "text-success" : value.channel == "Live Chat" ? "text-gray1" : value.channel == "SMS" ? "text-blue-teal" : "";
+                let classIcon = value.channel == "Whatsapp" ? "fab fa-whatsapp text-primary plan-icon" : value.channel == "Email" ? "fa fa-envelope text-danger plan-icon" : value.channel == "Twitter" ? "fab fa-twitter text-info plan-icon" : value.channel == "Facebook" ? "fab fa-facebook text-blue plan-icon" : value.channel == "Telegram" ? "fab fa-telegram text-dark plan-icon" : value.channel == "Voice" ? "fa fa-microphone text-warning plan-icon" : value.channel == "Instagram" ? "fab fa-instagram text-pink plan-icon" : value.channel == "Facebook Messenger" ? "fab fa-facebook-messenger text-blue plan-icon" : value.channel == "Twitter DM" ? "fa fa-mail-bulk text-indigo plan-icon" : value.channel == "Line" ? "fab fa-line text-success plan-icon" : value.channel == "Live Chat" ? "fa fa-comments text-gray1 plan-icon" : value.channel == "SMS" ? "fa fa-envelope-open text-blue-teal plan-icon" : "";
+
+                $("#retres-unique").append('<div class="col-xl-3 border-right"><div class="card-body text-center"><i class="' + classIcon + '"></i><div class="dash3"><h5 class="text-muted">' + value.channel + '</h5><h4 class="counter ' + classBg + ' num-font">' + value.total + '</h4></div></div></div>')
+            });
+        },
+        error: function (r) {
+            // alert("error");
+            // console.log(r);
+        },
+    });
+}
+
+function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
+        data: {
+            params: params,
+            index: index_time,
+            params_year,
+            tenant_id: tenant_id
+        },
+        success: function (r) {
+            var response = JSON.parse(r);
+            // console.log(response);
+            $('#msg-in').html(addCommas(response.data.msg_in));
+            $('#msg-out').html(addCommas(response.data.msg_out));
+            $('#tot-agent').html(addCommas(response.data.tot_agent));
+            var sla = parseFloat(response.data.sla);
+            $('#sla').html(sla.toFixed(2)+" %");
+        },
+        error: function (r) {
+            alert("error");
+            // console.log(r);
+        },
+    });
+}
+
+function setDatePicker(){
+    $(".datepicker").datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: true
+    }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
 }
 
 //jquery
 (function ($) {
-    
-    // checked all channel
-    // $('#check-all-channel').click(function(){
-    //     $("input:checkbox.checklist-channel").prop('checked',this.checked);
-    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    //     Array.prototype.forEach.call(checkboxes, function(el) {
-    //         values.push(el.value);
-    //         type.push($(el).data('type'));
-    //     });
-    //     // console.log(values);
-    //     list_channel = values;
 
-    //     // call data
-    //     callIntervalTraffic('day', v_params_yesterday,0,list_channel, $('#tenant_id').val());
-    // });
+    var date = new Date();
+    date.setDate(date.getDate() > 0);
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
 
-    //checked channel
-    // $('.checklist-channel').click(function(){
-    //     $('#check-all-channel').prop( "checked", false );
-        
-    //     var checkedValues = $('input:checkbox:checked').map(function() {
-    //         return this.value;
-    //     }).get();
+        onSelect: function (dateText) {
+            // console.log(this.value);
+            v_date = this.value;
 
-    //     var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-    //     Array.prototype.forEach.call(checkboxes, function(el) {
-    //         values.push(el.value);
-    //         type.push($(el).data('type'));
-    //     });
-    //     // console.log(values);
-    //     list_channel = values;
-    //     // call data
-    //     callIntervalTraffic('day',v_params_yesterday,0, list_channel, $('#tenant_id').val());
-    // });
-
-    $("select#tenant_id").change(function(){
-        // destroyChartInterval();
-         // destroyChartInterval();
-        var selectedTenant = $(this).children("option:selected").val();
-        // callTableCOFByChannel(v_params_yesterday, selectedTenant);
-        callSumAllTenant('day', v_params_yesterday, 0, selectedTenant);
-        callSumPerTenant('day', v_params_yesterday, 0, selectedTenant);
-        // drawIntervalChart();
-        callIntervalTraffic('day',v_params_yesterday,0, '', selectedTenant);
-        $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
-        $('#check-all-channel').prop('checked',false);
-        $("input:checkbox.checklist-channel").prop('checked',false);
-        // getTenant(v_params_yesterday);
+            loadContent('day', v_date, 0, '');
+        }
     });
-    
-    // Horizontal Bar Wallboard Summary Traffic yang baru 
-	// Return with commas in between
-	// var numberWithCommas = function (x) {
-	// 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	// };
 
-	// var whatsapp = [20, 20, 20];
-	// var facebook = [40, 40, 40];
- //    var twitter = [60, 60, 60];
- //    var twitterdm = [80, 80, 80];
- //    var instagram = [90, 90, 90];
- //    var messenger = [100, 100, 100];
- //    var telegram = [110, 110, 110];
- //    var line = [120, 120, 120];
- //    var email = [130, 130, 130];
- //    var twitter = [140, 140, 140];
- //    var voice = [150,150, 150];
- //    var sms = [160, 160, 160];
- //    var livechat = [170, 170, 170];
- //    var chatbot = [180, 180, 180];
-	// var LabelX = ["Telkom Care", "Telkom", "BRI"];
+    // btn day
+    $('#btn-day').click(function(){
+        params_time = 'day';
+        // console.log(params_time);
+        // loadContent(params_time , '2019-12-02');
+        loadContent(params_time, v_params_this_year, 0,  $('#layanan_name').val())
+        // $('#tag-time').html(v_params_this_year);
+        v_date='2019-12-01';
+        // callSummaryInteraction(params_time,v_date);
+        // loadContent(params_time, v_params_this_year)
+        // $('#tag-time').html(v_params_this_year);
+        $('#input-date-filter').datepicker("setDate", v_params_this_year);
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
 
-	// var bar_ctx = document.getElementById('horizontalBarWallSummary');
+        $('#filter-date').show();
+        $('#filter-month').hide();
+        $('#filter-year').hide();
+    });
 
-	// var bar_chart = new Chart(bar_ctx, {
-	// 	// type: 'bar',
-	// 	type: 'horizontalBar',
-	// 	data: {
-	// 		labels: LabelX,
-	// 		datasets: [{
-	// 				label: 'Whatsapp',
-	// 				data: whatsapp,
-	// 				backgroundColor: "#089e60",
-	// 				hoverBackgroundColor: "#089e60",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Facebook',
-	// 				data: facebook,
-	// 				backgroundColor: "#467fcf",
-	// 				hoverBackgroundColor: "#467fcf",
-	// 				hoverBorderWidth: 0
-	// 			},
-	// 			{
-	// 				label: 'Twitter',
-	// 				data: twitter,
-	// 				backgroundColor: "#45aaf2",
-	// 				hoverBackgroundColor: "#45aaf2",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Twitter DM',
-	// 				data: twitterdm,
-	// 				backgroundColor: "#6574cd",
-	// 				hoverBackgroundColor: "#6574cd",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Instagram',
-	// 				data: instagram,
-	// 				backgroundColor: "#fbc0d5",
-	// 				hoverBackgroundColor: "#fbc0d5",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Messenger',
-	// 				data: messenger,
-	// 				backgroundColor: "#3866a6",
-	// 				hoverBackgroundColor: "#3866a6",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Telegram',
-	// 				data: telegram,
-	// 				backgroundColor: "#343a40",
-	// 				hoverBackgroundColor: "#343a40",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Line',
-	// 				data:line,
-	// 				backgroundColor: "#31a550",
-	// 				hoverBackgroundColor: "#31a550",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Email',
-	// 				data: email,
-	// 				backgroundColor: "#e41313",
-	// 				hoverBackgroundColor: "#e41313",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Voice',
-	// 				data: voice,
-	// 				backgroundColor: "#ff9933",
-	// 				hoverBackgroundColor: "#ff9933",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'SMS',
-	// 				data: sms,
-	// 				backgroundColor: "#80cbc4",
-	// 				hoverBackgroundColor: "#80cbc4",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'Live Chat',
-	// 				data: livechat,
-	// 				backgroundColor: "#607d8b",
-	// 				hoverBackgroundColor: "#607d8b",
-	// 				hoverBorderWidth: 0
- //                },
- //                {
-	// 				label: 'ChatBot',
-	// 				data: chatbot,
-	// 				backgroundColor: "#6e273e",
-	// 				hoverBackgroundColor: "#6e273e",
-	// 				hoverBorderWidth: 0
-	// 			}
-	// 		]
-	// 	},
-	// 	options: {
-	// 		responsive: true,
-	// 		maintainAspectRatio: false,
-	// 		animation: {
-	// 			duration: 10,
-	// 		},
-	// 		tooltips: {
-	// 			mode: 'label',
-	// 			callbacks: {
-	// 				label: function (tooltipItem, data) {
-	// 					return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-	// 				}
-	// 			}
-	// 		},
-	// 		scales: {
-	// 			xAxes: [{
-	// 				stacked: true,
-	// 				gridLines: {
-	// 					display: false
-	// 				},
-	// 			}],
-	// 			yAxes: [{
-	// 				stacked: true,
-	// 				ticks: {
-	// 					callback: function (value) {
-	// 						return numberWithCommas(value);
-	// 					},
-	// 				},
-	// 			}],
-	// 		},
-	// 		legend: {
-	// 			display: true,
-	// 			labels: {
-	// 				boxWidth: 10
-	// 			}
-	// 		}
-	// 	},
-		// plugins: [{
-		// 	beforeInit: function (chart) {
-		// 		chart.data.labels.forEach(function (value, index, array) {
-		// 			var a = [];
-		// 			a.push(value.slice(0, 5));
-		// 			var i = 1;
-		// 			while (value.length > (i * 5)) {
-		// 				a.push(value.slice(i * 5, (i + 1) * 5));
-		// 				i++;
-		// 			}
-		// 			array[index] = a;
-		// 		})
-		// 	}
-		// }]
-	// });
+    // btn month
+    $('#btn-month').click(function(){
+        var d = new Date();
+        var o = d.getDate();
+        var n = d.getMonth()+1;
+        var m = d.getFullYear();
+        params_time = 'month';
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'month');
+        // var arg ='option '+n+'';
+        // $('#select-month').val(arg)
+        // console.log('dwe'+n);
+        // $( '#select-month' ).find('option[value='+n+']').attr('selected','selected')
+        $('#select-month option[value='+n+']').attr('selected','selected');
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
+        // console.log(params_time);
+        // loadContent(params_time , '12');
+        loadContent(params_time, n, m,  $('#layanan_name').val());
+        callYearOnMonth();
+        // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
+        // $('#tag-time').html(monthNumToName(n)+' '+m);
+        // console.log(monthNumToName(n));
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $("#btn-year").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+
+        // document.getElementById("select-month").selected = "true"
+        // document.getElementById("select-year-on-month").selected = "true"
+
+        $('#filter-date').hide();
+        $('#filter-month').show();
+        $('#filter-year').hide();
+    });
+
+    // btn year
+    $('#btn-year').click(function(){
+        sessionStorage.removeItem('paramsSession');
+        sessionStorage.setItem('paramsSession', 'year');
+        params_time = 'year';
+        // console.log(params_time);
+        // loadContent(params_time , '2019')
+        loadContent(params_time, m, 0,  $('#layanan_name').val());
+        callYear();
+        $('#tag-time').html(m);
+        $("#btn-month").prop("class","btn btn-light btn-sm");
+        $("#btn-day").prop("class","btn btn-light btn-sm");
+        $(this).prop("class","btn btn-red btn-sm");
+        $('#select-year-on-month option[value='+m+']').attr('selected','selected');
+        $('#filter-date').hide();
+        $('#filter-month').hide();
+        $('#filter-year').show();
+    });
+
+    var date = new Date();
+    date.setDate(date.getDate()>0);
+    $('#input-date-filter').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: date,
+        
+        onSelect: function(dateText) {
+        // console.log(this.value);
+        v_date = this.value;
+        
+        loadContent('day', v_date, 0, '');
+        }
+    });
+
+    $('#layanan_name').change(function(){
+        let fromParams = sessionStorage.getItem('paramsSession');
+        if(fromParams == 'day'){
+            loadContent(fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
+        }else if(fromParams == 'month'){
+            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        }else if(fromParams == 'year'){
+            v_year = $(this).val();
+            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
+        }
+    });
+
+
+
+    /*select option month*/ 
+    // $('select#select-month').change(function(){
+    //     v_month = $(this).val();
+    //     // console.log(value);
+    //     // callSummaryInteraction(params_time, v_month,v_year);
+    //     // sessionStorage.removeItem('paramsSession');
+    //     // sessionStorage.setItem('paramsSession', 'day');
+    //     // let fromParams = sessionStorage.getItem('paramsSession');
+
+    //     loadContent('month', v_month, $("#select-year-on-month").val());
+    //     // simmiriStatusTicket(fromParams, v_month, $("#select-year-on-month").val());
+    //     // ticketStatusUnit(fromParams, v_month, $("#select-year-on-month").val());
+    //     // summaryTicketClose(0, fromParams, v_month, $("#select-year-on-month").val());
+    //     // simmiriUnit('month', v_month, $("#select-year-on-month").val());
+    // });
+    // $('select#select-year-on-month').change(function(){
+    //     v_year = $(this).val();
+    //     // console.log(value);
+    //     // sessionStorage.removeItem('paramsSession');
+    //     // sessionStorage.setItem('paramsSession', 'day');
+    //     // let fromParams = sessionStorage.getItem('paramsSession');
+
+    //     loadContent('month', $("#select-month").val(), v_year);
+    //     // simmiriStatusTicket(fromParams, $("#select-month").val(), v_year);
+    //     // ticketStatusUnit(fromParams, $("#select-month").val(), v_year);
+    //     // summaryTicketClose(0, fromParams, $("#select-month").val(), v_year);
+    //     // simmiriUnit('month', $("#select-month").val(), v_year);
+    // });
+    /**/ 
+
+    // select option year
+    $('#select-year-only').change(function(){
+        v_year = $(this).val();
+        // console.log(this.value);
+        // sessionStorage.removeItem('paramsSession');
+        // sessionStorage.setItem('paramsSession', 'day');
+        let fromParams = sessionStorage.getItem('paramsSession');
+        loadContent('year', v_year, 0);
+        // simmiriStatusTicket('year', v_year, 0);
+        // ticketStatusUnit('year', v_year, 0);
+        // summaryTicketClose(0, 'year', v_year, 0);
+        // simmiriUnit('year', v_year, 0);
+        $("#filter-date").hide();
+        $("#filter-month").hide();
+        $("#filter-year").show();
+    });
+
+    $('#btn-go').click(function(){
+        loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), '');
+    });
 })(jQuery);

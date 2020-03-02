@@ -38,6 +38,20 @@ class main extends CI_Controller {
 		$this->load->view('v_home');
 	}
 
+	public function change_profile(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_change_profile');
+	}
+
+	public function change_password(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_change_password');
+	}
+
 	public function home()
 	{
 		$this->load->view('temp/header');
