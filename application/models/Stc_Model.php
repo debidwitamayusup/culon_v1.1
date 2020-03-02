@@ -1547,6 +1547,7 @@ class Stc_Model extends CI_Model
 
 	function get_traffic_interval_daily($day)//channel - 
 	{
+		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
 		$query = $this->db->get();
@@ -1570,14 +1571,14 @@ class Stc_Model extends CI_Model
 			// // 	'channel_name' => $res_channel, 
 			// // 	'total' => $res_tot
 			// // );
-				array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id));
+				array_push($res_tot,$this->get_traffic_interval_info_weeklyAvg($day,$data->channel_id, $tid));
 			}
 		}
 		
 		return $res_tot;	
 	}
 
-	function get_traffic_interval_info_weeklyAvg($day,$channel) //summ
+	function get_traffic_interval_info_weeklyAvg($day,$channel, $tid) //summ
 	{
 		$date = date('Y-m-d',strtotime($day));
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));

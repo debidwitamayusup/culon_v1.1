@@ -19,11 +19,18 @@ const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
         // $("#filter-loader").fadeIn("slow");
-
-        getSummTrafficByChannel(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
-        getTrafficInterval(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
-        // getTableChart(params_week,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], '');
-        drawChartDaily(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], '');
+        if(sessionParams.TENANT_ID != null){
+            $('#layanan_name').hide();
+            getSummTrafficByChannel(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], sessionParams.TENANT_ID);
+            getTrafficInterval(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], sessionParams.TENANT_ID);
+            drawChartDaily(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], sessionParams.TENANT_ID);
+        }else{
+            getTenant('');
+            getSummTrafficByChannel(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+            getTrafficInterval(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+            drawChartDaily(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        }
+        
 
         // $('#check-all-channel').prop('checked', false);
         // $("input:checkbox.checklist-channel").prop('checked', false);
@@ -40,6 +47,37 @@ $(document).ready(function () {
         window.location = base_url
     }
 });
+
+function getTenant(date){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
+        data: {
+            "date" : date
+        },
+
+        success: function (r) {
+            $('#modalError').modal('hide');
+            var data_option = [];
+            //dont parse response if using rest controller
+            // var response = JSON.parse(r);
+            var response = r;
+            // console.log(response);
+            // tenants = response.data;
+            var html = '<option value="">All Tenant</option>';
+            // var html = '';
+                for(i=0; i<response.data.length; i++){
+                    html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
+                }
+                $('#layanan_name').html(html);
+        },
+        error: function (r) {
+            //console.log(r);
+            setTimeout(function(){getTenant(date);},5000)
+            $('#modalError').modal('show');
+        },
+    });
+}
 
 function addCommas(commas) {
     commas += '';
@@ -82,16 +120,26 @@ function getSummTrafficByChannel(week, arr_channel, tenant_id){
             tenant_id
         },
         success: function (r) {
+            $('#modalError').modal('hide');
             var response = JSON.parse(r);
             //hit url for interval 900000 (15 minutes)
             // setTimeout(function(){callDataPercentage(date);},900000);
-            setTimeout(function(){getSummTrafficByChannel(week, arr_channel, tenant_id);},5000)
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, sessionParams.TENANT_ID);},5000)
+            }else{
+                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000)
+            }
             drawSummTrafficByChannel(response);
             // fromTemplate(response);
         },
         error: function (r) {
+            $('#modalError').modal('show');
             // console.log(r);
-            alert("error");
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, sessionParams.TENANT_ID);},5000)
+            }else{
+                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000)
+            }
         },
     });
 }
@@ -191,7 +239,11 @@ function getTrafficInterval(week,arr_channel, tenant_id){
             var response = JSON.parse(r);
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){getTrafficInterval(week, arr_channel, tenant_id);},5000);
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){getTrafficInterval(week, arr_channel, sessionParams.TENANT_ID);},5000);
+            }else{
+                setTimeout(function(){getTrafficInterval(week, arr_channel, $("#layanan_name").val());},5000);
+            }            
             drawTrafficInterval(response);
             // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
@@ -199,7 +251,11 @@ function getTrafficInterval(week,arr_channel, tenant_id){
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){getTrafficInterval(week, arr_channel, tenant_id);},5000);
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){getTrafficInterval(week, arr_channel, sessionParams.TENANT_ID);},5000);
+            }else{
+                setTimeout(function(){getTrafficInterval(week, arr_channel, $("#layanan_name").val());},5000);
+            }
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -353,14 +409,20 @@ function drawChartDaily(week,arr_channel, tenant_id){
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
-            'week': week,
-            'arr_channel': arr_channel,
-            "tenant_id": tenant_id
+            week: week,
+            arr_channel: arr_channel,
+            tenant_id: tenant_id
         },
         success: function (r) {
             var response = JSON.parse(r);
             $('#modalError').modal('hide');
-            setTimeout(function(){drawChartDaily(week, arr_channel, tenant_id);},5000);
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){drawChartDaily(week, arr_channel, sessionParams.TENANT_ID);},5000);
+            }else{
+                setTimeout(function(){drawChartDaily(week, arr_channel, $("#layanan_name").val());},5000);
+                console.log($("#layanan_name").val())
+            }
+            
             drawTableTraffic(response);
             $('#echartWeek').remove();
             $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
@@ -548,7 +610,11 @@ function drawChartDaily(week,arr_channel, tenant_id){
         },
         error: function (r) {
             $('#modalError').modal('show');
-            setTimeout(function(){drawChartDaily(week, arr_channel, tenant_id);},5000);
+            if(sessionParams.TENANT_ID != null){
+                setTimeout(function(){drawChartDaily(week, arr_channel, sessionParams.TENANT_ID);},5000);
+            }else{
+                setTimeout(function(){drawChartDaily(week, arr_channel, $("#layanan_name").val());},5000);
+            }
             // $("#filter-loader").fadeOut("slow");
         }
     });
