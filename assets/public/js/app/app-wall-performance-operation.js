@@ -238,7 +238,7 @@ function drawTableCOFByChannel(response){
                 '<td class="text-right">'+addCommas(response.data[i].SUMART || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAHT || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMAST || 0)+'</td>'+
-                '<td class="text-right">'+(response.data[i].SUMSCR).replace(".",",") || 0+' %</td>'+
+                '<td class="text-right">'+(response.data[i].SUMSCR).replace(".",",")+' %</td>'+
                 '</tr>');
 
              sumFb+= parseInt((response.data[i].Facebook || 0));
