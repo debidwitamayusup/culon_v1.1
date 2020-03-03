@@ -730,6 +730,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('channel_name, channel_color');
         $this->db->from('m_channel');
+        $this->db->order_by('sequence');
         $query = $this->db->get();
 
         $name = array();
