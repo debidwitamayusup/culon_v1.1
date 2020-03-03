@@ -121,7 +121,8 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
         data: {
             date: date,
             arr_channel: arr_channel,
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            dashboard: '0'
         },
         success: function (r) {
             var response = JSON.parse(r);
