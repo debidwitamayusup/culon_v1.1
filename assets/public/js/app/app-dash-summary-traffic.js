@@ -24,21 +24,17 @@ if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        // fromTemplate();
-        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
-        }else{
-            getTenant('', '');
-        }
+        // if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
+        //     getTenant('', sessionParams.USERID);
+        // }else{
+        //     getTenant('', '');
+        // }
         callSumAllTenant('day', v_params_today, 0,  arr_tenant);
         callSumPerGroupTelkom('day', v_params_today, 0, arr_tenant, 'TELKOM');
         callSumPerGroupGovernment('day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
         callSumPerGroupBfsi('day', v_params_today, 0, arr_tenant, 'BFSI');
         callSumPerGroupEnterprise('day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
         callTop5('day', v_params_today,0, arr_tenant);
-        
-        // callSumPerTenant('day', v_params_today, 0,  arr_tenant);
-        // callIntervalTraffic('day',v_params_today,0,  list_channel, arr_tenant);
         
         $('#input-date-filter').datepicker("setDate", v_params_today);
         $("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -365,64 +361,6 @@ function callTop5(params, index, params_year, tenant_id){
             //hit url for interval 900000 (15 minutes)
             // setTimeout(function(){callSumPerTenant(date);},900000);
             drawChartTop5(response);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            alert("error");
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
-
-function callSumPerTenant(params, index, params_year, tenant_id){
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
-        data: {
-            params: params,
-            index: index,
-            params_year: params_year,
-            tenant_id: tenant_id
-        },
-        success: function (r) {
-            // var response = JSON.parse(r);
-            var response = r;
-            // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            // setTimeout(function(){callSumPerTenant(date);},900000);
-            drawChartPerTenant(response);
-            // $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            // console.log(r);
-            alert("error");
-            // $("#filter-loader").fadeOut("slow");
-        },
-    });
-}
-
-function callIntervalTraffic(params, index, params_year, channel, tenant_id){
-    // console.log(+arr_channel);
-    // $("#filter-loader").fadeIn("slow");
-    $.ajax({
-        type: 'post',
-        url: base_url+'api/Wallboard/WallboardController/IntervalToday',
-        data: {
-            params: params,
-            index: index,
-            params_year: params_year,
-            channel: channel,
-            tenant_id: tenant_id
-        },
-        success: function (r) {
-            var response = r;
-            // var response = JSON.parse(r);
-            // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            // setTimeout(function(){callIntervalTraffic(params, index, params_year, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS"]);},900000);
-            drawLineChart(response);
-            // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
@@ -1008,7 +946,7 @@ function drawChartPerGroupEnterprise(response){
            },    
     });
 }
- //    Vertical Bar Wallboard Summary Traffic Week yang baru 
+ 
     //    Return with commas in between
     var numberWithCommas = function (x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1018,7 +956,7 @@ function drawChartTop5(response){
     // horizontal bar chart
     var arrLabelTop5 = [], arrDataTop5 = [], arrColorTop5 = [];
     response.data.forEach(function(value){
-        arrLabelTop5.push(value.tenant_id);
+        arrLabelTop5.push(value.tenant);
         arrDataTop5.push(value.total);
         arrColorTop5.push(value.color);
     });
@@ -1055,217 +993,6 @@ function drawChartTop5(response){
 
         }
     });
-}
-function drawChartPerTenant(response){
-    destroyHorizontalChart();
-    let arrTenant = [], dataWa = [], dataFB = [], dataDM = [], dataIg = [], dataMessenger = [], dataTelegram = [], dataLine = [], dataEmail = [], dataVoice = [], dataSMS = [], dataLive = [], dataTwitter = [], dataChatbot=[];
-
-    response.data.forEach(function (value, index) {
-            arrTenant.push(value.TENANT_ID);
-            // arrART.push(value.ART);
-            // arrAHT.push(value.AHT);
-            // arrAST.push(value.AST);
-            // arrSCR.push(value.SCR);
-        });
-    for (var i = 0; i < response.data.length; i++) {
-        // console.log()
-        dataWa.push(response.data[i].DATA[10]);
-        dataFB.push(response.data[i].DATA[5]);
-        dataDM.push(response.data[i].DATA[11]);
-        dataTwitter.push(response.data[i].DATA[7]);
-        dataIg.push(response.data[i].DATA[9]);
-        dataMessenger.push(response.data[i].DATA[6]);
-        dataTelegram.push(response.data[i].DATA[4]);
-        dataLine.push(response.data[i].DATA[8]);
-        dataEmail.push(response.data[i].DATA[1]);
-        dataVoice.push(response.data[i].DATA[0]);
-        dataSMS.push(response.data[i].DATA[3]);
-        dataLive.push(response.data[i].DATA[2]);
-        dataChatbot.push(response.data[i].DATA[12]);
-    }
-    /*----echart Wallboard Summary Traffic----*/
-    var chartWallSummary = [{
-         name: 'Whatsapp',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataWa
-     }, {
-         name: 'Facebook',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataFB
-     },{
-         name: 'Twitter',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTwitter
-     },{
-         name: 'Twitter DM',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataDM
-     },{
-         name: 'Instagram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataIg
-     },{
-         name: 'Messenger',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataMessenger
-     },{
-         name: 'Telegram',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataTelegram
-     },{
-         name: 'Line',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLine
-     },{
-         name: 'Email',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataEmail
-     },{
-         name: 'Voice',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataVoice
-     },{
-         name: 'SMS',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataSMS
-     },{
-         name: 'Live Chat',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataLive
-    },{
-         name: 'Chat Bot',
-         type: 'bar',
-         stack: 'Stack',
-         data: dataChatbot
-    }];
-    /*----echartTicketUnit----*/
-    var optionWallSummary = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {       
-                // type: 'shadow'
-                label: {
-                    show: false,
-                    formatter: function (value, index) {
-                            var teks = '';
-                            // console.log(value)
-                            if(value.value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value.value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value.value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value.value
-                            }
-                            return teks;
-                    }
-                }
-            },
-            position: function (pos, params, dom, rect, size) {
-                 // tooltip will be fixed on the right if mouse hovering on the left,
-                 // and on the left if hovering on the right.
-                 // console.log(pos);
-                 var obj = {top: pos[6]};
-                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                 return obj;
-             },
-        },
-        legend: {
-            // bottom: 10,
-            left: 'center',
-            top: 'auto',
-            data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
-            itemWidth :12,
-            padding: [10, 10,40, 10]
-            
-        },
-        grid: {
-            top: '25%',
-            right: '3%',
-            bottom: '5%',
-            left: '1%',
-            containLabel: true,
-            width: 'auto'
-        },
-        xAxis: {
-            type: 'value',
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0'
-            }
-        },
-        yAxis: {
-            type: 'category',
-            data: arrTenant,
-            splitLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#efefff'
-                }
-            },
-            axisLabel: {
-                fontSize: 10,
-                color: '#7886a0',
-                formatter: function (value, index) {
-                            var teks = '';
-                            if(value == "oct_telkomcare"){
-                                teks = teks + "TELKOMCARE";
-                            }
-                            else if(value == "oct_telkomsel")
-                            {
-                                teks = teks + "TELKOMSEL";
-                            }
-                            else if(value == "oct_bodyshop")
-                            {
-                                teks = teks + "BODYSHOP";
-                            }
-                            else{
-                                return value
-                            }
-                            return teks;
-                    }
-            }
-        },
-        series: chartWallSummary,
-        color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
-    };
-    var chartWallSummary = document.getElementById('echartWallSummaryTraffic');
-    var barChartWallSummary = echarts.init(chartWallSummary);
-    barChartWallSummary.setOption(optionWallSummary);
-}
-
-function destroyChartInterval(){
-    // destroy chart interval 
-    $('#lineWallSummaryTraffic').remove(); // this is my <canvas> element
-    // $('#chart-no-data').remove(); // this is my <canvas> element
-    $('#lineWallSummaryTrafficDiv').append('<canvas id="lineWallSummaryTraffic"  class="h-400"></canvas>');
 }
 
 function destroyPieChart(){
@@ -1355,9 +1082,14 @@ function setDatePicker(){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
+
             callSumAllTenant('day', v_date, 0,  arr_tenant);
-            callSumPerTenant('day', v_date, 0,  arr_tenant);
-            callIntervalTraffic('day',v_date,0, '',  arr_tenant);
+            callSumPerGroupTelkom('day', v_date, 0, arr_tenant, 'TELKOM');
+            callSumPerGroupGovernment('day', v_date, 0, arr_tenant, 'GOVERNMENT');
+            callSumPerGroupBfsi('day', v_date, 0, arr_tenant, 'BFSI');
+            callSumPerGroupEnterprise('day', v_date, 0, arr_tenant, 'ENTERPRISE');
+            callTop5('day', v_date,0, arr_tenant);
+
             $('#check-all-channel').prop('checked',false);
             $("input:checkbox.checklist-channel").prop('checked',false);
         }
@@ -1382,10 +1114,7 @@ function setDatePicker(){
 
     // btn day
     $('#btn-day').click(function () {
-        sessionStorage.removeItem('paramsSession');
-        sessionStorage.setItem('paramsSession', 'day');
         params_time = 'day';
-        v_date = '2019-12-01';
         $('#input-date-filter').datepicker("setDate", v_params_today);
 
         $("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -1412,8 +1141,11 @@ function setDatePicker(){
         // sessionStorage.setItem('yearSession', m);
 
         callSumAllTenant('day', v_params_today, 0,  arr_tenant);
-        callSumPerTenant('day', v_params_today, 0,  arr_tenant);
-        callIntervalTraffic('day',v_params_today,0, list_channel,  arr_tenant);
+        callSumPerGroupTelkom('day', v_params_today, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment('day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi('day', v_params_today, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise('day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
+        callTop5('day', v_params_today,0, arr_tenant);
 
         $('#filter-date').show();
         $('#filter-month').hide();
@@ -1427,26 +1159,18 @@ function setDatePicker(){
         var n = d.getMonth()+1;
         var m = d.getFullYear();
         params_time = 'month';
-
-        $('#check-all-channel').prop('checked',false);
-        $("input:checkbox.checklist-channel").prop('checked',false);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
-        console.log(arr_tenant);
         callYearOnMonth();
 
         callSumAllTenant('month', n, m,  arr_tenant);
-        callSumPerTenant('month', n, m,  arr_tenant);
-        callIntervalTraffic('month',n,m, list_channel,  arr_tenant);
-
+        callSumPerGroupTelkom('month', n, m, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment('month', n, m, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi('month', n, m, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise('month', n, m, arr_tenant, 'ENTERPRISE');
+        callTop5('month', n,m, arr_tenant);
 
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'month');
+
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         $("#btn-day").prop("class", "btn btn-light btn-sm");
@@ -1471,19 +1195,13 @@ function setDatePicker(){
 
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
-        $('#check-all-channel').prop('checked',false);
-        $("input:checkbox.checklist-channel").prop('checked',false);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
 
-        callSumAllTenant('year',m,0, arr_tenant);
-        callSumPerTenant('year',m,0, arr_tenant);
-        callIntervalTraffic('year',m,0, list_channel,arr_tenant);
+        callSumAllTenant('year', m, 0,  arr_tenant);
+        callSumPerGroupTelkom('year', m, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment('year', m, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi('year', m, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise('year', m, 0, arr_tenant, 'ENTERPRISE');
+        callTop5('year', m, 0, arr_tenant);
 
         sessionStorage.removeItem('monthSession');
 
@@ -1502,9 +1220,13 @@ function setDatePicker(){
 
     $('#select-year-only').change(function () {
         v_year = $(this).val();       
-        callSumAllTenant('year',v_year,0, arr_tenant);
-        callSumPerTenant('year',v_year,0, arr_tenant);
-        callIntervalTraffic('year',v_year,0, '',arr_tenant);
+        
+        callSumAllTenant('year',v_year, 0,  arr_tenant);
+        callSumPerGroupTelkom('year',v_year, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment('year',v_year, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi('year',v_year, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise('year',v_year, 0, arr_tenant, 'ENTERPRISE');
+        callTop5('year',v_year, 0, arr_tenant);
 
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
@@ -1514,10 +1236,12 @@ function setDatePicker(){
     });
 
     $('#btn-go').click(function(){
-        callSumAllTenant('month',$("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
-        callSumPerTenant('month',$("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
-        callIntervalTraffic('month',$("#select-month").val(), $("#select-year-on-month").val(), '',arr_tenant);
-
+        callSumAllTenant('month', $("#select-month").val(), $("#select-year-on-month").val(),  arr_tenant);
+        callSumPerGroupTelkom('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'ENTERPRISE');
+        callTop5('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         sessionStorage.removeItem('monthSession');
         sessionStorage.setItem('monthSession', $("#select-month").val());
 
@@ -1527,71 +1251,4 @@ function setDatePicker(){
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
     });
-
-    // checked all channel
-    $('#check-all-channel').click(function(){
-        $("input:checkbox.checklist-channel").prop('checked',this.checked);
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
-        let fromParams = sessionStorage.getItem('paramsSession');
-        // console.log(fromParams);
-        // call data
-        if (fromParams == 'day') {
-            callIntervalTraffic(fromParams,$("#input-date-filter").val(),0, list_channel, arr_tenant);
-        }else if (fromParams == 'month') {
-            let monthFromParams = sessionStorage.getItem('monthSession');
-            let yearFromParams = sessionStorage.getItem('yearSession');
-            callIntervalTraffic(fromParams,monthFromParams, yearFromParams, list_channel, arr_tenant);
-        }else if (fromParams == 'year') {
-            callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel, arr_tenant);
-        }
-    });
-
-    //checked channel
-    $('.checklist-channel').click(function(){
-        $('#check-all-channel').prop( "checked", false );
-        
-        var checkedValues = $('input:checkbox:checked').map(function() {
-            return this.value;
-        }).get();
-
-        var checkboxes = document.querySelectorAll('input[name="example-checkbox2"]:checked'), values = [], type = [];
-        Array.prototype.forEach.call(checkboxes, function(el) {
-            values.push(el.value);
-            type.push($(el).data('type'));
-        });
-        // console.log(values);
-        list_channel = values;
-        // call data
-        let fromParams = sessionStorage.getItem('paramsSession');
-        // console.log(fromParams);
-        if (fromParams == 'day') {
-            callIntervalTraffic(fromParams,$("#input-date-filter").val(),0, list_channel, arr_tenant);
-        }else if (fromParams == 'month') {
-            let monthFromParams = sessionStorage.getItem('monthSession');
-            let yearFromParams = sessionStorage.getItem('yearSession');
-            callIntervalTraffic(fromParams,monthFromParams, yearFromParams, list_channel, arr_tenant);
-        }else if (fromParams == 'year') {
-            callIntervalTraffic(fromParams, $("#select-year-only").val(),0,list_channel, arr_tenant);
-        }
-    });
-
-
-    // Horizontal Bar Dashboard Summary Traffic yang baru 
-	// Return with commas in between
-	var numberWithCommas = function (x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
-    
-    // Horizontal Bar Dashboard Summary Traffic yang baru 
-	// Return with commas in between
-	var numberWithCommas = function (x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	};
-
 })(jQuery);
