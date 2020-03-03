@@ -28,7 +28,31 @@
 								<a href="#" class="nav-link icon full-screen-link">
 									<i class="fe fe-minimize fullscreen-button"></i>
 								</a>
-								<div class="text-center mt-3">
+
+								<div class="dropdown">
+									<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
+										<span class="avatar avatar-md brround cover-image"
+											data-image-src="<?=base_url()?>public/user/unknown-avatar.jpg"></span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<div class="drop-heading">
+											<div class="text-left">
+												<h5 class="text-dark mb-1" id="NICKNAME_NAV"></h5>
+												<small class="text-muted" id="PREVILAGE_NAV"></small>
+											</div>
+										</div>
+										<div class="dropdown-divider m-0"></div>
+										<a class="dropdown-item" href="<?=base_url()?>main/change_profile"><i
+												class="dropdown-icon fe fe-user"></i>Change Profile</a>
+										<a class="dropdown-item" href="<?=base_url()?>main/change_password"><i
+												class="dropdown-icon fe fe-settings"></i>Change
+											Password</a>
+										<button class="dropdown-item" id="btn-logout"><i
+												class="dropdown-icon fe fe-power"></i>Log Out</button>
+									</div>
+								</div>
+
+								<div class="text-left ml-1 mr-2 mt-3">
 									<h6 class="text-white" id="NICKNAME_NAV2" style="margin-bottom:0px"></h6>
 									<small class="text-white" id="PREVILAGE_NAV2"></small>
 								</div>
@@ -41,27 +65,7 @@
 									<i class="fe fe-align-right"></i>
 								</a>
 							</div> -->
-							<div class="dropdown">
-								<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
-									<span class="avatar avatar-md brround cover-image"
-										data-image-src="<?=base_url()?>public/user/unknown-avatar.jpg"></span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<div class="drop-heading">
-										<div class="text-left">
-											<h5 class="text-dark mb-1" id="NICKNAME_NAV"></h5>
-											<small class="text-muted" id="PREVILAGE_NAV"></small>
-										</div>
-									</div>
-									<div class="dropdown-divider m-0"></div>
-									<a class="dropdown-item" href="<?=base_url()?>main/change_profile"><i
-											class="dropdown-icon fe fe-user"></i>Change Profile</a>
-									<a class="dropdown-item" href="<?=base_url()?>main/change_password"><i class="dropdown-icon fe fe-settings"></i>Change
-										Password</a>
-									<button class="dropdown-item" id="btn-logout"><i
-											class="dropdown-icon fe fe-power"></i>Log Out</button>
-								</div>
-							</div>
+
 
 						</div>
 					</div>
