@@ -14,7 +14,7 @@ if (n < 10) {
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-2);
+var v_params_yesterday =m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
@@ -26,8 +26,8 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-            callDataPercentage(v_params_today, $("#layanan_name").val());
-            callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
+            callDataPercentage(v_params_yesterday, $("#layanan_name").val());
+            callIntervalTraffic(v_params_yesterday,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
         $("#filter-loader").fadeOut("slow");
 
         // $('#check-all-channel').prop('checked',false);
@@ -128,7 +128,7 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-                setTimeout(function(){callIntervalTraffic(date, arr_channel, $("#layanan_name").val());},5000);
+            setTimeout(function(){callIntervalTraffic(date, arr_channel, $("#layanan_name").val());},5000);
             drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -647,8 +647,8 @@ function fromTemplate(response) {
         $('#check-all-channel').prop( "checked", false );
         $("input:checkbox.checklist-channel").prop('checked',false);
         // callTableCOFByChannel('2020-01-24', selectedTenant);
-        callDataPercentage(v_params_today, $("#layanan_name").val());
-        callIntervalTraffic(v_params_today,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
+        callDataPercentage(v_params_yesterday, $("#layanan_name").val());
+        callIntervalTraffic(v_params_yesterday,["Voice", "Live Chat", "Twitter DM", "Messenger", "Whatsapp", "Line", "Telegram", "ChatBot", "Instagram", "Facebook", "Twitter", "Email", "SMS"], $("#layanan_name").val());
         $('#tenant_id option[value='+selectedTenant+']').attr('selected','selected');
         // getTenant('2020-01-24');
     });

@@ -22,7 +22,7 @@ if (n < 10) {
 }
 
 //get yesterday
-var v_params_this_year = m + '-' + n + '-' + (o);
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 for(var i=0; i < sessionParams.TENANT_ID.length; i++){
     arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -362,6 +362,7 @@ function drawChartAndCard(response){
             labels: arrChannel
         },
         options: {
+            animation: false,
             maintainAspectRatio: false,
             responsive: true,
             legend: {

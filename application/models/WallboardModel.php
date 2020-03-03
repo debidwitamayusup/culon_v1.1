@@ -582,6 +582,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) as AHT, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST, ROUND(AVG(scr),2) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
+        $this->db->where('rpt_summary_scr.tenant_id != ""');
         $tidd = array();
         if($src)
         {
@@ -590,13 +591,14 @@ Class WallboardModel extends CI_Model {
         $this->db->group_by('tenant_id');
 
         $query = $this->db->get();
-
+        // print_r($this->db->last_query());
+        // exit;
         if($query->num_rows()>0)
         {
             foreach($query->result() as $datas)
             {
                 $t_id = $datas->tenant_id;
-                $tidd = array_push($datas->tenant_id);
+                array_push($tidd,$datas->tenant_id);
                 $data = array(
                     'TENANT_ID' => strtoupper($datas->id),
                     'SUMCOF' =>  $datas->COF,
@@ -1092,7 +1094,8 @@ Class WallboardModel extends CI_Model {
 
         $this->db->select('tenant_id');
         $this->db->from('rpt_summ_kip2'); //m_tenant swap back when data available
-        $this->db->group_by('tenant_id');        
+        $this->db->group_by('tenant_id');   
+        $tidd = array();     
         if($tid)
         {
             $this->db->where_in('tenant_id',$tid);
@@ -1106,9 +1109,10 @@ Class WallboardModel extends CI_Model {
             foreach($query->result() as $data)
             {
                 //change tenant 
+                array_push($tidd, $data->tenant_id);
                 $result[] = array(
                     'TENANT_ID' => $data->tenant_id,
-                    'SUMMARY' => $this->getSPOdata($tanggal,$data->tenant_id)
+                    'SUMMARY' => $this->getSPOdata($tanggal,$tidd)
                 );
             }
            return $result;

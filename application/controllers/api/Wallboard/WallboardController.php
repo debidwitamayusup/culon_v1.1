@@ -271,7 +271,8 @@ class WallboardController extends REST_Controller {
         else {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Not Found!'
+                'message' => 'Not Found!',
+                'data'    => []
                     ], REST_Controller::HTTP_OK);
         }
     }
