@@ -88,13 +88,15 @@ class SummaryToday extends CI_Controller {
 
         $date =   $this->security->xss_clean($this->input->post('date', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
-        if(!$channel)
+        $is_dashboard = $this->security->xss_clean($this->input->post('dashboard'));
+
+        if(!$channel && ($is_dashboard==0))
         {
             $channel = $this->Stc_Model->get_channel_array();
         }
 
 
-        $model = $this->Stc_Model->get_traffic_interval_today2($date, $channel);
+        $model = $this->Stc_Model->get_traffic_interval_today2($date, $channel,$is_dashboard);
         
 
         echo json_encode($model);
