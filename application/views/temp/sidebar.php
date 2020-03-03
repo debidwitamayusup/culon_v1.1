@@ -89,6 +89,7 @@
 							</h5> -->
 							<a href="<?=base_url()?>main/home" class="slide-item" id="dashboard">Traffic by Channel</a>
 							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
+							<a href="<?=base_url()?>main/summary_performance_realtime" class="slide-item">Summary Performance Realtime</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span

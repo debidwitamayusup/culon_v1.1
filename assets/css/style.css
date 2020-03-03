@@ -9403,6 +9403,10 @@ s
 .h-350 {
 	height: 350px !important;
 }
+
+.h-200 {
+	height: 200px !important;
+}
 .h-auto {
 	height: auto !important;
 }
@@ -22957,4 +22961,8 @@ background: linear-gradient(to top, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Fir
 
 .img-profile{
 	width:80%;
+}
+
+.img-password{
+	width:85%
 }

@@ -163,6 +163,13 @@ class main extends CI_Controller {
 		$this->load->view('v_agent_interval');
 	}
 
+	public function summary_performance_realtime(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_summary_performance_realtime');
+	}
+
 	public function summary_ticket(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
