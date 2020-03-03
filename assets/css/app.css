@@ -137,13 +137,14 @@
 }
 
 .card-custom-profile {
+    font-family:'Poppins', sans-serif;
 	position: relative;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;
     min-width: 0;
-    height: 515px;
+    height: auto;
 	word-wrap: break-word;
 	background-color: #F2F2F2;
 	background-clip: border-box;
@@ -153,8 +154,9 @@
 .card-custom-profile{
     position: relative;
     margin-bottom: 0.8rem;
-    width: 68%;
+    width: 75%;
     border-radius: 30px;
+    padding:17px;
 }
 
 .card-custom-ticket{
