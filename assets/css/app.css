@@ -106,7 +106,7 @@
     background-clip: border-box;
     padding : 13px 20px 15px 20px;
 	/* border:1px solid #cbcee8; */
-	box-shadow:7px 3px 19px 0px rgba(113,126,195,.25);
+	box-shadow:1px 4px 10px -1px rgba(113,126,195,.8);
 }
 .card-cust {
 	position: relative;

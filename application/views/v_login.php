@@ -32,7 +32,7 @@
                                         </div> -->
 
                                         <div class="col-sm-auto mb-3">
-                                            <div class="input-group" style="box-shadow:1px 7px 18px #e0d9d9;">
+                                            <div class="input-group border-input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text border-input">
                                                         <i class="fa fa-user tx-16 lh-0 op-6"></i>
@@ -43,12 +43,12 @@
                                         </div>
 
                                         <div class="col-sm-auto">
-                                            <div class="input-group">
+                                            <div class="input-group border-input-group">
                                                 <div class="input-group-prepend">
-                                                    <div class="input-group-text">
+                                                    <div class="input-group-text border-input">
                                                         <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                                     </div>
-                                                </div><input type="password" class="form-control" id="password"
+                                                </div><input type="password" class="form-control border-input2" id="password"
                                                 placeholder="Password" name="password">
                                             </div>
                                         </div>

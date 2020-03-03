@@ -7,15 +7,16 @@
             <div class="col-md-5">
                 <div class="card-group mb-0">
                     <div class="card-custom-profile">
-                        <div class="text-center mb-6 mt-8">
+                        <div class="text-center mb-2 mt-6">
                             <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png" class=""
                                 style="max-width: 69% !important;" alt="">
                         </div>
                         <div class="card-body">
 
-                            <h3 class="text-sign text-center font-weight-extrabold mb-3">Sign In</h3>
+                            
+                            <!-- username -->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group" style="box-shadow:1px 7px 18px #e0d9d9;">
+                                <div class="input-group border-input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-user tx-16 lh-0 op-6"></i>
@@ -25,13 +26,38 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-auto">
-                                <div class="input-group">
+                            <!-- phone number-->
+                            <div class="col-sm-auto mb-3">
+                                <div class="input-group border-input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text">
+                                        <div class="input-group-text border-input">
+                                            <i class="fa fa-phone tx-16 lh-0 op-6"></i>
+                                        </div>
+                                    </div><input type="text" class="form-control border-input2" id="phone_number"
+                                        placeholder="+628xx xxxx xxxx" name="phone_number">
+                                </div>
+                            </div>
+
+                            <!-- email -->
+                            <div class="col-sm-auto mb-3">
+                                <div class="input-group border-input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text border-input">
+                                            <i class="fa fa-envelope tx-16 lh-0 op-6"></i>
+                                        </div>
+                                    </div><input type="text" class="form-control border-input2" id="email"
+                                        placeholder="yourname@infomedia.co.id" name="email">
+                                </div>
+                            </div>
+
+                            <!-- password -->
+                            <div class="col-sm-auto">
+                                <div class="input-group border-input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="password" class="form-control" id="password"
+                                    </div><input type="password" class="form-control border-input2" id="password"
                                         placeholder="Password" name="password">
                                 </div>
                             </div>
