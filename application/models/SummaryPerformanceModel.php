@@ -126,7 +126,7 @@ Class SummaryPerformanceModel extends CI_Model {
             {
                 array_push($res_channel,$data->channel_name);
                 array_push($res_color,$data->channel_color);
-                array_push($res_tot,$this->get_cof_performance_piechart($data->channel_id));
+                array_push($res_tot,$this->get_cof_performance_piechart($params,$index,$params_year,$tid,$data->channel_id));
             }
 
             $result = array(

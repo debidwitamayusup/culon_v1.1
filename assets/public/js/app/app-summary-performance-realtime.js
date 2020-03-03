@@ -21,7 +21,7 @@ if (n < 10) {
   n = '0' + n;
 }
 
-var v_params_this_year = m + '-' + n + '-' + (o);
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 var arr_tenant = [];
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
@@ -52,11 +52,11 @@ $(document).ready(function(){
         }
 
         $("#filter-loader").fadeIn("slow");
-        callThreeTable('', arr_tenant);
-        callPieChartSummary('', arr_tenant);
-        callBarLayanan('', arr_tenant);
-        callLineChart('', arr_tenant);
-        callTotalTable('', arr_tenant);
+        callThreeTable(params_time, v_params_this_year, 0, arr_tenant);
+        callPieChartSummary(params_time, v_params_this_year, 0, arr_tenant);
+        callBarLayanan(params_time, v_params_this_year, 0, arr_tenant);
+        callLineChart(params_time, v_params_this_year, 0, arr_tenant);
+        callTotalTable(params_time, v_params_this_year, 0, arr_tenant);
         $("#filter-loader").fadeOut("slow");
 
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -208,12 +208,14 @@ function getTenant(date, userid){
     });
 }
 
-function callThreeTable(date, tenant_id){
+function callThreeTable(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
+        url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboard',
         data: {
-            date: date,
+            params: params,
+            index: index_time,
+            params_year: params_year,
             tenant_id: tenant_id
         },
         success: function (r) {
@@ -235,7 +237,7 @@ function drawTableRealTime(response){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
-    // console.log(response.data[0].TENANT_NAME);
+    console.log(response.data);
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 10; i++) {
@@ -243,10 +245,10 @@ function drawTableRealTime(response){
                 $('#mytable_1').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(i+1)+'</td>'+
                         '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                        // '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].COF) || 0)+'</td>'+
                         '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
@@ -254,7 +256,7 @@ function drawTableRealTime(response){
                 '<tr>'+
                     '<td class="text-center">'+(i+1)+'</td>'+
                     '<td class="text-left"></td>'+
-                    // '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-right"></td>'+
@@ -266,23 +268,23 @@ function drawTableRealTime(response){
 
     $('#mytbody_2').empty();
     if (response.data.length != 0) {
-        for (var i = 10; i < 20; i++) {
-            if (response.data[i]){
+        for (var j = 10; j < 20; j++) {
+            if (response.data[j]){
                 $('#mytable_2').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                        // '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-center">'+(j+1)+'</td>'+
+                        '<td class="text-left">'+(response.data[j].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[j].AHT || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[j].AST || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[j].COF) || 0)+'</td>'+
+                        '<td class="text-right">'+((response.data[j].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-center">'+(j+1)+'</td>'+
                     '<td class="text-left"></td>'+
-                    // '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-right"></td>'+
@@ -294,23 +296,23 @@ function drawTableRealTime(response){
 
     $('#mytbody_3').empty();
     if (response.data.length != 0) {
-        for (var i = 20; i < 30; i++) {
-            if (response.data[i]){
+        for (var k = 20; k < 30; k++) {
+            if (response.data[k]){
                 $('#mytable_3').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                        // '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-center">'+(k+1)+'</td>'+
+                        '<td class="text-left">'+(response.data[k].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[k].AST || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[k].COF) || 0)+'</td>'+
+                        '<td class="text-right">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_3').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-center">'+(k+1)+'</td>'+
                     '<td class="text-left"></td>'+
-                    // '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-right"></td>'+
@@ -321,11 +323,14 @@ function drawTableRealTime(response){
     }
 }
 
-function callPieChartSummary(tenant_id){
+function callPieChartSummary(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalPie',
+        url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboardPie',
         data:{
+            params: params,
+            index: index_time,
+            params_year: params_year,
             tenant_id: tenant_id
         },
         success: function (r) {
@@ -412,12 +417,14 @@ function drawPieChartSummary(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
-function callBarLayanan(date, tenant_id){
+function callBarLayanan(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalBar',
+        url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboardBar',
         data: {
-            date: date,
+            params: params,
+            index: index_time,
+            params_year: params_year,
             tenant_id: tenant_id
         },
         success: function (r) {
@@ -444,7 +451,7 @@ function drawBarLayanan(response){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
-    // console.log(response);
+    console.log(response);
     var dataLayanan = [];
     var LabelX = [];
     response.data.forEach(function(value){
@@ -549,12 +556,14 @@ function drawBarLayanan(response){
     // console.log(dataLayanan);
 }
 
-function callLineChart(channel, tenant_id){
+function callLineChart(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalInterval',
+        url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboardInterval',
         data:{
-            channel: channel,
+            params: params,
+            index: index_time,
+            params_year: params_year,
             tenant_id: tenant_id
         },
         success: function (r) {
@@ -626,12 +635,14 @@ function drawLineChart(response){
     });
 }
 
-function callTotalTable(date, tenant_id){
+function callTotalTable(params, index_time, params_year, tenant_id){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
+        url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboard',
         data: {
-            date: date,
+            params: params,
+            index: index_time,
+            params_year: params_year,
             tenant_id: tenant_id
         },
         success: function (r) {
@@ -673,29 +684,35 @@ function formatTime(seconds) {
 
 function drawTotalTable(response){
         var sumCOF = 0;
-        var sumSCR = '';
-        var sumWaiting = '';
-        var sumAHT = '';
+        var sumSCR = 0;
+        var sumART = 0;
+        var sumAHT = 0;
+        var sumAST = 0;
 
         for (var i = 0; i < response.data.length; i++) {
-            sumCOF+= parseInt((response.data[i].OFFERED || 0));
-            // console.log(sumCOF);
+            sumCOF+= parseInt((response.data[i].COF || 0));
+            // console.log(response.data[i].SCR);
             sumSCR+= parseFloat((response.data[i].SCR || 0));
-            sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
-            sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
+            sumART+= Number(timestrToSec(response.data[i].ART || 0));
+            sumAHT+= timestrToSec(response.data[i].AHT || 0);
+            sumAST+= timestrToSec(response.data[i].AST || 0);
+            var avgSCR = (sumSCR / response.data.length)
             $('#rowDiv').empty();
-            $('#rowDiv').append(''+
+            $('#rowDiv').append(''+                
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="avgRT">ART : '+formatTime(sumART)+'</h6>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="avgHT">AHT : '+formatTime(sumAHT)+'</h6>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="avgST">AST : '+formatTime(sumAST)+'</h6>'+
+                '</div>'+
                 '<div class="col-md-3">'+
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(sumSCR.toString()).replace('.',',')+'%</h6>'+
-                '</div>'+
-                '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+sumWaiting+'</h6>'+
-                '</div>'+
-                '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgHT">Average Handling Time : '+sumAHT+'</h6>'+
+                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(parseFloat(avgSCR).toFixed(2).toString()).replace('.',',')+'%</h6>'+
                 '</div>'
             );
         }
@@ -752,6 +769,11 @@ var date = new Date();
         onSelect: function (dateText) {
             // console.log(this.value);
             v_date = this.value;
+            callThreeTable('day', v_date, 0, arr_tenant);
+            callPieChartSummary('day', v_date, 0, arr_tenant);
+            callBarLayanan('day', v_date, 0, arr_tenant);
+            callLineChart('day', v_date, 0, arr_tenant);
+            callTotalTable('day', v_date, 0, arr_tenant);
             // loadContent('day', v_date, 0, $('#layanan_name').val());
         }
     });
@@ -759,6 +781,11 @@ var date = new Date();
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
+        callThreeTable('day',  v_params_this_year, 0, arr_tenant);
+        callPieChartSummary('day',  v_params_this_year, 0, arr_tenant);
+        callBarLayanan('day',  v_params_this_year, 0, arr_tenant);
+        callLineChart('day',  v_params_this_year, 0, arr_tenant);
+        callTotalTable('day',  v_params_this_year, 0, arr_tenant);
         // loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
         v_date='2019-12-01';
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -782,6 +809,11 @@ var date = new Date();
         sessionStorage.setItem('paramsSession', 'month');
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
+        callThreeTable('month', n,m, arr_tenant);
+        callPieChartSummary('month', n,m, arr_tenant);
+        callBarLayanan('month', n,m, arr_tenant);
+        callLineChart('month', n,m, arr_tenant);
+        callTotalTable('month', n,m, arr_tenant);
         // loadContent('month', n,m, $('#layanan_name').val());
         callYearOnMonth();
         $("#btn-day").prop("class","btn btn-light btn-sm");
@@ -798,6 +830,11 @@ var date = new Date();
         sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
         callYear();
+        callThreeTable('year', m,0, arr_tenant);
+        callPieChartSummary('year', m,0, arr_tenant);
+        callBarLayanan('year', m,0, arr_tenant);
+        callLineChart('year', m,0, arr_tenant);
+        callTotalTable('year', m,0, arr_tenant);
         // loadContent('year', m,0, $('#layanan_name').val());
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-day").prop("class","btn btn-light btn-sm");
@@ -808,20 +845,25 @@ var date = new Date();
         $('#filter-year').show();
     });
 
-    var date = new Date();
-    date.setDate(date.getDate()>0);
-    $('#input-date-filter').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: 'now',
-        showTodayButton: true,
-        showClear: true,
-        // minDate: date,
+    // var date = new Date();
+    // date.setDate(date.getDate()>0);
+    // $('#input-date-filter').datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     maxDate: 'now',
+    //     showTodayButton: true,
+    //     showClear: true,
+    //     // minDate: date,
         
-        onSelect: function(dateText) {
-            v_date = this.value;
-            // loadContent('day', v_date,0, $('#layanan_name').val());
-        }
-    });
+    //     onSelect: function(dateText) {
+    //         v_date = this.value;
+    //         callThreeTable('day', v_date,0, arr_tenant);
+    //         callPieChartSummary('day', v_date,0, arr_tenant);
+    //         callBarLayanan('day', v_date,0, arr_tenant);
+    //         callLineChart('day', v_date,0, arr_tenant);
+    //         callTotalTable('day', v_date,0, arr_tenant);
+    //         // loadContent('day', v_date,0, $('#layanan_name').val());
+    //     }
+    // });
 
     // $('#layanan_name').change(function(){
     //     let fromParams = sessionStorage.getItem('paramsSession');
@@ -838,6 +880,11 @@ var date = new Date();
     $('#select-year-only').change(function(){
         v_year = $(this).val();
         let fromParams = sessionStorage.getItem('paramsSession');
+        callThreeTable('year', v_year,0, arr_tenant);
+        callPieChartSummary('year', v_year,0, arr_tenant);
+        callBarLayanan('year', v_year,0, arr_tenant);
+        callLineChart('year', v_year,0, arr_tenant);
+        callTotalTable('year', v_year,0, arr_tenant);
         // loadContent('year', v_year,0, $('#layanan_name').val());
         $("#filter-date").hide();
         $("#filter-month").hide();
@@ -845,6 +892,11 @@ var date = new Date();
     });
 
     $('#btn-go').click(function(){
+        callThreeTable('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callPieChartSummary('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callBarLayanan('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callLineChart('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callTotalTable('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         // loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         
         

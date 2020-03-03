@@ -53,13 +53,12 @@ class SummaryPerformance extends REST_Controller {
                 'message' => 'Data available!',
                 'data'    => $data
                     ], REST_Controller::HTTP_OK);
-        }
-        else {
+        }else {
             $this->response([
                 'status'  => FALSE,
                 'message' => 'Not Found!',
                 'dates' => 'Not found',
-                'data'    => $data
+                'data'    => []
                     ], REST_Controller::HTTP_OK);
         }
     }

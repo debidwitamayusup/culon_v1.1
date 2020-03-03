@@ -106,6 +106,7 @@
                                             <td>ART</td>
                                             <td>AHT</td>
                                             <td>AST</td>
+                                            <td>COF</td>
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
@@ -126,6 +127,7 @@
                                             <td>ART</td>
                                             <td>AHT</td>
                                             <td>AST</td>
+                                            <td>COF</td>
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
@@ -146,6 +148,7 @@
                                             <td>ART</td>
                                             <td>AHT</td>
                                             <td>AST</td>
+                                            <td>COF</td>
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
