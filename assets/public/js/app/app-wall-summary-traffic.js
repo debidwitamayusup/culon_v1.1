@@ -64,16 +64,16 @@ $(document).ready(function () {
 
 });
 
-function getTenant(date){
+function getTenant(date, userid){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
-            "date" : date
+            "date" : date,
+            "userid" : userid
         },
 
         success: function (r) {
-            $('#modalError').modal('hide');
             var data_option = [];
             //dont parse response if using rest controller
             // var response = JSON.parse(r);
@@ -88,8 +88,7 @@ function getTenant(date){
         },
         error: function (r) {
             //console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){getTenant(date, userid);},5000);
+            alert("error");
         },
     });
 }
