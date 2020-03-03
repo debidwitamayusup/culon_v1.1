@@ -13,8 +13,9 @@ if (n < 10) {
 var arr_tenant = []
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
+var tembak = '2020-03-02';
 //get yesterday
-var v_params_yesterday =m + '-' + n + '-' + (o-2);
+var v_params_yesterday =m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
@@ -31,8 +32,8 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        callTableCOFByChannel(v_params_today,arr_tenant);
-        callTableStatusTicket(v_params_today, arr_tenant);
+        callTableCOFByChannel(v_params_yesterday,arr_tenant);
+        callTableStatusTicket(v_params_yesterday, arr_tenant);
         // getTenant(v_params_today);
         // callTableCOFByChannel(v_params_today);
 
@@ -141,22 +142,33 @@ function callTableStatusTicket(date, tenant_id){
 function drawTableStatusTicket(response){
     $("#mytbody2").empty();
     $("#mytfoot2").empty();
-    // console.log(response.data[4].SUMMARY[0].TOTAL)
-    for (var i = 0; i < response.data.length; i++) {
-        console.log(response.data[0].SUMMARY[0]['TOTAL'])
+    if(response.data.length != 0){
+        if(response.data[0].SUMMARY.length != 0){ 
+        // console.log(response.data[4].SUMMARY[0].TOTAL)
+            for (var i = 0; i < response.data.length; i++) {
+                $('#tableStatusTicket').find('tbody').append('<tr>'+
+                        '<td>'+(i+1)+'</td>'+
+                        '<td class="text-left">'+response.data[i].TENANT_ID+'</td>'+
+                        '<td class="text-right">'+addCommas(response.data[i].SUMMARY[0]['TOTAL'] || 0)+'</td>'+
+                        '<td class="text-right">'+addCommas(response.data[i].SUMMARY[1]['TOTAL'] || 0)+'</td>'+
+                        '<td class="text-right">'+addCommas(response.data[i].SUMMARY[2]['TOTAL'] || 0)+'</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+
+                        '<td class="text-center">-</td>'+  
+                        '</tr>');
+            }
+        }else{
+            $('#tableStatusTicket').find('tbody').append('<tr>'+
+                '<td colspan=6> No Data </td>'+
+                '</tr>');
+        }
+    }else{
         $('#tableStatusTicket').find('tbody').append('<tr>'+
-                '<td>'+(i+1)+'</td>'+
-                '<td class="text-left">'+response.data[i].TENANT_ID+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[0]['TOTAL'] || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[1]['TOTAL'] || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].SUMMARY[2]['TOTAL'] || 0)+'</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+
-                '<td class="text-center">-</td>'+  
+                '<td colspan=6> No Data </td>'+
                 '</tr>');
     }
 }
@@ -242,9 +254,9 @@ function drawTableCOFByChannel(response){
              sumLive+= parseInt((response.data[i]['Live Chat'] || 0));
              sumSms+= parseInt((response.data[i].SMS || 0));
              sumCOF+= parseInt((response.data[i].SUMCOF || 0));
-             sumART+= formatTime(timestrToSec(response.data[i].SUMART || 0));
-             sumAHT+= formatTime(timestrToSec(response.data[i].SUMAHT || 0));
-             sumAST+= formatTime(timestrToSec(response.data[i].SUMAST || 0));
+             sumART+= timestrToSec(response.data[i].SUMART || 0);
+             sumAHT+= timestrToSec(response.data[i].SUMAHT || 0);
+             sumAST+= timestrToSec(response.data[i].SUMAST || 0);
              sumSCR+= parseFloat((response.data[i].SUMSCR || 0));
              var avgSCR = (sumSCR / response.data.length)    
 
@@ -272,10 +284,10 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-center">'+sumART.toString().substring(1)+'</td>'+
-            '<td class="text-center">'+sumAHT.toString().substring(1)+'</td>'+
-            '<td class="text-center">'+sumAST.toString().substring(1)+'</td>'+
-            '<td class="text-right">'+(avgSCR).toString().replace(".",",")+' %</td>'+
+            '<td class="text-center">'+formatTime(sumART).toString().substring(1)+'</td>'+
+            '<td class="text-center">'+formatTime(sumAHT).toString().substring(1)+'</td>'+
+            '<td class="text-center">'+formatTime(sumAST).toString().substring(1)+'</td>'+
+            '<td class="text-right">'+Math.round((avgSCR)).toString().replace(".",",")+' %</td>'+
             '</tr>');
     }else{
         $('#tabelCOFByChannel').find('tbody').append('<tr>'+

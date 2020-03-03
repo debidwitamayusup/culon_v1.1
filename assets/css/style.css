@@ -9403,6 +9403,10 @@ s
 .h-350 {
 	height: 350px !important;
 }
+
+.h-200 {
+	height: 200px !important;
+}
 .h-auto {
 	height: auto !important;
 }

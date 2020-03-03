@@ -138,7 +138,8 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
         data: {
             date: date,
             arr_channel: arr_channel,
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            dashboard: '1',
         },
         success: function (r) {
             var response = JSON.parse(r);
@@ -446,7 +447,7 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        callIntervalTraffic($('#input-date').val(), list_channel, sessionParams.TENANT_ID);
+        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
     });
 
     //checked channel

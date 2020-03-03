@@ -75,9 +75,9 @@ class WallboardController extends REST_Controller {
         $params = $this->security->xss_clean($this->input->post('params'));
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
-       
+        $grup = $this->security->xss_clean($this->input->post('grup'));
 
-        $res = $this->module_model->Traffic_ops($params,$index,$params_year);
+        $res = $this->module_model->Traffic_ops($params,$index,$params_year,$grup);
         //$res2 =$this->module_model->T_id($params,$index,$params_year);
         
         $res2 =$this->module_model->Channel_data();
@@ -96,6 +96,42 @@ class WallboardController extends REST_Controller {
                 'message' => 'Not Found!',
                 'data'    => array(),
                 'channel' => array()
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
+    public function TrafficOPStop5_post(){
+            
+        // if(!$this->input->post('token'))
+        // {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => 'Token Not found,Loging off!'
+        //             ], REST_Controller::HTTP_NOT_FOUND);
+        // }
+
+        $date = $this->security->xss_clean($this->input->post('date'));
+
+        $params = $this->security->xss_clean($this->input->post('params'));
+        $index = $this->security->xss_clean($this->input->post('index'));
+        $params_year = $this->security->xss_clean($this->input->post('params_year'));
+        $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+
+        $res = $this->module_model->Top5_opsdata($params,$index,$params_year,$tid);
+    
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res,
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'data'    => array(),
                     ], REST_Controller::HTTP_OK);
         }
 
@@ -271,7 +307,8 @@ class WallboardController extends REST_Controller {
         else {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Not Found!'
+                'message' => 'Not Found!',
+                'data'    => []
                     ], REST_Controller::HTTP_OK);
         }
     }
