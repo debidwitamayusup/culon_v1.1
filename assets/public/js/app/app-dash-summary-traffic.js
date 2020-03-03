@@ -430,27 +430,89 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerGroupTelkom(response){
-    var arrChannel = []
-    // response.data.forEach(function (value, index) {
-    //     arrTenant.push(value.TENANT_ID);
-    // });
 
-    console.log(response.data);
-    var whatsapp = [20, 20, 20,20];
-       var facebook = [40, 40, 40,40,40];
-       var twitter = [60, 60, 60,60, 60];
-       var twitterdm = [80, 80, 80,80, 80];
-       var instagram = [90, 90, 90,90, 90];
-       var messenger = [100, 100,100, 100,100];
-       var telegram = [110, 110,110, 110,110];
-       var line = [120, 120, 120,120, 120];
-       var email = [130, 130, 130,130, 130];
-       var twitter = [140, 140, 140,140, 140];
-       var voice = [150, 150, 150,150, 150];
-       var sms = [160, 160, 160,160, 160];
-       var livechat = [170, 170, 170,170, 170];
-       var chatbot = [180, 180, 180,180, 180];
-       var LabelX = ["Telkomsel", "Telkomcare", "Telkom","XXX","XXX"];
+    var whatsapp = [];
+       var facebook = [];
+       var twitter = [];
+       var twitterdm = [];
+       var instagram = [];
+       var messenger = [];
+       var telegram = [];
+       var line = [];
+       var email = [];
+       var twitter = [];
+       var voice = [];
+       var sms = [];
+       var livechat = [];
+       var chatbot = [];
+       var LabelX = [];
+       var arrData = [];
+    // response.channel.forEach(function (value, index) {
+        
+    // });
+   var arrChannel = response.channel.name;
+    var arrColor = response.channel.color;
+    response.data[0].DATA.forEach(function (value){
+        livechat.push(value.DATA[0].total);
+        line.push(value.DATA[1].total);
+        whatsapp.push(value.DATA[2].total);
+        telegram.push(value.DATA[3].total);
+        facebook.push(value.DATA[4].total);
+        messenger.push(value.DATA[5].total);
+        voice.push(value.DATA[6].total);
+        email.push(value.DATA[7].total);
+        sms.push(value.DATA[8].total);
+        twitter.push(value.DATA[9].total);
+        twitterdm.push(value.DATA[10].total);
+        instagram.push(value.DATA[11].total);
+        chatbot.push(value.DATA[12].total);
+        LabelX.push(value.TENANT_ID);
+    });
+    arrData.push(livechat);
+    arrData.push(line);
+    arrData.push(whatsapp);
+    arrData.push(telegram);
+    arrData.push(facebook);
+    arrData.push(messenger);
+    arrData.push(voice);
+    arrData.push(email);
+    arrData.push(sms);
+    arrData.push(twitter);
+    arrData.push(twitterdm);
+    arrData.push(instagram);
+    arrData.push(facebook);
+    
+    console.log(arrData);
+    var x=0;
+    var dataStacked = [];
+    var datasetsStacked = "";
+
+    response.data[0].DATA.forEach(function (value){
+       datasetsStacked =  {
+            label: arrChannel[x],
+            data: arrData[x],
+            backgroundColor: arrColor[x],
+            hoverBackgroundColor: arrColor[x],
+            hoverBorderWidth: 0
+        },
+        dataStacked.push(datasetsStacked);
+        x++;
+    });
+    // var whatsapp = [20, 20, 20,20];
+    //    var facebook = [40, 40, 40,40,40];
+    //    var twitter = [60, 60, 60,60, 60];
+    //    var twitterdm = [80, 80, 80,80, 80];
+    //    var instagram = [90, 90, 90,90, 90];
+    //    var messenger = [100, 100,100, 100,100];
+    //    var telegram = [110, 110,110, 110,110];
+    //    var line = [120, 120, 120,120, 120];
+    //    var email = [130, 130, 130,130, 130];
+    //    var twitter = [140, 140, 140,140, 140];
+    //    var voice = [150, 150, 150,150, 150];
+    //    var sms = [160, 160, 160,160, 160];
+    //    var livechat = [170, 170, 170,170, 170];
+    //    var chatbot = [180, 180, 180,180, 180];
+    //    var LabelX = ["Telkomsel", "Telkomcare", "Telkom","XXX","XXX"];
    
        var bar_ctx = document.getElementById('barTelkomGroup');
    
@@ -459,98 +521,99 @@ function drawChartPerGroupTelkom(response){
            type: 'horizontalBar',
            data: {
                labels: LabelX,
-               datasets: [{
-                       label: 'Whatsapp',
-                       data: whatsapp,
-                       backgroundColor: "#089e60",
-                       hoverBackgroundColor: "#089e60",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Facebook',
-                       data: facebook,
-                       backgroundColor: "#467fcf",
-                       hoverBackgroundColor: "#467fcf",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Twitter',
-                       data: twitter,
-                       backgroundColor: "#45aaf2",
-                       hoverBackgroundColor: "#45aaf2",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Twitter DM',
-                       data: twitterdm,
-                       backgroundColor: "#6574cd",
-                       hoverBackgroundColor: "#6574cd",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Instagram',
-                       data: instagram,
-                       backgroundColor: "#fbc0d5",
-                       hoverBackgroundColor: "#fbc0d5",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Messenger',
-                       data: messenger,
-                       backgroundColor: "#3866a6",
-                       hoverBackgroundColor: "#3866a6",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Telegram',
-                       data: telegram,
-                       backgroundColor: "#343a40",
-                       hoverBackgroundColor: "#343a40",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Line',
-                       data: line,
-                       backgroundColor: "#31a550",
-                       hoverBackgroundColor: "#31a550",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Email',
-                       data: email,
-                       backgroundColor: "#e41313",
-                       hoverBackgroundColor: "#e41313",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Voice',
-                       data: voice,
-                       backgroundColor: "#ff9933",
-                       hoverBackgroundColor: "#ff9933",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'SMS',
-                       data: sms,
-                       backgroundColor: "#80cbc4",
-                       hoverBackgroundColor: "#80cbc4",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'Live Chat',
-                       data: livechat,
-                       backgroundColor: "#607d8b",
-                       hoverBackgroundColor: "#607d8b",
-                       hoverBorderWidth: 0
-                   },
-                   {
-                       label: 'ChatBot',
-                       data: chatbot,
-                       backgroundColor: "#6e273e",
-                       hoverBackgroundColor: "#6e273e",
-                       hoverBorderWidth: 0
-                   }
-               ]
+               datasets: dataStacked,
+            //    datasets: [{
+            //            label: 'Whatsapp',
+            //            data: whatsapp,
+            //            backgroundColor: "#089e60",
+            //            hoverBackgroundColor: "#089e60",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Facebook',
+            //            data: facebook,
+            //            backgroundColor: "#467fcf",
+            //            hoverBackgroundColor: "#467fcf",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Twitter',
+            //            data: twitter,
+            //            backgroundColor: "#45aaf2",
+            //            hoverBackgroundColor: "#45aaf2",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Twitter DM',
+            //            data: twitterdm,
+            //            backgroundColor: "#6574cd",
+            //            hoverBackgroundColor: "#6574cd",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Instagram',
+            //            data: instagram,
+            //            backgroundColor: "#fbc0d5",
+            //            hoverBackgroundColor: "#fbc0d5",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Messenger',
+            //            data: messenger,
+            //            backgroundColor: "#3866a6",
+            //            hoverBackgroundColor: "#3866a6",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Telegram',
+            //            data: telegram,
+            //            backgroundColor: "#343a40",
+            //            hoverBackgroundColor: "#343a40",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Line',
+            //            data: line,
+            //            backgroundColor: "#31a550",
+            //            hoverBackgroundColor: "#31a550",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Email',
+            //            data: email,
+            //            backgroundColor: "#e41313",
+            //            hoverBackgroundColor: "#e41313",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Voice',
+            //            data: voice,
+            //            backgroundColor: "#ff9933",
+            //            hoverBackgroundColor: "#ff9933",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'SMS',
+            //            data: sms,
+            //            backgroundColor: "#80cbc4",
+            //            hoverBackgroundColor: "#80cbc4",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'Live Chat',
+            //            data: livechat,
+            //            backgroundColor: "#607d8b",
+            //            hoverBackgroundColor: "#607d8b",
+            //            hoverBorderWidth: 0
+            //        },
+            //        {
+            //            label: 'ChatBot',
+            //            data: chatbot,
+            //            backgroundColor: "#6e273e",
+            //            hoverBackgroundColor: "#6e273e",
+            //            hoverBorderWidth: 0
+            //        }
+            //    ]
            },
            options: {
                responsive: true,
@@ -603,8 +666,14 @@ function drawChartPerGroupTelkom(response){
        //     // 		})
        //     // 	}
        //     // }]
+    
     });
 }
+ //    Vertical Bar Wallboard Summary Traffic Week yang baru 
+    //    Return with commas in between
+    var numberWithCommas = function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
     
 function drawChartPerTenant(response){
     destroyHorizontalChart();
@@ -1185,12 +1254,6 @@ function setDatePicker(){
            }
        });
    
-       
-       // Vertical Bar Wallboard Summary Traffic Week yang baru 
-       // Return with commas in between
-       // var numberWithCommas = function (x) {
-       //     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-       // };
    
        
    
