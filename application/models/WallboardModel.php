@@ -160,7 +160,7 @@ Class WallboardModel extends CI_Model {
 
     function tenant_result($params,$index,$params_year,$tid,$group)
     {
-        $this->db->select('tenant_id');
+        $this->db->select('tenant_id, tenant_name');
         $this->db->from('m_tenant');
         $this->db->where('group_id',$group);
         if($tid)
@@ -176,7 +176,7 @@ Class WallboardModel extends CI_Model {
             foreach($query->result() as $data)
             {
                 $detail[] = array(
-                    'TENANT_ID' => $data->tenant_id,
+                    'TENANT_ID' => $data->tenant_name,
                     'DATA' => $this->Traffic_opschannel($params,$index,$params_year,$data->tenant_id)
                 );                    
             }
