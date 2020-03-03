@@ -757,9 +757,10 @@ class Stc_Model extends CI_Model
     	return $query->result();
 	}
 
-	public function get_traffic_interval_today2($date,$channel)
+	public function get_traffic_interval_today2($date,$channel,$is_dashboard)
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
+		
 
 		$this->db->select('rpt_summ_interval.interval as time');
 		$this->db->from('rpt_summ_interval');
@@ -776,26 +777,37 @@ class Stc_Model extends CI_Model
 			foreach($query->result() as $data)
 			{
 				array_push($times,substr($data->time,0,5).':00');
-
 			}
 
-			if($channel)
+			if(($is_dashboard==1)&&(empty($channel)))
 			{
-				foreach($channel as $channels)
+				$serials = array();
+			}
+			else
+			{
+				if($channel)
+				{
+					foreach($channel as $channels)
+					{
+						$serials[] =  array(
+							'label'=>$channels,
+							'data'=>$this->get_availdata($date,$channels)
+						);
+					}
+				}
+				else 
 				{
 					$serials[] =  array(
-						'label'=>$channels,
-						'data'=>$this->get_availdata($date,$channels)
+						'label'=>'Facebook',
+						'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 					);
 				}
+
 			}
-			else 
-			{
-				$serials[] =  array(
-					'label'=>'Facebook',
-					'data'=>array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-				);
-			}
+			
+
+			
+			
 		}
 
 		$result = array(
