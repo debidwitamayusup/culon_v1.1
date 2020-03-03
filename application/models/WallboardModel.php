@@ -135,11 +135,21 @@ Class WallboardModel extends CI_Model {
         {
             foreach($q->result() as $qq)
             {
-                
-                $result[] = array(
-                    'GROUP' => $qq->group_id,
-                    'DATA' => $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id)
-                );  
+                $tenant_dt = $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id);
+                if($tenant_dt)
+                {
+                    $result[] = array(
+                        'GROUP' => $qq->group_id,
+                        'DATA' => $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id)
+                    );  
+                }
+                else 
+                {
+                    $result[] = array(
+                        'GROUP' => $qq->group_id,
+                        'DATA' => array()
+                    );
+                }    
                 
             }
             
@@ -1166,9 +1176,8 @@ Class WallboardModel extends CI_Model {
 
     function Top5_opsdata($params,$index,$params_year,$tid)
     {
-        $this->db->select('IFNULL(SUM(rpt_summ_interval.case_session),0) AS cof');
+        $this->db->select('IFNULL(SUM(rpt_summ_interval.case_session),0) AS cof, rpt_summ_interval.tenant_id ');
         $this->db->from('rpt_summ_interval');
-        $this->db->join('m_channel','m_channel.channel_id = rpt_summ_interval.channel_id');
         if($params == 'day')
         {
             $this->db->where('rpt_summ_interval.tanggal',$index);
@@ -1182,15 +1191,26 @@ Class WallboardModel extends CI_Model {
         {
             $this->db->where('YEAR(rpt_summ_interval.tanggal)',$index);
         }
-        $this->db->where_in('rpt_summ_interval.tenant_id',$tid);
-        $this->db->where('rpt_summ_interval.channel_id',$channel);
+        if($tid)
+        {
+            $this->db->where_in('rpt_summ_interval.tenant_id',$tid);
+        }
         $this->db->group_by('rpt_summ_interval.tenant_id');
         $this->db->order_by('cof','DESC');
+        $this->db->limit(5,0);
+
         $query = $this->db->get();
 
         if($query->num_rows() > 0)
-        {
-            return $query->row()->cof;
+        {           
+            foreach($query->result() as $top5)
+            {
+                $data[] = array(
+                    'tenant_id' => $top5->tenant_id,
+                    'total' => $top5->cof
+                );
+            }
+            return $data;
         }
         return 0;
     }
