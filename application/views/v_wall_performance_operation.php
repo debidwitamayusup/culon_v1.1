@@ -228,7 +228,7 @@
                                 </tr>
                             </tbody>
                             <tfoot class="bg-total font-weight-extrabold text-center" id="mytfoot2">
-                                <tr>
+                                <!-- <tr>
                                     <td colspan="2">Total</td>
                                     <td class="text-right">50</td>
                                     <td class="text-right">50</td>
@@ -240,7 +240,7 @@
                                     <td class="text-right">50</td>
                                     <td class="text-right">50</td>
                                     <td class="text-right">50</td>
-                                </tr>
+                                </tr> -->
                             </tfoot>
                         </table>
                     </div>
