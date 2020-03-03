@@ -135,11 +135,21 @@ Class WallboardModel extends CI_Model {
         {
             foreach($q->result() as $qq)
             {
-                
-                $result[] = array(
-                    'GROUP' => $qq->group_id,
-                    'DATA' => $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id)
-                );  
+                $tenant_dt = $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id);
+                if($tenant_dt)
+                {
+                    $result[] = array(
+                        'GROUP' => $qq->group_id,
+                        'DATA' => $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id)
+                    );  
+                }
+                else 
+                {
+                    $result[] = array(
+                        'GROUP' => $qq->group_id,
+                        'DATA' => array()
+                    );
+                }    
                 
             }
             
