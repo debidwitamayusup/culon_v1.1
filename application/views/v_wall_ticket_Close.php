@@ -9,9 +9,9 @@
 				</li>
 			</ol>
 			<div class="d-flex bd-highlight">
-				<div class="ml-auto p-2 bd-highlight mt-3 h6">Layanan </div>
+				<div class="ml-auto p-2 bd-highlight mt-2 h6">Layanan </div>
 				<div class="p-2 bd-highlight">
-					<select class="form-control" id="layanan_name">
+					<select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
 						<!-- <option value="#">Layanan</option> -->
 					</select>
 				</div>

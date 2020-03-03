@@ -341,7 +341,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieSummary");
-    ctx.height = 298;
+    ctx.height = 294;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -383,7 +383,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mb-5 mt-2">');
+                legendHtml.push('<ul><div class="row mb-3 mt-2 ml-2">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -400,7 +400,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
                         legendHtml.push('</li>');
                     }else{
@@ -418,7 +418,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
                         legendHtml.push('</li>');
                     }

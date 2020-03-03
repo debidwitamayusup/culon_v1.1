@@ -296,7 +296,7 @@ function dataCardCOF(response)
 		$('#dataDrawCOF').append('<div class="col-2 text-center" style="margin-bottom : 9px">'+
                                  // '<span class="avatar avatar-md brround cover-image"></span>'+
                                  	// '<img src="'+value[8]+'" style="border-radius:100%; width: 200px; height: 40px;">'+
-                                 	'<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidde; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                 	'<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
                                  		'<img src='+value[8]+' style="border-radius:75%;">'+
                                  	'</div>'+
                              '</div>'+

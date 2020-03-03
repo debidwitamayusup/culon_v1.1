@@ -10,7 +10,7 @@
 				</ol>
 			</div>
 			<div class="bd-highlight" style="margin-bottom:30px;" id="layanan_name_parent">
-				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+				<select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
 					<!-- <option value="#">All Layanan</option>
 					<option value="#">All Layanan</option>
 					<option value="#">All Layanan</option> -->
@@ -161,8 +161,8 @@
 				</div>
 				<div class="card-pie">
 					<div class="canvas-con">
-						<div id="legend" class="legend-con mb-2 mt-1"></div>
-						<div class="canvas-con-inner mb-6" id="canvas-pie">
+						<div id="legend" class="legend-con mt-1"></div>
+						<div class="canvas-con-inner mb-5" id="canvas-pie">
 							<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
 						</div>
 					</div>

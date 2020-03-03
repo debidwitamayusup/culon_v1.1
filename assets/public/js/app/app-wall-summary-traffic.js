@@ -22,7 +22,7 @@ if (n < 10) {
 }
 
 //get yesterday
-var v_params_this_year = m + '-' + n + '-' + (o);
+var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
 for(var i=0; i < sessionParams.TENANT_ID.length; i++){
     arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -74,7 +74,6 @@ function getTenant(date, userid){
         },
 
         success: function (r) {
-            $('#modalError').modal('hide');
             var data_option = [];
             //dont parse response if using rest controller
             // var response = JSON.parse(r);
@@ -89,8 +88,7 @@ function getTenant(date, userid){
         },
         error: function (r) {
             //console.log(r);
-            $('#modalError').modal('show');
-            setTimeout(function(){getTenant(date, userid);},5000);
+            alert("error");
         },
     });
 }
@@ -329,8 +327,8 @@ function callSummaryInteraction(params, index_time, params_year, tenant_id){
 
 function drawChartAndCard(response){
     //destroy div piechart
-    $('#pieSummary').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>');
+    $('#pieWallSummaryTraffic').remove(); // this is my <canvas> element
+    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
 
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
@@ -349,8 +347,8 @@ function drawChartAndCard(response){
     });
 
     // draw chart
-    var ctx = document.getElementById("pieSummary");
-    ctx.height = 298;
+    var ctx = document.getElementById("pieWallSummaryTraffic");
+    ctx.height = 294;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -363,6 +361,7 @@ function drawChartAndCard(response){
             labels: arrChannel
         },
         options: {
+            animation: false,
             maintainAspectRatio: false,
             responsive: true,
             legend: {
@@ -392,7 +391,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mb-5 mt-2">');
+                legendHtml.push('<ul><div class="row mb-3 mt-2 ml-2">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -409,7 +408,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
                         legendHtml.push('</li>');
                     }else{
@@ -427,7 +426,7 @@ function drawChartAndCard(response){
                             var percentage = Math.round((dataLabel / total) * 100);
                         }
 
-                        legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                        legendHtml.push('<li class="col-md-6 col-lg-6">');
                         legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
                         legendHtml.push('</li>');
                     }

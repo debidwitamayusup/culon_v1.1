@@ -87,13 +87,17 @@
 				</div>
 				<div class="card-pie">
 					<div class="canvas-con">
+						<!-- <div id="legend" class="legend-con"></div>
+						<div class="canvas-con-inner" id="canvas-pie">
+							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+						</div> -->
 						<div class="row">
 							<div class="col-md-3">
 								<div id="legend" class="legend-con"></div>
 							</div>
 							<div class="col-md-9 mt-6">
 								<div class="canvas-con-inner" id="canvas-pie">
-									<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+									<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 								</div>
 							</div>
 						</div>
@@ -120,20 +124,41 @@
 					<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
 				</div>
 				<div class="card-body">
-					<canvas id="barTelkomGroup" class="h-300"></canvas>
+					<canvas id="barTelkomGroup" class="h-200"></canvas>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="card overflow-hidden">
 				<div class="card-header-small">
+					<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
+				</div>
+				<div class="card-body">
+					<canvas id="barGovermentGroup" class="h-200"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-right:0px; margin-left:-1px;">
+		<div class="col-md-6">
+			<div class="card overflow-hidden">
+				<div class="card-header-small">
 					<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
 				</div>
 				<div class="card-body">
-					<canvas id="barBFSIGroup" class="h-300"></canvas>
+					<canvas id="barBFSIGroup" class="h-200"></canvas>
 				</div>
 			</div>
-
+		</div>
+		<div class="col-md-6">
+			<div class="card overflow-hidden">
+				<div class="card-header-small">
+					<h5 class="card-title-small card-pt10 font-weight-extrabold">Enterprise Group</h5>
+				</div>
+				<div class="card-body">
+					<canvas id="barEnterpriseGroup" class="h-200"></canvas>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

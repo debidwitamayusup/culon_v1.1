@@ -106,7 +106,7 @@
     background-clip: border-box;
     padding : 13px 20px 15px 20px;
 	/* border:1px solid #cbcee8; */
-	box-shadow:7px 3px 19px 0px rgba(113,126,195,.25);
+	box-shadow:1px 4px 10px -1px rgba(113,126,195,.8);
 }
 .card-cust {
 	position: relative;
@@ -137,13 +137,14 @@
 }
 
 .card-custom-profile {
+    font-family:'Poppins', sans-serif;
 	position: relative;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-direction: column;
 	flex-direction: column;
     min-width: 0;
-    height: 515px;
+    height: auto;
 	word-wrap: break-word;
 	background-color: #F2F2F2;
 	background-clip: border-box;
@@ -153,8 +154,9 @@
 .card-custom-profile{
     position: relative;
     margin-bottom: 0.8rem;
-    width: 68%;
+    width: 75%;
     border-radius: 30px;
+    padding:20px;
 }
 
 .card-custom-ticket{
