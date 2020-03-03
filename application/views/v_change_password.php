@@ -67,5 +67,5 @@
         </div>
     </div>
 </div>
-
+ 
 <?php $this->load->view('temp/footer');?>
