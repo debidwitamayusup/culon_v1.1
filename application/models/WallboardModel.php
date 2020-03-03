@@ -8,7 +8,7 @@ Class WallboardModel extends CI_Model {
         parent::__construct();
     }
 
-
+#region :: raga
     public function Op_Performance($src='')
     {
         $this->db->select('m_unit.unit,m_unit.unit_id');
@@ -44,7 +44,6 @@ Class WallboardModel extends CI_Model {
         $this->db->where('status_id !=',8);
         $this->db->order_by('status_id');
         $query = $this->db->get();
-
         $result = array();
 
         if($query->num_rows()>0)
@@ -58,7 +57,6 @@ Class WallboardModel extends CI_Model {
                 array_push($result,$datas);
             }
             array_push($result,strval($tdatas));
-
             return $result;
         }
         return FALSE;
@@ -119,46 +117,62 @@ Class WallboardModel extends CI_Model {
         return FALSE;
     }
 
-    public function Traffic_ops($params,$index,$params_year)
+    public function Traffic_ops($params,$index,$params_year,$grup)
     {
         $tid = $this->security->xss_clean($this->input->post('tenant_id'));
 
+        $this->db->select('group_id');
+        $this->db->from('m_tenant');
+        $this->db->where('group_id != ""');
+        if($grup)
+        {
+            $this->db->where_in('group_id',$grup);
+        }
+        $this->db->group_by('group_id');
+        $q = $this->db->get();
+
+        if($q->num_rows() > 0)
+        {
+            foreach($q->result() as $qq)
+            {
+                
+                $result[] = array(
+                    'GROUP' => $qq->group_id,
+                    'DATA' => $this->tenant_result($params,$index,$params_year,$tid,$qq->group_id)
+                );  
+                
+            }
+            
+        return $result;
+        }
+        return FALSE;
+    }
+
+    function tenant_result($params,$index,$params_year,$tid,$group)
+    {
         $this->db->select('tenant_id');
-        $this->db->from('rpt_summ_interval');
-        if($params == 'day')
-        {
-            $this->db->where('tanggal',$index);
-        }
-        if($params == 'month')
-        {
-            $this->db->where('MONTH(tanggal)',$index);
-            $this->db->where('YEAR(tanggal)',$params_year);
-        }
-        if($params == 'year')
-        {
-            $this->db->where('YEAR(tanggal)',$index);
-        }
+        $this->db->from('m_tenant');
+        $this->db->where('group_id',$group);
         if($tid)
         {
             $this->db->where_in('tenant_id',$tid);
         }
         $this->db->group_by('tenant_id');
         $query = $this->db->get();
-
+        // print_r($this->db->last_query());
+        // exit;   
         if($query->num_rows() > 0)
         {
             foreach($query->result() as $data)
             {
-
-                $result[] = array(
+                $detail[] = array(
                     'TENANT_ID' => $data->tenant_id,
                     'DATA' => $this->Traffic_opschannel($params,$index,$params_year,$data->tenant_id)
-                );
+                );                    
             }
-            return $result;
+            return $detail;            
         }
-
-        return FALSE;
+                
     }
 
     public function T_id($params,$index,$params_year)
@@ -200,7 +214,6 @@ Class WallboardModel extends CI_Model {
 
         return FALSE;
     }
-
     
     public function Traffic_ops2($params,$index,$params_year)
     {
@@ -342,7 +355,7 @@ Class WallboardModel extends CI_Model {
 
     function Traffic_opschannel($params,$index,$params_year,$tid)
     {
-        $this->db->select('channel_id, sequence');
+        $this->db->select('channel_id,channel_name, sequence');
         $this->db->from('m_channel');
         $this->db->order_by('sequence');
         $query = $this->db->get();
@@ -353,7 +366,14 @@ Class WallboardModel extends CI_Model {
         {
             foreach($query->result() as $data)
             {
-               array_push($result,$this->Traffic_opsdata($params,$index,$params_year,$tid,$data->channel_id));
+
+                $total = array(
+                    'channel'=>$data->channel_name,
+                    'total'=> $this->Traffic_opsdata($params,$index,$params_year,$tid,$data->channel_id)
+                );
+                array_push($result,$total);
+
+             //  array_push($result,$this->Traffic_opsdata($params,$index,$params_year,$tid,$data->channel_id));
             }
             return $result;
         }
@@ -997,13 +1017,13 @@ Class WallboardModel extends CI_Model {
         return FALSE;
 
     }
-    public function SummTicketC($months,$year)
-    {
+    // public function SummTicketC($months,$year)
+    // {
 
 
-        return FALSE;
+    //     return FALSE;
 
-    }
+    // }
 
     // debi
     public function summaryTicketCloseWall($month, $year)
@@ -1140,7 +1160,39 @@ Class WallboardModel extends CI_Model {
         return array();
     }
 
-    #region :: debi
+    function Top5_opsdata($params,$index,$params_year,$tid)
+    {
+        $this->db->select('IFNULL(SUM(rpt_summ_interval.case_session),0) AS cof');
+        $this->db->from('rpt_summ_interval');
+        $this->db->join('m_channel','m_channel.channel_id = rpt_summ_interval.channel_id');
+        if($params == 'day')
+        {
+            $this->db->where('rpt_summ_interval.tanggal',$index);
+        }
+        if($params == 'month')
+        {
+            $this->db->where('MONTH(rpt_summ_interval.tanggal)',$index);
+            $this->db->where('YEAR(rpt_summ_interval.tanggal)',$params_year);
+        }
+        if($params == 'year')
+        {
+            $this->db->where('YEAR(rpt_summ_interval.tanggal)',$index);
+        }
+        $this->db->where_in('rpt_summ_interval.tenant_id',$tid);
+        $this->db->where('rpt_summ_interval.channel_id',$channel);
+        $this->db->group_by('rpt_summ_interval.tenant_id');
+        $this->db->order_by('cof','DESC');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            return $query->row()->cof;
+        }
+        return 0;
+    }
+#endregion :: raga
+
+     #region :: debi
         public function summary_performance_nasional(){
             $date = $this->security->xss_clean($this->input->post('date', true));
             $tid = $this->security->xss_clean($this->input->post('tenant_id', true));

@@ -75,9 +75,9 @@ class WallboardController extends REST_Controller {
         $params = $this->security->xss_clean($this->input->post('params'));
         $index = $this->security->xss_clean($this->input->post('index'));
         $params_year = $this->security->xss_clean($this->input->post('params_year'));
-       
+        $grup = $this->security->xss_clean($this->input->post('grup'));
 
-        $res = $this->module_model->Traffic_ops($params,$index,$params_year);
+        $res = $this->module_model->Traffic_ops($params,$index,$params_year,$grup);
         //$res2 =$this->module_model->T_id($params,$index,$params_year);
         
         $res2 =$this->module_model->Channel_data();
