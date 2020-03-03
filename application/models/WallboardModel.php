@@ -1172,8 +1172,9 @@ Class WallboardModel extends CI_Model {
 
     function Top5_opsdata($params,$index,$params_year,$tid)
     {
-        $this->db->select('IFNULL(SUM(rpt_summ_interval.case_session),0) AS cof, rpt_summ_interval.tenant_id ');
+        $this->db->select('IFNULL(SUM(rpt_summ_interval.case_session),0) AS cof, rpt_summ_interval.tenant_id, m_tenant.color_id as coloring');
         $this->db->from('rpt_summ_interval');
+        $this->db->join('m_tenant','m_tenant.tenant_id = rpt_summ_interval.tenant_id');
         if($params == 'day')
         {
             $this->db->where('rpt_summ_interval.tanggal',$index);
@@ -1203,7 +1204,9 @@ Class WallboardModel extends CI_Model {
             {
                 $data[] = array(
                     'tenant_id' => $top5->tenant_id,
-                    'total' => $top5->cof
+                    'color' => $top5->coloring,
+                    'total' => $top5->cof,
+                    
                 );
             }
             return $data;
