@@ -480,7 +480,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         });
 
         
-        console.log(dataStacked);
+        // console.log(dataStacked);
         var bar_ctx = document.getElementById('BarTrafficMonth');
 
         var bar_chart = new Chart(bar_ctx, {
