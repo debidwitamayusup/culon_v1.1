@@ -571,7 +571,8 @@ function drawChartPerGroupTelkom(response){
                        label: function (tooltipItem, data) {
                            return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
                        }
-                   }
+                   },
+                   yAlign: 'top'
                },
                scales: {
                    xAxes: [{
@@ -964,7 +965,7 @@ function drawChartTop5(response){
     var barData = {
         labels: arrLabelTop5,
         datasets: [{
-            label: "Test",
+            label: "Total",
             data: arrDataTop5,
             backgroundColor: arrColorTop5,
             // hoverBackgroundColor: ["#66A2EB", "#FCCE56"]
