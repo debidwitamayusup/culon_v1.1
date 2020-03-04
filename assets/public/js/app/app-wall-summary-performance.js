@@ -170,7 +170,13 @@ function drawTableRealTime(response){
 
 function drawTableChannel(response){
     $("#table_channel_body").empty();
+    $("#table_channel_foot").empty();
     var k=0;
+    var sumChnQueue = 0, sumChnArt = 0, sumChnAht = 0, sumChnAst = 0, sumChnMsgIn = 0, sumChnMsgOut = 0, sumChnAbd = 0, sumChnHandling = 0, sumchnOffered = 0, sumChnScr = 0;
+    var AvgChnArt = 0;
+    var AvgChnAht = 0;
+    var AvgChnAst = 0;
+    var AvgChnScr = 0;
     response.data.forEach(function(value){
         $('#table_channel').find('tbody').append('<tr>'+
             '<td class="text-center">'+(k+1)+'</td>'+
@@ -187,7 +193,37 @@ function drawTableChannel(response){
             '<td class="text-right">'+((value.SCR.toString()).replace('.',',') || 0)+'%</td>'+
         '</tr>');
         k++;
+
+        sumChnQueue += Number(value.QUEUE);
+        sumChnArt += Number(timestrToSec(value.ART));
+        sumChnAht += Number(timestrToSec(value.AHT));
+        sumChnAst += Number(timestrToSec(value.AST));
+        sumChnMsgIn += Number(value.MESSAGE_IN);
+        sumChnMsgOut =+ Number(value.MESSAGE_OUT);
+        sumChnAbd += Number(value.ABANDON);
+        sumChnHandling += Number(value.HANDLING);
+        sumchnOffered += Number(value.OFFERED);
+        sumChnScr += Number(value.SCR);
+        AvgChnArt = Math.round((sumChnArt / response.data.length));
+        AvgChnAht = Math.round((sumChnAht / response.data.length));
+        AvgChnAst = Math.round((sumChnAst / response.data.length));
+        AvgChnScr = parseFloat((sumChnScr / response.data.length)).toFixed(2);
     });
+
+
+    $('#table_channel').find('tfoot').append('<tr>'+
+        '<td colspan="2" class="text-center">Total</td>'+
+        '<td class="text-right">'+(addCommas(sumChnQueue) || 0)+'</td>'+
+        '<td class="text-center">'+(formatTime(AvgChnArt) || 0)+'</td>'+
+        '<td class="text-center">'+(formatTime(AvgChnAht) || 0)+'</td>'+
+        '<td class="text-center">'+(formatTime(AvgChnAst) || 0)+'</td>'+
+        '<td class="text-right">'+(addCommas(sumChnMsgIn) || 0)+'</td>'+
+        '<td class="text-right">'+(addCommas(sumChnMsgOut) || 0)+'</td>'+
+        '<td class="text-right">'+(addCommas(sumChnAbd) || 0)+'</td>'+
+        '<td class="text-right">'+(addCommas(sumChnHandling) || 0)+'</td>'+
+        '<td class="text-right">'+(addCommas(sumchnOffered) || 0)+'</td>'+
+        '<td class="text-right">'+((AvgChnScr.toString()).replace('.',',') || 0)+'%</td>'+
+    '</tr>');
 }
 
 function callPieChartSummary(tenant_id){
@@ -547,6 +583,9 @@ function drawTotalTable(response){
         var sumSCR = 0;
         var sumWaiting = 0;
         var sumAHT = 0;
+        var avgSCR = 0;
+        var avgWaiting = 0;
+        var avgAHT = 0;
 
         for (var i = 0; i < response.data.length; i++) {
             sumCOF+= parseInt((response.data[i].OFFERED || 0));
@@ -554,19 +593,22 @@ function drawTotalTable(response){
             sumSCR+= parseFloat((response.data[i].SCR || 0));
             sumWaiting+= Number(timestrToSec(response.data[i].ART || 0));
             sumAHT+= Number(timestrToSec(response.data[i].AHT || 0));
+            avgSCR = parseFloat((sumSCR / response.data.length)).toFixed(2);
+            avgWaiting = Math.round(sumWaiting / response.data.length);
+            avgAHT = Math.round(sumAHT / response.data.length);
             $('#rowDiv').empty();
             $('#rowDiv').append(''+
                 '<div class="col-md-3">'+
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(sumSCR.toString()).replace('.',',')+'%</h6>'+
+                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(avgSCR.toString()).replace('.',',')+'%</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+formatTime(sumWaiting)+'</h6>'+
+                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+formatTime(avgWaiting)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgHT">Average Handling Time : '+formatTime(sumAHT)+'</h6>'+
+                    '<h6 class="font12" id="avgHT">Average Handling Time : '+formatTime(avgAHT)+'</h6>'+
                 '</div>'
             );
         }

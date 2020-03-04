@@ -364,8 +364,8 @@
                                                 <td class="text-right">90</td>
                                             </tr> -->
                                         </tbody>
-                                        <tfoot class="table-sm bg-total">
-                                        <tr class="font-bold">
+                                        <tfoot class="table-sm bg-total" id="table_channel_foot">
+                                        <!-- <tr class="font-bold">
                                             <td colspan="2" class="text-center">Total</td>
                                             <td class="text-right">900</td>
                                             <td class="text-center">00:00:00</td>
@@ -377,7 +377,7 @@
                                             <td class="text-right">900</td>
                                             <td class="text-right">900</td>
                                             <td class="text-right">90%</td>
-                                        </tr>
+                                        </tr> -->
                                     </tfoot>
                                     </table>
                                 </div>
