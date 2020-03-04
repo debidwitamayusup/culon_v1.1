@@ -1,12 +1,11 @@
 <div class=" app-content">
     <div class="side-app">
-        <div class="page-header d-flex bd-highlight">
+        <div class="page-header d-flex p-2 bd-highlight">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
                     <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
                 </li>
-                <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance Realtime
-                </li>
+                <li class="breadcrumb-item active mt-2" aria-current="page">Summary Performance Realtime</li>
             </ol>
         </div>
         <!-- <div class="d-flex bd-highlight">
@@ -35,7 +34,7 @@
                                             <td>No</td>
                                             <td>Tenant</td>
                                             <td>Queue</td>
-                                            <td>ART</td>
+                                            <td>ART<br>(Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>AST</td>
                                             <td>MSG IN</td>
@@ -61,7 +60,7 @@
                                             <td>No</td>
                                             <td>Tenant</td>
                                             <td>Queue</td>
-                                            <td>ART</td>
+                                            <td>ART<br>(Waiting Time)</td>
                                             <td>AHT</td>
                                             <td>AST</td>
                                             <td>MSG IN</td>
@@ -121,14 +120,14 @@
                             <div class="card">
                                 <div class="table-responsive table-bordered" style="padding:2px;">
                                     <table
-                                        class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
+                                        class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                                         id="table_channel">
                                         <thead class="text-center text-white bg-head">
                                             <tr>
                                                 <td>No</td>
                                                 <td>Channel</td>
                                                 <td>Queue</td>
-                                                <td>ART</td>
+                                                <td>ART<br>(Waiting Time)</td>
                                                 <td>AHT</td>
                                                 <td>AST</td>
                                                 <td>MSG IN</td>
@@ -365,6 +364,21 @@
                                                 <td class="text-right">90</td>
                                             </tr> -->
                                         </tbody>
+                                        <tfoot class="table-sm bg-total">
+                                        <tr class="font-bold">
+                                            <td colspan="2" class="text-center">Total</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-center">00:00:00</td>
+                                            <td class="text-center">00:00:00</td>
+                                            <td class="text-center">00:00:00</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-right">900</td>
+                                            <td class="text-right">90%</td>
+                                        </tr>
+                                    </tfoot>
                                     </table>
                                 </div>
                             </div>

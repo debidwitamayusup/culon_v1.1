@@ -705,13 +705,13 @@ function drawTotalTable(response){
                 '<div class="col-md-3">'+
                     '<h6 class="font12" id="avgHT">AHT : '+formatTime(sumAHT)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-3">'+
+                '<div class="col-md-2">'+
                     '<h6 class="font12" id="avgST">AST : '+formatTime(sumAST)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-3">'+
+                '<div class="col-md-2">'+
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-3">'+
+                '<div class="col-md-2">'+
                     '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(parseFloat(avgSCR).toFixed(2).toString()).replace('.',',')+'%</h6>'+
                 '</div>'
             );

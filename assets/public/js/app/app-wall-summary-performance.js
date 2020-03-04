@@ -202,7 +202,7 @@ function callPieChartSummary(tenant_id){
             $('#modalError').modal('hide');
             setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
             // console.log(response);
-            drawPieChartSummary(response);
+            drawPieChartSummary(response);  
         },
         error: function (r) {
             // console.log(r);
@@ -217,7 +217,7 @@ function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
     $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 223;
+    ctx.height = 228;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
