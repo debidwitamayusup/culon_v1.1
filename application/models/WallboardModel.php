@@ -1229,7 +1229,7 @@ Class WallboardModel extends CI_Model {
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('a.channel_id as C_ID, b.channel_name as C_NAME, a.tot_antrian as QUEUE,a.tot_cof as COF, a.abd as ABD, a.scr as SCR,a.tot_handling as HANDLING, a.msg_in as MSG_IN, a.msg_out as MSG_OUT, SUBSTRING(SEC_TO_TIME(IFNULL(a.ast_num,0)),2,7) as AST,SUBSTRING(SEC_TO_TIME(IFNULL(a.art_num,0)),2,7) ART, SUBSTRING(SEC_TO_TIME(IFNULL(a.aht_num,0)),2,7) AS AHT  ');
+        $this->db->select('a.channel_id as C_ID, b.channel_name as C_NAME, a.tot_antrian as QUEUE,a.tot_cof as COF, a.abd as ABD, a.scr as SCR,a.tot_handling as HANDLING, a.msg_in as MSG_IN, a.msg_out as MSG_OUT, SUBSTRING(SEC_TO_TIME(IFNULL(a.ast_num,0)),1,8) as AST,SUBSTRING(SEC_TO_TIME(IFNULL(a.art_num,0)),1,8) ART, SUBSTRING(SEC_TO_TIME(IFNULL(a.aht_num,0)),1,8) AS AHT  ');
         $this->db->from('v_mon_summ_chn a');
         $this->db->join('m_channel b', 'b.channel_id = a.channel_id');
         $this->db->where('a.channel_id',$channel);
@@ -1290,7 +1290,7 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.ast_num)),2,7) ast,SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),2,7) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr ');
+        $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.ast_num)),1,8) ast,SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),1,8) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),1,8) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr ');
         $this->db->from('m_tenant');
         $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
         
@@ -1334,7 +1334,7 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_monitoring.cof) total');
+        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_monitoring.cof) total, m_tenant.color_id color');
         $this->db->from('m_tenant');
         $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
        
@@ -1352,6 +1352,7 @@ Class WallboardModel extends CI_Model {
                 $result[] = array(
                     'TENANT_NAME' => $data->tenant_name,
                     'TOTAL' => $data->total,
+                    'COLOR' => $data->color
                 );
             }
             return $result;

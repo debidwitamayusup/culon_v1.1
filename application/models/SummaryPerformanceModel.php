@@ -71,7 +71,7 @@ Class SummaryPerformanceModel extends CI_Model {
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
-        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(rpt_summ_interval.case_session) total');
+        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(rpt_summ_interval.case_session) total, m_tenant.color_id color');
         $this->db->from('m_tenant');
         $this->db->join('rpt_summ_interval', 'm_tenant.tenant_id = rpt_summ_interval.tenant_id');
         if($params == 'day')
@@ -102,6 +102,7 @@ Class SummaryPerformanceModel extends CI_Model {
                 $result[] = array(
                     'TENANT_NAME' => $data->tenant_name,
                     'TOTAL' => $data->total,
+                    'COLOR' => $data->color
                 );
             }
             return $result;

@@ -161,7 +161,7 @@
 	<?php $this->load->view('temp/footer');?>
 	<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
 	<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
-	<style>
+	<!-- <style>
 		.charts {
 		width: 800px;
 		position: relative;
@@ -251,4 +251,4 @@
 		-webkit-transform: translate(-50%, 0);
 		transform: translate(-50%, 0);
 		}
-	</style>
+	</style> -->

@@ -454,9 +454,11 @@ function drawBarLayanan(response){
     console.log(response);
     var dataLayanan = [];
     var LabelX = [];
+    var arrColor = [];
     response.data.forEach(function(value){
         dataLayanan.push(value.TOTAL);
         LabelX.push(value.TENANT_NAME);
+        arrColor.push(value.COLOR);
     });
     // console.log(response.data[0].TOTAL);
     for (var i = LabelX.length; i < 30; i++){
@@ -472,8 +474,8 @@ function drawBarLayanan(response){
             datasets: [{
                     label: 'Layanan',
                     data: dataLayanan,
-                    backgroundColor: "#ff0000",
-                    hoverBackgroundColor: "#ff0000",
+                    backgroundColor: arrColor,
+                    hoverBackgroundColor: arrColor,
                     hoverBorderWidth: 0
                 }
             ],
