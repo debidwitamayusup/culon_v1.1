@@ -690,6 +690,7 @@ function drawTotalTable(response){
         var sumART = 0;
         var sumAHT = 0;
         var sumAST = 0;
+        var avgART = 0, avgAHT = 0, avgAST = 0;
 
         for (var i = 0; i < response.data.length; i++) {
             sumCOF+= parseInt((response.data[i].COF || 0));
@@ -699,16 +700,19 @@ function drawTotalTable(response){
             sumAHT+= Number(timestrToSec(response.data[i].AHT || 0));
             sumAST+= Number(timestrToSec(response.data[i].AST || 0));
             var avgSCR = (sumSCR / response.data.length)
+            avgART = Math.round(sumART / response.data.length);
+            avgAHT = Math.round(sumAHT / response.data.length);
+            avgAST = Math.round(sumAST / response.data.length);
             $('#rowDiv').empty();
             $('#rowDiv').append(''+                
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgRT">ART : '+formatTime(sumART)+'</h6>'+
+                    '<h6 class="font12" id="avgRT">ART : '+formatTime(avgART)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgHT">AHT : '+formatTime(sumAHT)+'</h6>'+
+                    '<h6 class="font12" id="avgHT">AHT : '+formatTime(avgAHT)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-2">'+
-                    '<h6 class="font12" id="avgST">AST : '+formatTime(sumAST)+'</h6>'+
+                    '<h6 class="font12" id="avgST">AST : '+formatTime(avgAST)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-2">'+
                     '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
