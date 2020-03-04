@@ -2,8 +2,8 @@
 	"use strict";
 
 	var slideMenu = $('.side-menu');
-	$('.app').addClass('sidebar-mini');
-	// $('.app').addClass('sidebar-mini sidenav-toggled');
+	// $('.app').addClass('sidebar-mini');
+	$('.app').addClass('sidebar-mini sidenav-toggled');
 
 	// Toggle Sidebar
 	$(document).on("click", "[data-toggle='sidebar']", function(event) {
