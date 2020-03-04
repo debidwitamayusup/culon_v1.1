@@ -140,7 +140,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-md" id="table_channel_body">
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">Whatsapp</td>
                                                 <td class="text-right">190</td>
@@ -363,7 +363,7 @@
                                                 <td class="text-right">90</td>
                                                 <td class="text-right">90</td>
                                                 <td class="text-right">90</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

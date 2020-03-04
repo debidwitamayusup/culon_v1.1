@@ -27,7 +27,8 @@ $(document).ready(function(){
         callThreeTable('', arr_tenant);
         callPieChartSummary('', arr_tenant);
         callBarLayanan('', arr_tenant);
-        callLineChart('', arr_tenant);
+        // callLineChart('', arr_tenant);
+        callTableChannel();
         callTotalTable('', arr_tenant);
         $("#filter-loader").fadeOut("slow");
     }else{
@@ -71,6 +72,25 @@ function callThreeTable(date, tenant_id){
     });
 }
 
+function callTableChannel(){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/Wallboard/WallboardController/DataTableNasional',
+        success: function (r) {
+            var response = r;
+            $('#modalError').modal('hide');
+            setTimeout(function(){ callTableChannel();},5000);
+            drawTableChannel(response);
+        },
+        error: function (r) {
+            // console.log(r);
+            $('#modalError').modal('show');
+            setTimeout(function(){ callTableChannel();},5000);
+            // $("#filter-loader").fadeOut("slow");
+        },
+    });
+}
+
 function drawTableRealTime(response){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
@@ -87,8 +107,8 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].MASSAGE_IN) || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].MASSAGE_OUT) || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].MESSAGE_IN) || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].MESSAGE_OUT) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].ABANDON) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].HANDLING) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
@@ -104,6 +124,7 @@ function drawTableRealTime(response){
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-right"></td>'+
@@ -144,6 +165,28 @@ function drawTableRealTime(response){
             }
         }
     }
+}
+
+function drawTableChannel(response){
+    $("#table_channel_body").empty();
+    var k=0;
+    response.data.forEach(function(value){
+        $('#table_channel').find('tbody').append('<tr>'+
+            '<td class="text-center">'+(k+1)+'</td>'+
+            '<td class="text-left">'+(value.CHANNEL_NAME)+'</td>'+
+            '<td class="text-right">'+(value.QUEUE || 0)+'</td>'+
+            '<td class="text-center">'+(value.ART || 0)+'</td>'+
+            '<td class="text-center">'+(value.AHT || 0)+'</td>'+
+            '<td class="text-center">'+(value.AST || 0)+'</td>'+
+            '<td class="text-right">'+(addCommas(value.MESSAGE_IN) || 0)+'</td>'+
+            '<td class="text-right">'+(addCommas(value.MESSAGE_OUT) || 0)+'</td>'+
+            '<td class="text-right">'+(addCommas(value.ABANDON) || 0)+'</td>'+
+            '<td class="text-right">'+(addCommas(value.HANDLING) || 0)+'</td>'+
+            '<td class="text-right">'+(addCommas(value.OFFERED) || 0)+'</td>'+
+            '<td class="text-right">'+((value.SCR.toString()).replace('.',',') || 0)+'%</td>'+
+        '</tr>');
+        k++;
+    });
 }
 
 function callPieChartSummary(tenant_id){
@@ -498,16 +541,16 @@ function formatTime(seconds) {
 
 function drawTotalTable(response){
         var sumCOF = 0;
-        var sumSCR = '';
-        var sumWaiting = '';
-        var sumAHT = '';
+        var sumSCR = 0;
+        var sumWaiting = 0;
+        var sumAHT = 0;
 
         for (var i = 0; i < response.data.length; i++) {
             sumCOF+= parseInt((response.data[i].OFFERED || 0));
             // console.log(sumCOF);
             sumSCR+= parseFloat((response.data[i].SCR || 0));
-            sumWaiting+= formatTime(timestrToSec(response.data[i].WAITING || 0));
-            sumAHT+= formatTime(timestrToSec(response.data[i].AHT || 0));
+            sumWaiting+= Number(timestrToSec(response.data[i].ART || 0));
+            sumAHT+= Number(timestrToSec(response.data[i].AHT || 0));
             $('#rowDiv').empty();
             $('#rowDiv').append(''+
                 '<div class="col-md-3">'+
@@ -517,10 +560,10 @@ function drawTotalTable(response){
                     '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(sumSCR.toString()).replace('.',',')+'%</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+sumWaiting+'</h6>'+
+                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+formatTime(sumWaiting)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgHT">Average Handling Time : '+sumAHT+'</h6>'+
+                    '<h6 class="font12" id="avgHT">Average Handling Time : '+formatTime(sumAHT)+'</h6>'+
                 '</div>'
             );
         }

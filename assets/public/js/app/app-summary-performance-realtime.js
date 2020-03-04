@@ -694,8 +694,8 @@ function drawTotalTable(response){
             // console.log(response.data[i].SCR);
             sumSCR+= parseFloat((response.data[i].SCR || 0));
             sumART+= Number(timestrToSec(response.data[i].ART || 0));
-            sumAHT+= timestrToSec(response.data[i].AHT || 0);
-            sumAST+= timestrToSec(response.data[i].AST || 0);
+            sumAHT+= Number(timestrToSec(response.data[i].AHT || 0));
+            sumAST+= Number(timestrToSec(response.data[i].AST || 0));
             var avgSCR = (sumSCR / response.data.length)
             $('#rowDiv').empty();
             $('#rowDiv').append(''+                
