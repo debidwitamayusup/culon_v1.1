@@ -1038,11 +1038,7 @@ function drawChartTop5(response){
     var barData = {
         labels: arrLabelTop5,
         datasets: [{
-<<<<<<< HEAD
-            label: "Sessions",
-=======
             label: "Total",
->>>>>>> origin/elsa-dev
             data: arrDataTop5,
             backgroundColor: arrColorTop5,
             // hoverBackgroundColor: ["#66A2EB", "#FCCE56"]
