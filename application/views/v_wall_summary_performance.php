@@ -25,7 +25,7 @@
                         <h5 class="card-title-small card-pt10">Realtime</h5>
                     </div>
                     <div class="row mt-2 mb-2" style="padding: 0px 7px 0px 7px;">
-                    <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
@@ -33,10 +33,14 @@
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
-                                            <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td>ART <br> (Waiting Time)</td>
+                                            <td>ART</td>
                                             <td>AHT</td>
+                                            <td>AST</td>
+                                            <td>MSG IN</td>
+                                            <td>MSG OUT</td>
+                                            <td>ABD</td>
+                                            <td>Handling</td>
                                             <td>Offered</td>
                                             <td>SCR</td>
                                         </tr>
@@ -46,7 +50,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
@@ -54,36 +58,19 @@
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
-                                            <td>Layanan</td>
                                             <td>Queue</td>
-                                            <td>ART <br> (Waiting Time)</td>
+                                            <td>ART</td>
                                             <td>AHT</td>
+                                            <td>AST</td>
+                                            <td>MSG IN</td>
+                                            <td>MSG OUT</td>
+                                            <td>ABD</td>
+                                            <td>Handling</td>
                                             <td>Offered</td>
                                             <td>SCR</td>
                                         </tr>
                                     </thead>
                                     <tbody class="table-sm" id="mytbody_2">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="table-responsive table-bordered" style="padding:2px;">
-                                <table
-                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_3">
-                                    <thead class="text-center text-white bg-head" id="mythead_3">
-                                        <tr>
-                                            <td>No</td>
-                                            <td>Layanan</td>
-                                            <td>Queue</td>
-                                            <td>ART <br> (Waiting Time)</td>
-                                            <td>AHT</td>
-                                            <td>Offered</td>
-                                            <td>SCR</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-sm" id="mytbody_3">
                                     </tbody>
                                 </table>
                             </div>
@@ -117,10 +104,10 @@
                     <div class="row mt-2" style="padding-left:4px; padding-right:4px">
                         <div class="col-lg-4 col-md-12">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-pie">
                                     <div class="canvas-con">
                                         <div id="legend" class="legend-con"></div>
-                                        <div class="canvas-con-inner" id="canvas-pie">
+                                        <div class="canvas-con-inner mt-1 mb-6" id="canvas-pie">
                                             <canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>
                                         </div>
 
@@ -130,8 +117,253 @@
                         </div>
                         <div class="col-lg-8 col-md-12">
                             <div class="card">
-                                <div class="card-body" id="lineWallSumPerformDiv">
-                                    <canvas id="lineWallSumPerform"></canvas>
+                                <div class="table-responsive table-bordered" style="padding:2px;">
+                                    <table
+                                        class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
+                                        id="mytable_2">
+                                        <thead class="text-center text-white bg-head">
+                                            <tr>
+                                                <td>No</td>
+                                                <td>Channel</td>
+                                                <td>Queue</td>
+                                                <td>ART</td>
+                                                <td>AHT</td>
+                                                <td>AST</td>
+                                                <td>MSG IN</td>
+                                                <td>MSG OUT</td>
+                                                <td>ABD</td>
+                                                <td>Handling</td>
+                                                <td>Offered</td>
+                                                <td>SCR</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-md">
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">2</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">3</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">4</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">5</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">6</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">7</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">8</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">9</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">10</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">11</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">12</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">13</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">14</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">15</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">16</td>
+                                                <td class="text-left">Whatsapp</td>
+                                                <td class="text-right">190</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-center">00:00:00</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                                <td class="text-right">90</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
