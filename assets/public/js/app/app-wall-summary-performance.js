@@ -78,7 +78,7 @@ function drawTableRealTime(response){
     // console.log(response.data[0].TENANT_NAME);
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < 15; i++) {
             if (response.data[i]){
                 $('#mytable_1').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(i+1)+'</td>'+
@@ -86,6 +86,10 @@ function drawTableRealTime(response){
                         '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
                         '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
@@ -97,6 +101,10 @@ function drawTableRealTime(response){
                     '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
                     '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-center"></td>'+
+                    '<td class="text-right"></td>'+
+                    '<td class="text-right"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-right"></td>'+
                 '</tr>');
@@ -106,7 +114,7 @@ function drawTableRealTime(response){
 
     $('#mytbody_2').empty();
     if (response.data.length != 0) {
-        for (var i = 10; i < 20; i++) {
+        for (var i = 15; i < 30; i++) {
             if (response.data[i]){
                 $('#mytable_2').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(i+1)+'</td>'+
@@ -120,13 +128,17 @@ function drawTableRealTime(response){
             }else{
                 $('#mytable_2').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
-                    '<td class="text-left"></td>'+
-                    '<td class="text-right"></td>'+
-                    '<td class="text-center"></td>'+
-                    '<td class="text-center"></td>'+
-                    '<td class="text-right"></td>'+
-                    '<td class="text-right"></td>'+
+                '<td class="text-center">'+(i+1)+'</td>'+
+                '<td class="text-left"></td>'+
+                '<td class="text-right"></td>'+
+                '<td class="text-center"></td>'+
+                '<td class="text-center"></td>'+
+                '<td class="text-center"></td>'+
+                '<td class="text-center"></td>'+
+                '<td class="text-right"></td>'+
+                '<td class="text-right"></td>'+
+                '<td class="text-right"></td>'+
+                '<td class="text-right"></td>'+
                 '</tr>');
             }
         }
@@ -188,7 +200,7 @@ function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
     $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 266;
+    ctx.height = 315;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -228,7 +240,7 @@ function drawPieChartSummary(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row">');
+                legendHtml.push('<ul><div class="row ml-2">');
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

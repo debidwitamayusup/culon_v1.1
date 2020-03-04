@@ -52,44 +52,36 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
-	// $(document).on("click", "a .slide-item ", function(event) {
+	// $(document).on("click","div div div a.slide-item", function(event){
 	// 	event.preventDefault();
-	// 	console.log('aku');
-	// 	$(this).parent().parent().parent().hasClass("resp-tab-content").prop("class","resp-tab-content-active");
+	// 	$('a.slide-item.active').removeClass('active');
+	// 	$('a.slide-item').addClass('active');
+	// 	$('div.resp-tab-content-active').removeClass('resp-tab-content-active')
+	// 	$('div.resp-tab-content').prop('class','resp-tab-content-active');
+		
+
+	// 	console.log('aku pengen bisa js');
 	// });
 
-	// $(document).on('click','div a.slide-item', function(){
-	// 	$(this).parents('div').hasClass('resp-tab-content-active').removeClass('resp-tab-content-active');
-	// 	$(this).parents('div:first').addClass('resp-tab-content-active');
-	// });
+	// $(document).ready(function(){
+	// 	$("button").click(function(){
+	// 	  $("p:first").addClass("intro");
+	// 	});
+	//   });
 
-	// $(document).on("click","a .slide-item", function(){
-	// 	$(this).parent().parent().parent().hasClass("resp-tab-content").prop("class","resp-tab-content-active");
-	// 	console.log("cape akutuh");
-	// });
+	$(document).ready(function(){
+		$("div div div a.slide-item").click(function(){
+			$('div .resp-tab-content').prop('resp-tab-content-active').css('display','block');
+		});
 
-	// $('div div div a .slide-item').on('click',function(){
-	// 	$(this).addClass('active');
-	// });
+		console.log('Ya ALLAH pengen sidemenu nya sesuai menu yang diklik');
+	});
 
-	// $("a .slide-item").on("click", function(event){
+	// $(document).on("click","div div div a.slide-item.active", function(event){
 	// 	event.preventDefault();
-	// 	if($(this).parent().parent().parent().hasClass('resp-tab-content-active')){
-	// 		$("a").find(" .slide-item .active").removeClass("active");
-			
-	// 		$("div").find(".resp-tab-content-active").prop("class","resp-tab-content");
-			
-	// 	}
-	// 	$("a").find(".slide-item").addClass("active");
-	// 	$("div").find(".resp-tab-content").prop("class","resp-tab-content-active");
-	// });
-
-	// $("a .slide-item").on("click", function(event){
-	// 	event.preventDefault();
-	// 	("a .slide-item").removeClass("active").addClass("active");
-	// 	("div .first-sidemenu li").remove("resp-tab-active").addClass("resp-tab-active");
-	// 	("div .second-sidemenu div.active.resp-tab-content").removeClass("active").prop("resp-tab-content-active");
-	// });
+	// 	$('div').hasClass('resp-tab-content-active').prop("class","resp-tab-content");
+	// 	$('div').hasClass('resp-tab-content').prop("class","resp-tab-content-active");
+	// })
 	
 	   
 })();
