@@ -8,7 +8,7 @@ var v_params_tenant = 'oct_telkomcare';
 var d = new Date();
 var n = d.getMonth() + 1;
 var m = d.getFullYear();
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
         //for dropdown selected

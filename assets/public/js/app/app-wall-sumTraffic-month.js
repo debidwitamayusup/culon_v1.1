@@ -13,7 +13,7 @@ if (n < 10) {
 
 //get today
 var v_params_this_year = m + '-' + n + '-' + (o);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){

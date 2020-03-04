@@ -23,7 +23,7 @@ var channels = [
 var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){

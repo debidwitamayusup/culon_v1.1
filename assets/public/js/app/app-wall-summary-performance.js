@@ -13,7 +13,7 @@ if (n < 10) {
 
 var v_params_this_year = m + '-' + n + '-' + (o);
 var arr_tenant = [];
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);

@@ -1,5 +1,5 @@
 var base_url = $('#base_url').val();
-let items = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+let items = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     // if(items.TENANT_ID != null){
     //     $('#layanan_name_parent').remove();
@@ -7,6 +7,10 @@ $(document).ready(function () {
     //     getTenant('');
     // }
 });
+
+// window.onunload = () => {
+//     window.localStorage.clear()
+//  }
 
 function getTenant(date){
     $.ajax({
@@ -64,7 +68,7 @@ function getTenant(date){
           },
           success: function (r) {
               if(r.status) {
-                sessionStorage.removeItem('Auth-infomedia');
+                localStorage.removeItem('Auth-infomedia');
                 window.location = base_url+'main/login';
               } else {
                   alert(r.message)

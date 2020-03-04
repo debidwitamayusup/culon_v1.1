@@ -18,7 +18,7 @@ if (n < 10) {
 console.log(n);
 var v_params_this_year = m + '-' + n + '-' + (o);
 var v_params_tenant = 'oct_telkomcare';
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
 	if(sessionParams){
 		params_time = 'day';

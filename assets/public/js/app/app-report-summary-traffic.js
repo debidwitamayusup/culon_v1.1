@@ -18,7 +18,7 @@ if (n < 10) {
 }
 
 var v_params_today= m + '-' + n + '-' + (o);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function(){
     if(sessionParams){

@@ -31,7 +31,7 @@ var channels = [
 var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
@@ -46,7 +46,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTableAgentPerform($("#layanan_name").val(),v_params_today,v_params_today, '1');
+        drawTableAgentPerform($("#layanan_name").val(),v_params_today,v_params_today, '');
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{

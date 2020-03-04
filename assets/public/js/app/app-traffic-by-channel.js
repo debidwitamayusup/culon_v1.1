@@ -22,7 +22,7 @@ if (n < 10) {
 
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');

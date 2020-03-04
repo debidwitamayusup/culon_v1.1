@@ -13,7 +13,7 @@ if (n < 10) {
 
 //get yesterday
 var v_params_today= m + '-' + n + '-' + (o-1);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -899,76 +899,6 @@ function drawChartPerGroupEnterprise(response){
         dataStacked.push(datasetsStacked);
         x++;
     });
-    
-		Chart.defaults.global.pointHitDetectionRadius = 1;
-
-		var customTooltips = function(tooltip) {
-			// Tooltip Element
-			var tooltipEl = document.getElementById('chartjs-tooltip');
-
-			if (!tooltipEl) {
-				tooltipEl = document.createElement('div');
-				tooltipEl.id = 'chartjs-tooltip';
-				tooltipEl.innerHTML = '<table></table>';
-				this._chart.canvas.parentNode.appendChild(tooltipEl);
-			}
-
-			// Hide if no tooltip
-			if (tooltip.opacity === 0) {
-				tooltipEl.style.opacity = 0;
-				return;
-			}
-
-			// Set caret Position
-			tooltipEl.classList.remove('above', 'below', 'no-transform');
-			if (tooltip.yAlign) {
-				tooltipEl.classList.add(tooltip.yAlign);
-			} else {
-				tooltipEl.classList.add('no-transform');
-			}
-
-			function getBody(bodyItem) {
-				return bodyItem.lines;
-			}
-
-			// Set Text
-			if (tooltip.body) {
-				var titleLines = tooltip.title || [];
-				var bodyLines = tooltip.body.map(getBody);
-
-				var innerHtml = '<thead>';
-
-				titleLines.forEach(function(title) {
-					innerHtml += '<tr><th>' + title + '</th></tr>';
-				});
-				innerHtml += '</thead><tbody>';
-
-				bodyLines.forEach(function(body, i) {
-					var colors = tooltip.labelColors[i];
-					var style = 'background:' + colors.backgroundColor;
-					style += '; border-color:' + colors.borderColor;
-					style += '; border-width: 2px';
-					var span = '<span class="chartjs-tooltip-key" style="' + style + '"></span>';
-					innerHtml += '<tr><td>' + span + body + '</td></tr>';
-				});
-				innerHtml += '</tbody>';
-
-				var tableRoot = tooltipEl.querySelector('table');
-				tableRoot.innerHTML = innerHtml;
-			}
-
-			var positionY = this._chart.canvas.offsetTop;
-			var positionX = this._chart.canvas.offsetLeft;
-
-			// Display, position, and set styles for font
-			tooltipEl.style.opacity = 1;
-			tooltipEl.style.left = positionX + tooltip.caretX + 'px';
-			tooltipEl.style.top = positionY + tooltip.caretY + 'px';
-			tooltipEl.style.fontFamily = tooltip._bodyFontFamily;
-			tooltipEl.style.fontSize = tooltip.bodyFontSize + 'px';
-			tooltipEl.style.fontStyle = tooltip._bodyFontStyle;
-			tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
-		};
 
        var bar_ctx = document.getElementById('barEnterpriseGroup');
    
@@ -986,8 +916,6 @@ function drawChartPerGroupEnterprise(response){
                    duration: 10,
                },
                tooltips: {
-                   enabled: false,
-                   custom: customTooltips,
                    mode: 'label',
                    callbacks: {
                        label: function (tooltipItem, data) {

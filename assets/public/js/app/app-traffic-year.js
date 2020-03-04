@@ -1,6 +1,6 @@
 var base_url = $('#base_url').val();
 var v_params_tenant = 'oct_telkomcare';
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 var d = new Date();
 var n = d.getFullYear();
 $(document).ready(function () {

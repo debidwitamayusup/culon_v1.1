@@ -38,7 +38,8 @@ $(document).ready(function () {
             },
             success: function (r) {
                 if(r.status) {
-                    sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
+                    // sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
+                    localStorage.setItem('Auth-infomedia',JSON.stringify(r.data))
                     window.location = base_url+'main/v_home'
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')

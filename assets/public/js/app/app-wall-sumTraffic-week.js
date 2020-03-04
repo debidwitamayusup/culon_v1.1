@@ -15,7 +15,7 @@ Date.prototype.getWeek = function () {
 var d = new Date();
 var params_week = d.getWeek() - 1;
 // console.log(params_week);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
     if(sessionParams){
         // $("#filter-loader").fadeIn("slow");

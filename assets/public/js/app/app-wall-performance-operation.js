@@ -16,7 +16,7 @@ var v_params_today= m + '-' + n + '-' + (o);
 var tembak = '2020-03-02';
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-1);
-const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
+const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
