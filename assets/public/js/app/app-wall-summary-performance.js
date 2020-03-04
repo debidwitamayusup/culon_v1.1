@@ -358,7 +358,7 @@ function drawBarLayanan(response){
                         display: true
                     },
                     ticks: {
-                        fontSize: 10
+                        fontSize: 8
                     },
                     barPercentage: 1,
                     // barThickness: 30,
