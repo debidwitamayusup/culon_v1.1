@@ -1,23 +1,14 @@
 <div class=" app-content">
 	<div class="side-app">
 		<div class="page-header d-flex bd-highlight">
-			<div class="mr-auto bd-highlight">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active" aria-current="page">
-						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
-					</li>
-					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic</li>
-				</ol>
-			</div>
-			<!-- <div class="bd-highlight" style="margin-bottom:30px;">
-				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
-					<option value="#">All Layanan</option>
-					<option value="#">All Layanan</option>
-					<option value="#">All Layanan</option>
-				</select>
-			</div> -->
-			<div class="bd-highlight">
-				<div class="bd-highlight" style="margin-left:5px;">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page">
+					<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
+				</li>
+				<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic</li>
+			</ol>
+			<div class="d-flex align-items-end flex-column bd-highlight">
+				<div class="bd-highlight">
 					<div class="card-options d-none d-sm-block">
 						<div class="btn-group text-center btn-sm">
 							<a href="#" class="btn btn-light btn-sm" id="btn-day">
@@ -78,90 +69,89 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row" style="margin-right:0px; margin-left:-1px;">
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
-				</div>
-				<div class="card-pie">
-					<div class="canvas-con">
-						<!-- <div id="legend" class="legend-con"></div>
+		<div class="row" style="margin-right:0px; margin-left:-1px;">
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
+					</div>
+					<div class="card-pie">
+						<div class="canvas-con">
+							<!-- <div id="legend" class="legend-con"></div>
 						<div class="canvas-con-inner" id="canvas-pie">
 							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 						</div> -->
-						<div class="row">
-							<div class="col-md-3">
-								<div id="legend" class="legend-con"></div>
-							</div>
-							<div class="col-md-9 mt-6">
-								<div class="canvas-con-inner" id="canvas-pie">
-									<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+							<div class="row">
+								<div class="col-md-3">
+									<div id="legend" class="legend-con"></div>
+								</div>
+								<div class="col-md-9 mt-6">
+									<div class="canvas-con-inner" id="canvas-pie">
+										<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">Top 5 Traffic</h5>
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Top 5 Traffic</h5>
+					</div>
+					<div class="card-body">
+						<canvas id="barTop5Traffic" style="height:343px"></canvas>
+					</div>
 				</div>
-				<div class="card-body">
-					<canvas id="barTop5Traffic" style="height:343px"></canvas>
-				</div>
-			</div>
 
+			</div>
+		</div>
+		<div class="row" style="margin-right:0px; margin-left:-1px;">
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
+					</div>
+					<div class="card-body">
+						<canvas id="barTelkomGroup" class="h-200"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
+					</div>
+					<div class="card-body">
+						<canvas id="barGovermentGroup" class="h-200"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-right:0px; margin-left:-1px;">
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
+					</div>
+					<div class="card-body">
+						<canvas id="barBFSIGroup" class="h-200"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Enterprise Group</h5>
+					</div>
+					<div class="card-body">
+						<canvas id="barEnterpriseGroup" class="h-200"></canvas>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-right:0px; margin-left:-1px;">
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
-				</div>
-				<div class="card-body">
-					<canvas id="barTelkomGroup" class="h-200"></canvas>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
-				</div>
-				<div class="card-body">
-					<canvas id="barGovermentGroup" class="h-200"></canvas>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" style="margin-right:0px; margin-left:-1px;">
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
-				</div>
-				<div class="card-body">
-					<canvas id="barBFSIGroup" class="h-200"></canvas>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card overflow-hidden">
-				<div class="card-header-small">
-					<h5 class="card-title-small card-pt10 font-weight-extrabold">Enterprise Group</h5>
-				</div>
-				<div class="card-body">
-					<canvas id="barEnterpriseGroup" class="h-200"></canvas>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<?php $this->load->view('temp/footer');?>
-<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
+	<?php $this->load->view('temp/footer');?>
+	<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
+	<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>

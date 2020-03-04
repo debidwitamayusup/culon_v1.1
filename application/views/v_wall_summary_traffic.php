@@ -9,11 +9,9 @@
 					<li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic Today</li>
 				</ol>
 			</div>
-			<div class="bd-highlight" style="margin-bottom:30px;" id="layanan_name_parent">
+			<div class="bd-highlight" id="layanan_name_parent">
 				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
-					<!-- <option value="#">All Layanan</option>
-					<option value="#">All Layanan</option>
-					<option value="#">All Layanan</option> -->
+					
 				</select>
 			</div>
 		</div>

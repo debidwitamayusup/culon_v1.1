@@ -24,11 +24,11 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Realtime</h5>
                     </div>
-                    <div class="row mt-2 mb-2">
-                        <div class="col-md-4">
+                    <div class="row mt-2 mb-2" style="padding: 0px 7px 0px 7px;">
+                    <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
-                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
+                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                                     id="mytable_1">
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
@@ -49,7 +49,7 @@
                         <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
-                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
+                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                                     id="mytable_2">
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
@@ -70,7 +70,7 @@
                         <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
-                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
+                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                                     id="mytable_3">
                                     <thead class="text-center text-white bg-head" id="mythead_3">
                                         <tr>
