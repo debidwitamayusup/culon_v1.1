@@ -33,6 +33,7 @@
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
+                                            <td>Tenant</td>
                                             <td>Queue</td>
                                             <td>ART</td>
                                             <td>AHT</td>
@@ -58,6 +59,7 @@
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
+                                            <td>Tenant</td>
                                             <td>Queue</td>
                                             <td>ART</td>
                                             <td>AHT</td>
@@ -120,7 +122,7 @@
                                 <div class="table-responsive table-bordered" style="padding:2px;">
                                     <table
                                         class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito10"
-                                        id="mytable_2">
+                                        id="table_channel">
                                         <thead class="text-center text-white bg-head">
                                             <tr>
                                                 <td>No</td>
@@ -137,7 +139,7 @@
                                                 <td>SCR</td>
                                             </tr>
                                         </thead>
-                                        <tbody class="table-md">
+                                        <tbody class="table-md" id="table_channel_body">
                                             <tr>
                                                 <td class="text-center">1</td>
                                                 <td class="text-left">Whatsapp</td>

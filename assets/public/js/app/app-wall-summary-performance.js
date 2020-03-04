@@ -84,12 +84,13 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(i+1)+'</td>'+
                         '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                        '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].MASSAGE_IN) || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].MASSAGE_OUT) || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].ABANDON) || 0)+'</td>'+
+                        '<td class="text-right">'+(addCommas(response.data[i].HANDLING) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
                         '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
@@ -139,34 +140,6 @@ function drawTableRealTime(response){
                 '<td class="text-right"></td>'+
                 '<td class="text-right"></td>'+
                 '<td class="text-right"></td>'+
-                '</tr>');
-            }
-        }
-    }
-
-    $('#mytbody_3').empty();
-    if (response.data.length != 0) {
-        for (var i = 20; i < 30; i++) {
-            if (response.data[i]){
-                $('#mytable_3').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
-                    '</tr>');
-            }else{
-                $('#mytable_3').find('tbody').append(
-                '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
-                    '<td class="text-left"></td>'+
-                    '<td class="text-right"></td>'+
-                    '<td class="text-center"></td>'+
-                    '<td class="text-center"></td>'+
-                    '<td class="text-right"></td>'+
-                    '<td class="text-right"></td>'+
                 '</tr>');
             }
         }
