@@ -161,6 +161,7 @@ function drawTableRealTime(response){
                 '<td class="text-right"></td>'+
                 '<td class="text-right"></td>'+
                 '<td class="text-right"></td>'+
+                '<td class="text-right"></td>'+
                 '</tr>');
             }
         }

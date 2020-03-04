@@ -6,6 +6,9 @@ $(document).ready(function () {
     // }else{
     //     getTenant('');
     // }
+    if(!items){
+        window.location = base_url;
+    }
 });
 
 // window.onunload = () => {
