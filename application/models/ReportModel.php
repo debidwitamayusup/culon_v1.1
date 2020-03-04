@@ -76,7 +76,7 @@ Class ReportModel extends CI_Model {
             foreach( $query->result() as $data)
             {
                 $result[] = array(
-                    'SKILL_NAME' => $data->skill_name
+                    'SKILL_NAME' => ucfirst(strtolower($data->skill_name))
                 );
             }
             return $result;
