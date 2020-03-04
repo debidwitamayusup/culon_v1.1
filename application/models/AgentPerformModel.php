@@ -165,6 +165,7 @@ class AgentPerformModel extends CI_Model
 							SUM(rpt_summary_agent.session) as COF,
 							rpt_summary_agent.agentid AS AGENTID, rpt_summary_agent.agentName AS NAME, rpt_summary_agent.skill_name AS SKILLNAME');//,v_rpt_summ_agent.profile_pic AS IMAGE //
 		$this->db->from('rpt_summary_agent');
+		$this->db->where('rpt_summary_agent.agentName <> "" ');
 		$this->db->where('rpt_summary_agent.agentid <> "" ');
 		if($tid)
 		{
@@ -276,6 +277,7 @@ class AgentPerformModel extends CI_Model
 			IFNULL(rpt_summary_agent.skill_name, "no data") AS SKILLNAME');
 		$this->db->from('rpt_summary_agent');
 		$this->db->where('rpt_summary_agent.skill_name <> ""');
+		
 		
 		if($tid)
 		{
