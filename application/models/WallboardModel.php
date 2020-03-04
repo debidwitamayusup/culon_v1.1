@@ -1210,20 +1210,18 @@ Class WallboardModel extends CI_Model {
 
      #region :: debi
     public function summary_performance_nasional(){
-        $date = $this->security->xss_clean($this->input->post('date', true));
+        //$date = $this->security->xss_clean($this->input->post('date', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('m_tenant.tenant_name, wall_traffic.tenant_id, SUM(wall_traffic.queue) queue, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.art)),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_traffic.aht)),2,7) AS aht, SUM(wall_traffic.cof) offered, AVG(wall_traffic.scr) scr');
+        $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),2,7) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),2,7) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr, ');
         $this->db->from('m_tenant');
-        $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
-        if ($date){
-            $this->db->where('DATE(wall_traffic.lup)', $date);
-        }
+        $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
+        
         if($tid){
-            $this->db->where_in('wall_traffic.tenant_id', $tid);
+            $this->db->where_in('wall_monitoring.tenant_id', $tid);
         }
-        $this->db->group_by('wall_traffic.tenant_id');
+        $this->db->group_by('wall_monitoring.tenant_id');
         $query = $this->db->get();
         
         // print_r($this->db->last_query());
@@ -1237,6 +1235,10 @@ Class WallboardModel extends CI_Model {
                 $result[] = array(
                     'TENANT_NAME' => $data->tenant_name,
                     'QUEUE' => strval(number_format($data->queue,0,'.',',')),
+                    'HANDLING' => $data->handling,
+                    'MESSAGE_IN' => $data->msg_in,
+                    'MESSAGE_OUT' => $data->msg_out,
+                    'ABANDONG' => $data->abd,
                     'WAITING' => $data->waiting,
                     'AHT' => $data->aht,
                     'OFFERED' => $data->offered,
@@ -1251,20 +1253,18 @@ Class WallboardModel extends CI_Model {
 
     public function summary_performance_nas_bar()
     {
-        $date = $this->security->xss_clean($this->input->post('date', true));
+        //$date = $this->security->xss_clean($this->input->post('date', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_traffic.cof) total');
+        $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_monitoring.cof) total');
         $this->db->from('m_tenant');
-        $this->db->join('wall_traffic', 'm_tenant.tenant_id = wall_traffic.tenant_id');
-        if ($date){
-            $this->db->where('DATE(wall_traffic.lup)', $date);
-        }
+        $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
+       
         if($tid){
-            $this->db->where_in('wall_traffic.tenant_id', $tid);
+            $this->db->where_in('wall_monitoring.tenant_id', $tid);
         }
-        $this->db->group_by('wall_traffic.tenant_id');
+        $this->db->group_by('wall_monitoring.tenant_id');
         $query = $this->db->get();
 
         if($query->num_rows() > 0)
@@ -1314,16 +1314,13 @@ Class WallboardModel extends CI_Model {
     {
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
         $date = $this->security->xss_clean($this->input->post('date', true));
-        $this->db->select('IFNULL(SUM(wall_traffic.cof),0) as TOTAL');
+        $this->db->select('IFNULL(SUM(wall_monitoring.cof),0) as TOTAL');
         
-        $this->db->from('wall_traffic');
-        if($date)
-        {
-            $this->db->where('DATE(wall_traffic.lup)',$date);
-        }
-        $this->db->where('wall_traffic.channel_id',$channel);
+        $this->db->from('wall_monitoring');
+       
+        $this->db->where('wall_monitoring.channel_id',$channel);
         if($tid){
-            $this->db->where_in('wall_traffic.tenant_id', $tid);
+            $this->db->where_in('wall_monitoring.tenant_id', $tid);
         }
         $query = $this->db->get();
 
