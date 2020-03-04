@@ -306,7 +306,7 @@ Class ReportModel extends CI_Model {
         //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
 
         $this->db->select('a.tanggal as TANGGAL, 
-        SUM(a.cof) as OFFERED,
+        SUM(a.session) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
@@ -380,7 +380,7 @@ Class ReportModel extends CI_Model {
         //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
         $this->db->select('
         a.skill_name as SKILLNAME,
-        SUM(a.cof) as OFFERED,
+        SUM(a.session) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
