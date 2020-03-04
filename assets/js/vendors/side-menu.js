@@ -74,7 +74,6 @@
 			$('div .resp-tab-content').prop('resp-tab-content-active').css('display','block');
 		});
 
-		console.log('Ya ALLAH pengen sidemenu nya sesuai menu yang diklik');
 	});
 
 	// $(document).on("click","div div div a.slide-item.active", function(event){
