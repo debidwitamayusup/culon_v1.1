@@ -141,7 +141,7 @@
                         if (!$currentTab.hasClass('resp-tab-active') && $currentTab.hasClass('resp-accordion')) {
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
                                 'background-color': options.inactive_bg,
-                                'border-color': 'none'
+                                'border-color': '#000'
                             });
                             $respTabs.find('.resp-tab-content-active.' + options.tabidentify).slideUp().removeClass('resp-tab-content-active resp-accordion-closed');
                             $respTabs.find("[aria-controls=" + $tabAria + "]").addClass('resp-tab-active').css({

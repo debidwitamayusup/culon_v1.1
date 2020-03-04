@@ -240,7 +240,7 @@ function drawPieChartSummary(response){
 
                     // console.log(total)
                     var percentage = Math.round((dataLabel / total) * 100);
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                    legendHtml.push('<li class="col-md-6 col-lg-6">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
                 })
                 legendHtml.push('</ul></div>');
@@ -415,7 +415,7 @@ function callLineChart(channel, tenant_id){
 
 function drawLineChart(response){
     $('#lineWallSumPerform').remove();
-    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:438px"></canvas>');
+    $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:475px"></canvas>');
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',

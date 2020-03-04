@@ -2,8 +2,8 @@
 	"use strict";
 
 	var slideMenu = $('.side-menu');
-	// $('.app').addClass('sidebar-mini');
-	$('.app').addClass('sidebar-mini sidenav-toggled');
+	$('.app').addClass('sidebar-mini');
+	// $('.app').addClass('sidebar-mini sidenav-toggled');
 
 	// Toggle Sidebar
 	$(document).on("click", "[data-toggle='sidebar']", function(event) {
@@ -72,24 +72,24 @@
 	// 	$(this).addClass('active');
 	// });
 
-	$("a .slide-item").on("click", function(event){
-		event.preventDefault();
-		if($(this).parent().parent().parent().hasClass('resp-tab-content-active')){
-			$("a").find(" .slide-item .active").removeClass("active");
+	// $("a .slide-item").on("click", function(event){
+	// 	event.preventDefault();
+	// 	if($(this).parent().parent().parent().hasClass('resp-tab-content-active')){
+	// 		$("a").find(" .slide-item .active").removeClass("active");
 			
-			$("div").find(".resp-tab-content-active").prop("class","resp-tab-content");
+	// 		$("div").find(".resp-tab-content-active").prop("class","resp-tab-content");
 			
-		}
-		$("a").find(".slide-item").addClass("active");
-		$("div").find(".resp-tab-content").prop("class","resp-tab-content-active");
-	});
+	// 	}
+	// 	$("a").find(".slide-item").addClass("active");
+	// 	$("div").find(".resp-tab-content").prop("class","resp-tab-content-active");
+	// });
 
 	// $("a .slide-item").on("click", function(event){
 	// 	event.preventDefault();
 	// 	("a .slide-item").removeClass("active").addClass("active");
 	// 	("div .first-sidemenu li").remove("resp-tab-active").addClass("resp-tab-active");
 	// 	("div .second-sidemenu div.active.resp-tab-content").removeClass("active").prop("resp-tab-content-active");
-	// })
+	// });
 	
 	   
 })();
