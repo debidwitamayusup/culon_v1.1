@@ -85,18 +85,18 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Performance by Skill</h5>
                     </div>
-                    <div class="table-responsive table-pt10">
-                        <table class="table card-table table-striped table-vcenter table-hover table-pt10"
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar table-responsive table-pt10">
+                        <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
                             style="height:310px" id="tableSkill">
                             <thead class="text-center text-white bg-head">
                                 <tr>
-                                    <th>Skill</th>
-                                    <th>ART</th>
-                                    <th>AHT</th>
-                                    <th>AST</th>
+                                    <td>Skill</td>
+                                    <td>ART</td>
+                                    <td>AHT</td>
+                                    <td>AST</td>
                                 </tr>
                             </thead>
-                            <tbody class="text-center" style="font-size:12px !important;" id="mytbody_skill">
+                            <tbody class="text-center" id="mytbody_skill">
 
                             </tbody>
                         </table>

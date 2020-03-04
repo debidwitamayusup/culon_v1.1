@@ -365,7 +365,7 @@ function dataCardART(response)
 
 function drawTable(response){
 	$('#mytbody_skill').remove();
-    $('#tableSkill').append('<tbody style="font-size:12px !important;" id="mytbody_skill"></tbody>');
+    $('#tableSkill').append('<tbody id="mytbody_skill"></tbody>');
     // console.log(response.data);
     $("#mytbody_skill").empty();
     if(response.data.length != 0){
