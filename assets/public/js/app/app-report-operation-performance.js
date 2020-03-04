@@ -110,7 +110,7 @@ function drawTablePerformOps_old(tenant_id, channel_id, month){
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
-			{ className: "text-center", targets: 1 },
+			{ className: "text-left", targets: 1 },
 			{ className: "text-right", targets: 2 },
 			{ className: "text-center", targets: 3 },
 			{ className: "text-center", targets: 4 },
@@ -168,7 +168,7 @@ function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
-			{ className: "text-center", targets: 1 },
+			{ className: "text-left", targets: 1 },
 			{ className: "text-right", targets: 2 },
 			{ className: "text-right", targets: 3 },
 			{ className: "text-right", targets: 4 },
