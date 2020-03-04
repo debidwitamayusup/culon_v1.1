@@ -217,7 +217,7 @@ function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
     $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 315;
+    ctx.height = 223;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
