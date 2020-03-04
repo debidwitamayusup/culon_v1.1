@@ -323,7 +323,8 @@
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
-            $skillz = $this->security->xss_clean($this->input->post('skill'));
+            $skillz = replace($this->security->xss_clean($this->input->post('skill')),'_',' ');
+
             $meth = 'data';
 
             //token
