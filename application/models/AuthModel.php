@@ -24,7 +24,7 @@ Class AuthModel extends CI_Model {
         $this->db->from('m_user');//('m_login');
         $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
         $this->db->where('is_active','1');
-        $this->db->where_in('userlevel', array('supervisor','admin','operation')); //('userlevel','Supervisor'); //temporary - need tenant table access previllage
+        $this->db->where_in('userlevel', array('supervisor','admin','manager')); //('userlevel','Supervisor'); //temporary - need tenant table access previllage
         
 
         $query = $this->db->get();
