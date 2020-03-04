@@ -87,12 +87,12 @@
 						</div>
 					</div>
 				</div>
-				<div>
+				<div >
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-home mr-1"></i></i>Dashboard
 							</h5> -->
-							<a href="<?=base_url()?>main/home" class="slide-item" id="dashboard">Traffic by Channel</a>
+							<a href="<?=base_url()?>main/home" class="slide-item">Traffic by Channel</a>
 							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
 							<a href="<?=base_url()?>main/summary_performance_realtime" class="slide-item">Summary
 								Performance Realtime</a>
