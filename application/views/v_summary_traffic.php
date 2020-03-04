@@ -149,6 +149,8 @@
 						<canvas id="barEnterpriseGroup" class="h-200"></canvas>
 					</div>
 				</div>
+				<div id="chartjs-tooltip" class="center"></div>
+				<!-- <div id="chartjs-tooltip"></div> -->
 			</div>
 		</div>
 	</div>

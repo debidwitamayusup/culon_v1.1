@@ -35,8 +35,8 @@ function addCommas(commas) {
 
 function destroyChartInterval() {
     // destroy chart interval 
-    $('#echartWeek').remove(); // this is my <canvas> element
-    $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-ticket overflow-hidden"></div>');
+    $('#BarWallTicketCloseMonth').remove(); // this is my <canvas> element
+    $('#BarWallTicketCloseMonthDiv').append('<canvas id="BarWallTicketCloseMonth" height="452"></canvas>');
 }
 
 function getTenant(date, userid){
@@ -68,8 +68,9 @@ function getTenant(date, userid){
     });
 }
 
+
 function drawStackedBar(params, index, params_year, tenant_id) {
-    destroyChartInterval();
+    // destroyChartInterval();
     // $("#filter-loader").fadeIn("slow");
     // var getMontName = monthNumToName(month);
     var data = "";
@@ -87,6 +88,8 @@ function drawStackedBar(params, index, params_year, tenant_id) {
         },
         success: function (r) {
             // var response = JSON.parse(r);
+            $('#BarWallTicketCloseMonth').remove(); // this is my <canvas> element
+            $('#BarWallTicketCloseMonthDiv').append('<canvas id="BarWallTicketCloseMonth" height="452"></canvas>');
             $('#modalError').modal('hide');
             var response = r;
             setTimeout(function(){drawStackedBar('month', '10', '2019', $("#layanan_name").val());}, 5000);
@@ -182,6 +185,8 @@ function drawStackedBar(params, index, params_year, tenant_id) {
 }
 
 function drawHorizontalChart(response) {
+    $('#barWallTicketClose').remove(); // this is my <canvas> element
+    $('#barWallTicketCloseDiv').append('<canvas id="barWallTicketClose"></canvas>');
     var data_label = [];
     var data_total = [];
     var data_color = [];

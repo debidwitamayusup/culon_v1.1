@@ -61,14 +61,6 @@ class WallboardController extends REST_Controller {
     }
 
     public function TrafficOPS_post(){
-            
-        // if(!$this->input->post('token'))
-        // {
-        //     $this->response([
-        //         'status'  => FALSE,
-        //         'message' => 'Token Not found,Loging off!'
-        //             ], REST_Controller::HTTP_NOT_FOUND);
-        // }
 
         $date = $this->security->xss_clean($this->input->post('date'));
 
@@ -439,93 +431,92 @@ class WallboardController extends REST_Controller {
         }
     }
 
-    
-        public function summaryPerformanceNasional_post()
-        {
-            $data = $this->module_model->summary_performance_nasional();
-            
+    public function summaryPerformanceNasional_post()
+    {
+        $data = $this->module_model->summary_performance_nasional();
+        
 
-            if ($data) {
-                $this->response([
-                    'status'  => TRUE,
-                    'message' => 'Data available!',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
-            else {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Not Found!',
-                    'dates' => 'Not found',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
         }
-
-        public function summaryPerformanceNasionalBar_post()
-        {
-
-            $data = $this->module_model->summary_performance_nas_bar();
-
-            if ($data) {
-                $this->response([
-                    'status'  => TRUE,
-                    'message' => 'Data available!',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
-            else {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Not Found!',
-                    'dates' => 'Not found',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
         }
+    }
 
-        public function summaryPerformanceNasionalPie_post()
-        {
-            $data = $this->module_model->summary_performance_nas_pie();
+    public function summaryPerformanceNasionalBar_post()
+    {
 
-            if ($data) {
-                $this->response([
-                    'status'  => TRUE,
-                    'message' => 'Data available!',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
-            else {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Not Found!',
-                    'dates' => 'Not found',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
+        $data = $this->module_model->summary_performance_nas_bar();
+
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
         }
-
-        public function summaryPerformanceNasionalInterval_post()
-        {
-            $channel = $this->security->xss_clean($this->input->post('channel', true));
-            $data = $this->module_model->get_interval_performance_nas();
-
-            if ($data) {
-                $this->response([
-                    'status'  => TRUE,
-                    'message' => 'Data available!',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
-            else {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Not Found!',
-                    'dates' => 'Not found',
-                    'data'    => $data
-                        ], REST_Controller::HTTP_OK);
-            }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
         }
+    }
+
+    public function summaryPerformanceNasionalPie_post()
+    {
+        $data = $this->module_model->summary_performance_nas_pie();
+
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function summaryPerformanceNasionalInterval_post()
+    {
+        $channel = $this->security->xss_clean($this->input->post('channel', true));
+        $data = $this->module_model->get_interval_performance_nas();
+
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
     #endregion debi
 
 }

@@ -360,7 +360,8 @@ function drawChartPercentageToday(response){
                 display: false
             },
             tooltips: {
-              callbacks: {
+                intersect: false,
+                callbacks: {
                     label: function(tooltipItem, data) {
                         var value = data_rate[tooltipItem.index];
                         // value = value.toString();
@@ -369,7 +370,7 @@ function drawChartPercentageToday(response){
                         value = addCommas(value);
                         return value;
                     }
-              }
+                }
             },
             //untuk onclick pada chart javascript
             onClick: function(event, array) {
