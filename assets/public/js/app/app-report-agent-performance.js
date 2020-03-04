@@ -105,10 +105,10 @@ function getSkill(){
         success: function (r) {
             var data_option = [];
             var response = r;
-            // var html = '<option value="">All Skill</option>';
-            var html = '';
+            var html = '<option value="">All Skill</option>';
+            // var html = '';
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i].SKILL_NAME+'>'+response.data[i].SKILL_NAME+'</option>';
+                    html += '<option value='+(response.data[i].SKILL_NAME).replace(' ','_')+'>'+response.data[i].SKILL_NAME+'</option>';
                 }
                 $('#skill').html(html);
         },
