@@ -108,7 +108,7 @@ function getSkill(){
             // var html = '<option value="">All Skill</option>';
             var html = '';
                 for(i=0; i<response.data.length; i++){
-                    html += '<option value='+response.data[i].SKILL_ID+'>'+response.data[i].SKILL_NAME+'</option>';
+                    html += '<option value='+response.data[i].SKILL_NAME+'>'+response.data[i].SKILL_NAME+'</option>';
                 }
                 $('#skill').html(html);
         },

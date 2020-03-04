@@ -159,26 +159,25 @@ class AgentPerformModel extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
-		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7) AS ART,
-							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7) AS AHT,
-							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.ast))),2,7) AS AST,
-							SUM(v_rpt_summ_agent.cof) as COF,
-							v_rpt_summ_agent.agentid AS AGENTID, v_rpt_summ_agent.agentName AS NAME, group_skill.skill_name AS SKILLNAME');//,v_rpt_summ_agent.profile_pic AS IMAGE //
-		$this->db->from('v_rpt_summ_agent');
-		$this->db->join('group_skill','v_rpt_summ_agent.skill_id = group_skill.skill_id');
-		
+		$this->db->select('SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7) AS ART,
+							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7) AS AHT,
+							SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.ast))),2,7) AS AST,
+							SUM(rpt_summary_agent.session) as COF,
+							rpt_summary_agent.agentid AS AGENTID, rpt_summary_agent.agentName AS NAME, rpt_summary_agent.skill_name AS SKILLNAME');//,v_rpt_summ_agent.profile_pic AS IMAGE //
+		$this->db->from('rpt_summary_agent');
+		$this->db->where('rpt_summary_agent.agentName <> "" ');
+		$this->db->where('rpt_summary_agent.agentid <> "" ');
 		if($tid)
 		{
-			$this->db->where('v_rpt_summ_agent.tenant_id',$tid);
+			$this->db->where('rpt_summary_agent.tenant_id',$tid);
 		}
-
 		if ($params_time == "day") {
-			$this->db->where('v_rpt_summ_agent.tanggal', $index);
+			$this->db->where('rpt_summary_agent.tanggal', $index);
 		}else if ($params_time == "month") {
-			$this->db->where('MONTH(v_rpt_summ_agent.tanggal)', $index);
-			$this->db->where('YEAR(v_rpt_summ_agent.tanggal)', $params_year);
+			$this->db->where('MONTH(rpt_summary_agent.tanggal)', $index);
+			$this->db->where('YEAR(rpt_summary_agent.tanggal)', $params_year);
 		}else if ($params_time == "year") {
-			$this->db->where('YEAR(v_rpt_summ_agent.tanggal)', $index);
+			$this->db->where('YEAR(rpt_summary_agent.tanggal)', $index);
 		}
 
 		$this->db->group_by('AGENTID');
@@ -272,41 +271,42 @@ class AgentPerformModel extends CI_Model
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
-		$this->db->select('IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.art))),2,7), "no data") as ART,
-			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.aht))),2,7), "no data") as AHT,
-			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(v_rpt_summ_agent.ast))),2,7), "no data") as AST, 
-			IFNULL(group_skill.skill_name, "no data") AS SKILLNAME,group_skill.skill_id AS SKILLID');
-		$this->db->from('v_rpt_summ_agent');
-		$this->db->join('group_skill','v_rpt_summ_agent.skill_id = group_skill.skill_id');
-		//$this->db->join('rpt_summary_agent', 'm_login.userid = rpt_summary_agent.agentId');
+		$this->db->select('IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.art))),2,7), "no data") as ART,
+			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.aht))),2,7), "no data") as AHT,
+			IFNULL(SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(rpt_summary_agent.ast))),2,7), "no data") as AST, 
+			IFNULL(rpt_summary_agent.skill_name, "no data") AS SKILLNAME');
+		$this->db->from('rpt_summary_agent');
+		$this->db->where('rpt_summary_agent.skill_name <> ""');
+		
+		
 		if($tid)
 		{
-			$this->db->where('v_rpt_summ_agent.tenant_id',$tid);
+			$this->db->where('rpt_summary_agent.tenant_id',$tid);
 		}
 		if ($params == "day") {
-			$this->db->where('v_rpt_summ_agent.tanggal = "'.$index.'"');
+			$this->db->where('rpt_summary_agent.tanggal = "'.$index.'"');
 		}else if ($params == "month") {
-			$this->db->where('MONTH(v_rpt_summ_agent.tanggal) = "'.$index.'"');
-			$this->db->where('YEAR(v_rpt_summ_agent.tanggal) = "'.$params_year.'"');
+			$this->db->where('MONTH(rpt_summary_agent.tanggal) = "'.$index.'"');
+			$this->db->where('YEAR(rpt_summary_agent.tanggal) = "'.$params_year.'"');
 		}else if ($params == "year") {
-			$this->db->where('YEAR(v_rpt_summ_agent.tanggal) = "'.$index.'"');
+			$this->db->where('YEAR(rpt_summary_agent.tanggal) = "'.$index.'"');
 		}
 
-		$this->db->order_by('group_skill.skill_id','ASC');
+		$this->db->group_by('rpt_summary_agent.skill_name','ASC');
+		$this->db->order_by('rpt_summary_agent.skill_name','ASC');
 		$query = $this->db->get();
 
 		if($query->num_rows()>0)
 		{
-		
+			
 			foreach($query->result() as $data)
 			{
 				$content = array(
-					'SKILL_ID'=>strval($data->SKILLID),
 					'SKILL_NAME'=>strval($data->SKILLNAME),
 					'AVG_AHT'=>strval($data->AHT),
 					'AVG_ART'=>strval($data->ART),
 					'AVG_AST'=>strval($data->AST)
-				);
+				);	
 				
 			}
 			$res = array(

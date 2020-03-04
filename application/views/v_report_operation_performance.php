@@ -222,7 +222,7 @@
                             <thead class="text-center text-white bg-head">
                                 <tr>
                                     <td class="wd-15p border-bottom-0 text-center" width="20">No</td>
-                                    <td class="wd-15p border-bottom-0 text-center">Skill ID</td>
+                                    <!-- <td class="wd-15p border-bottom-0 text-center">Skill ID</td> -->
                                     <td class="wd-15p border-bottom-0 text-center">Skill Name</td>
                                     <td class="wd-15p border-bottom-0 text-center">Offered</td>
                                     <td class="wd-15p border-bottom-0 text-center">Handled</td>
@@ -234,7 +234,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="text-center">1</td>
                                     <td class="text-center">1</td>
                                     <td class="text-left">All</td>
@@ -269,7 +269,7 @@
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">00:00:00</td>
                                     <td class="text-center">100%</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

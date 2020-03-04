@@ -65,8 +65,10 @@ Class ReportModel extends CI_Model {
 
     public function get_skill()
     {
-        $this->db->select('a.skill_id, a.skill_name');
-        $this->db->from('group_skill a');
+        $this->db->select('a.skill_name');
+        $this->db->from('rpt_summary_agent a');
+        $this->db->where('a.skill_name <> ""');
+        $this->db->group_by('a.skill_name');
         $query = $this->db->get();
 
        if($query->num_rows() > 0)
@@ -74,7 +76,6 @@ Class ReportModel extends CI_Model {
             foreach( $query->result() as $data)
             {
                 $result[] = array(
-                    'SKILL_ID'=> $data->skill_id,
                     'SKILL_NAME' => $data->skill_name
                 );
             }
@@ -305,7 +306,7 @@ Class ReportModel extends CI_Model {
         //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
 
         $this->db->select('a.tanggal as TANGGAL, 
-        SUM(a.cof) as OFFERED,
+        SUM(a.session) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
@@ -313,7 +314,7 @@ Class ReportModel extends CI_Model {
         AVG(a.scr) as SCR,
         ');
 
-        $this->db->from('v_rpt_summ_agent a');
+        $this->db->from('rpt_summary_agent a');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
@@ -377,9 +378,9 @@ Class ReportModel extends CI_Model {
         //QUERY - 
         // SUM(a.handling) as HANDLED,
         //(SUM(a.cof)-SUM(a.handling)) as UNHANDLED,
-        $this->db->select('a.skill_id as SKILLID,
+        $this->db->select('
         a.skill_name as SKILLNAME,
-        SUM(a.cof) as OFFERED,
+        SUM(a.session) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
@@ -387,7 +388,8 @@ Class ReportModel extends CI_Model {
         AVG(a.scr) as SCR,
         ');
 
-        $this->db->from('v_rpt_summ_agent a');
+        $this->db->from('rpt_summary_agent a');
+        $this->db->where('a.skill_name <> ""');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
@@ -405,7 +407,7 @@ Class ReportModel extends CI_Model {
         }
         // $this->db->where('YEAR(a.tanggal)',$year);
 
-        $this->db->group_by('a.skill_id');
+        $this->db->group_by('a.skill_name');
         $query = $this->db->get();
 
         // print_r($this->db->last_query());
@@ -420,7 +422,6 @@ Class ReportModel extends CI_Model {
                 {
                     $result[] = array(
                         $id,
-                        $data->SKILLID,
                         $data->SKILLNAME,
                         strval(number_format($data->OFFERED,0,'.',',')),
                         '-',//strval(number_format($data->HANDLED,0,'.',',')),
@@ -456,7 +457,7 @@ Class ReportModel extends CI_Model {
         $this->db->select('a.agentid as AGENTID,
         a.agentName as AGENTNAME,
         a.skill_name as SKILLNAME,
-        SUM(a.cof) as OFFERED,
+        SUM(a.session) as OFFERED,
       
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
@@ -464,7 +465,10 @@ Class ReportModel extends CI_Model {
         AVG(a.scr) as SCR,
         ');
 
-        $this->db->from('v_rpt_summ_agent a');
+        $this->db->from('rpt_summary_agent a');
+
+        $this->db->where('a.skill_name <> "" ');
+        $this->db->where('a.agentName <> "" ');
         
         if($tid)
         {
@@ -482,7 +486,7 @@ Class ReportModel extends CI_Model {
         }
         if($skillz)
        {
-        $this->db->where('a.skill_id',$skillz);
+        $this->db->where('a.skill_name',$skillz);
        }
 
         $this->db->group_by('a.agentid');
@@ -605,13 +609,13 @@ Class ReportModel extends CI_Model {
         $this->db->select('a.agentid as AGENT_ID,
         a.agentName as AGENT_NAME,
         a.skill_name as SKILL_NAME, 
-        SUM(a.cof) as COF,
+        SUM(a.session) as COF,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
         AVG(a.scr) as SCR');
 
-        $this->db->from('v_rpt_summ_agent a');
+        $this->db->from('rpt_summary_agent a');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
