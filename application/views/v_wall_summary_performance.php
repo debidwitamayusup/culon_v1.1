@@ -109,7 +109,7 @@
                                 <div class="card-pie">
                                     <div class="canvas-con">
                                         <div id="legend" class="legend-con"></div>
-                                        <div class="canvas-con-inner mt-1 mb-6" id="canvas-pie">
+                                        <div class="canvas-con-inner mb-6" id="canvas-pie">
                                             <canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>
                                         </div>
 
