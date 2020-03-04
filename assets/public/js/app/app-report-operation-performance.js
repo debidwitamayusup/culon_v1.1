@@ -169,14 +169,13 @@ function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-center", targets: 2 },
+			{ className: "text-right", targets: 2 },
 			{ className: "text-right", targets: 3 },
 			{ className: "text-right", targets: 4 },
-			{ className: "text-right", targets: 5 },
+			{ className: "text-center", targets: 5 },
 			{ className: "text-center", targets: 6 },
-			{ className: "text-center", targets: 7 },
-            { className: "text-center", targets: 8 },
-            { className: "text-right", targets: 9 },
+            { className: "text-center", targets: 7 },
+            { className: "text-right", targets: 8 },
 		], 
         destroy: true
     });
