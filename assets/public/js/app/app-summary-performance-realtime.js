@@ -348,7 +348,7 @@ function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
     $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 266;
+    ctx.height = 230;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -400,7 +400,7 @@ function drawPieChartSummary(response){
 
                     // console.log(total)
                     var percentage = Math.round((dataLabel / total) * 100);
-                    legendHtml.push('<li class="col-md-4 col-lg-4 col-sm-6 col-xl-4">');
+                    legendHtml.push('<li class="col-md-6 col-lg-6">');
                     legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+percentage+ '%</span>');
                 })
                 legendHtml.push('</ul></div>');
@@ -692,7 +692,7 @@ function drawTotalTable(response){
                     '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(sumSCR.toString()).replace('.',',')+'%</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
-                    '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+sumWaiting+'</h6>'+
+                    '<h6 class="font12" id="avgWaiting">Average Response Time : '+sumWaiting+'</h6>'+
                 '</div>'+
                 '<div class="col-md-3">'+
                     '<h6 class="font12" id="avgHT">Average Handling Time : '+sumAHT+'</h6>'+

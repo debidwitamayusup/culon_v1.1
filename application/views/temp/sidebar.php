@@ -4,7 +4,8 @@
 	<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
 		<div class="first-sidemenu">
 			<ul class="resp-tabs-list hor_1">
-				<li data-toggle="tooltip" data-placement="right" id="wallboard" title="Wallboard" class="resp-tab-active">
+				<li data-toggle="tooltip" data-placement="right" id="wallboard" title="Wallboard"
+					class="resp-tab-active">
 					<div class="side-menutext"><i class="side-menu__icon fe fe-monitor"></i>
 						<h6 class="font10 mt-1 text-white">Wallboard</h6><span class="side-menu__label">Wallboard</span>
 					</div>
@@ -34,11 +35,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
-							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic Today</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
-								Performance Operation</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
+								Realtime</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
 								Performance Realtime</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic
+								Today</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
+								Performance Operation</a>
+
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
@@ -76,9 +82,8 @@
 									</ul>
 								</div>
 							</div>
-							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
-								Realtime</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
+
+
 						</div>
 					</div>
 				</div>
@@ -89,7 +94,8 @@
 							</h5> -->
 							<a href="<?=base_url()?>main/home" class="slide-item" id="dashboard">Traffic by Channel</a>
 							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
-							<a href="<?=base_url()?>main/summary_performance_realtime" class="slide-item">Summary Performance Realtime</a>
+							<a href="<?=base_url()?>main/summary_performance_realtime" class="slide-item">Summary
+								Performance Realtime</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span

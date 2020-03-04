@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active mt-2" aria-current="page">Summary Traffic by Week</li>
             </ol>
             <div class="d-flex bd-highlight">
-                <div class="ml-auto p-2 bd-highlight mt-2 h6">Layanan </div>
                 <div class="p-2 bd-highlight">
                     <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
                         <!-- <option value="#">Layanan</option> -->
