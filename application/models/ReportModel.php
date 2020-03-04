@@ -389,6 +389,7 @@ Class ReportModel extends CI_Model {
         ');
 
         $this->db->from('rpt_summary_agent a');
+        $this->db->where('a.skill_name <> ""');
         // $this->db->join('m_channel b','b.channel_id = a.channel_id');
         if($tid)
         {
@@ -465,6 +466,9 @@ Class ReportModel extends CI_Model {
         ');
 
         $this->db->from('rpt_summary_agent a');
+
+        $this->db->where('a.skill_name <> "" ');
+        $this->db->where('a.agentName <> "" ');
         
         if($tid)
         {
