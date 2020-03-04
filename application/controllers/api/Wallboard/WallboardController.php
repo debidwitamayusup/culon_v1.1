@@ -403,6 +403,29 @@ class WallboardController extends REST_Controller {
 
     }
 
+
+    public function DataTableNasional_post()
+    {
+        $data = $this->module_model->get_datatable_perform_nas();
+        
+
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
     #region :: debi
     public function summaryTicketCloseWall_post()
     {
