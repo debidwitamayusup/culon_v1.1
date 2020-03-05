@@ -82,10 +82,10 @@
 							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 						</div> -->
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-5">
 									<div id="legend" class="legend-con"></div>
 								</div>
-								<div class="col-md-9 mt-6">
+								<div class="col-md-7 mt-6">
 									<div class="canvas-con-inner" id="canvas-pie">
 										<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 									</div>

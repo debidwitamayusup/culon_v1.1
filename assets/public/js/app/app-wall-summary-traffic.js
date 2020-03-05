@@ -404,12 +404,14 @@ function drawChartAndCard(response){
                         // var percentage = Math.round((dataLabel / total) * 100);
                         if(dataLabel != 0){
                             var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                            var total = dataLabel.toString();
                         }else{
                             var percentage = Math.round((dataLabel / total) * 100);
+                            var total = dataLabel.toString();
                         }
 
                         legendHtml.push('<li class="col-md-6 col-lg-6">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + percentage + '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : '+ addCommas(total) +' (' + percentage.replace('.',',') + '%)</span>');
                         legendHtml.push('</li>');
                     }else{
                         var label = chart.data.labels[index];
@@ -427,7 +429,7 @@ function drawChartAndCard(response){
                         }
 
                         legendHtml.push('<li class="col-md-6 col-lg-6">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + '0' + '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : 0 ' + '(0)' + '%</span>');
                         legendHtml.push('</li>');
                     }
                 })

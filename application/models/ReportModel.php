@@ -348,14 +348,14 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->TANGGAL,
-                        strval(number_format($data->OFFERED,0,'.',',')),
+                        strval(number_format($data->OFFERED,0,',','.')),
                         '-',//strval(number_format($data->HANDLED,0,'.',',')),
                         '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        round($data->SCR,2).'%'
+                        number_format(round($data->SCR,2),2,',','.').'%'
                     );
                     $id++;
                 }
@@ -423,7 +423,7 @@ Class ReportModel extends CI_Model {
                     $result[] = array(
                         $id,
                         $data->SKILLNAME,
-                        strval(number_format($data->OFFERED,0,'.',',')),
+                        strval(number_format($data->OFFERED,0,',','.')),
                         '-',//strval(number_format($data->HANDLED,0,'.',',')),
                         '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
                         // $data->COF,
