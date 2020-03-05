@@ -85,12 +85,12 @@ function getTenant(date, userid){
 function addCommas(commas)
 {
     commas += '';
-    x = commas.split('.');
+    x = commas.split(',');
     x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
+    x2 = x.length > 1 ? ',' + x[1] : '';
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
     }
     return x1 + x2;
 }
@@ -415,9 +415,9 @@ function drawPieChartSumAllTenant(response){
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
-                console.log(chart)
+                // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
+                legendHtml.push('<ul><div id="mylegend" class="row ml-4">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -433,14 +433,16 @@ function drawPieChartSumAllTenant(response){
                         // console.log(total);
                         if(dataLabel != 0){
                             var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+                            var total = dataLabel.toString();
                         }else{
                             var percentage = Math.round((dataLabel / total) * 100);
+                            var total = dataLabel.toString();
                         }
                         if(isNaN(percentage) == true){
                             percentage = 0;
                         }
                         legendHtml.push('<li class="col-md-12">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + percentage + '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ': '+ addCommas(total) +' (' + percentage + '%)</span>');
                     }else{
                         var label = chart.data.labels[index];
                         var dataLabel = allData[index];
@@ -461,7 +463,7 @@ function drawPieChartSumAllTenant(response){
                             percentage = 0;
                         }
                         legendHtml.push('<li class="col-md-12">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ':' + '0' + '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ': 0 ' + '(0)' + '%</span>');
                     }
                 })
                 legendHtml.push('</ul></div>');
