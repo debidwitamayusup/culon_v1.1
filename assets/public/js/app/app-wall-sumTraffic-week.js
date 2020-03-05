@@ -415,87 +415,105 @@ function drawChartDaily(week,arr_channel, tenant_id){
                 dataChatBot = [];
             for (var i = 0; i < response.data.length; i++) {
                 // console.log()
-                dataWa.push(response.data[i].DATA[10]);
-                dataFB.push(response.data[i].DATA[5]);
-                dataDM.push(response.data[i].DATA[11]);
-                dataTwitter.push(response.data[i].DATA[7]);
-                dataIg.push(response.data[i].DATA[9]);
-                dataMessenger.push(response.data[i].DATA[6]);
-                dataTelegram.push(response.data[i].DATA[4]);
-                dataLine.push(response.data[i].DATA[8]);
-                dataEmail.push(response.data[i].DATA[1]);
                 dataVoice.push(response.data[i].DATA[0]);
-                dataSMS.push(response.data[i].DATA[3]);
+                dataEmail.push(response.data[i].DATA[1]);
                 dataLive.push(response.data[i].DATA[2]);
+                dataSMS.push(response.data[i].DATA[3]);
+                dataTelegram.push(response.data[i].DATA[4]);
+                dataFB.push(response.data[i].DATA[5]);
+                dataMessenger.push(response.data[i].DATA[6]);
+                dataTwitter.push(response.data[i].DATA[7]);
+                dataLine.push(response.data[i].DATA[8]);
+                dataIg.push(response.data[i].DATA[9]);
+                dataWa.push(response.data[i].DATA[10]);
+                dataDM.push(response.data[i].DATA[11]);
                 dataChatBot.push(response.data[i].DATA[12]);
             }
 
-            var chartdata3 = [{
-                name: 'Whatsapp',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataWa
-            }, {
-                name: 'Facebook',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataFB
-            }, {
-                name: 'Twitter',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataTwitter
-            }, {
-                name: 'Twitter DM',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataDM
-            }, {
-                name: 'Instagram',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataIg
-            }, {
-                name: 'Messenger',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataMessenger
-            }, {
-                name: 'Telegram',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataTelegram
-            }, {
-                name: 'Line',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataLine
-            }, {
-                name: 'Email',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataEmail
-            }, {
-                name: 'Voice',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataVoice
-            }, {
-                name: 'SMS',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataSMS
-            }, {
-                name: 'Live Chat',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataLive
-            }, {
-                name: 'Chat Bot',
-                type: 'bar',
-                stack: 'Stack',
-                data: dataChatBot
-            }];
+            var arrChannel = []
+            var dataStacked = [];
+            var datasetsStacked = "";
+            arrChannel.push(dataVoice, dataEmail, dataLive, dataSMS, dataTelegram, dataFB, dataMessenger, dataTwitter,
+                dataLine, dataIg, dataWa, dataDM, dataChatBot);
+            console.log(arrChannel);
+            var x = 0;
+            response.channel.forEach(function (value){
+                datasetsStacked = {
+                    name: response.channel[x],
+                    type: 'bar',
+                    stack: 'Stack',
+                    data: arrChannel[x]
+                },
+                dataStacked.push(datasetsStacked);
+                x++;
+            });
+
+            // var chartdata3 = [{
+            //     name: 'Whatsapp',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataWa
+            // }, {
+            //     name: 'Facebook',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataFB
+            // }, {
+            //     name: 'Twitter',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataTwitter
+            // }, {
+            //     name: 'Twitter DM',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataDM
+            // }, {
+            //     name: 'Instagram',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataIg
+            // }, {
+            //     name: 'Messenger',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataMessenger
+            // }, {
+            //     name: 'Telegram',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataTelegram
+            // }, {
+            //     name: 'Line',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataLine
+            // }, {
+            //     name: 'Email',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataEmail
+            // }, {
+            //     name: 'Voice',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataVoice
+            // }, {
+            //     name: 'SMS',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataSMS
+            // }, {
+            //     name: 'Live Chat',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataLive
+            // }, {
+            //     name: 'Chat Bot',
+            //     type: 'bar',
+            //     stack: 'Stack',
+            //     data: dataChatBot
+            // }];
 
             var option6 = {
                 animation: false,
@@ -572,11 +590,11 @@ function drawChartDaily(week,arr_channel, tenant_id){
                     // bottom: 10,
                     left: 'center',
                     top: 'auto',
-                    data: ['Whatsapp', 'Facebook', 'Twitter', 'Twitter DM', 'Instagram', 'Messenger', 'Telegram', 'Line', 'Email', 'Voice', 'SMS', 'Live Chat', 'Chat Bot'],
+                    data: response.channel,
                     itemWidth: 12
                 },
-                series: chartdata3,
-                color: ['#089e60', '#467fcf', '#45aaf2', '#6574cd', '#fbc0d5', '#3866a6', '#343a40', '#31a550', '#e41313', '#ff9933', '#80cbc4', '#607d8b', '#6e273e']
+                series: dataStacked,
+                color: response.channel_color
             };
             var chart6 = document.getElementById('echartWeek');
             var barChart6 = echarts.init(chart6);
