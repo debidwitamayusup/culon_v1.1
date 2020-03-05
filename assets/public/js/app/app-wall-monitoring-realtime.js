@@ -298,30 +298,30 @@ function drawBoxMonitoring(response)
 	        '<h6 class="font-weight-bold text-red text-center">'+response.TENANT_NAME+'</h6>'+
 	        '<div class="row">'+
 	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font12 font-normal">Total Queue</h6>'+
+	                '<h6 class="font10 font-normal">Total Queue</h6>'+
 	            '</div>'+
 	            '<div class="col-sm-auto">'+
-	                '<h6 class="font12 font-bold">'+response.TOTAL_QUEUE+'</h6>'+
+	                '<h6 class="font10 font-bold">'+response.TOTAL_QUEUE+'</h6>'+
 	            '</div>'+
 	        '</div>'+
 	        '<div class="row">'+
 	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font12 font-normal">Avg SCR</h6>'+
+	                '<h6 class="font10 font-normal">Avg SCR</h6>'+
 	            '</div>'+
 	            '<div class="col-sm-auto">'+
-	                '<h6 class="font12 font-bold">'+response.TOTAL_SCR+'%</h6>'+
+	                '<h6 class="font10 font-bold">'+response.TOTAL_SCR+'%</h6>'+
 	            '</div>'+
 	        '</div>'+
 	        '<div class="row">'+
 	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font12 font-normal">Total COF</h6>'+
+	                '<h6 class="font10 font-normal">Total COF</h6>'+
 	            '</div>'+
 	            '<div class="col-sm-auto">'+
-	                '<h6 class="font12 font-bold">'+response.TOTAL_COF+'</h6>'+
+	                '<h6 class="font10 font-bold">'+response.TOTAL_COF+'</h6>'+
 	            '</div>'+
 	        '</div>'+
 	    '</div>'+
-	    '<div class="col-md-auto">'+
+	    '<div class="col-md-4">'+
 	        '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
 	            '<div class="widget-user-header">'+
 	                '<h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>'+
@@ -370,7 +370,7 @@ function drawBoxMonitoring(response)
 	            '</div>'+
 	        '</div>'+
 	    '</div>'+
-	    '<div class="col-md-auto">'+
+	    '<div class="col-md-4">'+
 	        '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
 	            '<div class="widget-user-header">'+
 	                '<h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>'+
