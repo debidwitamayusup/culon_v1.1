@@ -38,7 +38,7 @@ Class AuthModel extends CI_Model {
                 'NAME'          => $data->LONG_NAME,
                 'PREVILAGE'     => $data->PREVILAGE,
                 'TENANT_ID'     => $this->getTenantAccess($data->USERID),
-                'PICTURE'       => APPPATH.'public\user\default-avatar.jpg',//APPPATH.'public\user'.$data->PICTURE,
+                'PICTURE'       => FCPATH."public\user\default-avatar.jpg",//APPPATH.'public\user'.$data->PICTURE,
               //  'UNIT'          => $data->UNIT_ID
 
             );
