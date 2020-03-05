@@ -294,7 +294,7 @@ function drawCardInteractionNew(value){
                     '<h6 class="text-white font10">'+addCommas(value.total_session)+'</h6>'+
                     '<h6 class="text-white font10">'+addCommas(value.msg_in)+'</h6>'+
                     '<h6 class="text-white font10">'+addCommas(value.msg_out)+'</h6>'+
-                    '<h6 class="text-white font10">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2)+' %</h6>'+
+                    '<h6 class="text-white font10">'+parseFloat((value.sla > 100) ? 100 : value.sla).toFixed(2).replace('.',',')+' %</h6>'+
                 '</div>'+
             '</div>'+
         '</div>'+

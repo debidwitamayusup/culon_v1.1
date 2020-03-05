@@ -404,10 +404,10 @@ function drawPieChartSummary(response){
                     }
 
                     // console.log(total)
-                    var percentage = Math.round((dataLabel / total) * 100);
+                    var percentage = parseFloat((dataLabel / total) * 100).toFixed(1);
                     var total = dataLabel.toString();
                     legendHtml.push('<li class="col-md-6 col-lg-6">');
-                    legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+': '+ addCommas(total) +' (' + percentage + '%)</span>');
+                    legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+': '+ addCommas(total) +' (' + percentage.replace('.',',') + '%)</span>');
                 })
                 legendHtml.push('</ul></div>');
                 return legendHtml.join("");

@@ -644,8 +644,14 @@ function drawPieChart(response) {
 							for (var i in allData) {
 								total += parseInt(allData[i]);
 							}
+
+							if(dataLabel != 0){
+	                            var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
+	                        }else{
+	                            var percentage = Math.round((dataLabel / total) * 100);
+	                        }
 							legendHtml.push('<li class="col-md-auto">');
-							legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + addCommas(dataLabel) + '</span>');
+							legendHtml.push('<span class="chart-legend"><div style="background-color:' + background + '" class="box-legend"></div>' + label + ' : ' + addCommas(dataLabel) + ' (' + percentage.replace('.',',') + '%)</span>');
 							legendHtml.push('</li>');
 						} else if (allData[index] == 0) {
 							var label = chart.data.labels[index];
