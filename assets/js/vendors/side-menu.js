@@ -53,11 +53,17 @@
 	$("[data-toggle='tooltip']").tooltip();
 
 
-	// $(document).on("click","div.resp-tab-content-active > div > div > a", function(event){
+	// $('a.slide-item').addClass('active')
+	// if($('div').hasClass('resp-tab-content-active')){
+	// 	$('div').removeClass('resp-tab-content-active')
+	// }
+	// $(this).toggleClass('resp-tab-content-active');
+
+	// $(document).on("click", "div > a.slide-item", function(event){
 	// 	event.preventDefault();
-	// 	if($(this).hasClass('active')){
-	// 		$(this).parent().parent().parent().removeClass('resp-tab-content-active')
-	// 	}
+	// 	$('a').removeClass('active');
+	// 	$('a').addClass('active');
+	// 	$(this).parent().parent().parent().prop("class","resp-tab-content-active");
 	// })
 
 	// $(document).ready(function(){
