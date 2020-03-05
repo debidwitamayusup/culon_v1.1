@@ -904,6 +904,8 @@ function drawChartPerGroupBfsi(response){
     });
 }
 
+
+
 function drawChartPerGroupEnterprise(response){
 
     var whatsapp = [];

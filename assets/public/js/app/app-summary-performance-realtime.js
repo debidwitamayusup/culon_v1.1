@@ -618,6 +618,13 @@ function drawLineChart(response){
                     bottom: 0
                 }
             },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return data.datasets[tooltipItem.datasetIndex].label + ": " + addCommas(tooltipItem.yLabel);
+                    }
+                }
+            },
             legend:{
                 display:false
             },

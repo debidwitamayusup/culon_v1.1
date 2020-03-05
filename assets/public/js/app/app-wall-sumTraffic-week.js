@@ -283,6 +283,13 @@ function drawTrafficInterval(response) {
                         bottom:10
                     }
                 },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + addCommas(Math.round(tooltipItem.yLabel));
+                        }
+                    }
+                },
                 maintainAspectRatio: false,
                 legend:{
                     display: true,
