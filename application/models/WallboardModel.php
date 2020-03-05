@@ -1483,6 +1483,36 @@ Class WallboardModel extends CI_Model {
 
     public function get_available_data_wallmon($tid)
     {
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        $this->db->select('a.tenant_id as TID, c.tenant_name as TN, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR');
+        $this->db->from('wall_monitoring a');
+        $this->db->join('m_channel b','a.channel_id = b.channel_id');
+        $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
+        if($tid){
+            $this->db->where_in('a.tenant_id', $tid);
+        }
+        $this->db->group_by('c.tenant_name');
+        $query = $this->db->get();
+
+        if($query->num_rows()>0)
+		{
+            foreach($query->result() as $rs)
+            {
+                $result[] = array(
+                    'TENANT_NAME' => $rs->TN,
+                    'TOTAL_COF' => $rs->COF,
+                    'TOTAL_SCR' => $rs->SCR,
+                    'TOTAL_QUEUE' => $rs->QUEUE,
+                    'DATA' => $this->get_available_data_wallmon_data($rs->TID)
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
+    function get_available_data_wallmon_data($tid)
+    {
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
        
@@ -1490,40 +1520,21 @@ Class WallboardModel extends CI_Model {
         $this->db->from('wall_monitoring a');
         $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
-
         if($tid){
             $this->db->where('a.tenant_id', $tid);
         }
-
         $this->db->group_by('b.channel_category');
         $this->db->group_by('c.tenant_name');
-
-    
-        
         $query = $this->db->get();
-        
-
 		// print_r($this->db->last_query());
 		// exit;
 
 		if($query->num_rows()>0)
 		{
-            $totque2 = 0;
-            $totcof = 0;
-            $totscr = 0;
-            $tenm = '';
-            $teid = '';
-            $idex = 0;
-            $data = array();
+           
             foreach($query->result() as $rq)
             {
-                $idex ++;
-                $totque2 = $totque2+$rq->QUEUE;
-                $totcof = $totcof+$rq->COF;
-                $totscr = $totscr+$rq->SCR;
-                $teid =  $rq->TID;
-                $tenm = $rq->TN;
-                $data[] = array(
+                $result[] = array(
                     'TENANT_ID' => $rq->TID,
                     'TENANT_NAME' => $rq->TN,
                     'CATEGORY'=> $rq->CCAT,
@@ -1535,16 +1546,6 @@ Class WallboardModel extends CI_Model {
                     'SCR' => $rq->SCR
                 );
             }
-            $totscr = $totscr/$idex;
-
-            $result = array(
-                'TENANT_NAME' => $tenm,
-                'TOTAL_COF' => $totcof,
-                'TOTAL_SCR' => $totscr,
-                'TOTAL_QUEUE' => $totque2,
-                'DATA' => $data
-            );
-
             return $result;
             
 		}
