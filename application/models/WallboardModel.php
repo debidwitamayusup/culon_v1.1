@@ -1500,9 +1500,9 @@ Class WallboardModel extends CI_Model {
             {
                 $result[] = array(
                     'TENANT_NAME' => $rs->TN,
-                    'TENANT_ICON' =>  FCPATH."public/tenant/".$rs->TICC,
-                    'TOTAL_COF' => $rs->COF,
-                    'TOTAL_SCR' => $rs->SCR,
+                    'TENANT_ICON' =>  "public/tenant/".$rs->TICC,
+                    'TOTAL_COF' => number_format($rs->COF,0,',','.'),
+                    'TOTAL_SCR' => number_format($rs->SCR,2,'.',''),
                     'TOTAL_QUEUE' => $rs->QUEUE,
                     'DATA' => $this->get_available_data_wallmon_data($rs->TID)
                 );
@@ -1517,7 +1517,7 @@ Class WallboardModel extends CI_Model {
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
        
-		$this->db->select('a.tenant_id as TID, c.tenant_name as TN, b.channel_category as CCAT, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR, SUBSTRING(SEC_TO_TIME(AVG(a.ast_num)),2,7) AST,SUBSTRING(SEC_TO_TIME(AVG(a.art_num)),2,7) ART, SUBSTRING(SEC_TO_TIME(AVG(a.aht_num)),2,7) AS AHT');
+		$this->db->select('a.tenant_id as TID, c.tenant_name as TN, b.channel_category as CCAT, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR, SUBSTRING(SEC_TO_TIME(AVG(a.ast_num)),1,8) AST,SUBSTRING(SEC_TO_TIME(AVG(a.art_num)),1,8) ART, SUBSTRING(SEC_TO_TIME(AVG(a.aht_num)),1,8) AS AHT');
         $this->db->from('wall_monitoring a');
         $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
@@ -1540,11 +1540,11 @@ Class WallboardModel extends CI_Model {
                     'TENANT_NAME' => $rq->TN,
                     'CATEGORY'=> $rq->CCAT,
                     'QUEUE' => $rq->QUEUE,
-                    'COF' => $rq->COF,
+                    'COF' => number_format($rq->COF,0,'.',','),
                     'AHT' => $rq->AHT,
                     'AST' => $rq->AST,
                     'ART' => $rq->ART,
-                    'SCR' => $rq->SCR
+                    'SCR' => number_format($rq->SCR,2,'.','')
                 );
             }
             return $result;
