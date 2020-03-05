@@ -1484,15 +1484,17 @@ Class WallboardModel extends CI_Model {
     public function get_available_data_wallmon($tid)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('a.tenant_id as TID, c.tenant_name as TN,c.tenant_icon as TICC ,a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR');
+        $this->db->select('a.tenant_id as TID, c.tenant_name as TN,c.tenant_icon as TICC ,SUM(a.antrian) as QUEUE ,SUM(a.cof) as COF, AVG(a.scr) as SCR');
         $this->db->from('wall_monitoring a');
-        $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
         if($tid){
             $this->db->where_in('a.tenant_id', $tid);
         }
-        $this->db->group_by('c.tenant_name');
+        $this->db->group_by('a.tenant_id');
         $query = $this->db->get();
+
+        // print_r($this->db->last_query());
+        // exit;
 
         if($query->num_rows()>0)
 		{
@@ -1517,7 +1519,7 @@ Class WallboardModel extends CI_Model {
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
        
-		$this->db->select('a.tenant_id as TID, c.tenant_name as TN, b.channel_category as CCAT, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR, SUBSTRING(SEC_TO_TIME(AVG(a.ast_num)),1,8) AST,SUBSTRING(SEC_TO_TIME(AVG(a.art_num)),1,8) ART, SUBSTRING(SEC_TO_TIME(AVG(a.aht_num)),1,8) AS AHT');
+		$this->db->select('a.tenant_id as TID, c.tenant_name as TN, b.channel_category as CCAT, SUM(a.antrian) as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR, SUBSTRING(SEC_TO_TIME(AVG(a.ast_num)),1,8) AST,SUBSTRING(SEC_TO_TIME(AVG(a.art_num)),1,8) ART, SUBSTRING(SEC_TO_TIME(AVG(a.aht_num)),1,8) AS AHT');
         $this->db->from('wall_monitoring a');
         $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
