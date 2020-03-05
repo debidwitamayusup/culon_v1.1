@@ -14,12 +14,12 @@
         </div>
 
         <!-- first row -->
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <div class="card" id="parent-card">
-                    <div class="row" id="row-div">
-                    </div>
-                </div>
+        <div class="row mt-2" id="parent-card">
+            <div class="col-md-6" id="parent-row">
+                <!-- <div class="card"> -->
+                    <!-- <div class="row">
+                    </div> -->
+                <!-- </div> -->
             </div>
             <!-- <div class="col-md-6">
                 <div class="card">
@@ -427,9 +427,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        next row
-        <div class="row">
+        </div> -->
+        <!-- next row -->
+        <!-- <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="row">
