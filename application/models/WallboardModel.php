@@ -1480,7 +1480,77 @@ Class WallboardModel extends CI_Model {
 		return $result;
     }
 
-   
+    public function get_available_data_wallmon($tid)
+    {
+
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+       
+		$this->db->select('a.tenant_id as TID, c.tenant_name as TN, b.channel_category as CCAT, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR, SUBSTRING(SEC_TO_TIME(AVG(a.ast_num)),2,7) AST,SUBSTRING(SEC_TO_TIME(AVG(a.art_num)),2,7) ART, SUBSTRING(SEC_TO_TIME(AVG(a.aht_num)),2,7) AS AHT');
+        $this->db->from('wall_monitoring a');
+        $this->db->join('m_channel b','a.channel_id = b.channel_id');
+        $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
+
+        if($tid){
+            $this->db->where('a.tenant_id', $tid);
+        }
+
+        $this->db->group_by('b.channel_category');
+        $this->db->group_by('c.tenant_name');
+
+    
+        
+        $query = $this->db->get();
+        
+
+		// print_r($this->db->last_query());
+		// exit;
+
+		if($query->num_rows()>0)
+		{
+            $totque2 = 0;
+            $totcof = 0;
+            $totscr = 0;
+            $tenm = '';
+            $teid = '';
+            $idex = 0;
+            $data = array();
+            foreach($query->result() as $rq)
+            {
+                $idex ++;
+                $totque2 = $totque2+$rq->QUEUE;
+                $totcof = $totcof+$rq->COF;
+                $totscr = $totscr+$rq->SCR;
+                $teid =  $rq->TID;
+                $tenm = $rq->TN;
+                $data[] = array(
+                    'TENANT_ID' => $rq->TID,
+                    'TENANT_NAME' => $rq->TN,
+                    'CATEGORY'=> $rq->CCAT,
+                    'QUEUE' => $rq->QUEUE,
+                    'COF' => $rq->COF,
+                    'AHT' => $rq->AHT,
+                    'AST' => $rq->AST,
+                    'ART' => $rq->ART,
+                    'SCR' => $rq->SCR
+                );
+            }
+            $totscr = $totscr/$idex;
+
+            $result = array(
+                'TENANT_NAME' => $tenm,
+                'TOTAL_COF' => $totcof,
+                'TOTAL_SCR' => $totscr,
+                'TOTAL_QUEUE' => $totque2,
+                'DATA' => $data
+            );
+
+            return $result;
+            
+		}
+	return false;
+		
+    }
+    
     #endregion debi
 
 }
