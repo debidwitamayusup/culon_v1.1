@@ -4540,7 +4540,7 @@ input[type="button"].btn-block {
 .description-box>.description-header {
 	margin: 0;
 	padding: 0;
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: 600;
 }
 
@@ -29457,6 +29457,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 .font14 {
 	font-size: 14px !important;
 }
+
+.font11{
+	font-size:11px !important;
+} 
 
 .font12 {
 	font-size: 12px !important;

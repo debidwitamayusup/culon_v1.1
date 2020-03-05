@@ -275,7 +275,7 @@ function callBoxMonitoring(tenant_id){
 function loopingBoxMonitoring(response)
 {
 	$('#parent-row').remove(); // this is my <div> element
-    $('#parent-card').append('<div class="col-md-6" id="parent-row"></div>');
+    $('#parent-card').append('<div class="row" id="parent-row"></div>');
 
     // console.log(response.data)
     var i = 0;
@@ -290,135 +290,137 @@ function loopingBoxMonitoring(response)
 function drawBoxMonitoring(response)
 {
 	console.log(response);
-	$('#parent-row').append(''+
-	'<div class="card">'+
-	'<div class="row">'+
-	    '<div class="col-md-3">'+
-	        '<img src='+response.TENANT_ICON+' class="rounded-circle2">'+
-	        '<h6 class="font-weight-bold text-red text-center">'+response.TENANT_NAME+'</h6>'+
-	        '<div class="row">'+
-	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font10 font-normal">Total Queue</h6>'+
-	            '</div>'+
-	            '<div class="col-sm-auto">'+
-	                '<h6 class="font10 font-bold">'+response.TOTAL_QUEUE+'</h6>'+
-	            '</div>'+
-	        '</div>'+
-	        '<div class="row">'+
-	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font10 font-normal">Avg SCR</h6>'+
-	            '</div>'+
-	            '<div class="col-sm-auto">'+
-	                '<h6 class="font10 font-bold">'+response.TOTAL_SCR+'%</h6>'+
-	            '</div>'+
-	        '</div>'+
-	        '<div class="row">'+
-	            '<div class="ml-2 col-sm-7">'+
-	                '<h6 class="font10 font-normal">Total COF</h6>'+
-	            '</div>'+
-	            '<div class="col-sm-auto">'+
-	                '<h6 class="font10 font-bold">'+response.TOTAL_COF+'</h6>'+
-	            '</div>'+
-	        '</div>'+
-	    '</div>'+
-	    '<div class="col-md-4">'+
-	        '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
-	            '<div class="widget-user-header">'+
-	                '<h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>'+
-	            '</div>'+
-	            '<div class="box-footer">'+
-	                '<div class="row no-gutters">'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">Queue</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[1].QUEUE+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">COF</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[1].COF+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">SCR</span>'+
-	                           '<h6 class="description-header num-font mt-1">'+response.DATA[1].SCR+'%</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                '</div>'+
-	                '<div class="row no-gutters">'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">ART</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[1].ART+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">AHT</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[1].AHT+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">AST</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[1].AST+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                '</div>'+
-	            '</div>'+
-	        '</div>'+
-	    '</div>'+
-	    '<div class="col-md-4">'+
-	        '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
-	            '<div class="widget-user-header">'+
-	                '<h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>'+
-	            '</div>'+
-	            '<div class="box-footer">'+
-	                '<div class="row no-gutters">'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">Queue</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].QUEUE+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">COF</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].COF+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">SCR</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].SCR+'%</h6>'+
-	                       	'</div>'+
-	                    '</div>'+
-	                '</div>'+
-	                '<div class="row no-gutters">'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">ART</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].ART+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">AHT</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].AHT+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                    '<div class="col-sm-4">'+
-	                        '<div class="description-box">'+
-	                            '<span class="text-muted font10">AST</span>'+
-	                            '<h6 class="description-header num-font mt-1">'+response.DATA[0].AST+'</h6>'+
-	                        '</div>'+
-	                    '</div>'+
-	                '</div>'+
-	            '</div>'+
-	        '</div>'+
-	    '</div>'+
-    '</div>'+
+    $('#parent-row').append(''+
+    '<div class="col-md-6">'+
+        '<div class="card">'+
+            '<div class="row">'+
+                '<div class="col-md-3 ml-1">'+
+                    '<img src='+response.TENANT_ICON+' class="rounded-circle2">'+
+                    '<h6 class="font-weight-bold text-red text-center">'+response.TENANT_NAME+'</h6>'+
+                    '<div class="row">'+
+                        '<div class="ml-1 col-sm-7">'+
+                            '<h6 class="font11 font-normal">Total Queue</h6>'+
+                        '</div>'+
+                        '<div class="col-sm-4">'+
+                            '<h6 class="font11 font-bold">'+response.TOTAL_QUEUE+'</h6>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                        '<div class="ml-1 col-sm-7">'+
+                            '<h6 class="font11 font-normal">Avg SCR</h6>'+
+                        '</div>'+
+                        '<div class="col-sm-auto">'+
+                            '<h6 class="font11 font-bold">'+response.TOTAL_SCR+'%</h6>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                        '<div class="ml-1 col-sm-7">'+
+                            '<h6 class="font11 font-normal">Total COF</h6>'+
+                        '</div>'+
+                        '<div class="col-sm-auto">'+
+                            '<h6 class="font11 font-bold">'+response.TOTAL_COF+'</h6>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-4">'+
+                    '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
+                        '<div class="widget-user-header">'+
+                            '<h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>'+
+                        '</div>'+
+                        '<div class="box-footer">'+
+                            '<div class="row no-gutters">'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">Queue</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].QUEUE+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">COF</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].COF+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">SCR</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].SCR+'%</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row no-gutters">'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">ART</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].ART+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">AHT</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].AHT+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">AST</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[1].AST+'</h6>'+
+                                   '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-4">'+
+                    '<div class="card-box box-widget widget-user" style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">'+
+                        '<div class="widget-user-header">'+
+                            '<h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>'+
+                        '</div>'+
+                        '<div class="box-footer">'+
+                            '<div class="row no-gutters">'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">Queue</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].QUEUE+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">COF</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].COF+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">SCR</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].SCR+'%</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row no-gutters">'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">ART</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].ART+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">AHT</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].AHT+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-sm-4">'+
+                                    '<div class="description-box">'+
+                                        '<span class="text-muted font10">AST</span>'+
+                                        '<h6 class="description-header num-font mt-1">'+response.DATA[0].AST+'</h6>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
     '</div>');
 }
