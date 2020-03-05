@@ -307,7 +307,7 @@ function drawBoxMonitoring(response)
                     '</div>'+
                     '<div class="row">'+
                         '<div class="ml-1 col-sm-7">'+
-                            '<h6 class="font11 font-normal">Avg SCR</h6>'+
+                            '<h6 class="font11 font-normal">Average SCR</h6>'+
                         '</div>'+
                         '<div class="col-sm-auto">'+
                             '<h6 class="font11 font-bold">'+response.TOTAL_SCR+'%</h6>'+
