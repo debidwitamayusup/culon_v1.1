@@ -553,7 +553,7 @@ function drawChartPerGroupTelkom(response){
         x++;
     });
        var bar_ctx = document.getElementById('barTelkomGroup');
-   
+    
        var bar_chart = new Chart(bar_ctx, {
            // type: 'bar',
            type: 'horizontalBar',
@@ -568,13 +568,41 @@ function drawChartPerGroupTelkom(response){
                    duration: 10,
                },
                tooltips: {
-                   mode: 'label',
-                   callbacks: {
-                       label: function (tooltipItem, data) {
-                           return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-                       }
-                   },
-                   yAlign: 'top'
+                enabled: false,
+                custom: function(tooltip) {
+                    var tooltipEl = document.getElementById('chartjs-tooltip-telkom');
+
+                    if (tooltip.opacity === 0) {
+                      tooltipEl.style.opacity = 0;
+                      return;
+                    }
+                    console.log(this)
+                    if (tooltip.body) {
+                      var total = 0;
+                      var innerHTML = '<table><thead>';
+                      for (var c = 0; i < this._data.labels.length; c++){
+                         innerHTML+= '<tr><th>'+this._data.labels[c]+'</th></tr>';
+                      }
+                      innerHTML += '</thead><tbody>';
+                      for (var r = 0; r < this._data.datasets.length; r++){
+                        innerHTML += '<tr><td style="padding-top:0px;padding-bottom:0px;">'+this._data.datasets[r].label+': '+numberWithCommas(this._data.datasets[tooltip.dataPoints[r].datasetIndex].data[tooltip.dataPoints[r].index].toLocaleString())+'</td></tr>';
+                      }
+                      innerHTML += '</tbody></table>';
+                      tooltipEl.innerHTML = innerHTML;
+                    }
+                  
+                    var centerX = ((this._chartInstance.chartArea.left + this._chartInstance.chartArea.right) / 2);
+                    var centerY = -50;
+                  
+                    tooltipEl.style.opacity = 1;
+                    tooltipEl.style.left = centerX + 'px';
+                    tooltipEl.style.top = centerY + 'px';
+                    tooltipEl.style.fontFamily = tooltip._fontFamily;
+                    tooltipEl.style.fontSize = tooltip.fontSize;
+                    tooltipEl.style.fontStyle = tooltip._fontStyle;
+                    tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                    tooltipEl.style.opacity = 1;
+                }
                },
                scales: {
                    xAxes: [{
@@ -670,7 +698,6 @@ function drawChartPerGroupGovernment(response){
         x++;
     });
        var bar_ctx = document.getElementById('barGovermentGroup');
-   
        var bar_chart = new Chart(bar_ctx, {
            // type: 'bar',
            type: 'horizontalBar',
@@ -693,76 +720,44 @@ function drawChartPerGroupGovernment(response){
                 //        }
                 //    }
                 enabled: false,
-                // custom: function(tooltipModel) {
-                //     // Tooltip Element
-                //     var tooltipEl = document.getElementById('chartjs-tooltip');
-    
-                //     // Create element on first render
-                //     // if (!tooltipEl) {
-                //         tooltipEl = document.createElement('div');
-                //         tooltipEl.id = 'chartjs-tooltip';
-                //         tooltipEl.innerHTML = '<table></table>';
-                //         document.body.appendChild(tooltipEl);
-                //     // }
-    
-                //     // Hide if no tooltip
-                //     if (tooltipModel.opacity === 0) {
-                //         tooltipEl.style.opacity = 0;
-                //         return;
-                //     }
-    
-                //     // Set caret Position
-                //     tooltipEl.classList.remove('above', 'below', 'no-transform');
-                //     if (tooltipModel.yAlign) {
-                //         tooltipEl.classList.add(tooltipModel.yAlign);
-                //     } else {
-                //         tooltipEl.classList.add('no-transform');
-                //     }
-    
-                //     function getBody(bodyItem) {
-                //         return bodyItem.lines;
-                //     }
-    
-                //     // Set Text
-                //     if (tooltipModel.body) {
-                //         var titleLines = tooltipModel.title || [];
-                //         var bodyLines = tooltipModel.body.map(getBody);
-    
-                //         var innerHtml = '<thead>';
-    
-                //         titleLines.forEach(function(title) {
-                //             innerHtml += '<tr><th>' + title + '</th></tr>';
-                //         });
-                //         innerHtml += '</thead><tbody>';
-    
-                //         bodyLines.forEach(function(body, i) {
-                //             var colors = tooltipModel.labelColors[i];
-                //             var style = 'background:' + colors.backgroundColor;
-                //             style += '; border-color:' + colors.borderColor;
-                //             style += '; border-width: 2px';
-                //             var span = '<span style="' + style + '"></span>';
-                //             innerHtml += '<tr><td>' + span + body + '</td></tr>';
-                //         });
-                //         innerHtml += '</tbody>';
-    
-                //         var tableRoot = tooltipEl.querySelector('table');
-                //         tableRoot.innerHTML = innerHtml;
-                //     }
-    
-                //     // `this` will be the overall tooltip
-                //     var position = this._chart.canvas.getBoundingClientRect();
-    
-                //     // Display, position, and set styles for font
-                //     tooltipEl.style.opacity = 1;
-                //     tooltipEl.style.position = 'absolute';
-                //     tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-                //     tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
-                //     tooltipEl.style.fontFamily = tooltipModel._bodyFontFamily;
-                //     tooltipEl.style.fontSize = tooltipModel.bodyFontSize + 'px';
-                //     tooltipEl.style.fontStyle = tooltipModel._bodyFontStyle;
-                //     tooltipEl.style.padding = tooltipModel.yPadding + 'px ' + tooltipModel.xPadding + 'px';
-                //     tooltipEl.style.pointerEvents = 'none';
-                // }
+                custom: function(tooltip) {
+                    var tooltipEl = document.getElementById('chartjs-tooltip-government');
+
+                    
+                    if (tooltip.opacity === 0) {
+                      tooltipEl.style.opacity = 0;
+                      return;
+                    }
+                    
+                    if (tooltip.body) {
+                      var total = 0;
+                      var innerHTML = '<table><thead>';
+                      for (var c = 0; i < this._data.labels.length; c++){
+                         innerHTML+= '<tr><th>'+this._data.labels[c]+'</th></tr>';
+                      }
+                      innerHTML += '</thead><tbody>';
+                      for (var r = 0; r < this._data.datasets.length; r++){
+                        innerHTML += '<tr><td style="padding-top:0px;padding-bottom:0px;">'+this._data.datasets[r].label+': '+numberWithCommas(this._data.datasets[tooltip.dataPoints[r].datasetIndex].data[tooltip.dataPoints[r].index].toLocaleString())+'</td></tr>';
+                      }
+                      innerHTML += '</tbody></table>';
+                      
+                      tooltipEl.innerHTML = innerHTML;
+                    }
+                  
+                    
+                    var centerX = (this._chartInstance.chartArea.left + this._chartInstance.chartArea.right) / 2;
+                    var centerY = -50;
+                  
+                    
+                    tooltipEl.style.opacity = 1;
+                    tooltipEl.style.left = centerX + 'px';
+                    tooltipEl.style.top = centerY + 'px';
+                    tooltipEl.style.fontFamily = tooltip._fontFamily;
+                    tooltipEl.style.fontSize = tooltip.fontSize;
+                    tooltipEl.style.fontStyle = tooltip._fontStyle;
+                    tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                    tooltipEl.style.opacity = 1;
+                }
                },
                scales: {
                    xAxes: [{
@@ -873,12 +868,41 @@ function drawChartPerGroupBfsi(response){
                    duration: 10,
                },
                tooltips: {
-                   mode: 'label',
-                   callbacks: {
-                       label: function (tooltipItem, data) {
-                           return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-                       }
-                   }
+                enabled: false,
+                custom: function(tooltip) {
+                    var tooltipEl = document.getElementById('chartjs-tooltip-bfsi');
+
+                    if (tooltip.opacity === 0) {
+                      tooltipEl.style.opacity = 0;
+                      return;
+                    }
+
+                    if (tooltip.body) {
+                      var total = 0;
+                      var innerHTML = '<table><thead>';
+                      for (var c = 0; i < this._data.labels.length; c++){
+                         innerHTML+= '<tr><th>'+this._data.labels[c]+'</th></tr>';
+                      }
+                      innerHTML += '</thead><tbody>';
+                      for (var r = 0; r < this._data.datasets.length; r++){
+                        innerHTML += '<tr><td style="padding-top:0px;padding-bottom:0px;">'+this._data.datasets[r].label+': '+numberWithCommas(this._data.datasets[tooltip.dataPoints[r].datasetIndex].data[tooltip.dataPoints[r].index].toLocaleString())+'</td></tr>';
+                      }
+                      innerHTML += '</tbody></table>';
+                      tooltipEl.innerHTML = innerHTML;
+                    }
+                  
+                    var centerX = (this._chartInstance.chartArea.left + this._chartInstance.chartArea.right) / 2;
+                    var centerY = -50;
+                  
+                    tooltipEl.style.opacity = 1;
+                    tooltipEl.style.left = centerX + 'px';
+                    tooltipEl.style.top = centerY + 'px';
+                    tooltipEl.style.fontFamily = tooltip._fontFamily;
+                    tooltipEl.style.fontSize = tooltip.fontSize;
+                    tooltipEl.style.fontStyle = tooltip._fontStyle;
+                    tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                    tooltipEl.style.opacity = 1;
+                }
                },
                scales: {
                    xAxes: [{
@@ -992,12 +1016,40 @@ function drawChartPerGroupEnterprise(response){
                    duration: 10,
                },
                tooltips: {
-                   mode: 'label',
-                   callbacks: {
-                       label: function (tooltipItem, data) {
-                           return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.xLabel);
-                       }
-                   }
+                enabled: false,
+                custom: function(tooltip) {
+                    var tooltipEl = document.getElementById('chartjs-tooltip-enterprise');
+
+                    if (tooltip.opacity === 0) {
+                      tooltipEl.style.opacity = 0;
+                      return;
+                    }
+
+                    if (tooltip.body) {
+                      var innerHTML = '<table><thead>';
+                      for (var c = 0; i < this._data.labels.length; c++){
+                         innerHTML+= '<tr><th>'+this._data.labels[c]+'</th></tr>';
+                      }
+                      innerHTML += '</thead><tbody>';
+                      for (var r = 0; r < this._data.datasets.length; r++){
+                        innerHTML += '<tr><td style="padding-top:0px;padding-bottom:0px;">'+this._data.datasets[r].label+': '+numberWithCommas(this._data.datasets[tooltip.dataPoints[r].datasetIndex].data[tooltip.dataPoints[r].index].toLocaleString())+'</td></tr>';
+                      }
+                      innerHTML += '</tbody></table>';
+                      tooltipEl.innerHTML = innerHTML;
+                    }
+                  
+                    var centerX = (this._chartInstance.chartArea.left + this._chartInstance.chartArea.right) / 2;
+                    var centerY = -50;
+                  
+                    tooltipEl.style.opacity = 1;
+                    tooltipEl.style.left = centerX + 'px';
+                    tooltipEl.style.top = centerY + 'px';
+                    tooltipEl.style.fontFamily = tooltip._fontFamily;
+                    tooltipEl.style.fontSize = tooltip.fontSize;
+                    tooltipEl.style.fontStyle = tooltip._fontStyle;
+                    tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                    tooltipEl.style.opacity = 1;
+                }
                },
                scales: {
                    xAxes: [{
