@@ -1483,7 +1483,7 @@ Class WallboardModel extends CI_Model {
     public function get_available_data_wallmon($tid)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('a.tenant_id as TID, c.tenant_name as TN, a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR');
+        $this->db->select('a.tenant_id as TID, c.tenant_name as TN,c.tenant_icon as TICC ,a.antrian as QUEUE ,COALESCE(SUM(a.cof),0) as COF, AVG(a.scr) as SCR');
         $this->db->from('wall_monitoring a');
         $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
@@ -1499,6 +1499,7 @@ Class WallboardModel extends CI_Model {
             {
                 $result[] = array(
                     'TENANT_NAME' => $rs->TN,
+                    'TENANT_ICON' =>  FCPATH."public/tenant/".$rs->TICC,
                     'TOTAL_COF' => $rs->COF,
                     'TOTAL_SCR' => $rs->SCR,
                     'TOTAL_QUEUE' => $rs->QUEUE,
