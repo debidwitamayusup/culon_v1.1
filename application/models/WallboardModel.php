@@ -1500,7 +1500,7 @@ Class WallboardModel extends CI_Model {
             {
                 $result[] = array(
                     'TENANT_NAME' => $rs->TN,
-                    'TENANT_ICON' =>  "public/tenant/".$rs->TICC,
+                    'TENANT_ICON' =>  base_url()."public/tenant/".$rs->TICC,
                     'TOTAL_COF' => number_format($rs->COF,0,',','.'),
                     'TOTAL_SCR' => number_format($rs->SCR,2,'.',''),
                     'TOTAL_QUEUE' => $rs->QUEUE,
