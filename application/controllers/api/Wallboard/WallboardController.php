@@ -407,13 +407,15 @@ class WallboardController extends REST_Controller {
     public function DataTableNasional_post()
     {
         $data = $this->module_model->get_datatable_perform_nas();
+        $channels = $this->module_model->get_channel_only();
         
 
         if ($data) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
-                'data'    => $data
+                'data'    => $data,
+                'channels'=> $channels
                     ], REST_Controller::HTTP_OK);
         }
         else {
@@ -458,7 +460,27 @@ class WallboardController extends REST_Controller {
     {
         $data = $this->module_model->summary_performance_nasional();
         
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
 
+    public function summaryPerformanceNasionalDANK_post()
+    {
+        $data = $this->module_model->thomas_the_dank_engine();
+    
         if ($data) {
             $this->response([
                 'status'  => TRUE,
