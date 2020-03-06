@@ -52,68 +52,13 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
-	// $(document).on("click","div div div a", function(event){
-	// 	event.preventDefault();
-	// 	$(this).addClass('active');
-	// 	if(!$(this).parent().hasClass('resp-tab-content-active')){
-	// 		$('.slide-item.active').find('a').parent().parent().parent().removeClass('resp-tab-content-active');
-	// 	}
-	// 	$(this).parent().parent().parent().prop('class','resp-tab-content-active');
-		
-	// 	console.log('masa ngga bisa terusss');
-	// });
-
 	// let url = window.location.href;
-	// $('div div div a').each(function(){
+	// $('#parent_menu div div a').each(function(){
 	// 	if(this.href === url){
-	// 		$(this).closest('div:first').prop("class","resp-tab-content");
+	// 		$(this).parent().parent().parent().removeClass("resp-tab-content")
+	// 		$(this).parent().parent().parent().prop("class","resp-tab-content-active");
 	// 	}
-	// })
-
-	// var loc = window.location.pathname;
-	// $('a').find('a').each(function(){
-	// 	$(this).toggleClass('resp-tab-content-active',$(this).attr('href') == loc);
-	// 	console.log('test');
 	// });
-
-	// $('a.slide-item').addClass('active')
-	// if($('div').hasClass('resp-tab-content-active')){
-	// 	$('div').removeClass('resp-tab-content-active')
-	// }
-	// $(this).toggleClass('resp-tab-content-active');
-
-	// $(document).on("click", "div > a.slide-item", function(event){
-	// 	event.preventDefault();
-	// 	$('a').removeClass('active');
-	// 	$('a').addClass('active');
-	// 	$(this).parent().parent().parent().prop("class","resp-tab-content-active");
-	// })
-
-	// $(document).ready(function(){
-	// 	$("#dashboard ").click(function(){
-	// 	  $("p:first").addClass("intro");
-	// 	});
-	//   });
-
-
-
-	// $(document).on("click","div div div a.slide-item.active", function(event){
-	// 	event.preventDefault();
-	// 	$('div').hasClass('resp-tab-content-active').prop("class","resp-tab-content");
-	// 	$('div').hasClass('resp-tab-content').prop("class","resp-tab-content-active");
-	// })
-	
-
-	// function activateMenu(prefixUrl){
-	// 	let href = $("#dashboard > div > div > a");
-	// 	let urlHref = window.location.href;
-	// 	for(let i=0; i<href.length; i++){
-	// 		if(urlHref == href[i].href){
-	// 			href[i].setAttribute('class','active');
-	// 			$("#dahboard").prop('css','resp-tab-content-active');
-	// 		}
-	// 	}
-	// }
 
 	   
 })();

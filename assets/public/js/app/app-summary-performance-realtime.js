@@ -772,7 +772,7 @@ function setDatePicker(){
     }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
 }
 
-$(function($){
+(function ($) {
 var date = new Date();
     date.setDate(date.getDate() > 0);
     $('#input-date-filter').datepicker({
@@ -918,4 +918,4 @@ var date = new Date();
         
     });
 
-});
+})(jQuery);

@@ -24,14 +24,14 @@
                             style="width:100%" id="tableWallAgent">
                             <thead class="text-center text-white bg-head">
                                 <tr>
-                                    <td>No</td>
-                                    <td>Agent ID</td>
-                                    <td>Name</td>
-                                    <td>State</td>
-                                    <td>In Service</td>
-                                    <td>Total Handled</td>
-                                    <td>ART</td>
-                                    <td>AHT</td>
+                                    <td style="width:16px">No</td>
+                                    <td style="width:56px">Agent ID</td>
+                                    <td style="width:253px">Name</td>
+                                    <td style="width:63px">State</td>
+                                    <td style="width:87px">In Service</td>
+                                    <td style="width:125px">Total Handled</td>
+                                    <td style="width:90px">ART</td>
+                                    <td style="width:87px">AHT</td>
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center">
