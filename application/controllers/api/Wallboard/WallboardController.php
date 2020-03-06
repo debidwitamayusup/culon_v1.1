@@ -407,13 +407,15 @@ class WallboardController extends REST_Controller {
     public function DataTableNasional_post()
     {
         $data = $this->module_model->get_datatable_perform_nas();
+        $channels = $this->module_model->get_channel_only();
         
 
         if ($data) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
-                'data'    => $data
+                'data'    => $data,
+                'channels'=> $channels
                     ], REST_Controller::HTTP_OK);
         }
         else {
