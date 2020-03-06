@@ -150,11 +150,12 @@
                             });
 
                             $respTabs.find('.resp-tab-content[aria-labelledby = ' + $tabAria + '].' + options.tabidentify).slideDown().addClass('resp-tab-content-active');
-                        } else {
+                        } 
+                        else {
                             console.log('here');
                             $respTabs.find('.resp-tab-active.' + options.tabidentify).removeClass('resp-tab-active').css({
                                 'background-color': options.inactive_bg,
-                                'border-color': 'none'
+                                'border-color': 'BF4444'
                             });
 
                             $respTabs.find('.resp-tab-content-active.' + options.tabidentify).removeAttr('style').removeClass('resp-tab-content-active').removeClass('resp-accordion-closed');

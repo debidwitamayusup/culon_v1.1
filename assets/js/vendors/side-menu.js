@@ -52,6 +52,29 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
+	// $(document).on("click","div div div a", function(event){
+	// 	event.preventDefault();
+	// 	$(this).addClass('active');
+	// 	if(!$(this).parent().hasClass('resp-tab-content-active')){
+	// 		$('.slide-item.active').find('a').parent().parent().parent().removeClass('resp-tab-content-active');
+	// 	}
+	// 	$(this).parent().parent().parent().prop('class','resp-tab-content-active');
+		
+	// 	console.log('masa ngga bisa terusss');
+	// });
+
+	// let url = window.location.href;
+	// $('div div div a').each(function(){
+	// 	if(this.href === url){
+	// 		$(this).closest('div:first').prop("class","resp-tab-content");
+	// 	}
+	// })
+
+	// var loc = window.location.pathname;
+	// $('a').find('a').each(function(){
+	// 	$(this).toggleClass('resp-tab-content-active',$(this).attr('href') == loc);
+	// 	console.log('test');
+	// });
 
 	// $('a.slide-item').addClass('active')
 	// if($('div').hasClass('resp-tab-content-active')){

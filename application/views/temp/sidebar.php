@@ -4,8 +4,7 @@
 	<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
 		<div class="first-sidemenu">
 			<ul class="resp-tabs-list hor_1">
-				<li data-toggle="tooltip" data-placement="right" title="Wallboard"
-					class="resp-tab-active">
+				<li data-toggle="tooltip" data-placement="right" title="Wallboard">
 					<div class="side-menutext"><i class="side-menu__icon fe fe-monitor"></i>
 						<h6 class="font10 mt-1 text-white">Wallboard</h6><span class="side-menu__label">Wallboard</span>
 					</div>
@@ -31,7 +30,7 @@
 				</div>
 			</div>
 			<div class="resp-tabs-container hor_1">
-				<div class="resp-tab-content-active" id="wallboard">
+				<div style="display:block">
 					<div class="row">
 						<div class="col-md-12 ">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
