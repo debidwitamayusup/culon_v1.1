@@ -177,40 +177,76 @@ function drawTableChannel(response){
     var AvgChnAht = 0;
     var AvgChnAst = 0;
     var AvgChnScr = 0;
-    response.data.forEach(function(value){
-        $('#table_channel').find('tbody').append('<tr>'+
-            '<td class="text-center">'+(k+1)+'</td>'+
-            '<td class="text-left">'+(value.CHANNEL_NAME)+'</td>'+
-            '<td class="text-right">'+(value.QUEUE || 0)+'</td>'+
-            '<td class="text-center">'+(value.ART || 0)+'</td>'+
-            '<td class="text-center">'+(value.AHT || 0)+'</td>'+
-            '<td class="text-center">'+(value.AST || 0)+'</td>'+
-            '<td class="text-right">'+(addCommas(value.MESSAGE_IN) || 0)+'</td>'+
-            '<td class="text-right">'+(addCommas(value.MESSAGE_OUT) || 0)+'</td>'+
-            '<td class="text-right">'+(addCommas(value.ABANDON) || 0)+'</td>'+
-            '<td class="text-right">'+(addCommas(value.HANDLING) || 0)+'</td>'+
-            '<td class="text-right">'+(addCommas(value.OFFERED) || 0)+'</td>'+
-            '<td class="text-right">'+((value.SCR.toString()).replace('.',',') || 0)+'%</td>'+
-        '</tr>');
-        k++;
+    for (var i =0; i < response.channels.length; i++){
+        // response.data.forEach(function(value){
+        // for (var j = 0; j < response.data.length; j++){
+            if(response.channels[i] == response.data[k].CHANNEL_NAME){
+                $('#table_channel').find('tbody').append('<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left">'+(response.data[k].CHANNEL_NAME)+'</td>'+
+                    '<td class="text-right">'+(response.data[k].QUEUE || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[k].ART || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
+                    '<td class="text-center">'+(response.data[k].AST || 0)+'</td>'+
+                    '<td class="text-right">'+(addCommas(response.data[k].MESSAGE_IN) || 0)+'</td>'+
+                    '<td class="text-right">'+(addCommas(response.data[k].MESSAGE_OUT) || 0)+'</td>'+
+                    '<td class="text-right">'+(addCommas(response.data[k].ABANDON) || 0)+'</td>'+
+                    '<td class="text-right">'+(addCommas(response.data[k].HANDLING) || 0)+'</td>'+
+                    '<td class="text-right">'+(addCommas(response.data[k].OFFERED) || 0)+'</td>'+
+                    '<td class="text-right">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                '</tr>');
 
-        sumChnQueue += Number(value.QUEUE);
-        sumChnArt += Number(timestrToSec(value.ART));
-        sumChnAht += Number(timestrToSec(value.AHT));
-        sumChnAst += Number(timestrToSec(value.AST));
-        sumChnMsgIn += Number(value.MESSAGE_IN);
-        sumChnMsgOut =+ Number(value.MESSAGE_OUT);
-        sumChnAbd += Number(value.ABANDON);
-        sumChnHandling += Number(value.HANDLING);
-        sumchnOffered += Number(value.OFFERED);
-        sumChnScr += Number(value.SCR);
-        AvgChnArt = Math.round((sumChnArt / response.data.length));
-        AvgChnAht = Math.round((sumChnAht / response.data.length));
-        AvgChnAst = Math.round((sumChnAst / response.data.length));
-        AvgChnScr = parseFloat((sumChnScr / response.data.length)).toFixed(2);
-    });
+                sumChnQueue += Number(response.data[k].QUEUE);
+                sumChnArt += Number(timestrToSec(response.data[k].ART));
+                sumChnAht += Number(timestrToSec(response.data[k].AHT));
+                sumChnAst += Number(timestrToSec(response.data[k].AST));
+                sumChnMsgIn += Number(response.data[k].MESSAGE_IN);
+                sumChnMsgOut =+ Number(response.data[k].MESSAGE_OUT);
+                sumChnAbd += Number(response.data[k].ABANDON);
+                sumChnHandling += Number(response.data[k].HANDLING);
+                sumchnOffered += Number(response.data[k].OFFERED);
+                sumChnScr += Number(response.data[k].SCR);
+                AvgChnArt = Math.round((sumChnArt / response.data.length));
+                AvgChnAht = Math.round((sumChnAht / response.data.length));
+                AvgChnAst = Math.round((sumChnAst / response.data.length));
+                AvgChnScr = parseFloat((sumChnScr / response.data.length)).toFixed(2);
+                k++;
+            }else{
+                $('#table_channel').find('tbody').append('<tr>'+
+                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-left">'+(response.channels[i])+'</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-center">--:--:--</td>'+
+                    '<td class="text-center">--:--:--</td>'+
+                    '<td class="text-center">--:--:--</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-right">-</td>'+
+                    '<td class="text-right">-</td>'+
+                '</tr>');
+            }
+        // }
 
-
+            // sumChnQueue += Number(value.QUEUE);
+            // sumChnArt += Number(timestrToSec(value.ART));
+            // sumChnAht += Number(timestrToSec(value.AHT));
+            // sumChnAst += Number(timestrToSec(value.AST));
+            // sumChnMsgIn += Number(value.MESSAGE_IN);
+            // sumChnMsgOut =+ Number(value.MESSAGE_OUT);
+            // sumChnAbd += Number(value.ABANDON);
+            // sumChnHandling += Number(value.HANDLING);
+            // sumchnOffered += Number(value.OFFERED);
+            // sumChnScr += Number(value.SCR);
+            // AvgChnArt = Math.round((sumChnArt / response.data.length));
+            // AvgChnAht = Math.round((sumChnAht / response.data.length));
+            // AvgChnAst = Math.round((sumChnAst / response.data.length));
+            // AvgChnScr = parseFloat((sumChnScr / response.data.length)).toFixed(2);
+        // });
+    // });
+    }
+    console.log(sumChnScr+'/'+response.data.length);
     $('#table_channel').find('tfoot').append('<tr>'+
         '<td colspan="2" class="text-center">Total</td>'+
         '<td class="text-right">'+(addCommas(sumChnQueue) || 0)+'</td>'+
@@ -615,6 +651,7 @@ function drawTotalTable(response){
                 '</div>'
             );
         }
+        console.log('luhur:'+sumSCR+'/'+response.data.length);
 }
 
 $(function($){
