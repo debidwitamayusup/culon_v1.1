@@ -1304,7 +1304,49 @@ Class WallboardModel extends CI_Model {
 		}
 		
 		return $res_channel;
-	}
+    }
+    
+    public function thomas_the_dank_engine(){
+        //$date = $this->security->xss_clean($this->input->post('date', true));
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.ast_num)),1,8) ast,SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),1,8) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),1,8) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr ');
+        $this->db->from('m_tenant');
+        $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
+        $this->db->where_in('wall_monitoring.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+        
+        if($tid){
+            $this->db->where_in('wall_monitoring.tenant_id', $tid);
+        }
+        $query = $this->db->get();
+        // print_r($this->db->last_query());
+        // exit;
+
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $data)
+            {
+
+                $result[] = array(
+                    'TENANT_NAME' => 'DANK',
+                    'QUEUE' => strval(number_format($data->queue,0,'.',',')),
+                    'HANDLING' => $data->handling,
+                    'MESSAGE_IN' => $data->msg_in,
+                    'MESSAGE_OUT' => $data->msg_out,
+                    'ABANDON' => $data->abd,
+                    'ART' => $data->waiting,
+                    'AHT' => $data->aht,
+                    'AST' => $data->ast,
+                    'OFFERED' => $data->offered,
+                    'SCR' => number_format(round($data->scr,2),2,'.',',')
+                );
+            }
+            return $result;
+        }
+
+        return FALSE;
+    }
 
 
 
@@ -1353,7 +1395,9 @@ Class WallboardModel extends CI_Model {
         }
 
         return FALSE;
-        }
+    }
+
+   
 
     public function summary_performance_nas_bar()
     {
