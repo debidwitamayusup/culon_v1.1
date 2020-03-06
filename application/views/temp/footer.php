@@ -16,17 +16,17 @@
 <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<div class="modal-content">
+		<div class="modal-content" style="border-radius:8px; border:0px">
 			<div class="modal-header bg-red">
-				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-exclamation-triangle mr-1"></i>Error</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Error</h5>
 				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<div class="modal-body">
-				<p>Oops something goes wrong...</p> 
-				<p>Please check your internet connection,</p>
-				<p>Or contact your IT support.</p>
+			<div class="modal-body text-center">
+				<i class="fa fa-5x fa-exclamation-triangle text-red mb-2"></i>
+				<h6 class="text-bold">Oops something goes wrong...</h6> 
+				<p>Please check your internet connection or contact your IT support.</p>
 			</div>
 		</div>
 	</div>

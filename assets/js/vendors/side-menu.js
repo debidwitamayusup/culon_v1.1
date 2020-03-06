@@ -2,8 +2,8 @@
 	"use strict";
 
 	var slideMenu = $('.side-menu');
-	// $('.app').addClass('sidebar-mini');
-	$('.app').addClass('sidebar-mini sidenav-toggled');
+	$('.app').addClass('sidebar-mini');
+	// $('.app').addClass('sidebar-mini sidenav-toggled');
 
 	// Toggle Sidebar
 	$(document).on("click", "[data-toggle='sidebar']", function(event) {
@@ -52,6 +52,26 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
+	let url = window.location.href;
+	$('#parent_menu div div a').each(function(){
+		if(this.href === url){
+			$(this).parent().parent().parent().removeClass("respt-tab-content")
+			$(this).parent().parent().parent().prop("class","resp-tab-content-active");
+		}
+	});
+
+
+	// $(document).on("click","div div div a", function(event){
+	// 	event.preventDefault();
+	// 	if(!$(this).hasClass('active')){
+	// 		$(this).removeClass('active');
+	// 		$(this).parent().parent().parent().attr("style","dispaly:none");
+	// 	}
+	// 	$(this).addClass('active');
+	// 	$(this).parent().parent().parent().attr("style","display:block");
+		
+	// })
+
 	// $(document).on("click","div div div a", function(event){
 	// 	event.preventDefault();
 	// 	$(this).addClass('active');
@@ -62,7 +82,7 @@
 		
 	// 	console.log('masa ngga bisa terusss');
 	// });
-
+	
 	// let url = window.location.href;
 	// $('div div div a').each(function(){
 	// 	if(this.href === url){
