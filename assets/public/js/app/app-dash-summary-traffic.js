@@ -499,6 +499,8 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerGroupTelkom(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -623,6 +625,11 @@ function drawChartPerGroupTelkom(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -644,6 +651,8 @@ function drawChartPerGroupTelkom(response){
 }
 
 function drawChartPerGroupGovernment(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -778,6 +787,11 @@ function drawChartPerGroupGovernment(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -799,6 +813,8 @@ function drawChartPerGroupGovernment(response){
 }
 
 function drawChartPerGroupBfsi(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -922,6 +938,11 @@ function drawChartPerGroupBfsi(response){
                        stacked: true,
                        gridLines: {
                            display: false
+                       },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
                        },
                    }],
                    yAxes: [{
@@ -1070,6 +1091,11 @@ function drawChartPerGroupEnterprise(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -1092,7 +1118,7 @@ function drawChartPerGroupEnterprise(response){
  
     //    Return with commas in between
     var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
     
 function drawChartTop5(response){
@@ -1123,10 +1149,28 @@ function drawChartTop5(response){
             },
             responsive:true,
             maintainAspectRatio:false,
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        // var value = data.datasets[0].data[tooltipItem.index];
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join('.');
+                        return data.labels[tooltipItem.index]+': '+ value;
+                    }
+              } // end callbacks:
+            },
             scales: {
                 xAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        min: 0, // Edit the value according to what you need
+                        callback: function (value, index, values) {
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join('.');
+                            return value;
+                        }
                     }
                 }],
                 yAxes: [{
