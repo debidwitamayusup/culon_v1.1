@@ -437,6 +437,9 @@ function drawChartDaily(week,arr_channel, tenant_id){
                 dataChatBot.push(response.data[i].DATA[12]);
             }
 
+            var numberWithCommas = function (x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            };
             var arrChannel = []
             var dataStacked = [];
             var datasetsStacked = "";
@@ -444,6 +447,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
                 dataLine, dataIg, dataWa, dataDM, dataChatBot);
             console.log(arrChannel);
             var x = 0;
+            
             response.channel.forEach(function (value){
                 datasetsStacked = {
                     name: response.channel[x],
