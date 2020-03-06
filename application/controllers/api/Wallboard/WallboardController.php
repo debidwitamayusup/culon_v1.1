@@ -460,7 +460,27 @@ class WallboardController extends REST_Controller {
     {
         $data = $this->module_model->summary_performance_nasional();
         
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
 
+    public function summaryPerformanceNasionalDANK_post()
+    {
+        $data = $this->module_model->thomas_the_dank_engine();
+    
         if ($data) {
             $this->response([
                 'status'  => TRUE,
