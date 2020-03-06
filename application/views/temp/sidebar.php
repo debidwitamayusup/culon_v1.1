@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<div class="resp-tabs-container hor_1">
-				<div style="display:block">
+				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12 ">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
@@ -81,12 +81,10 @@
 									</ul>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
-				<div id="dashboard">
+				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-home mr-1"></i></i>Dashboard
@@ -139,7 +137,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="report">
+				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12">
 							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-book mr-1"></i>Report</h5> -->

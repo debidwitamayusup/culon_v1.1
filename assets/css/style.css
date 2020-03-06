@@ -29814,6 +29814,10 @@ div[data-acc-step]:not(.open) .badge-primary {
 	width: 85%;
 }
 
+.fPoppins{
+	font-family: 'Poppins', sans-serif;
+}
+
 .font-poppins {
 	font-family: 'Poppins', sans-serif;
 	font-size: 1.3rem;
