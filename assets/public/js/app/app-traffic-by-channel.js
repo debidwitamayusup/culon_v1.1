@@ -40,7 +40,7 @@ $(document).ready(function () {
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
         console.log($('#layanan_name').val());
-        loadContent(params_time, '2020-02-24', 0, '');
+        loadContent(params_time, v_params_this_year, 0, '');
         getTenant('');
         // $('#tag-time').html(v_params_this_year);
         // $("#btn-month").prop("class","btn btn-light btn-sm");
