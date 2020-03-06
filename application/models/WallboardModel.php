@@ -1533,7 +1533,7 @@ Class WallboardModel extends CI_Model {
                     'TENANT_NAME' => $rs->TN,
                     'TENANT_ICON' =>  base_url()."public/tenant/".$rs->TICC,
                     'TOTAL_COF' => number_format($rs->COF,0,',','.'),
-                    'TOTAL_SCR' => number_format($rs->SCR,2,'.',''),
+                    'TOTAL_SCR' => number_format($rs->SCR,2,',',','),
                     'TOTAL_QUEUE' => $rs->QUEUE,
                     'DATA' => $this->get_available_data_wallmon_data($rs->TID)
                 );
@@ -1572,11 +1572,11 @@ Class WallboardModel extends CI_Model {
                     'TENANT_NAME' => $rq->TN,
                     'CATEGORY'=> $rq->CCAT,
                     'QUEUE' => $rq->QUEUE,
-                    'COF' => number_format($rq->COF,0,'.',','),
+                    'COF' => number_format($rq->COF,0,',','.'),
                     'AHT' => $rq->AHT,
                     'AST' => $rq->AST,
                     'ART' => $rq->ART,
-                    'SCR' => number_format($rq->SCR,2,'.','')
+                    'SCR' => number_format($rq->SCR,2,',',',')
                 );
             }
             return $result;
