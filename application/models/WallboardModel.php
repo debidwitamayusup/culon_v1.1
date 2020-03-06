@@ -1323,12 +1323,12 @@ Class WallboardModel extends CI_Model {
         // print_r($this->db->last_query());
         // exit;
 
-        if($query->num_rows() > 0)
+        if($query->num_rows() ==1 )
         {
             foreach($query->result() as $data)
             {
 
-                $result[] = array(
+                $result = array(
                     'TENANT_NAME' => 'DANK',
                     'QUEUE' => strval(number_format($data->queue,0,'.',',')),
                     'HANDLING' => $data->handling,
