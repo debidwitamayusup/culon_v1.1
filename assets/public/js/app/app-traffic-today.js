@@ -195,6 +195,13 @@ function drawChartToday(response){
                 //     }
                 // },
                 legend : false,
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + addCommas(tooltipItem.yLabel);
+                        }
+                    }
+                },
                 barRoundness:  1,
                 scales: {
                     yAxes: [ {

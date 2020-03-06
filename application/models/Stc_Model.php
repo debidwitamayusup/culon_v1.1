@@ -1531,6 +1531,7 @@ class Stc_Model extends CI_Model
 		$result = array(
 			'status' => true,
 			'channel' => $this->get_channel_only(),
+			'channel_color' => $this->get_channel_color_only(),
 			'data' => $datas
 		);
 
@@ -1541,6 +1542,7 @@ class Stc_Model extends CI_Model
 	{
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 
 		// $res_channel = array();
@@ -1559,11 +1561,35 @@ class Stc_Model extends CI_Model
 		return $res_channel;
 	}
 
+	function get_channel_color_only()
+	{
+		$this->db->select('m_channel.channel_id, m_channel.channel_color');
+		$this->db->from('m_channel');
+		$this->db->order_by('m_channel.channel_id');
+		$query = $this->db->get();
+
+		// $res_channel = array();
+		// $res_tot = array();
+		$res_channel = array();
+
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result() as $data)
+			{
+				array_push($res_channel,$data->channel_color);
+			}
+			
+		}
+		
+		return $res_channel;
+	}
+
 	function get_traffic_interval_daily($day)//channel - 
 	{
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 		
 		$res_tot = array();

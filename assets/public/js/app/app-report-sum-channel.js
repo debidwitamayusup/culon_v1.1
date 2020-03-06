@@ -308,7 +308,7 @@ function drawPieChartSumChannel(response){
                         // console.log(total)
                         
                         legendHtml.push('<li class="col-md-12 col-lg-4 col-sm-4 col-xl-4">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+(percentage.toString()).replace('.',',')+ '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+ addCommas(total) +' ('+(percentage.toString()).replace('.',',')+ '%)</span>');
                     } else {
                         var label = chart.data.labels[index];
                         var dataLabel = allData[index];
@@ -325,7 +325,7 @@ function drawPieChartSumChannel(response){
                         // console.log(total)
                         // var percentage = Math.round((dataLabel / total) * 100);
                         legendHtml.push('<li class="col-md-12 col-lg-4 col-sm-4 col-xl-4">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+':'+'0'+ '%</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :'+background+'" class="box-legend"></div>'+label+': 0'+' (0)'+ '%</span>');
                     }
                     
                 })

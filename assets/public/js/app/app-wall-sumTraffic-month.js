@@ -216,6 +216,13 @@ function drawChartToday(response){
                         bottom:10
                     }
                 },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ": " + addCommas(tooltipItem.yLabel);
+                        }
+                    }
+                },
                 legend:{
                     display: true,
                     position:'bottom',

@@ -82,10 +82,10 @@
 							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 						</div> -->
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-5">
 									<div id="legend" class="legend-con"></div>
 								</div>
-								<div class="col-md-9 mt-6">
+								<div class="col-md-7 mt-6">
 									<div class="canvas-con-inner" id="canvas-pie">
 										<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 									</div>
@@ -114,6 +114,8 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
 					</div>
 					<div class="card-body">
+					<div id="chartjs-tooltip-telkom" class="center">
+						</div>
 						<canvas id="barTelkomGroup" class="h-200"></canvas>
 					</div>
 				</div>
@@ -124,6 +126,8 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
 					</div>
 					<div class="card-body">
+					<div id="chartjs-tooltip-government" class="center">
+						</div>
 						<canvas id="barGovermentGroup" class="h-200"></canvas>
 					</div>
 				</div>
@@ -137,6 +141,8 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
 					</div>
 					<div class="card-body">
+					<div id="chartjs-tooltip-bfsi" class="center">
+						</div>
 						<canvas id="barBFSIGroup" class="h-200"></canvas>
 					</div>
 				</div>
@@ -147,9 +153,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Enterprise Group</h5>
 					</div>
 					<div class="card-body">
-						<div id="chartjs-tooltip" class="center">
-							<table>
-							</table>
+						<div id="chartjs-tooltip-enterprise" class="center">
 						</div>
 						<canvas id="barEnterpriseGroup" class="h-200"></canvas>
 					</div>
@@ -161,94 +165,63 @@
 	<?php $this->load->view('temp/footer');?>
 	<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
 	<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
-	<!-- <style>
-		.charts {
-		width: 800px;
-		position: relative;
-		}
-
-		.mtd {
-		display: inline-block;
-		margin: 10px 20px;
-		}
-
-		#doughnut {
-		width: 100%;
-		height: 100%;
-		}
-
-		ul.doughnut-legend {
-		margin-left: 0;
-		height: 40px;
-		}
-
-		.chart-legend {
-		margin-top: 40px;
-		}
-
-		.chart-legend li {
-		display: inline-block;
-		font-size: 20px;
-		text-transform: uppercase;
-		margin-right: 20px;
-		}
-
-		.chart-legend li span {
-		display: inline-block;
-		position: relative;
-		width: 26px;
-		height: 22px;
-		top: 4px;
-		margin-right: 8px;
-		}
-
-		#chartjs-tooltip {
+	<style>
+		#chartjs-tooltip-bfsi {
 		opacity: 1;
 		position: absolute;
-		background: rgba(255, 255, 255, .8) transparent;
-		color: #00000;
-		font-size: 40px;
-		padding: 3px;
-		}
-
-		#chartjs-tooltip.below {
+		background: rgba(0, 0, 0, .7);
+		color: white;
+		border-radius: 3px;
+		-webkit-transition: all .1s ease;
+		transition: all .1s ease;
+		pointer-events: none;
 		-webkit-transform: translate(-50%, 0);
 		transform: translate(-50%, 0);
 		}
 
-		#chartjs-tooltip.below:before {
-		border: solid;
-		border-color: #111 transparent;
-		border-color: rgba(255, 255, 255, .8) transparent;
-		border-width: 0 8px 8px 8px;
-		bottom: 1em;
-		content: "";
-		display: block;
-		left: 50%;
+		#chartjs-tooltip-telkom {
+		opacity: 1;
 		position: absolute;
-		z-index: 99;
-		-webkit-transform: translate(-50%, -100%);
-		transform: translate(-50%, -100%);
-		}
-
-		#chartjs-tooltip.above {
-		-webkit-transform: translate(-50%, -100%);
-		transform: translate(-50%, -100%);
-		}
-
-		#chartjs-tooltip.above:before {
-		border: solid;
-		border-color: #111 transparent;
-		border-color: rgba(255, 255, 255, .8) transparent;
-		border-width: 8px 8px 0 8px;
-		bottom: 1em;
-		content: "";
-		display: block;
-		left: 50%;
-		top: 100%;
-		position: absolute;
-		z-index: 99;
+		background: rgba(0, 0, 0, .7);
+		color: white;
+		border-radius: 3px;
+		-webkit-transition: all .1s ease;
+		transition: all .1s ease;
+		pointer-events: none;
 		-webkit-transform: translate(-50%, 0);
 		transform: translate(-50%, 0);
 		}
-	</style> -->
+
+		#chartjs-tooltip-government {
+		opacity: 1;
+		position: absolute;
+		background: rgba(0, 0, 0, .7);
+		color: white;
+		border-radius: 3px;
+		-webkit-transition: all .1s ease;
+		transition: all .1s ease;
+		pointer-events: none;
+		-webkit-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+		}
+
+		#chartjs-tooltip-enterprise {
+		opacity: 1;
+		position: absolute;
+		background: rgba(0, 0, 0, .7);
+		color: white;
+		border-radius: 3px;
+		-webkit-transition: all .1s ease;
+		transition: all .1s ease;
+		pointer-events: none;
+		-webkit-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+		}
+
+.chartjs-tooltip-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+	</style>
