@@ -1328,7 +1328,7 @@ Class WallboardModel extends CI_Model {
             foreach($query->result() as $data)
             {
 
-                $result[] = array(
+                $result = array(
                     'TENANT_NAME' => 'DANK',
                     'QUEUE' => strval(number_format($data->queue,0,'.',',')),
                     'HANDLING' => $data->handling,
