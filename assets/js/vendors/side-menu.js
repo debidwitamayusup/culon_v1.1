@@ -1,5 +1,6 @@
 (function () {
 	"use strict";
+	var lock = false;
 
 	var slideMenu = $('.side-menu');
 	// $('.app').addClass('sidebar-mini');
@@ -18,6 +19,7 @@
 	$(document).on("click", ".sidenav-toggled .resp-tab-item", function(event) {
 		event.preventDefault();
 		$('.app').addClass('sidenav-toggled4');
+		lock = lock ? false : true;
 		// $('.app').removeClass('sidenav-toggled1');
 		$('.app').removeClass('sidenav-toggled');
 	});
@@ -52,13 +54,23 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
-	// let url = window.location.href;
-	// $('#parent_menu div div a').each(function(){
-	// 	if(this.href === url){
-	// 		$(this).parent().parent().parent().removeClass("resp-tab-content")
-	// 		$(this).parent().parent().parent().prop("class","resp-tab-content-active");
-	// 	}
-	// });
+	// show sub menu per tab menu
+	let url = window.location.href;
+	$('#parent_menu div div a').each(function(){
+		if(this.href === url){
+			$('.app').removeClass('sidenav-toggled');
+			$('.app').toggleClass('sidenav-toggled4');
+			$(this).parent().parent().parent().removeClass("resp-tab-content")
+			$(this).parent().parent().parent().prop("class","resp-tab-content-active");
+		}
+	});
+	
+	// show slide menu 
+	$('#child_menu li a ').each(function(){
+		if(this.href === url){
+			$(this).parent().parent().parent().attr("style","display : block");
+		}
+	});
 
 	   
 })();
