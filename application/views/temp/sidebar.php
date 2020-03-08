@@ -49,11 +49,11 @@
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label"> Traffic Interval</span><i
 											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list" id="child_menu" style>
-										<li>
+									<ul class="slide-menu submenu-list">
+										<!-- <li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic
 												by Today</a>
-										</li>
+										</li> -->
 										<li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_week"
 												class="slide-item">Traffic by This Week</a>
