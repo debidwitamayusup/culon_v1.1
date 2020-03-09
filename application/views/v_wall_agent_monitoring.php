@@ -27,6 +27,7 @@
                                     <td style="width:16px">No</td>
                                     <td style="width:56px">Agent ID</td>
                                     <td style="width:253px">Name</td>
+                                    <td>Tenant</td>
                                     <td style="width:63px">State</td>
                                     <td style="width:87px">In Service</td>
                                     <td style="width:125px">Total Handled</td>

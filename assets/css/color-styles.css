@@ -870,7 +870,7 @@ a.chip:hover {
 	color:#fff;
 }
 .slide-item.active, .slide-item:hover, .slide-item:focus {
-	background: #dcd5d599 !important;
+	background: #c7bebea6 !important;
 	color: #000 !important;
 }
 .slide.submenu .side-menu__label:hover{
@@ -924,7 +924,8 @@ a.chip:hover {
 
 /*----- Menu-Styles ----- */
 .slide.is-expanded [data-toggle='slide'] , .slide .side-menu__item.active {
-	background: #151414 !important;
+	/* background: #151414 !important; */
+	background: #e0d9d9 !important;
 	color:#0c0c0c !important;
 }
 .side-menu .side-menu__item:hover{
@@ -932,7 +933,7 @@ a.chip:hover {
 	color: #fff !important;
 }
 .app-sidebar .side-menu li a.active{
-	background: #dcd5d599 !important;
+	background: #c7bebea6 !important;
 	color: #000 !important;
 }
 

@@ -59,12 +59,13 @@ function drawTableAgentMonitoring(tenant_id){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
-			{ className: "text-left", targets: 2 },
-			{ className: "text-center", targets: 3 },
-			{ className: "text-right", targets: 4 },
+            { className: "text-left", targets: 2 },
+            { className: "text-left", target: 3},
+			{ className: "text-left", targets: 4 },
 			{ className: "text-right", targets: 5 },
-			{ className: "text-center", targets: 6 },
-			{ className: "text-center", targets: 7 }
+			{ className: "text-right", targets: 6 },
+			{ className: "text-center", targets: 7 },
+			{ className: "text-center", targets: 8 }
 		], 
         destroy: true
     });

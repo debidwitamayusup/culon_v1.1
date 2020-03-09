@@ -39,17 +39,16 @@
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
 								Performance Realtime</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic
-								Today</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
 								Performance Operation</a>
-
+							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic
+								Today</a>
 							<div class="side-menu p-0">
 								<div class="slide submenu">
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label"> Traffic Interval</span><i
 											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list">
+									<ul class="slide-menu submenu-list" id="child_menu">
 										<!-- <li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic
 												by Today</a>
@@ -68,7 +67,7 @@
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label"> Ticket</span><i
 											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list">
+									<ul class="slide-menu submenu-list" id="child_menu">
 										<li>
 											<a href="<?=base_url()?>main/wall_status_nonClose"
 												class="slide-item">Summary Status Today (Non Close)</a>
@@ -98,7 +97,7 @@
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label">Traffic Interval</span><i
 											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list">
+									<ul class="slide-menu submenu-list" id="child_menu">
 										<li>
 											<a href="<?=base_url()?>main/this_day" class="slide-item">Traffic Interval
 												Daily</a>
@@ -119,7 +118,7 @@
 									<a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label">Operation Performance</span><i
 											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list">
+									<ul class="slide-menu submenu-list" id="child_menu">
 										<li>
 											<a href="<?=base_url()?>main/kip" class="slide-item">KIP</a>
 										</li>
