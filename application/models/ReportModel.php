@@ -32,6 +32,8 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$t_end);
         }
 
+        $this->db->where('b.channel_id != 1');
+
         $this->db->group_by('b.channel_name');
         $query = $this->db->get();
 
@@ -110,6 +112,7 @@ Class ReportModel extends CI_Model {
         {
             $this->db->where('a.channel_id',$channel);
         }
+        $this->db->where('m_channel.channel_id != 1');
         $this->db->group_by('a.tanggal');
         $query = $this->db->get();
 
@@ -166,6 +169,7 @@ Class ReportModel extends CI_Model {
         {
             $this->db->where('a.channel_id',$channel);
         }
+        $this->db->where('m_channel.channel_id != 1');
         $this->db->group_by('b.channel_id');
         $query = $this->db->get();
 
@@ -259,6 +263,7 @@ Class ReportModel extends CI_Model {
             $this->db->where('MONTH(a.tanggal)',$mnth);
             
         }
+        
         $this->db->where('YEAR(a.tanggal)',$year);
 
         $this->db->group_by('a.tanggal');

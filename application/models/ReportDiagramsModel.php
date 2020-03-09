@@ -13,6 +13,7 @@ Class ReportDiagramsModel extends CI_Model {
 
         $this->db->select('channel_name, channel_color,channel_id');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $query = $this->db->get();
 
         $channel_name = array();

@@ -661,17 +661,20 @@ Class WallboardModel extends CI_Model {
         $this->db->select('m_channel.channel_name , IFNULL(rpt_summary_scr.cof,0) as cof');
         $this->db->from('m_channel');
         $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');
-        $this->db->where('m_channel.channel_id != 1');
+       
         $this->db->where('rpt_summary_scr.tanggal',$date);
         $this->db->where_in('rpt_summary_scr.tenant_id',$tenant_id);
         $this->db->where('cof IS NOT NULL');
         $this->db->or_where('cof IS NULL');
+
+        $this->db->where('m_channel.channel_id != 1');
         $this->db->group_by('m_channel.channel_name');
         $this->db->order_by('m_channel.channel_id','asc');
-
+        
         $query = $this->db->get();
+        // print_r($this->db->last_query());
+        // exit;
         $result = array();
-
 
         if($query->num_rows()>0)
         {
@@ -768,7 +771,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('channel_name,channel_id');
         $this->db->from('m_channel');
         $this->db->where('channel_id != 1');
-        $this->db->order_by('channel_id','desc');
+        $this->db->order_by('channel_id','asc');
         $query = $this->db->get();
 
         $result = array();

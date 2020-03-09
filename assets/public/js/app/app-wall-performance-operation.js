@@ -228,7 +228,7 @@ function drawTableCOFByChannel(response){
                 '<td class="text-right">'+addCommas(response.data[i].Email || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Telegram || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Line || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Voice || 0)+'</td>'+
+                // '<td class="text-right">'+addCommas(response.data[i].Voice || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Instagram || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Messenger || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i]['Twitter DM'] || 0)+'</td>'+
@@ -247,7 +247,7 @@ function drawTableCOFByChannel(response){
              sumEmail+= parseInt((response.data[i].Email || 0));
              sumTel+= parseInt((response.data[i].Telegram || 0));
              sumLine+= parseInt((response.data[i].Line || 0));
-             sumVoice+= parseInt((response.data[i].Voice || 0));
+            //  sumVoice+= parseInt((response.data[i].Voice || 0));
              sumInst+= parseInt((response.data[i].Instagram || 0));
              sumMes+= parseInt((response.data[i].Messenger || 0));
              sumTwDM+= parseInt((response.data[i]['Twitter DM'] || 0));
@@ -280,7 +280,7 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
             '<td class="text-right">'+addCommas(sumTel)+'</td>'+
             '<td class="text-right">'+addCommas(sumLine)+'</td>'+
-            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            // '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
             '<td class="text-right">'+addCommas(sumInst)+'</td>'+
             '<td class="text-right">'+addCommas(sumMes)+'</td>'+
             '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
