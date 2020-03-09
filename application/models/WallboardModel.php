@@ -1635,8 +1635,9 @@ Class WallboardModel extends CI_Model {
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
-        $this->db->select('a.tenant_id TENANTID, a.agent_id AGENTID, a.agent_name AGENTNAME, a.state STATE, a.in_service INSERVICE,
+        $this->db->select('a.tenant_id TENANTID,b.tenant_name as TENANTNAME, a.agent_id AGENTID, a.agent_name AGENTNAME, a.state STATE, a.in_service INSERVICE,
         a.total_handled TOTALHANDLED, a.art ART, a.aht AHT');
+        $this->db->join('m_tenant b','a.tenant_id = b.tenant_id');
         $this->db->from('rpt_agent_monitoring a');
        
         if($tid){
@@ -1656,6 +1657,7 @@ Class WallboardModel extends CI_Model {
                     $id,
                     $data->AGENTID,
                     $data->AGENTNAME,
+                    $data->TENANTNAME,
                     $data->STATE,
                     strval(number_format($data->INSERVICE,0,'.',',')),
                     strval(number_format($data->TOTALHANDLED,0,'.',',')),

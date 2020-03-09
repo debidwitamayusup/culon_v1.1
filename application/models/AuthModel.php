@@ -106,6 +106,9 @@ Class AuthModel extends CI_Model {
         return FALSE;
 
     }
+
+
+
     // public function tenant(){
     // }
     public function do_registeracc($usr,$pwd){
@@ -172,6 +175,64 @@ Class AuthModel extends CI_Model {
 
         return $content;
     }
+
+    function token_checker($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');
+        $this->db->from('m_user');
+        $this->db->join('m_akses','m_akses.userid = m_user.userid');
+        $this->db->where('token', $token);
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $data[] = array(
+                    'TENANT_ID' => $data->TID
+                );
+            }
+
+            $content = array(
+                'ID_USER'       => $query->row()->ID,
+                'PREVILAGE'      => $query->row()->PREVILAGE,
+                'TENANT_LIST'   => $data
+            );
+
+            return $content;
+        }
+
+        return false;
+    }
+
+    #region additional funct
+
+    function generate_token($usr){
+        
+        $this->db->select('userid AS USERID, name as LONG_NAME,phone as TELPON, userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $this->db->where('userid', $usr);
+
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) 
+        {
+            $data    = $query->row();
+            $token = hash('gost',$data->USERID.$data->TELPON.date('his'));
+
+            $this->db->where('userid', $usr);
+            $this->db->update('m_user', array('token' => $token));
+
+            return $token;
+        }
+        return FALSE;
+    }
+
+
+
+
+    #endregion
+
+
 #endregion
 
 }

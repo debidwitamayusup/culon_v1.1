@@ -77,8 +77,9 @@ class AuthController extends REST_Controller {
 
         $user_id = $this->security->xss_clean($this->input->post('username'));
         $pwd = $this->security->xss_clean($this->input->post('password'));
-
         $res = $this->module_model->loginapp($user_id,$pwd);
+
+        $this->module_model->generate_token($user_id);
         
         if ($res) {
         // $this->session->set_userdata($res);
@@ -134,12 +135,6 @@ class AuthController extends REST_Controller {
     public function doRegister_post() {
 
 
-        // if (!$this->input->post()) {
-        //     $this->response([
-        //         'status'  => FALSE,
-        //         'message' => '404 Service Not Found.'
-        //             ], REST_Controller::HTTP_NOT_FOUND);
-        // }
 
         if ($this->module_model->checkId()) {
                 $this->response([
@@ -168,6 +163,7 @@ class AuthController extends REST_Controller {
                         ], REST_Controller::HTTP_OK);
             }
     }
+
 #Endregion
 
 }
