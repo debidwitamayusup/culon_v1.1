@@ -35,7 +35,7 @@
                                 <tr>
                                     <td rowspan="2" class="font-weight-extrabold text-white">No</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">Services</td>
-                                    <td colspan="12" class="font-weight-extrabold text-white">COF by Channel
+                                    <td colspan="11" class="font-weight-extrabold text-white">COF by Channel
                                     </td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">Total COF</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">ART</td>

@@ -710,7 +710,7 @@ function setDatePicker() {
 		// v_date = '2019-12-01';
 		// console.log(params_time);
 		if(sessionParams.TENANT_ID != null){
-            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID);
+            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID[0].TENANT_ID);
         }else{
 			loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
 		}

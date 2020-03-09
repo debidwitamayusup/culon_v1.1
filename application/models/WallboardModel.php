@@ -672,8 +672,8 @@ Class WallboardModel extends CI_Model {
         $this->db->order_by('m_channel.channel_id','asc');
         
         $query = $this->db->get();
-        print_r($this->db->last_query());
-        exit;
+        // print_r($this->db->last_query());
+        // exit;
         $result = array();
 
         // print_r($this->db->last_query());
@@ -774,7 +774,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('channel_name,channel_id');
         $this->db->from('m_channel');
         $this->db->where('channel_id != 1');
-        $this->db->order_by('channel_id','desc');
+        $this->db->order_by('channel_id','asc');
         $query = $this->db->get();
 
         $result = array();

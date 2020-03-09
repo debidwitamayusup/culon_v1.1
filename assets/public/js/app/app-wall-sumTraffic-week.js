@@ -24,9 +24,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        getSummTrafficByChannel(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
-        getTrafficInterval(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
-        drawChartDaily(params_week,["Voice", "Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        getSummTrafficByChannel(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        getTrafficInterval(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        drawChartDaily(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
         
 
         // $('#check-all-channel').prop('checked', false);
@@ -354,7 +354,7 @@ function drawTableTraffic(response) {
     // console.log(response.data[0].data);
     $('#mytbody').empty();
     if (response.data.length != 0) {
-        for (var i = 0; i < 13; i++) {
+        for (var i = 0; i < 12; i++) {
             // console.log(response.channel[i]);
             $('#mytable').find('tbody').append('<tr>' +
                 '<td class="text-center">' + (i + 1) + '</td>' +
@@ -422,19 +422,19 @@ function drawChartDaily(week,arr_channel, tenant_id){
                 dataChatBot = [];
             for (var i = 0; i < response.data.length; i++) {
                 // console.log()
-                dataVoice.push(response.data[i].DATA[0]);
-                dataEmail.push(response.data[i].DATA[1]);
-                dataLive.push(response.data[i].DATA[2]);
-                dataSMS.push(response.data[i].DATA[3]);
-                dataTelegram.push(response.data[i].DATA[4]);
-                dataFB.push(response.data[i].DATA[5]);
-                dataMessenger.push(response.data[i].DATA[6]);
-                dataTwitter.push(response.data[i].DATA[7]);
-                dataLine.push(response.data[i].DATA[8]);
-                dataIg.push(response.data[i].DATA[9]);
-                dataWa.push(response.data[i].DATA[10]);
-                dataDM.push(response.data[i].DATA[11]);
-                dataChatBot.push(response.data[i].DATA[12]);
+                // dataVoice.push(response.data[i].DATA[0]);
+                dataEmail.push(response.data[i].DATA[0]);
+                dataLive.push(response.data[i].DATA[1]);
+                dataSMS.push(response.data[i].DATA[2]);
+                dataTelegram.push(response.data[i].DATA[3]);
+                dataFB.push(response.data[i].DATA[4]);
+                dataMessenger.push(response.data[i].DATA[5]);
+                dataTwitter.push(response.data[i].DATA[6]);
+                dataLine.push(response.data[i].DATA[7]);
+                dataIg.push(response.data[i].DATA[8]);
+                dataWa.push(response.data[i].DATA[9]);
+                dataDM.push(response.data[i].DATA[10]);
+                dataChatBot.push(response.data[i].DATA[11]);
             }
 
             var numberWithCommas = function (y) {
@@ -444,9 +444,9 @@ function drawChartDaily(week,arr_channel, tenant_id){
             var arrChannel = []
             var dataStacked = [];
             var datasetsStacked = "";
-            arrChannel.push(dataVoice, dataEmail, dataLive, dataSMS, dataTelegram, dataFB, dataMessenger, dataTwitter,
+            arrChannel.push(dataEmail, dataLive, dataSMS, dataTelegram, dataFB, dataMessenger, dataTwitter,
                 dataLine, dataIg, dataWa, dataDM, dataChatBot);
-            console.log(numberWithCommas(arrChannel));
+            // console.log(numberWithCommas(arrChannel));
             var x = 0;
             
             response.channel.forEach(function (value){

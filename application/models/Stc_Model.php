@@ -1559,6 +1559,7 @@ class Stc_Model extends CI_Model
 	{
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		$this->db->where('m_channel.channel_id != 1');
 		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 
@@ -1582,6 +1583,7 @@ class Stc_Model extends CI_Model
 	{
 		$this->db->select('m_channel.channel_id, m_channel.channel_color');
 		$this->db->from('m_channel');
+		$this->db->where('m_channel.channel_id != 1');
 		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 
@@ -1606,6 +1608,7 @@ class Stc_Model extends CI_Model
 		$tid = $this->security->xss_clean($this->input->post('tenant_id'));
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
 		$this->db->from('m_channel');
+		$this->db->where('m_channel.channel_id != 1');
 		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 		

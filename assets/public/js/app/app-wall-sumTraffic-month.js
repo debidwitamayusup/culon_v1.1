@@ -26,7 +26,7 @@ $(document).ready(function () {
         }
 
         callDataPercentage(n,$("#layanan_name").val(),m);
-        callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Voice", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
+        callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
         callTableInterval(n,$("#layanan_name").val());
         $("#filter-loader").fadeOut("slow");
 
@@ -371,7 +371,7 @@ function drawChartPercentageMonth(response){
 
 function drawTableData(response){
 
-    var sumVoice = response.data[12].total_interval.map(Number).reduce(summarize);
+    // var sumVoice = response.data[12].total_interval.map(Number).reduce(summarize);
     var sumLive = response.data[0].total_interval.map(Number).reduce(summarize);
     var sumTwDM = response.data[1].total_interval.map(Number).reduce(summarize);
     var sumMes = response.data[2].total_interval.map(Number).reduce(summarize);
@@ -399,7 +399,7 @@ function drawTableData(response){
             $('#wall-month-tbl').find('tbody').append('<tr>'+
             '<td>'+response.dates[i]+'</td>'+
             // '<td class="text-right">'+addCommas(response.total_agent[i])+'</td>'+
-            '<td class="text-right">'+addCommas(response.data[12].total_interval[i])+'</td>'+
+            // '<td class="text-right">'+addCommas(response.data[12].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[0].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[1].total_interval[i])+'</td>'+
             '<td class="text-right">'+addCommas(response.data[2].total_interval[i])+'</td>'+
@@ -417,7 +417,7 @@ function drawTableData(response){
 
         $('#wall-month-tbl').find('tfoot').append('<tr>'+
             '<td class="text-center">TOTAL</td>'+
-            '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
+            // '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
             '<td class="text-right">'+addCommas(sumMes)+'</td>'+
