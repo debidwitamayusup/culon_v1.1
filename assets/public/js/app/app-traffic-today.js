@@ -3,12 +3,25 @@ var v_date = '';
 var list_channel= [];
 var v_params_tenant = 'oct_telkomcare'
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+var d = new Date();
+var o = d.getDate();
+var n = d.getMonth()+1;
+var m = d.getFullYear();
+if (o < 10) {
+  o = '0' + o;
+} 
+if (n < 10) {
+  n = '0' + n;
+}
+
+//get today
+var v_params_yesterday = m + '-' + n + '-' + (o-1);
 $(document).ready(function () {
     if(sessionParams){
         // set date
         // v_date = getToday();
         v_date = getToday();
-        $('#input-date').datepicker("setDate", v_date);
+        $('#input-date').datepicker("setDate", v_params_yesterday);
         //set check all channel
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
@@ -24,9 +37,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        var data_chart = callIntervalTraffic(v_date, list_channel, $('#layanan_name').val());
-        var data_table_avg = callDataTableAvg(v_date, $('#layanan_name').val());
-        var data_percentage = callDataPercentage(v_date, $('#layanan_name').val());
+        var data_chart = callIntervalTraffic(v_params_yesterday, list_channel, $('#layanan_name').val());
+        var data_table_avg = callDataTableAvg(v_params_yesterday, $('#layanan_name').val());
+        var data_percentage = callDataPercentage(v_params_yesterday, $('#layanan_name').val());
         
     }else{
         window.location = base_url
