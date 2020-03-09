@@ -101,7 +101,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Top 5 Traffic</h5>
 					</div>
 					<div class="card-body">
-						<canvas id="barTop5Traffic" style="height:343px"></canvas>
+						<canvas id="barTop5Traffic" style="height:318px"></canvas>
 					</div>
 				</div>
 
