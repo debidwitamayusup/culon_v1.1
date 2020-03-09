@@ -50,7 +50,7 @@
                                     <td class="bg-column">Email</td>
                                     <td class="bg-column">Telegram</td>
                                     <td class="bg-column">Line</td>
-                                    <td class="bg-column">Voice</td>
+                                    <!-- <td class="bg-column">Voice</td> -->
                                     <td class="bg-column">Instagram</td>
                                     <td class="bg-column">Messenger</td>
                                     <td class="bg-column">Twitter DM</td>
