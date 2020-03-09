@@ -99,7 +99,7 @@
 				<div class="card-pie">
 					<div class="canvas-con">
 						<div id="legend" class="legend-con mt-1"></div>
-						<div class="canvas-con-inner mb-5" id="canvas-pie">
+						<div class="canvas-con-inner mb-1" id="canvas-pie">
 							<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 						</div>
 					</div>
