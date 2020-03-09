@@ -22,17 +22,17 @@
                     <div class="table-responsive table-bordered" style="padding:5px 8px 12px 8px;">
                         <table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito12"
                             style="width:100%" id="tableWallAgent">
-                            <thead class="text-center text-white bg-head">
+                            <thead class="text-white bg-head">
                                 <tr>
-                                    <td style="width:16px">No</td>
-                                    <td style="width:48px">Agent ID</td>
-                                    <td style="width:134px">Name</td>
-                                    <td style="width:127px">Tenant</td>
-                                    <td style="width:30px">State</td>
-                                    <td style="width:54px">In Service</td>
-                                    <td style="width:82px">Total Handled</td>
-                                    <td style="width:70px">ART</td>
-                                    <td style="width:70px">AHT</td>
+                                    <td style="width:16px" class="text-center">No</td>
+                                    <td style="width:48px" class="text-center">Agent ID</td>
+                                    <td style="width:134px" class="text-center">Name</td>
+                                    <td style="width:127px" class="text-center">Tenant</td>
+                                    <td style="width:30px" class="text-center">State</td>
+                                    <td style="width:54px" class="text-center">In Service</td>
+                                    <td style="width:82px" class="text-center">Total Handled</td>
+                                    <td style="width:70px" class="text-center">ART</td>
+                                    <td style="width:70px" class="text-center">AHT</td>
                                 </tr>
                             </thead>
                             <tbody class="table-sm">
