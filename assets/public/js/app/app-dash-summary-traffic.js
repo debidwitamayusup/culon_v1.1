@@ -391,7 +391,7 @@ function drawPieChartSumAllTenant(response){
     // $('#mylegend').append('<div id="legend" class="legend-con"></div>');
 
     var ctx = document.getElementById("pieDashSummaryTraffic");
-    ctx.height = 290;
+    ctx.height = 260;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {

@@ -716,19 +716,19 @@ function drawTotalTable(response){
             avgAST = Math.round(sumAST / response.data.length);
             $('#rowDiv').empty();
             $('#rowDiv').append(''+                
-                '<div class="col-md-3">'+
+                '<div class="col-md-2">'+
                     '<h6 class="font12" id="avgRT">ART : '+formatTime(avgART)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-3">'+
+                '<div class="col-md-2">'+
                     '<h6 class="font12" id="avgHT">AHT : '+formatTime(avgAHT)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-2">'+
                     '<h6 class="font12" id="avgST">AST : '+formatTime(avgAST)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-2">'+
-                    '<h6 class="font12 ml-7" id="totalCOF">Summary COF : '+addCommas(sumCOF)+'</h6>'+
+                '<div class="col-md-3">'+
+                    '<h6 class="font12" id="totalCOF">Summary COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
-                '<div class="col-md-2">'+
+                '<div class="col-md-3">'+
                     '<h6 class="font12" id="rataSCR">Average SCR : '+(parseFloat(avgSCR).toFixed(2).toString()).replace('.',',')+'%</h6>'+
                 '</div>'
             );

@@ -256,7 +256,7 @@ function drawChartPercentageYear(response) {
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalYear");
-    ctx_percentage.height = 610;
+    ctx_percentage.height = 567;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {
@@ -338,9 +338,9 @@ function drawTableYear(response) {
                 '<td class="text-center">' + (index + 1) + '</td>' +
                 '<td class="text-left">' + value.channel_name + '</td>' +
                 '<td class="text-right">' + value.scr + '</td>' +
-                '<td class="text-right">' + value.art + '</td>' +
-                '<td class="text-right">' + value.aht + '</td>' +
-                '<td class="text-right">' + value.ast + '</td>' +
+                '<td class="text-center">' + value.art + '</td>' +
+                '<td class="text-center">' + value.aht + '</td>' +
+                '<td class="text-center">' + value.ast + '</td>' +
                 '</tr>');
         });
     } else {

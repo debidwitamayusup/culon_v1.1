@@ -258,9 +258,9 @@ function drawTableToday(response){
             '<td class="text-left">'+value.channel_name+'</td>'+
             // '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
             '<td class="text-right">'+value.scr+'</td>'+
-            '<td class="text-right">'+value.art+'</td>'+
-            '<td class="text-right">'+value.aht+'</td>'+
-            '<td class="text-right">'+value.ast+'</td>'+
+            '<td class="text-center">'+value.art+'</td>'+
+            '<td class="text-center">'+value.aht+'</td>'+
+            '<td class="text-center">'+value.ast+'</td>'+
             '</tr>');
         });
     }else{
@@ -312,7 +312,7 @@ function drawChartPercentageToday(response){
 
     // draw chart
     var ctx_percentage = document.getElementById("echartPercentageToday");
-    ctx_percentage.height = 609;
+    ctx_percentage.height = 567;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',
         data: {
