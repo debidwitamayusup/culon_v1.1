@@ -80,7 +80,7 @@
                         <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
-                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
+                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunit10"
                                     id="mytable_1">
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
