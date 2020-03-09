@@ -157,11 +157,11 @@
                                 <tr>
                                     <td rowspan="3" class="text-white font-weight-extrabold">Date</td>
                                     <!-- <td rowspan="2" class="text-white font-weight-extrabold">Total<br>Agent</td> -->
-                                    <td colspan="14" class="text-white font-weight-extrabold">Channel</td>
+                                    <td colspan="13" class="text-white font-weight-extrabold">Channel</td>
                                 </tr>
                                 <tr>
-                                    <td class="bg-column" rowspan="2">Voice</td>
-                                    <td colspan="7" class="text-white font-weight-extrabold">RTC</td>
+                                    <!-- <td class="bg-column" rowspan="2">Voice</td> -->
+                                    <td colspan="6" class="text-white font-weight-extrabold">RTC</td>
                                     <td colspan="6" class="text-white font-weight-extrabold">Non RTC</td>
                                 <tr>
                                     <td class="bg-column">Live Chat</td>
