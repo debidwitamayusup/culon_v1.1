@@ -107,8 +107,6 @@ Class AuthModel extends CI_Model {
 
     }
 
-
-
     // public function tenant(){
     // }
     public function do_registeracc($usr,$pwd){
@@ -226,9 +224,6 @@ Class AuthModel extends CI_Model {
         }
         return FALSE;
     }
-
-
-
 
     #endregion
 
