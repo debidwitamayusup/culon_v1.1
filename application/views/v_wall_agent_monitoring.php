@@ -25,17 +25,17 @@
                             <thead class="text-center text-white bg-head">
                                 <tr>
                                     <td style="width:16px">No</td>
-                                    <td style="width:56px">Agent ID</td>
-                                    <td style="width:253px">Name</td>
-                                    <td>Tenant</td>
-                                    <td style="width:63px">State</td>
-                                    <td style="width:87px">In Service</td>
-                                    <td style="width:125px">Total Handled</td>
-                                    <td style="width:90px">ART</td>
-                                    <td style="width:87px">AHT</td>
+                                    <td style="width:48px">Agent ID</td>
+                                    <td style="width:134px">Name</td>
+                                    <td style="width:127px">Tenant</td>
+                                    <td style="width:30px">State</td>
+                                    <td style="width:54px">In Service</td>
+                                    <td style="width:82px">Total Handled</td>
+                                    <td style="width:70px">ART</td>
+                                    <td style="width:70px">AHT</td>
                                 </tr>
                             </thead>
-                            <tbody class="table-sm text-center">
+                            <tbody class="table-sm">
                                 <!-- <tr>
                                     <td>1</td>
                                     <td class="text-center">1230</td>
