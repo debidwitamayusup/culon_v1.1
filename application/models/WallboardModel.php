@@ -674,9 +674,6 @@ Class WallboardModel extends CI_Model {
         $query = $this->db->get();
         $result = array();
 
-        // print_r($this->db->last_query());
-        // exit;
-
         if($query->num_rows()>0)
         {
             foreach($query->result() as $data)
