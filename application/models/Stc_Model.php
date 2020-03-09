@@ -85,6 +85,7 @@ class Stc_Model extends CI_Model
 		foreach($arr as $key){
 			$this->db->where_not_in('a.channel_name',$key);
 		}
+		$this->db->where('a.channel_name !=', 'Voice');
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name');
 		$query = $this->db->get();
@@ -215,6 +216,7 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$this->db->where('YEAR(b.tanggal)', $index);
 		}
+		$this->db->where('a.channel_id != 1');
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
@@ -332,8 +334,10 @@ class Stc_Model extends CI_Model
 			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
 			where $where2 $where3
+			AND channel_id != '1'
 			GROUP BY channel_id 
-		)as b on b.channel_id = m_channel.channel_id   
+		)as b on b.channel_id = m_channel.channel_id 
+		WHERE m_channel.channel_id != '1'  
 		ORDER BY m_channel.sequence ASC";
 
 		$query = $this->db->query($str);
@@ -400,6 +404,7 @@ class Stc_Model extends CI_Model
 		{
 			$this->db->where('b.tenant_id',$tid);
 		}
+		$this->db->where('b.channel_id != 1');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -431,6 +436,7 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
+		$this->db->where('b.channel_id != 1');
 		$query = $this->db->get();
     	return $query;
 	}
@@ -1733,6 +1739,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(tanggal)', $index);
 			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
+		$this->db->where('b.channel_id != 1');
 		$query = $this->db->get();
     	return $query->row();
 

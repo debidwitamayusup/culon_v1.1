@@ -555,6 +555,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
             // 	}
             // }]
         });
+        // console.log(bar_chart);
         $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
