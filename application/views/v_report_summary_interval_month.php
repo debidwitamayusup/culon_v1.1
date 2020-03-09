@@ -95,7 +95,7 @@
                                     <tr>
                                         <td class="wd-15p border-bottom-0 text-center" width="20">No.</td>
                                         <!-- <td class="wd-15p border-bottom-0 text-center" width="75">Date</td> -->
-                                        <td class="wd-15p border-bottom-0 text-center" width="50">Days</td>
+                                        <td class="wd-15p border-bottom-0 text-center" width="50">Date</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">ART</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">AHT</td>
                                         <td class="wd-15p border-bottom-0 text-center" width="80">AST</td>

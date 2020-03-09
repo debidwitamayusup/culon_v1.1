@@ -1050,7 +1050,7 @@ Class ReportModel extends CI_Model {
                    
                     $result[] = array(
                         $i,
-                        substr($data->TANGGAL,8),
+                        $data->TANGGAL,
                         $data->ART,
                         $data->AHT,
                         $data->AST,
