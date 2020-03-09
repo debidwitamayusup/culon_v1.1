@@ -726,10 +726,10 @@ function drawTotalTable(response){
                     '<h6 class="font12" id="avgST">AST : '+formatTime(avgAST)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-2">'+
-                    '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(sumCOF)+'</h6>'+
+                    '<h6 class="font12 ml-7" id="totalCOF">Summary COF : '+addCommas(sumCOF)+'</h6>'+
                 '</div>'+
                 '<div class="col-md-2">'+
-                    '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+(parseFloat(avgSCR).toFixed(2).toString()).replace('.',',')+'%</h6>'+
+                    '<h6 class="font12" id="rataSCR">Average SCR : '+(parseFloat(avgSCR).toFixed(2).toString()).replace('.',',')+'%</h6>'+
                 '</div>'
             );
         }

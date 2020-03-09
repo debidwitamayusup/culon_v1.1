@@ -494,10 +494,10 @@ function drawTotalTable(response){
         $('#rowDiv').empty();
         $('#rowDiv').append(''+
             '<div class="col-md-3">'+
-                '<h6 class="font12 ml-7" id="totalCOF">Total COF : '+addCommas(response.data.OFFERED)+'</h6>'+
+                '<h6 class="font12 ml-7" id="totalCOF">Summary COF : '+addCommas(response.data.OFFERED)+'</h6>'+
             '</div>'+
             '<div class="col-md-3">'+
-                '<h6 class="font12" id="rataSCR">Rata-rata SCR : '+response.data.SCR+'%</h6>'+
+                '<h6 class="font12" id="rataSCR">Average SCR : '+response.data.SCR+'%</h6>'+
             '</div>'+
             '<div class="col-md-3">'+
                 '<h6 class="font12" id="avgWaiting">Average Waiting Time : '+response.data.ART+'</h6>'+
