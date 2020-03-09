@@ -61,7 +61,7 @@
                                          <option value="5">Telegram</option>
                                          <option value="10">Line</option>
                                          <option value="2">Email</option>
-                                         <option value="1">Voice</option>
+                                         <!-- <option value="1">Voice</option> -->
                                          <option value="3">Live Chat</option>
                                          <option value="4">SMS</option>
                                          <option value="15">Chatbot</option>

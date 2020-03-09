@@ -32,7 +32,7 @@ Class ReportModel extends CI_Model {
             $this->db->where('a.tanggal <=',$t_end);
         }
 
-        $this->db->where('m_channel.channel_id != 1');
+        $this->db->where('b.channel_id != 1');
 
         $this->db->group_by('b.channel_name');
         $query = $this->db->get();

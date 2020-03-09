@@ -503,6 +503,7 @@ function drawBarLayanan(response){
                 duration: 10,
             },
             tooltips: {
+                intersect: false,
                 mode: 'label',
                 callbacks: {
                     label: function (tooltipItem, data) {
