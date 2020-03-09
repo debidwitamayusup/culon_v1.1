@@ -232,6 +232,7 @@ Class WallboardModel extends CI_Model {
 
         $this->db->select('channel_id, channel_name');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $query = $this->db->get();
 
        // $result = array();
@@ -367,6 +368,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('channel_id,channel_name, sequence');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $this->db->order_by('sequence');
         $query = $this->db->get();
 
@@ -426,6 +428,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
 		$query = $this->db->get();
 
         $res_channel = array();
@@ -551,6 +554,7 @@ Class WallboardModel extends CI_Model {
 		$this->db->select('rpt_summ_interval.interval , COALESCE(SUM(rpt_summ_interval.case_session),0) as total');
 		$this->db->from('m_channel');
         $this->db->join('rpt_summ_interval','rpt_summ_interval.channel_id = m_channel.channel_id');
+        $this->db->where('m_channel.channel_id != 1');
         if($params =='day')
         {
             $this->db->where('rpt_summ_interval.tanggal', $index);
@@ -657,6 +661,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('m_channel.channel_name , IFNULL(rpt_summary_scr.cof,0) as cof');
         $this->db->from('m_channel');
         $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');
+        $this->db->where('m_channel.channel_id != 1');
         $this->db->where('rpt_summary_scr.tanggal',$date);
         $this->db->where_in('rpt_summary_scr.tenant_id',$tenant_id);
         $this->db->where('cof IS NOT NULL');
@@ -732,6 +737,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('channel_name, channel_color');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $this->db->order_by('sequence');
         $query = $this->db->get();
 
@@ -761,6 +767,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('channel_name,channel_id');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $this->db->order_by('channel_id','desc');
         $query = $this->db->get();
 
@@ -789,6 +796,7 @@ Class WallboardModel extends CI_Model {
         $this->db->where('MONTH(tanggal)',$month);
         $this->db->where('YEAR(tanggal)',$year);
         $this->db->where('channel_id',$channel_id);
+        $this->db->where('channel_id != 1');
         if($tid)
         {
             $this->db->where('tenant_id',$tid);
@@ -813,7 +821,8 @@ Class WallboardModel extends CI_Model {
 		$numdateofmonth = cal_days_in_month(CAL_GREGORIAN, $month, intval($year));
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
-		$this->db->from('m_channel');
+        $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
 		if($channel)
 		{
 			$this->db->where('m_channel.channel_name',$channel);
@@ -1037,6 +1046,7 @@ Class WallboardModel extends CI_Model {
 
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $query = $this->db->get();
         $arr_time = array();
 
@@ -1211,6 +1221,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('m_channel.channel_id,m_channel.channel_name');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $query = $this->db->get();
 
         if($query->num_rows() > 1)
@@ -1237,6 +1248,7 @@ Class WallboardModel extends CI_Model {
         $this->db->from('v_mon_summ_chn a');
         $this->db->join('m_channel b', 'b.channel_id = a.channel_id');
         $this->db->where('a.channel_id',$channel);
+        $this->db->where('b.channel_id != 1');
         $this->db->group_by('a.channel_id');
         $this->db->order_by('b.channel_id','ASC');
         $query = $this->db->get();
@@ -1288,7 +1300,8 @@ Class WallboardModel extends CI_Model {
     public function get_channel_only()
 	{
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
-		$this->db->from('m_channel');
+        $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
 		$this->db->order_by('m_channel.channel_id');
 		$query = $this->db->get();
 
@@ -1314,7 +1327,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.ast_num)),1,8) ast,SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),1,8) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),1,8) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr ');
         $this->db->from('m_tenant');
         $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
-        $this->db->where_in('wall_monitoring.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+        $this->db->where_in('wall_monitoring.channel_id',array(2,3,4,5,6,7,8,10,11,12,13,15));
         
         if($tid){
             $this->db->where_in('wall_monitoring.tenant_id', $tid);
@@ -1408,7 +1421,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(wall_monitoring.cof) total, m_tenant.color_id color');
         $this->db->from('m_tenant');
         $this->db->join('wall_monitoring', 'm_tenant.tenant_id = wall_monitoring.tenant_id');
-        $this->db->where_in('wall_monitoring.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+        $this->db->where_in('wall_monitoring.channel_id',array(2,3,4,5,6,7,8,10,11,12,13,15));
        
         if($tid){
             $this->db->where_in('wall_monitoring.tenant_id', $tid);
@@ -1436,6 +1449,7 @@ Class WallboardModel extends CI_Model {
     {
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
         $this->db->from('m_channel');
+        $this->db->where('channel_id != 1');
         $query = $this->db->get();
 
         $res_channel = array();
@@ -1467,7 +1481,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('IFNULL(SUM(wall_monitoring.cof),0) as TOTAL');
         
         $this->db->from('wall_monitoring');
-        $this->db->where_in('wall_monitoring.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+        $this->db->where_in('wall_monitoring.channel_id',array(2,3,4,5,6,7,8,10,11,12,13,15));
         $this->db->where('wall_monitoring.channel_id',$channel);
         if($tid){
             $this->db->where_in('wall_monitoring.tenant_id', $tid);
@@ -1559,7 +1573,7 @@ Class WallboardModel extends CI_Model {
         $this->db->select('a.tenant_id as TID, c.tenant_name as TN,c.tenant_icon as TICC ,SUM(a.antrian) as QUEUE ,SUM(a.cof) as COF, AVG(a.scr) as SCR');
         $this->db->from('wall_monitoring a');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
-        $this->db->where_in('a.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+        $this->db->where_in('a.channel_id',array(2,3,4,5,6,7,8,10,11,12,13,15));
         if($tid){
             $this->db->where_in('a.tenant_id', $tid);
         }
@@ -1596,7 +1610,8 @@ Class WallboardModel extends CI_Model {
         $this->db->from('wall_monitoring a');
         $this->db->join('m_channel b','a.channel_id = b.channel_id');
         $this->db->join('m_tenant c','c.tenant_id = a.tenant_id');
-        $this->db->where_in('a.channel_id',array(1,2,3,4,5,6,7,8,10,11,12,13,15));
+
+        $this->db->where_in('a.channel_id',array(2,3,4,5,6,7,8,10,11,12,13,15));
         if($tid){
             $this->db->where('a.tenant_id', $tid);
         }
