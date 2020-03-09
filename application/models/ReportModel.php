@@ -511,14 +511,14 @@ Class ReportModel extends CI_Model {
                         $data->AGENTID,
                         $data->AGENTNAME,
                         $data->SKILLNAME,
-                        strval(number_format($data->OFFERED,0,'.',',')),
+                        strval(number_format($data->OFFERED,0,',','.')),
                         '-',//strval(number_format($data->HANDLED,0,'.',',')),
                         '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
                         
                         $data->ART,
                         $data->AHT,
                         $data->AST,
-                        round($data->SCR,2).'%'
+                        str_replace('.',',',round($data->SCR,2)).'%'
                     );
                     $id++;
                 }
