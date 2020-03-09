@@ -39,7 +39,7 @@ Class SummaryPerformanceModel extends CI_Model {
         {
             $this->db->where('YEAR(rpt_summ_interval.tanggal)',$index);
         }
-
+        $this->db->where('rpt_summ_interval.channel_id != 1');
         $this->db->group_by('rpt_summ_interval.tenant_id');
         $query = $this->db->get();
         
@@ -90,7 +90,7 @@ Class SummaryPerformanceModel extends CI_Model {
         if($tid){
             $this->db->where_in('rpt_summ_interval.tenant_id', $tid);
         }
-
+        $this->db->where('rpt_summ_interval.channel_id != 1');
         $this->db->group_by('rpt_summ_interval.tenant_id');
         $query = $this->db->get();
 
@@ -115,6 +115,7 @@ Class SummaryPerformanceModel extends CI_Model {
     {
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
         $this->db->from('m_channel');
+        $this->db->where('m_channel.channel_id != 1');
         $query = $this->db->get();
 
         $res_channel = array();
@@ -224,6 +225,7 @@ Class SummaryPerformanceModel extends CI_Model {
         {
             $this->db->where('YEAR(rpt_summ_interval.tanggal)',$index);
         }
+        $this->db->where('rpt_summ_interval.channel_id != 1');
 		$this->db->group_by('rpt_summ_interval.starttime','ASC');
 		$query = $this->db->get();
 		$result = array();

@@ -59,6 +59,7 @@ class OperationModel extends CI_Model
         }else if($params == 'year'){
             $this->db->where('YEAR(tanggal)', $index);
         }
+        $this->db->where('channel_id != 1');
         $this->db->group_by('category');
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(3); 
@@ -99,7 +100,7 @@ class OperationModel extends CI_Model
             $left_join .= " LEFT JOIN (
                 SELECT category as category_$i, channel_id, sum(jumlah) as total_$i
                 from rpt_summ_kip1
-                where category = '".$key->category."' and $where $where2
+                where category = '".$key->category."' and $where $where2 AND rpt_summ_kip1.channel_id != 1
                 GROUP BY channel_id
             ) as $index_alpha[$i] on $index_alpha[$i].channel_id = m_channel.channel_id ";
             $i++;
@@ -108,6 +109,7 @@ class OperationModel extends CI_Model
         $select
         FROM m_channel
         $left_join
+        WHERE m_channel.channel_id != 1
         order by m_channel.channel_id ASC
         ");	
 
@@ -205,6 +207,7 @@ class OperationModel extends CI_Model
         {
             $this->db->where('rpt_summ_kip2.tenant_id',$tid);
         }
+        $this->db->where('rpt_summ_kip2.channel_id != 1');
 		$this->db->group_by('rpt_summ_kip2.sub_category');
         $this->db->order_by('total_kip', 'DESC');
         $this->db->limit(5);
@@ -516,6 +519,7 @@ class OperationModel extends CI_Model
 		{
 			$this->db->where('DATE(tanggal)',$index);
         }
+        $this->db->where('rpt_summary_scr.channel_id != 1');
         $query = $this->db->get();
 
         if($query->row()->ART)
@@ -534,6 +538,7 @@ class OperationModel extends CI_Model
     {
         $this->db->select('channel_id as CHANNEL_ID,channel_name as CHANNEL_NAME');
         $this->db->from('m_channel');
+        $this->db->where('m_channel.channel_id != 1');
         $query = $this->db->get();
 
         if($query->num_rows()>0)

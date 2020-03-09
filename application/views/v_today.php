@@ -88,15 +88,20 @@
 												id="list-channel[]" name="example-checkbox2" value="Line">
 											<span class="custom-control-label">Line</span>
 										</label>
-										<label class="custom-control custom-checkbox">
+										<!-- <label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Voice">
 											<span class="custom-control-label">Voice</span>
-										</label>
+										</label> -->
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Instagram">
 											<span class="custom-control-label">Instagram</span>
+										</label>
+										<label class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input checklist-channel"
+												id="list-channel[]" name="example-checkbox2" value="Messenger">
+											<span class="custom-control-label">Messenger</span>
 										</label>
 									</div>
 								</div>
@@ -104,11 +109,11 @@
 							<div class="col-md-2">
 								<div class="form-group m-0">
 									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
+										<!-- <label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Messenger">
 											<span class="custom-control-label">Messenger</span>
-										</label>
+										</label> -->
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Twitter DM">
@@ -119,17 +124,22 @@
 												id="list-channel[]" name="example-checkbox2" value="Live Chat">
 											<span class="custom-control-label">Live Chat</span>
 										</label>
+										<label class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input checklist-channel"
+												id="list-channel[]" name="example-checkbox2" value="SMS">
+											<span class="custom-control-label">SMS</span>
+										</label>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="form-group m-0">
 									<div class="custom-controls-stacked">
-										<label class="custom-control custom-checkbox">
+										<!-- <label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="SMS">
 											<span class="custom-control-label">SMS</span>
-										</label>
+										</label> -->
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="ChatBot">

@@ -83,7 +83,7 @@ class AgentPerformModel extends CI_Model
 			$this->db->where('DATE(tanggal)',$index);
 			$this->db->group_by('DATE','ASC');
 		}
-		
+		$this->db->where('rpt_summary_scr.channel_id != 1');
 		$query = $this->db->get();
 		// print_r($this->db->last_query());    
 		//  exit;
@@ -179,7 +179,7 @@ class AgentPerformModel extends CI_Model
 		}else if ($params_time == "year") {
 			$this->db->where('YEAR(rpt_summary_agent.tanggal)', $index);
 		}
-
+		$this->db->where('rpt_summary_agent.channel_id != 1');
 		$this->db->group_by('AGENTID');
 		if($src)
 		{
@@ -291,6 +291,7 @@ class AgentPerformModel extends CI_Model
 		}else if ($params == "year") {
 			$this->db->where('YEAR(rpt_summary_agent.tanggal) = "'.$index.'"');
 		}
+		$this->db->where('rpt_summary_agent.channel_id != 1');
 
 		$this->db->group_by('rpt_summary_agent.skill_name','ASC');
 		$this->db->order_by('rpt_summary_agent.skill_name','ASC');

@@ -56,7 +56,7 @@ $(document).ready(function(){
         callPieChartSummary(params_time, v_params_this_year, 0, arr_tenant);
         callBarLayanan(params_time, v_params_this_year, 0, arr_tenant);
         callLineChart(params_time, v_params_this_year, 0, arr_tenant);
-        callTotalTable(params_time, v_params_this_year, 0, arr_tenant);
+        // callTotalTable(params_time, v_params_this_year, 0, arr_tenant);
         $("#filter-loader").fadeOut("slow");
 
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -223,6 +223,7 @@ function callThreeTable(params, index_time, params_year, tenant_id){
             $('#modalError').modal('hide');
             // setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
             drawTableRealTime(response);
+            drawTotalTable(response);
         },
         error: function (r) {
             // console.log(r);

@@ -44,6 +44,7 @@ class Stc_Model extends CI_Model
 		$this->db->select('a.channel_name');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
+		$this->db->where('b.channel_id != 1');
 		$this->db->group_by('channel_name');
 		$this->db->order_by('a.channel_id','ASC');
 		$query = $this->db->get();
@@ -63,6 +64,7 @@ class Stc_Model extends CI_Model
 		$this->db->select('a.channel_name');
 		$this->db->from('m_channel a');
 		$this->db->join('rpt_summary_scr b', 'a.channel_id=b.channel_id', 'LEFT');
+		$this->db->where('b.channel_id != 1');
 		$this->db->group_by('channel_name');
 		$this->db->order_by('a.sequence','ASC');
 		$query = $this->db->get();
@@ -85,6 +87,7 @@ class Stc_Model extends CI_Model
 		foreach($arr as $key){
 			$this->db->where_not_in('a.channel_name',$key);
 		}
+		$this->db->where('a.channel_name !=', 'Voice');
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name');
 		$query = $this->db->get();
@@ -215,6 +218,7 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$this->db->where('YEAR(b.tanggal)', $index);
 		}
+		$this->db->where('a.channel_id != 1');
 		$this->db->group_by('a.channel_name');
 		$this->db->order_by('a.channel_name', 'ASC');
 		$query = $this->db->get();
@@ -332,8 +336,10 @@ class Stc_Model extends CI_Model
 			SELECT channel_id, SUM(unik) as total, SUM(cof) as total_cof, SUM(msg_in) as msg_in, SUM(msg_out) as msg_out, AVG(scr) as scr
 			from rpt_summary_scr
 			where $where2 $where3
+			AND channel_id != '1'
 			GROUP BY channel_id 
-		)as b on b.channel_id = m_channel.channel_id   
+		)as b on b.channel_id = m_channel.channel_id 
+		WHERE m_channel.channel_id != '1'  
 		ORDER BY m_channel.sequence ASC";
 
 		$query = $this->db->query($str);
@@ -400,6 +406,7 @@ class Stc_Model extends CI_Model
 		{
 			$this->db->where('b.tenant_id',$tid);
 		}
+		$this->db->where('b.channel_id != 1');
 		if($params == 'day'){
 			$this->db->where('tanggal', $index);
 		}else if($params == 'month'){
@@ -431,6 +438,7 @@ class Stc_Model extends CI_Model
 		}else if($params == 'year'){
 			$this->db->where('YEAR(tanggal)', $index);
 		}
+		$this->db->where('b.channel_id != 1');
 		$query = $this->db->get();
     	return $query;
 	}
@@ -471,6 +479,7 @@ class Stc_Model extends CI_Model
 			{
 				$this->db->where('a.tenant_id',$tid);
 			}
+			$this->db->where('a.channel_id != 1');
 			$this->db->group_by('MONTH(a.tanggal)');
 			$this->db->order_by('MONTH(a.tanggal)');
 
@@ -528,9 +537,10 @@ class Stc_Model extends CI_Model
 			SUM(cof) total,
 			SUM(cof) rate
 			FROM rpt_summary_scr
-			WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."'
+			WHERE YEAR(rpt_summary_scr.tanggal) = '".$year."' AND rpt_summary_scr.channel_id != 1
 			$where2
-			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 
+			WHERE m_channel.channel_id != 1	
 			GROUP BY m_channel.channel_name");
 
 		return $query->result();
@@ -611,6 +621,7 @@ class Stc_Model extends CI_Model
 
 		$this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
 		$this->db->from('m_channel');
+		$this->db->where('m_channel.channel_id != 1');
 		if($channel)
 		{
 			$this->db->where('m_channel.channel_name',$channel);
@@ -768,6 +779,7 @@ class Stc_Model extends CI_Model
 		{
 			$this->db->where_in('rpt_summ_interval.tenant_id', $tid);
 		}
+		$this->db->where('rpt_summ_interval.channel_id != 1');
 		$this->db->group_by('rpt_summ_interval.interval','ASC');
 		$query = $this->db->get();
 		$times = array();
@@ -1241,9 +1253,10 @@ class Stc_Model extends CI_Model
 			, AVG(rpt_summ_interval.scr) as scr
 			, rpt_summ_interval.tanggal as date 
 			FROM rpt_summ_interval
-			WHERE $where $where2
+			WHERE $where $where2 AND rpt_summ_interval.channel_id != 1
 			GROUP BY rpt_summ_interval.channel_id
-		)as a on a.channel_id = m_channel.channel_id  
+		)as a on a.channel_id = m_channel.channel_id 
+		WHERE m_channel.channel_id != 1 
 		ORDER BY m_channel.channel_id
 		");	
 
@@ -1324,9 +1337,10 @@ class Stc_Model extends CI_Model
 			, AVG(rpt_summary_scr.scr) as scr
 			, rpt_summary_scr.tanggal as date 
 			FROM rpt_summary_scr
-			WHERE $where $where2
+			WHERE $where $where2 AND rpt_summary_scr.channel_id != 1
 			GROUP BY rpt_summary_scr.channel_id
 		)as a on a.channel_id = m_channel.channel_id  
+		WHERE m_channel.channel_id != 1
 		ORDER BY m_channel.channel_id
 		");	
 
@@ -1404,8 +1418,9 @@ class Stc_Model extends CI_Model
 			SUM(case_session) total,
 			SUM(case_session) as rate
 			FROM rpt_summ_interval
-			WHERE DATE(rpt_summ_interval.tanggal) = '".$date."' $where2
+			WHERE DATE(rpt_summ_interval.tanggal) = '".$date."' $where2 AND rpt_summ_interval.channel_id != 1
 			GROUP BY rpt_summ_interval.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			WHERE m_channel.channel_id != 1
 			GROUP BY m_channel.channel_name
 			ORDER BY m_channel.channel_id ASC");
 
@@ -1481,7 +1496,9 @@ class Stc_Model extends CI_Model
 			SUM(cof) rate
 			FROM rpt_summary_scr
 			WHERE MONTH(rpt_summary_scr.tanggal) = '".$month."' AND YEAR(tanggal) = '".$year."' $where2
+			AND rpt_summary_scr.channel_id != 1
 			GROUP BY rpt_summary_scr.channel_id) AS a ON a.channel_id = m_channel.channel_id 	
+			WHERE m_channel.channel_id != 1
 			GROUP BY m_channel.channel_name");
 		return $query->result();
 	}
@@ -1733,6 +1750,7 @@ class Stc_Model extends CI_Model
 			$this->db->where('YEAR(tanggal)', $index);
 			//$this->db->where('b.tenant_id', 'oct_telkomcare');
 		}
+		$this->db->where('b.channel_id != 1');
 		$query = $this->db->get();
     	return $query->row();
 
