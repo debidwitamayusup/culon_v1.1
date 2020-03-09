@@ -860,17 +860,19 @@ Class WallboardModel extends CI_Model {
         $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
         $arr_time = array();
 
-        $curdate = date('dd');
+        $curdate = date('d');
 
 
         for($i = 1; $i <= $numdateofmonth;$i++)
 		{
-            $day = str_pad(strval($i), 2, '0', STR_PAD_LEFT);
-            if($curdate == $day)
+            if($curdate >= $i)
             {
-                break;
+                array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.str_pad(strval($i), 2, '0', STR_PAD_LEFT));
             }
-			array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.$day);
+            else{
+            break;
+            }
+			
         }
 
         return $arr_time;
@@ -955,7 +957,7 @@ Class WallboardModel extends CI_Model {
 		if($query->num_rows()>0)
 		{
 
-			for($inx = 0; $inx < $numdateofmonth; $inx++)
+			for($inx = 0; $inx < date('d'); $inx++)
 			{
 				if(str_pad(strval($inx+1), 1, '0', STR_PAD_LEFT) == str_pad(strval($query->row($inx)->DAY), 1, '0', STR_PAD_LEFT))
 				{
@@ -970,8 +972,9 @@ Class WallboardModel extends CI_Model {
 		}
 		else
 		{
-			for($inx = 1;$inx <= $numdateofmonth; $inx++)
+			for($inx = 1;$inx <= date('d'); $inx++)
 			{
+                
 				array_push($result,'0');
 			}
 		}
