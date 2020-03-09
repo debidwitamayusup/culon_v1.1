@@ -860,10 +860,17 @@ Class WallboardModel extends CI_Model {
         $numdateofmonth = cal_days_in_month(CAL_GREGORIAN, intval($mo_int), intval($year));
         $arr_time = array();
 
+        $curdate = date('dd');
+
 
         for($i = 1; $i <= $numdateofmonth;$i++)
 		{
-			array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.str_pad(strval($i), 2, '0', STR_PAD_LEFT));
+            $day = str_pad(strval($i), 2, '0', STR_PAD_LEFT);
+            if($curdate == $day)
+            {
+                break;
+            }
+			array_push($arr_time, $year.'-'.str_pad(strval($month), 2, '0', STR_PAD_LEFT).'-'.$day);
         }
 
         return $arr_time;
