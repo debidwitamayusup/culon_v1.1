@@ -79,13 +79,14 @@ class AuthController extends REST_Controller {
         $pwd = $this->security->xss_clean($this->input->post('password'));
         $res = $this->module_model->loginapp($user_id,$pwd);
 
-        $this->module_model->generate_token($user_id);
+        $tok = $this->module_model->generate_token($user_id);
         
         if ($res) {
         // $this->session->set_userdata($res);
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Login sukses!',
+                'token' => $tok,
                 'data'    => $res
                     ], REST_Controller::HTTP_OK);
         }
