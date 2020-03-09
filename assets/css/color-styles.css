@@ -260,8 +260,8 @@ form.convFormDynamic button.submit {
 }
 
 /* color checkbox */
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-	background-color: #089e60 ;
+.custom-checkbox .custom-control-input:checked~.custom-control-label-email::before {
+	background-color: #e41313 ;
 }
 
 /* email */
