@@ -9,8 +9,8 @@
             </ol>
             <div class="d-flex bd-highlight">
                 <div class="p-2 bd-highlight">
-                    <select class="form-control-sm" style="border-color:#efecec;font-size:12px">
-                        <option value="#">All Tenant</option>
+                    <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
+                        <!-- <option value="#">All Tenant</option> -->
                     </select>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center">
-                                <tr>
+                                <!-- <tr>
                                     <td>1</td>
                                     <td class="text-center">1230</td>
                                     <td class="text-left">Randy</td>
@@ -144,7 +144,7 @@
                                     <td class="text-right">20</td>
                                     <td>00:02:10</td>
                                     <td>00:02:10</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

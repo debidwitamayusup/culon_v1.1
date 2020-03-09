@@ -95,6 +95,19 @@ function addCommas(commas)
     return x1 + x2;
 }
 
+function addCommas2(commas)
+{
+    commas += '';
+    x = commas.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
+
 //function get data and draw
 function getColorChannel(channel){
     var color = [];
@@ -402,7 +415,7 @@ function drawPieChartSumAllTenant(response){
                         var value = data.datasets[0].data[tooltipItem.index];
                         value = value.toString();
                         value = value.split(/(?=(?:...)*$)/);
-                        value = value.join(',');
+                        value = value.join('.');
                         return data.labels[tooltipItem.index]+': '+ value;
                     }
               } // end callbacks:
@@ -435,14 +448,14 @@ function drawPieChartSumAllTenant(response){
                             var percentage = parseFloat((dataLabel / total)*100).toFixed(1);
                             var total = dataLabel.toString();
                         }else{
-                            var percentage = Math.round((dataLabel / total) * 100);
+                            var percentage = parseFloat((dataLabel / total) * 100).toFixed(1);
                             var total = dataLabel.toString();
                         }
                         if(isNaN(percentage) == true){
                             percentage = 0;
                         }
                         legendHtml.push('<li class="col-md-12">');
-                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ': '+ addCommas(total) +' (' + percentage + '%)</span>');
+                        legendHtml.push('<span class="chart-legend"><div style="background-color :' + background + '" class="box-legend"></div>' + label + ': '+ addCommas2(total) +' (' + percentage.replace('.',',') + '%)</span>');
                     }else{
                         var label = chart.data.labels[index];
                         var dataLabel = allData[index];
@@ -486,6 +499,8 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerGroupTelkom(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -610,6 +625,11 @@ function drawChartPerGroupTelkom(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -631,6 +651,8 @@ function drawChartPerGroupTelkom(response){
 }
 
 function drawChartPerGroupGovernment(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -765,6 +787,11 @@ function drawChartPerGroupGovernment(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -786,6 +813,8 @@ function drawChartPerGroupGovernment(response){
 }
 
 function drawChartPerGroupBfsi(response){
+    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
+    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -909,6 +938,11 @@ function drawChartPerGroupBfsi(response){
                        stacked: true,
                        gridLines: {
                            display: false
+                       },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
                        },
                    }],
                    yAxes: [{
@@ -1057,6 +1091,11 @@ function drawChartPerGroupEnterprise(response){
                        gridLines: {
                            display: false
                        },
+                       ticks: {
+                           callback: function (value) {
+                               return numberWithCommas(value);
+                           },
+                       },
                    }],
                    yAxes: [{
                        stacked: true,
@@ -1079,7 +1118,7 @@ function drawChartPerGroupEnterprise(response){
  
     //    Return with commas in between
     var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
     
 function drawChartTop5(response){
@@ -1110,10 +1149,28 @@ function drawChartTop5(response){
             },
             responsive:true,
             maintainAspectRatio:false,
+            tooltips: {
+              callbacks: {
+                    label: function(tooltipItem, data) {
+                        // var value = data.datasets[0].data[tooltipItem.index];
+                        var value = data.datasets[0].data[tooltipItem.index];
+                        value = value.toString();
+                        value = value.split(/(?=(?:...)*$)/);
+                        value = value.join('.');
+                        return data.labels[tooltipItem.index]+': '+ value;
+                    }
+              } // end callbacks:
+            },
             scales: {
                 xAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        min: 0, // Edit the value according to what you need
+                        callback: function (value, index, values) {
+                            value = value.toString();
+                            value = value.split(/(?=(?:...)*$)/);
+                            value = value.join('.');
+                            return value;
+                        }
                     }
                 }],
                 yAxes: [{

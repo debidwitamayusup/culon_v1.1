@@ -1630,6 +1630,45 @@ Class WallboardModel extends CI_Model {
 		
     }
     
+    public function getAgentMonitoringData()
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+
+        $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+        $this->db->select('a.tenant_id TENANTID, a.agent_id AGENTID, a.agent_name AGENTNAME, a.state STATE, a.in_service INSERVICE,
+        a.total_handled TOTALHANDLED, a.art ART, a.aht AHT');
+        $this->db->from('rpt_agent_monitoring a');
+       
+        if($tid){
+            $this->db->where('a.tenant_id', $tid);
+        }
+
+        $this->db->order_by('AGENTID');
+        $query = $this->db->get();
+
+        if($query->num_rows() > 0)
+        {
+            $id = 1;
+            foreach($query->result() as $data)
+            {
+
+                $result[] = array(
+                    $id,
+                    $data->AGENTID,
+                    $data->AGENTNAME,
+                    $data->STATE,
+                    strval(number_format($data->INSERVICE,0,'.',',')),
+                    strval(number_format($data->TOTALHANDLED,0,'.',',')),
+                    $data->ART,
+                    $data->AHT
+                );
+                $id++;
+            }
+            return $result;
+        }
+
+        return FALSE;
+    }
     #endregion debi
 
 }

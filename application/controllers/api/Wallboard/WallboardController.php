@@ -584,6 +584,28 @@ class WallboardController extends REST_Controller {
                     ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function agentMonitoring_post()
+    {
+        
+        $res = $this->module_model->getAgentMonitoringData();
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
     #endregion debi
 
 }

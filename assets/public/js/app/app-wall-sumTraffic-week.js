@@ -437,13 +437,18 @@ function drawChartDaily(week,arr_channel, tenant_id){
                 dataChatBot.push(response.data[i].DATA[12]);
             }
 
+            var numberWithCommas = function (y) {
+                return y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            };
+
             var arrChannel = []
             var dataStacked = [];
             var datasetsStacked = "";
             arrChannel.push(dataVoice, dataEmail, dataLive, dataSMS, dataTelegram, dataFB, dataMessenger, dataTwitter,
                 dataLine, dataIg, dataWa, dataDM, dataChatBot);
-            console.log(arrChannel);
+            console.log(numberWithCommas(arrChannel));
             var x = 0;
+            
             response.channel.forEach(function (value){
                 datasetsStacked = {
                     name: response.channel[x],
