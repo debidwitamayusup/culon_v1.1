@@ -528,13 +528,13 @@ function drawChartPerGroupTelkom(response){
         telegram.push(value.DATA[3].total);
         facebook.push(value.DATA[4].total);
         messenger.push(value.DATA[5].total);
-        voice.push(value.DATA[6].total);
-        email.push(value.DATA[7].total);
-        sms.push(value.DATA[8].total);
-        twitter.push(value.DATA[9].total);
-        twitterdm.push(value.DATA[10].total);
-        instagram.push(value.DATA[11].total);
-        chatbot.push(value.DATA[12].total);
+        // voice.push(value.DATA[6].total);
+        email.push(value.DATA[6].total);
+        sms.push(value.DATA[7].total);
+        twitter.push(value.DATA[8].total);
+        twitterdm.push(value.DATA[9].total);
+        instagram.push(value.DATA[10].total);
+        chatbot.push(value.DATA[11].total);
         LabelX.push(value.TENANT_ID);
     });
 
@@ -544,7 +544,7 @@ function drawChartPerGroupTelkom(response){
     arrData.push(telegram);
     arrData.push(facebook);
     arrData.push(messenger);
-    arrData.push(voice);
+    // arrData.push(voice);
     arrData.push(email);
     arrData.push(sms);
     arrData.push(twitter);
@@ -680,13 +680,13 @@ function drawChartPerGroupGovernment(response){
         telegram.push(value.DATA[3].total);
         facebook.push(value.DATA[4].total);
         messenger.push(value.DATA[5].total);
-        voice.push(value.DATA[6].total);
-        email.push(value.DATA[7].total);
-        sms.push(value.DATA[8].total);
-        twitter.push(value.DATA[9].total);
-        twitterdm.push(value.DATA[10].total);
-        instagram.push(value.DATA[11].total);
-        chatbot.push(value.DATA[12].total);
+        // voice.push(value.DATA[6].total);
+        email.push(value.DATA[6].total);
+        sms.push(value.DATA[7].total);
+        twitter.push(value.DATA[8].total);
+        twitterdm.push(value.DATA[9].total);
+        instagram.push(value.DATA[10].total);
+        chatbot.push(value.DATA[11].total);
         LabelX.push(value.TENANT_ID);
     });
 
@@ -696,7 +696,7 @@ function drawChartPerGroupGovernment(response){
     arrData.push(telegram);
     arrData.push(facebook);
     arrData.push(messenger);
-    arrData.push(voice);
+    // arrData.push(voice);
     arrData.push(email);
     arrData.push(sms);
     arrData.push(twitter);
@@ -842,13 +842,12 @@ function drawChartPerGroupBfsi(response){
         telegram.push(value.DATA[3].total);
         facebook.push(value.DATA[4].total);
         messenger.push(value.DATA[5].total);
-        voice.push(value.DATA[6].total);
-        email.push(value.DATA[7].total);
-        sms.push(value.DATA[8].total);
-        twitter.push(value.DATA[9].total);
-        twitterdm.push(value.DATA[10].total);
-        instagram.push(value.DATA[11].total);
-        chatbot.push(value.DATA[12].total);
+        email.push(value.DATA[6].total);
+        sms.push(value.DATA[7].total);
+        twitter.push(value.DATA[8].total);
+        twitterdm.push(value.DATA[9].total);
+        instagram.push(value.DATA[10].total);
+        chatbot.push(value.DATA[11].total);
         LabelX.push(value.TENANT_ID);
     });
 
@@ -858,7 +857,7 @@ function drawChartPerGroupBfsi(response){
     arrData.push(telegram);
     arrData.push(facebook);
     arrData.push(messenger);
-    arrData.push(voice);
+    // arrData.push(voice);
     arrData.push(email);
     arrData.push(sms);
     arrData.push(twitter);
@@ -994,13 +993,12 @@ function drawChartPerGroupEnterprise(response){
         telegram.push(value.DATA[3].total);
         facebook.push(value.DATA[4].total);
         messenger.push(value.DATA[5].total);
-        voice.push(value.DATA[6].total);
-        email.push(value.DATA[7].total);
-        sms.push(value.DATA[8].total);
-        twitter.push(value.DATA[9].total);
-        twitterdm.push(value.DATA[10].total);
-        instagram.push(value.DATA[11].total);
-        chatbot.push(value.DATA[12].total);
+        email.push(value.DATA[6].total);
+        sms.push(value.DATA[7].total);
+        twitter.push(value.DATA[8].total);
+        twitterdm.push(value.DATA[9].total);
+        instagram.push(value.DATA[10].total);
+        chatbot.push(value.DATA[11].total);
         LabelX.push(value.TENANT_ID);
     });
 
@@ -1010,7 +1008,7 @@ function drawChartPerGroupEnterprise(response){
     arrData.push(telegram);
     arrData.push(facebook);
     arrData.push(messenger);
-    arrData.push(voice);
+    // arrData.push(voice);
     arrData.push(email);
     arrData.push(sms);
     arrData.push(twitter);
