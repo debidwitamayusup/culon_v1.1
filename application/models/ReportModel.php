@@ -902,7 +902,7 @@ Class ReportModel extends CI_Model {
                         'CHANNEL_NAME' => $data->CHANNEL_NAME,
                         'CHANNEL_CATEGORY' => $data->CATEGORY,
                         'COF' => strval(number_format($data->COF,0,',','.')),
-                        'SCR' => round($data->SCR,2).'%'
+                        'SCR' => str_replace('.',',',round($data->SCR,2)).'%'
                     );
                     
                 }
