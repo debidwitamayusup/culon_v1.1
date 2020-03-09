@@ -151,7 +151,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:-1px;">
+		<div class="row" style="margin-right:0px; margin-left:-4px;">
 			<div class="col-xl-4 col-lg-4 col-md-12">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">
