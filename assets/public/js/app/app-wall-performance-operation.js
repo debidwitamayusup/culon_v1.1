@@ -163,7 +163,7 @@ function drawTableStatusTicket(response){
             }
         }else{
             $('#tableStatusTicket').find('tbody').append('<tr>'+
-                '<td colspan=6> No Data </td>'+
+                '<td colspan=18> No Data </td>'+
                 '</tr>');
         }
     }else{
@@ -254,11 +254,14 @@ function drawTableCOFByChannel(response){
              sumLive+= parseInt((response.data[i]['Live Chat'] || 0));
              sumSms+= parseInt((response.data[i].SMS || 0));
              sumCOF+= parseInt((response.data[i].SUMCOF || 0));
-             sumART+= timestrToSec(response.data[i].SUMART || 0);
-             sumAHT+= timestrToSec(response.data[i].SUMAHT || 0);
-             sumAST+= timestrToSec(response.data[i].SUMAST || 0);
+             sumART+= Number(timestrToSec(response.data[i].SUMART || 0));
+             sumAHT+= Number(timestrToSec(response.data[i].SUMAHT || 0));
+             sumAST+= Number(timestrToSec(response.data[i].SUMAST || 0));
              sumSCR+= parseFloat((response.data[i].SUMSCR || 0));
-             var avgSCR = (sumSCR / response.data.length)    
+             var avgSCR = (sumSCR / response.data.length).toFixed(2);
+             var avgART = Math.round((sumART / response.data.length)); 
+             var avgAHT = Math.round((sumAHT / response.data.length));
+             var avgAST = Math.round((sumAST / response.data.length));  
 
             // time1 = response.data[i].SUMART;
             // time2 = response.data[i].SUMAHT;
@@ -284,9 +287,9 @@ function drawTableCOFByChannel(response){
             '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
-            '<td class="text-center">'+formatTime(sumART).toString().substring(1)+'</td>'+
-            '<td class="text-center">'+formatTime(sumAHT).toString().substring(1)+'</td>'+
-            '<td class="text-center">'+formatTime(sumAST).toString().substring(1)+'</td>'+
+            '<td class="text-center">'+formatTime(avgART).toString().substring(1)+'</td>'+
+            '<td class="text-center">'+formatTime(avgAHT).toString().substring(1)+'</td>'+
+            '<td class="text-center">'+formatTime(avgAST).toString().substring(1)+'</td>'+
             '<td class="text-right">'+Math.round((avgSCR)).toString().replace(".",",")+' %</td>'+
             '</tr>');
     }else{
