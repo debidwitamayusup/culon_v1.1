@@ -39,7 +39,7 @@ function getDataProf(token){
 
 (function ($) {
     $('#btn-submit').click(function(){
-       $('#modalConifrmPassword').show();
+       $('#modalConfirmPassword').show();
     });
    
 })(jQuery);
