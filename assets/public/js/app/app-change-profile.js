@@ -7,7 +7,6 @@ $(document).ready(function () {
         $("#filter-loader").fadeIn("slow");
         
         getDataProf(tokenSession);
-
         $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url
@@ -29,12 +28,32 @@ function getDataProf(token){
             $('#email').val(response.data.EMAIL);
         },
         error: function (r) {
-            //console.log(r);
             alert("error");
         },
     });
 }
 
+function callChangeProfile(username, phone_number, email){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/getdataupdate',
+        data: {
+            username: username,
+            phone: phone_number,
+            email: email
+        },
+        success: function (r) {
+            var response = r;
+
+        },
+        error: function (r) {
+            alert("error");
+        },
+    });
+}
 
 (function ($) {
     $('#btn-submit').click(function(){
@@ -48,9 +67,16 @@ function getDataProf(token){
         }else if(!emailReg.test($('#email').val())){
             alert("format email not valid")
         }else{
-            // $('#modalConfirmPassword').show();
-            console.log('primata pemberani');
+            $('#modalConfirmPassword').modal('show')
         }
     });
+
+    $('#btn-confirm-password').click(function(){
+        $('#password').val();
+        callChangeProfile($('#username').val(), $('#phone_number').val(), $('#email').val());
+    });
    
+    $('#btn-cancel').click(function(){
+        window.location = base_url+'main/v_home';
+    });
 })(jQuery);

@@ -34,40 +34,7 @@
 </div>
 <!-- ---network error -->
 
-<!-- modal dialog confirm password -->
-<div class="modal fade" id="modalConfirmPassword" tabindex="-1" role="dialog" aria-labelledby="modalConfirmPassword"
-	aria-hidden="true">
-	<div class="modal-dialog" role="document" style="left:5% !important;">
-		<div class="modal-content" style="border-radius:8px; border:0px; width:75% !important">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-info-circle mr-1"></i>Confirmation</h5>
-				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body text-center">
-				<div class="col-sm-auto">
-					<div class="input-group border-input-group">
-						<div class="input-group-prepend">
-							<div class="input-group-text border-input">
-								<i class="fa fa-lock tx-16 lh-0 op-6"></i>
-							</div>
-						</div><input type="password" class="form-control border-input2 font12" id="password"
-							placeholder="Password" name="password">
-					</div>
-				</div>
 
-				<div class="text-center mb-5 mt-5">
-					<button type="submit" class="btn btn-light mr-5" style="border-radius:8px !important;"
-						id="btn-cancel">Cancel</button>
-					<button type="submit" class="btn btn-sign ml-5 text-white" style="border-radius:8px !important;"
-						id="btn-submit">Confirm</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- ----------------------------- -->
 
 <!-- Back to top -->
 <a href="#top" id="back-to-top"><i class="fas fa-angle-up "></i></a>
