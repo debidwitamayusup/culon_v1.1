@@ -258,7 +258,7 @@ function drawTableCOFByChannel(response){
              sumAHT+= Number(timestrToSec(response.data[i].SUMAHT || 0));
              sumAST+= Number(timestrToSec(response.data[i].SUMAST || 0));
              sumSCR+= parseFloat((response.data[i].SUMSCR || 0));
-             var avgSCR = (sumSCR / response.data.length).toFixed(2);
+             var avgSCR = parseFloat(sumSCR / response.data.length).toFixed(2);
              var avgART = Math.round((sumART / response.data.length)); 
              var avgAHT = Math.round((sumAHT / response.data.length));
              var avgAST = Math.round((sumAST / response.data.length));  
@@ -290,7 +290,7 @@ function drawTableCOFByChannel(response){
             '<td class="text-center">'+formatTime(avgART).toString().substring(1)+'</td>'+
             '<td class="text-center">'+formatTime(avgAHT).toString().substring(1)+'</td>'+
             '<td class="text-center">'+formatTime(avgAST).toString().substring(1)+'</td>'+
-            '<td class="text-right">'+Math.round((avgSCR)).toString().replace(".",",")+' %</td>'+
+            '<td class="text-right">'+(avgSCR).toString().replace(".",",")+' %</td>'+
             '</tr>');
     }else{
         $('#tabelCOFByChannel').find('tbody').append('<tr>'+

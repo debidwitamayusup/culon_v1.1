@@ -66,9 +66,9 @@
 
                             <div class="text-center mb-5 mt-5">
                                 <button type="submit" class="btn btn-sign text-white mr-5"
-                                    style="border-radius:8px !important;" id="btn-login">Cancel</button>
+                                    style="border-radius:8px !important;" id="btn-cancel">Cancel</button>
                                     <button type="submit" class="btn btn-sign text-white ml-5"
-                                    style="border-radius:8px !important;" id="btn-login">Submit</button>
+                                    style="border-radius:8px !important;" id="btn-submit">Submit</button>
                             </div>
 
                         </div>
@@ -80,3 +80,4 @@
 </div>
 
 <?php $this->load->view('temp/footer');?>
+<script src="<?=base_url()?>assets/public/js/app/app-change-profile.js"></script>

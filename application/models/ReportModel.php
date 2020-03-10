@@ -467,8 +467,7 @@ Class ReportModel extends CI_Model {
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
-        AVG(a.scr) as SCR,
-        ');
+        AVG(a.scr) as SCR ');
 
         $this->db->from('rpt_summary_agent a');
 
@@ -496,8 +495,6 @@ Class ReportModel extends CI_Model {
 
         $this->db->group_by('a.agentid');
         $query = $this->db->get();
-
- 
 
         if($query->num_rows() > 0)
         {

@@ -165,7 +165,6 @@ class AuthController extends REST_Controller {
             }
     }
 
-
     //update profile
     public function getdataupdate_post()
     {
@@ -195,7 +194,6 @@ class AuthController extends REST_Controller {
                     ], REST_Controller::HTTP_OK);
         }
     }
-
 
     public function updateprof_post(){
 
@@ -230,7 +228,37 @@ class AuthController extends REST_Controller {
         }
 
     }
+    
+    public function updatepwd_post(){
 
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Lengkapi Kredensial anda.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $password = $this->security->xss_clean($this->input->post('password'));
+        $newpwd = $this->security->xss_clean($this->input->post('new_password'));
+
+        $res = $this->module_model->c_pwd($token,$password,$newpwd);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Perubahan password sukses!',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan password gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
 #Endregion
 
 }

@@ -18,6 +18,7 @@ Class AuthModel extends CI_Model {
         // return FALSE;
         return FALSE;
     }
+
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID');
@@ -107,8 +108,6 @@ Class AuthModel extends CI_Model {
 
     }
 
-    // public function tenant(){
-    // }
     public function do_registeracc($usr,$pwd){
 
         //query double checking goes here
@@ -134,6 +133,7 @@ Class AuthModel extends CI_Model {
 
         return FALSE;
     }
+
     public function do_forgotpwd() {
         // $this->db->select('ID');
         // $this->db->where('*EMAIL/HP/ETC', $this->input->post('*params'));
@@ -172,6 +172,36 @@ Class AuthModel extends CI_Model {
         );
 
         return $content;
+    }
+
+    public function c_pwd($token,$password,$newpwd){
+
+        $password = md5($password);
+        $newpwd = md5($newpwd);
+
+        $this->db->select('userid AS USERID');
+        $this->db->from('m_user');
+        $this->db->where('token', $token);
+        $this->db->where('password',$password);
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) 
+        {
+            $data    = $query->row();
+            if($newpwd)
+            {
+                $this->db->set('password',$newpwd);
+            }
+            $this->db->where('token', $token);
+            $this->db->update('m_user');
+
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+        }
+        return FALSE;
+
     }
 
     public function update_prof($token,$userid,$email,$phone,$image)

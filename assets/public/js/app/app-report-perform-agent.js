@@ -197,7 +197,7 @@ function setDatePicker() {
         tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        console.log(startDateFromFilter);
+        // console.log(startDateFromFilter);
         exportTableAgentPerform(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
     });
 

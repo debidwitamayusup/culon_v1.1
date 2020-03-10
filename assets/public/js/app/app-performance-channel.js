@@ -357,7 +357,7 @@ function drawChartSumService(response) {
 							var meta = chartInstance.controller.getDatasetMeta(i);
 							meta.data.forEach(function (bar, index) {
 								var data = addCommas(dataset.data[index]) + ' seconds';
-								ctx.fillText(data, (bar._model.x - bar._model.x) + 80, bar._model.y - 30);
+								ctx.fillText(data, (bar._model.x - bar._model.x) + 80, (bar._model.y - 27));
 							});
 						});
 					}
@@ -472,6 +472,7 @@ function drawChartSumChannel(response) {
 					duration: 10,
 				},
 				tooltips: {
+					intersect: false,
 					mode: 'label',
 					callbacks: {
 						label: function (tooltipItem, data) {

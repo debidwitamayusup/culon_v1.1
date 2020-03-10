@@ -155,11 +155,11 @@ function exportTableAgentPerform(tenant_id, start_time, end_time, name){
     $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTSPA',
+        url: base_url + 'api/Reporting/ReportController/EXPORTAP',
         data: {
             tenant_id: tenant_id,
-            start_time: start_time,
-            end_time: end_time,
+            start_date: start_time,
+            end_date: end_time,
             name: name
         },
 
