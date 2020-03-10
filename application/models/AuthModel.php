@@ -210,11 +210,12 @@ Class AuthModel extends CI_Model {
     }
 
     public function pwd_checker($token,$pwd){
-        $password = md5($password);
+        $password = md5($pwd);
         $this->db->select('userid AS USERID');
         $this->db->from('m_user');
         $this->db->where('token', $token);
         $this->db->where('password',$password);
+        $query = $this->db->get();
         if($query->num_rows()==1) 
         {
             return true;
@@ -225,15 +226,15 @@ Class AuthModel extends CI_Model {
 
     public function update_prof($token,$userid,$email,$phone,$password,$image)
     {
-        $this->db->select('userid AS USERID');
-        $this->db->from('m_user');
-        $this->db->where('token', $token);
-        $this->db->where('password',$password);
-        $query = $this->db->get();
+        // $this->db->select('userid AS USERID');
+        // $this->db->from('m_user');
+        // $this->db->where('token', $token);
+        // $this->db->where('password',$password);
+        // $query = $this->db->get();
 
-        if($query->num_rows()==1) 
-        {
-            $data    = $query->row();
+        // if($query->num_rows()==1) 
+        // {
+            // $data    = $query->row();
             if($userid)
             {
                 $this->db->set('userid',$userid);
@@ -256,8 +257,8 @@ Class AuthModel extends CI_Model {
             {
                 return true;
             }
-        }
-        return FALSE;
+        // }
+            return FALSE;
     }
 
     function getdataupdate($token)

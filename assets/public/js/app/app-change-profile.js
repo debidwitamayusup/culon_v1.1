@@ -1,6 +1,6 @@
 var base_url = $('#base_url').val();
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-const tokenSession = JSON.parse(localStorage.getItem('Auth-Token'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 
 $(document).ready(function () {
     if(sessionParams){
@@ -33,24 +33,30 @@ function getDataProf(token){
     });
 }
 
-function callChangeProfile(username, phone_number, email){
+function callChangeProfile(token,username, phone_number, email, password){
     $.ajax({
         type: 'POST',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("token", token);
         },
-        url: base_url + 'api/Auth/AuthController/getdataupdate',
+        url: base_url + 'api/Auth/AuthController/updateprof',
         data: {
             username: username,
             phone: phone_number,
-            email: email
+            email: email,
+            password: password
         },
         success: function (r) {
             var response = r;
-
+            if(response.status == true){
+                alert("change profile succed");
+                window.location = base_url+'main/v_home';
+            }else{
+                alert(response.message);
+            }
         },
         error: function (r) {
-            alert("error");
+            alert(r.responseJSON.message);
         },
     });
 }
@@ -72,8 +78,8 @@ function callChangeProfile(username, phone_number, email){
     });
 
     $('#btn-confirm-password').click(function(){
-        $('#password').val();
-        callChangeProfile($('#username').val(), $('#phone_number').val(), $('#email').val());
+        callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
+        console.log('masuk primata pemberani')
     });
    
     $('#btn-cancel').click(function(){
