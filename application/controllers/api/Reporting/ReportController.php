@@ -1076,7 +1076,8 @@
             $name = $this->security->xss_clean($this->input->post('name'));
 
             $data = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$skillz,$meth);
-        
+            // print_r($data);
+            //     exit;
             if ($data) {
             $spreadsheet = new Spreadsheet();
              
@@ -1183,14 +1184,14 @@
                         'message' => 'Report Stored!',
                         'Link'    => $res
                             ], REST_Controller::HTTP_OK);
-                        }
-                        else {
-                            $this->response([
-                                'status'  => FALSE,
-                                'message' => 'Report Storing Failed!',
-                                'Link'    => false
-                                    ], REST_Controller::HTTP_OK);
-                        }
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Report Storing Failed!',
+                    'Link'    => false
+                        ], REST_Controller::HTTP_OK);
+            }
         }
 
         
