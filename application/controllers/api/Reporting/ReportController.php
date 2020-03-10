@@ -963,7 +963,7 @@
                 ;
                 
                 $z = 0;
-                for($y=3;$y<=28;$y++)
+                for($y=3;$y<=26;$y++)
                 {
                     if($z<12)
                     {
@@ -992,12 +992,12 @@
                 $spreadsheet->getActiveSheet()->mergeCells('U4:V4');
                 $spreadsheet->getActiveSheet()->mergeCells('W4:X4');
                 $spreadsheet->getActiveSheet()->mergeCells('Y4:Z4');
-                $spreadsheet->getActiveSheet()->mergeCells('AA4:AB4');
+                // $spreadsheet->getActiveSheet()->mergeCells('AA4:AB4');
 
                 $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
                 $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
                 $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-                $spreadsheet->getActiveSheet()->getStyle('A4:AB5')->applyFromArray($this->ss_formatter('header'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:Z5')->applyFromArray($this->ss_formatter('header'));
     
     
                 $i=6; 
@@ -1024,13 +1024,13 @@
                     {
                         $spreadsheet->getActiveSheet()->getColumnDimension($char)->setAutoSize(true);
                     }
-                    $spreadsheet->getActiveSheet()->getColumnDimension('AA')->setAutoSize(true);
-                    $spreadsheet->getActiveSheet()->getColumnDimension('AB')->setAutoSize(true);
+                    // $spreadsheet->getActiveSheet()->getColumnDimension('AA')->setAutoSize(true);
+                    // $spreadsheet->getActiveSheet()->getColumnDimension('AB')->setAutoSize(true);
     
     
-                    $spreadsheet->getActiveSheet()->getStyle('A5:AB'.$x)->applyFromArray($this->ss_formatter('body'));
+                    $spreadsheet->getActiveSheet()->getStyle('A5:Z'.$x)->applyFromArray($this->ss_formatter('body'));
     
-                    $spreadsheet->getActiveSheet()->setAutoFilter('A5:AB'.$x);
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A5:Z'.$x);
     
                     $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
@@ -1430,14 +1430,13 @@
                 ->setCellValue('D2', $monthName)
                 ->setCellValue('D3', $chn2)
                 ->setCellValue('A4', 'No.')
-                ->setCellValue('B4', 'Days')
-                ->setCellValue('C4', 'Interval')
-                ->setCellValue('D4', 'ART')
-                ->setCellValue('E4', 'AHT')
-                ->setCellValue('F4', 'AST')
-                ->setCellValue('G4', 'Message In')
-                ->setCellValue('H4', 'Message Out')
-                ->setCellValue('I4', 'Total Session (COF)')
+                ->setCellValue('B4', 'Date')
+                ->setCellValue('C4', 'ART')
+                ->setCellValue('D4', 'AHT')
+                ->setCellValue('E4', 'AST')
+                ->setCellValue('F4', 'Message In')
+                ->setCellValue('G4', 'Message Out')
+                ->setCellValue('H4', 'Total Session (COF)')
                 ;
 
                 #region - 2nd part sub image to spreadsheet
@@ -1448,7 +1447,7 @@
                 $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
                 $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
                 $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-                $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:H4')->applyFromArray($this->ss_formatter('header'));
 
 
                 $i=5;
@@ -1456,20 +1455,20 @@
                 foreach($data as $datas) {
                     // print_r($datas[0]);
                     // exit;
-                    if ($j < 9) {
-                        $tgl = substr($datas->TANGGAL, 9);
-                    }else{
-                        $tgl = substr($datas->TANGGAL, 8);
-                    }
+                    // if ($j < 9) {
+                    //     $tgl = substr($datas->TANGGAL, 9);
+                    // }else{
+                    //     $tgl = substr($datas->TANGGAL, 8);
+                    // }
                     $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A'.$i, $i-4)
-                    ->setCellValue('B'.$i, $tgl)
-                    ->setCellValue('D'.$i, $datas->ART)
-                    ->setCellValue('E'.$i, $datas->AHT)
-                    ->setCellValue('F'.$i, $datas->AST)
-                    ->setCellValue('G'.$i, $datas->MESSAGE_IN)
-                    ->setCellValue('H'.$i, $datas->MESSAGE_OUT)
-                    ->setCellValue('I'.$i, round($datas->SCR,2).'%')
+                    ->setCellValue('B'.$i, $datas->TANGGAL)
+                    ->setCellValue('C'.$i, $datas->ART)
+                    ->setCellValue('D'.$i, $datas->AHT)
+                    ->setCellValue('E'.$i, $datas->AST)
+                    ->setCellValue('F'.$i, $datas->MESSAGE_IN)
+                    ->setCellValue('G'.$i, $datas->MESSAGE_OUT)
+                    ->setCellValue('H'.$i, round($datas->SCR,2).'%')
                     ;
                     $j++;
                     $i++;
@@ -1482,12 +1481,10 @@
                     $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
                     $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
                     $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
-                    $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
-                    $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
 
-                    $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
+                    $spreadsheet->getActiveSheet()->getStyle('A5:H'.$x)->applyFromArray($this->ss_formatter('body'));
 
-                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:H'.$x);
 
                     $spreadsheet->getActiveSheet()->setTitle('S Inval Month-  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
