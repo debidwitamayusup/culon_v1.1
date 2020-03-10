@@ -82,6 +82,10 @@ Class AuthModel extends CI_Model {
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');
         $this->db->from('m_user');
         $this->db->where('userid', $usr);
+        // if($token)
+        // {
+        //     $this->db->where('token', $token);
+        // }
 
         $query = $this->db->get();
 
@@ -97,9 +101,10 @@ Class AuthModel extends CI_Model {
               //  'UNIT'          => $data->UNIT_ID
 
             );
-
-            // $this->db->where('userid', $usr);
-            // $this->db->update('m_login', array('is_login' => '1'));
+            
+            // $this->db->set('token','');
+            // $this->db->where('token', $token);
+            // $this->db->update('m_user'));
 
             return $content;
         }

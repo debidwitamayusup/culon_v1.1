@@ -33,7 +33,7 @@ class AuthController extends REST_Controller {
     //not needed
     public function doLogout_post(){
 
-       // $this->session->sess_destroy();
+       //$token = $_SERVER['HTTP_TOKEN'];
     
        if(!$this->input->post('username'))
        {
