@@ -49,12 +49,12 @@
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Whatsapp">
-											<span class="custom-control-label">Whatsapp</span>
+											<span class="custom-control-label color_checkbox_whatsapp">Whatsapp</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Twitter">
-											<span class="custom-control-label">Twitter</span>
+											<span class="custom-control-label color_checkbox_twitter">Twitter</span>
 										</label>
 									</div>
 								</div>
@@ -65,17 +65,17 @@
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Facebook">
-											<span class="custom-control-label">Facebook</span>
+											<span class="custom-control-label color_checkbox_facebook">Facebook</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Email">
-											<span class="custom-control-label">Email</span>
+											<span class="custom-control-label color_checkbox_email">Email</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Telegram">
-											<span class="custom-control-label">Telegram</span>
+											<span class="custom-control-label color_checkbox_telegram">Telegram</span>
 										</label>
 									</div>
 								</div>
@@ -86,7 +86,7 @@
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Line">
-											<span class="custom-control-label">Line</span>
+											<span class="custom-control-label color_checkbox_line">Line</span>
 										</label>
 										<!-- <label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
@@ -96,12 +96,12 @@
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Instagram">
-											<span class="custom-control-label">Instagram</span>
+											<span class="custom-control-label color_checkbox_instagram">Instagram</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Messenger">
-											<span class="custom-control-label">Messenger</span>
+											<span class="custom-control-label color_checkbox_messenger">Messenger</span>
 										</label>
 									</div>
 								</div>
@@ -109,25 +109,20 @@
 							<div class="col-md-2">
 								<div class="form-group m-0">
 									<div class="custom-controls-stacked">
-										<!-- <label class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input checklist-channel"
-												id="list-channel[]" name="example-checkbox2" value="Messenger">
-											<span class="custom-control-label">Messenger</span>
-										</label> -->
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Twitter DM">
-											<span class="custom-control-label">Twitter DM</span>
+											<span class="custom-control-label color_checkbox_twitter_dm">Twitter DM</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="Live Chat">
-											<span class="custom-control-label">Live Chat</span>
+											<span class="custom-control-label color_checkbox_live_chat">Live Chat</span>
 										</label>
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="SMS">
-											<span class="custom-control-label">SMS</span>
+											<span class="custom-control-label color_checkbox_sms">SMS</span>
 										</label>
 									</div>
 								</div>
@@ -143,7 +138,7 @@
 										<label class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input checklist-channel"
 												id="list-channel[]" name="example-checkbox2" value="ChatBot">
-											<span class="custom-control-label">Chat Bot</span>
+											<span class="custom-control-label color_checkbox_chatbot">Chat Bot</span>
 										</label>
 									</div>
 								</div>

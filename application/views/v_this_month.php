@@ -65,7 +65,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="col-sm-auto h6 mt-3">Year</div>
+							<div class="col-sm-auto h6 mt-3 ml-3">Year</div>
 							<div class="col-sm-auto">
 								<div class="form-group row">
 									<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
