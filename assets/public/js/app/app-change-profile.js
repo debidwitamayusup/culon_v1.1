@@ -1,13 +1,12 @@
 var base_url = $('#base_url').val();
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-const tokenSession = JSON.parse(localStorage.getItem('Auth-Token'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
         
         getDataProf(tokenSession);
-
         $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url
@@ -22,24 +21,68 @@ function getDataProf(token){
         },
         url: base_url + 'api/Auth/AuthController/getdataupdate',
         success: function (r) {
-            console.log(token);
             var response = r;
-            console.log(response)
             $('#username').prop("disabled", true);
             $('#username').val(response.data.ID);
             $('#phone_number').val(response.data.PHONE);
             $('#email').val(response.data.EMAIL);
         },
         error: function (r) {
-            //console.log(r);
             alert("error");
+        },
+    });
+}
+
+function callChangeProfile(token,username, phone_number, email, password){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/updateprof',
+        data: {
+            username: username,
+            phone: phone_number,
+            email: email,
+            password: password
+        },
+        success: function (r) {
+            var response = r;
+            if(response.status == true){
+                alert("change profile succed");
+                window.location = base_url+'main/v_home';
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            alert(r.responseJSON.message);
         },
     });
 }
 
 (function ($) {
     $('#btn-submit').click(function(){
-       $('#modalConfirmPassword').show();
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if($('#phone_number').val() == "" || $.trim($('#email').val()).length == 0){
+            alert("please fill all fields");
+        }
+        else if($.isNumeric($('#phone_number').val()) == false ||  $('#phone_number').val().length > 13){
+            alert("phone number must numbers and has 13 max length");
+        }else if(!emailReg.test($('#email').val())){
+            alert("format email not valid")
+        }else{
+            $('#modalConfirmPassword').modal('show')
+        }
+    });
+
+    $('#btn-confirm-password').click(function(){
+        callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
+        console.log('masuk primata pemberani')
     });
    
+    $('#btn-cancel').click(function(){
+        window.location = base_url+'main/v_home';
+    });
 })(jQuery);

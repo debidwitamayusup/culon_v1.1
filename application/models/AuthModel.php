@@ -82,6 +82,10 @@ Class AuthModel extends CI_Model {
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');
         $this->db->from('m_user');
         $this->db->where('userid', $usr);
+        // if($token)
+        // {
+        //     $this->db->where('token', $token);
+        // }
 
         $query = $this->db->get();
 
@@ -97,9 +101,10 @@ Class AuthModel extends CI_Model {
               //  'UNIT'          => $data->UNIT_ID
 
             );
-
-            // $this->db->where('userid', $usr);
-            // $this->db->update('m_login', array('is_login' => '1'));
+            
+            // $this->db->set('token','');
+            // $this->db->where('token', $token);
+            // $this->db->update('m_user'));
 
             return $content;
         }
@@ -204,16 +209,32 @@ Class AuthModel extends CI_Model {
 
     }
 
-    public function update_prof($token,$userid,$email,$phone,$image)
-    {
+    public function pwd_checker($token,$pwd){
+        $password = md5($pwd);
         $this->db->select('userid AS USERID');
         $this->db->from('m_user');
         $this->db->where('token', $token);
+        $this->db->where('password',$password);
         $query = $this->db->get();
-
         if($query->num_rows()==1) 
         {
-            $data    = $query->row();
+            return true;
+        }
+        return false;
+
+    }
+
+    public function update_prof($token,$userid,$email,$phone,$password,$image)
+    {
+        // $this->db->select('userid AS USERID');
+        // $this->db->from('m_user');
+        // $this->db->where('token', $token);
+        // $this->db->where('password',$password);
+        // $query = $this->db->get();
+
+        // if($query->num_rows()==1) 
+        // {
+            // $data    = $query->row();
             if($userid)
             {
                 $this->db->set('userid',$userid);
@@ -236,8 +257,8 @@ Class AuthModel extends CI_Model {
             {
                 return true;
             }
-        }
-        return FALSE;
+        // }
+            return FALSE;
     }
 
     function getdataupdate($token)
@@ -246,6 +267,7 @@ Class AuthModel extends CI_Model {
         $this->db->from('m_user');
         $this->db->join('m_akses','m_akses.userid = m_user.userid');
         $this->db->where('token', $token);
+       
         $query = $this->db->get();
         if($query->num_rows()>0) 
         {
