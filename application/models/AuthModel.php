@@ -209,6 +209,20 @@ Class AuthModel extends CI_Model {
 
     }
 
+    public function pwd_checker($token,$pwd){
+        $password = md5($password);
+        $this->db->select('userid AS USERID');
+        $this->db->from('m_user');
+        $this->db->where('token', $token);
+        $this->db->where('password',$password);
+        if($query->num_rows()==1) 
+        {
+            return true;
+        }
+        return false;
+
+    }
+
     public function update_prof($token,$userid,$email,$phone,$password,$image)
     {
         $this->db->select('userid AS USERID');

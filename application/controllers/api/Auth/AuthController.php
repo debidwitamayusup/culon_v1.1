@@ -198,8 +198,14 @@ class AuthController extends REST_Controller {
     public function updateprof_post(){
 
         $token = $_SERVER['HTTP_TOKEN'];
+
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $pass = $this->security->xss_clean($this->input->post('password'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $image = $this->security->xss_clean($this->input->post('image'));
             
-        if($token === NULL)
+        if($token === NULL || $pass === NULL)
         {
             $this->response([
                 'status'  => FALSE,
@@ -207,12 +213,16 @@ class AuthController extends REST_Controller {
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
 
-        $email = $this->security->xss_clean($this->input->post('email'));
-        $username = $this->security->xss_clean($this->input->post('username'));
-        $pass = $this->security->xss_clean($this->input->post('password'));
-        $phone = $this->security->xss_clean($this->input->post('phone'));
-        $image = $this->security->xss_clean($this->input->post('image'));
-
+        $check = $this->module_model->pwd_checker($token,$pass);
+        
+        if($check == false)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Kredensial Akun anda salah.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+        
         $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$image);
 
         if ($res) {
