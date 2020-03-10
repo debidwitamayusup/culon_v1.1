@@ -165,6 +165,72 @@ class AuthController extends REST_Controller {
             }
     }
 
+
+    //update profile
+    public function getdataupdate_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+
+        if($token===NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Lengkapi Kredensial anda.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $res = $this->module_model->getdataupdate($token);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'data ditemukan!',
+                'data' => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+
+    public function updateprof_post(){
+
+        $token = $_SERVER['HTTP_TOKEN'];
+            
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Lengkapi Kredensial anda.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $image = $this->security->xss_clean($this->input->post('image'));
+
+        $res = $this->module_model->update_prof($token,$username,$email,$phone,$image);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Perubahan sukses!',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
 #Endregion
 
 }

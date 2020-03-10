@@ -174,6 +174,63 @@ Class AuthModel extends CI_Model {
         return $content;
     }
 
+    public function update_prof($token,$userid,$email,$phone,$image)
+    {
+        $this->db->select('userid AS USERID');
+        $this->db->from('m_user');
+        $this->db->where('token', $token);
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) 
+        {
+            $data    = $query->row();
+            if($userid)
+            {
+                $this->db->set('userid',$userid);
+            }
+            if($phone)
+            {
+                $this->db->set('phone',$phone);
+            }
+            if($email)
+            {
+                $this->db->set('email',$email);
+            } 
+            if($image)
+            {
+            }  
+            $this->db->where('token', $token);
+            $this->db->update('m_user');
+
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+        }
+        return FALSE;
+    }
+
+    function getdataupdate($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.email AS EMAIL, m_user.phone as PHONE');
+        $this->db->from('m_user');
+        $this->db->join('m_akses','m_akses.userid = m_user.userid');
+        $this->db->where('token', $token);
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            $data = $query->row();
+            $content = array(
+                'ID'       => $data->ID,
+                'EMAIL'      => $data->EMAIL,
+                'PHONE'   => $data->PHONE
+            );
+            return $content;
+        }
+
+        return false;
+    }
+
     function token_checker($token)
     {
         $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');

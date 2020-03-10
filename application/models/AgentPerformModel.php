@@ -246,7 +246,7 @@ class AgentPerformModel extends CI_Model
 						strval($data->ART),
 						strval($data->AHT),
 						strval($data->AST),
-						strval(base_url().'public/user/default-avatar.jpg')
+						strval(base_url().'public/user/unknown-avatar.jpg')
 					);
 					$idx++;
 				}
