@@ -13,7 +13,8 @@
                         </div>
                         <div class="card-body">
                             <div class="text-center mb-2">
-                                <img src="<?=base_url()?>public/user/unknown-avatar.jpg" style="border-radius:50%; width:50%;">
+                                <img src="<?=base_url()?>public/user/unknown-avatar.jpg"
+                                    style="border-radius:50%; width:50%;">
                                 <h6><a class="font12 mt-2" style="color:#3c8ae2" href="#">Edit Photo Profile</a></h6>
                             </div>
                             <!-- username -->
@@ -53,7 +54,7 @@
                             </div>
 
                             <!-- password -->
-                            <div class="col-sm-auto">
+                            <!-- <div class="col-sm-auto">
                                 <div class="input-group border-input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
@@ -62,15 +63,14 @@
                                     </div><input type="password" class="form-control border-input2 font12" id="password"
                                         placeholder="Password" name="password">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="text-center mb-5 mt-5">
                                 <button type="submit" class="btn btn-sign text-white mr-5"
                                     style="border-radius:8px !important;" id="btn-cancel">Cancel</button>
-                                    <button type="submit" class="btn btn-sign text-white ml-5"
+                                <button type="submit" class="btn btn-sign text-white ml-5"
                                     style="border-radius:8px !important;" id="btn-submit">Submit</button>
                             </div>
-
                         </div>
                     </div>
                 </div>

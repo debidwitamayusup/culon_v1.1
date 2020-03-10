@@ -252,84 +252,121 @@ form.convFormDynamic button.submit {
 }
 .custom-control-input:checked~.custom-control-label::before {
 	color: #fff;
-	background-color: #089e60;
-	border-color:#089e60;
+	background-color: #08829e;
+	border-color:#08829e;
 }
 .custom-control-input:focus~.custom-control-label::before {
 	box-shadow: 0 0 0 1px rgba(152, 166, 173, 0.1), 0 0 0 2px rgba(242,242,242, 0.25);
 }
 
-/* color checkbox */
-.custom-checkbox .custom-control-input:checked~.custom-control-label-email::before {
-	background-color: #e41313 ;
-}
 
 /* email */
-.color_checkbox_channel1{
+.custom-control-input:checked~.custom-control-label.color_checkbox_email::before {
+	color: #fff;
 	background-color: #e41313;
+	border-color:#e41313;
 }
+/* ----------------------- */
 
 /* facebook */
-.color_checkbox_channel2{
-	background-color:#467fcf;
+.custom-control-input:checked~.custom-control-label.color_checkbox_facebook::before {
+	color: #fff;
+	background-color: #467fcf;
+	border-color:#467fcf;
 }
+/* ---------------------- */
 
 /* instagram */
-.color_checkbox_channel3{
-	background-color:#fbc0d5;
+.custom-control-input:checked~.custom-control-label.color_checkbox_instagram::before {
+	color: #fff;
+	background-color: #fbc0d5;
+	border-color:#fbc0d5;
 }
+/* ---------------------- */
 
 /* line */
-.color_checkbox_channel4{
-	background-color:#31a550;
+.custom-control-input:checked~.custom-control-label.color_checkbox_line::before {
+	color: #fff;
+	background-color: #31a550;
+	border-color:#31a550;
 }
+/* ---------------------- */
 
 /* live chat */
-.color_checkbox_channel5{
-	background-color:#607d8b;
+.custom-control-input:checked~.custom-control-label.color_checkbox_live_chat::before {
+	color: #fff;
+	background-color: #607d8b;
+	border-color:#607d8b;
 }
+/* ---------------------- */
 
 /* messenger */
-.color_checkbox_channel6{
-	background-color:#3866a6;
+.custom-control-input:checked~.custom-control-label.color_checkbox_messenger::before {
+	color: #fff;
+	background-color: #3866a6;
+	border-color:#3866a6;
 }
+/* ---------------------- */
 
 /* sms */
-.color_checkbox_channel7{
-	background-color:#80cbc4;
+.custom-control-input:checked~.custom-control-label.color_checkbox_sms::before {
+	color: #fff;
+	background-color: #80cbc4;
+	border-color:#80cbc4;
 }
+/* ---------------------- */
+
 
 /* telegram */
-.color_checkbox_channel8{
-	background-color:#343a40;
+.custom-control-input:checked~.custom-control-label.color_checkbox_telegram::before {
+	color: #fff;
+	background-color: #343a40;
+	border-color:#343a40;
 }
+/* ---------------------- */
 
 /* twitter */
-.color_checkbox_channel9{
-	background-color:#45aaf2;
+.custom-control-input:checked~.custom-control-label.color_checkbox_twitter::before {
+	color: #fff;
+	background-color: #45aaf2;
+	border-color:#45aaf2;
 }
+/* ---------------------- */
 
 /* twitter dm */
-.color_checkbox_channel10{
-	background-color:#6574cd;
+.custom-control-input:checked~.custom-control-label.color_checkbox_twitter_dm::before {
+	color: #fff;
+	background-color: #6574cd;
+	border-color:#6574cd;
 }
+/* ---------------------- */
 
 /* voice */
-.color_checkbox_channel11{
-	background-color:#ff9933;
+.custom-control-input:checked~.custom-control-label.color_checkbox_voice::before {
+	color: #fff;
+	background-color: #ff9933;
+	border-color:#ff9933;
 }
+/* ---------------------- */
 
 /* whatsapp */
-.color_checkbox_channel12{
-	background-color:#31a550;
+.custom-control-input:checked~.custom-control-label.color_checkbox_whatsapp::before {
+	color: #fff;
+	background-color: #31a550;
+	border-color:#31a550;
 }
+/* ---------------------- */
 
 /* chatbot */
-.color_checkbox_channel13{
-	background-color:#6e273e;
+.custom-control-input:checked~.custom-control-label.color_checkbox_chatbot::before {
+	color: #fff;
+	background-color: #6e273e;
+	border-color:#6e273e;
 }
+/* ---------------------- */
+
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
-	background-color: #089e60 ;
+	background-color: #13afd6b9 ;
 }
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
 	background-color: #089e60 ;
