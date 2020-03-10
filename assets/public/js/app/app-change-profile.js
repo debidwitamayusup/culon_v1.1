@@ -22,9 +22,7 @@ function getDataProf(token){
         },
         url: base_url + 'api/Auth/AuthController/getdataupdate',
         success: function (r) {
-            console.log(token);
             var response = r;
-            console.log(response)
             $('#username').prop("disabled", true);
             $('#username').val(response.data.ID);
             $('#phone_number').val(response.data.PHONE);
@@ -37,9 +35,22 @@ function getDataProf(token){
     });
 }
 
+
 (function ($) {
     $('#btn-submit').click(function(){
-       $('#modalConfirmPassword').show();
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if($('#phone_number').val() == "" || $.trim($('#email').val()).length == 0){
+            alert("please fill all fields");
+        }
+        else if($.isNumeric($('#phone_number').val()) == false ||  $('#phone_number').val().length > 13){
+            alert("phone number must numbers and has 13 max length");
+        }else if(!emailReg.test($('#email').val())){
+            alert("format email not valid")
+        }else{
+            // $('#modalConfirmPassword').show();
+            console.log('primata pemberani');
+        }
     });
    
 })(jQuery);
