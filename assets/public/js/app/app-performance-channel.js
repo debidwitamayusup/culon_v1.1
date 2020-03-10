@@ -30,7 +30,7 @@ var v_params_this_year = m + '-' + n + '-' + (o - 1);
 
 // console.log(v_params_this_year);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-console.log(n);
+// console.log(n);
 $(document).ready(function () {
 	if(sessionParams){
 		// loadContent(v_params, v_params_this_year, 0);
@@ -351,13 +351,13 @@ function drawChartSumService(response) {
 						ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 						ctx.textAlign = 'center';
 						ctx.textBaseline = 'middle';
-						ctx.fillStyle = "#ffffff";
+						ctx.fillStyle = "#000000";
 
 						this.data.datasets.forEach(function (dataset, i) {
 							var meta = chartInstance.controller.getDatasetMeta(i);
 							meta.data.forEach(function (bar, index) {
 								var data = addCommas(dataset.data[index]) + ' seconds';
-								ctx.fillText(data, bar._model.x - 150, bar._model.y);
+								ctx.fillText(data, (bar._model.x - bar._model.x) + 80, bar._model.y - 30);
 							});
 						});
 					}
