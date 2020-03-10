@@ -919,19 +919,7 @@
 
             //token
             $data = $this->module_model->get_datareportTraffic($tid,$d_start,$d_end,$meth, $amt, $page);
-            // print_r($data);
-            // exit;
-            // print_r($data[0]['DATA'][0]['CHANNEL_NAME']);
-
-            
-            // // for($char = 'A';$char != 'AA';$char++)
-            // // {
-            // //     print_r($char);
-            // // }
-            // exit;
-
-            // for tanggal -> $data[0]['TANGGAL']
-            // for 
+           
 
             if ($data) {
                 $spreadsheet = new Spreadsheet();
@@ -1134,8 +1122,8 @@
                 ->setCellValue('C'.$i, $datas->AGENTNAME)
                 ->setCellValue('D'.$i, $datas->SKILLNAME)
                 ->setCellValue('E'.$i, strval(number_format($datas->OFFERED,0,'.',',')))
-                ->setCellValue('F'.$i, ' -')
-                ->setCellValue('G'.$i, ' -')
+                ->setCellValue('F'.$i, '-')
+                ->setCellValue('G'.$i, '-')
                 ->setCellValue('H'.$i, $datas->AHT)
                 ->setCellValue('I'.$i, $datas->ART)
                 ->setCellValue('J'.$i, $datas->AST)
@@ -1186,6 +1174,175 @@
                             ], REST_Controller::HTTP_OK);
             }
             else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Report Storing Failed!',
+                    'Link'    => false
+                        ], REST_Controller::HTTP_OK);
+            }
+        }
+
+        public function EXPORTOPS_post()
+        {
+
+            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $d_start = $this->security->xss_clean($this->input->post('start_date'));
+            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $meth = 'excel';
+            $name = $this->security->xss_clean($this->input->post('name'));
+
+            $data = $this->module_model->get_datareportOPS($tid,$d_start,$d_end,$meth);
+            $data2 = $this->module_model->get_datareportOPS2($tid,$d_start,$d_end,$meth);
+
+            if($data)
+            {
+                $spreadsheet = new Spreadsheet();
+               
+                $spreadsheet->getProperties()->setCreator('INFOMEDIA')
+                ->setLastModifiedBy('INFOMEDIA')
+                ->setTitle('Office 2007 XLSX Document')
+                ->setSubject('Office 2007 XLSX Document')
+                ->setDescription('document for Office 2007 XLSX, generated using PHP classes.')
+                ->setKeywords('office 2007 openxml php')
+                ->setCategory('result file');
+
+                if (!$tid){
+                    $tid = 'All Tenant';
+                }
+
+                $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A1','Summary Operation Performance by date - '.$tid)
+                ->setCellValue('A2','Export Time ')
+                ->setCellValue('A3','Export By ')
+                ->setCellValue('B2',date('d-m-Y H:i:s'))
+                ->setCellValue('B3', $name)
+                ->setCellValue('C2','Filter Start ')
+                ->setCellValue('C3','Filter End ')
+                ->setCellValue('D2', $d_start)
+                ->setCellValue('D3', $d_end)
+                ->setCellValue('A4', 'NO')
+                ->setCellValue('B4', 'TANGGAL')
+                ->setCellValue('C4', 'COF')
+                ->setCellValue('D4', 'ART')
+                ->setCellValue('E4', 'AHT')
+                ->setCellValue('F4', 'AST')
+                ->setCellValue('G4', 'SCR')
+                ;
+
+                $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
+                $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:G4')->applyFromArray($this->ss_formatter('header'));
+
+                $i=5; 
+                foreach($data as $datas) {
+
+                    $spreadsheet->setActiveSheetIndex(0)
+                    ->setCellValue('A'.$i, $i-4)
+                    ->setCellValue('B'.$i, $datas->TANGGAL)
+                    ->setCellValue('c'.$i, strval(number_format($datas->OFFERED,0,',','.')))
+                    ->setCellValue('D'.$i, $datas->ART)
+                    ->setCellValue('E'.$i, $datas->AHT)
+                    ->setCellValue('F'.$i, $datas->AST)
+                    ->setCellValue('G'.$i, round($datas->SCR,2).'%')
+                    ;
+                    $i++;
+                }
+                $x = $i-1;
+                    $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                    $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
+                    $spreadsheet->getActiveSheet()->getStyle('A5:G'.$x)->applyFromArray($this->ss_formatter('body'));
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$x);
+
+                    $spreadsheet->getActiveSheet()->setTitle('SUMM DATE -  '.date('d-m-Y H'));
+                    $spreadsheet->setActiveSheetIndex(0);
+
+                #region : trial
+                    $spreadsheet->createSheet();
+
+                    $spreadsheet->setActiveSheetIndex(1)
+                    ->setCellValue('A1','Summary Operation Performance by skill - '.$tid)
+                    ->setCellValue('A2','Export Time ')
+                    ->setCellValue('A3','Export By ')
+                    ->setCellValue('B2',date('d-m-Y H:i:s'))
+                    ->setCellValue('B3', $name)
+                    ->setCellValue('C2','Filter Start ')
+                    ->setCellValue('C3','Filter End ')
+                    ->setCellValue('D2', $d_start)
+                    ->setCellValue('D3', $d_end)
+                    ->setCellValue('A4', 'NO')
+                    ->setCellValue('B4', 'SKILL')
+                    ->setCellValue('C4', 'COF')
+                    ->setCellValue('D4', 'ART')
+                    ->setCellValue('E4', 'AHT')
+                    ->setCellValue('F4', 'AST')
+                    ->setCellValue('G4', 'SCR')
+                    ;
+
+                    $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
+                    $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
+                    $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
+                    $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
+                    $spreadsheet->getActiveSheet()->getStyle('A4:G4')->applyFromArray($this->ss_formatter('header'));
+
+                    $i=5; 
+                    foreach($data2 as $datas) {
+
+                        $spreadsheet->setActiveSheetIndex(1)
+                        ->setCellValue('A'.$i, $i-4)
+                        ->setCellValue('B'.$i, $datas->SKILLNAME)
+                        ->setCellValue('c'.$i, strval(number_format($datas->OFFERED,0,',','.')))
+                        ->setCellValue('D'.$i, $datas->ART)
+                        ->setCellValue('E'.$i, $datas->AHT)
+                        ->setCellValue('F'.$i, $datas->AST)
+                        ->setCellValue('G'.$i, round($datas->SCR,2).'%')
+                        ;
+                        $i++;
+                    }
+                    $x = $i-1;
+                        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+                        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+                        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+                        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+                        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+
+                        $spreadsheet->getActiveSheet()->getStyle('A5:G'.$x)->applyFromArray($this->ss_formatter('body'));
+                        $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$x);
+
+                        $spreadsheet->getActiveSheet()->setTitle('SUMM SKILL - '.date('d-m-Y H'));
+                        $spreadsheet->setActiveSheetIndex(0);
+
+
+                #endregion :trial
+
+                    $filename = $name.'OPS-'.date('d-m-Y H').'.xlsx';
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename='.$filename);
+                    header('Cache-Control: max-age=0');
+                    header('Cache-Control: max-age=1');
+                    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); 
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
+                    header('Cache-Control: cache, must-revalidate'); 
+                    header('Pragma: public'); 
+                    $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer->save($path.$filename);
+                        //$writer->save('php://output');
+                    $res = base_url().'public/reportdata/'.$filename;
+                        
+                    $this->response([
+                        'status'  => TRUE,
+                        'message' => 'Report Stored!',
+                        'Link'    => $res
+                            ], REST_Controller::HTTP_OK);
+            }
+            else
+            {
                 $this->response([
                     'status'  => FALSE,
                     'message' => 'Report Storing Failed!',

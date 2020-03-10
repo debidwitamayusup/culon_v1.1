@@ -33,7 +33,7 @@ class AuthController extends REST_Controller {
     //not needed
     public function doLogout_post(){
 
-       // $this->session->sess_destroy();
+       //$token = $_SERVER['HTTP_TOKEN'];
     
        if(!$this->input->post('username'))
        {
@@ -209,10 +209,11 @@ class AuthController extends REST_Controller {
 
         $email = $this->security->xss_clean($this->input->post('email'));
         $username = $this->security->xss_clean($this->input->post('username'));
+        $pass = $this->security->xss_clean($this->input->post('password'));
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $image = $this->security->xss_clean($this->input->post('image'));
 
-        $res = $this->module_model->update_prof($token,$username,$email,$phone,$image);
+        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$image);
 
         if ($res) {
             $this->response([
