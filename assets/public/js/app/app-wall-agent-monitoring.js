@@ -61,7 +61,7 @@ function drawTableAgentMonitoring(tenant_id){
 			{ className: "text-center", targets: 1 },
             { className: "text-left", targets: 2 },
             { className: "text-left", target: 3},
-			{ className: "text-center", targets: 4 },
+			{ className: "text-left", targets: 4 },
 			{ className: "text-right", targets: 5 },
 			{ className: "text-right", targets: 6 },
 			{ className: "text-center", targets: 7 },

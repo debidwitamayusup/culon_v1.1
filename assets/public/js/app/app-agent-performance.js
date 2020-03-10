@@ -371,7 +371,7 @@ function drawTable(response){
     if(response.data.length != 0){
         response.data.forEach(function (value, index) {
             $('#tableSkill').find('tbody').append('<tr>'+
-            '<td class="text-center">'+value.SKILLNAME+'</td>'+
+            '<td class="text-left">'+value.SKILLNAME+'</td>'+
             '<td class="text-right">'+value.AHT+'</td>'+
             '<td class="text-right">'+value.ART+'</td>'+
             '<td class="text-right">'+value.AST+'</td>'+
