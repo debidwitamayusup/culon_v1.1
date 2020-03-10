@@ -40,6 +40,7 @@ $(document).ready(function () {
                 if(r.status) {
                     // sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
                     localStorage.setItem('Auth-infomedia',JSON.stringify(r.data))
+                    localStorage.setItem('Auth-token',JSON.stringify(r.token))
                     window.location = base_url+'main/v_home'
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
