@@ -182,19 +182,17 @@ function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
     $("#filter-loader").fadeOut("slow");
 }
 
-function exportTablePerformOps(tenant_id, channel_id, month, name){
+function exportTablePerformOps(tenant_id, start_date, end_date, name){
     // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
     $("#filter-loader").fadeIn("slow");
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTSPO',
+        url: base_url + 'api/Reporting/ReportController/EXPORTOPS',
         data: {
             tenant_id: tenant_id,
-            channel_id: channel_id,
-            month: month,
-            name: name,
-            channel_name: channelToName(channel_id),
-            month_name: monthNumToName(month)
+            start_date: start_date,
+            end_date: end_date,
+            name: name
         },
 
         success: function (r) {
@@ -257,12 +255,12 @@ function setDatePicker() {
 
     $('#btn-export').click(function(){
         // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-        exportTablePerformOps(tenantFromFilter, channelFromFilter, monthFromFilter, sessionParams.NAME);
+        exportTablePerformOps(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
     });
 
     $('#btn-go').click(function(){
-        channelFromFilter = $('#channel_name').val();
-        monthFromFilter = $('#month_name').val();
+        startDateFromFilter = $('#start-date').val();
+        endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
         drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
         drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
