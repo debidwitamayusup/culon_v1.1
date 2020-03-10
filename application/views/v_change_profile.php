@@ -53,7 +53,7 @@
                                     </div><input type="text" class="form-control border-input2 font12" id="email"
                                         placeholder="yourname@infomedia.co.id" name="email">
                                 </div>
-                                <div class="error-message">Password is a required field.</div>
+                                <div class="error-message">Email is a required field.</div>
                             </div>
 
                             <!-- password -->
@@ -98,14 +98,15 @@
 			</div>
 			<div class="modal-body text-center">
 				<div class="col-sm-auto">
-					<div class="input-group border-input-group">
+					<div class="input-group border-input-group error">
 						<div class="input-group-prepend">
 							<div class="input-group-text border-input">
 								<i class="fa fa-lock tx-16 lh-0 op-6"></i>
 							</div>
 						</div><input type="password" class="form-control border-input2 font12" id="password"
 							placeholder="Password" name="password">
-					</div>
+                    </div>
+                    <div class="error-message">Email is a required field.</div>
 				</div>
 
 				<div class="text-center mb-5 mt-5">
