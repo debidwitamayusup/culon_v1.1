@@ -213,7 +213,7 @@ class AuthController extends REST_Controller {
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $image = $this->security->xss_clean($this->input->post('image'));
 
-        $res = $this->module_model->update_prof($token,$username,$email,$phone,$password,$image);
+        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$image);
 
         if ($res) {
             $this->response([
