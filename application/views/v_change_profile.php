@@ -19,7 +19,7 @@
                             </div>
                             <!-- username -->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group border-input-group error">
+                                <div class="input-group border-input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-user tx-16 lh-0 op-6"></i>
@@ -28,24 +28,24 @@
                                     <input type="text" class="form-control border-input2 font12" id="username"
                                         placeholder="username" name="username">
                                 </div>
-                                <div class="error-message">Username is a required field.</div>
                             </div>
 
                             <!-- phone number-->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group border-input-group">
+                                <div class="input-group border-input-group error" id="phoneDiv">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-phone tx-16 lh-0 op-6"></i>
                                         </div>
                                     </div><input type="text" class="form-control border-input2 font12" id="phone_number"
-                                        placeholder="+628xx xxxx xxxx" name="phone_number">
+                                        placeholder="08xx xxxx xxxx" name="phone_number">
                                 </div>
+                                <div class="error-message" id="error-phone">phone number must only numbers and has 13 max length</div>
                             </div>
 
                             <!-- email -->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group border-input-group error">
+                                <div class="input-group border-input-group error" id="emailDiv">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-envelope tx-16 lh-0 op-6"></i>
@@ -53,7 +53,7 @@
                                     </div><input type="text" class="form-control border-input2 font12" id="email"
                                         placeholder="yourname@infomedia.co.id" name="email">
                                 </div>
-                                <div class="error-message">Email is a required field.</div>
+                                <div class="error-message" id="error-email">format email not valid</div>
                             </div>
 
                             <!-- password -->
@@ -98,7 +98,7 @@
 			</div>
 			<div class="modal-body text-center">
 				<div class="col-sm-auto">
-					<div class="input-group border-input-group error">
+					<div class="input-group border-input-group error" id="passwordDiv">
 						<div class="input-group-prepend">
 							<div class="input-group-text border-input">
 								<i class="fa fa-lock tx-16 lh-0 op-6"></i>
@@ -106,7 +106,7 @@
 						</div><input type="password" class="form-control border-input2 font12" id="password"
 							placeholder="Password" name="password">
                     </div>
-                    <div class="error-message">Email is a required field.</div>
+                    <div class="error-message" id="error-password">Password is missmatch</div>
 				</div>
 
 				<div class="text-center mb-5 mt-5">
