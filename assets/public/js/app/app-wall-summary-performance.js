@@ -177,7 +177,7 @@ function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
     $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 228;
+    ctx.height = 245;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -311,14 +311,14 @@ function drawBarLayanan(response){
                 padding: {
                     left: 5,
                     right: 12,
-                    top:0,
+                    top:5,
                     bottom: 0
                 }
             },
             title: {
-                display: true,
-                text: 'Traffic by Layanan',
-                fontSize:14
+                display: false,
+                // text: 'Traffic by Layanan',
+                // fontSize:14
             },
             animation: {
                 duration: 10,
@@ -336,7 +336,7 @@ function drawBarLayanan(response){
                 xAxes: [{
                     stacked: true,
                     gridLines: {
-                        display: true
+                        display: false
                     },
                     ticks: {
                         fontSize: 10,
