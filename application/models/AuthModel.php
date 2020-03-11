@@ -261,6 +261,168 @@ Class AuthModel extends CI_Model {
             return FALSE;
     }
 
+    public function userdata()
+    {
+        $this->db->select('m_user.userid AS ID,m_user.name as NAME,m_user.phone as PHONE,m_user.email as EMAIL, m_user.userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'USERNAME' => $data->ID,
+                    'NAME' => $data->NAME,
+                    'LEVEL' => $data->PREVILAGE,
+                    'PHONE' => $data->PHONE,
+                    'MAIL' => $data->EMAIL
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
+    public function adduser($username,$name,$phone,$email,$previlage)
+    {
+
+        $pwd = '8888'.substr($username,0,2).substr($phone,6,2).substr($previlage,0,2);
+        $haspwd = md5($pwd);
+
+        $data = array(
+            'userid' => $username,
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'password' => $haspwd,
+            'userlevel' => $previlage
+        ); //$this->db->insert_id();
+        $ins =  $this->db->insert('m_user',$data);
+
+        if($ins)
+        {
+            //where inserted do !
+            $content = array(
+                'username'          => $username,
+                'password'          => $pwd,
+                'previlage'     => $previlage
+            );
+
+            return $content;
+        }
+
+        return FALSE;
+    }
+
+    public function changeuser($username,$name,$phone,$email,$previlage)
+    {
+
+        $data = array(
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'userlevel' => $previlage
+        ); 
+
+        $this->db->set($data);
+        $this->db->where('userid', $username);
+        $this->db->update('m_user');
+
+        if($this->db->affected_rows() == 1)
+        {
+            return true;
+        }
+
+        return FALSE;
+    }
+
+    public function tenantlist()
+    {
+        $this->db->select('tenant_id as id, tenant_name as name');
+        $this->db->from('m_tenant');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'tenant_id' => $data->id,
+                    'tenant_name' => $data->name
+                );
+            }
+            return $result;
+        }
+        return FALSE;
+    }
+
+    public function assigntenanttouser($username,$tenant)
+    {
+        $data = array(
+            'userid' => $username,
+            'tenant_id' => $tenant
+        ); 
+
+        $this->db->set($data);
+        $this->db->insert('m_akses');
+
+        if($this->db->affected_rows() == 1)
+        {
+            return true;
+        }
+
+        return FALSE;
+    }
+
+    #region additional funct
+
+    function generate_token($usr){
+        
+        $this->db->select('userid AS USERID, name as LONG_NAME,phone as TELPON, userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $this->db->where('userid', $usr);
+
+        $query = $this->db->get();
+
+        if($query->num_rows()==1) 
+        {
+            $data    = $query->row();
+            $token = hash('gost',$data->USERID.$data->TELPON.date('his'));
+
+            $this->db->where('userid', $usr);
+            $this->db->update('m_user', array('token' => $token));
+
+            return $token;
+        }
+        return FALSE;
+    }
+
+    function userchecker($username){
+        $this->db->select('m_user.userid AS ID');
+        $this->db->from('m_user');
+        $this->db->where('userid', $username);
+        
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return false;
+        }
+        return true;
+    }
+
+    function admin_checker($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $this->db->where('m_user.token', $token);
+        $this->db->where('m_user.userlevel = "admin"');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return true;
+        }
+        return false;
+    }
+
     function getdataupdate($token)
     {
         $this->db->select('m_user.userid AS ID, m_user.email AS EMAIL, m_user.phone as PHONE');
@@ -309,29 +471,6 @@ Class AuthModel extends CI_Model {
         }
 
         return false;
-    }
-
-    #region additional funct
-
-    function generate_token($usr){
-        
-        $this->db->select('userid AS USERID, name as LONG_NAME,phone as TELPON, userlevel AS PREVILAGE');
-        $this->db->from('m_user');
-        $this->db->where('userid', $usr);
-
-        $query = $this->db->get();
-
-        if($query->num_rows()==1) 
-        {
-            $data    = $query->row();
-            $token = hash('gost',$data->USERID.$data->TELPON.date('his'));
-
-            $this->db->where('userid', $usr);
-            $this->db->update('m_user', array('token' => $token));
-
-            return $token;
-        }
-        return FALSE;
     }
 
     #endregion

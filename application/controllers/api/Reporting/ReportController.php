@@ -435,34 +435,35 @@
         }
 
         // Export ke excel
-        public function EXPORTSC_post()
+        public function EXPORTSC_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_time'));
-            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportSC($tid,$t_start,$t_end,$meth);
         
             if ($data) {
             $spreadsheet = new Spreadsheet();
              #region - 1st part sub image to spreadsheet
-                $chart = $this->security->xss_clean($this->input->post('chart_img'));
-                $imageData = base64_decode($chart);
-                $chart_img = imagecreatefromstring($imageData);
-                $white = imagecolorallocate($chart_img, 255, 255, 255);
-                imagecolortransparent($chart_img, $white);
-                imagesavealpha($chart_img,true);
-                imagealphablending($chart_img, true); 
+                // $chart = $this->security->xss_clean($this->input->get('chart_img'));
+                // $imageData = base64_decode($chart);
+                // $chart_img = imagecreatefromstring($imageData);
+                // $white = imagecolorallocate($chart_img, 255, 255, 255);
+                // imagecolortransparent($chart_img, $white);
+                // imagesavealpha($chart_img,true);
+                // imagealphablending($chart_img, true); 
             
-                $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-                $drawing->setName('Chart');
-                $drawing->setDescription('Chart');
-                $drawing->setCoordinates('H2');
-                $drawing->setImageResource($chart_img);
-                $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-                $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
+                // $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                // $drawing->setName('Chart');
+                // $drawing->setDescription('Chart');
+                // $drawing->setCoordinates('H2');
+                // $drawing->setImageResource($chart_img);
+                // $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                // $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);       
             #endregion 
            $spreadsheet->getProperties()->setCreator('INFOMEDIA')
             ->setLastModifiedBy('INFOMEDIA')
@@ -477,7 +478,7 @@
             }
 
             $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1','Summary Performance Operation - '.$tid)
+            ->setCellValue('A1','Summary Performance Operation - '.$tin)
             ->setCellValue('A2','Export Time ')
             ->setCellValue('A3','Export By ')
             ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -495,7 +496,7 @@
             ;
 
             #region - 2nd part sub image to spreadsheet
-                $drawing->setWorksheet($spreadsheet->getActiveSheet());
+                // $drawing->setWorksheet($spreadsheet->getActiveSheet());
             #endregion           
 
             $spreadsheet->getActiveSheet()->mergeCells('A1:G1');
@@ -533,7 +534,7 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.' SC Report '.date('d-m-Y H').'.xlsx';
+                $filename = $name.' SC Report '.date('d-m-Y H').'.xls';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                 header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
@@ -543,37 +544,38 @@
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
 
-                $path = FCPATH.'public/reportdata/';
-                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                $writer->save($path.$filename);
-                //$writer->save('php://output');
-                $res = base_url().'public/reportdata/'.$filename;
+                // $path = FCPATH.'public/reportdata/';
+                $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                // $writer->save($path.$filename);
+                $writer->save('php://output');
+                // $res = base_url().'public/reportdata/'.$filename;
 
                 
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
                         }
-                        else {
-                            $this->response([
-                                'status'  => FALSE,
-                                'message' => 'Report Storing Failed!',
-                                'Link'    => false
-                                    ], REST_Controller::HTTP_OK);
-                        }
+                        // else {
+                        //     $this->response([
+                        //         'status'  => FALSE,
+                        //         'message' => 'Report Storing Failed!',
+                        //         'Link'    => false
+                        //             ], REST_Controller::HTTP_OK);
+                        // }
         }
 
-        public function EXPORTSPO_post()
+        public function EXPORTSPO_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $chn = $this->security->xss_clean($this->input->post('channel_id'));
-            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
-            $mnth = $this->security->xss_clean($this->input->post('month'));
-            $mnth2 = $this->security->xss_clean($this->input->post('month_name'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $chn = $this->security->xss_clean($this->input->get('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $mnth = $this->security->xss_clean($this->input->get('month'));
+            $mnth2 = $this->security->xss_clean($this->input->get('month_name'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportSPO($tid,$chn,$mnth,$meth);
             if($data)
@@ -593,7 +595,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Performance Operation - '.$tid)
+                ->setCellValue('A1','Summary Performance Operation - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -647,7 +649,8 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.'SP Operation Report'.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'SP Operation Report'.date('d-m-Y H').'.xls';
+                    // header('Content-Type', 'application/vnd.ms-excel');
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -658,37 +661,42 @@
                     header('Pragma: public'); 
                  
 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    //$response->headers->set('Content-Type', 'application/vnd.ms-excel');
+                    //$response->headers->set('Content-Disposition', 'attachment;filename="ExportScan.xls"');
+                    //$response->headers->set('Cache-Control','max-age=0');
+                    //return $response;
+                    // $res = base_url().'public/reportdata/'.$filename;
 
                 
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
-                }
-            else {
-                    $this->response([
-                        'status'  => FALSE,
-                        'message' => 'Report Storing Failed!',
-                        'Link'    => false
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
             }
+            // else {
+            //         $this->response([
+            //             'status'  => FALSE,
+            //             'message' => 'Report Storing Failed!',
+            //             'Link'    => false
+            //                 ], REST_Controller::HTTP_OK);
+            // }
             
         }
 
-        public function EXPORTSPA_post()
+        public function EXPORTSPA_get()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_time'));
-            $t_end = $this->security->xss_clean($this->input->post('end_time'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $t_start = $this->security->xss_clean($this->input->get('start_time'));
+            $t_end = $this->security->xss_clean($this->input->get('end_time'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportSPA($tid,$t_start,$t_end,$meth);
             if($data)
@@ -708,7 +716,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Performance Operation - '.$tid)
+                ->setCellValue('A1','Summary Performance Operation - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -766,7 +774,7 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('SP Agent -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.'SP Agent Report '.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'SP Agent Report '.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -775,37 +783,38 @@
                     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
                     //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $res = base_url().'public/reportdata/'.$filename;
                     
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
             }
-            else
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else
+            // {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
         }
 
-        public function EXPORTKIP_post()
+        public function EXPORTKIP_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $cid = $this->security->xss_clean($this->input->post('channel_id'));
-            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $cid = $this->security->xss_clean($this->input->get('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $d_start = $this->security->xss_clean($this->input->get('start_date'));
+            $d_end = $this->security->xss_clean($this->input->get('end_date'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportKIP($tid,$cid,$d_start,$d_end,$meth);
             if($data)
@@ -825,7 +834,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary KIP - '.$tid)
+                ->setCellValue('A1','Summary KIP - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -872,7 +881,7 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('SP Operation -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.'Summary KIP Report'.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'Summary KIP Report'.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -883,38 +892,39 @@
                     header('Pragma: public'); 
                  
 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
 
                 
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
                 }
-            else {
-                    $this->response([
-                        'status'  => FALSE,
-                        'message' => 'Report Storing Failed!',
-                        'Link'    => false
-                            ], REST_Controller::HTTP_OK);
-            }
+            // else {
+            //         $this->response([
+            //             'status'  => FALSE,
+            //             'message' => 'Report Storing Failed!',
+            //             'Link'    => false
+            //                 ], REST_Controller::HTTP_OK);
+            // }
             
         }
 
-        public function EXPORTTRF_post()
+        public function EXPORTTRF_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
             
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
-            $name = $this->security->xss_clean($this->input->post('name'));
-            $amt = $this->security->xss_clean($this->input->post('ammount'));
-            $page = $this->security->xss_clean($this->input->post('page'));
+            $d_start = $this->security->xss_clean($this->input->get('start_date'));
+            $d_end = $this->security->xss_clean($this->input->get('end_date'));
+            $name = $this->security->xss_clean($this->input->get('name'));
+            $amt = $this->security->xss_clean($this->input->get('ammount'));
+            $page = $this->security->xss_clean($this->input->get('page'));
             $meth = 'data';
 
             //token
@@ -937,7 +947,7 @@
                 }
     
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Traffic - '.$tid)
+                ->setCellValue('A1','Summary Traffic - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1022,7 +1032,7 @@
     
                     $spreadsheet->getActiveSheet()->setTitle('S Channel -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.' SC Report '.date('d-m-Y H').'.xlsx';
+                    $filename = $name.' SC Report '.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1032,36 +1042,37 @@
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
     
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
     
                     
-                        $this->response([
-                            'status'  => TRUE,
-                            'message' => 'Report Stored!',
-                            'Link'    => $res
-                                ], REST_Controller::HTTP_OK);
+                        // $this->response([
+                        //     'status'  => TRUE,
+                        //     'message' => 'Report Stored!',
+                        //     'Link'    => $res
+                        //         ], REST_Controller::HTTP_OK);
                             }
-                            else {
-                                $this->response([
-                                    'status'  => FALSE,
-                                    'message' => 'Report Storing Failed!',
-                                    'Link'    => false
-                                        ], REST_Controller::HTTP_OK);
-                            }
+                            // else {
+                            //     $this->response([
+                            //         'status'  => FALSE,
+                            //         'message' => 'Report Storing Failed!',
+                            //         'Link'    => false
+                            //             ], REST_Controller::HTTP_OK);
+                            // }
         }
 
-        public function EXPORTAP_post()
+        public function EXPORTAP_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
-            $skillz = $this->security->xss_clean($this->input->post('skill'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $d_start = $this->security->xss_clean($this->input->get('start_date'));
+            $d_end = $this->security->xss_clean($this->input->get('end_date'));
+            $skillz = $this->security->xss_clean($this->input->get('skill'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportAP($tid,$d_start,$d_end,$skillz,$meth);
             // print_r($data);
@@ -1082,7 +1093,7 @@
             }
 
             $spreadsheet->setActiveSheetIndex(0)
-            ->setCellValue('A1','Agent Performance Operation - '.$tid)
+            ->setCellValue('A1','Agent Performance Operation - '.$tin)
             ->setCellValue('A2','Export Time ')
             ->setCellValue('A3','Export By ')
             ->setCellValue('B2', date('d-m-Y H:i:s'))
@@ -1151,7 +1162,7 @@
 
                 $spreadsheet->getActiveSheet()->setTitle('Agent Perform -  '.date('d-m-Y H'));
                 $spreadsheet->setActiveSheetIndex(0);
-                $filename = $name.' Agent Report '.date('d-m-Y H').'.xlsx';
+                $filename = $name.' Agent Report '.date('d-m-Y H').'.xls';
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                 header('Content-Disposition: attachment;filename='.$filename);
                 header('Cache-Control: max-age=0');
@@ -1161,35 +1172,37 @@
                 header('Cache-Control: cache, must-revalidate'); 
                 header('Pragma: public'); 
 
-                $path = FCPATH.'public/reportdata/';
-                $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                $writer->save($path.$filename);
-                $res = base_url().'public/reportdata/'.$filename;
+                // $path = FCPATH.'public/reportdata/';
+                $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                // $writer->save($path.$filename);
+                $writer->save('php://output');
+                // $res = base_url().'public/reportdata/'.$filename;
 
                 
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
             }
-            else {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
         }
 
-        public function EXPORTOPS_post()
+        public function EXPORTOPS_get()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $d_start = $this->security->xss_clean($this->input->get('start_date'));
+            $d_end = $this->security->xss_clean($this->input->get('end_date'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportOPS($tid,$d_start,$d_end,$meth);
             $data2 = $this->module_model->get_datareportOPS2($tid,$d_start,$d_end,$meth);
@@ -1211,7 +1224,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Operation Performance by date - '.$tid)
+                ->setCellValue('A1','Summary Operation Performance by date - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1320,7 +1333,7 @@
 
                 #endregion :trial
 
-                    $filename = $name.'OPS-'.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'OPS-'.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1329,26 +1342,26 @@
                     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                        //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                        $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
                         
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
             }
-            else
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else
+            // {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
         }
 
         
@@ -1386,16 +1399,17 @@
         }
 
 
-        public function EXPORTSCLOSE_post()
+        public function EXPORTSCLOSE_get()
         {
 
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $t_start = $this->security->xss_clean($this->input->post('start_date'));
-            $t_end = $this->security->xss_clean($this->input->post('end_date'));
-            $chn = $this->security->xss_clean($this->input->post('channel_id'));
-            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $t_start = $this->security->xss_clean($this->input->get('start_date'));
+            $t_end = $this->security->xss_clean($this->input->get('end_date'));
+            $chn = $this->security->xss_clean($this->input->get('channel_id'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportSCloseTicket($tid,$t_start,$t_end,$chn,$meth);
             $dataPerChn = $this->module_model->get_datareportSCloseTicket_PerCh($tid,$t_start,$t_end,$chn,$meth);
@@ -1405,25 +1419,25 @@
             {
                 $spreadsheet = new Spreadsheet();
 
-                $chart = $this->security->xss_clean($this->input->post('chart_img'));
+                // $chart = $this->security->xss_clean($this->input->post('chart_img'));
 
-                if($chart)
-                {
-                    $imageData = base64_decode($chart);
-                    $chart_img = imagecreatefromstring($imageData);
-                    $white = imagecolorallocate($chart_img, 255, 255, 255);
-                    imagecolortransparent($chart_img, $white);
-                    imagesavealpha($chart_img,true);
-                    imagealphablending($chart_img, true); 
+                // if($chart)
+                // {
+                //     $imageData = base64_decode($chart);
+                //     $chart_img = imagecreatefromstring($imageData);
+                //     $white = imagecolorallocate($chart_img, 255, 255, 255);
+                //     imagecolortransparent($chart_img, $white);
+                //     imagesavealpha($chart_img,true);
+                //     imagealphablending($chart_img, true); 
                 
-                    $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
-                    $drawing->setName('Chart');
-                    $drawing->setDescription('Chart');
-                    $drawing->setCoordinates('H2');
-                    $drawing->setImageResource($chart_img);
-                    $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
-                    $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
-                }
+                //     $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing();
+                //     $drawing->setName('Chart');
+                //     $drawing->setDescription('Chart');
+                //     $drawing->setCoordinates('H2');
+                //     $drawing->setImageResource($chart_img);
+                //     $drawing->setRenderingFunction(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::RENDERING_PNG);
+                //     $drawing->setMimeType(\PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing::MIMETYPE_DEFAULT);
+                // }
 
                 $spreadsheet->getProperties()->setCreator('INFOMEDIA')
                 ->setLastModifiedBy('INFOMEDIA')
@@ -1438,7 +1452,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Close Ticket - '.$tid)
+                ->setCellValue('A1','Summary Close Ticket - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1507,15 +1521,15 @@
                     $spreadsheet->getActiveSheet()->getStyle(''.$indek.'')->applyFromArray($this->ss_formatter('body'));
                     // $spreadsheet->getActiveSheet()->setAutoFilter(''.$indekfilter.'');
                     
-                    if($chart)
-                    {
-                        $drawing->setWorksheet($spreadsheet->getActiveSheet());
-                    }
+                    // if($chart)
+                    // {
+                    //     $drawing->setWorksheet($spreadsheet->getActiveSheet());
+                    // }
                     
 
                     $spreadsheet->getActiveSheet()->setTitle('ST Close -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.'Summary Ticket Close '.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'Summary Ticket Close '.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1524,37 +1538,38 @@
                     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                        //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                        $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
                         
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
             }
-            else
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else
+            // {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
         }
 
-        public function EXPORTSIMONTH_post()
+        public function EXPORTSIMONTH_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $month = $this->security->xss_clean($this->input->post('month'));
-            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
-            $monthName = $this->security->xss_clean($this->input->post('month_name'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $month = $this->security->xss_clean($this->input->get('month'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
+            $monthName = $this->security->xss_clean($this->input->get('month_name'));
             $meth = 'excel';
-            $chn = $this->security->xss_clean($this->input->post('channel'));
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $chn = $this->security->xss_clean($this->input->get('channel'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->datareportSIntervalMonth($tid,$chn,$month,$meth);
             // print_r($data);
@@ -1578,7 +1593,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Interval - '.$tid)
+                ->setCellValue('A1','Summary Interval - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1646,7 +1661,7 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('S Inval Month-  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.' Summary Inval Month Report '.date('d-m-Y H').'.xlsx';
+                    $filename = $name.' Summary Inval Month Report '.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1655,27 +1670,27 @@
                     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
                     
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
                     
             }
-            else
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else
+            // {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
 
             
         }
@@ -1683,6 +1698,7 @@
         public function EXPORTAL_get()
         {
             $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
             $d_start = $this->security->xss_clean($this->input->get('start_date'));
             $d_end = $this->security->xss_clean($this->input->get('end_date'));
             $meth = 'excel';
@@ -1708,7 +1724,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Agent Log - '.$tid)
+                ->setCellValue('A1','Agent Log - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1788,7 +1804,7 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('Agent Log -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.'Agent Log'.date('d-m-Y H').'.xlsx';
+                    $filename = $name.'Agent Log'.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1800,7 +1816,7 @@
                  
 
                     // $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
                     // $writer->save($path.$filename);
                     $writer->save('php://output');
                     // $res = base_url().'public/reportdata/'.$filename;
@@ -1808,8 +1824,8 @@
                 
                     // $this->response([
                     //     'status'  => TRUE,
-                    //     'message' => 'Report Stored!'
-                    //     // 'Link'    => $res
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
                     //         ], REST_Controller::HTTP_OK);
                 }
             // else {
@@ -1824,15 +1840,16 @@
 #endregion debi
 
 #region :: risyad
-        public function EXPORTSI_post()
+        public function EXPORTSI_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $date = $this->security->xss_clean($this->input->post('tanggal'));
-            $interval = $this->security->xss_clean($this->input->post('interval'));
-            $chn2 = $this->security->xss_clean($this->input->post('channel_name'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $tin = $this->security->xss_clean($this->input->get('tenant_name'));
+            $date = $this->security->xss_clean($this->input->get('tanggal'));
+            $interval = $this->security->xss_clean($this->input->get('interval'));
+            $chn2 = $this->security->xss_clean($this->input->get('channel_name'));
             $meth = 'excel';
-            $chn = $this->security->xss_clean($this->input->post('channel'));
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $chn = $this->security->xss_clean($this->input->get('channel'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportSInterval($tid,$chn,$interval,$date,$meth);
             // print_r($data);
@@ -1856,7 +1873,7 @@
                 }
 
                 $spreadsheet->setActiveSheetIndex(0)
-                ->setCellValue('A1','Summary Interval - '.$tid)
+                ->setCellValue('A1','Summary Interval - '.$tin)
                 ->setCellValue('A2','Export Time ')
                 ->setCellValue('A3','Export By ')
                 ->setCellValue('B2',date('d-m-Y H:i:s'))
@@ -1923,7 +1940,7 @@
 
                     $spreadsheet->getActiveSheet()->setTitle('S Interval -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
-                    $filename = $name.' Summary Interval Report '.date('d-m-Y H').'.xlsx';
+                    $filename = $name.' Summary Interval Report '.date('d-m-Y H').'.xls';
                     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                     header('Content-Disposition: attachment;filename='.$filename);
                     header('Cache-Control: max-age=0');
@@ -1932,27 +1949,27 @@
                     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); 
                     header('Cache-Control: cache, must-revalidate'); 
                     header('Pragma: public'); 
-                    $path = FCPATH.'public/reportdata/';
-                    $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $path = FCPATH.'public/reportdata/';
+                    $writer = IOFactory::createWriter($spreadsheet,'Xls');
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
                     
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!',
+                    //     'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
                     
             }
-            else
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Report Storing Failed!',
-                    'Link'    => false
-                        ], REST_Controller::HTTP_OK);
-            }
+            // else
+            // {
+            //     $this->response([
+            //         'status'  => FALSE,
+            //         'message' => 'Report Storing Failed!',
+            //         'Link'    => false
+            //             ], REST_Controller::HTTP_OK);
+            // }
 
             
         }
