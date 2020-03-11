@@ -20,7 +20,7 @@
                 'font' => [
                     'bold' => true,
                     'color' => [
-                        'argb' => 'FFFFFF',
+                        'rgb' => 'f2f2f2',
                     ]
                 ],
                 'alignment' => [
@@ -34,7 +34,7 @@
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
                     'startColor' => [
-                        'argb' => '777777',
+                        'rgb' => '404040',
                     ]
                     
                 ],

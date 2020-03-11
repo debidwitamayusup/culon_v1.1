@@ -336,6 +336,23 @@ Class AuthModel extends CI_Model {
         return FALSE;
     }
 
+    public function changeuserpwd($username)
+    {
+        $password = md5('infomedia');
+        
+
+        $this->db->set('password',$password);
+        $this->db->where('userid', $username);
+        $this->db->update('m_user');
+
+        if($this->db->affected_rows() == 1)
+        {
+            return true;
+        }
+
+        return FALSE;
+    }
+
     public function tenantlist()
     {
         $this->db->select('tenant_id as id, tenant_name as name');
