@@ -1680,13 +1680,13 @@
             
         }
 
-        public function EXPORTAL_post()
+        public function EXPORTAL_get()
         {
-            $tid = $this->security->xss_clean($this->input->post('tenant_id'));
-            $d_start = $this->security->xss_clean($this->input->post('start_date'));
-            $d_end = $this->security->xss_clean($this->input->post('end_date'));
+            $tid = $this->security->xss_clean($this->input->get('tenant_id'));
+            $d_start = $this->security->xss_clean($this->input->get('start_date'));
+            $d_end = $this->security->xss_clean($this->input->get('end_date'));
             $meth = 'excel';
-            $name = $this->security->xss_clean($this->input->post('name'));
+            $name = $this->security->xss_clean($this->input->get('name'));
 
             $data = $this->module_model->get_datareportAL($tid,$d_start,$d_end,$meth);
             // print_r($data);
@@ -1799,26 +1799,26 @@
                     header('Pragma: public'); 
                  
 
-                    $path = FCPATH.'public/reportdata/';
+                    // $path = FCPATH.'public/reportdata/';
                     $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
-                    $writer->save($path.$filename);
-                    //$writer->save('php://output');
-                    $res = base_url().'public/reportdata/'.$filename;
+                    // $writer->save($path.$filename);
+                    $writer->save('php://output');
+                    // $res = base_url().'public/reportdata/'.$filename;
 
                 
-                    $this->response([
-                        'status'  => TRUE,
-                        'message' => 'Report Stored!',
-                        'Link'    => $res
-                            ], REST_Controller::HTTP_OK);
+                    // $this->response([
+                    //     'status'  => TRUE,
+                    //     'message' => 'Report Stored!'
+                    //     // 'Link'    => $res
+                    //         ], REST_Controller::HTTP_OK);
                 }
-            else {
-                    $this->response([
-                        'status'  => FALSE,
-                        'message' => 'Report Storing Failed!',
-                        'Link'    => false
-                            ], REST_Controller::HTTP_OK);
-            }
+            // else {
+            //         $this->response([
+            //             'status'  => FALSE,
+            //             'message' => 'Report Storing Failed!',
+            //             'Link'    => false
+            //                 ], REST_Controller::HTTP_OK);
+            // }
             
         }
 #endregion debi

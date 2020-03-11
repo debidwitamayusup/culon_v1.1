@@ -151,35 +151,36 @@ function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
 }
 
 function exportTableAgentPerform(tenant_id, start_time, end_time, name){
-    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPA?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
     $("#filter-loader").fadeIn("slow");
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTAP',
-        data: {
-            tenant_id: tenant_id,
-            start_date: start_time,
-            end_date: end_time,
-            name: name
-        },
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTAP?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTAP',
+    //     data: {
+    //         tenant_id: tenant_id,
+    //         start_date: start_time,
+    //         end_date: end_time,
+    //         name: name
+    //     },
 
-        success: function (r) {
-            //dont parse response if using rest controller
-            // var response = JSON.parse(r);
-            var response = r;
-            if (response.status != false){
-                window.location = response.Link
-            }else{
-                alert("Can't Export Empty Table!");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
+    //     success: function (r) {
+    //         //dont parse response if using rest controller
+    //         // var response = JSON.parse(r);
+    //         var response = r;
+    //         if (response.status != false){
+    //             window.location = response.Link
+    //         }else{
+    //             alert("Can't Export Empty Table!");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("error");
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    // });
 }
 
 function setDatePicker() {
@@ -226,7 +227,7 @@ function setDatePicker() {
         tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
-        console.log(startDateFromFilter);
+        // console.log(startDateFromFilter);
         exportTableAgentPerform(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
     });
 

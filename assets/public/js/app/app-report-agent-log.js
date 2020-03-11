@@ -113,31 +113,32 @@ function callTableAgentLog(start_date, end_date, tenant_id){
 
 function exportTableAgentLog(tenant_id, start_date, end_date, name){
     $("#filter-loader").fadeIn("slow");
-    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTAL',
-        data: {
-            tenant_id: tenant_id,
-            start_date: start_date,
-            end_date: end_date,
-            name: name
-        }
-        ,
-        success: function (r) {
-            if (r.status != false){
-                window.location = r.Link;
-            }else{
-                alert("Can't Export Empty Data");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("can't export");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTAL?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name;
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTAL',
+    //     data: {
+    //         tenant_id: tenant_id,
+    //         start_date: start_date,
+    //         end_date: end_date,
+    //         name: name
+    //     }
+    //     ,
+    //     success: function (r) {
+    //         if (r.status != false){
+    //             window.location = r.Link;
+    //         }else{
+    //             alert("Can't Export Empty Data");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("can't export");
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    // });
 }
 
 function setDatePicker() {

@@ -183,35 +183,36 @@ function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
 }
 
 function exportTablePerformOps(tenant_id, start_date, end_date, name){
-    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSPO?tenant_id='+tenant_id+'&channel_id='+channel_id+'&month='+month+'&name='+name+'&month_name='+monthNumToName(month)+'&channel_name='+channelToName(channel_id)
     $("#filter-loader").fadeIn("slow");
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTOPS',
-        data: {
-            tenant_id: tenant_id,
-            start_date: start_date,
-            end_date: end_date,
-            name: name
-        },
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTOPS?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name;
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTOPS',
+    //     data: {
+    //         tenant_id: tenant_id,
+    //         start_date: start_date,
+    //         end_date: end_date,
+    //         name: name
+    //     },
 
-        success: function (r) {
-            //dont parse response if using rest controller
-            // var response = JSON.parse(r);
-            var response = r;
-            if (response.status != false){
-                window.location = response.Link
-            }else{
-                alert("Can't Export Empty Table!");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("error");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
+    //     success: function (r) {
+    //         //dont parse response if using rest controller
+    //         // var response = JSON.parse(r);
+    //         var response = r;
+    //         if (response.status != false){
+    //             window.location = response.Link
+    //         }else{
+    //             alert("Can't Export Empty Table!");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("error");
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    // });
 }
 
 function setDatePicker() {

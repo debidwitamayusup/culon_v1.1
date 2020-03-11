@@ -5,6 +5,7 @@ var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
+var tenantNameFromFilter = '';
 var v_start_date = '';
 var v_end_date = '';
 var pagingFilter = '';
@@ -208,9 +209,9 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     }
 
     indexDot = rangeWithDots.indexOf('...');
-    console.log('indexDot='+indexDot);
-    console.log(rangeWithDots);
-    console.log('rangewithdotlength= '+rangeWithDots.length);
+    // console.log('indexDot='+indexDot);
+    // console.log(rangeWithDots);
+    // console.log('rangewithdotlength= '+rangeWithDots.length);
     for (var k = 0; k < rangeWithDots.length; k++){
         if (k != indexDot){
             varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callTableSummaryTraffic('+"'"+tenant_id+"','"+start_date+"','"+end_date+"','"+$('#pagingFilter').val()+"','"+(rangeWithDots[k]-1)+"'"+')">'+rangeWithDots[k]+'</a></li>'
@@ -245,35 +246,36 @@ function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
     // return rangeWithDots;
 }
 
-function exportTableSumTraffic(start_date, end_date, tenant_id, name, ammount, page){
+function exportTableSumTraffic(start_date, end_date, tenant_id, name, ammount, page, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTTRF',
-        data: {
-            start_date: start_date,
-            end_date: end_date,
-            tenant_id: tenant_id,
-            name: name,
-            ammount: ammount,
-            page: page
-        }
-        ,
-        success: function (r) {
-            if (r.status != false){
-                window.location = r.Link;
-            }else{
-                alert("Can't Export Empty Data");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("can't export");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTTRF?start_date='+start_date+'&end_date='+end_date+'&tenant_id='+tenant_id+'&name='+name+'&ammount='+ammount+'&page='+page+'&tenant_name='+tenant_name;
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTTRF',
+    //     data: {
+    //         start_date: start_date,
+    //         end_date: end_date,
+    //         tenant_id: tenant_id,
+    //         name: name,
+    //         ammount: ammount,
+    //         page: page
+    //     }
+    //     ,
+    //     success: function (r) {
+    //         if (r.status != false){
+    //             window.location = r.Link;
+    //         }else{
+    //             alert("Can't Export Empty Data");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("can't export");
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    // });
 }
 
 function setDatePicker() {
@@ -325,6 +327,7 @@ function setDatePicker() {
         tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $("#end-date").val();
+        tenantNameFromFilter = $('#layanan_name').html();
         callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
     });
 
