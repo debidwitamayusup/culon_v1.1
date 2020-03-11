@@ -201,6 +201,7 @@ function drawSummTrafficByChannel(response){
                 display: false
             },
             tooltips: {
+                intersect: false,
                 callbacks: {
                     label: function (tooltipItem, data) {
                         var value = data_rate[tooltipItem.index];

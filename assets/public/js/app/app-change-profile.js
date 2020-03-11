@@ -11,6 +11,9 @@ $(document).ready(function () {
     }else{
         window.location = base_url
     }
+    $('#username').prop("disabled", true);
+    $('#phone_number').prop("disabled", true);
+    $('#email').prop("disabled", true);
     $('#error-phone').hide();
     $('#error-email').hide();
     $('#error-password').hide();
@@ -30,6 +33,8 @@ function getDataProf(token){
             var response = r;
             $('#username').prop("disabled", true);
             $('#username').val(response.data.ID);
+            $('#phone_number').prop("disabled", false);
+            $('#email').prop("disabled", false);
             $('#phone_number').val(response.data.PHONE);
             $('#email').val(response.data.EMAIL);
         },
@@ -64,7 +69,9 @@ function callChangeProfile(token,username, phone_number, email, password){
         error: function (r) {
             $('#error-password').show();
             $( "#passwordDiv" ).addClass( "error" );
-            $("#btn-confirm-password").attr('disabled', true);
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
             // alert(r.responseJSON.message);
         },
     });
@@ -108,13 +115,19 @@ function callChangeProfile(token,username, phone_number, email, password){
             $("#btn-confirm-password").attr('disabled', false);
     });
 
-    $('#btn-submit').click(function(){       
-        $('#modalConfirmPassword').modal('show');
+    $('#btn-submit').click(function(){
+        $('#modalConfirmPassword').modal({
+    		backdrop: 'static',
+    		keyboard: false
+		});
     });
 
     $('#btn-confirm-password').click(function(){
+        $(this).attr('disabled', true);
+        $(this).html('Processing...')
+        $('#password').attr('disabled', true);
+        $('#btn-cancel').attr('disabled', true);
         callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
-        // console.log('masuk primata pemberani')
     });
    
     $('#btn-cancel').click(function(){

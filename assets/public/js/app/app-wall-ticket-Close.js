@@ -95,7 +95,7 @@ function drawStackedBar(params, index, params_year, tenant_id) {
             setTimeout(function(){drawStackedBar('month', '10', '2019', $("#layanan_name").val());}, 5000);
             drawHorizontalChart(response);
 
-            console.log(response);
+            // console.log(response);
             
             var numberWithCommas = function (x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -103,7 +103,8 @@ function drawStackedBar(params, index, params_year, tenant_id) {
 
             var dataStacked = [];
             var datasetsStacked = "";
-
+            var indexTanggal = [];
+            var g= 0;
             response.data.forEach(function(value){
                 datasetsStacked = {
                     label: value.channel_name,
@@ -114,13 +115,19 @@ function drawStackedBar(params, index, params_year, tenant_id) {
                 },
                 dataStacked.push(datasetsStacked)
             })
-            
+
+            response.data[0].total_traffic.forEach(function(value){
+                    indexTanggal.push((g+1));
+                    g++;
+            });
+
+            // console.log(indexTanggal);
             var bar_ctx = document.getElementById('BarWallTicketCloseMonth');
 
             var bar_chart = new Chart(bar_ctx, {
                 type: 'bar',
                 data: {
-                    labels: response.dates,
+                    labels: indexTanggal,
                     datasets: dataStacked,
                 },
                 options: {
@@ -190,7 +197,7 @@ function drawHorizontalChart(response) {
     var data_label = [];
     var data_total = [];
     var data_color = [];
-    console.log(response.data);
+    // console.log(response.data);
     response.data.forEach(function (value, index) {
         data_label.push(value.channel_name);
         data_total.push(value.total_traffic.map(Number).reduce(summarize));
@@ -247,6 +254,7 @@ function drawHorizontalChart(response) {
                 display: false
             },
             tooltips: {
+                intersect: false,
                 callbacks: {
                     label: function (tooltipItem, data) {
                         var value = data_total[tooltipItem.index];

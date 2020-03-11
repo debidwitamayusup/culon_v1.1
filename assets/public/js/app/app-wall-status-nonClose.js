@@ -36,13 +36,15 @@ function callSumNonClose(){
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callSumNonClose();},900000);
+            $('#modalError').modal('hide');
+            setTimeout(function(){callSumNonClose();},5000);
            	drawCard(r);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            $('#modalError').modal('show');
+            setTimeout(function(){callSumNonClose();},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -62,6 +64,8 @@ function addCommas(commas)
 }
 
 function drawCard(response){
+    $('#cardNonClose').remove();
+    $('#parentNonClose').append('<div class="card-body" id="cardNonClose"></div>');
 	$('#cardNonClose').append(''+
         '<div class="row mt-2">'+
             '<div class="col-md-12 col-lg-3 col-xl-3 text-center">'+
