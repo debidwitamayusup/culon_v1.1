@@ -829,8 +829,8 @@ pre code {
 	position: relative;
 	width: 100%;
 	min-height: 1px;
-	padding-right: 0.3rem;
-	padding-left: 0.3rem;
+	padding-right: 0.25rem;
+	padding-left: 0.25rem;
 }
 
 .col {
@@ -15268,7 +15268,7 @@ body.fixed-header .page {
 	display: flex;
 	-ms-flex-align: center;
 	align-items: center;
-	margin: 0.3rem 0 0.2rem 0;
+	margin: 0.3rem 0 0.5rem 0;
 	-ms-flex-wrap: wrap;
 	justify-content: space-between;
 	position: relative;
@@ -19326,7 +19326,7 @@ btn-cust {
 
 .card {
 	position: relative;
-	margin-bottom: 0.8rem;
+	margin-bottom: 0.5rem;
 	width: 100%;
 	border-radius: 7px;
 }

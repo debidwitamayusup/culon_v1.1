@@ -57,7 +57,7 @@
 }
 .app-content {
 	min-height: calc(100vh - 50px);
-	margin-top: 48px;
+	margin-top: 55px;
 	margin-bottom: 0 !important;
 	-webkit-transition: margin-left 0.3s ease;
 	-o-transition: margin-left 0.3s ease;
@@ -578,7 +578,7 @@
 }
 @media (min-width: 768px) {
 	.sidebar-mini.sidenav-toggled .app-content {
-		margin-left: 70px;
+		margin-left: 75px;
 	}
 	.sidebar-mini.sidenav-toggled1 .app-content {
 		margin-left: 0;
@@ -836,7 +836,7 @@
 	visibility:visible;
 }
 .app.sidebar-mini.sidenav-toggled4 .app-content{
-	margin-left: 273px;
+	margin-left: 276px;
 }
 .toggle{
 	padding-top:9px;
