@@ -88,16 +88,16 @@
 <!-- modal dialog confirm password -->
 <div class="modal fade" id="modalConfirmPassword" tabindex="-1" role="dialog" aria-labelledby="modalConfirmPassword"
 	aria-hidden="true">
-	<div class="modal-dialog" role="document" style="left:5% !important;">
-		<div class="modal-content" style="border-radius:8px; border:0px; width:75% !important">
+	<div class="modal-dialog" role="document" style="left:8% !important;">
+		<div class="modal-content" style="border-radius:8px; border:0px; width:68% !important">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-info-circle mr-1"></i>Confirmation</h5>
-				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-info-circle mr-2"></i>Confirmation</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<div class="modal-body text-center">
-				<div class="col-sm-auto">
+			<div class="modal-body">
+				<div class="ml-2 col-sm-auto">
 					<div class="input-group border-input-group error" id="passwordDiv">
 						<div class="input-group-prepend">
 							<div class="input-group-text border-input">
@@ -109,10 +109,10 @@
                     <div class="error-message" id="error-password">Password is missmatch</div>
 				</div>
 
-				<div class="text-center mb-5 mt-5">
-					<button type="submit" class="btn btn-light mr-5" style="border-radius:8px !important;"
+				<div class="text-center mb-2 mt-2">
+					<button type="submit" class="btn btn-sm btn-light mr-5" style="border-radius:8px !important;"
 						id="btn-cancel" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-sign ml-5 text-white" style="border-radius:8px !important;"
+					<button type="submit" class="btn btn-sm btn-sign ml-5 text-white" style="border-radius:8px !important;"
 						id="btn-confirm-password">Confirm</button>
 				</div>
 			</div>
