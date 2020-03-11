@@ -270,6 +270,237 @@ class AuthController extends REST_Controller {
         }
 
     }
+
+    public function usrlst_post(){
+
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data = false)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $res = $this->module_model->userdata();
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'data found',
+                'data' => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan password gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
+    public function addusr_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data == true)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $name = $this->security->xss_clean($this->input->post('name'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $previlage = $this->security->xss_clean($this->input->post('previlage'));
+
+        $data2 = $this->module_model->userchecker($username);
+        if ($data2 = false) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'User Telah terdaftar!',
+                    ], REST_Controller::HTTP_OK);
+        }
+
+        $res = $this->module_model->adduser($username,$name,$phone,$email,$previlage);
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Berhasil menambahkan user!',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Gagal menambahkan user!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
+    public function changeusr_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data == true)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $email = $this->security->xss_clean($this->input->post('email'));
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $name = $this->security->xss_clean($this->input->post('name'));
+        $phone = $this->security->xss_clean($this->input->post('phone'));
+        $previlage = $this->security->xss_clean($this->input->post('previlage'));
+
+        $data2 = $this->module_model->userchecker($username);
+
+        if ($data2 == true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'User Telah terdaftar!',
+                    ], REST_Controller::HTTP_OK);
+        }
+
+        $res = $this->module_model->changeuser($username,$name,$phone,$email,$previlage);
+
+        if ($res = true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Perubahan sukses',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
+    public function gettenantfilter_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data = false)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $res = $this->module_model->tenantlist();
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function settenanttouser_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data == true)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $username = $this->security->xss_clean($this->input->post('username'));
+
+        $data2 = $this->module_model->userchecker($username);
+
+        if ($data2 == true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'User Telah terdaftar!',
+                    ], REST_Controller::HTTP_OK);
+        }
+
+        $res = $this->module_model->assigntenanttouser($username,$tenant);
+
+        if ($res = true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Perubahan sukses',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan gagal!'
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+    
 #Endregion
 
 }

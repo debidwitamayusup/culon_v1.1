@@ -6,6 +6,7 @@ var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
 var channelFromFilter = '';
+var tenantFromFilter = '';
 var tenants = [];
 if (o < 10) {
   o = '0' + o;
@@ -151,35 +152,36 @@ function setDatePicker() {
 }
 
 
-function exportTableKIP(start_date, end_date, tenant_id, channel_id, name){
+function exportTableKIP(start_date, end_date, tenant_id, channel_id, name, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    // window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTKIP',
-        data: {
-            start_date: start_date,
-            end_date: end_date,
-            tenant_id: tenant_id,
-            channel_id: channel_id,
-            name: name,
-            channel_name: channelToName(channel_id)
-        }
-        ,
-        success: function (r) {
-            if (r.status != false){
-                window.location = r.Link;
-            }else{
-                alert("Can't Export Empty Data");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function (r) {
-            //console.log(r);
-            alert("can't export");
-            $("#filter-loader").fadeOut("slow");
-        },
-    });
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTKIP?start_date='+start_date+'&end_date='+end_date+'&tenant_id='+tenant_id+'&channel_id='+channel_id+'&name='+name+'&channel_name='+channelToName(channel_id)+'&tenant_name='+tenant_name;
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTKIP',
+    //     data: {
+    //         start_date: start_date,
+    //         end_date: end_date,
+    //         tenant_id: tenant_id,
+    //         channel_id: channel_id,
+    //         name: name,
+    //         channel_name: channelToName(channel_id)
+    //     }
+    //     ,
+    //     success: function (r) {
+    //         if (r.status != false){
+    //             window.location = r.Link;
+    //         }else{
+    //             alert("Can't Export Empty Data");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function (r) {
+    //         //console.log(r);
+    //         alert("can't export");
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    // });
 }
 
 (function($) {
@@ -221,6 +223,7 @@ function exportTableKIP(start_date, end_date, tenant_id, channel_id, name){
         endDateFromFilter = $("#end-date").val();
         channelFromFilter = $('#channel_name').val();
         tenantFromFilter = $("#layanan_name").val();
+        tenantNameFromFilter = $("#layanan_name").html();
         callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
 })(jQuery);

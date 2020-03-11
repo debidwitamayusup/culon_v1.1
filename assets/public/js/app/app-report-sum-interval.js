@@ -109,32 +109,34 @@ function drawTableSumInterval(tanggal,interval,channel, tenant_id){
 
 function exportTableSumInterval(tanggal,interval,channel,name){
     $("#filter-loader").fadeIn("slow");
-    $.ajax({
-        type:'POST',
-        url: base_url + 'api/Reporting/ReportController/EXPORTSI',
-        data:{
-            tanggal: tanggal,
-            interval: interval,
-            channel: channel,
-            name: name,
-            channel_name: channelToName(channel)
-        },
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+channel+'&channel_name='+channelToName(channel);
+    $("#filter-loader").fadeOut("slow");
+    // $.ajax({
+    //     type:'POST',
+    //     url: base_url + 'api/Reporting/ReportController/EXPORTSI',
+    //     data:{
+    //         tanggal: tanggal,
+    //         interval: interval,
+    //         channel: channel,
+    //         name: name,
+    //         channel_name: channelToName(channel)
+    //     },
 
-        success: function(r){
-            var response = r;
+    //     success: function(r){
+    //         var response = r;
             
-            if (response.status != false) {
-                window.location = response.Link
-            } else {
-                alert("Can't Export Empty Table!");
-            }
-            $("#filter-loader").fadeOut("slow");
-        },
-        error: function(r){
-            alert(error);
-            $("#filter-loader").fadeOut("slow");
-        }
-    })    
+    //         if (response.status != false) {
+    //             window.location = response.Link
+    //         } else {
+    //             alert("Can't Export Empty Table!");
+    //         }
+    //         $("#filter-loader").fadeOut("slow");
+    //     },
+    //     error: function(r){
+    //         alert(error);
+    //         $("#filter-loader").fadeOut("slow");
+    //     }
+    // })    
 }
 
 function setDatePicker() {

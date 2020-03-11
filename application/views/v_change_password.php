@@ -14,38 +14,41 @@
                             </div>
                             <!-- username -->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group border-input-group">
+                                <div class="input-group border-input-group error" id="currentPwdDiv">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="text" class="form-control border-input2 font12" id="current_password"
+                                    </div><input type="text" class="form-control border-input2 font12" id="current-password"
                                         placeholder="Current Password" name="current_password">
                                 </div>
+                                <div class="error-message" id="error-current-password">Password is missmatch</div>
                             </div>
 
                             <!-- phone number-->
                             <div class="col-sm-auto mb-3">
-                                <div class="input-group border-input-group">
+                                <div class="input-group border-input-group error" id="newPwdDiv">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="text" class="form-control border-input2 font12" id="new_password"
+                                    </div><input type="text" class="form-control border-input2 font12" id="new-password"
                                         placeholder="New Password" name="new_password">
                                 </div>
+                                <div class="error-message" id="error-new-password">Password is missmatch</div>
                             </div>
 
                             <!-- password -->
                             <div class="col-sm-auto">
-                                <div class="input-group border-input-group">
+                                <div class="input-group border-input-group error" id="confirmPwdDiv">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="password" class="form-control border-input2 font12" id="password"
-                                        placeholder="Confirm New Password" name="password">
+                                    </div><input type="password" class="form-control border-input2 font12" id="confirm-password"
+                                        placeholder="Confirm New Password" name="confirm-password">
                                 </div>
+                                <div class="error-message" id="error-confirm-password">Password Not Match</div>
                             </div>
 
                             <div class="text-center mb-5 mt-5">
