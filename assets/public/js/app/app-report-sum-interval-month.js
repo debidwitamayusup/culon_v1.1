@@ -7,6 +7,8 @@ var m = d.getFullYear();
 var monthFromFilter = '';
 var intervalFromFilter = '';
 var channelFromFilter = '';
+var tenantFromFilter = '';
+tenantNameFromFilter = '';
 if (o < 10) {
   o = '0' + o;
 } 
@@ -50,6 +52,10 @@ $(document).ready(function () {
         drawTableSumInterval( n,'',$("#layanan_name").val());
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
+        monthFromFilter = $('#month_name').val();
+        intervalFromFilter = $('#interval').val();
+        channelFromFilter = $('#channel_name').val();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
     }else{
         window.location = base_url;
     }
@@ -72,6 +78,18 @@ function drawTableSumInterval(month ,channel, tenant_id){
                 month: month,
                 channel: channel,
                 tenant_id: tenant_id
+            }
+        },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            // console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
             }
         },
         columnDefs: [
@@ -121,9 +139,9 @@ function getTenant(date, userid){
     });
 }
 
-function exportTableSumIntervalMonth(month,channel,tenant_id,name){
+function exportTableSumIntervalMonth(month,channel,tenant_id,name,tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSIMONTH?month='+month+'&channel='+channel+'&name='+name+'&channel_name='+channelToName(channel)+'&month_name='+monthNumToName(month);
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSIMONTH?month='+month+'&channel='+channel+'&tenant_id='+tenant_id+'&channel='+channel+'&name='+name+'&channel_name='+channelToName(channel)+'&month_name='+monthNumToName(month)+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type:'POST',
@@ -180,7 +198,7 @@ function setDatePicker() {
         // }
     });
     $('#btn-export').click(function(){
-        exportTableSumIntervalMonth(monthFromFilter, channelFromFilter, tenantFromFilter, sessionParams.NAME);
+        exportTableSumIntervalMonth(monthFromFilter, channelFromFilter, tenantFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
@@ -188,6 +206,7 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
         tenantFromFilter = $('#layanan_name').val();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
         drawTableSumInterval($('#month_name').val(), $('#channel_name').val(), $('#layanan_name').val());
     });
 

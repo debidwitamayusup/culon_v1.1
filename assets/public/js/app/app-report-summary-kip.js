@@ -38,6 +38,8 @@ $(document).ready(function () {
         callTableKIP(v_params_today,v_params_today, $("#layanan_name").val(), '');
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
+        channelFromFilter = $('#channel_name').val();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
     }else{
         window.location = base_url;
     }
@@ -133,6 +135,7 @@ function drawTableKIP(response){
         '<th class="wd-15p border-bottom-0 font-weight-extrabold">'+addCommas(total)+'</th>')
         $("#filter-loader ").fadeOut("slow");
 	} else {
+        $('#btn-export').prop('disabled', true);
         $('#tableReportKIP').find('tbody').append('<tr>'+
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
@@ -215,15 +218,16 @@ function exportTableKIP(start_date, end_date, tenant_id, channel_id, name, tenan
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
 
-        exportTableKIP(startDateFromFilter, endDateFromFilter, tenantFromFilter, channelFromFilter, sessionParams.NAME);
+        exportTableKIP(startDateFromFilter, endDateFromFilter, tenantFromFilter, channelFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
+        $('#btn-export').prop('disabled', false);
         startDateFromFilter = $("#start-date").val();
         endDateFromFilter = $("#end-date").val();
         channelFromFilter = $('#channel_name').val();
         tenantFromFilter = $("#layanan_name").val();
-        tenantNameFromFilter = $("#layanan_name").html();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
         callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
 })(jQuery);

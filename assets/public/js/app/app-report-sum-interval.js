@@ -7,6 +7,8 @@ var m = d.getFullYear();
 var dateFromFilter = '';
 var intervalFromFilter = '';
 var channelFromFilter = '';
+var tenantNameFromFilter = '';
+var tenantNameFromFilter = '';
 if (o < 10) {
   o = '0' + o;
 } 
@@ -32,7 +34,10 @@ $(document).ready(function () {
             getTenant('', '');
         }
         drawTableSumInterval(v_params_today,'1','', $("#layanan_name").val());
-        
+        dateFromFilter = $('#input-date').val();
+        intervalFromFilter = $('#interval').val();
+        channelFromFilter = $('#channel_name').val();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -89,6 +94,18 @@ function drawTableSumInterval(tanggal,interval,channel, tenant_id){
                 tenant_id: tenant_id
             }
         },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
+            }
+        },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
@@ -107,9 +124,9 @@ function drawTableSumInterval(tanggal,interval,channel, tenant_id){
     // console.log(data);
 }
 
-function exportTableSumInterval(tanggal,interval,channel,name){
+function exportTableSumInterval(tanggal,interval,channel,tenant_id,name,tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&name='+channel+'&channel_name='+channelToName(channel);
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSI?tanggal='+tanggal+'&interval='+interval+'&channel='+channel+'&tenant_id='+tenant_id+'&name='+name+'&channel_name='+channelToName(channel)+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type:'POST',
@@ -169,13 +186,15 @@ function setDatePicker() {
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
 
-        exportTableSumInterval(dateFromFilter, '1', channelFromFilter, sessionParams.NAME);
+        exportTableSumInterval(dateFromFilter, '1', channelFromFilter, tenantFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
         dateFromFilter = $('#input-date').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
+        tenantFromFilter = $('#layanan_name').val();
+        tenantNameFromFilter = $("#layanan_name option:selected").html();
         drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
     });
 

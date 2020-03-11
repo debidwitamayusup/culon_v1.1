@@ -5,6 +5,7 @@ var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
+var tenantNameFromFilter = '';
 var v_start_date = '';
 var v_end_date = '';
 var tenants = [];
@@ -132,6 +133,18 @@ function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
                 skill: skill
             }
         },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            // console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
+            }
+        },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
@@ -150,9 +163,9 @@ function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
     $("#filter-loader").fadeOut("slow");
 }
 
-function exportTableAgentPerform(tenant_id, start_time, end_time, name){
+function exportTableAgentPerform(tenant_id, start_time, end_time, name, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTAP?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTAP?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type: 'POST',
@@ -228,13 +241,14 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         // console.log(startDateFromFilter);
-        exportTableAgentPerform(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
+        exportTableAgentPerform(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
+        tenantNameFromFilter = $('#layanan_name option:selected').html();
         drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#skill').val());
     });
 

@@ -7,6 +7,7 @@ var m = d.getFullYear();
 var tenantFromFilter = '';
 var channelFromFilter = '';
 var monthFromFilter = '';
+var tenantNameFromFilter = '';
 var tenants = [];
 if (o < 10) {
   o = '0' + o;
@@ -136,6 +137,18 @@ function drawTablePerformOps(tenant_id, start_date, end_date){
                 end_date: end_date
             }
         },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            // console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
+            }
+        },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
@@ -182,9 +195,9 @@ function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
     $("#filter-loader").fadeOut("slow");
 }
 
-function exportTablePerformOps(tenant_id, start_date, end_date, name){
+function exportTablePerformOps(tenant_id, start_date, end_date, name, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTOPS?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name;
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTOPS?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+end_date+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type: 'POST',
@@ -256,13 +269,14 @@ function setDatePicker() {
 
     $('#btn-export').click(function(){
         // exportTablePerformOps(v_params_tenant, '2', n, sessionParams.NAME);
-        exportTablePerformOps(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
+        exportTablePerformOps(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
+        tenantNameFromFilter = $('#layanan_name option:selected').html();
         drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
         drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });

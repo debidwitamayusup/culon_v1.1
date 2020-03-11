@@ -5,6 +5,7 @@ var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
+var tenantNameFromFilter = '';
 var v_start_date = '';
 var v_end_date = '';
 var tenants = [];
@@ -89,6 +90,18 @@ function callTableAgentLog(start_date, end_date, tenant_id){
                 end_date: end_date
             }
         },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            // console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
+            }
+        },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
 			{ className: "text-center", targets: 1 },
@@ -111,9 +124,9 @@ function callTableAgentLog(start_date, end_date, tenant_id){
     $("#filter-loader").fadeOut("slow");
 }
 
-function exportTableAgentLog(tenant_id, start_date, end_date, name){
+function exportTableAgentLog(tenant_id, start_date, end_date, name, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTAL?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name;
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTAL?tenant_id='+tenant_id+'&start_date='+start_date+'&end_date='+end_date+'&name='+name+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type: 'POST',
@@ -180,13 +193,14 @@ function setDatePicker() {
     });
 
     $('#btn-export').click(function(){
-        exportTableAgentLog(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME);
+        exportTableAgentLog(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
+        tenantNameFromFilter = $('#layanan_name option:selected').html();
         callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
     });
 

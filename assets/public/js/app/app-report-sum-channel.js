@@ -5,6 +5,7 @@ var o = d.getDate();
 var n = d.getMonth()+1;
 var m = d.getFullYear();
 var tenantFromFilter = '';
+var tenantNameFromFilter = '';
 var v_start_date = '';
 var v_end_date = '';
 var tenants = [];
@@ -27,13 +28,14 @@ $(document).ready(function () {
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
+        tenantNameFromFilter = $("#tenant-id option:selected").html();
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
             getTenant('', sessionParams.USERID);
         }else{
             getTenant('', '');
         }
-        drawTableSumChannel($("#layanan_name").val(),v_params_today,v_params_today);
-        callDrawPieChart($("#layanan_name").val(),v_params_today,v_params_today);
+        drawTableSumChannel($("#tenant-id").val(),v_params_today,v_params_today);
+        callDrawPieChart($("#tenant-id").val(),v_params_today,v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -85,7 +87,7 @@ function getTenant(date, userid){
 
 function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
     $("#filter-loader").fadeIn("slow");
-    $('#tableSumChannel').DataTable({
+   $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
@@ -96,6 +98,18 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
                 start_time: start_time,
                 end_time: end_time,
                 baseImg: baseImg
+            }
+        },
+        drawCallback: function (settings) { 
+            // Here the response
+            var response = settings.json;
+            // console.log(response);
+            if(response != undefined){
+                if(response.status == false){
+                    $('#btn-export').prop('disabled', true);
+                }else{
+                    $('#btn-export').prop('disabled', false);
+                }
             }
         },
         columnDefs: [
@@ -114,12 +128,13 @@ function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
             return "Showing "+addCommas(iStart) +" to "+ addCommas(iEnd) +" from " + addCommas(iTotal)+" entries";
         },
     });
+    
     // $("#filter-loader").fadeOut("slow");
 }
 
-function exportTableSumChannel(tenant_id, start_time, end_time, name, baseImg){
+function exportTableSumChannel(tenant_id, start_time, end_time, name, tenant_name){
     $("#filter-loader").fadeIn("slow");
-    window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name;
+    window.location = base_url + 'api/Reporting/ReportController/EXPORTSC?tenant_id='+tenant_id+'&start_time='+start_time+'&end_time='+end_time+'&name='+name+'&tenant_name='+tenant_name;
     $("#filter-loader").fadeOut("slow");
     // $.ajax({
     //     type: 'POST',
@@ -405,13 +420,15 @@ function getBase64Image(img) {
         endDateFromFilter = $('#end-date').val();
         // var base64 = getBase64Image(document.getElementById("legend1"));
         // console.log(base64);
-        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
+        // exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, baseImg.substr(22));
+        exportTableSumChannel(tenantFromFilter, startDateFromFilter, endDateFromFilter, sessionParams.NAME, tenantNameFromFilter);
     });
 
     $('#btn-go').click(function(){
         tenantFromFilter = $('#tenant-id').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
+        tenantNameFromFilter = $('#tenant-id option:selected').html();
         // $("#filter-loader").fadeIn("slow");
         drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());

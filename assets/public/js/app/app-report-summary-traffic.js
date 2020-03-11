@@ -123,6 +123,7 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
             $("#filter-loader").fadeOut("slow");
 		}
 	} else {
+        $('#btn-export').prop('disabled', true);
         $('#tableSummaryTraffic').find('tbody').append('<tr>'+
            '<td class="text-center" colspan=28> No Data Available </td>'+
         '</tr>');
@@ -324,6 +325,7 @@ function setDatePicker() {
     });
 
     $('#btn-go').click(function(){
+        $('#btn-export').prop('disabled', false);
         tenantFromFilter = $('#layanan_name').val();
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $("#end-date").val();
