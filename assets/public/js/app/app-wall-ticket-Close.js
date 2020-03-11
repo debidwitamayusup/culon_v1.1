@@ -254,6 +254,7 @@ function drawHorizontalChart(response) {
                 display: false
             },
             tooltips: {
+                intersect: false,
                 callbacks: {
                     label: function (tooltipItem, data) {
                         var value = data_total[tooltipItem.index];

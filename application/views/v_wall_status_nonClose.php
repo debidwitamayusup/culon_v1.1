@@ -9,11 +9,11 @@
                 <li class="breadcrumb-item active mt-2" aria-current="page">Summary Status Today (Non Close)</li>
             </ol>
             <div class="d-flex bd-highlight">
-                <div class="p-2 bd-highlight">
+                <!-- <div class="p-2 bd-highlight">
                     <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
                         <option value="#">Layanan</option>
                     </select>
-                </div>
+                </div> -->
             </div>
         </div
 
