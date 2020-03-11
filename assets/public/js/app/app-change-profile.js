@@ -127,7 +127,6 @@ function callChangeProfile(token,username, phone_number, email, password){
         $('#password').attr('disabled', true);
         $('#btn-cancel').attr('disabled', true);
         callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
-        // console.log('masuk primata pemberani')
     });
    
     $('#btn-cancel').click(function(){
