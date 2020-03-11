@@ -450,7 +450,7 @@ function drawBarLayanan(response){
     $('#BarWallPerformanceDiv').append('<canvas id="BarWallPerformance" class="h-400"></canvas>');
 
     var numberWithCommas = function (x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
     console.log(response);
