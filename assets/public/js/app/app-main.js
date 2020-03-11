@@ -28,7 +28,7 @@ $(document).ready(function () {
         if(username == '' || password == '') return;
 
         $("#btn-login").attr('disabled', true);
-        $("#btn-login").html('Sedang memproses...')
+        $("#btn-login").html('Processing...')
         $.ajax({
             type: 'post',
             url: base_url+'api/Auth/AuthController/doLogin',

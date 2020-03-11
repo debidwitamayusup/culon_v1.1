@@ -64,7 +64,9 @@ function callChangeProfile(token,username, phone_number, email, password){
         error: function (r) {
             $('#error-password').show();
             $( "#passwordDiv" ).addClass( "error" );
-            $("#btn-confirm-password").attr('disabled', true);
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
             // alert(r.responseJSON.message);
         },
     });
@@ -108,11 +110,22 @@ function callChangeProfile(token,username, phone_number, email, password){
             $("#btn-confirm-password").attr('disabled', false);
     });
 
-    $('#btn-submit').click(function(){       
-        $('#modalConfirmPassword').modal('show');
+    $('#btn-submit').click(function(){     
+        // $('#MymodalPreventScript').modal({
+    	// 	backdrop: 'static',
+    	// 	keyboard: false
+		// });  
+        $('#modalConfirmPassword').modal({
+    		backdrop: 'static',
+    		keyboard: false
+		});
     });
 
     $('#btn-confirm-password').click(function(){
+        $(this).attr('disabled', true);
+        $(this).html('Processing...')
+        $('#password').attr('disabled', true);
+        $('#btn-cancel').attr('disabled', true);
         callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
         // console.log('masuk primata pemberani')
     });
