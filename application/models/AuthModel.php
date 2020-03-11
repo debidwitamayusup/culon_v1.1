@@ -311,6 +311,109 @@ Class AuthModel extends CI_Model {
         return false;
     }
 
+    function admin_checker($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');
+        $this->db->from('m_user');
+        $this->db->where('token', $token);
+        $this->db->where('PREVILAGE', 'SUPERADMIN');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function userdata()
+    {
+        $this->db->select('m_user.userid AS ID,m_user.name as NAME,m_user.phone as PHONE,m_user.email as EMAIL, m_user.userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'USERNAME' => $data->ID,
+                    'NAME' => $data->NAME,
+                    'LEVEL' => $data->PREVILAGE,
+                    'PHONE' => $data->PHONE,
+                    'MAIL' => $data->MAIL
+                );
+            }
+            return $result;
+        }
+        return false;
+    }
+
+    function userchecker($username){
+        $this->db->select('m_user.userid AS ID');
+        $this->db->from('m_user');
+        $this->db->where('userid', $username);
+        
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function adduser($username,$name,$phone,$email,$previlage)
+    {
+
+        $pwd = '8888'.substr($username,0,2).substr($phone,6,2).substr($previlage,0,2);
+        $haspwd = md5($pwd);
+
+        $data = array(
+            'userid' => $username,
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'password' => $haspwd,
+            'userlevel' => $previlage
+        ); //$this->db->insert_id();
+        $ins =  $this->db->insert('m_user',$data);
+
+        if($ins)
+        {
+            //where inserted do !
+            $content = array(
+                'username'          => $username,
+                'password'          => $pwd,
+                'previlage'     => $previlage
+            );
+
+            return $content;
+        }
+
+        return FALSE;
+    }
+
+    public function changeuser($username,$name,$phone,$email,$previlage)
+    {
+
+        $data = array(
+            'userid' => $username,
+            'name' => $name,
+            'phone' => $phone,
+            'email' => $email,
+            'userlevel' => $previlage
+        ); 
+
+        $this->db->set($data);
+        $this->db->where('token', $token);
+        $this->db->update('m_user');
+
+        if($this->db->affected_rows() == 1)
+        {
+            return true;
+        }
+
+        return FALSE;
+    }
+
     #region additional funct
 
     function generate_token($usr){
