@@ -78,7 +78,7 @@
             </div>
         </div>
         <!----Baris Pertama----!-->
-        <div class="row">
+        <div class="row" style="margin-right:0px; margin-left:-4px;">
             <div class="col-xl-5 col-lg-5 col-md-12">
                 <div class="card">
                     <div class="card-header-small">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-right:0px; margin-left:-4px;">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">

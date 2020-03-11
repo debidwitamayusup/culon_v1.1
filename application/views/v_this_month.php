@@ -17,7 +17,7 @@
 		</div>
 		<!--Page Header-->
 		<!----First Page----!-->
-		<div class="row">
+		<div class="row" style="margin-right:0px; margin-left:-4px;">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header-small">
@@ -108,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="margin-right:0px; margin-left:-4px;">
 			<div class="col-md-12 col-lg-6">
 				<div class="card">
 					<div class="card-header-small">
@@ -129,7 +129,7 @@
 							id="tabel_average_month">
 							<thead class="text-center text-white bg-gray1">
 								<tr>
-									<th>No</th>
+									<th style="width:1%">No</th>
 									<th>Channel</th>
 									<th>SCR</th>
 									<th>ART</th>
