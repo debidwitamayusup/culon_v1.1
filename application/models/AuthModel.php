@@ -313,10 +313,10 @@ Class AuthModel extends CI_Model {
 
     function admin_checker($token)
     {
-        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE');
         $this->db->from('m_user');
-        $this->db->where('token', $token);
-        $this->db->where('PREVILAGE', 'SUPERADMIN');
+        $this->db->where('m_user.token', $token);
+        $this->db->where('m_user.userlevel = "admin"');
         $query = $this->db->get();
         if($query->num_rows()>0) 
         {
@@ -339,7 +339,7 @@ Class AuthModel extends CI_Model {
                     'NAME' => $data->NAME,
                     'LEVEL' => $data->PREVILAGE,
                     'PHONE' => $data->PHONE,
-                    'MAIL' => $data->MAIL
+                    'MAIL' => $data->EMAIL
                 );
             }
             return $result;
@@ -395,7 +395,6 @@ Class AuthModel extends CI_Model {
     {
 
         $data = array(
-            'userid' => $username,
             'name' => $name,
             'phone' => $phone,
             'email' => $email,
@@ -403,7 +402,7 @@ Class AuthModel extends CI_Model {
         ); 
 
         $this->db->set($data);
-        $this->db->where('token', $token);
+        $this->db->where('userid', $username);
         $this->db->update('m_user');
 
         if($this->db->affected_rows() == 1)

@@ -284,7 +284,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == false)
+        if($data = false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -294,10 +294,11 @@ class AuthController extends REST_Controller {
 
         $res = $this->module_model->userdata();
 
-        if ($res = true) {
+        if ($res) {
             $this->response([
                 'status'  => TRUE,
-                'message' => '',
+                'message' => 'data found',
+                'data' => $res
                     ], REST_Controller::HTTP_OK);
         }
         else {
@@ -322,7 +323,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == false)
+        if($data == true)
         {
             $this->response([
                 'status'  => FALSE,
@@ -346,7 +347,7 @@ class AuthController extends REST_Controller {
 
         $res = $this->module_model->adduser($username,$name,$phone,$email,$previlage);
 
-        if ($res = true) {
+        if ($res) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Berhasil menambahkan user!',
@@ -374,7 +375,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == false)
+        if($data == true)
         {
             $this->response([
                 'status'  => FALSE,
@@ -390,25 +391,25 @@ class AuthController extends REST_Controller {
 
         $data2 = $this->module_model->userchecker($username);
 
-        if ($data2 = true) {
+        if ($data2 == true) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'User Telah terdaftar!',
                     ], REST_Controller::HTTP_OK);
         }
 
-        $res = $this->module_model->changeusr($username,$name,$phone,$email,$previlage);
+        $res = $this->module_model->changeuser($username,$name,$phone,$email,$previlage);
 
         if ($res = true) {
             $this->response([
                 'status'  => TRUE,
-                'message' => '',
+                'message' => 'Perubahan sukses',
                     ], REST_Controller::HTTP_OK);
         }
         else {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Perubahan password gagal!'
+                'message' => 'Perubahan gagal!'
                     ], REST_Controller::HTTP_OK);
         }
 
