@@ -108,7 +108,7 @@
                                 <div class="card-pie">
                                     <div class="canvas-con">
                                         <div id="legend" class="legend-con"></div>
-                                        <div class="canvas-con-inner mb-6" id="canvas-pie">
+                                        <div class="canvas-con-inner mb-3" id="canvas-pie">
                                             <canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>
                                         </div>
 
@@ -365,7 +365,7 @@
                                             </tr> -->
                                         </tbody>
                                         <tfoot class="table-sm bg-total" id="table_channel_foot">
-                                        <!-- <tr class="font-bold">
+                                            <!-- <tr class="font-bold">
                                             <td colspan="2" class="text-center">Total</td>
                                             <td class="text-right">900</td>
                                             <td class="text-center">00:00:00</td>
@@ -378,7 +378,7 @@
                                             <td class="text-right">900</td>
                                             <td class="text-right">90%</td>
                                         </tr> -->
-                                    </tfoot>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -387,6 +387,9 @@
                     <div class="row" style="padding-left:4px; padding-right:4px">
                         <div class="col-md-12">
                             <div class="card">
+                                <div class="card-header-small">
+                                    <h5 class="card-title-small card-pt10">Traffic by Layanan</h5>
+                                </div>
                                 <div class="card-body" id="BarWallPerformanceDiv">
                                     <canvas id="BarWallPerformance" class="h-400"></canvas>
                                 </div>

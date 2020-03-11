@@ -191,6 +191,9 @@
                     <div class="row" style="padding-left:4px; padding-right:4px">
                         <div class="col-md-12">
                             <div class="card">
+                                <div class="card-header-small">
+                                    <h5 class="card-title-small card-pt10">Traffic by Layanan</h5>
+                                </div>
                                 <div class="card-body" id="BarWallPerformanceDiv">
                                     <canvas id="BarWallPerformance" class="h-400"></canvas>
                                 </div>

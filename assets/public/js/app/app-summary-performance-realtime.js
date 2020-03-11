@@ -495,9 +495,9 @@ function drawBarLayanan(response){
                 }
             },
             title: {
-                display: true,
-                text: 'Traffic by Layanan',
-                fontSize:14
+                display: false
+                // text: 'Traffic by Layanan',
+                // fontSize:14
             },
             animation: {
                 duration: 10,
@@ -515,7 +515,7 @@ function drawBarLayanan(response){
                 xAxes: [{
                     stacked: true,
                     gridLines: {
-                        display: true
+                        display: false
                     },
                     ticks: {
                         fontSize: 10,
