@@ -23,100 +23,102 @@
 					<div class="card-header">
 						<h5 class="card-title-small card-pt10">Summary Traffic</h5>
 					</div>
-					<div class="card-body" id="cardNonClose">
-						<!-- <div class="row mt-2">
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="text-white card-body">New</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font"> 200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="text-white card-body">Open</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
+					<div id="parentNonClose">
+						<div class="card-body" id="cardNonClose">
+							<!-- <div class="row mt-2">
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="text-white card-body">New</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font"> 200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="text-white card-body">Open</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
 
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Reopen</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Reprocess</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                                <div class="row mt-2 mb-2">
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Pending</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Reject</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Reassign</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                    <div class="col-md-12 col-lg-3 col-xl-3 text-center">
-		                                        <div class="card-custom-ticket overflow-hidden">
-		                                            <div class="card-header-small bg-red">
-		                                                <h6 class="card-body text-white">Preclose</h6>
-		                                            </div>
-		                                            <div class="card-body">
-		                                                <h2 class="mb-4 mt-3 num-font">200</h2>
-		                                                <span class="text-muted mb-5"></span>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div> -->
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Reopen</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Reprocess</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row mt-2 mb-2">
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Pending</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Reject</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Reassign</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
+													<div class="card-custom-ticket overflow-hidden">
+														<div class="card-header-small bg-red">
+															<h6 class="card-body text-white">Preclose</h6>
+														</div>
+														<div class="card-body">
+															<h2 class="mb-4 mt-3 num-font">200</h2>
+															<span class="text-muted mb-5"></span>
+														</div>
+													</div>
+												</div>
+											</div> -->
+						</div>
 					</div>
 				</div>
 			</div>

@@ -11,6 +11,9 @@ $(document).ready(function () {
     }else{
         window.location = base_url
     }
+    $('#username').prop("disabled", true);
+    $('#phone_number').prop("disabled", true);
+    $('#email').prop("disabled", true);
     $('#error-phone').hide();
     $('#error-email').hide();
     $('#error-password').hide();
@@ -30,6 +33,8 @@ function getDataProf(token){
             var response = r;
             $('#username').prop("disabled", true);
             $('#username').val(response.data.ID);
+            $('#phone_number').prop("disabled", false);
+            $('#email').prop("disabled", false);
             $('#phone_number').val(response.data.PHONE);
             $('#email').val(response.data.EMAIL);
         },
@@ -110,11 +115,7 @@ function callChangeProfile(token,username, phone_number, email, password){
             $("#btn-confirm-password").attr('disabled', false);
     });
 
-    $('#btn-submit').click(function(){     
-        // $('#MymodalPreventScript').modal({
-    	// 	backdrop: 'static',
-    	// 	keyboard: false
-		// });  
+    $('#btn-submit').click(function(){
         $('#modalConfirmPassword').modal({
     		backdrop: 'static',
     		keyboard: false
