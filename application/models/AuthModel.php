@@ -261,70 +261,6 @@ Class AuthModel extends CI_Model {
             return FALSE;
     }
 
-    function getdataupdate($token)
-    {
-        $this->db->select('m_user.userid AS ID, m_user.email AS EMAIL, m_user.phone as PHONE');
-        $this->db->from('m_user');
-        $this->db->join('m_akses','m_akses.userid = m_user.userid');
-        $this->db->where('token', $token);
-       
-        $query = $this->db->get();
-        if($query->num_rows()>0) 
-        {
-            $data = $query->row();
-            $content = array(
-                'ID'       => $data->ID,
-                'EMAIL'      => $data->EMAIL,
-                'PHONE'   => $data->PHONE
-            );
-            return $content;
-        }
-
-        return false;
-    }
-
-    function token_checker($token)
-    {
-        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');
-        $this->db->from('m_user');
-        $this->db->join('m_akses','m_akses.userid = m_user.userid');
-        $this->db->where('token', $token);
-        $query = $this->db->get();
-        if($query->num_rows()>0) 
-        {
-            foreach($query->result() as $data)
-            {
-                $data[] = array(
-                    'TENANT_ID' => $data->TID
-                );
-            }
-
-            $content = array(
-                'ID_USER'       => $query->row()->ID,
-                'PREVILAGE'      => $query->row()->PREVILAGE,
-                'TENANT_LIST'   => $data
-            );
-
-            return $content;
-        }
-
-        return false;
-    }
-
-    function admin_checker($token)
-    {
-        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE');
-        $this->db->from('m_user');
-        $this->db->where('m_user.token', $token);
-        $this->db->where('m_user.userlevel = "admin"');
-        $query = $this->db->get();
-        if($query->num_rows()>0) 
-        {
-            return true;
-        }
-        return false;
-    }
-
     public function userdata()
     {
         $this->db->select('m_user.userid AS ID,m_user.name as NAME,m_user.phone as PHONE,m_user.email as EMAIL, m_user.userlevel AS PREVILAGE');
@@ -345,19 +281,6 @@ Class AuthModel extends CI_Model {
             return $result;
         }
         return false;
-    }
-
-    function userchecker($username){
-        $this->db->select('m_user.userid AS ID');
-        $this->db->from('m_user');
-        $this->db->where('userid', $username);
-        
-        $query = $this->db->get();
-        if($query->num_rows()>0) 
-        {
-            return false;
-        }
-        return true;
     }
 
     public function adduser($username,$name,$phone,$email,$previlage)
@@ -413,6 +336,43 @@ Class AuthModel extends CI_Model {
         return FALSE;
     }
 
+    public function tenantlist()
+    {
+        $this->db->select('tenant_id as id, tenant_name as name');
+        $this->db->from('m_tenant');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $result[] = array(
+                    'tenant_id' => $data->id,
+                    'tenant_name' => $data->name
+                );
+            }
+            return $result;
+        }
+        return FALSE;
+    }
+
+    public function assigntenanttouser($username,$tenant)
+    {
+        $data = array(
+            'userid' => $username,
+            'tenant_id' => $tenant
+        ); 
+
+        $this->db->set($data);
+        $this->db->insert('m_akses');
+
+        if($this->db->affected_rows() == 1)
+        {
+            return true;
+        }
+
+        return FALSE;
+    }
+
     #region additional funct
 
     function generate_token($usr){
@@ -434,6 +394,83 @@ Class AuthModel extends CI_Model {
             return $token;
         }
         return FALSE;
+    }
+
+    function userchecker($username){
+        $this->db->select('m_user.userid AS ID');
+        $this->db->from('m_user');
+        $this->db->where('userid', $username);
+        
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return false;
+        }
+        return true;
+    }
+
+    function admin_checker($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE');
+        $this->db->from('m_user');
+        $this->db->where('m_user.token', $token);
+        $this->db->where('m_user.userlevel = "admin"');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return true;
+        }
+        return false;
+    }
+
+    function getdataupdate($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.email AS EMAIL, m_user.phone as PHONE');
+        $this->db->from('m_user');
+        $this->db->join('m_akses','m_akses.userid = m_user.userid');
+        $this->db->where('token', $token);
+       
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            $data = $query->row();
+            $content = array(
+                'ID'       => $data->ID,
+                'EMAIL'      => $data->EMAIL,
+                'PHONE'   => $data->PHONE
+            );
+            return $content;
+        }
+
+        return false;
+    }
+
+    function token_checker($token)
+    {
+        $this->db->select('m_user.userid AS ID, m_user.userlevel AS PREVILAGE, m_akses.tenant_id as TID');
+        $this->db->from('m_user');
+        $this->db->join('m_akses','m_akses.userid = m_user.userid');
+        $this->db->where('token', $token);
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            foreach($query->result() as $data)
+            {
+                $data[] = array(
+                    'TENANT_ID' => $data->TID
+                );
+            }
+
+            $content = array(
+                'ID_USER'       => $query->row()->ID,
+                'PREVILAGE'      => $query->row()->PREVILAGE,
+                'TENANT_LIST'   => $data
+            );
+
+            return $content;
+        }
+
+        return false;
     }
 
     #endregion
