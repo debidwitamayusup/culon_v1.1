@@ -11,6 +11,12 @@ $(document).ready(function () {
     }else{
         window.location = base_url
     }
+    $('#error-phone').hide();
+    $('#error-email').hide();
+    $('#error-password').hide();
+    $( "#emailDiv" ).removeClass( "error" );
+    $( "#phoneDiv" ).removeClass( "error" );
+    $( "#passwordDiv" ).removeClass( "error" );
 });
 
 function getDataProf(token){
@@ -49,37 +55,66 @@ function callChangeProfile(token,username, phone_number, email, password){
         success: function (r) {
             var response = r;
             if(response.status == true){
-                alert("change profile succed");
+                // alert("change profile succed");
                 window.location = base_url+'main/v_home';
             }else{
                 alert(response.message);
             }
         },
         error: function (r) {
-            alert(r.responseJSON.message);
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $("#btn-confirm-password").attr('disabled', true);
+            // alert(r.responseJSON.message);
         },
     });
 }
 
 (function ($) {
-    $('#btn-submit').click(function(){
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-
-        if($('#phone_number').val() == "" || $.trim($('#email').val()).length == 0){
-            alert("please fill all fields");
-        }
-        else if($.isNumeric($('#phone_number').val()) == false ||  $('#phone_number').val().length > 13){
-            alert("phone number must numbers and has 13 max length");
-        }else if(!emailReg.test($('#email').val())){
-            alert("format email not valid")
+    var inputEmail = document.getElementById("email");
+    inputEmail.addEventListener("keyup", function(event) {
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        event.preventDefault();
+        if(!emailReg.test($('#email').val()) || $.trim($('#email').val()).length == 0){
+            $('#error-email').show();
+            $( "#emailDiv" ).addClass( "error" );
+            $("#btn-submit").attr('disabled', true);
         }else{
-            $('#modalConfirmPassword').modal('show')
+            $('#error-email').hide();
+            $( "#emailDiv" ).removeClass( "error" );
+            $("#btn-submit").attr('disabled', false);
         }
+    });
+
+    var inputPhone = document.getElementById("phone_number");
+    inputPhone.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($.isNumeric($('#phone_number').val()) == false ||  $('#phone_number').val().length > 13){
+            $('#error-phone').show();
+            $( "#phoneDiv" ).addClass( "error" );
+            $("#btn-submit").attr('disabled', true);           
+        }else{
+            $('#error-phone').hide();
+            $( "#phoneDiv" ).removeClass( "error" );
+            $("#btn-submit").attr('disabled', false);
+        }
+    });
+
+    var inputPassword = document.getElementById("password");
+    inputPassword.addEventListener("keyup", function(event) {
+        event.preventDefault();
+            $('#error-phone').hide();
+            $( "#phoneDiv" ).removeClass( "error" );
+            $("#btn-confirm-password").attr('disabled', false);
+    });
+
+    $('#btn-submit').click(function(){       
+        $('#modalConfirmPassword').modal('show');
     });
 
     $('#btn-confirm-password').click(function(){
         callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
-        console.log('masuk primata pemberani')
+        // console.log('masuk primata pemberani')
     });
    
     $('#btn-cancel').click(function(){
