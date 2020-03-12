@@ -537,7 +537,7 @@ function drawTableChannel(response){
                     '<td class="text-right">'+(addCommas(response.data[k].ABANDON) || 0)+'</td>'+
                     '<td class="text-right">'+(addCommas(response.data[k].HANDLING) || 0)+'</td>'+
                     '<td class="text-right">'+(addCommas(response.data[k].OFFERED) || 0)+'</td>'+
-                    '<td class="text-right">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                    '<td class="text-right font-weight-extrabold">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                 '</tr>');
 
                 sumChnQueue += Number(response.data[k].QUEUE);

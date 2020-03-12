@@ -37,13 +37,13 @@
                                     <td rowspan="2" class="font-weight-extrabold text-white">Services</td>
                                     <td colspan="12" class="font-weight-extrabold text-white">COF by Channel
                                     </td>
-                                    <td rowspan="2" class="font-weight-extrabold text-white">Total COF</td>
+                                    <td rowspan="2" style="width:2px !important;" class="font-weight-extrabold text-white">Total COF</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">ART</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">AHT</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">AST</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">SCR</td>
                                 </tr>
-                                <tr>
+                                <tr class="table-sm text-center">
                                     <td class="bg-column">Live Chat</td>
                                     <td class="bg-column">Twitter DM</td>
                                     <td class="bg-column">Messenger</td>
@@ -58,7 +58,7 @@
                                     <td class="bg-column">SMS</td>
                                 </tr>
                             </thead>
-                            <tbody class="table-sm text-center" id="mytbody">
+                            <tbody class="table-sm" id="mytbody">
                                 </tr>
                             </tbody>
                             <tfoot class="table-sm bg-total font-weight-extrabold" id="mytfoot">
@@ -83,7 +83,7 @@
                                     <td rowspan="2" class="font-weight-extrabold text-white">No</td>
                                     <td rowspan="2" class="font-weight-extrabold text-white">Services</td>
                                     <td colspan="3" class="font-weight-extrabold text-white">KIP (CWC)</td>
-                                    <td colspan="8" class="font-weight-extrabold text-white">Ticketing</td>
+                                    <td colspan="9" class="font-weight-extrabold text-white">Ticketing</td>
                                 </tr>
                                 <tr>
                                     <td class="bg-column">Informasi</td>
@@ -91,11 +91,13 @@
                                     <td class="bg-column">Request</td>
                                     <td class="bg-column2">New</td>
                                     <td class="bg-column2">Open</td>
-                                    <td class="bg-column2">Reject</td>
-                                    <td class="bg-column2">On Progress</td>
-                                    <td class="bg-column2">Reopen</td>
+                                    <td class="bg-column2">ReProcess</td>
                                     <td class="bg-column2">Pending</td>
-                                    <td class="bg-column2">Resolved</td>
+                                    <td class="bg-column2">Reopen</td>
+                                    <td class="bg-column2">Reject</td>
+                                    <td class="bg-column2">PreClose</td>
+                                    <td class="bg-column2">Close</td>
+                                    <td class="bg-column2">Reassign</td>
                                 </tr>
                             </thead>
                             <tbody class="table-sm text-center" id="mytbody2">

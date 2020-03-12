@@ -24,9 +24,9 @@
                             style="width:100%" id="tableWallAgent">
                             <thead class="text-white bg-head">
                                 <tr>
-                                    <td style="width:16px" class="text-center">No</td>
-                                    <td style="width:48px" class="text-center">Agent ID</td>
-                                    <td style="width:134px" class="text-center">Name</td>
+                                    <td style="width:12px" class="text-center">No</td>
+                                    <td style="width:60px" class="text-center">Agent ID</td>
+                                    <td style="width:140px" class="text-center">Name</td>
                                     <td style="width:127px" class="text-center">Tenant</td>
                                     <td style="width:30px" class="text-center">State</td>
                                     <td style="width:54px" class="text-center">In Service</td>

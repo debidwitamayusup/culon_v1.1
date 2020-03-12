@@ -156,7 +156,7 @@ function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
 			{ className: "text-center", targets: 7 },
 			{ className: "text-center", targets: 8 },
 			{ className: "text-center", targets: 9 },
-			{ className: "text-right", targets: 10 },
+			{ className: "text-right font-weight-extrabold", targets: 10 },
 		], 
         destroy: true
     });

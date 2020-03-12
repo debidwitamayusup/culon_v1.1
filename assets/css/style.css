@@ -8085,7 +8085,7 @@ ul {
 }
 
 .chartsh-wall {
-	height: 25.9rem;
+	height: 24.6rem;
 	overflow: hidden;
 }
 
@@ -29651,7 +29651,8 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .bg-head {
-	background: #4f5a64;
+	/* background: #4f5a64; */
+	background: #253541;
 }
 
 .br-sm {
@@ -30038,4 +30039,14 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-right: 3px;
     width: 20px;
     height: 20px;
+}
+
+.select-tenant{
+	font-size: 14px;
+	width:175px;
+}
+
+.select-skill{
+	font-size: 14px;
+	width:145px;
 }

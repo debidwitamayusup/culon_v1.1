@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:140px">
+                                <div class="input-group" style="width:150px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:140px">
+                                <div class="input-group" style="width:150px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-sm-auto ml-2">
                                 <div class="form-group row">
-                                    <select class="form-control" id="layanan_name">
+                                    <select class="form-control select-tenant" id="layanan_name">
                                         <option value="ShowAll">All Layanan</option>
                                         <option value="1">Telkom</option>
                                         <option value="2">Telkomsel</option>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
-                                    <select class="form-control" id="skill">
+                                    <select class="form-control select-skill" id="skill">
                                         <!-- <option value="ShowAll">Skill</option>
                                         <option value="1">All</option>
                                         <option value="2">Voice</option>
@@ -84,7 +84,7 @@
                                     <td class="wd-15p border-bottom-0">ART</td>
                                     <td class="wd-15p border-bottom-0">AHT</td>
                                     <td class="wd-15p border-bottom-0">AST</td>
-                                    <td class="wd-15p border-bottom-0">SCR</td>
+                                    <td class="wd-15p border-bottom-0 font-normal">SCR</td>
                                 </tr>
                             </thead>
                             <tbody>

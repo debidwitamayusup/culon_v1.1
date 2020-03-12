@@ -366,6 +366,9 @@ function drawChartSumService(response) {
 				maintainAspectRatio: false,
 				scales: {
 					xAxes: [{
+						gridLines:{
+							display:true,
+						},
 						ticks: {
 							min: 0,
 							callback: function (value, index, values) {
@@ -383,6 +386,9 @@ function drawChartSumService(response) {
 					}],
 					yAxes: [{
 						stacked: true,
+						gridLines:{
+							display:false,
+						},
 						ticks: {
 							beginAtZero: true,
 							callback: function (value, index, values) {

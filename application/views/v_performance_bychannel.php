@@ -115,7 +115,7 @@
                                 style="width:100%">
                                 <thead class="text-center text-white bg-head">
                                     <tr>
-                                        <th class="wd-15p border-bottom-0">No</th>
+                                        <th class="wd-15p border-bottom-0" style="width:16px">No</th>
                                         <th class="wd-15p border-bottom-0">Date</th>
                                         <th class="wd-15p border-bottom-0">ART</th>
                                         <th class="wd-15p border-bottom-0">AHT</th>

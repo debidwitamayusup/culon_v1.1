@@ -33,7 +33,7 @@
 				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12 ">
-							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Wallboard</h5> -->
+							<!-- <h5 class="mt-3 mb-4">Wallboard</h5> -->
 							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
 								Realtime</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic

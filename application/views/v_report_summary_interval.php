@@ -20,7 +20,7 @@
                      <div class="card-body">
                          <div class="row">
                              <div class="col-xs-auto ml-1" style="margin-bottom:0px !important;">
-                                 <div class="input-group" style="width:140px">
+                                 <div class="input-group" style="width:150px">
                                      <div class="input-group-prepend">
                                          <div class="input-group-text">
                                              <i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -31,7 +31,7 @@
                              </div>
                              <div class="col-sm-auto ml-2">
                                 <div class="form-group row">
-                                    <select class="form-control" id="layanan_name">
+                                    <select class="form-control select-tenant" id="layanan_name">
                                         <!-- <option value="ShowAll">All Layanan</option>
                                         <option value="1">Telkom</option>
                                         <option value="2">Telkomsel</option>

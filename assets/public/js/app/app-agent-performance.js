@@ -300,7 +300,7 @@ function dataCardCOF(response)
                                  		'<img src='+value[8]+' style="border-radius:75%;">'+
                                  	'</div>'+
                              '</div>'+
-                             '<div class="col-7 text-center">'+
+                             '<div class="col-7 text-left">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
                                  '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
                              '</div>'+
@@ -325,7 +325,7 @@ function dataCardAHT(response)
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
-                             '<div class="col-6 text-center">'+
+                             '<div class="col-6 text-left">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
                                  '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
                              '</div>'+
@@ -350,7 +350,7 @@ function dataCardART(response)
                                  	'<img src='+value[8]+' style="border-radius:75%;">'+
                                  '</div>'+
                              '</div>'+
-                             '<div class="col-6 text-center">'+
+                             '<div class="col-6 text-left">'+
                                  '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
                                  '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
                              '</div>'+
@@ -405,8 +405,8 @@ function drawDataTable(params_time, index, params_year, tenant_id){
         columnDefs: [
 			{ className: "text-center", targets: 0 },
             { className: "text-center", targets: 1 },
-            { className: "text-center", targets: 3 },
-			{ className: "text-center", targets: 4 },
+            { className: "text-left", targets: 3 },
+			{ className: "text-right", targets: 4 },
 			{ className: "text-center", targets: 5 },
 			{ className: "text-center", targets: 6 },
 			{ className: "text-center", targets: 7 }

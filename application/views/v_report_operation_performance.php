@@ -15,7 +15,7 @@
                     <div class="card-header-small">
                         <div class="row">
                             <div class="col-xs-auto ml-1">
-                                <div class="input-group" style="width:140px">
+                                <div class="input-group" style="width:150px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-sm-auto h6 mt-3">to</div>
                             <div class="col-xs-auto">
-                                <div class="input-group" style="width:140px">
+                                <div class="input-group" style="width:150px">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <i class="fa fa-calendar tx-16 lh-0 op-6"></i>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-sm-auto ml-1">
                                 <div class="form-group row">
-                                    <select class="form-control" id="layanan_name">
+                                    <select class="form-control select-tenant" id="layanan_name">
                                         <!-- <option value="">All Layanan</option>
                                         <option value="oct_telkomcare">Telkom Care</option>
                                         <option value="oct_bri">BRI</option>
