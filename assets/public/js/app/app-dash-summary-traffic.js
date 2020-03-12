@@ -499,8 +499,8 @@ function drawPieChartSumAllTenant(response){
 }
 
 function drawChartPerGroupTelkom(response){
-    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
+    $('#barTelkomGroup').remove();
+    $('#barTelkomGroupDiv').append('<canvas id="barTelkomGroup" class="h-200"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -651,8 +651,8 @@ function drawChartPerGroupTelkom(response){
 }
 
 function drawChartPerGroupGovernment(response){
-    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
+    $('#barGovermentGroup').remove();
+    $('#barGovermentGroupDiv').append('<canvas id="barGovermentGroup" class="h-200"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -813,8 +813,8 @@ function drawChartPerGroupGovernment(response){
 }
 
 function drawChartPerGroupBfsi(response){
-    // $('#lineWallsumTrafficWeek').remove(); // this is my <canvas> element
-    // $('#lineWallsumTrafficWeekDiv').append('<canvas id="lineWallsumTrafficWeek"  class="h-500"></canvas>');
+    $('#barBFSIGroup').remove();
+    $('#barBFSIGroupDiv').append('<canvas id="barBFSIGroup" class="h-200"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -966,6 +966,8 @@ function drawChartPerGroupBfsi(response){
 
 
 function drawChartPerGroupEnterprise(response){
+    $('#barEnterpriseGroup').remove();
+    $('#barEnterpriseGroupDiv').append('<canvas id="barEnterpriseGroup" class="h-200"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -1120,6 +1122,8 @@ function drawChartPerGroupEnterprise(response){
     };
     
 function drawChartTop5(response){
+    $('#barTop5Traffic').remove();
+    $('#barTop5TrafficDiv').append('<canvas id="barTop5Traffic" style="height:318px"></canvas>');
     // horizontal bar chart
     var arrLabelTop5 = [], arrDataTop5 = [], arrColorTop5 = [];
     response.data.forEach(function(value){
