@@ -184,9 +184,9 @@
 									<th>AST</th>
 								</tr>
 							</thead>
-							<tbody style="font-size:12px !important;" id="mytbody">
+							<tbody class="table-md" style="font-size:12px !important;" id="mytbody">
 							</tbody>
-							<tfoot style="font-size:12px !important;" id="mytfoot">
+							<tfoot class="table-md bg-total font-weight-extrabold" style="font-size:12px !important;" id="mytfoot">
 							</tfoot>
 						</table>
 					</div>

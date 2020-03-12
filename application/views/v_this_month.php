@@ -137,9 +137,9 @@
 									<th>AST</th>
 								</tr>
 							</thead>
-							<tbody style="font-size:12px !important;" id="mytbody_month">
+							<tbody class="table-md" style="font-size:12px !important;" id="mytbody_month">
 							</tbody>
-							<tfoot style="font-size:12px !important;" id="mytfoot_month">
+							<tfoot class="table-md bg-total" style="font-size:12px !important;" id="mytfoot_month">
 							</tfoot>
 						</table>
 					</div>
