@@ -286,7 +286,7 @@ Class AuthModel extends CI_Model {
     public function adduser($username,$name,$phone,$email,$previlage)
     {
 
-        $pwd = '8888'.substr($username,0,2).substr($phone,6,2).substr($previlage,0,2);
+        $pwd = 'infomedia';//'8888'.substr($username,0,2).substr($phone,6,2).substr($previlage,0,2);
         $haspwd = md5($pwd);
 
         $data = array(
