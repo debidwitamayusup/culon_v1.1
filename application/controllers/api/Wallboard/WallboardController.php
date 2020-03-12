@@ -12,7 +12,6 @@ class WallboardController extends REST_Controller {
 
     public function SummaryTicketStatusNC_post(){
             
-       
 
         $src = $this->security->xss_clean($this->input->post('src'));
 
@@ -422,6 +421,50 @@ class WallboardController extends REST_Controller {
         }
     }
 
+    public function getAvaildatawallmon_post()
+    {
+        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+        $data = $this->module_model->get_available_data_wallmon($tid);
+
+        if ($data) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $data
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function agentMonitoring_post()
+    {
+        
+        $res = $this->module_model->getAgentMonitoringData();
+
+        if ($res) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Data available!',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Not Found!',
+                'dates' => 'Not found',
+                'data'    => $res
+                    ], REST_Controller::HTTP_OK);
+        }
+    }
+
     #region :: debi
     public function summaryTicketCloseWall_post()
     {
@@ -557,49 +600,7 @@ class WallboardController extends REST_Controller {
         }
     }
 
-    public function getAvaildatawallmon_post()
-    {
-        $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
-        $data = $this->module_model->get_available_data_wallmon($tid);
-
-        if ($data) {
-            $this->response([
-                'status'  => TRUE,
-                'message' => 'Data available!',
-                'data'    => $data
-                    ], REST_Controller::HTTP_OK);
-        }
-        else {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'Not Found!',
-                'dates' => 'Not found',
-                'data'    => $data
-                    ], REST_Controller::HTTP_OK);
-        }
-    }
-
-    public function agentMonitoring_post()
-    {
-        
-        $res = $this->module_model->getAgentMonitoringData();
-
-        if ($res) {
-            $this->response([
-                'status'  => TRUE,
-                'message' => 'Data available!',
-                'data'    => $res
-                    ], REST_Controller::HTTP_OK);
-        }
-        else {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'Not Found!',
-                'dates' => 'Not found',
-                'data'    => $res
-                    ], REST_Controller::HTTP_OK);
-        }
-    }
+  
     #endregion debi
 
 }
