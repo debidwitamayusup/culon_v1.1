@@ -19459,6 +19459,10 @@ btn-cust {
 	padding-top: 10px !important;
 }
 
+.card-table7{
+	padding:7px !important;
+}
+
 .table-pt10 {
 	padding: 15px 10px 15px 10px !important;
 	font-size: 9px;
@@ -30029,3 +30033,9 @@ div[data-acc-step]:not(.open) .badge-primary {
 	margin-right:0px !important;
 	margin-left:-4px !important;
 }  
+
+.img-tenant{
+	margin-right: 3px;
+    width: 20px;
+    height: 20px;
+}
