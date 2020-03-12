@@ -384,7 +384,11 @@ function destroyChartPercentage() {
 
     (function ($) {
         $('#layanan_name').change(function(){
-            stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            if ($("#channel_name").val() == 'ShowAll') {
+                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            }else{
+                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            }
             callDataPercentage($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
             callDataTableAvg($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
         });

@@ -657,7 +657,7 @@ class Stc_Model extends CI_Model
 
 			$result = array(
 				'status' => true,
-				'data' => 'nodata'
+				'data' => []
 			);
 		}
 		
