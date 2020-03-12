@@ -14,821 +14,236 @@
         </div>
 
         <!-- first row -->
-        <div class="mt-2" id="parent-card">
-        <div class="row" id="parent-row">
-            <!-- <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="card overflow-hidden margin0-4" style="margin-left:1px !important;">
+            <!-- <div class="card-header-small">
+                <h5 class="card-title-small card-pt10">Monitoring Realtime</h5>
+            </div> -->
+            <div class="card-table7">
+                <div class="table-responsive table-bordered">
+                    <table class="table card-table table-striped table-vcenter table-hover fontNunito9"
+                        style="width:100%" id="tableWallMonitoring">
+                        <thead class="text-white bg-head text-center font-weight-extrabold">
+                            <tr>
+                                <td rowspan="2" class="align-middle">No</td>
+                                <td rowspan="2" class="align-middle" style="width:130px !important;">Layanan</td>
+                                <td rowspan="2" class="align-middle">Total Queue</td>
+                                <td rowspan="2" class="align-middle">Average SCR</td>
+                                <td colspan="6">RTC</td>
+                                <td colspan="6">Non RTC</td>
+                            </tr>
+                            <tr>
+                                <td>Queue</td>
+                                <td>COF</td>
+                                <td>SCR</td>
+                                <td>ART</td>
+                                <td>AST</td>
+                                <td>AHT</td>
+                                <td>Queue</td>
+                                <td>COF</td>
+                                <td>SCR</td>
+                                <td>ART</td>
+                                <td>AST</td>
+                                <td>AHT</td>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>1</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                </td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40</td>
+                                <td class="text-right">40%</td>
+                                <td class="text-right">40%</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                                <td>00:00:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
         </div>
 
-        <!-- next row -->
-        <!-- <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- next row -->
-        <!-- <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="<?=base_url()?>assets/images/brand/telkomsel.jpg" class="rounded-circle2">
-                            <h6 class="font-weight-bold text-red text-center">TELKOMSEL</h6>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total Queue</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">10</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Avg SCR</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">90%</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="ml-2 col-sm-7">
-                                    <h6 class="font12 font-normal">Total COF</h6>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <h6 class="font12 font-bold">410</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="card-box box-widget widget-user"
-                                style="border:0px; border-radius:0px; box-shadow:0 0 0 0; ">
-                                <div class="widget-user-header">
-                                    <h3 class="widget-user-rtc font-weight-bold text-center">NON RTC</h3>
-                                </div>
-                                <div class="box-footer">
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">Queue</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">COF</span>
-                                                <h6 class="description-header num-font mt-1">1,234</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">SCR</span>
-                                                <h6 class="description-header num-font mt-1">90%</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">ART</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AHT</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="description-box">
-                                                <span class="text-muted font10">AST</span>
-                                                <h6 class="description-header num-font mt-1">00:00:00</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+
     </div>
     <?php $this->load->view('temp/footer');?>
     <!--Plugin -->

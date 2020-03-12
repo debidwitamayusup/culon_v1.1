@@ -424,3 +424,7 @@ function drawBoxMonitoring(response)
         '</div>'+
     '</div>');
 }
+
+(function(){
+    $('#tableWallMonitoring').dataTable();
+})(jQuery);

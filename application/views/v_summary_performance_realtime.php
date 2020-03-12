@@ -70,7 +70,7 @@
             </div>
         </div>
         <!---Next Rows---->
-        <div class="row" style="margin-right:0px; margin-left:-4px;">
+        <div class="row margin0-4">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header-small">
@@ -160,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-right:0px; margin-left:-4px;">
+        <div class="row margin0-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header-small">

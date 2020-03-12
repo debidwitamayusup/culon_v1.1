@@ -11,13 +11,13 @@
         <!--Page Header-->
 
         <!----First Rows--->
-        <div class="row mt-2">
+        <div class="row margin0-4">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Summary Channel</h5>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding:5px;">
                         <div class="col-md-12 col-lg-7 col-xl-7">
                             <div class="card overflow-hidden">
                                 <div class="card-body">
