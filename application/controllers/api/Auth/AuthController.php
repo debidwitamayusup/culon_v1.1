@@ -525,7 +525,7 @@ class AuthController extends REST_Controller {
         }
 
         $username = $this->security->xss_clean($this->input->post('username'));
-
+        $tenant = $this->security->xss_clean($this->input->post('tenant_id'));
         $data2 = $this->module_model->userchecker($username);
 
         if ($data2 == true) {
