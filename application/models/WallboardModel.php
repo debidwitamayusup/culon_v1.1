@@ -613,10 +613,13 @@ Class WallboardModel extends CI_Model {
 
     public function SummPerformOps($date,$src)
     {
+
+
         $this->db->select('REPLACE(rpt_summary_scr.tenant_id,"oct_","") as id, rpt_summary_scr.tenant_id ,SUM(cof) as COF, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(art))),2,7) AS ART, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(aht))),2,7) as AHT, SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(ast))),2,7) as AST, ROUND(AVG(scr),2) as SCR');
         $this->db->from('rpt_summary_scr');
         $this->db->where('tanggal',$date);
         $this->db->where('rpt_summary_scr.tenant_id != ""');
+        
         $tidd = array();
         if($src)
         {
@@ -642,7 +645,7 @@ Class WallboardModel extends CI_Model {
                     'SUMSCR' => $datas->SCR
                 );
 
-                $data2 = $this->SummPerformOps_sub($date,$tidd);
+                $data2 = $this->SummPerformOps_sub($date,$t_id);
 
                 $data3 = array_merge($data,$data2);
                 $result[] = $data3;
@@ -663,9 +666,9 @@ Class WallboardModel extends CI_Model {
         $this->db->join('rpt_summary_scr','m_channel.channel_id = rpt_summary_scr.channel_id','left');
        
         $this->db->where('rpt_summary_scr.tanggal',$date);
-        $this->db->where_in('rpt_summary_scr.tenant_id',$tenant_id);
-        $this->db->where('cof IS NOT NULL');
-        $this->db->or_where('cof IS NULL');
+        $this->db->where('rpt_summary_scr.tenant_id',$tenant_id);
+        // $this->db->where('cof IS NOT NULL');
+        // $this->db->or_where('cof IS NULL');
 
         $this->db->where('m_channel.channel_id != 1');
         $this->db->group_by('m_channel.channel_name');

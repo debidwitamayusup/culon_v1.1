@@ -218,21 +218,23 @@ function drawTableCOFByChannel(response){
         var sumAHT = 0;
         var sumAST = 0;
         var sumSCR =0;
+        var sumCB = 0;
         for (var i = 0; i < response.data.length; i++) {
             $('#tabelCOFByChannel').find('tbody').append('<tr>'+
                 '<td class="text-center">'+(i+1)+'</td>'+
                 '<td class="text-left">'+addCommas(response.data[i].TENANT_ID || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Facebook || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i]['Live Chat'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i]['Twitter DM'] || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Messenger || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Whatsapp || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Line || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Telegram || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].ChatBot || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Instagram || 0)+'</td>'+
+                '<td class="text-right">'+addCommas(response.data[i].Facebook || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Twitter || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].Email || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Telegram || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Line || 0)+'</td>'+
                 // '<td class="text-right">'+addCommas(response.data[i].Voice || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Instagram || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i].Messenger || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i]['Twitter DM'] || 0)+'</td>'+
-                '<td class="text-right">'+addCommas(response.data[i]['Live Chat'] || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SMS || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMCOF || 0)+'</td>'+
                 '<td class="text-right">'+addCommas(response.data[i].SUMART || 0)+'</td>'+
@@ -253,6 +255,7 @@ function drawTableCOFByChannel(response){
              sumTwDM+= parseInt((response.data[i]['Twitter DM'] || 0));
              sumLive+= parseInt((response.data[i]['Live Chat'] || 0));
              sumSms+= parseInt((response.data[i].SMS || 0));
+             sumCB+= parseInt((response.data[i].ChatBot || 0));
              sumCOF+= parseInt((response.data[i].SUMCOF || 0));
              sumART+= Number(timestrToSec(response.data[i].SUMART || 0));
              sumAHT+= Number(timestrToSec(response.data[i].SUMAHT || 0));
@@ -274,17 +277,18 @@ function drawTableCOFByChannel(response){
         
         $('#tabelCOFByChannel').find('tfoot').append('<tr>'+
             '<td colspan="2" class="text-center">TOTAL</td>'+
-            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
+            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
             '<td class="text-right">'+addCommas(sumWA)+'</td>'+
+            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
+            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
+            '<td class="text-right">'+addCommas(sumCB)+'</td>'+
+            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
+            '<td class="text-right">'+addCommas(sumFb)+'</td>'+
             '<td class="text-right">'+addCommas(sumTw)+'</td>'+
             '<td class="text-right">'+addCommas(sumEmail)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTel)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLine)+'</td>'+
             // '<td class="text-right">'+addCommas(sumVoice)+'</td>'+
-            '<td class="text-right">'+addCommas(sumInst)+'</td>'+
-            '<td class="text-right">'+addCommas(sumMes)+'</td>'+
-            '<td class="text-right">'+addCommas(sumTwDM)+'</td>'+
-            '<td class="text-right">'+addCommas(sumLive)+'</td>'+
             '<td class="text-right">'+addCommas(sumSms)+'</td>'+
             '<td class="text-right">'+addCommas(sumCOF)+'</td>'+
             '<td class="text-center">'+formatTime(avgART).toString().substring(1)+'</td>'+

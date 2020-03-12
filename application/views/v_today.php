@@ -186,6 +186,8 @@
 							</thead>
 							<tbody style="font-size:12px !important;" id="mytbody">
 							</tbody>
+							<tfoot style="font-size:12px !important;" id="mytfoot">
+							</tfoot>
 						</table>
 					</div>
 					<!-- table-responsive -->
