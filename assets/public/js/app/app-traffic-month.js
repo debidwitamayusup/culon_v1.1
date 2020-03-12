@@ -237,6 +237,8 @@ function callDataPercentage(month, year, tenant_id){
 }
 
 function drawChartPercentageMonth(response) {
+    $('#echartVerticalMonth').remove(); // this is my <canvas> element
+    $('#chartPercentage').append('<canvas id="echartVerticalMonth" style="0px 20px 0px 20px"></canvas>');
     var data_label = [];
     var data_rate = [];
     var data_color = [];
