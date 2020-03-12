@@ -1264,13 +1264,13 @@ class Stc_Model extends CI_Model
 		{
 			foreach($query->result() as $data)
 			{
-				if($data->scr != '-')
-				{
-					$scr = strval(number_format($data->scr,2,',','.')).'%';
-				}
-				else{
-					$scr = '-';
-				}
+				// if($data->scr != '-')
+				// {
+				// 	$scr = strval(number_format($data->scr,2,',','.')).'%';
+				// }
+				// else{
+				// 	$scr = '-';
+				// }
 				
 				$content[] = array(
 					'channel_name'=> $data->channel_name,
@@ -1279,7 +1279,7 @@ class Stc_Model extends CI_Model
 					'art'=> $data->art,
 					'aht'=> $data->aht,
 					'ast'=> $data->ast,
-					'scr'=> $scr
+					'scr'=> $data->scr
 				);
 			}
 		}
@@ -1348,13 +1348,13 @@ class Stc_Model extends CI_Model
 		{
 			foreach($query->result() as $data)
 			{
-				if($data->scr != '-')
-				{
-					$scr = strval(number_format($data->scr,2,',','.')).'%';
-				}
-				else{
-					$scr = '-';
-				}
+				// if($data->scr != '-')
+				// {
+				// 	$scr = strval(number_format($data->scr,2,',','.')).'%';
+				// }
+				// else{
+				// 	$scr = '-';
+				// }
 				
 				$content[] = array(
 					'channel_name'=> $data->channel_name,
@@ -1363,7 +1363,7 @@ class Stc_Model extends CI_Model
 					'art'=> $data->art,
 					'aht'=> $data->aht,
 					'ast'=> $data->ast,
-					'scr'=> $scr
+					'scr'=> $data->scr
 				);
 			}
 		}

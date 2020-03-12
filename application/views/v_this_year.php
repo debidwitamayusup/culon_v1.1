@@ -105,6 +105,8 @@
 							</thead>
 							<tbody style="font-size:12px !important;" id="mytbody_year">
 							</tbody>
+							<tfoot style="font-size:12px !important;" id="mytfoot_year">
+							</tfoot>
 						</table>
 					</div>
 					<!-- table-responsive -->

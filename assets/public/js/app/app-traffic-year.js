@@ -21,6 +21,28 @@ $(document).ready(function () {
     }
 });
 
+function timestrToSec(timestr) {
+    var parts = timestr.split(":");
+    return (parts[0] * 3600) +
+           (parts[1] * 60) +
+           (+parts[2]);
+  }
+  
+  function pad(num) {
+    if(num < 10) {
+      return "0" + num;
+    } else {
+      return "" + num;
+    }
+  }
+  
+  function formatTime(seconds) {
+    return [pad(Math.floor(seconds/3600)),
+            pad(Math.floor(seconds/60)%60),
+            pad(seconds%60),
+            ].join(":");
+  }
+
 function getTenant(date, userid){
     $.ajax({
         type: 'POST',
@@ -332,17 +354,67 @@ function callDataTableAvg(year, tenant_id) {
 
 function drawTableYear(response) {
     $("#mytbody_year").empty();
+    $("#mytfoot_year").empty();
+    var sumSCR =0, sumART =0, sumAHT =0, sumAST =0; lengtData =0;
     if (response.data.length != 0) {
         response.data.forEach(function (value, index) {
+            if(value.scr != '-'){
+                var tdSCR = parseFloat(value.scr).toFixed(2)+'%';
+            }else{
+                var tdSCR = '-';
+            }
             $('#table_avg_year').find('tbody').append('<tr>' +
                 '<td class="text-center">' + (index + 1) + '</td>' +
                 '<td class="text-left">' + value.channel_name + '</td>' +
-                '<td class="text-right">' + value.scr + '</td>' +
+                '<td class="text-right">' + tdSCR.toString().replace(".",",") + '</td>' +
                 '<td class="text-center">' + value.art + '</td>' +
                 '<td class="text-center">' + value.aht + '</td>' +
                 '<td class="text-center">' + value.ast + '</td>' +
                 '</tr>');
-        });
+                if(value.scr != '-'){
+                    sumSCR += parseFloat(value.scr)
+                }
+    
+                if(value.art != '-'){
+                    sumART += timestrToSec(value.art);
+                }
+    
+                if(value.aht != '-'){
+                    sumAHT += timestrToSec(value.aht);
+                }
+    
+                if(value.ast != '-'){
+                    sumAST += timestrToSec(value.ast);
+                }
+    
+                if(value.scr != '-' || value.art != '-' || value.aht != '-' || value.ast != '-'){
+                    lengtData++;
+                }
+            });
+            
+            if(lengtData != 0){
+                var avgSCR = (sumSCR / lengtData);
+                var avgART = Math.round(sumART / lengtData);
+                var avgAHT = Math.round(sumAHT / lengtData);
+                var avgAST = Math.round(sumAST / lengtData);
+                $('#table_avg_year').find('tfoot').append('<tr>'+
+                '<td class="text-center" colspan="2">Average</td>'+
+                // '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
+                '<td class="text-right">'+(avgSCR.toFixed(2)).toString().replace(".",",")+'%</td>'+
+                '<td class="text-center">'+formatTime(avgART).toString().substring(1)+'</td>'+
+                '<td class="text-center">'+formatTime(avgAHT).toString().substring(1)+'</td>'+
+                '<td class="text-center">'+formatTime(avgAST).toString().substring(1)+'</td>'+
+                '</tr>');
+            }else{
+                $('#table_avg_year').find('tfoot').append('<tr>'+
+                '<td class="text-center" colspan="2">Average</td>'+
+                // '<td class="text-right">'+parseFloat((value.scr > 100) ? 100 : value.scr).toFixed(2)+'%</td>'+
+                '<td class="text-right">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '<td class="text-center">-</td>'+
+                '</tr>');
+            }
     } else {
         $('#table_avg_year').find('tbody').append('<tr>' +
             '<td colspan=6> No Data </td>' +
