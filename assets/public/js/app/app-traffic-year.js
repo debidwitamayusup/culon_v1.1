@@ -259,6 +259,8 @@ function callDataPercentage(year, tenant_id) {
 }
 
 function drawChartPercentageYear(response) {
+    $('#echartVerticalYear').remove(); // this is my <canvas> element
+    $('#chartPercentage').append('<canvas id="echartVerticalYear"></canvas>');
     var data_label = [];
     var data_rate = [];
     var data_color = [];;

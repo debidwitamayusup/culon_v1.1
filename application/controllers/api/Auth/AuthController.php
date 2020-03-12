@@ -284,7 +284,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data = false)
+        if($data == true)
         {
             $this->response([
                 'status'  => FALSE,
@@ -478,7 +478,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data = false)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -516,7 +516,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == true)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -525,7 +525,7 @@ class AuthController extends REST_Controller {
         }
 
         $username = $this->security->xss_clean($this->input->post('username'));
-
+        $tenant = $this->security->xss_clean($this->input->post('tenant_id'));
         $data2 = $this->module_model->userchecker($username);
 
         if ($data2 == true) {
@@ -548,6 +548,35 @@ class AuthController extends REST_Controller {
                 'status'  => FALSE,
                 'message' => 'Perubahan gagal!'
                     ], REST_Controller::HTTP_OK);
+        }
+    }
+
+    public function raincheck_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data == true)
+        {
+            $this->response([
+                'status'  => TRUE,
+                'message' => ' Welcome !!',
+                    ], REST_Controller::HTTP_OK);
+            
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
