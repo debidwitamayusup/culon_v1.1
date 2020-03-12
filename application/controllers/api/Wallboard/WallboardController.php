@@ -12,13 +12,7 @@ class WallboardController extends REST_Controller {
 
     public function SummaryTicketStatusNC_post(){
             
-        // if(!$this->input->post('token'))
-        // {
-        //     $this->response([
-        //         'status'  => FALSE,
-        //         'message' => 'Token Not found,Loging off!'
-        //             ], REST_Controller::HTTP_NOT_FOUND);
-        // }
+       
 
         $src = $this->security->xss_clean($this->input->post('src'));
 
