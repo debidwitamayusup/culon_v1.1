@@ -14,7 +14,7 @@
         </div>
 
         <!-- first row -->
-        <div class="card overflow-hidden margin0-4">
+        <div class="card overflow-hidden margin0-4" style="margin-left:1px !important;">
             <!-- <div class="card-header-small">
                 <h5 class="card-title-small card-pt10">Monitoring Realtime</h5>
             </div> -->
@@ -25,7 +25,7 @@
                         <thead class="text-white bg-head text-center font-weight-extrabold">
                             <tr>
                                 <td rowspan="2" class="align-middle">No</td>
-                                <td rowspan="2" class="align-middle" style="width:18%">Layanan</td>
+                                <td rowspan="2" class="align-middle" style="width:130px !important;">Layanan</td>
                                 <td rowspan="2" class="align-middle">Total Queue</td>
                                 <td rowspan="2" class="align-middle">Average SCR</td>
                                 <td colspan="6">RTC</td>
@@ -49,7 +49,7 @@
                         <tbody class="text-center">
                             <tr>
                                 <td>1</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -87,7 +87,7 @@
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -106,7 +106,7 @@
                             </tr>
                             <tr>
                                 <td>4</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -125,7 +125,7 @@
                             </tr>
                             <tr>
                                 <td>5</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -144,7 +144,7 @@
                             </tr>
                             <tr>
                                 <td>6</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -163,7 +163,7 @@
                             </tr>
                             <tr>
                                 <td>7</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -182,7 +182,7 @@
                             </tr>
                             <tr>
                                 <td>8</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -201,7 +201,7 @@
                             </tr>
                             <tr>
                                 <td>9</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
@@ -220,7 +220,7 @@
                             </tr>
                             <tr>
                                 <td>10</td>
-                                <td><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
+                                <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
                                 <td class="text-right">40</td>
                                 <td class="text-right">40</td>
