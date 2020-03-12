@@ -86,7 +86,7 @@
 }
 @media (min-width: 768px) {
 	.app-content {
-		margin-left: 272px;
+		margin-left: 274px;
 		/* margin-left: 76px; */
 	}
 
@@ -578,7 +578,7 @@
 }
 @media (min-width: 768px) {
 	.sidebar-mini.sidenav-toggled .app-content {
-		margin-left: 75px;
+		margin-left: 73px;
 	}
 	.sidebar-mini.sidenav-toggled1 .app-content {
 		margin-left: 0;
@@ -836,7 +836,7 @@
 	visibility:visible;
 }
 .app.sidebar-mini.sidenav-toggled4 .app-content{
-	margin-left: 276px;
+	margin-left: 274px;
 }
 .toggle{
 	padding-top:9px;

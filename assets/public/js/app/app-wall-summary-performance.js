@@ -93,7 +93,7 @@ function drawTableRealTime(response){
                         '<td class="text-right">'+(addCommas(response.data[i].ABANDON) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].HANDLING) || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_1').find('tbody').append(
@@ -126,7 +126,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(

@@ -69,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:-4px;">
+		<div class="row margin0-4">
 			<div class="col-md-6">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">
@@ -107,7 +107,7 @@
 
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:-4px;">
+		<div class="row margin0-4">
 			<div class="col-md-6">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">
@@ -134,7 +134,7 @@
 				<div id="chartjs-tooltip"></div>
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:-4px;">
+		<div class="row margin0-4">
 			<div class="col-md-6">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">

@@ -15466,6 +15466,7 @@ body.fixed-header .header {
 }
 
 .app-header .header-brand {
+	margin-left	: 7px;
 	color: inherit;
 	margin-right: 0;
 	font-size: 1.25rem;
@@ -30024,4 +30025,7 @@ div[data-acc-step]:not(.open) .badge-primary {
 	display: inline-block;
   }
   
-  
+.margin0-4{
+	margin-right:0px !important;
+	margin-left:-4px !important;
+}  

@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row margin0-4">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="table-responsive table-bordered" style="padding:5px 8px 12px 8px;">

@@ -1,31 +1,29 @@
 <div class=" app-content">
 	<div class="side-app">
-	<div class="page-header d-flex p-2 bd-highlight">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
-                </li>
-                <li class="breadcrumb-item active mt-2" aria-current="page">Ticket</li>
-                <li class="breadcrumb-item active mt-2" aria-current="page">Summary Status Today (Non Close)</li>
-            </ol>
-            <div class="d-flex bd-highlight">
-                <!-- <div class="p-2 bd-highlight">
+		<div class="page-header d-flex p-2 bd-highlight">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page">
+					<h4 class="page-title"><i class="fe fe-monitor mr-1"></i>Wallboard</h4>
+				</li>
+				<li class="breadcrumb-item active mt-2" aria-current="page">Ticket</li>
+				<li class="breadcrumb-item active mt-2" aria-current="page">Summary Status Today (Non Close)</li>
+			</ol>
+			<div class="d-flex bd-highlight">
+				<!-- <div class="p-2 bd-highlight">
                     <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
                         <option value="#">Layanan</option>
                     </select>
                 </div> -->
-            </div>
-        </div
-
-		<div class="row mt-2">
-			<div class="col-xl-12 col-lg-12 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header">
-						<h5 class="card-title-small card-pt10">Summary Traffic</h5>
-					</div>
-					<div id="parentNonClose">
-						<div class="card-body" id="cardNonClose">
-							<!-- <div class="row mt-2">
+			</div>
+		</div <div class="row">
+		<div class="col-xl-12 col-lg-12 col-md-12" style="margin-right:0px; margin-left:-3px;">
+			<div class="card overflow-hidden">
+				<div class="card-header">
+					<h5 class="card-title-small card-pt10">Summary Traffic</h5>
+				</div>
+				<div id="parentNonClose">
+					<div class="card-body" id="cardNonClose">
+						<!-- <div class="row mt-2">
 												<div class="col-md-12 col-lg-3 col-xl-3 text-center">
 													<div class="card-custom-ticket overflow-hidden">
 														<div class="card-header-small bg-red">
@@ -118,60 +116,60 @@
 													</div>
 												</div>
 											</div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xl-12 col-lg-12 col-md-12">
-				<div class="card overflow-hidden">
-					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10">Operation Performance</h5>
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table
-								class="table card-table table-bordered table-striped table-vcenter table-hover fontNunito12"
-								style="font-size:12px; width:100%;" id="tableTicket">
-								<thead class="text-center text-white bg-head">
-									<tr>
-										<td>No</td>
-										<td width="30%">Unit</td>
-										<td>New</td>
-										<td>Open</td>
-										<td>Reprocess</td>
-										<td>Pending</td>
-										<td>Reopen</td>
-										<td>Reject</td>
-										<td>Preclose</td>
-										<td>Reassign</td>
-										<td>Total</td>
-									</tr>
-								</thead>
-								<tbody class="table-sm">
-
-								</tbody>
-								<tfoot class="text-center font-weight-extrabold bg-total">
-									<tr>
-										<td colspan="2"></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php $this->load->view('temp/footer');?>
-	<script src="<?=base_url()?>assets/public/js/app/app-wall-status-nonClose.js"></script>
+	<div class="row margin0-4">
+		<div class="col-xl-12 col-lg-12 col-md-12">
+			<div class="card overflow-hidden">
+				<div class="card-header-small">
+					<h5 class="card-title-small card-pt10">Operation Performance</h5>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table
+							class="table card-table table-bordered table-striped table-vcenter table-hover fontNunito12"
+							style="font-size:12px; width:100%;" id="tableTicket">
+							<thead class="text-center text-white bg-head">
+								<tr>
+									<td>No</td>
+									<td width="30%">Unit</td>
+									<td>New</td>
+									<td>Open</td>
+									<td>Reprocess</td>
+									<td>Pending</td>
+									<td>Reopen</td>
+									<td>Reject</td>
+									<td>Preclose</td>
+									<td>Reassign</td>
+									<td>Total</td>
+								</tr>
+							</thead>
+							<tbody class="table-sm">
+
+							</tbody>
+							<tfoot class="text-center font-weight-extrabold bg-total">
+								<tr>
+									<td colspan="2"></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $this->load->view('temp/footer');?>
+<script src="<?=base_url()?>assets/public/js/app/app-wall-status-nonClose.js"></script>

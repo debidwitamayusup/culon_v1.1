@@ -16,9 +16,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-right:0px; margin-left:-3px;">
+	<div class="row margin0-4">
 		<div class="col-xl-12 col-lg-12 col-md-12">
-			<div class="row mt-2">
+			<div class="row margin0-4">
 				<div class="col-md-3 text-center">
 					<div class="card-custom overflow-hidden">
 						<div class="card-header-small bg-light-3">
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-right:0px; margin-left:-1px;">
+	<div class="row margin0-4">
 		<div class="col-xl-4 col-lg-4 col-md-12">
 			<div class="card overflow-hidden">
 				<div class="card-header-small">

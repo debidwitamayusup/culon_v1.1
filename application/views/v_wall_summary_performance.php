@@ -17,7 +17,7 @@
             </div>
         </div> -->
         <!---Next Rows---->
-        <div class="row mt-2">
+        <div class="row margin0-4">
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header-small">
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row margin0-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header-small">

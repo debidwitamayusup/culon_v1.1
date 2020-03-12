@@ -14,8 +14,8 @@
         </div>
 
         <!-- first row -->
-        <div class="mt-2" id="parent-card">
-        <div class="row" id="parent-row">
+        <div id="parent-card">
+        <div class="row margin0-4" id="parent-row">
             <!-- <div class="col-md-6">
                 <div class="card">
                     <div class="row">

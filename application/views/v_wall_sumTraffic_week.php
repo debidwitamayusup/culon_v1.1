@@ -17,9 +17,8 @@
             </div>
         </div>
 
-        <!--Page Header-->
         <!---Next Rows---->
-        <div class="row mt-2">
+        <div class="row margin0-4">
             <div class="col-md-12 col-lg-4">
                 <div class="card">
                     <div class="card-header-small">
