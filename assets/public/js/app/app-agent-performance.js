@@ -14,6 +14,7 @@ var v_parmas_tenant = 'oct_telkomcare';
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
+    console.log(base_url);
     if(sessionParams){
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
             getTenant('', sessionParams.USERID);
@@ -291,26 +292,32 @@ function dataCardCOF(response)
 	// console.log(response.data);
     $('#dataDrawCOF').remove(); 
     $('#classDrawCOF').append(' <div class="row mb-3" id="dataDrawCOF"></div>');
-	var i=1;
-	response.data.forEach(function(value,index){
-		$('#dataDrawCOF').append('<div class="col-2 text-center" style="margin-bottom : 9px">'+
-                                 // '<span class="avatar avatar-md brround cover-image"></span>'+
-                                 	// '<img src="'+value[8]+'" style="border-radius:100%; width: 200px; height: 40px;">'+
-                                 	'<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
-                                 		'<img src='+value[8]+' style="border-radius:75%;">'+
-                                 	'</div>'+
-                             '</div>'+
-                             '<div class="col-7 text-center">'+
-                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
-                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
-                             '</div>'+
-                             '<div class="col-3 text-right">'+
-                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[4]+'</h5>'+
-                                 '<h6 class="text-muted font10">Handling</h6>'+
-                             '</div>');
-		i++;
-		// console.log(value[2]);
-	});
+    var i=1;
+    if(response.data[0][0] != 'no data'){
+        response.data.forEach(function(value,index){
+            $('#dataDrawCOF').append('<div class="col-2 text-center" style="margin-bottom : 9px">'+
+                                    // '<span class="avatar avatar-md brround cover-image"></span>'+
+                                        // '<img src="'+value[8]+'" style="border-radius:100%; width: 200px; height: 40px;">'+
+                                        '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                            '<img src='+value[8]+' style="border-radius:75%;">'+
+                                        '</div>'+
+                                '</div>'+
+                                '<div class="col-7 text-center">'+
+                                    '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                    '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                                '</div>'+
+                                '<div class="col-3 text-right">'+
+                                    '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[4]+'</h5>'+
+                                    '<h6 class="text-muted font10">Handling</h6>'+
+                                '</div>');
+            i++;
+            // console.log(value[2]);
+        });
+    }else{
+        $('#dataDrawCOF').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+                                '</div>');
+    }
 }
 
 function dataCardAHT(response)
@@ -318,24 +325,30 @@ function dataCardAHT(response)
 	// console.log(response.data);
     $('#dataDrawAHT').remove(); 
     $('#classDrawAHT').append(' <div class="row mb-3" id="dataDrawAHT"></div>');
-	var i=1;
-	response.data.forEach(function(value,index){
-		$('#dataDrawAHT').append('<div class="col-2 mb-2 text-center">'+
-                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
-                                 	'<img src='+value[8]+' style="border-radius:75%;">'+
-                                 '</div>'+
-                             '</div>'+
-                             '<div class="col-6 text-center">'+
-                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
-                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
-                             '</div>'+
-                             '<div class="col-4 text-right">'+
-                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[6]+'</h5>'+
-                                 '<h6 class="text-muted font10">Handling</h6>'+
-                             '</div>');
-		i++;
-		// console.log(value[2]);
-	});
+    var i=1;
+    if(response.data[0][0] != 'no data'){
+        response.data.forEach(function(value,index){
+            $('#dataDrawAHT').append('<div class="col-2 mb-2 text-center">'+
+                                    '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                        '<img src='+value[8]+' style="border-radius:75%;">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-6 text-center">'+
+                                    '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                    '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                                '</div>'+
+                                '<div class="col-4 text-right">'+
+                                    '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[6]+'</h5>'+
+                                    '<h6 class="text-muted font10">Handling</h6>'+
+                                '</div>');
+            i++;
+            // console.log(value[2]);
+        });
+    }else{
+        $('#dataDrawAHT').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+                                '</div>');
+    }
 }
 
 function dataCardART(response)
@@ -343,24 +356,30 @@ function dataCardART(response)
 	// console.log(response.data);
     $('#dataDrawART').remove(); 
     $('#classDrawART').append(' <div class="row mb-3" id="dataDrawART"></div>');
-	var i=1;
-	response.data.forEach(function(value,index){
-		$('#dataDrawART').append('<div class="col-2 mb-2 text-center">'+
-                                 '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
-                                 	'<img src='+value[8]+' style="border-radius:75%;">'+
-                                 '</div>'+
-                             '</div>'+
-                             '<div class="col-6 text-center">'+
-                                 '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
-                                 '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
-                             '</div>'+
-                             '<div class="col-4 text-right">'+
-                                 '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[5]+'</h5>'+
-                                 '<h6 class="text-muted font10">Handling</h6>'+
-                             '</div>');
-		i++;
-		// console.log(value[2]);
-	});
+    var i=1;
+    if(response.data[0][0] != 'no data'){
+        response.data.forEach(function(value,index){
+            $('#dataDrawART').append('<div class="col-2 mb-2 text-center">'+
+                                    '<div style="background-repeat: no-repeat; backgroud-size: cover; overflow:hidden; -webkit-border-radius:25px; -moz-border-radius:25px; width:40px; height:auto; border-radius:50px ;">'+
+                                        '<img src='+value[8]+' style="border-radius:75%;">'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-6 text-center">'+
+                                    '<h5 class="font14 mt-1 mb-3">Agent '+i+'</h5>'+
+                                    '<h6 class="text-muted font10" id="nameAgent">'+value[2]+'</h6>'+
+                                '</div>'+
+                                '<div class="col-4 text-right">'+
+                                    '<h5 class="font-weight-extrabold" id="nilaiAgent">'+value[5]+'</h5>'+
+                                    '<h6 class="text-muted font10">Handling</h6>'+
+                                '</div>');
+            i++;
+            // console.log(value[2]);
+        });
+    }else{
+        $('#dataDrawART').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+                                '</div>');
+    }
 }
 
 function drawTable(response){
@@ -379,7 +398,7 @@ function drawTable(response){
         });
     }else{
         $('#tableSkill').find('tbody').append('<tr>'+
-            '<td colspan=6> No Data </td>'+
+            '<td colspan=6> <img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px"></td>'+
             '</tr>');
     }
     // console.log(response.data)

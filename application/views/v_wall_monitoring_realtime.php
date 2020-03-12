@@ -27,6 +27,7 @@
                                 <td rowspan="2" class="align-middle">No</td>
                                 <td rowspan="2" class="align-middle" style="width:130px !important;">Layanan</td>
                                 <td rowspan="2" class="align-middle">Total Queue</td>
+                                <td rowspan="2" class="align-middle">Total COF</td>
                                 <td rowspan="2" class="align-middle">Average SCR</td>
                                 <td colspan="6">RTC</td>
                                 <td colspan="6">Non RTC</td>
