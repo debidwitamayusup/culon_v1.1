@@ -227,7 +227,8 @@ function getToday(){
 
 async function loadContent(tenant_id){
     $("#filter-loader").fadeIn("slow");
-    callBoxMonitoring(tenant_id);
+    // callBoxMonitoring(tenant_id);
+    callTableMonitoring(tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -249,6 +250,27 @@ function getYear(){
 
     var year = yyyy;
     return year;
+}
+
+function callTableMonitoring(tenant_id){
+    $.ajax({
+        type: 'post',
+        url: base_url + 'api/Wallboard/WallboardController/getAvaildatawallmon',
+        data: {
+            tenant_id: tenant_id 
+        },
+        success: function (r) { 
+            var response = r;
+            // console.log(response);
+            $('#modalError').modal('hide');
+            // setTimeout(function(){loopingBoxMonitoring(tenant_id);},5000);
+            drawTableMonitoring(response);
+        },
+        error: function (r) {
+            $('#modalError').modal('show');
+            // setTimeout(function(){loopingBoxMonitoring(tenant_id);},5000);
+        },
+    });
 }
 
 function callBoxMonitoring(tenant_id){
@@ -425,6 +447,37 @@ function drawBoxMonitoring(response)
     '</div>');
 }
 
-(function(){
-    $('#tableWallMonitoring').dataTable();
-})(jQuery);
+function drawTableMonitoring(response){
+    $("#mytbody").empty();
+	if (response.data.length != 0) {
+        var total=0;
+		for (var i = 0; i < response.data.length; i++) {
+			$('#tableWallMonitoring').find('tbody').append('<tr>'+
+                '<td class="text-center">'+(i+1)+'</td>'+
+                '<td class="text-left"><img src="'+response.data[i].TENANT_ICON+'" class="img-tenant">'+response.data[i].TENANT_NAME+'</td>'+
+                '<td class="text-right">'+response.data[i].TOTAL_QUEUE+'</td>'+
+                '<td class="text-right">'+response.data[i].TOTAL_SCR+'%</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].QUEUE+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].COF+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].SCR+'%</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].ART+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].AST+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[0].AHT+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].QUEUE+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].COF+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].SCR+'%</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].ART+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].AST+'</td>'+
+                '<td class="text-right">'+response.data[i].DATA[1].AHT+'</td>'+
+            +'</tr>')
+            total += parseInt(response.data[i].JUMLAH || 0)
+        }
+        
+        $("#filter-loader ").fadeOut("slow");
+	} else {
+        $('#tableWallMonitoring').find('tbody').append('<tr>'+
+           '<td class="text-center" colspan=28> No Data Available </td>'+
+        '</tr>');
+        $("#filter-loader ").fadeOut("slow");
+	}
+}

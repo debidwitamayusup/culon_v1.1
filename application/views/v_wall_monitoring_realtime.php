@@ -46,7 +46,7 @@
                                 <td>AHT</td>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center" id="mytbody">
                             <tr>
                                 <td>1</td>
                                 <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
