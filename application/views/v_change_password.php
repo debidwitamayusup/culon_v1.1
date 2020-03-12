@@ -19,7 +19,7 @@
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="text" class="form-control border-input2 font12" id="current-password"
+                                    </div><input type="password" class="form-control border-input2 font12" id="current-password"
                                         placeholder="Current Password" name="current_password">
                                 </div>
                                 <div class="error-message" id="error-current-password">Password is missmatch</div>
@@ -32,10 +32,10 @@
                                         <div class="input-group-text border-input">
                                             <i class="fa fa-lock tx-16 lh-0 op-6"></i>
                                         </div>
-                                    </div><input type="text" class="form-control border-input2 font12" id="new-password"
+                                    </div><input type="password" class="form-control border-input2 font12" id="new-password"
                                         placeholder="New Password" name="new_password">
                                 </div>
-                                <div class="error-message" id="error-new-password">Password is missmatch</div>
+                                <div class="error-message" id="error-new-password">Password must contain at least one capital leter and number and more than 8 cracters</div>
                             </div>
 
                             <!-- password -->
@@ -53,9 +53,9 @@
 
                             <div class="text-center mb-5 mt-5">
                                 <button type="submit" class="btn btn-sign text-white mr-5"
-                                    style="border-radius:8px !important;" id="btn-login">Cancel</button>
+                                    style="border-radius:8px !important;" id="btn-cancel">Cancel</button>
                                 <button type="submit" class="btn btn-sign text-white ml-5"
-                                    style="border-radius:8px !important;" id="btn-login">Submit</button>
+                                    style="border-radius:8px !important;" id="btn-submit">Submit</button>
                             </div>
 
                         </div>
@@ -72,3 +72,4 @@
 </div>
  
 <?php $this->load->view('temp/footer');?>
+<script src="<?=base_url()?>assets/public/js/app/app-change-pwd.js"></script>

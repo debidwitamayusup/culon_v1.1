@@ -100,7 +100,7 @@
 					<div class="card-header-small">
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Top 5 Traffic</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body" id="barTop5TrafficDiv">
 						<canvas id="barTop5Traffic" style="height:318px"></canvas>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 					<div class="card-header-small">
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body" id="barTelkomGroupDiv">
 					<div id="chartjs-tooltip-telkom" class="center">
 						</div>
 						<canvas id="barTelkomGroup" class="h-200"></canvas>
@@ -125,7 +125,7 @@
 					<div class="card-header-small">
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body" id="barGovermentGroupDiv">
 					<div id="chartjs-tooltip-government" class="center">
 						</div>
 						<canvas id="barGovermentGroup" class="h-200"></canvas>
@@ -140,7 +140,7 @@
 					<div class="card-header-small">
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body" id="barBFSIGroupDiv">
 					<div id="chartjs-tooltip-bfsi" class="center">
 						</div>
 						<canvas id="barBFSIGroup" class="h-200"></canvas>
@@ -152,7 +152,7 @@
 					<div class="card-header-small">
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Enterprise Group</h5>
 					</div>
-					<div class="card-body">
+					<div class="card-body" id="barEnterpriseGroupDiv">
 						<div id="chartjs-tooltip-enterprise" class="center">
 						</div>
 						<canvas id="barEnterpriseGroup" class="h-200"></canvas>
