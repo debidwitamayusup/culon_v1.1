@@ -12,7 +12,7 @@
 		href="<?php echo base_url();?>assets/images/brand/logo_logos.png" />
 
 	<!-- Title -->
-	<title>Infomedia</title>
+	<title id="titleTab">Infomedia</title>
 
 	<!--Bootstrap.min css-->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/css/bootstrap.min.css">
