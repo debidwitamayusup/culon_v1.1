@@ -44,13 +44,16 @@ function getTenant(date){
     });
 }
 
+function capitalize(input) {  
+    return input.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');  
+} 
 
 //jquery
 (function ($) {
      
       $('#NICKNAME_NAV').html(items.NAME)
       $('#PREVILAGE_NAV').html(items.PREVILAGE)
-    
+      $('#titleTab').html('Infomedia | '+capitalize(items.PREVILAGE))
       //add id
       $('#NICKNAME_NAV2').html(items.NAME);
       $('#PREVILAGE_NAV2').html(items.PREVILAGE);   

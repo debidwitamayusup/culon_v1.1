@@ -48,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-center" id="mytbody">
-                            <tr>
+                            <!-- <tr>
                                 <td>1</td>
                                 <td class="text-left"><img src="<?=base_url()?>public/tenant/telkomsel.png" class="img-tenant">Telkomsel
                                 </td>
@@ -237,7 +237,7 @@
                                 <td>00:00:00</td>
                                 <td>00:00:00</td>
                                 <td>00:00:00</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
