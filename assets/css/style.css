@@ -30062,7 +30062,7 @@ div[data-acc-step]:not(.open) .badge-primary {
 }
 
 .img-no-data{
-	width: 135px;
+	width: 120px;
     margin-top: 20%;
-    opacity: 0.4;
+    opacity: 0.8;
 }
