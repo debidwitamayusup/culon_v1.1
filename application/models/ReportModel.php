@@ -312,7 +312,8 @@ Class ReportModel extends CI_Model {
 
         $this->db->select('a.tanggal as TANGGAL, 
         SUM(a.session) as OFFERED,
-      
+        SUM(a.handling) as HANDLED,
+        SUM(a.session) - SUM(a.handling) as UNHANDLED,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
@@ -354,8 +355,8 @@ Class ReportModel extends CI_Model {
                         $id,
                         $data->TANGGAL,
                         strval(number_format($data->OFFERED,0,',','.')),
-                        '-',//strval(number_format($data->HANDLED,0,'.',',')),
-                        '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
+                        strval(number_format($data->HANDLED,0,',','.')),
+                        strval(number_format($data->UNHANDLED,0,',','.')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
@@ -386,7 +387,8 @@ Class ReportModel extends CI_Model {
         $this->db->select('
         a.skill_name as SKILLNAME,
         SUM(a.session) as OFFERED,
-      
+        SUM(a.handling) as HANDLED,
+        SUM(a.session) - SUM(handling) as UNHANDLED,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
@@ -429,8 +431,8 @@ Class ReportModel extends CI_Model {
                         $id,
                         $data->SKILLNAME,
                         strval(number_format($data->OFFERED,0,',','.')),
-                        '-',//strval(number_format($data->HANDLED,0,'.',',')),
-                        '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
+                        strval(number_format($data->HANDLED,0,'.',',')),
+                        strval(number_format($data->UNHANDLED,0,'.',',')),
                         // $data->COF,
                         $data->ART,
                         $data->AHT,
@@ -463,7 +465,8 @@ Class ReportModel extends CI_Model {
         a.agentName as AGENTNAME,
         a.skill_name as SKILLNAME,
         SUM(a.session) as OFFERED,
-      
+        SUM(a.handling) as HANDLED,
+        SUM(a.session) - SUM(a.handling) as UNHANDLED,
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.art))),2,7) as ART, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.aht))),2,7) as AHT, 
         SUBSTRING(SEC_TO_TIME(AVG(TIME_TO_SEC(a.ast))),2,7) as AST, 
@@ -509,8 +512,8 @@ Class ReportModel extends CI_Model {
                         $data->AGENTNAME,
                         $data->SKILLNAME,
                         strval(number_format($data->OFFERED,0,',','.')),
-                        '-',//strval(number_format($data->HANDLED,0,'.',',')),
-                        '-',//strval(number_format($data->UNHANDLED,0,'.',',')),
+                        strval(number_format($data->HANDLED,0,',','.')),
+                        strval(number_format($data->UNHANDLED,0,',','.')),
                         
                         $data->ART,
                         $data->AHT,

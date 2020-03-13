@@ -1132,9 +1132,9 @@
                 ->setCellValue('B'.$i, $datas->AGENTID)
                 ->setCellValue('C'.$i, $datas->AGENTNAME)
                 ->setCellValue('D'.$i, $datas->SKILLNAME)
-                ->setCellValue('E'.$i, strval(number_format($datas->OFFERED,0,'.',',')))
-                ->setCellValue('F'.$i, '-')
-                ->setCellValue('G'.$i, '-')
+                ->setCellValue('E'.$i, $datas->OFFERED)
+                ->setCellValue('F'.$i, $datas->HANDLED)
+                ->setCellValue('G'.$i, $datas->UNHANDLED)
                 ->setCellValue('H'.$i, $datas->AHT)
                 ->setCellValue('I'.$i, $datas->ART)
                 ->setCellValue('J'.$i, $datas->AST)
@@ -1236,17 +1236,19 @@
                 ->setCellValue('A4', 'NO')
                 ->setCellValue('B4', 'TANGGAL')
                 ->setCellValue('C4', 'COF')
-                ->setCellValue('D4', 'ART')
-                ->setCellValue('E4', 'AHT')
-                ->setCellValue('F4', 'AST')
-                ->setCellValue('G4', 'SCR')
+                ->setCellValue('D4', 'HANDLED')
+                ->setCellValue('E4', 'UNHANDLED')
+                ->setCellValue('F4', 'ART')
+                ->setCellValue('G4', 'AHT')
+                ->setCellValue('H4', 'AST')
+                ->setCellValue('I4', 'SCR')
                 ;
 
                 $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
                 $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
                 $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
                 $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-                $spreadsheet->getActiveSheet()->getStyle('A4:G4')->applyFromArray($this->ss_formatter('header'));
+                $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
 
                 $i=5; 
                 foreach($data as $datas) {
@@ -1254,11 +1256,13 @@
                     $spreadsheet->setActiveSheetIndex(0)
                     ->setCellValue('A'.$i, $i-4)
                     ->setCellValue('B'.$i, $datas->TANGGAL)
-                    ->setCellValue('c'.$i, strval(number_format($datas->OFFERED,0,',','.')))
-                    ->setCellValue('D'.$i, $datas->ART)
-                    ->setCellValue('E'.$i, $datas->AHT)
-                    ->setCellValue('F'.$i, $datas->AST)
-                    ->setCellValue('G'.$i, round($datas->SCR,2).'%')
+                    ->setCellValue('c'.$i, $datas->OFFERED)
+                    ->setCellValue('D'.$i, $datas->HANDLED)
+                    ->setCellValue('E'.$i, $datas->UNHANDLED)
+                    ->setCellValue('F'.$i, $datas->ART)
+                    ->setCellValue('G'.$i, $datas->AHT)
+                    ->setCellValue('H'.$i, $datas->AST)
+                    ->setCellValue('I'.$i, round($datas->SCR,2).'%')
                     ;
                     $i++;
                 }
@@ -1269,8 +1273,8 @@
                     $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
                     $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
 
-                    $spreadsheet->getActiveSheet()->getStyle('A5:G'.$x)->applyFromArray($this->ss_formatter('body'));
-                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$x);
+                    $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
+                    $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
 
                     $spreadsheet->getActiveSheet()->setTitle('SUMM DATE -  '.date('d-m-Y H'));
                     $spreadsheet->setActiveSheetIndex(0);
@@ -1291,17 +1295,19 @@
                     ->setCellValue('A4', 'NO')
                     ->setCellValue('B4', 'SKILL')
                     ->setCellValue('C4', 'COF')
-                    ->setCellValue('D4', 'ART')
-                    ->setCellValue('E4', 'AHT')
-                    ->setCellValue('F4', 'AST')
-                    ->setCellValue('G4', 'SCR')
+                    ->setCellValue('D4', 'HANDLED')
+                    ->setCellValue('E4', 'UNHANDLED')
+                    ->setCellValue('F4', 'ART')
+                    ->setCellValue('G4', 'AHT')
+                    ->setCellValue('H4', 'AST')
+                    ->setCellValue('I4', 'SCR')
                     ;
 
                     $spreadsheet->getActiveSheet()->mergeCells('A1:E1');
                     $spreadsheet->getActiveSheet()->getStyle('A1')->applyFromArray($this->ss_formatter('title'));
                     $spreadsheet->getActiveSheet()->getStyle('A2:A3')->applyFromArray($this->ss_formatter('subtitle'));
                     $spreadsheet->getActiveSheet()->getStyle('C2:C3')->applyFromArray($this->ss_formatter('subtitle'));
-                    $spreadsheet->getActiveSheet()->getStyle('A4:G4')->applyFromArray($this->ss_formatter('header'));
+                    $spreadsheet->getActiveSheet()->getStyle('A4:I4')->applyFromArray($this->ss_formatter('header'));
 
                     $i=5; 
                     foreach($data2 as $datas) {
@@ -1309,11 +1315,13 @@
                         $spreadsheet->setActiveSheetIndex(1)
                         ->setCellValue('A'.$i, $i-4)
                         ->setCellValue('B'.$i, $datas->SKILLNAME)
-                        ->setCellValue('c'.$i, strval(number_format($datas->OFFERED,0,',','.')))
-                        ->setCellValue('D'.$i, $datas->ART)
-                        ->setCellValue('E'.$i, $datas->AHT)
-                        ->setCellValue('F'.$i, $datas->AST)
-                        ->setCellValue('G'.$i, round($datas->SCR,2).'%')
+                        ->setCellValue('c'.$i, $datas->OFFERED)
+                        ->setCellValue('D'.$i, $datas->HANDLED)
+                        ->setCellValue('E'.$i, $datas->UNHANDLED)
+                        ->setCellValue('F'.$i, $datas->ART)
+                        ->setCellValue('G'.$i, $datas->AHT)
+                        ->setCellValue('H'.$i, $datas->AST)
+                        ->setCellValue('I'.$i, round($datas->SCR,2).'%')
                         ;
                         $i++;
                     }
@@ -1324,8 +1332,8 @@
                         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
                         $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
 
-                        $spreadsheet->getActiveSheet()->getStyle('A5:G'.$x)->applyFromArray($this->ss_formatter('body'));
-                        $spreadsheet->getActiveSheet()->setAutoFilter('A4:G'.$x);
+                        $spreadsheet->getActiveSheet()->getStyle('A5:I'.$x)->applyFromArray($this->ss_formatter('body'));
+                        $spreadsheet->getActiveSheet()->setAutoFilter('A4:I'.$x);
 
                         $spreadsheet->getActiveSheet()->setTitle('SUMM SKILL - '.date('d-m-Y H'));
                         $spreadsheet->setActiveSheetIndex(0);
