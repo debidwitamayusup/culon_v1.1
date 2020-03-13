@@ -182,13 +182,13 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Traffic Interval Weekly (Daily)</h5>
                     </div>
-                    <div class="card-body" id="echartWeekDiv">
+                    <!-- <div class="card-body" id="echartWeekDiv">
                         <div id="echartWeek" class="chartsh-wall overflow-hidden" style="width:100%"></div>
-                    </div>
+                    </div> -->
                     <!-- Chart yang baru -->
-                    <!-- <div class="card-body">
+                    <div class="card-body" id="BarWallSummaryWeekDiv">
                             <canvas id="BarWallSummaryWeek" width="600" height="415"></canvas>
-                        </div> -->
+                        </div>
                 </div>
             </div>
         </div>
