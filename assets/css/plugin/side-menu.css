@@ -578,7 +578,7 @@
 }
 @media (min-width: 768px) {
 	.sidebar-mini.sidenav-toggled .app-content {
-		margin-left: 73px;
+		margin-left: 66px;
 	}
 	.sidebar-mini.sidenav-toggled1 .app-content {
 		margin-left: 0;
@@ -772,7 +772,7 @@
 }
 .first-sidemenu{
 	position:fixed;
-	width:72px;
+	width:64px;
 	height:100vh;
 	z-index:5;
 	padding-bottom:70px;
@@ -783,7 +783,7 @@
 	width:200px;
 	background: #f5f0f0;
 	height:100%;
-	left:73px;
+	left:64px;
 	z-index:4;
 	padding-bottom:70px;
 	/* border-right:1px solid #cbcee8; */
@@ -836,7 +836,7 @@
 	visibility:visible;
 }
 .app.sidebar-mini.sidenav-toggled4 .app-content{
-	margin-left: 274px;
+	margin-left: 266px;
 }
 .toggle{
 	padding-top:9px;
