@@ -583,6 +583,7 @@ function drawChartPerGroupTelkom(response){
                    duration: 10,
                },
                tooltips: {
+                intersect: false,
                 enabled: false,
                 custom: function(tooltip) {
                     var tooltipEl = document.getElementById('chartjs-tooltip-telkom');
@@ -734,6 +735,7 @@ function drawChartPerGroupGovernment(response){
                    duration: 10,
                },
                 tooltips: {
+                    intersect: false,
                 //     yAlign: 'center',
                 //    mode: 'label',
                 //    callbacks: {
@@ -896,6 +898,7 @@ function drawChartPerGroupBfsi(response){
                    duration: 10,
                },
                tooltips: {
+                intersect: false,
                 enabled: false,
                 custom: function(tooltip) {
                     var tooltipEl = document.getElementById('chartjs-tooltip-bfsi');
@@ -1050,6 +1053,7 @@ function drawChartPerGroupEnterprise(response){
                    duration: 10,
                },
                tooltips: {
+                intersect: false,
                 enabled: false,
                 custom: function(tooltip) {
                     var tooltipEl = document.getElementById('chartjs-tooltip-enterprise');
@@ -1152,6 +1156,7 @@ function drawChartTop5(response){
             responsive:true,
             maintainAspectRatio:false,
             tooltips: {
+                intersect: false,
               callbacks: {
                     label: function(tooltipItem, data) {
                         // var value = data.datasets[0].data[tooltipItem.index];

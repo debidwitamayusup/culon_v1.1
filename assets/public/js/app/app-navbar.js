@@ -36,6 +36,7 @@ function capitalize(input) {
           success: function (r) {
               if(r.status) {
                 localStorage.removeItem('Auth-infomedia');
+                localStorage.clear();
                 window.location = base_url+'main/login';
               } else {
                   alert(r.message)
