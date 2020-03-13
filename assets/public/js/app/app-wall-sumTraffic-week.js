@@ -409,7 +409,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
             // $('#echartWeek').remove();
             // $('#echartWeekDiv').append('<div id="echartWeek" class="chartsh-wall overflow-hidden"></div>');
             $('#BarWallSummaryWeek').remove();
-            $('#BarWallSummaryWeekDiv').append('<canvas id="BarWallSummaryWeek" width="600" height="415"></canvas>');
+            $('#BarWallSummaryWeekDiv').append('<canvas id="BarWallSummaryWeek" width="600" height="391"></canvas>');
             let dataWa = [],
                 dataFB = [],
                 dataDM = [],
