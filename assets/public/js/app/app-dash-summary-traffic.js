@@ -23,12 +23,13 @@ if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
 }
 $(document).ready(function () {
     if(sessionParams){
-        $("#filter-loader").fadeIn("slow");
+        
         // if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
         //     getTenant('', sessionParams.USERID);
         // }else{
         //     getTenant('', '');
         // }
+        $("#filter-loader").fadeIn("slow");
         callSumAllTenant('day', v_params_today, 0,  arr_tenant);
         callSumPerGroupTelkom('day', v_params_today, 0, arr_tenant, 'TELKOM');
         callSumPerGroupGovernment('day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
@@ -1285,6 +1286,7 @@ function remove_hash_from_url()
         showClear: true,
         // minDate: date,
         onSelect: function(dateText) {
+            $("#filter-loader").fadeIn("slow");
             // console.log(this.value);
             v_date = this.value;
 
@@ -1297,10 +1299,12 @@ function remove_hash_from_url()
 
             $('#check-all-channel').prop('checked',false);
             $("input:checkbox.checklist-channel").prop('checked',false);
+            $("#filter-loader").fadeOut("slow");
         }
     });
 
     $('#layanan_name').change(function(){
+        $("#filter-loader").fadeIn("slow");
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
             callSumAllTenant('day',  $('#input-date-filter').val(), 0, arr_tenant);
@@ -1315,10 +1319,12 @@ function remove_hash_from_url()
             callSumPerTenant('year', $('#select-year-only').val(), 0,  arr_tenant);
             callIntervalTraffic('year',$('#select-year-only').val(),0,'',  arr_tenant);
         }
+        $("#filter-loader").fadeOut("slow");
     });
 
     // btn day
     $('#btn-day').click(function () {
+        $("#filter-loader").fadeIn("slow");
         params_time = 'day';
         $('#input-date-filter').datepicker("setDate", v_params_today);
 
@@ -1355,10 +1361,12 @@ function remove_hash_from_url()
         $('#filter-date').show();
         $('#filter-month').hide();
         $('#filter-year').hide();
+        $("#filter-loader").fadeOut("slow");
     });
 
     // btn month
     $('#btn-month').click(function () {
+        $("#filter-loader").fadeIn("slow");
         var d = new Date();
         var o = d.getDate();
         var n = d.getMonth()+1;
@@ -1391,10 +1399,12 @@ function remove_hash_from_url()
         $('#filter-date').hide();
         $('#filter-month').show();
         $('#filter-year').hide();
+        $("#filter-loader").fadeOut("slow");
     });
 
     // btn year
     $('#btn-year').click(function () {
+        $("#filter-loader").fadeIn("slow");
         params_time = 'year';
         callYear();
 
@@ -1420,10 +1430,12 @@ function remove_hash_from_url()
         $('#filter-date').hide();
         $('#filter-month').hide();
         $('#filter-year').show();
+        $("#filter-loader").fadeOut("slow");
     });
 
 
     $('#select-year-only').change(function () {
+        $("#filter-loader").fadeIn("slow");
         v_year = $(this).val();       
         
         callSumAllTenant('year',v_year, 0,  arr_tenant);
@@ -1438,9 +1450,11 @@ function remove_hash_from_url()
         $('#filter-date').hide();
         $('#filter-month').hide();
         $('#filter-year').show();
+        $("#filter-loader").fadeOut("slow");
     });
 
     $('#btn-go').click(function(){
+        $("#filter-loader").fadeIn("slow");
         callSumAllTenant('month', $("#select-month").val(), $("#select-year-on-month").val(),  arr_tenant);
         callSumPerGroupTelkom('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'TELKOM');
         callSumPerGroupGovernment('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'GOVERNMENT');
@@ -1455,5 +1469,6 @@ function remove_hash_from_url()
 
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
+        $("#filter-loader").fadeOut("slow");
     });
 })(jQuery);
