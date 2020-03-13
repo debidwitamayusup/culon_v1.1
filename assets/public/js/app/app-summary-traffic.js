@@ -608,6 +608,15 @@ function setDatePicker(){
     }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
 }
 
+function remove_hash_from_url()
+{
+    var uri = window.location.toString();
+    if (uri.indexOf("#") > 0) {
+        var clean_uri = uri.substring(0, uri.indexOf("#"));
+        window.history.replaceState({}, document.title, clean_uri);
+    }
+}
+
 //jquery
 (function ($) {
 

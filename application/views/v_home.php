@@ -3,9 +3,7 @@
 		<div class="col-md-5">
 			<div style="margin-left:190px !important;">
 				<span class="font_on4 text-red">ON</span><span class="font_on4">4</span>
-				 <p class="font-poppins">Words are singulary the most powerful force, available to
-				humanity. We can choose to
-                use this force constructively with words of encouragement,</p>
+				 <p class="font-poppins">Once the advisor has a good undestanding of the customer's problem and has acknowlegde their concerns, it is now important to reassure them</p>
                 <button type="button" class="btn btn-secondary btn-lg" style="border-radius:8px; background:#58595B" onclick="location.href='<?=base_url()?>main/wall_summary_traffic'">Get Wallboard</button>
 			</div>
 		</div>

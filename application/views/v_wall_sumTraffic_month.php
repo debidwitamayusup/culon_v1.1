@@ -10,7 +10,7 @@
             </ol>
             <div class="d-flex bd-highlight">
                 <div class="p-2 bd-highlight">
-                    <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
+                    <select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px" id="layanan_name">
                         <!-- <option value="#">Layanan</option> -->
                     </select>
                 </div>

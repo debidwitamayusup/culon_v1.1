@@ -11,7 +11,7 @@
 
 			</div>
 			<div class="bd-highlight" id="layanan_name_parent" style="margin-right: 9px; margin-bottom: 30px;">
-				<select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
+				<select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px" id="layanan_name">
 
 				</select>
 			</div>
@@ -20,25 +20,25 @@
 					<div class="bd-highlight">
 						<div class="card-options d-none d-sm-block">
 							<div class="btn-group text-center btn-sm">
-								<a href="#" class="btn btn-light btn-sm" id="btn-day">
+								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-day">
 									<span class="">Day</a></span>
-								<a href="#" class="btn btn-light btn-sm" id="btn-month">
+								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-month">
 									<span class="">Month</a></span>
-								<a href="#" class="btn btn-light btn-sm" id="btn-year">
+								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-year">
 									<span class="">Year</a></span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- daily -->
-				<div id="filter-date" class="mt-1 mr-0" style="padding: 0px 0px 0px 3.3rem;">
+				<div id="filter-date" class="mt-1 mr-0" style="padding: 0px 0px 0px 3.2rem;">
 					<input id="input-date-filter" class="w-55 ml-auto form-control form-control-sm fc-datepicker"
 						placeholder="MM/DD/YYYY" type="text">
 				</div>
 
 				<!-- monthly -->
-				<div id="filter-month" class="row mt-1 mr-0" style="padding: 0px 0px 0px 0.65rem;">
-					<div>
+				<div id="filter-month" class="row mt-1" style="padding: 0px 0px 0px 0.65rem;">
+					<div class="col-md-auto">
 						<select name="select-month" id="select-month" class="form-control form-control-sm">
 							<option value="1">January</option>
 							<option value="2">February</option>
@@ -92,7 +92,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="unique-customer"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="unique-customer"></span>
 								<span class="count-name">Customer</span>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="total-interaction"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="total-interaction"></span>
 								<span class="count-name">Session</span>
 							</div>
 						</div>
@@ -126,7 +126,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="msg-in"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="msg-in"></span>
 								<span class="count-name">interaction</span>
 							</div>
 						</div>
@@ -143,7 +143,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="msg-out"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="msg-out"></span>
 								<span class="count-name">interaction</span>
 							</div>
 						</div>
