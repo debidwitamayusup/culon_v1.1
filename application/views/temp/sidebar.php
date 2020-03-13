@@ -33,7 +33,8 @@
 				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12 ">
-							<!-- <h5 class="mt-3 mb-4">Wallboard</h5> -->
+						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom fe fe-monitor mr-1"></i>Wallboard</h5>
+						<hr class="alert-dark-grey mb-1">
 							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
 								Realtime</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic
@@ -88,8 +89,8 @@
 				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12">
-							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-home mr-1"></i></i>Dashboard
-							</h5> -->
+						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom fe fe-grid mr-1"></i>Dashboard</h5>
+						<hr class="alert-dark-grey mb-1">
 							<a href="<?=base_url()?>main/home" class="slide-item">Traffic by Channel</a>
 							<a href="<?=base_url()?>main/summary_traffic" class="slide-item">Summary Traffic</a>
 							<a href="<?=base_url()?>main/summary_performance_realtime" class="slide-item">Summary
@@ -141,7 +142,8 @@
 				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12">
-							<!-- <h5 class="mt-3 mb-4"><i class="side-menu__icon-custom fe fe-book mr-1"></i>Report</h5> -->
+						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom si si-layers mr-1" style="line-height:2.1"></i>Report</h5>
+						<hr class="alert-dark-grey mb-1"> 
 							<a href="<?=base_url()?>main/report_agent_log" class="slide-item">Agent Log</a>
 							<a href="<?=base_url()?>main/report_agent_performance" class="slide-item">Agent
 								Performance</a>

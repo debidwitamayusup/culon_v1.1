@@ -116,7 +116,7 @@
 					<div class="card-body" id="barTelkomGroupDiv">
 					<div id="chartjs-tooltip-telkom" class="center">
 						</div>
-						<canvas id="barTelkomGroup" class="h-200"></canvas>
+						<canvas id="barTelkomGroup" class="h-300"></canvas>
 					</div>
 				</div>
 			</div>
@@ -128,7 +128,7 @@
 					<div class="card-body" id="barGovermentGroupDiv">
 					<div id="chartjs-tooltip-government" class="center">
 						</div>
-						<canvas id="barGovermentGroup" class="h-200"></canvas>
+						<canvas id="barGovermentGroup" class="h-300"></canvas>
 					</div>
 				</div>
 				<div id="chartjs-tooltip"></div>
@@ -143,7 +143,7 @@
 					<div class="card-body" id="barBFSIGroupDiv">
 					<div id="chartjs-tooltip-bfsi" class="center">
 						</div>
-						<canvas id="barBFSIGroup" class="h-200"></canvas>
+						<canvas id="barBFSIGroup" class="h-350"></canvas>
 					</div>
 				</div>
 			</div>
@@ -155,7 +155,7 @@
 					<div class="card-body" id="barEnterpriseGroupDiv">
 						<div id="chartjs-tooltip-enterprise" class="center">
 						</div>
-						<canvas id="barEnterpriseGroup" class="h-200"></canvas>
+						<canvas id="barEnterpriseGroup" class="h-350"></canvas>
 					</div>
 				</div>
 				<!-- <div id="chartjs-tooltip"></div> -->

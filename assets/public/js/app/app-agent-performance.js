@@ -314,8 +314,8 @@ function dataCardCOF(response)
             // console.log(value[2]);
         });
     }else{
-        $('#dataDrawCOF').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
-                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+        $('#dataDrawCOF').append('<div class="col-12 text-center">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+
                                 '</div>');
     }
 }
@@ -345,8 +345,8 @@ function dataCardAHT(response)
             // console.log(value[2]);
         });
     }else{
-        $('#dataDrawAHT').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
-                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+        $('#dataDrawAHT').append('<div class="col-12 text-center">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+
                                 '</div>');
     }
 }
@@ -376,8 +376,8 @@ function dataCardART(response)
             // console.log(value[2]);
         });
     }else{
-        $('#dataDrawART').append('<div class="col-auto text-center" style="margin-bottom : 9px">'+
-                                    '<img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px">'+
+        $('#dataDrawART').append('<div class="col-12 text-center">'+
+                                    '<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+
                                 '</div>');
     }
 }
@@ -398,7 +398,7 @@ function drawTable(response){
         });
     }else{
         $('#tableSkill').find('tbody').append('<tr>'+
-            '<td colspan=6> <img src="'+base_url+'assets/images/brand/no_data.png" style="border-radius:75%;" width="200px" height="200px"></td>'+
+            '<td colspan="4" class="text-center"> <img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data" style="margin-top:-17px !important;"></td>'+
             '</tr>');
     }
     // console.log(response.data)

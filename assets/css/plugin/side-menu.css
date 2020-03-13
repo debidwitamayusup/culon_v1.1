@@ -501,18 +501,18 @@
 }
 .side-menu__icon-custom {
 	-webkit-box-flex: 0;
-	-ms-flex: 0 0 auto;
-	flex: 0 0 auto;
-	display: inline-block;
-	font-size:1rem;
-	position: relative;
-    width: 40px;
-    height: 40px;
-	line-height:40px;
-	margin:0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    display: inline-block;
+    font-size: 1rem;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
     border-radius: 7px;
-	background: rgba(123, 111, 111, 0.2);
-	padding: 0px 0px 0px 12px;
+    background: rgba(123, 111, 111, 0.2);
+    padding: 0px 0px 0px 7px;
 }
 .first-sidemenu .side-menu__label {
 	display:none;

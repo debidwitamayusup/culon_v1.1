@@ -500,7 +500,7 @@ function drawPieChartSumAllTenant(response){
 
 function drawChartPerGroupTelkom(response){
     $('#barTelkomGroup').remove();
-    $('#barTelkomGroupDiv').append('<canvas id="barTelkomGroup" class="h-200"></canvas>');
+    $('#barTelkomGroupDiv').append('<canvas id="barTelkomGroup" class="h-300"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -652,7 +652,7 @@ function drawChartPerGroupTelkom(response){
 
 function drawChartPerGroupGovernment(response){
     $('#barGovermentGroup').remove();
-    $('#barGovermentGroupDiv').append('<canvas id="barGovermentGroup" class="h-200"></canvas>');
+    $('#barGovermentGroupDiv').append('<canvas id="barGovermentGroup" class="h-300"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -814,7 +814,7 @@ function drawChartPerGroupGovernment(response){
 
 function drawChartPerGroupBfsi(response){
     $('#barBFSIGroup').remove();
-    $('#barBFSIGroupDiv').append('<canvas id="barBFSIGroup" class="h-200"></canvas>');
+    $('#barBFSIGroupDiv').append('<canvas id="barBFSIGroup" class="h-350"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
@@ -967,7 +967,7 @@ function drawChartPerGroupBfsi(response){
 
 function drawChartPerGroupEnterprise(response){
     $('#barEnterpriseGroup').remove();
-    $('#barEnterpriseGroupDiv').append('<canvas id="barEnterpriseGroup" class="h-200"></canvas>');
+    $('#barEnterpriseGroupDiv').append('<canvas id="barEnterpriseGroup" class="h-350"></canvas>');
 
     var whatsapp = [];
     var facebook = [];
