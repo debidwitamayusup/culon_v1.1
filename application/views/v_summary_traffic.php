@@ -11,11 +11,11 @@
 				<div class="bd-highlight">
 					<div class="card-options d-none d-sm-block">
 						<div class="btn-group text-center btn-sm">
-							<a href="#" class="btn btn-light btn-sm" id="btn-day">
+							<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-day">
 								<span class="">Day</a></span>
-							<a href="#" class="btn btn-light btn-sm" id="btn-month">
+							<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-month">
 								<span class="">Month</a></span>
-							<a href="#" class="btn btn-light btn-sm" id="btn-year">
+							<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-year">
 								<span class="">Year</a></span>
 						</div>
 					</div>
@@ -114,7 +114,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Telkom Group</h5>
 					</div>
 					<div class="card-body" id="barTelkomGroupDiv">
-					<div id="chartjs-tooltip-telkom" class="center">
+						<div id="chartjs-tooltip-telkom" class="center">
 						</div>
 						<canvas id="barTelkomGroup" class="h-300"></canvas>
 					</div>
@@ -126,7 +126,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Goverment Group</h5>
 					</div>
 					<div class="card-body" id="barGovermentGroupDiv">
-					<div id="chartjs-tooltip-government" class="center">
+						<div id="chartjs-tooltip-government" class="center">
 						</div>
 						<canvas id="barGovermentGroup" class="h-300"></canvas>
 					</div>
@@ -141,7 +141,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">BFSI Group</h5>
 					</div>
 					<div class="card-body" id="barBFSIGroupDiv">
-					<div id="chartjs-tooltip-bfsi" class="center">
+						<div id="chartjs-tooltip-bfsi" class="center">
 						</div>
 						<canvas id="barBFSIGroup" class="h-350"></canvas>
 					</div>
@@ -167,61 +167,61 @@
 	<script src="<?= base_url()?>assets/public/js/app/app-dash-summary-traffic.js"></script>
 	<style>
 		#chartjs-tooltip-bfsi {
-		opacity: 1;
-		position: absolute;
-		background: rgba(0, 0, 0, .7);
-		color: white;
-		border-radius: 3px;
-		-webkit-transition: all .1s ease;
-		transition: all .1s ease;
-		pointer-events: none;
-		-webkit-transform: translate(-50%, 0);
-		transform: translate(-50%, 0);
+			opacity: 1;
+			position: absolute;
+			background: rgba(0, 0, 0, .7);
+			color: white;
+			border-radius: 3px;
+			-webkit-transition: all .1s ease;
+			transition: all .1s ease;
+			pointer-events: none;
+			-webkit-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
 		}
 
 		#chartjs-tooltip-telkom {
-		opacity: 1;
-		position: absolute;
-		background: rgba(0, 0, 0, .7);
-		color: white;
-		border-radius: 3px;
-		-webkit-transition: all .1s ease;
-		transition: all .1s ease;
-		pointer-events: none;
-		-webkit-transform: translate(-50%, 0);
-		transform: translate(-50%, 0);
+			opacity: 1;
+			position: absolute;
+			background: rgba(0, 0, 0, .7);
+			color: white;
+			border-radius: 3px;
+			-webkit-transition: all .1s ease;
+			transition: all .1s ease;
+			pointer-events: none;
+			-webkit-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
 		}
 
 		#chartjs-tooltip-government {
-		opacity: 1;
-		position: absolute;
-		background: rgba(0, 0, 0, .7);
-		color: white;
-		border-radius: 3px;
-		-webkit-transition: all .1s ease;
-		transition: all .1s ease;
-		pointer-events: none;
-		-webkit-transform: translate(-50%, 0);
-		transform: translate(-50%, 0);
+			opacity: 1;
+			position: absolute;
+			background: rgba(0, 0, 0, .7);
+			color: white;
+			border-radius: 3px;
+			-webkit-transition: all .1s ease;
+			transition: all .1s ease;
+			pointer-events: none;
+			-webkit-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
 		}
 
 		#chartjs-tooltip-enterprise {
-		opacity: 1;
-		position: absolute;
-		background: rgba(0, 0, 0, .7);
-		color: white;
-		border-radius: 3px;
-		-webkit-transition: all .1s ease;
-		transition: all .1s ease;
-		pointer-events: none;
-		-webkit-transform: translate(-50%, 0);
-		transform: translate(-50%, 0);
+			opacity: 1;
+			position: absolute;
+			background: rgba(0, 0, 0, .7);
+			color: white;
+			border-radius: 3px;
+			-webkit-transition: all .1s ease;
+			transition: all .1s ease;
+			pointer-events: none;
+			-webkit-transform: translate(-50%, 0);
+			transform: translate(-50%, 0);
 		}
 
-.chartjs-tooltip-key {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 10px;
-}
+		.chartjs-tooltip-key {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			margin-right: 10px;
+		}
 	</style>

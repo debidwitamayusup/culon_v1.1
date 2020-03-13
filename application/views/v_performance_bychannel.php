@@ -11,7 +11,7 @@
 
             </div>
             <div class="bd-highlight" id="layanan_name_parent" style="margin-right: 9px; margin-bottom: 30px;">
-                <select class="form-control-sm" style="border-color:#efecec;font-size:12px" id="layanan_name">
+                <select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px" id="layanan_name">
 
                 </select>
             </div>
@@ -20,11 +20,11 @@
                     <div class="bd-highlight">
                         <div class="card-options d-none d-sm-block">
                             <div class="btn-group text-center btn-sm">
-                                <a href="#" class="btn btn-light btn-sm" id="btn-day">
+                                <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-day">
                                     <span class="">Day</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-month">
+                                <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-month">
                                     <span class="">Month</a></span>
-                                <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                                <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-year">
                                     <span class="">Year</a></span>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
 
                 <!-- monthly -->
                 <div id="filter-month" class="row mt-1 mr-0" style="padding: 0px 0px 0px 0.65rem;">
-                    <div>
+                    <div class="col-md-auto">
                         <select name="select-month" id="select-month" class="form-control form-control-sm">
                             <option value="1">January</option>
                             <option value="2">February</option>

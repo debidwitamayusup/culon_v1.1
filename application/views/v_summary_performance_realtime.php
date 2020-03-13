@@ -11,11 +11,11 @@
                 <div class="bd-highlight">
                     <div class="card-options d-none d-sm-block">
                         <div class="btn-group text-center btn-sm">
-                            <a href="#" class="btn btn-light btn-sm" id="btn-day">
+                            <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-day">
                                 <span class="">Day</a></span>
-                            <a href="#" class="btn btn-light btn-sm" id="btn-month">
+                            <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-month">
                                 <span class="">Month</a></span>
-                            <a href="#" class="btn btn-light btn-sm" id="btn-year">
+                            <a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-year">
                                 <span class="">Year</a></span>
                         </div>
                     </div>

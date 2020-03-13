@@ -10,7 +10,7 @@
 				</ol>
 			</div>
 			<div class="bd-highlight" id="layanan_name_parent">
-				<select class="form-control-sm" style="border-color:#efecec" id="layanan_name">
+				<select class="form-control-sm select-tenant" style="border-color:#efecec" id="layanan_name">
 					
 				</select>
 			</div>
