@@ -6,6 +6,8 @@ Class AuthModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('url', 'form');
+       
     }
 #region :: ragakasih
     public function checkId() { //this check if user registered were true
@@ -21,7 +23,7 @@ Class AuthModel extends CI_Model {
 
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
-        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID');
+        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
         $this->db->from('m_user');//('m_login');
         $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
         $this->db->where('is_active','1');
@@ -33,16 +35,33 @@ Class AuthModel extends CI_Model {
         if($query->num_rows()==1) //where clause
         {
             $data    = $query->row();
-            $content = array(
-                'USERID'        => $data->USERID,
-                'NICK'          => $data->LONG_NAME,
-                'NAME'          => $data->LONG_NAME,
-                'PREVILAGE'     => $data->PREVILAGE,
-                'TENANT_ID'     => $this->getTenantAccess($data->USERID),
-                'PICTURE'       => FCPATH."public\user\default-avatar.jpg",//APPPATH.'public\user'.$data->PICTURE,
-              //  'UNIT'          => $data->UNIT_ID
+            if(!$data->gambar)
+            {
+                $content = array(
+                    'USERID'        => $data->USERID,
+                    'NICK'          => $data->LONG_NAME,
+                    'NAME'          => $data->LONG_NAME,
+                    'PREVILAGE'     => $data->PREVILAGE,
+                    'TENANT_ID'     => $this->getTenantAccess($data->USERID),
+                    'PICTURE'       => FCPATH."public/user/unknown-avatar.jpg"
+           
+                );
 
-            );
+            }
+            else{
+                $content = array(
+                    'USERID'        => $data->USERID,
+                    'NICK'          => $data->LONG_NAME,
+                    'NAME'          => $data->LONG_NAME,
+                    'PREVILAGE'     => $data->PREVILAGE,
+                    'TENANT_ID'     => $this->getTenantAccess($data->USERID),
+                    'PICTURE'       => FCPATH.'public/user/'.$data->gambar
+                );
+            }
+           
+
+            
+            
 
             // $this->db->where('userid', $usr);
             // $this->db->update('m_login', array('is_login' => '1'));
@@ -226,15 +245,8 @@ Class AuthModel extends CI_Model {
 
     public function update_prof($token,$userid,$email,$phone,$password,$image)
     {
-        // $this->db->select('userid AS USERID');
-        // $this->db->from('m_user');
-        // $this->db->where('token', $token);
-        // $this->db->where('password',$password);
-        // $query = $this->db->get();
-
-        // if($query->num_rows()==1) 
-        // {
-            // $data    = $query->row();
+       
+      
             if($userid)
             {
                 $this->db->set('userid',$userid);
@@ -249,6 +261,7 @@ Class AuthModel extends CI_Model {
             } 
             if($image)
             {
+                $this->db->set('image',$image);
             }  
             $this->db->where('token', $token);
             $this->db->update('m_user');
@@ -257,7 +270,7 @@ Class AuthModel extends CI_Model {
             {
                 return true;
             }
-        // }
+
             return FALSE;
     }
 
@@ -316,7 +329,7 @@ Class AuthModel extends CI_Model {
 
     public function changeuser($username,$name,$phone,$email,$previlage)
     {
-
+        
         $data = array(
             'name' => $name,
             'phone' => $phone,
@@ -489,7 +502,6 @@ Class AuthModel extends CI_Model {
 
         return false;
     }
-
     #endregion
 
 

@@ -203,7 +203,7 @@ class AuthController extends REST_Controller {
         $username = $this->security->xss_clean($this->input->post('username'));
         $pass = $this->security->xss_clean($this->input->post('password'));
         $phone = $this->security->xss_clean($this->input->post('phone'));
-        $image = $this->security->xss_clean($this->input->post('image'));
+
             
         if($token === NULL || $pass === NULL)
         {
@@ -222,8 +222,18 @@ class AuthController extends REST_Controller {
                 'message' => 'Kredensial Akun anda salah.'
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
-        
-        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$image);
+
+        $tru = $this->upload_img($username.date('y'));
+
+        if($tru==FALSE)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'image upload failed'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$tru);
 
         if ($res) {
             $this->response([
@@ -388,6 +398,8 @@ class AuthController extends REST_Controller {
         $name = $this->security->xss_clean($this->input->post('name'));
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $previlage = $this->security->xss_clean($this->input->post('previlage'));
+      
+        
 
         $data2 = $this->module_model->userchecker($username);
 
@@ -578,6 +590,32 @@ class AuthController extends REST_Controller {
                 'message' => '404 Not found.'
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
+    }
+
+    function upload_img($name){
+        
+        $config = array(
+                'upload_path' => FCPATH.'public/user/',            
+                'allowed_types' => "gif|jpg|png|jpeg",
+                'max_size' => 2000,
+                'max_width'=> 1500,
+                'max_height' => 1500,  
+                'file_name' => $name,       
+                'overwrite' => TRUE
+        );
+
+        $this->load->library('upload',$config);
+         
+            if($this->upload->do_upload('image_user')) 
+            {
+                $upload_data = $this->upload->data();
+                $file_name = $upload_data['file_name'];
+                return $file_name;
+            }
+            else
+            {
+                return false;
+            }
     }
 
 #Endregion
