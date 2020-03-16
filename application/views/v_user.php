@@ -4,7 +4,7 @@
 			<div class="flex-grow-1 bd-highlight">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active" aria-current="page">
-						<h4 class="page-title"><img src="<?=base_url()?>assets/images/brand/icon_admin.png" class="side-menu__icon-custom mr-1" style="padding:6px !important">Administration</h4>
+						<h4 class="page-title"><img src="<?=base_url()?>assets/images/brand/icon-admin3.png" class="side-menu__icon-custom mr-1" style="padding:8px !important">Administration</h4>
 					</li>
 					<li class="breadcrumb-item active mt-2" aria-current="page">User</li>
 				</ol>
@@ -52,7 +52,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -65,7 +65,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -78,7 +78,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -91,7 +91,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -104,7 +104,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -117,7 +117,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -130,7 +130,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -143,7 +143,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -156,7 +156,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -169,7 +169,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -182,7 +182,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
@@ -195,7 +195,7 @@
 									<td class="text-center">Telkomsel</td>
 									<td class="text-center">08139303930</td>
 									<td class="text-center">nameuser@infomedia.co.id</td>
-									<td class="text-center"><a href="#"
+									<td class="text-center"><a href="<?=base_url()?>admin/edit_user"
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>

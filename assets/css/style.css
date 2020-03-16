@@ -16775,10 +16775,6 @@ button.bg-red:focus {
 	background-color: #a11918 !important;
 }
 
-.text-red {
-	color: #ED1C24 !important;
-}
-
 .bg-orange {
 	background-color: #ec6e09 !important;
 	color: #fff !important;
@@ -30073,4 +30069,19 @@ div[data-acc-step]:not(.open) .badge-primary {
 	width: 120px;
     margin-top: 20%;
     opacity: 0.8;
+}
+
+.box-shadow-input{
+	box-shadow: 0px 1px 18px -7px rgba(113, 126, 195, .8);
+}
+
+.upload-file > input
+{
+    display: none;
+}
+
+.upload-file i
+{
+    width: 80px;
+    cursor: pointer;
 }

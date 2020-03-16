@@ -17,4 +17,11 @@ class admin extends CI_Controller {
 		$this->load->view('v_user');
 	}
 
+	public function edit_user(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_edit_user');
+	}
+
 }
