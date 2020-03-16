@@ -144,7 +144,7 @@ function callGraphYear(channel_name, year, tenant_id) {
             //     type: 'bar',
             //     data: response.data.total_traffic
             // }];
-            console.log(response);
+            // console.log(response);
 
             var numberWithCommas = function (x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -442,7 +442,7 @@ function stackedBarIntervalYear(channel_name, tenant_id) {
         },
         success: function (r) {
             var response = JSON.parse(r);
-            console.log(response);
+            // console.log(response);
             // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
             // Return with commas in between
             var numberWithCommas = function (x) {

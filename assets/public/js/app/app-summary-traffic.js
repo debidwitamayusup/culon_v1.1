@@ -28,7 +28,7 @@ for(var i=0; i < sessionParams.TENANT_ID.length; i++){
     arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
 }
 $(document).ready(function () {
-    console.log(arr_tenant);
+    // console.log(arr_tenant);
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#dateTahun option[value='+m+']').attr('selected','selected');
@@ -478,7 +478,7 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
             var commas = response.data.total_interaction;
             var functionCommas = addCommas(commas);
             // console.log(commas);
-            console.log(response);
+            // console.log(response);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },

@@ -14,7 +14,7 @@ var v_parmas_tenant = 'oct_telkomcare';
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 $(document).ready(function () {
-    console.log(base_url);
+    // console.log(base_url);
     if(sessionParams){
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
             getTenant('', sessionParams.USERID);

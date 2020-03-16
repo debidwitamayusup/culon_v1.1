@@ -311,7 +311,7 @@ function loopingBoxMonitoring(response)
 
 function drawBoxMonitoring(response)
 {
-	console.log(response);
+	// console.log(response);
     $('#parent-row').append(''+
     '<div class="col-md-6">'+
         '<div class="card">'+

@@ -39,7 +39,7 @@ $(document).ready(function () {
         $("#btn-day").prop("class","btn btn-red btn-sm");
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
-        console.log($('#layanan_name').val());
+        // console.log($('#layanan_name').val());
         loadContent(params_time, v_params_this_year, 0, '');
         getTenant('');
         // $('#tag-time').html(v_params_this_year);
@@ -475,7 +475,7 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
             var commas = response.data.total_interaction;
             var functionCommas = addCommas(commas);
             // console.log(commas);
-            console.log(response);
+            // console.log(response);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },
