@@ -24,7 +24,7 @@
                                 <div class="d-flex">
                                     <div class="text-right">
                                         <img src="<?=base_url()?>public/user/unknown-avatar.jpg"
-                                            class="rounded-circle mt-7" style="width:60%">
+                                            class="rounded-circle mt-7" style="width:50%">
                                     </div>
                                     <div class="upload-file" style="margin-top: 11rem">
                                         <label for="file-input">
