@@ -197,7 +197,7 @@ function formatTime(seconds) {
 }
 
 function drawTableCOFByChannel(response){
-    console.log(response);
+    // console.log(response);
     $("#mytbody").empty();
     $("#mytfoot").empty();
     if(response.data.length != 0){   

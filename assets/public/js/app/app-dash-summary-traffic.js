@@ -593,7 +593,7 @@ function drawChartPerGroupTelkom(response){
                       tooltipEl.style.opacity = 0;
                       return;
                     }
-                    console.log(this)
+                    // console.log(this)
                     if (tooltip.body) {
                       var total = 0;
                       var innerHTML = '<table><thead>';

@@ -238,7 +238,6 @@ function drawTableRealTime(response){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
-    console.log(response.data);
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 10; i++) {

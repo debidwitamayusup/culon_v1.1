@@ -512,7 +512,7 @@ function drawTotalTable(response){
 }
 
 function drawTableChannel(response){
-    console.log(responseTotal)
+    // console.log(responseTotal)
     $("#table_channel_body").empty();
     $("#table_channel_foot").empty();
     var k=0;

@@ -559,7 +559,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
         });
 
         
-        console.log(dataStacked);
+        // console.log(dataStacked);
         var bar_ctx = document.getElementById('BarTrafficMonth');
 
         var bar_chart = new Chart(bar_ctx, {
@@ -608,7 +608,7 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
                 //untuk onclick pada chart javascript
                 onClick: function(event, array) {
                     let element = this.getElementAtEvent(event);
-                    console.log(element);
+                    // console.log(element);
                     if (element.length > 0) {
                     var series= element[0]._model.datasetLabel;
                     var label = element[0]._chart.data.labels;
