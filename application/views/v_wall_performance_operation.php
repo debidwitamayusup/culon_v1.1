@@ -96,7 +96,7 @@
                                     <td class="bg-column2">Reopen</td>
                                     <td class="bg-column2">Reject</td>
                                     <td class="bg-column2">PreClose</td>
-                                    <td class="bg-column2">Close</td>
+                                    <!-- <td class="bg-column2">Close</td> -->
                                     <td class="bg-column2">Reassign</td>
                                 </tr>
                             </thead>

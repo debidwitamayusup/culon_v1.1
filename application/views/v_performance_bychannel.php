@@ -124,7 +124,7 @@
                                         <th class="wd-15p border-bottom-0" width=150>Total Session (COF)</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" id="mytbody" style="font-size:12px !important;">
+                                <tbody class="text-center" id="mytbody">
                                 </tbody>
                             </table>
                         </div>
