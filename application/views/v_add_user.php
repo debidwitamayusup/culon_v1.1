@@ -35,15 +35,17 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="idUser">User ID</label>
+                                <div class="form-group error" id="idDiv">
+                                    <label for="idUser">User Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="idUser"
-                                        placeholder="ID">
+                                        placeholder="User Name">
+                                    <div class="error-message" id="errorID">Username cannot be empty or more than 20 characters</div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="nameDiv">
                                     <label for="nameUser">Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="nameUser"
-                                        placeholder="Your Name"">
+                                        placeholder="Your Name">
+                                    <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
                                 </div>
                                 <div class=" form-group">
                                     <label for="levelUser">User Level</label>
@@ -53,7 +55,8 @@
                                                 <i class="fa fa-user tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div> <select class="form-control" id="levelUser">
-                                            <option>Supervisor</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="supervisor">Supervisor</option>
                                         </select>
                                     </div>
                                 </div>
@@ -64,12 +67,12 @@
                                             <div class="input-group-text border-input bg-gray text-white">
                                                 <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <select class="form-control" id="Tenant">
-                                            <option>All Tenant</option>
+                                        </div> <select class="form-control" id="tenantUser">
+                                            <option value="">All Tenant</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="telpDiv">
                                     <label for="noTelp">No. Telp</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
@@ -79,8 +82,9 @@
                                         </div> <input type="text" class="form-control form-control-sm" id="noTelp"
                                             placeholder="62813xxxxxxx">
                                     </div>
+                                    <div class="error-message" id="errorTelp">phone number must only numbers and has 13 max length</div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="emailDiv">
                                     <label for="Email">Email</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
@@ -90,10 +94,11 @@
                                         </div> <input type="text" class="form-control form-control-sm" id="Email"
                                             placeholder="example@infomedia.co.id">
                                     </div>
+                                    <div class="error-message" id="errorEmail">format email not valid</div>
                                 </div>
                                 <div class="fPoppins float-right mt-2">
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2">Cancel</button>
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2">Add</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-add">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -104,4 +109,4 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
-    <script src="<?=base_url()?>assets/public/js/app/app-admin-user.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-admin-add-user.js"></script>

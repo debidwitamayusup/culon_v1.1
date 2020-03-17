@@ -333,7 +333,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == true)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
