@@ -37,14 +37,13 @@
 									<td class="border-bottom-0 text-center" >User ID</td>
 									<td class="border-bottom-0 text-center" width="15%">Name</td>
 									<td class="border-bottom-0 text-center">User Level</td>
-									<td class="border-bottom-0 text-center" width="15%">Tenant</td>
 									<td class="border-bottom-0 text-center">No. HP</td>
 									<td class="border-bottom-0 text-center">Email</td>
 									<td class="border-bottom-0 text-center" width="20%">Action</td>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<!-- <tr>
 									<td class="text-center">1</td>
 									<td class="text-center">1US005</td>
 									<td clas="text-left">Name User</td>
@@ -199,7 +198,7 @@
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
-								</tr>
+								</tr> -->
 								
 							</tbody>
 						</table>
