@@ -17,8 +17,10 @@ class SummaryPerformance extends REST_Controller {
 		$index = $this->security->xss_clean($this->input->post('index', true));
         $params_year = $this->security->xss_clean($this->input->post('params_year', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
+        $offset = $this->security->xss_clean($this->input->post('offset', true));
+        $limit = $this->security->xss_clean($this->input->post('limit', true));
 
-        $data = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid);
+        $data = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid,$limit,$offset);
 
         if ($data) {
             $this->response([

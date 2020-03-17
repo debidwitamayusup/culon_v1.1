@@ -333,7 +333,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == true)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -385,7 +385,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == true)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -399,7 +399,6 @@ class AuthController extends REST_Controller {
         $phone = $this->security->xss_clean($this->input->post('phone'));
         $previlage = $this->security->xss_clean($this->input->post('previlage'));
       
-        
 
         $data2 = $this->module_model->userchecker($username);
 

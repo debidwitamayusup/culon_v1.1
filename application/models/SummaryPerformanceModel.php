@@ -9,9 +9,13 @@ Class SummaryPerformanceModel extends CI_Model {
     }
 
      #region :: debi
-    public function summary_performance_dashboard($params, $index, $params_year, $tid)
+    public function summary_performance_dashboard($params, $index, $params_year, $tid,$limit,$offset)
     {
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
+
+        if($offset){
+            $offset = $limit*$offset;
+        }
 
         $this->db->select('m_tenant.tenant_name as TENANT, 
         rpt_summ_interval.tenant_id as TENANT_ID, 
@@ -41,6 +45,10 @@ Class SummaryPerformanceModel extends CI_Model {
         }
         $this->db->where('rpt_summ_interval.channel_id != 1');
         $this->db->group_by('rpt_summ_interval.tenant_id');
+        if($limit)
+        {
+            $this->db->limit($limit,$offset);
+        }
         $query = $this->db->get();
         
         // print_r($this->db->last_query());

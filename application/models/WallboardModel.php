@@ -1583,8 +1583,12 @@ Class WallboardModel extends CI_Model {
 		return $result;
     }
 
-    public function get_available_data_wallmon($tid)
+    public function get_available_data_wallmon($tid,$limit,$offset)
     {
+        if($offset){
+            $offset = $limit*$offset;
+        }
+
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
         $this->db->select('a.tenant_id as TID, c.tenant_name as TN,c.tenant_icon as TICC ,SUM(a.antrian) as QUEUE ,SUM(a.cof) as COF, AVG(a.scr) as SCR');
         $this->db->from('wall_monitoring a');
@@ -1594,6 +1598,10 @@ Class WallboardModel extends CI_Model {
             $this->db->where_in('a.tenant_id', $tid);
         }
         $this->db->group_by('a.tenant_id');
+        if($limit)
+        {
+            $this->db->limit($limit,$offset);
+        }
         $query = $this->db->get();
 
         // print_r($this->db->last_query());
