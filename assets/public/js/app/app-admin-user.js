@@ -28,8 +28,8 @@ function callTableUser(token){
             {
                 className: "text-center",
                 targets: -1,
-                // defaultContent: ['<a href="'+base_url+'admin/edit_user" class="btn btn-sm btn-grey-1 style-btn mr-2 editButton">Edit User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>']
-                defaultContent: ['<a href="#" class="btn btn-sm btn-grey-1 style-btn mr-2 editButton">Edit User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>']
+                defaultContent: ['<a href="'+base_url+'admin/edit_user" class="btn btn-sm btn-grey-1 style-btn mr-2 editButton">Edit User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>']
+                // defaultContent: ['<a href="#" class="btn btn-sm btn-grey-1 style-btn mr-2 editButton">Edit User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>']
                 
             }
 			
@@ -42,7 +42,7 @@ function callTableUser(token){
     $('body').on('click', '#tableAdmin_user tbody tr .editButton', function () {
         var rowData = thisTable.row( $(this).parents('tr')).data();
         // console.log("Rows data : ",  rowData);
-        sessionStorage.setItem('editUser',rowData);
+        sessionStorage.setItem('editUser',JSON.stringify(rowData));
 });
     $("#filter-loader").fadeOut("slow");
 }
