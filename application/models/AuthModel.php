@@ -278,18 +278,23 @@ Class AuthModel extends CI_Model {
     {
         $this->db->select('m_user.userid AS ID,m_user.name as NAME,m_user.phone as PHONE,m_user.email as EMAIL, m_user.userlevel AS PREVILAGE');
         $this->db->from('m_user');
+        $this->db->where('m_user.userlevel !="admin"');
         $query = $this->db->get();
         if($query->num_rows()>0) 
         {
+            $id = 1;
             foreach($query->result() as $data)
             {
+                
                 $result[] = array(
-                    'USERNAME' => $data->ID,
-                    'NAME' => $data->NAME,
-                    'LEVEL' => $data->PREVILAGE,
-                    'PHONE' => $data->PHONE,
-                    'MAIL' => $data->EMAIL
+                    $id,
+                    $data->ID,
+                    $data->NAME,
+                    $data->PREVILAGE,
+                    $data->PHONE,
+                    $data->EMAIL
                 );
+                $id = $id++;
             }
             return $result;
         }
@@ -353,7 +358,6 @@ Class AuthModel extends CI_Model {
     {
         $password = md5('infomedia');
         
-
         $this->db->set('password',$password);
         $this->db->where('userid', $username);
         $this->db->update('m_user');
