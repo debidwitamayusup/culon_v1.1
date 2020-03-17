@@ -294,7 +294,7 @@ Class AuthModel extends CI_Model {
                     $data->PHONE,
                     $data->EMAIL
                 );
-                $id = $id++;
+                $id++;
             }
             return $result;
         }
