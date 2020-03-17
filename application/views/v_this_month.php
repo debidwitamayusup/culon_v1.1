@@ -139,7 +139,7 @@
 							</thead>
 							<tbody class="table-md" style="font-size:12px !important;" id="mytbody_month">
 							</tbody>
-							<tfoot class="table-md bg-total" style="font-size:12px !important;" id="mytfoot_month">
+							<tfoot class="table-md bg-total font-weight-extrabold" style="font-size:12px !important;" id="mytfoot_month">
 							</tfoot>
 						</table>
 					</div>
