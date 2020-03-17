@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for="nameUser">Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="nameUser"
-                                        placeholder="Your Name"">
+                                        placeholder="Your Name">
                                 </div>
                                 <div class=" form-group">
                                     <label for="levelUser">User Level</label>
@@ -53,7 +53,8 @@
                                                 <i class="fa fa-user tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div> <select class="form-control" id="levelUser">
-                                            <option>Supervisor</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="supervisor">Supervisor</option>
                                         </select>
                                     </div>
                                 </div>
@@ -64,7 +65,7 @@
                                             <div class="input-group-text border-input bg-gray text-white">
                                                 <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <select class="form-control" id="Tenant">
+                                        </div> <select class="form-control" id="tenantUser">
                                             <option>All Tenant</option>
                                         </select>
                                     </div>
@@ -87,7 +88,7 @@
                                             <div class="input-group-text border-input bg-gray text-white">
                                                 <i class="fa fa-envelope tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <input type="text" class="form-control form-control-sm" id="Email"
+                                        </div> <input type="text" class="form-control form-control-sm" id="emailUser"
                                             placeholder="example@infomedia.co.id">
                                     </div>
                                 </div>
@@ -104,4 +105,4 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
-    <script src="<?=base_url()?>assets/public/js/app/app-admin-user.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-admin-edit-user.js"></script>

@@ -41,7 +41,11 @@ $(document).ready(function () {
                     // sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
                     localStorage.setItem('Auth-infomedia',JSON.stringify(r.data))
                     localStorage.setItem('Auth-token',JSON.stringify(r.token))
-                    window.location = base_url+'main/v_home'
+                    if(r.data.PREVILAGE == 'admin'){
+                        window.location = base_url+'admin/admin_user'
+                    }else{
+                        window.location = base_url+'main/v_home'
+                    }
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
                 } else {
