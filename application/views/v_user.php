@@ -9,11 +9,11 @@
 					<li class="breadcrumb-item active mt-2" aria-current="page">User</li>
 				</ol>
 			</div>
-			<div class="bd-highlight" id="layanan_name_parent">
+			<!-- <div class="bd-highlight" id="layanan_name_parent">
 				<select class="form-control-sm select-tenant" style="border-color:#efecec">
 					<option value="1">All Tenant</option>
 				</select>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="row margin0-4">
