@@ -424,7 +424,9 @@ class WallboardController extends REST_Controller {
     public function getAvaildatawallmon_post()
     {
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
-        $data = $this->module_model->get_available_data_wallmon($tid);
+        $offset = $this->security->xss_clean($this->input->post('offset', true));
+        $limit = $this->security->xss_clean($this->input->post('limit', true));
+        $data = $this->module_model->get_available_data_wallmon($tid,$limit,$offset);
 
         if ($data) {
             $this->response([

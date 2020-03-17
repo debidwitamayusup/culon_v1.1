@@ -449,7 +449,12 @@ Class AuthModel extends CI_Model {
         $this->db->from('m_user');
         $this->db->where('m_user.token', $token);
         $this->db->where('m_user.userlevel = "admin"');
+
         $query = $this->db->get();
+
+        print_r($this->db->last_query());
+        exit;
+        
         if($query->num_rows()>0) 
         {
             return true;
