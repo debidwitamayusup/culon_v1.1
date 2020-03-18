@@ -32,7 +32,7 @@ var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(sessionStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         // getTenant('');
@@ -40,7 +40,7 @@ $(document).ready(function () {
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
-        drawTableAgentPerform('',v_params_today,v_params_today);
+        drawTableAgentPerform(tokenSession,'',v_params_today,v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -91,7 +91,7 @@ function getTenant(date){
     });
 }
 
-function drawTableAgentPerform(tenant_id, start_time, end_time){
+function drawTableAgentPerform(token, tenant_id, start_time, end_time){
     // console.log(tenantFromFilter);
     // console.log(channelFromFilter);
     // console.log(monthFromFilter);
@@ -99,6 +99,9 @@ function drawTableAgentPerform(tenant_id, start_time, end_time){
         // processing : true,
         // serverSide : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingAP',
             type : 'POST',
             data :{
@@ -208,7 +211,7 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $('#end-date').val();
         
-        drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        drawTableAgentPerform(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
     $('#reportAgentPerformance').dataTable();

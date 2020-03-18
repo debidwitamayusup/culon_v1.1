@@ -148,6 +148,7 @@ function drawTableAgentPerform(token, tenant_id, start_date, end_date, skill){
                     $('#btn-export').prop('disabled', false);
                 }
             }
+
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
