@@ -24,7 +24,7 @@ var channels = [
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $('#input-date').datepicker("setDate", v_params_today);
@@ -33,7 +33,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTableSumInterval(v_params_today,'1','', $("#layanan_name").val());
+        drawTableSumInterval(tokenSession,v_params_today,'1','', $("#layanan_name").val());
         dateFromFilter = $('#input-date').val();
         intervalFromFilter = $('#interval').val();
         channelFromFilter = $('#channel_name').val();
@@ -81,10 +81,13 @@ function channelToName(channel_id){
     return 'All Channel'
 }
 
-function drawTableSumInterval(tanggal,interval,channel, tenant_id){
+function drawTableSumInterval(token,tanggal,interval,channel, tenant_id){
     $("#filter-loader").fadeIn("slow");
 	$('#tableReportSumInterval').DataTable({
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingSInterval',
             type : 'POST',
             data :{
@@ -195,7 +198,7 @@ function setDatePicker() {
         channelFromFilter = $('#channel_name').val();
         tenantFromFilter = $('#layanan_name').val();
         tenantNameFromFilter = $("#layanan_name option:selected").html();
-        drawTableSumInterval($('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
+        drawTableSumInterval(tokenSession,$('#input-date').val(), '1', $('#channel_name').val(), $('#layanan_name').val());
     });
 
     
