@@ -13,7 +13,7 @@ class admin extends CI_Controller {
 	public function admin_user(){
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar_admin');
+		$this->load->view('temp/sidebar_admin');  
 		$this->load->view('v_user');
 	}
 
@@ -22,6 +22,13 @@ class admin extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar_admin');
 		$this->load->view('v_edit_user');
+	}
+
+	public function add_user(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_add_user');
 	}
 
 }

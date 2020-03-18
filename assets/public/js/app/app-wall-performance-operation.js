@@ -158,7 +158,7 @@ function drawTableStatusTicket(response){
                         '<td class="text-center">-</td>'+
                         '<td class="text-center">-</td>'+
                         '<td class="text-center">-</td>'+
-                        '<td class="text-center">-</td>'+
+                        // '<td class="text-center">-</td>'+
                         '<td class="text-center">-</td>'+  
                         '</tr>');
             }

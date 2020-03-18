@@ -16,7 +16,7 @@
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header-small">
-                        <h5 class="card-title-small card-pt10">Edit User</h5>
+                        <h5 class="card-title-small card-pt10">Add New User</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -36,16 +36,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group error" id="idDiv">
-                                    <label for="idUser">User ID</label>
+                                    <label for="idUser">User Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="idUser"
-                                        placeholder="ID">
+                                        placeholder="User Name">
                                     <div class="error-message" id="errorID">Username cannot be empty or more than 20 characters</div>
                                 </div>
                                 <div class="form-group error" id="nameDiv">
                                     <label for="nameUser">Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="nameUser"
                                         placeholder="Your Name">
-                                        <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
+                                    <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
                                 </div>
                                 <div class=" form-group">
                                     <label for="levelUser">User Level</label>
@@ -68,7 +68,7 @@
                                                 <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
                                         </div> <select class="form-control" id="tenantUser">
-                                            <option>All Tenant</option>
+                                            <option value="">All Tenant</option>
                                         </select>
                                     </div>
                                 </div>
@@ -91,14 +91,14 @@
                                             <div class="input-group-text border-input bg-gray text-white">
                                                 <i class="fa fa-envelope tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <input type="text" class="form-control form-control-sm" id="emailUser"
+                                        </div> <input type="text" class="form-control form-control-sm" id="Email"
                                             placeholder="example@infomedia.co.id">
                                     </div>
                                     <div class="error-message" id="errorEmail">format email not valid</div>
                                 </div>
                                 <div class="fPoppins float-right mt-2">
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-edit">Edit</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-add">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -109,4 +109,4 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
-    <script src="<?=base_url()?>assets/public/js/app/app-admin-edit-user.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-admin-add-user.js"></script>

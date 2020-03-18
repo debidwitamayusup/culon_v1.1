@@ -9,11 +9,11 @@
 					<li class="breadcrumb-item active mt-2" aria-current="page">User</li>
 				</ol>
 			</div>
-			<div class="bd-highlight" id="layanan_name_parent">
+			<!-- <div class="bd-highlight" id="layanan_name_parent">
 				<select class="form-control-sm select-tenant" style="border-color:#efecec">
 					<option value="1">All Tenant</option>
 				</select>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="row margin0-4">
@@ -24,7 +24,7 @@
 					</div>
 					<div class="d-flex bd-highlight">
 						<div class="ml-auto p-2 bd-highlight">
-							<a href="" class="btn btn-sm btn-red" style="border-radius: 8px;"><i
+							<a href="<?=base_url()?>admin/add_user" class="btn btn-sm btn-red" style="border-radius: 8px;"><i
 									class="fa fa-plus-circle mr-1"></i>Add User</a>
 						</div>
 					</div>
@@ -37,14 +37,13 @@
 									<td class="border-bottom-0 text-center" >User ID</td>
 									<td class="border-bottom-0 text-center" width="15%">Name</td>
 									<td class="border-bottom-0 text-center">User Level</td>
-									<td class="border-bottom-0 text-center" width="15%">Tenant</td>
 									<td class="border-bottom-0 text-center">No. HP</td>
 									<td class="border-bottom-0 text-center">Email</td>
 									<td class="border-bottom-0 text-center" width="20%">Action</td>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<!-- <tr>
 									<td class="text-center">1</td>
 									<td class="text-center">1US005</td>
 									<td clas="text-left">Name User</td>
@@ -199,7 +198,7 @@
 											class="btn btn-sm btn-grey-1 style-btn mr-2">Edit
 											User</a><a class="btn btn-sm btn-blue style-btn">Reset Password</a>
 									</td>
-								</tr>
+								</tr> -->
 								
 							</tbody>
 						</table>

@@ -271,7 +271,7 @@ function drawDataTable2(params, index, params_year, tenant_id){
 
     $('#mytbody').remove();
     // $('#mytfoot').remove();
-    $('#tablesPerformance').append('<tbody class="text-center" id="mytbody" style="font-size:12px !important;">');
+    $('#tablesPerformance').append('<tbody class="text-center" id="mytbody">');
 
     $('#tablesPerformance').DataTable({
         processing : true,
