@@ -567,7 +567,7 @@ function drawChartSubCategory_old(response) {
 function drawPieChart(response) {
 	//destroy div piechart
 	$('#pieKIP').remove(); // this is my <canvas> element
-	$('#canvas-pie').append('<canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>');
+	$('#canvas-pie').append('<canvas id="pieKIP"></canvas>');
 
 	$('#mylegend').remove();
 	$('#legend').append('<div id="legend" class="legend-con"></div>');
@@ -631,6 +631,17 @@ function drawPieChart(response) {
 					segment: true,
 					precision: 0
 				},
+				// animation:{
+				// 	onComplete: function(animation) {
+				// 		var firstSet = animation.chart.config.data.datasets[0].data,
+				// 				dataSum = firstSet.reduce((accumulator, currentValue) => accumulator + currentValue);
+							
+				// 		if(typeof firstSet !== "object" || dataSum === 0){
+				// 			document.getElementById('no-data').style.display = 'block';
+				// 		  document.getElementById('pieKIP').style.display = 'none';
+				// 		}
+				// 	}
+				// },
 				legendCallback: function (chart, index) {
 					var allData = chart.data.datasets[0].data;
 					var legendHtml = [];
@@ -668,13 +679,16 @@ function drawPieChart(response) {
 					})
 					legendHtml.push('</ul></div>');
 					return legendHtml.join("");
-				},
+				}
 			}
 		});
 		var myLegendContainer = document.getElementById("legend");
 		myLegendContainer.innerHTML = myChart.generateLegend();
+		document.getElementById('no-data').style.display = 'none';
+	// }
 	} else {
-		$('#pieKIP').append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
+		// $('#pieKIP').append('<div class="col-12 text-center">'+'<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+'</div>');
+		document.getElementById('no-data').style.display = 'block';
 	}
 }
 
@@ -797,6 +811,10 @@ function drawKipPerChannelChart(response) {
 			// 	}
 			// }]
 		});
+		document.getElementById('no-data').style.display = 'none';
+	}else {
+		// $('#pieKIP').append('<div class="col-12 text-center">'+'<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+'</div>');
+		document.getElementById('no-data').style.display = 'block';
 	}
 }
 

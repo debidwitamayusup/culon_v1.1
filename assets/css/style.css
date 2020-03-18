@@ -30085,3 +30085,13 @@ div[data-acc-step]:not(.open) .badge-primary {
     width: 80px;
     cursor: pointer;
 }
+
+#no-data{
+	display : none;
+	/* position: absolute;
+	padding: 50px 0;
+	text-align: center;
+	font-size: 3rem;
+	top: 15%;
+	width: 100%; */
+}

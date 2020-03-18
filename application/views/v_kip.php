@@ -11,7 +11,8 @@
 
             </div>
             <div class="bd-highlight" id="layanan_name_parent" style="margin-right: 9px; margin-bottom: 30px;">
-                <select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px" id="layanan_name">
+                <select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px"
+                    id="layanan_name">
 
                 </select>
             </div>
@@ -82,12 +83,16 @@
             <div class="col-xl-5 col-lg-5 col-md-12">
                 <div class="card">
                     <div class="card-header-small">
-
                         <h5 class="card-title-small card-pt10">Summary KIP</h5>
                     </div>
                     <div id="legend" class="legend-con"></div>
-                    <div class="card-body" id="canvas-pie">
-                        <canvas id="pieKIP" class="donutShadow overflow-hidden"></canvas>
+                    <div class="card-body">
+                        <div id="canvas-pie">
+                            <canvas id="pieKIP"></canvas>
+                        </div>
+                        <div id="no-data" class="col-12 text-center">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px; margin-bottom:6.8rem;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,6 +106,9 @@
                     <div class="card-body" id="horizontalBarKIPDiv">
                         <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
                     </div>
+                    <div id="no-data" class="col-12 text-center">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
+                        </div>
                 </div>
             </div>
         </div>
