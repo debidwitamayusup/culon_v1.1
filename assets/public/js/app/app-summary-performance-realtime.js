@@ -739,12 +739,22 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
+    var s = limit;
+    var h = 0;
+    var t = 0;
+
+    if (offset == 0){
+        h = 0;
+    }else{
+        h = (s*Number(offset));
+        t = (s*Number(offset));
+    }
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 10; i++) {
             if (response.data[i]){
                 $('#mytable_1').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
+                        '<td class="text-center">'+(h+1)+'</td>'+
                         '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
@@ -755,7 +765,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             }else{
                 $('#mytable_1').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-center">'+(h+1)+'</td>'+
                     '<td class="text-left"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
@@ -764,15 +774,17 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                     '<td class="text-right"></td>'+
                 '</tr>');
             }
+            h++;
         }
     }
 
+    var h2 = (h +10)
     $('#mytbody_2').empty();
     if (response.data.length != 0) {
         for (var j = 10; j < 20; j++) {
             if (response.data[j]){
                 $('#mytable_2').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(j+1)+'</td>'+
+                        '<td class="text-center">'+(h+1)+'</td>'+
                         '<td class="text-left">'+(response.data[j].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[j].AHT || 0)+'</td>'+
@@ -783,7 +795,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             }else{
                 $('#mytable_2').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(j+1)+'</td>'+
+                    '<td class="text-center">'+(h+1)+'</td>'+
                     '<td class="text-left"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
@@ -792,15 +804,17 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                     '<td class="text-right"></td>'+
                 '</tr>');
             }
-        }
+            h++;
+        }   
     }
 
+    var h3 = (h2+10)
     $('#mytbody_3').empty();
     if (response.data.length != 0) {
         for (var k = 20; k < 30; k++) {
             if (response.data[k]){
                 $('#mytable_3').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(k+1)+'</td>'+
+                        '<td class="text-center">'+(h+1)+'</td>'+
                         '<td class="text-left">'+(response.data[k].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
@@ -811,7 +825,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             }else{
                 $('#mytable_3').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(k+1)+'</td>'+
+                    '<td class="text-center">'+(h+1)+'</td>'+
                     '<td class="text-left"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
@@ -820,6 +834,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                     '<td class="text-right"></td>'+
                 '</tr>');
             }
+            h++;
         }
     }
 
