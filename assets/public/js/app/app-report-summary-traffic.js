@@ -20,7 +20,6 @@ if (n < 10) {
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
 $(document).ready(function(){
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
@@ -177,6 +176,7 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
 }
 
 function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
+    // console.log(currentPage)
     var delta = 2,
         range = [],
         rangeWithDots = [],
