@@ -11,6 +11,7 @@
         public function __construct() {
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
+            
         }
 #region :: Raga
         function ss_formatter($src)
@@ -318,8 +319,12 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
+
         public function ReportingAP_post()
         {
+
+
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
@@ -345,6 +350,8 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
+
+
 
         public function ReportingAL_post()
         {
@@ -432,6 +439,37 @@
                     'data'    => array()
                         ], REST_Controller::HTTP_OK);
             }
+        }
+
+        public function dev_checking_post()
+        {
+            $token = $_SERVER['HTTP_TOKEN'];
+
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+
+            if ($res==true) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'data ditemukan!',
+                    'data' => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'data tidak ditemukan!'
+                        ], REST_Controller::HTTP_OK);
+            }
+
+
         }
 
         // Export ke excel

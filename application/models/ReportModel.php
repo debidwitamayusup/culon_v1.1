@@ -6,6 +6,9 @@ Class ReportModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('tokenize');
+        
+        
     }
     #region :: Raga
     public function get_datareportSC($tid,$t_start,$t_end,$meth)
@@ -65,6 +68,12 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
+    
     public function get_skill()
     {
         $this->db->select('a.skill_name');
@@ -796,6 +805,7 @@ Class ReportModel extends CI_Model {
                     $datareport = $this->datareportSIntervalMonth($tid,$chn,$month,$meth);
                     if($datareport)
                     {
+
                         $result = $datareport;
                     }
                     else{
@@ -1070,6 +1080,7 @@ Class ReportModel extends CI_Model {
         return false;
     }
 
+    
 
     #endregion :: additional-function
 
