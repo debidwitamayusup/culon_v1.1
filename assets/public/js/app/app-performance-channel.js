@@ -713,11 +713,11 @@ function remove_hash_from_url()
 
 //jquery
 (function ($) {
-	$(window).on('resize', function () {
-		if (echartService != null && echartService != undefined) {
-			echartService.resize();
-		}
-	});
+	// $(window).on('resize', function () {
+	// 	if (echartService != null && echartService != undefined) {
+	// 		echartService.resize();
+	// 	}
+	// });
 
 	// btn day
 	$('#btn-day').click(function () {

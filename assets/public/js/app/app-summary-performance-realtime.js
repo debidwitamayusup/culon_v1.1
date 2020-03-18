@@ -251,7 +251,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_1').find('tbody').append(
@@ -279,7 +279,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                         '<td class="text-center">'+(response.data[j].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[j].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[j].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[j].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[j].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(
@@ -307,7 +307,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
                         '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[k].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[k].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_3').find('tbody').append(
