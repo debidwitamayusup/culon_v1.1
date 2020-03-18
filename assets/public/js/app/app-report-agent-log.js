@@ -18,6 +18,7 @@ if (n < 10) {
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function(){
     if(sessionParams){
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
@@ -25,7 +26,7 @@ $(document).ready(function(){
         }else{
             getTenant('', '');
         }
-        callTableAgentLog(v_params_today, v_params_today, $("#layanan_name").val());
+        callTableAgentLog(tokenSession, v_params_today, v_params_today, $("#layanan_name").val());
         $('#start-date').datepicker("setDate", v_params_today);
         $('#end-date').datepicker("setDate", v_params_today);
         startDateFromFilter = v_params_today;
@@ -78,10 +79,13 @@ function getTenant(date, userid){
     });
 }
 
-function callTableAgentLog(start_date, end_date, tenant_id){
+function callTableAgentLog(token, start_date, end_date, tenant_id){
     $("#filter-loader").fadeIn("slow");
 	$('#tableAgent').DataTable({
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingAL',
             type : 'POST',
             data :{
@@ -201,7 +205,7 @@ function setDatePicker() {
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
         tenantNameFromFilter = $('#layanan_name option:selected').html();
-        callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
+        callTableAgentLog(tokenSession, $('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
     });
 
     // $('#tableSummaryTraffic').dataTable();    

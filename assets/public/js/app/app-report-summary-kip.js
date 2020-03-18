@@ -25,7 +25,7 @@ var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
@@ -35,7 +35,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        callTableKIP(v_params_today,v_params_today, $("#layanan_name").val(), '');
+        callTableKIP(tokenSession,v_params_today,v_params_today, $("#layanan_name").val(), '');
         startDateFromFilter = v_params_today;
         endDateFromFilter = v_params_today;
         channelFromFilter = $('#channel_name').val();
@@ -94,9 +94,12 @@ function channelToName(channel_id){
 
 }
 
-function callTableKIP(start_date,end_date, tenant_id, channel_id){
+function callTableKIP(token,start_date,end_date, tenant_id, channel_id){
     $("#filter-loader").fadeIn("slow");
 	$.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		url : base_url + 'api/Reporting/ReportController/ReportingKIP',
         type : 'POST',
         data :{
@@ -228,6 +231,6 @@ function exportTableKIP(start_date, end_date, tenant_id, channel_id, name, tenan
         channelFromFilter = $('#channel_name').val();
         tenantFromFilter = $("#layanan_name").val();
         tenantNameFromFilter = $("#layanan_name option:selected").html();
-        callTableKIP($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
+        callTableKIP(tokenSession,$('#start-date').val(), $('#end-date').val(), $('#layanan_name').val(), $('#channel_name').val());
     });
 })(jQuery);

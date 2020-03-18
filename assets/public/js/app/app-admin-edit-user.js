@@ -16,6 +16,16 @@ $(document).ready(function(){
         $('#levelUser option[value="' + sessionEdit[3] + '"]').attr('selected', 'selected');
         $('#noTelp').val(sessionEdit[4]);
         $('#emailUser').val(sessionEdit[5]);
+        $('#tenantUser').prop('disabled', true);
+        $( "#nameDiv" ).removeClass( "error" );
+        $('#errorName').hide();
+        $( "#idDiv" ).removeClass( "error" );
+        $('#errorID').hide();
+        $( "#telpDiv" ).removeClass( "error" );
+        $('#errorTelp').hide();
+        $( "#emailDiv" ).removeClass( "error" );
+        $('#errorEmail').hide();
+        $("#btn-edit").attr('disabled', true);
     }else{
         window.location = base_url
     }
@@ -49,4 +59,197 @@ function getTenant(date, userid){
         },
     });
 }
+
+function callChangeUser(token,username, email, phone, name, previlage, tenant_id){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/changeusr',
+        data: {
+            username: username,
+            email: email,
+            phone: phone,
+            name: name,
+            previlage: previlage
+        },
+        success: function (r) {
+            var response = r;
+            // var answer = alert ("Edit Data Success")
+            if(response.status == true){
+                // if (answer){
+                //     window.location = base_url+'admin/admin_user';
+                // } else{
+                //     window.location = base_url+'admin/admin_user';
+                // }
+                callDeleteAccess(token,username, tenant_id);
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
+            // alert(r.responseJSON.message);
+        },
+    });
+}
+
+function callDeleteAccess(token,username, tenant_id){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/remtenanttouser',
+        data: {
+            username: username
+        },
+        success: function (r) {
+            var response = r;
+            // var answer = alert ("Edit Data Success")
+            if(response.status == true){
+                // if (answer){
+                //     window.location = base_url+'admin/admin_user';
+                // } else{
+                //     window.location = base_url+'admin/admin_user';
+                // }
+                callAddAccess(token,username, tenant_id);
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
+            // alert(r.responseJSON.message);
+        },
+    });
+}
+
+function callAddAccess(token,username, tenant_id){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/settenanttouser',
+        data: {
+            username: username,
+            tenant_id: tenant_id
+        },
+        success: function (r) {
+            var response = r;
+            var answer = alert ("Edit Data Success")
+            if(response.status == true){
+                if (answer){
+                    window.location = base_url+'admin/admin_user';
+                } else{
+                    window.location = base_url+'admin/admin_user';
+                }
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
+            // alert(r.responseJSON.message);
+        },
+    });
+}
+
+(function ($) {
+
+    $('#levelUser').change(function(){
+        if($(this).val() == 'supervisor'){
+            $('#tenantUser').prop('disabled', false);
+            getTenant('','');
+        }else{
+            $('#tenantUser option[value=""]').attr('selected', 'selected');
+            $('#tenantUser').html('<option value="">All Tenant</option>');
+            $('#tenantUser').prop('disabled', true);
+        }
+    });
+
+    var inputID = document.getElementById("idUser");
+    inputID.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($('#idUser').val() == "" ||  $('#idUser').val().length > 20){
+            $('#errorID').show();
+            $( "#idDiv" ).addClass( "error" );
+            $("#btn-edit").attr('disabled', true);           
+        }else{
+            $('#errorID').hide();
+            $( "#idDiv" ).removeClass( "error" );
+            $("#btn-edit").attr('disabled', false);
+        }
+    });
+
+    var inputName = document.getElementById("nameUser");
+    inputName.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($('#nameUser').val() == "" ||  $('#nameUser').val().length > 20){
+            $('#errorName').show();
+            $( "#nameDiv" ).addClass( "error" );
+            $("#btn-edit").attr('disabled', true);           
+        }else{
+            $('#errorName').hide();
+            $( "#nameDiv" ).removeClass( "error" );
+            $("#btn-edit").attr('disabled', false);
+        }
+    });
+
+    var inputEmail = document.getElementById("emailUser");
+    inputEmail.addEventListener("keyup", function(event) {
+      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        event.preventDefault();
+        if(!emailReg.test($('#emailUser').val()) || $.trim($('#emailUser').val()).length == 0){
+            $('#errorEmail').show();
+            $( "#emailDiv" ).addClass( "error" );
+            $("#btn-edit").attr('disabled', true);
+        }else{
+            $('#errorEmail').hide();
+            $( "#emailDiv" ).removeClass( "error" );
+            $("#btn-edit").attr('disabled', false);
+        }
+    });
+
+    var inputPhone = document.getElementById("noTelp");
+    inputPhone.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($.isNumeric($('#noTelp').val()) == false ||  $('#noTelp').val().length > 13){
+            $('#errorTelp').show();
+            $( "#telpDiv" ).addClass( "error" );
+            $("#btn-edit").attr('disabled', true);           
+        }else{
+            $('#errorTelp').hide();
+            $( "#telpDiv" ).removeClass( "error" );
+            $("#btn-edit").attr('disabled', false);
+        }
+    });
+    
+    $('#btn-edit').click(function(){
+        callChangeUser(sessionParams, $('#idUser').val(), $('#emailUser').val(), $('#noTelp').val(), $('#nameUser').val(), $('#levelUser').val(), $('#tenantUser').val());
+    });
+
+    $('#btn-cancel').click(function(){
+        window.location = base_url+'admin/admin_user';
+    });
+
+    $('#levelUser').change(function(){
+        $('#btn-edit').prop('disabled', false);
+    });
+})(jQuery);
+
 

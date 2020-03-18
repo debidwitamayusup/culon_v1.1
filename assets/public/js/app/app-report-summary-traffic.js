@@ -20,7 +20,7 @@ if (n < 10) {
 
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function(){
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
@@ -32,7 +32,7 @@ $(document).ready(function(){
         }else{
             getTenant('', '');
         }
-        callTableSummaryTraffic($("#layanan_name").val(),v_params_today,v_params_today,'10', '0');
+        callTableSummaryTraffic(tokenSession,$("#layanan_name").val(),v_params_today,v_params_today,'10', '0');
         pagingFilters = $('#pagingFilter').val();
     }else{
         window.location = base_url;
@@ -68,9 +68,12 @@ function getTenant(date, userid){
     });
 }
 
-function callTableSummaryTraffic(tenant_id,start_date,end_date,ammount,page){
+function callTableSummaryTraffic(token, tenant_id,start_date,end_date,ammount,page){
     $("#filter-loader").fadeIn("slow");
 	$.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		url : base_url + 'api/Reporting/ReportController/ReportingSTraffic',
         type : 'POST',
         data :{
@@ -177,6 +180,7 @@ function drawTableSumTraffic(response, tenant_id, start_date, end_date, ammount,
 }
 
 function pagination(currentPage, nrOfPages, tenant_id, start_date, end_date) {
+    // console.log(currentPage)
     var delta = 2,
         range = [],
         rangeWithDots = [],
@@ -330,12 +334,12 @@ function setDatePicker() {
         startDateFromFilter = $('#start-date').val();
         endDateFromFilter = $("#end-date").val();
         tenantNameFromFilter = $('#layanan_name').html();
-        callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
+        callTableSummaryTraffic(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#pagingFilter').val(), '0');
     });
 
     // change date picker
         $("select#pagingFilter").change(function(){
-            callTableSummaryTraffic($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
+            callTableSummaryTraffic(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $(this).children("option:selected").val(), '0');
         });
 
     // $('#tableSummaryTraffic').dataTable();    

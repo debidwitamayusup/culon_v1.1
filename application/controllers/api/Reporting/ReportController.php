@@ -11,6 +11,7 @@
         public function __construct() {
             parent::__construct();
             $this->load->model('ReportModel', 'module_model');
+            
         }
 #region :: Raga
         function ss_formatter($src)
@@ -104,6 +105,24 @@
         
         public function ReportingSC_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
 
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
@@ -130,6 +149,24 @@
 
         public function ReportingSCloseTicket_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $t_start = $this->security->xss_clean($this->input->post('start_date'));
             $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
@@ -156,6 +193,24 @@
 
         public function ReportingSClosePerCh_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $t_start = $this->security->xss_clean($this->input->post('start_date'));
             $t_end = $this->security->xss_clean($this->input->post('end_date'));
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
@@ -182,6 +237,24 @@
         
         public function ReportingSInterval_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $date = $this->security->xss_clean($this->input->post('tanggal'));
@@ -212,6 +285,24 @@
 
         public function ReportingSPO_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $chn = $this->security->xss_clean($this->input->post('channel_id'));
@@ -239,6 +330,24 @@
 
         public function ReportingSPA_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
@@ -269,6 +378,24 @@
 
         public function ReportingOPS_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
@@ -295,6 +422,24 @@
 
         public function ReportingOPS2_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
@@ -318,8 +463,27 @@
                         ], REST_Controller::HTTP_OK);
             }
         }
+
         public function ReportingAP_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
@@ -348,6 +512,24 @@
 
         public function ReportingAL_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
             $d_end = $this->security->xss_clean($this->input->post('end_date'));
@@ -375,6 +557,23 @@
 
         public function ReportingSTraffic_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             
@@ -409,6 +608,24 @@
         public function ReportingKIP_post()
         {
 
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $cid = $this->security->xss_clean($this->input->post('channel_id'));
             $d_start = $this->security->xss_clean($this->input->post('start_date'));
@@ -432,6 +649,38 @@
                     'data'    => array()
                         ], REST_Controller::HTTP_OK);
             }
+        }
+
+       
+
+        public function userchecker_post()
+        {
+            $token = $_SERVER['HTTP_TOKEN'];
+
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not Found'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+
+            if ($res==true) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'user verified',
+                    'data' => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not Found'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
         }
 
         // Export ke excel
@@ -1372,6 +1621,37 @@
             // }
         }
 
+        //development
+        public function dev_checking_post()
+        {
+            $token = $_SERVER['HTTP_TOKEN'];
+
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+
+            if ($res==true) {
+                $this->response([
+                    'status'  => TRUE,
+                    'message' => 'data ditemukan!',
+                    'data' => $res
+                        ], REST_Controller::HTTP_OK);
+            }
+            else {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'data tidak ditemukan!'
+                        ], REST_Controller::HTTP_OK);
+            }
+
+
+        }
         
 
 #endregion Raga
@@ -1379,6 +1659,24 @@
 #region :: debi
         public function ReportingSIntervalMonth_post()
         {
+            $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
 
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $month = $this->security->xss_clean($this->input->post('month'));
@@ -1406,9 +1704,9 @@
             }
         }
 
-
         public function EXPORTSCLOSE_get()
         {
+
 
             $tid = $this->security->xss_clean($this->input->get('tenant_id'));
             $tin = $this->security->xss_clean($this->input->get('tenant_name'));

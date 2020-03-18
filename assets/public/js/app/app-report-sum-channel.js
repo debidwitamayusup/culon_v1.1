@@ -21,7 +21,7 @@ var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
@@ -34,7 +34,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTableSumChannel($("#tenant-id").val(),v_params_today,v_params_today);
+        drawTableSumChannel(tokenSession,$("#tenant-id").val(),v_params_today,v_params_today);
         callDrawPieChart($("#tenant-id").val(),v_params_today,v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
@@ -85,12 +85,15 @@ function getTenant(date, userid){
     });
 }
 
-function drawTableSumChannel(tenant_id, start_time, end_time, baseImg){
+function drawTableSumChannel(token,tenant_id, start_time, end_time, baseImg){
     $("#filter-loader").fadeIn("slow");
    $('#tableSumChannel').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingSC',
             type : 'POST',
             data :{
@@ -430,7 +433,7 @@ function getBase64Image(img) {
         endDateFromFilter = $('#end-date').val();
         tenantNameFromFilter = $('#tenant-id option:selected').html();
         // $("#filter-loader").fadeIn("slow");
-        drawTableSumChannel($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
+        drawTableSumChannel(tokenSession,$('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         callDrawPieChart($('#tenant-id').val(), $('#start-date').val(), $('#end-date').val());
         $("#filter-loader").fadeOut("slow");
     });

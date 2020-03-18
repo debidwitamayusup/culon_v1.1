@@ -439,7 +439,7 @@ class AuthController extends REST_Controller {
 
         $data = $this->module_model->admin_checker($token);
 
-        if($data == true)
+        if($data == false)
         {
             $this->response([
                 'status'  => FALSE,
@@ -588,6 +588,54 @@ class AuthController extends REST_Controller {
                 'status'  => FALSE,
                 'message' => '404 Not found.'
                     ], REST_Controller::HTTP_NOT_FOUND);
+        }
+    }
+
+    public function remtenanttouser_post()
+    {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $data = $this->module_model->admin_checker($token);
+
+        if($data == false)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $username = $this->security->xss_clean($this->input->post('username'));
+
+        $data2 = $this->module_model->userchecker($username);
+
+        if ($data2 == true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'User Telah terdaftar!',
+                    ], REST_Controller::HTTP_OK);
+        }
+
+        $res = $this->module_model->removetenanttouser($username);
+
+        if ($res = true) {
+            $this->response([
+                'status'  => TRUE,
+                'message' => 'Perubahan sukses',
+                    ], REST_Controller::HTTP_OK);
+        }
+        else {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Perubahan gagal!'
+                    ], REST_Controller::HTTP_OK);
         }
     }
 

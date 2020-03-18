@@ -31,7 +31,7 @@ var channels = [
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
-
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $('#start-date').datepicker("setDate", v_params_today);
@@ -43,8 +43,8 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTablePerformOps($("#layanan_name").val(),v_params_today,v_params_today);
-        drawTablePerformOpsBySkill($("#layanan_name").val(), v_params_today, v_params_today);
+        drawTablePerformOps(tokenSession, $("#layanan_name").val(),v_params_today,v_params_today);
+        drawTablePerformOpsBySkill(tokenSession,$("#layanan_name").val(), v_params_today, v_params_today);
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -123,12 +123,15 @@ function drawTablePerformOps_old(tenant_id, channel_id, month){
     $("#filter-loader").fadeOut("slow");
 }
 
-function drawTablePerformOps(tenant_id, start_date, end_date){
+function drawTablePerformOps(token, tenant_id, start_date, end_date){
     $("#filter-loader").fadeIn("slow");
 	$('#tableOperationPerform1').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingOPS',
             type : 'POST',
             data :{
@@ -165,12 +168,15 @@ function drawTablePerformOps(tenant_id, start_date, end_date){
     $("#filter-loader").fadeOut("slow");
 }
 
-function drawTablePerformOpsBySkill(tenant_id, start_date, end_date){
+function drawTablePerformOpsBySkill(token,tenant_id, start_date, end_date){
     $("#filter-loader").fadeIn("slow");
 	$('#tableOperationPerform2').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingOPS2',
             type : 'POST',
             data :{
@@ -277,8 +283,8 @@ function setDatePicker() {
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
         tenantNameFromFilter = $('#layanan_name option:selected').html();
-        drawTablePerformOps($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
-        drawTablePerformOpsBySkill($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        drawTablePerformOps(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
+        drawTablePerformOpsBySkill(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val());
     });
 
     $('#tableOperationPerform1').dataTable();

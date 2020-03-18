@@ -35,15 +35,17 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group error" id="idDiv">
                                     <label for="idUser">User ID</label>
                                     <input type="text" class="form-control box-shadow-input" id="idUser"
                                         placeholder="ID">
+                                    <div class="error-message" id="errorID">Username cannot be empty or more than 20 characters</div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="nameDiv">
                                     <label for="nameUser">Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="nameUser"
                                         placeholder="Your Name">
+                                        <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
                                 </div>
                                 <div class=" form-group">
                                     <label for="levelUser">User Level</label>
@@ -70,7 +72,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="telpDiv">
                                     <label for="noTelp">No. Telp</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
@@ -80,8 +82,9 @@
                                         </div> <input type="text" class="form-control form-control-sm" id="noTelp"
                                             placeholder="62813xxxxxxx">
                                     </div>
+                                    <div class="error-message" id="errorTelp">phone number must only numbers and has 13 max length</div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group error" id="emailDiv">
                                     <label for="Email">Email</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
@@ -91,10 +94,11 @@
                                         </div> <input type="text" class="form-control form-control-sm" id="emailUser"
                                             placeholder="example@infomedia.co.id">
                                     </div>
+                                    <div class="error-message" id="errorEmail">format email not valid</div>
                                 </div>
                                 <div class="fPoppins float-right mt-2">
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2">Cancel</button>
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2">Create</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-edit">Edit</button>
                                 </div>
                             </div>
                         </div>
