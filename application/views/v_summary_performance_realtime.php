@@ -143,8 +143,8 @@
                     </div>
                     
                     <!-- Pagination -->
-                    <ul class="pagination  justify-content-end" style="padding: 0px 7px 0px 7px;">
-                        <li class="page-item page-prev disabled">
+                    <ul class="pagination  justify-content-end" style="padding: 0px 7px 0px 7px;" id="paging">
+                        <!-- <li class="page-item page-prev disabled">
                             <a class="page-link" href="#" tabindex="-1">Prev</a>
                         </li>
                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -154,7 +154,7 @@
                         <li class="page-item"><a class="page-link" href="#">5</a></li>
                         <li class="page-item page-next">
                             <a class="page-link" href="#">Next</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="card-footer">
                         <div class="row" id="rowDiv">

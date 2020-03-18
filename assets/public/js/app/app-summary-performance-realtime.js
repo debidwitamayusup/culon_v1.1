@@ -52,7 +52,7 @@ $(document).ready(function(){
         }
 
         $("#filter-loader").fadeIn("slow");
-        callThreeTable(params_time, v_params_this_year, 0, arr_tenant);
+        callThreeTable(params_time, v_params_this_year, 0, arr_tenant, offset, limit);
         callPieChartSummary(params_time, v_params_this_year, 0, arr_tenant);
         callBarLayanan(params_time, v_params_this_year, 0, arr_tenant);
         callLineChart(params_time, v_params_this_year, 0, arr_tenant);
@@ -208,7 +208,7 @@ function getTenant(date, userid){
     });
 }
 
-function callThreeTable(params, index_time, params_year, tenant_id){
+function callThreeTable(params, index_time, params_year, tenant_id, offset, limit){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboard',
@@ -216,13 +216,15 @@ function callThreeTable(params, index_time, params_year, tenant_id){
             params: params,
             index: index_time,
             params_year: params_year,
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            offset: offset,
+            limit: limit
         },
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
             // setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
-            drawTableRealTime(response);
+            drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit);
             drawTotalTable(response);
         },
         error: function (r) {
@@ -234,7 +236,7 @@ function callThreeTable(params, index_time, params_year, tenant_id){
     });
 }
 
-function drawTableRealTime(response){
+function drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
@@ -321,6 +323,81 @@ function drawTableRealTime(response){
             }
         }
     }
+
+    var totalPage = Math.ceil(response.max_row/$('#pagingFilter').val());
+    var varA = "";
+    var pagDot = pagination(page, totalPage, params, index_time, params_year, tenant_id, offset, limit);
+}
+
+function pagination(currentPage, nrOfPages, params, index_time, params_year, tenant_id, offset, limit) {
+    var delta = 2,
+        range = [],
+        rangeWithDots = [],
+        l,
+        varA = "",
+        indexDot;
+
+    range.push(1);  
+
+    if (nrOfPages <= 1){
+ 	return range;
+    }
+
+    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
+        if (i < nrOfPages && i > 1) {
+            range.push(i);
+        }
+    }  
+    range.push(nrOfPages);
+
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    indexDot = rangeWithDots.indexOf('...');
+    // console.log('indexDot='+indexDot);
+    // console.log(rangeWithDots);
+    // console.log('rangewithdotlength= '+rangeWithDots.length);
+    for (var k = 0; k < rangeWithDots.length; k++){
+        if (k != indexDot){
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(rangeWithDots[k]-1)+"','"+limit+"'"+')">'+rangeWithDots[k]+'</a></li>'
+        }else{
+            varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+k+"','"+offset+"'"+')">...</a></li>'
+        }
+    }
+    $("#paging").empty();
+    $("#paging").append('<li class="page-item page-prev">'+
+    '<a href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+0+"','"+limit+"'"+')">&laquo;</a>'+
+    '</li>'+
+        varA+
+        '<li class="page-item page-next">'+
+        '<a href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(nrOfPages-1)+"','"+limit+"'"+')">&raquo;</a>'+
+        '</li>'
+    );
+    
+    var forID = "#li"+(Number(currentPage)+1).toString();
+    $(""+forID+"").prop("class","page-item active");
+    $("#app-content").on('mouseover', 'a', function (e) {
+        var $link = $(this),
+            href = $link.attr('href') || $link.data("href");
+    
+        $link.off('click.chrome');
+        $link.on('click.chrome', function () {
+            window.location.href = href;
+        })
+        .attr('data-href', href) 
+        .css({ cursor: 'pointer' })
+        .removeAttr('href'); 
+    });
+    // return rangeWithDots;
 }
 
 function callPieChartSummary(params, index_time, params_year, tenant_id){
