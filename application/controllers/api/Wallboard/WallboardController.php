@@ -497,12 +497,17 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasional_post()
     {
-        $data = $this->module_model->summary_performance_nasional();
+        $offset = $this->security->xss_clean($this->input->post('offset', true));
+        $limit = $this->security->xss_clean($this->input->post('limit', true));
         
+
+        $data = $this->module_model->summary_performance_nasional($limit,$offset);
+        $amt = $this->module_model->summary_performance_nasional(0,0);
         if ($data) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
+                'data_amt' => count($amt),
                 'data'    => $data
                     ], REST_Controller::HTTP_OK);
         }
@@ -510,7 +515,7 @@ class WallboardController extends REST_Controller {
             $this->response([
                 'status'  => FALSE,
                 'message' => 'Not Found!',
-                'dates' => 'Not found',
+                'data_amt' => 0,
                 'data'    => $data
                     ], REST_Controller::HTTP_OK);
         }
