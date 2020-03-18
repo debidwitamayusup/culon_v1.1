@@ -24,6 +24,504 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 var arr_tenant = [];
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+
+// var dataset = [];
+var dataset = {
+    "status": true,
+    "message": "Data available!",
+    "data_amt": 61,
+    "data": [
+        {
+            "TENANT_NAME": "Adira Finance",
+            "ART": "1:26:59",
+            "AHT": "0:07:26",
+            "AST": "1:34:26",
+            "COF": "15439",
+            "SCR": "85.67"
+        },
+        {
+            "TENANT_NAME": "ASDP Ferry",
+            "ART": "0:00:39",
+            "AHT": "0:00:03",
+            "AST": "0:00:44",
+            "COF": "6",
+            "SCR": "0.00"
+        },
+        {
+            "TENANT_NAME": "Bank Jateng",
+            "ART": "0:57:04",
+            "AHT": "0:05:45",
+            "AST": "1:02:51",
+            "COF": "30",
+            "SCR": "50.00"
+        },
+        {
+            "TENANT_NAME": "Biofarma",
+            "ART": "1:06:04",
+            "AHT": "0:05:12",
+            "AST": "1:11:17",
+            "COF": "160",
+            "SCR": "56.05"
+        },
+        {
+            "TENANT_NAME": "The Body Shop",
+            "ART": "3:23:51",
+            "AHT": "0:06:19",
+            "AST": "3:28:00",
+            "COF": "21879",
+            "SCR": "60.16"
+        },
+        {
+            "TENANT_NAME": "BPRD Jakarta",
+            "ART": "7:19:43",
+            "AHT": "0:01:45",
+            "AST": "7:12:09",
+            "COF": "6220",
+            "SCR": "42.35"
+        },
+        {
+            "TENANT_NAME": "Ditjen Dukcapil Kemandagri",
+            "ART": "1:17:23",
+            "AHT": "0:38:35",
+            "AST": "1:55:59",
+            "COF": "74792",
+            "SCR": "82.99"
+        },
+        {
+            "TENANT_NAME": "Erajaya Swasembada",
+            "ART": "8:44:37",
+            "AHT": "0:24:22",
+            "AST": "9:07:43",
+            "COF": "12393",
+            "SCR": "95.44"
+        },
+        {
+            "TENANT_NAME": "Indomaret",
+            "ART": "5:52:59",
+            "AHT": "0:02:05",
+            "AST": "5:55:04",
+            "COF": "1",
+            "SCR": "100.00"
+        },
+        {
+            "TENANT_NAME": "Jalin Pembayaran Nusantara",
+            "ART": "0:00:00",
+            "AHT": "0:00:00",
+            "AST": "0:00:02",
+            "COF": "93",
+            "SCR": "0.00"
+        },
+        {
+            "TENANT_NAME": "Jakrindo",
+            "ART": "0:34:51",
+            "AHT": "0:00:24",
+            "AST": "0:35:15",
+            "COF": "1",
+            "SCR": "0.00"
+        },
+        {
+            "TENANT_NAME": "Kimiafarma",
+            "ART": "4:08:07",
+            "AHT": "0:08:19",
+            "AST": "4:16:27",
+            "COF": "143",
+            "SCR": "4.10"
+        },
+        {
+            "TENANT_NAME": "LPS",
+            "ART": "4:02:45",
+            "AHT": "0:02:44",
+            "AST": "3:56:19",
+            "COF": "369",
+            "SCR": "92.44"
+        },
+        {
+            "TENANT_NAME": "Melon",
+            "ART": "1:23:28",
+            "AHT": "0:01:25",
+            "AST": "1:24:06",
+            "COF": "4590",
+            "SCR": "99.27"
+        },
+        {
+            "TENANT_NAME": "Mandiri Tunas Finance",
+            "ART": "1:04:36",
+            "AHT": "0:12:42",
+            "AST": "1:17:18",
+            "COF": "2621",
+            "SCR": "81.45"
+        },
+        {
+            "TENANT_NAME": "BPBD Padang Pariaman",
+            "ART": "2:45:13",
+            "AHT": "0:00:13",
+            "AST": "2:45:26",
+            "COF": "84",
+            "SCR": "2.94"
+        },
+        {
+            "TENANT_NAME": "Pegadaian",
+            "ART": "0:38:31",
+            "AHT": "0:07:11",
+            "AST": "0:45:43",
+            "COF": "5865",
+            "SCR": "61.41"
+        },
+        {
+            "TENANT_NAME": "Perum Perhutani",
+            "ART": "2:38:17",
+            "AHT": "0:02:18",
+            "AST": "2:40:34",
+            "COF": "1081",
+            "SCR": "70.59"
+        },
+        {
+            "TENANT_NAME": "Pertamina",
+            "ART": "0:15:02",
+            "AHT": "0:01:53",
+            "AST": "0:15:10",
+            "COF": "10901",
+            "SCR": "49.14"
+        },
+        {
+            "TENANT_NAME": "Pos Indonesia",
+            "ART": "0:23:46",
+            "AHT": "0:06:14",
+            "AST": "0:29:14",
+            "COF": "171689",
+            "SCR": "76.51"
+        },
+        {
+            "TENANT_NAME": "Prima Armada",
+            "ART": "0:00:00",
+            "AHT": "0:00:00",
+            "AST": "0:00:02",
+            "COF": "8",
+            "SCR": "0.00"
+        },
+        {
+            "TENANT_NAME": "PTSP Badung Bali",
+            "ART": "1:37:34",
+            "AHT": "0:12:11",
+            "AST": "1:49:45",
+            "COF": "5",
+            "SCR": "0.00"
+        },
+        {
+            "TENANT_NAME": "TDSCC Pertamina",
+            "ART": "1:15:37",
+            "AHT": "3:33:32",
+            "AST": "4:49:09",
+            "COF": "1506",
+            "SCR": "95.60"
+        },
+        {
+            "TENANT_NAME": "Telkom Care",
+            "ART": "1:58:10",
+            "AHT": "0:06:59",
+            "AST": "2:03:12",
+            "COF": "999698",
+            "SCR": "58.36"
+        },
+        {
+            "TENANT_NAME": "Telkomsel",
+            "ART": "0:06:23",
+            "AHT": "0:09:42",
+            "AST": "0:15:27",
+            "COF": "234995",
+            "SCR": "70.26"
+        },
+        {
+            "TENANT_NAME": "Tugu Insurance Brokers",
+            "ART": "0:15:28",
+            "AHT": "0:00:30",
+            "AST": "0:15:51",
+            "COF": "12655",
+            "SCR": "30.94"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        },
+        {
+            "TENANT_NAME": "Volvo",
+            "ART": "0:12:34",
+            "AHT": "0:01:48",
+            "AST": "0:13:47",
+            "COF": "667",
+            "SCR": "90.00"
+        }
+    ]
+}
+
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -52,7 +550,7 @@ $(document).ready(function(){
         }
 
         $("#filter-loader").fadeIn("slow");
-        callThreeTable(params_time, v_params_this_year, 0, arr_tenant);
+        callThreeTable(params_time, v_params_this_year, 0, arr_tenant, 0, 30);
         callPieChartSummary(params_time, v_params_this_year, 0, arr_tenant);
         callBarLayanan(params_time, v_params_this_year, 0, arr_tenant);
         callLineChart(params_time, v_params_this_year, 0, arr_tenant);
@@ -208,7 +706,7 @@ function getTenant(date, userid){
     });
 }
 
-function callThreeTable(params, index_time, params_year, tenant_id){
+function callThreeTable(params, index_time, params_year, tenant_id, offset, limit){
     $.ajax({
         type: 'POST',
         url: base_url + 'api/OperationPerformance/SummaryPerformance/summaryPerformanceDashboard',
@@ -216,13 +714,16 @@ function callThreeTable(params, index_time, params_year, tenant_id){
             params: params,
             index: index_time,
             params_year: params_year,
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            offset: offset,
+            limit: limit
         },
         success: function (r) {
             var response = r;
+            // var response = dataset;
             $('#modalError').modal('hide');
             // setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
-            drawTableRealTime(response);
+            drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit);
             drawTotalTable(response);
         },
         error: function (r) {
@@ -234,7 +735,7 @@ function callThreeTable(params, index_time, params_year, tenant_id){
     });
 }
 
-function drawTableRealTime(response){
+function drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
@@ -249,7 +750,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[i].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_1').find('tbody').append(
@@ -277,7 +778,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[j].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[j].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[j].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[j].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[j].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(
@@ -305,7 +806,7 @@ function drawTableRealTime(response){
                         '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[k].AST || 0)+'</td>'+
                         '<td class="text-right">'+(addCommas(response.data[k].COF) || 0)+'</td>'+
-                        '<td class="text-right">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                        '<td class="text-right font-weight-extrabold">'+((response.data[k].SCR.toString()).replace('.',',') || 0)+'%</td>'+
                     '</tr>');
             }else{
                 $('#mytable_3').find('tbody').append(
@@ -321,6 +822,84 @@ function drawTableRealTime(response){
             }
         }
     }
+
+    var totalPage = Math.ceil(response.data_amt/limit);
+    console.log(totalPage)
+    console.log(offset)
+    var varA = "";
+    var pagDot = pagination(offset, totalPage, params, index_time, params_year, tenant_id, limit);
+}
+
+function pagination(currentPage, nrOfPages, params, index_time, params_year, tenant_id, limit) {
+    var delta = 2,
+        range = [],
+        rangeWithDots = [],
+        l,
+        varA = "",
+        indexDot;
+
+    range.push(1);  
+
+    if (nrOfPages <= 1){
+ 	return range;
+    }
+
+    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
+        if (i < nrOfPages && i > 1) {
+            range.push(i);
+        }
+    }  
+    
+    range.push(nrOfPages);
+
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    indexDot = rangeWithDots.indexOf('...');
+    console.log('indexDot='+indexDot);
+    // console.log(rangeWithDots);
+    console.log('rangewithdotlength= '+rangeWithDots.length);
+    for (var k = 0; k < rangeWithDots.length; k++){
+        if (k != indexDot){
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(rangeWithDots[k]-1)+"','"+limit+"'"+')">'+rangeWithDots[k]+'</a></li>'
+        }else{
+            varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+limit+"'"+')">...</a></li>'
+        }
+    }
+    $("#paging").empty();
+    $("#paging").append('<li class="page-item">'+
+    '<a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+0+"','"+limit+"'"+')">&laquo;</a>'+
+    '</li>'+
+        varA+
+        '<li class="page-item">'+
+        '<a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(nrOfPages-1)+"','"+limit+"'"+')">&raquo;</a>'+
+        '</li>'
+    );
+    
+    var forID = "#li"+(Number(currentPage)+1).toString();
+    $(""+forID+"").prop("class","page-item active");
+    $("#app-content").on('mouseover', 'a', function (e) {
+        var $link = $(this),
+            href = $link.attr('href') || $link.data("href");
+    
+        $link.off('click.chrome');
+        $link.on('click.chrome', function () {
+            window.location.href = href;
+        })
+        .attr('data-href', href) 
+        .css({ cursor: 'pointer' })
+        .removeAttr('href'); 
+    });
+    // return rangeWithDots;
 }
 
 function callPieChartSummary(params, index_time, params_year, tenant_id){
@@ -795,7 +1374,7 @@ var date = new Date();
         onSelect: function (dateText) {
             // console.log(this.value);
             v_date = this.value;
-            callThreeTable('day', v_date, 0, arr_tenant);
+            callThreeTable('day', v_date, 0, arr_tenant,0,30);
             callPieChartSummary('day', v_date, 0, arr_tenant);
             callBarLayanan('day', v_date, 0, arr_tenant);
             callLineChart('day', v_date, 0, arr_tenant);
@@ -807,7 +1386,7 @@ var date = new Date();
     // btn day
     $('#btn-day').click(function(){
         params_time = 'day';
-        callThreeTable('day',  v_params_this_year, 0, arr_tenant);
+        callThreeTable('day',  v_params_this_year, 0, arr_tenant,0,30);
         callPieChartSummary('day',  v_params_this_year, 0, arr_tenant);
         callBarLayanan('day',  v_params_this_year, 0, arr_tenant);
         callLineChart('day',  v_params_this_year, 0, arr_tenant);
@@ -835,7 +1414,7 @@ var date = new Date();
         sessionStorage.setItem('paramsSession', 'month');
         $('#select-month option[value='+n+']').attr('selected','selected');
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
-        callThreeTable('month', n,m, arr_tenant);
+        callThreeTable('month', n,m, arr_tenant,0,30);
         callPieChartSummary('month', n,m, arr_tenant);
         callBarLayanan('month', n,m, arr_tenant);
         callLineChart('month', n,m, arr_tenant);
@@ -856,7 +1435,7 @@ var date = new Date();
         sessionStorage.setItem('paramsSession', 'year');
         params_time = 'year';
         callYear();
-        callThreeTable('year', m,0, arr_tenant);
+        callThreeTable('year', m,0, arr_tenant,0,30);
         callPieChartSummary('year', m,0, arr_tenant);
         callBarLayanan('year', m,0, arr_tenant);
         callLineChart('year', m,0, arr_tenant);
@@ -906,7 +1485,7 @@ var date = new Date();
     $('#select-year-only').change(function(){
         v_year = $(this).val();
         let fromParams = sessionStorage.getItem('paramsSession');
-        callThreeTable('year', v_year,0, arr_tenant);
+        callThreeTable('year', v_year,0, arr_tenant,0,30);
         callPieChartSummary('year', v_year,0, arr_tenant);
         callBarLayanan('year', v_year,0, arr_tenant);
         callLineChart('year', v_year,0, arr_tenant);
@@ -918,7 +1497,7 @@ var date = new Date();
     });
 
     $('#btn-go').click(function(){
-        callThreeTable('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callThreeTable('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant,0,30);
         callPieChartSummary('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         callBarLayanan('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         callLineChart('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
