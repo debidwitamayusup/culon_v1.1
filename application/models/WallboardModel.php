@@ -721,8 +721,8 @@ Class WallboardModel extends CI_Model {
             $this->db->join('m_akses b', 'a.tenant_id = b.tenant_id', 'left');
             $this->db->where('b.userid', $userid);
         }
-        $query = $this->db->get();
 
+        $query = $this->db->get();
         
         if($query->num_rows() > 0)
         {
@@ -1318,7 +1318,8 @@ Class WallboardModel extends CI_Model {
 		$this->db->select('m_channel.channel_name,m_channel.channel_id');
         $this->db->from('m_channel');
         $this->db->where('channel_id != 1');
-		$this->db->order_by('m_channel.channel_id');
+        $this->db->order_by('m_channel.channel_id');
+       
 		$query = $this->db->get();
 
 		$res_channel = array();
@@ -1382,10 +1383,14 @@ Class WallboardModel extends CI_Model {
 #endregion :: raga
 
 #region :: debi
-    public function summary_performance_nasional(){
+    public function summary_performance_nasional($limit,$offset){
         //$date = $this->security->xss_clean($this->input->post('date', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
+        if($offset){
+            $offset = $limit*$offset;
+        }
+        
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
         $this->db->select('m_tenant.tenant_name, wall_monitoring.tenant_id, SUM(wall_monitoring.antrian) queue,SUM(wall_monitoring.handling) handling, SUM(wall_monitoring.msg_in) msg_in,SUM(wall_monitoring.msg_out) msg_out,SUM(wall_monitoring.abd) abd, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.ast_num)),1,8) ast,SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.art_num)),1,8) waiting, SUBSTRING(SEC_TO_TIME(AVG(wall_monitoring.aht_num)),1,8) AS aht, SUM(wall_monitoring.cof) offered, AVG(wall_monitoring.scr) scr ');
         $this->db->from('m_tenant');
@@ -1396,6 +1401,12 @@ Class WallboardModel extends CI_Model {
             $this->db->where_in('wall_monitoring.tenant_id', $tid);
         }
         $this->db->group_by('wall_monitoring.tenant_id');
+
+        if($limit)
+        {
+            $this->db->limit($limit,$offset);
+        }
+
         $query = $this->db->get();
         
         // print_r($this->db->last_query());
