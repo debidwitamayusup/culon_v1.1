@@ -314,6 +314,7 @@ Class AuthModel extends CI_Model {
             'email' => $email,
             'password' => $haspwd,
             'userlevel' => $previlage
+            
         ); //$this->db->insert_id();
         $ins =  $this->db->insert('m_user',$data);
 
@@ -407,6 +408,21 @@ Class AuthModel extends CI_Model {
         return FALSE;
     }
 
+    public function removetenanttouser($username)
+    {
+        if($username)
+        {
+            $this->db->where('userid',$username);
+            $this->db->delete('m_akses');    
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
+
     #region additional funct
 
     function generate_token($usr){
@@ -452,9 +468,6 @@ Class AuthModel extends CI_Model {
 
         $query = $this->db->get();
 
-        print_r($this->db->last_query());
-        exit;
-        
         if($query->num_rows()>0) 
         {
             return true;

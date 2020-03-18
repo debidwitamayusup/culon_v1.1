@@ -21,11 +21,13 @@ class SummaryPerformance extends REST_Controller {
         $limit = $this->security->xss_clean($this->input->post('limit', true));
 
         $data = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid,$limit,$offset);
+        $amt = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid,0 ,0 );
 
         if ($data) {
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Data available!',
+                'data_amt' => count($amt),
                 'data'    => $data
                     ], REST_Controller::HTTP_OK);
         }
