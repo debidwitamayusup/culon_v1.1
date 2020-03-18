@@ -811,10 +811,6 @@ function drawKipPerChannelChart(response) {
 			// 	}
 			// }]
 		});
-		document.getElementById('no-data').style.display = 'none';
-	}else {
-		// $('#pieKIP').append('<div class="col-12 text-center">'+'<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+'</div>');
-		document.getElementById('no-data').style.display = 'block';
 	}
 }
 

@@ -91,7 +91,7 @@
                             <canvas id="pieKIP"></canvas>
                         </div>
                         <div id="no-data" class="col-12 text-center">
-                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px; margin-bottom:6.8rem;">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px; margin-bottom:4.3rem;">
                         </div>
                     </div>
                 </div>
@@ -106,9 +106,7 @@
                     <div class="card-body" id="horizontalBarKIPDiv">
                         <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
                     </div>
-                    <div id="no-data" class="col-12 text-center">
-                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
-                        </div>
+                    
                 </div>
             </div>
         </div>
