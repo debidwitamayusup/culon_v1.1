@@ -76,6 +76,77 @@ function callChangeUser(token,username, email, phone, name, previlage, tenant_id
         },
         success: function (r) {
             var response = r;
+            // var answer = alert ("Edit Data Success")
+            if(response.status == true){
+                // if (answer){
+                //     window.location = base_url+'admin/admin_user';
+                // } else{
+                //     window.location = base_url+'admin/admin_user';
+                // }
+                callDeleteAccess(token,username, tenant_id);
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
+            // alert(r.responseJSON.message);
+        },
+    });
+}
+
+function callDeleteAccess(token,username, tenant_id){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/remtenanttouser',
+        data: {
+            username: username
+        },
+        success: function (r) {
+            var response = r;
+            // var answer = alert ("Edit Data Success")
+            if(response.status == true){
+                // if (answer){
+                //     window.location = base_url+'admin/admin_user';
+                // } else{
+                //     window.location = base_url+'admin/admin_user';
+                // }
+                callAddAccess(token,username, tenant_id);
+            }else{
+                alert(response.message);
+            }
+        },
+        error: function (r) {
+            $('#error-password').show();
+            $( "#passwordDiv" ).addClass( "error" );
+            $('#btn-cancel').attr('disabled', false);
+            $('#password').attr('disabled', false);
+            $("#btn-confirm-password").html('Submit')
+            // alert(r.responseJSON.message);
+        },
+    });
+}
+
+function callAddAccess(token,username, tenant_id){
+    $.ajax({
+        type: 'POST',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
+        url: base_url + 'api/Auth/AuthController/settenanttouser',
+        data: {
+            username: username,
+            tenant_id: tenant_id
+        },
+        success: function (r) {
+            var response = r;
             var answer = alert ("Edit Data Success")
             if(response.status == true){
                 if (answer){
@@ -83,7 +154,6 @@ function callChangeUser(token,username, email, phone, name, previlage, tenant_id
                 } else{
                     window.location = base_url+'admin/admin_user';
                 }
-                // window.location = base_url+'main/v_home';
             }else{
                 alert(response.message);
             }
@@ -175,6 +245,10 @@ function callChangeUser(token,username, email, phone, name, previlage, tenant_id
 
     $('#btn-cancel').click(function(){
         window.location = base_url+'admin/admin_user';
+    });
+
+    $('#levelUser').change(function(){
+        $('#btn-edit').prop('disabled', false);
     });
 })(jQuery);
 
