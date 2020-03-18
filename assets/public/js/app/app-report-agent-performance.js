@@ -33,6 +33,7 @@ var v_params_today= m + '-' + n + '-' + (o);
 var startDateFromFilter = v_params_today;
 var endDateFromFilter = v_params_today;
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 
 $(document).ready(function () {
     if(sessionParams){
@@ -47,7 +48,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTableAgentPerform($("#layanan_name").val(),v_params_today,v_params_today, '');
+        drawTableAgentPerform(tokenSession,$("#layanan_name").val(),v_params_today,v_params_today, '');
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
     }else{
@@ -120,10 +121,13 @@ function getSkill(){
     });
 }
 
-function drawTableAgentPerform(tenant_id, start_date, end_date, skill){
+function drawTableAgentPerform(token, tenant_id, start_date, end_date, skill){
     $("#filter-loader").fadeIn("slow");
 	$('#reportAgentPerformance').DataTable({
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Reporting/ReportController/ReportingAP',
             type : 'POST',
             data :{
@@ -249,7 +253,7 @@ function setDatePicker() {
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
         tenantNameFromFilter = $('#layanan_name option:selected').html();
-        drawTableAgentPerform($('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#skill').val());
+        drawTableAgentPerform(tokenSession,$('#layanan_name').val(), $('#start-date').val(), $('#end-date').val(), $('#skill').val());
     });
 
     $('#reportAgentPerformance').dataTable();

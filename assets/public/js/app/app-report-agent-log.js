@@ -205,7 +205,7 @@ function setDatePicker() {
         endDateFromFilter = $('#end-date').val();
         tenantFromFilter = $('#layanan_name').val();
         tenantNameFromFilter = $('#layanan_name option:selected').html();
-        callTableAgentLog($('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
+        callTableAgentLog(tokenSession, $('#start-date').val(), $('#end-date').val(), $('#layanan_name').val());
     });
 
     // $('#tableSummaryTraffic').dataTable();    
