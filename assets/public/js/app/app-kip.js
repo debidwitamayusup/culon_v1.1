@@ -631,17 +631,6 @@ function drawPieChart(response) {
 					segment: true,
 					precision: 0
 				},
-				// animation:{
-				// 	onComplete: function(animation) {
-				// 		var firstSet = animation.chart.config.data.datasets[0].data,
-				// 				dataSum = firstSet.reduce((accumulator, currentValue) => accumulator + currentValue);
-							
-				// 		if(typeof firstSet !== "object" || dataSum === 0){
-				// 			document.getElementById('no-data').style.display = 'block';
-				// 		  document.getElementById('pieKIP').style.display = 'none';
-				// 		}
-				// 	}
-				// },
 				legendCallback: function (chart, index) {
 					var allData = chart.data.datasets[0].data;
 					var legendHtml = [];
@@ -687,7 +676,6 @@ function drawPieChart(response) {
 		document.getElementById('no-data').style.display = 'none';
 	// }
 	} else {
-		// $('#pieKIP').append('<div class="col-12 text-center">'+'<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+'</div>');
 		document.getElementById('no-data').style.display = 'block';
 	}
 }
@@ -811,6 +799,9 @@ function drawKipPerChannelChart(response) {
 			// 	}
 			// }]
 		});
+		document.getElementById('no-data').style.display = 'none';
+	}else{
+		document.getElementById('no-data').style.display = 'block';
 	}
 }
 
