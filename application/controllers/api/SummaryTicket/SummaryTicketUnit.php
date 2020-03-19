@@ -11,6 +11,7 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryTicket(){
+        
     	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));	// value params

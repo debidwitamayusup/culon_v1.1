@@ -15,8 +15,10 @@ Class SummaryPerformanceModel extends CI_Model {
     }
 
      #region :: debi
-    public function summary_performance_dashboard($params, $index, $params_year, $tid,$limit,$offset)
+    public function summary_performance_dashboard($params, $index, $params_year,$limit,$offset,$token)
     {
+        $tid = get_tenantlst($token);
+        
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         if($offset){

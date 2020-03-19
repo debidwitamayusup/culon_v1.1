@@ -38,7 +38,6 @@ Class WallboardModel extends CI_Model {
 
     }
 
-
     public function authceck($token)
     {
         $data = checkuser_token($token);

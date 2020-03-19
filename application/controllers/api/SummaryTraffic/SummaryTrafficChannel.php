@@ -10,7 +10,29 @@ class SummaryTrafficChannel extends CI_Controller {
 	}
 
 	public function uniqueCustomerPerChannel(){
+	  #region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
 
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -42,6 +64,31 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function cardMain()
 	{
+
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+		#endregion :: TOKEN
+
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -88,6 +135,30 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function interaction()
 	{
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+	  
 		$interaction = $this->Stc_Model->getInteraction();
 
 		if($interaction)
@@ -107,6 +178,29 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function uniqueCustomer()
 	{
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
 		$customer = $this->Stc_Model->getUniqueCustom();
 
 		if($customer)
@@ -126,6 +220,30 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function averageCustomer()
 	{
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+
 		$customer = $this->Stc_Model->getAverageCustom();
 
 		if($customer)
@@ -145,6 +263,30 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function total_interaction()
 	{
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -168,6 +310,30 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function total_unique_customer()
 	{
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -191,6 +357,30 @@ class SummaryTrafficChannel extends CI_Controller {
 
 	public function average_customer()
 	{	
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 
@@ -212,6 +402,30 @@ class SummaryTrafficChannel extends CI_Controller {
 	}
 
 	public function getTotalCaseInCaseOut(){
+		#region :: TOKEN
+		$token = $_SERVER['HTTP_TOKEN'];
+		if($token===NULL)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+			
+			echo json_encode($response);
+			exit;          
+		}
+
+		$res = $this->Stc_Model->authceck($token);
+		if($res == FALSE)
+		{
+			$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+
+			echo json_encode($response);
+			exit;
+		}
+	  #endregion :: TOKEN
+	  
 		$params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));

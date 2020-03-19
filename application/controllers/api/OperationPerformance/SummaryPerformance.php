@@ -13,6 +13,26 @@ class SummaryPerformance extends REST_Controller {
 
     public function summaryPerformanceDashboard_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+    #endregion :: TOKEN
+
         $params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
         $params_year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -20,8 +40,8 @@ class SummaryPerformance extends REST_Controller {
         $offset = $this->security->xss_clean($this->input->post('offset', true));
         $limit = $this->security->xss_clean($this->input->post('limit', true));
 
-        $data = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid,$limit,$offset);
-        $amt = $this->module_model->summary_performance_dashboard($params, $index, $params_year, $tid,0 ,0 );
+        $data = $this->module_model->summary_performance_dashboard($params, $index, $params_year,$limit,$offset,$token);
+        $amt = $this->module_model->summary_performance_dashboard($params, $index, $params_year,0 ,0 ,$token);
 
         if ($data) {
             $this->response([
