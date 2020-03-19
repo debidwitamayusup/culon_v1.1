@@ -35,8 +35,8 @@
 								<tr>
 									<td class="border-bottom-0 text-center" width="2%">No</td>
 									<td class="border-bottom-0 text-center" >User ID</td>
-									<td class="border-bottom-0 text-center" width="15%">Name</td>
-									<td class="border-bottom-0 text-center">User Level</td>
+									<td class="border-bottom-0 text-center" width="20%">Name</td>
+									<td class="border-bottom-0 text-center" width="10%">User Level</td>
 									<td class="border-bottom-0 text-center">No. HP</td>
 									<td class="border-bottom-0 text-center">Email</td>
 									<td class="border-bottom-0 text-center" width="20%">Action</td>

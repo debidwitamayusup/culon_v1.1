@@ -30086,7 +30086,7 @@ div[data-acc-step]:not(.open) .badge-primary {
     cursor: pointer;
 }
 
-/* #no-data{
+#no-data{
 	display : none;
 	/* position: absolute;
 	padding: 50px 0;
@@ -30094,4 +30094,4 @@ div[data-acc-step]:not(.open) .badge-primary {
 	font-size: 3rem;
 	top: 15%;
 	width: 100%; */
-} */
+}
