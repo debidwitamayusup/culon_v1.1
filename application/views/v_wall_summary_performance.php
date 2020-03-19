@@ -378,7 +378,7 @@
                                                 <td class="text-right">90</td>
                                             </tr> -->
                                         </tbody>
-                                        <tfoot class="table-sm bg-total" id="table_channel_foot">
+                                        <tfoot class="table-sm bg-total font-weight-extrabold" id="table_channel_foot">
                                             <!-- <tr class="font-bold">
                                             <td colspan="2" class="text-center">Total</td>
                                             <td class="text-right">900</td>

@@ -674,8 +674,8 @@ function drawPieChart(response) {
 		var myLegendContainer = document.getElementById("legend");
 		myLegendContainer.innerHTML = myChart.generateLegend();
 		document.getElementById('no-data').style.display = 'none';
-	// }
 	} else {
+		document.getElementById('pieKIP').remove()
 		document.getElementById('no-data').style.display = 'block';
 	}
 }
@@ -731,9 +731,10 @@ function drawKipPerChannelChart(response) {
 		});
 		var numberWithCommas = function (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        };
-		var bar_ctx = document.getElementById('horizontalBarKIP');
+		};
 		
+		
+		var bar_ctx = document.getElementById('horizontalBarKIP');
 		var bar_chart = new Chart(bar_ctx, {
 			// type: 'bar',
 			type: 'horizontalBar',
@@ -744,9 +745,20 @@ function drawKipPerChannelChart(response) {
 			options: {
 				responsive : true,
 				maintainAspectRatio:false,
-				animation: {
-					duration: 10,
-				},
+				// animation: {
+				// 	duration: 10,
+				// },
+				// animation:{
+				// 	onComplete: function(animation) {
+				// 		var firstSet = animation.chart.config.data.datasets[0].data,
+				// 				dataSum = firstSet.reduce((accumulator, currentValue) => accumulator + currentValue);
+							
+				// 		if(typeof firstSet !== "object" || dataSum === 0){
+				// 			document.getElementById('no-data').style.display = 'block';
+				// 		  document.getElementById('horizontalBarKIP').style.display = 'none'
+				// 		}
+				// 	}
+				//   },
 				tooltips: {
 					mode: 'label',
 					callbacks: {
@@ -799,9 +811,11 @@ function drawKipPerChannelChart(response) {
 			// 	}
 			// }]
 		});
-		document.getElementById('no-data').style.display = 'none';
-	}else{
-		document.getElementById('no-data').style.display = 'block';
+		document.getElementById('no-data2').style.display = 'none';
+	}
+	else{
+		document.getElementById("horizontalBarKIP").remove();
+		document.getElementById('no-data2').style.display = 'block';
 	}
 }
 

@@ -30095,3 +30095,11 @@ div[data-acc-step]:not(.open) .badge-primary {
 	top: 15%;
 	width: 100%; */
 }
+
+#no-data2{
+	display : none;
+}
+
+#no-data3{
+	display : none;
+}
