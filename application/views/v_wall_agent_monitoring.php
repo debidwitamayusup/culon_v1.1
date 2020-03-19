@@ -35,7 +35,7 @@
                                     <td style="width:70px" class="text-center">AHT</td>
                                 </tr>
                             </thead>
-                            <tbody class="table-sm">
+                            <tbody class="table-sm" id="mytbody">
                                 <!-- <tr>
                                     <td>1</td>
                                     <td class="text-center">1230</td>

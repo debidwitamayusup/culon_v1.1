@@ -70,7 +70,7 @@ function drawTableAgentMonitoring(tenant_id){
 			{ className: "text-center", targets: 8 }
 		], 
         destroy: true,
-        // deferLoading: 0
+        // deferLoading: false
     });
     // $('#tableWallAgent').on("preXhr.dt", function (e, settings, data) {
     //     $(this).DataTable().clear();
