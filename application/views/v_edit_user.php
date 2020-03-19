@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="fPoppins float-right mt-2">
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
-                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-edit">Edit</button>
+                                    <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-edit">Save</button>
                                 </div>
                             </div>
                         </div>
