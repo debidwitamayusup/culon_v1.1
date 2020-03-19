@@ -6,7 +6,13 @@ class AgentPerformModel extends CI_Model
 	{
 		parent:: __construct();
 		$this->load->helper('url');
+		$this->load->helper('tokenize');
 	}
+	public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
 
 	public function getScrCof(){
 		$query = $this->db->query("

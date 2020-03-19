@@ -6,6 +6,12 @@ Class SummaryPerformanceModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('tokenize');
+    }
+    public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
     }
 
      #region :: debi

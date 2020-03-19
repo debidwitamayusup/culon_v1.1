@@ -6,6 +6,12 @@ Class ReportDiagramsModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('tokenize');
+    }
+    public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
     }
 
     public function get_diagramsSC($tid,$t_start,$t_end)

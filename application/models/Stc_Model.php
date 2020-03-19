@@ -7,7 +7,14 @@ class Stc_Model extends CI_Model
 	{
 		parent:: __construct();
 		$this->load->helper('developer_helper');
+		$this->load->helper('tokenize');
 	}
+
+	public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
 
 
 	function createLogSql(){
