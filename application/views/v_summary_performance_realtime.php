@@ -157,7 +157,7 @@
                         </li> -->
                     </ul>
                     <div class="card-footer">
-                        <div class="row" id="rowDiv">
+                        <div class="row text-center" id="rowDiv">
                             <!-- <div class="col-md-3">
                                 <h6 class="font12" id="totalCOF">Total COF : 8181</h6>
                             </div>
