@@ -31,7 +31,7 @@ class SummaryPerformance extends REST_Controller {
                     'message' => '404 Not found.'
                         ], REST_Controller::HTTP_NOT_FOUND);
             }
-    #endregion :: TOKEN
+        #endregion :: TOKEN
 
         $params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
@@ -63,13 +63,32 @@ class SummaryPerformance extends REST_Controller {
 
     public function summaryPerformanceDashboardBar_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
 
         $params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
         $params_year = $this->security->xss_clean($this->input->post('params_year', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
-        $data = $this->module_model->summary_performance_dash_bar($params,$index,$params_year,$tid);
+        $data = $this->module_model->summary_performance_dash_bar($params,$index,$params_year,$token);
 
         if ($data) {
             $this->response([
@@ -89,12 +108,32 @@ class SummaryPerformance extends REST_Controller {
 
     public function summaryPerformanceDashboardPie_post()
     {
+         #region :: TOKEN
+         $token = $_SERVER['HTTP_TOKEN'];
+         if($token===NULL)
+         {
+             $this->response([
+                 'status'  => FALSE,
+                 'message' => 'Lengkapi Kredensial anda.'
+                     ], REST_Controller::HTTP_NOT_FOUND);
+         }
+
+         $res = $this->module_model->authceck($token);
+         if($res == FALSE)
+         {
+             $this->response([
+                 'status'  => FALSE,
+                 'message' => '404 Not found.'
+                     ], REST_Controller::HTTP_NOT_FOUND);
+         }
+        #endregion :: TOKEN
+
         $params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
         $params_year = $this->security->xss_clean($this->input->post('params_year', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
-        $data = $this->module_model->summary_performance_dash_pie($params,$index,$params_year,$tid);
+        $data = $this->module_model->summary_performance_dash_pie($params,$index,$params_year,$token);
 
         if ($data) {
             $this->response([
@@ -115,12 +154,32 @@ class SummaryPerformance extends REST_Controller {
 
     public function summaryPerformanceDashboardInterval_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => 'Lengkapi Kredensial anda.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+
+        $res = $this->module_model->authceck($token);
+        if($res == FALSE)
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
+        #endregion :: TOKEN
+
         $params = $this->security->xss_clean($this->input->post('params', true)); 
 		$index = $this->security->xss_clean($this->input->post('index', true));
         $params_year = $this->security->xss_clean($this->input->post('params_year', true));
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
 
-        $data = $this->module_model->get_interval_performance_dash($params,$index,$params_year,$tid);
+        $data = $this->module_model->get_interval_performance_dash($params,$index,$params_year,$token);
 
         if ($data) {
             $this->response([

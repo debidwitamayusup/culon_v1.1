@@ -18,7 +18,7 @@ Class SummaryPerformanceModel extends CI_Model {
     public function summary_performance_dashboard($params, $index, $params_year,$limit,$offset,$token)
     {
         $tid = get_tenantlst($token);
-        
+
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         if($offset){
@@ -82,9 +82,10 @@ Class SummaryPerformanceModel extends CI_Model {
         return FALSE;
     }
 
-    public function summary_performance_dash_bar($params,$index,$params_year,$tid)
+    public function summary_performance_dash_bar($params,$index,$params_year,$token)
     {
-
+        $tid = get_tenantlst($token);
+        
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(rpt_summ_interval.case_session) total, m_tenant.color_id color');
@@ -127,8 +128,9 @@ Class SummaryPerformanceModel extends CI_Model {
         return FALSE;
     }
 
-    public function summary_performance_dash_pie($params,$index,$params_year,$tid)
+    public function summary_performance_dash_pie($params,$index,$params_year,$token)
     {
+        $tid = get_tenantlst($token);
         $this->db->select('m_channel.channel_name,m_channel.channel_id,m_channel.channel_color');
         $this->db->from('m_channel');
         $this->db->where('m_channel.channel_id != 1');
@@ -193,8 +195,10 @@ Class SummaryPerformanceModel extends CI_Model {
         }
 
     }
-    public function get_interval_performance_dash($params,$index,$params_year,$tid)
+    public function get_interval_performance_dash($params,$index,$params_year,$token)
     {
+        $tid = get_tenantlst($token);
+        
         $this->db->select('rpt_summ_interval.starttime as time');
         $this->db->from('rpt_summ_interval');
         $this->db->group_by('rpt_summ_interval.starttime','ASC');
