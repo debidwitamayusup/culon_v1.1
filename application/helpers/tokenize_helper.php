@@ -35,12 +35,21 @@ if (!function_exists('get_tenantlst')) {
 
         if($query->num_rows() > 0)
         {
-            foreach($query->result() as $data)
+            if($query->row(0)->tenant_id == "")
             {
-                array_push($result,$data->tenant_id);
+                return false;
             }
+            else{
+                
+                foreach($query->result() as $data)
+                {
+                    array_push($result,$data->tenant_id);
+                }
+            }
+            
             return $result;
         }
+        
         return false;
     }
 }

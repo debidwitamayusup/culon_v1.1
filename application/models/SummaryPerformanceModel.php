@@ -198,7 +198,7 @@ Class SummaryPerformanceModel extends CI_Model {
     public function get_interval_performance_dash($params,$index,$params_year,$token)
     {
         $tid = get_tenantlst($token);
-        
+
         $this->db->select('rpt_summ_interval.starttime as time');
         $this->db->from('rpt_summ_interval');
         $this->db->group_by('rpt_summ_interval.starttime','ASC');
