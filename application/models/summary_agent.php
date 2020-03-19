@@ -4,7 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class summary_agent extends CI_Model{
 
 	public function __construct() {
-        parent::__construct();
+		parent::__construct();
+		$this->load->helper('tokenize');
+	}
+	
+	public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
     }
 
     public function get_all_rsummary(){

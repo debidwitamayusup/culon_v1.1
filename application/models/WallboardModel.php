@@ -6,6 +6,7 @@ Class WallboardModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('tokenize');
     }
 
 #region :: raga
@@ -36,6 +37,13 @@ Class WallboardModel extends CI_Model {
 
 
     }
+
+    public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
+    
 
     function Op_Performancestat($src ='',$unit)
     {
