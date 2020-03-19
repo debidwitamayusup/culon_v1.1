@@ -3,6 +3,7 @@ const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 
 $(document).ready(function () {
     if(sessionParams){
+        $("#filter-loader").fadeIn("slow");
         getTenant('')
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
             getTenant('', sessionParams.USERID);
@@ -12,6 +13,7 @@ $(document).ready(function () {
         drawTableAgentMonitoring($("#layanan_name").val());
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
+        $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url;
     }
@@ -47,7 +49,7 @@ function getTenant(date, userid){
 }
 
 function drawTableAgentMonitoring(tenant_id){
-    $("#filter-loader").fadeIn("slow");
+    setTimeout(function(){drawTableAgentMonitoring(tenant_id);},15000);
 	$('#tableWallAgent').DataTable({
         ajax: {
             url : base_url + 'api/Wallboard/WallboardController/agentMonitoring',
@@ -67,9 +69,15 @@ function drawTableAgentMonitoring(tenant_id){
 			{ className: "text-center", targets: 7 },
 			{ className: "text-center", targets: 8 }
 		], 
-        destroy: true
+        destroy: true,
+        // deferLoading: 0
     });
-    $("#filter-loader").fadeOut("slow");
+    // $('#tableWallAgent').on("preXhr.dt", function (e, settings, data) {
+    //     $(this).DataTable().clear();
+    //     settings.iDraw = 0;
+    //     $(this).DataTable().draw();
+    // });
+    
 }
 
 (function($){
