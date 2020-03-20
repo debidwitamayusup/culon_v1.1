@@ -85,7 +85,6 @@ Class SummaryPerformanceModel extends CI_Model {
     public function summary_performance_dash_bar($params,$index,$params_year,$token)
     {
         $tid = get_tenantlst($token);
-        
         $this->db->query('SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))');
 
         $this->db->select('m_tenant.tenant_name, m_tenant.tenant_id, SUM(rpt_summ_interval.case_session) total, m_tenant.color_id color');
