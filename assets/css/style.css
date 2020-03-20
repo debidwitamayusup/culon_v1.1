@@ -3624,7 +3624,8 @@ input[type="button"].btn-block {
 }
 
 .table td {
-	padding: 0.75rem;
+	/* padding: 0.75rem; */
+	padding:5px;
 	vertical-align: top;
 }
 

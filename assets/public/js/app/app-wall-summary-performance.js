@@ -83,7 +83,7 @@ function drawTableRealTime(response){
             if (response.data[i]){
                 $('#mytable_1').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-left" style="font-size:8px;">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
@@ -121,7 +121,7 @@ function drawTableRealTime(response){
             if (response.data[i]){
                 $('#mytable_2').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-left" style="font-size:8px;">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
