@@ -37,7 +37,7 @@
 				exit;          
 			}
 	
-			$res = $this->Stc_Model->authceck($token);
+			$res = $this->OperationModel->authceck($token);
 			if($res == FALSE)
 			{
 				$response = array(
@@ -96,7 +96,7 @@
 				exit;          
 			}
 	
-			$res = $this->Stc_Model->authceck($token);
+			$res = $this->OperationModel->authceck($token);
 			if($res == FALSE)
 			{
 				$response = array(

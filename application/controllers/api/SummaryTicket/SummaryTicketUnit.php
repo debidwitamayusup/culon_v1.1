@@ -24,7 +24,7 @@ class SummaryTicketUnit extends CI_Controller {
             exit;          
         }
 
-        $res = $this->Stc_Model->authceck($token);
+        $res = $this->module_model->authceck($token);
         if($res == FALSE)
         {
             $response = array(
@@ -71,7 +71,7 @@ class SummaryTicketUnit extends CI_Controller {
             exit;          
         }
 
-        $res = $this->Stc_Model->authceck($token);
+        $res = $this->module_model->authceck($token);
         if($res == FALSE)
         {
             $response = array(
@@ -118,7 +118,7 @@ class SummaryTicketUnit extends CI_Controller {
             exit;          
         }
 
-        $res = $this->Stc_Model->authceck($token);
+        $res = $this->module_model->authceck($token);
         if($res == FALSE)
         {
             $response = array(
