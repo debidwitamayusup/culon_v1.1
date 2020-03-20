@@ -25,6 +25,31 @@
 
 		public function getSummaryKip()
 		{
+			#region :: TOKEN
+			$token = $_SERVER['HTTP_TOKEN'];
+			if($token===NULL)
+			{
+				$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+	
+				echo json_encode($response);
+				exit;          
+			}
+	
+			$res = $this->Stc_Model->authceck($token);
+			if($res == FALSE)
+			{
+				$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+	
+				echo json_encode($response);
+				exit;
+			}
+			#endregion :: TOKEN
+
+			
 			$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 			// $params = 'month';
 			$index = $this->security->xss_clean($this->input->post('index', true));	// value params
@@ -59,6 +84,30 @@
 		}
 
 		public function getDetailKip(){
+			#region :: TOKEN
+			$token = $_SERVER['HTTP_TOKEN'];
+			if($token===NULL)
+			{
+				$response = array(
+				'status'  => FALSE,
+				'message' => 'Lengkapi Kredensial anda.');
+	
+				echo json_encode($response);
+				exit;          
+			}
+	
+			$res = $this->Stc_Model->authceck($token);
+			if($res == FALSE)
+			{
+				$response = array(
+				'status'  => FALSE,
+				'message' => '404 Not found.');
+	
+				echo json_encode($response);
+				exit;
+			}
+			#endregion :: TOKEN
+	
 			$params = $this->security->xss_clean($this->input->post('params', true)); 
 			$index = $this->security->xss_clean($this->input->post('index', true));
 			$params_year = $this->security->xss_clean($this->input->post('year', true));

@@ -38,6 +38,31 @@ class AgentPerformController extends CI_Controller {
     }
     public function getSTsallchannel(){
 
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
+
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// day /month /year
         $index = $this->security->xss_clean($this->input->post('index'));// date / month /year
@@ -49,6 +74,30 @@ class AgentPerformController extends CI_Controller {
 
     }
     public function getSAgentperformskill(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF
@@ -62,6 +111,30 @@ class AgentPerformController extends CI_Controller {
 
     }
     public function getSAgentperformBYskill(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $params = $this->security->xss_clean($this->input->post('params'));// AHT/ART/COF

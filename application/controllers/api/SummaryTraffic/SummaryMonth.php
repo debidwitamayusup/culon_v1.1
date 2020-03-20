@@ -11,6 +11,30 @@ class SummaryMonth extends CI_Controller {
 
 	public function lineChartPerMonthShowAll()
 	{
+		#region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		//date("m")
 		$month = $this->security->xss_clean($this->input->post('index', true));
 		$year = $this->security->xss_clean($this->input->post('params_year', true));
@@ -95,6 +119,30 @@ class SummaryMonth extends CI_Controller {
 	}
 
 	public function averageIntervalTable(){
+		#region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		// get Average Interval for Data Table
 		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$year = $this->input->post('year') ? $this->input->post('year') :2019 ;
@@ -136,6 +184,30 @@ class SummaryMonth extends CI_Controller {
     }
 
 	public function getPercentageTrafficMonth(){
+		#region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		$month = $this->input->post('month') ? $this->input->post('month') :12 ;
 		$year = $this->input->post('year') ? $this->input->post('year') :2019 ;
 
