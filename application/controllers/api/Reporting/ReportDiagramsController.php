@@ -12,6 +12,7 @@
         public function ReportingDiagramsSC_post()
         {
 
+            
             $tid = $this->security->xss_clean($this->input->post('tenant_id'));
             $t_start = $this->security->xss_clean($this->input->post('start_time'));
             $t_end = $this->security->xss_clean($this->input->post('end_time'));
