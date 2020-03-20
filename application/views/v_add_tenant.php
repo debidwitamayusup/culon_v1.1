@@ -36,16 +36,22 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group error" id="idDiv">
-                                    <label for="idUser">Tenant ID</label>
-                                    <input type="text" class="form-control box-shadow-input" id="idUser"
+                                    <label for="idTenant">Tenant ID</label>
+                                    <input type="text" class="form-control box-shadow-input" id="idTenant"
                                         placeholder="ID">
                                     <div class="error-message" id="errorID">ID cannot be empty or more than 20 characters</div>
                                 </div>
                                 <div class="form-group error" id="nameDiv">
-                                    <label for="nameUser">Tenant Name</label>
-                                    <input type="text" class="form-control box-shadow-input" id="nameUser"
+                                    <label for="nameTenant">Tenant Name</label>
+                                    <input type="text" class="form-control box-shadow-input" id="nameTenant"
                                         placeholder="Tenant Name">
                                     <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
+                                </div>
+                                <div class="form-group error" id="groupDiv">
+                                    <label for="groupTenant">Group</label>
+                                    <input type="text" class="form-control box-shadow-input" id="groupTenant"
+                                        placeholder="Tenant Group">
+                                    <div class="error-message" id="errorGroup">Group cannot be empty or more than 50 characters</div>
                                 </div>
                                 <div class="fPoppins float-right mt-2">
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
@@ -60,4 +66,4 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
-    <script src="<?=base_url()?>assets/public/js/app/app-admin-add-user.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-admin-add-tenant.js"></script>
