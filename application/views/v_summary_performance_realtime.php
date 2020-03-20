@@ -81,7 +81,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_1" style="height:320px">
+                                    id="mytable_1" style="height:350px">
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
@@ -102,7 +102,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_2" style="height:320px">
+                                    id="mytable_2" style="height:350px">
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
@@ -123,7 +123,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_3" style="height:320px">
+                                    id="mytable_3" style="height:350px">
                                     <thead class="text-center text-white bg-head" id="mythead_3">
                                         <tr>
                                             <td>No</td>
