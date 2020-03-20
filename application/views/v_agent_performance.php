@@ -169,13 +169,13 @@
                                     <tr>
                                         <th class="wd-15p border-bottom-0" style="width:2%">No</th>
                                         <th class="wd-15p border-bottom-0" style="width:10%">Agent ID</th>
-                                        <th class="wd-15p border-bottom-0" style="width:25%">Agent Name</th>
-                                        <th class="wd-15p border-bottom-0" style="width:8%">Skill</th>
-                                        <th class="wd-15p border-bottom-0" style="width:8%">COF
+                                        <th class="wd-15p border-bottom-0" style="width:20%">Agent Name</th>
+                                        <th class="wd-15p border-bottom-0" style="width:15%">Skill</th>
+                                        <th class="wd-15p border-bottom-0" style="width:3%">COF
                                         </th>
-                                        <th class="wd-15p border-bottom-0" style="width:10%">ART</th>
-                                        <th class="wd-15p border-bottom-0" style="width:10%">AHT</th>
-                                        <th class="wd-15p border-bottom-0" style="width:10%">AST</th>
+                                        <th class="wd-15p border-bottom-0" style="width:8%">ART</th>
+                                        <th class="wd-15p border-bottom-0" style="width:8%">AHT</th>
+                                        <th class="wd-15p border-bottom-0" style="width:8%">AST</th>
                                     </tr>
                                 </thead>
                                 <tbody style="font-size:12px !important;" id="mytbody">
