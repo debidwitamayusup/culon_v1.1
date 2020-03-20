@@ -9,6 +9,7 @@ var d = new Date();
 var n = d.getMonth() + 1;
 var m = d.getFullYear();
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         //for dropdown selected
@@ -26,9 +27,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        stackedBarInterval('month', '', n, m, $('#layanan_name').val());
-        callDataPercentage($("#month").val(), m, $('#layanan_name').val());
-        callDataTableAvg($("#month").val(), m, $('#layanan_name').val());
+        stackedBarInterval(tokenSession, 'month', '', n, m, $('#layanan_name').val());
+        callDataPercentage(tokenSession, $("#month").val(), m, $('#layanan_name').val());
+        callDataTableAvg(tokenSession, $("#month").val(), m, $('#layanan_name').val());
     }else{
         window.location = base_url
     }
@@ -215,8 +216,11 @@ function getColorChannel(channel_name) {
     return color[channel_name];
 }
 
-function callDataPercentage(month, year, tenant_id){
+function callDataPercentage(token, month, year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryMonth/getPercentageTrafficMonth',
         data: {
@@ -312,8 +316,11 @@ function drawChartPercentageMonth(response) {
     });
 }
 
-function callDataTableAvg(month, year, tenant_id){
+function callDataTableAvg(token, month, year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryMonth/averageIntervalTable',
         data: {
@@ -459,12 +466,12 @@ function destroyChartPercentage() {
     (function ($) {
         $('#layanan_name').change(function(){
             if ($("#channel_name").val() == 'ShowAll') {
-                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                stackedBarInterval(tokenSession, 'month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }else{
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                stackedBarInterval(tokenSession, 'month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }
-            callDataPercentage($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
-            callDataTableAvg($("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
+            callDataPercentage(tokenSession, $("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
+            callDataTableAvg(tokenSession, $("#month").val(),$("#dropdownYear").val(), $('#layanan_name').val());
         });
         // $("select#month").change(function(){
         //     //destroy chart
@@ -505,19 +512,19 @@ function destroyChartPercentage() {
             destroyChartInterval();
             destroyChartPercentage(); 
             if ($("#channel_name").val() == 'ShowAll') {
-                stackedBarInterval('month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                stackedBarInterval(tokenSession, 'month', '', $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }else{
                 // callGraphicInterval($("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), v_params_tenant);
-                stackedBarInterval('month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+                stackedBarInterval(tokenSession, 'month', $("#channel_name").val(), $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             }
-            callDataPercentage($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
-            callDataTableAvg($("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            callDataPercentage(tokenSession, $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
+            callDataTableAvg(tokenSession, $("#month").val(), $("#dropdownYear").val(), $('#layanan_name').val());
             
         });
 })(jQuery);
 
 //stacked bar chartjs
-function stackedBarInterval(params, channel_name, index, params_year, tenant_id){
+function stackedBarInterval(token, params, channel_name, index, params_year, tenant_id){
     destroyChartInterval();
     $("#filter-loader").fadeIn("slow");
     var getMontName = monthNumToName(month);
@@ -525,6 +532,9 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
     var base_url = $('#base_url').val();
     //call traffic per month
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/SummaryTraffic/SummaryMonth/lineChartPerMonthShowAll',
         data: {
@@ -535,107 +545,116 @@ function stackedBarInterval(params, channel_name, index, params_year, tenant_id)
             "tenant_id": tenant_id
         },
         success: function (r) {
-        var response = JSON.parse(r);
-        // console.log(response.data);
-        // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
-        // Return with commas in between
-        var numberWithCommas = function (x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        };
+            var response = JSON.parse(r);
+            if(response.false != false){
+            // console.log(response.data);
+            // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
+            // Return with commas in between
+            var numberWithCommas = function (x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            };
 
-        var dataStacked = [];
-        var datasetsStacked = "";
+            var dataStacked = [];
+            var datasetsStacked = "";
 
-        response.data.forEach(function (value){
-            datasetsStacked = {
-                    label: value.channel_name,
-                    data: value.total_traffic,
-                    backgroundColor: value.channel_color,
-                    hoverBackgroundColor: value.channel_color,
-                    hoverBorderWidth: 0
+            response.data.forEach(function (value){
+                datasetsStacked = {
+                        label: value.channel_name,
+                        data: value.total_traffic,
+                        backgroundColor: value.channel_color,
+                        hoverBackgroundColor: value.channel_color,
+                        hoverBorderWidth: 0
+                    },
+
+                dataStacked.push(datasetsStacked);
+            });
+
+            
+            // console.log(dataStacked);
+            var bar_ctx = document.getElementById('BarTrafficMonth');
+
+            var bar_chart = new Chart(bar_ctx, {
+                type: 'bar',
+                // type: 'horizontalBar',
+                data: {
+                    labels: response.param_date,
+                    datasets: dataStacked,
                 },
-
-            dataStacked.push(datasetsStacked);
-        });
-
-        
-        // console.log(dataStacked);
-        var bar_ctx = document.getElementById('BarTrafficMonth');
-
-        var bar_chart = new Chart(bar_ctx, {
-            type: 'bar',
-            // type: 'horizontalBar',
-            data: {
-                labels: response.param_date,
-                datasets: dataStacked,
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: {
-                    duration: 10,
-                },
-                tooltips: {
-                    mode: 'label',
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 10,
+                    },
+                    tooltips: {
+                        mode: 'label',
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
+                            }
                         }
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                        gridLines: {
-                            display: false
-                        },
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            callback: function (value) {
-                                return numberWithCommas(value);
+                    },
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            gridLines: {
+                                display: false
                             },
-                        },
-                    }],
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return numberWithCommas(value);
+                                },
+                            },
+                        }],
+                    },
+                    legend: {
+                        display: true,
+                        labels: {
+                            boxWidth: 10,
+                        }
+                    },
+                    //untuk onclick pada chart javascript
+                    onClick: function(event, array) {
+                        let element = this.getElementAtEvent(event);
+                        // console.log(element);
+                        if (element.length > 0) {
+                        var series= element[0]._model.datasetLabel;
+                        var label = element[0]._chart.data.labels;
+                        var labeling = this.data.datasets[element[0]._datasetIndex].label;
+                        var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
+                        alert("Sessions of "+labeling+" is "+value);
+                        }
+                    },
                 },
-                legend: {
-                    display: true,
-                    labels: {
-                        boxWidth: 10,
-                    }
-                },
-                //untuk onclick pada chart javascript
-                onClick: function(event, array) {
-                    let element = this.getElementAtEvent(event);
-                    // console.log(element);
-                    if (element.length > 0) {
-                    var series= element[0]._model.datasetLabel;
-                    var label = element[0]._chart.data.labels;
-                    var labeling = this.data.datasets[element[0]._datasetIndex].label;
-                    var value = this.data.datasets[element[0]._datasetIndex].data[element[0]._index];
-                    alert("Sessions of "+labeling+" is "+value);
-                    }
-                },
+                // plugins: [{
+                // 	beforeInit: function (chart) {
+                // 		chart.data.labels.forEach(function (value, index, array) {
+                // 			var a = [];
+                // 			a.push(value.slice(0, 5));
+                // 			var i = 1;
+                // 			while (value.length > (i * 5)) {
+                // 				a.push(value.slice(i * 5, (i + 1) * 5));
+                // 				i++;
+                // 			}
+                // 			array[index] = a;
+                // 		})
+                // 	}
+                // }]
+            });
+            // console.log(bar_chart);
+            $("#filter-loader").fadeOut("slow");
+        }else{
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }   
+        }
             },
-            // plugins: [{
-            // 	beforeInit: function (chart) {
-            // 		chart.data.labels.forEach(function (value, index, array) {
-            // 			var a = [];
-            // 			a.push(value.slice(0, 5));
-            // 			var i = 1;
-            // 			while (value.length > (i * 5)) {
-            // 				a.push(value.slice(i * 5, (i + 1) * 5));
-            // 				i++;
-            // 			}
-            // 			array[index] = a;
-            // 		})
-            // 	}
-            // }]
-        });
-        // console.log(bar_chart);
-        $("#filter-loader").fadeOut("slow");
-        },
+        
         error: function (r) {
             alert("error");
             $("#filter-loader").fadeOut("slow");

@@ -961,13 +961,13 @@ function remove_hash_from_url()
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
             if(sessionParams.TENANT_ID != null){
-				loadContent('day', $('#input-date-filter').val(),0, sessionParams.TENANT_ID, $("#layanan_name").val());
+				loadContent('day', $('#input-date-filter').val(),0, sessionParams.TENANT_ID[0].TENANT_ID, $("#layanan_name").val());
             }else{
 				loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
             }
         }else if(fromParams == 'month'){
             if(sessionParams.TENANT_ID != null){
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID[0].TENANT_ID);
             }else{
                 loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
             }

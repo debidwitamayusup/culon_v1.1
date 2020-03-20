@@ -53,7 +53,7 @@ class SummaryPerformance extends REST_Controller {
         }
         else {
             $this->response([
-                'status'  => FALSE,
+                'status'  => TRUE,
                 'message' => 'Not Found!',
                 'dates' => 'Not found',
                 'data'    => $data

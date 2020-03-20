@@ -14,6 +14,7 @@ if (n < 10) {
 //get yesterday
 var v_params_today= m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -30,12 +31,12 @@ $(document).ready(function () {
         //     getTenant('', '');
         // }
         $("#filter-loader").fadeIn("slow");
-        callSumAllTenant('day', v_params_today, 0,  arr_tenant);
-        callSumPerGroupTelkom('day', v_params_today, 0, arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('day', v_params_today, 0, arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
-        callTop5('day', v_params_today,0, arr_tenant);
+        callSumAllTenant(tokenSession, 'day', v_params_today, 0,  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'day', v_params_today, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'day', v_params_today, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'day', v_params_today,0, arr_tenant);
         
         $('#input-date-filter').datepicker("setDate", v_params_today);
         $("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -221,8 +222,11 @@ function callYear()
     });
 }
 
-function callSumAllTenant(params, index, params_year, tenant_id){
+function callSumAllTenant(token, params, index, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPSPieChart',
         data: {
@@ -233,21 +237,38 @@ function callSumAllTenant(params, index, params_year, tenant_id){
         },
         success: function (r) {
             // var response = JSON.parse(r);
-            //hit url for interval 900000 (15 minutes)
-            // setTimeout(function(){callSumAllTenant(date);},900000);
-            drawPieChartSumAllTenant(r);
+            if(r.status != false){
+                drawPieChartSumAllTenant(r);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    window.location = base_url+'main/login';
+                    localStorage.clear();
+                }else{
+                    window.location = base_url+'main/login';
+                }
+            }
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                window.location = base_url+'main/login';
+                localStorage.clear();
+            }else{
+                window.location = base_url+'main/login';
+            }
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callSumPerGroupTelkom(params, index, params_year, tenant_id, grup){
+function callSumPerGroupTelkom(token, params, index, params_year, tenant_id, grup){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
@@ -268,14 +289,17 @@ function callSumPerGroupTelkom(params, index, params_year, tenant_id, grup){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callSumPerGroupGovernment(params, index, params_year, tenant_id, grup){
+function callSumPerGroupGovernment(token, params, index, params_year, tenant_id, grup){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
@@ -296,14 +320,17 @@ function callSumPerGroupGovernment(params, index, params_year, tenant_id, grup){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callSumPerGroupBfsi(params, index, params_year, tenant_id, grup){
+function callSumPerGroupBfsi(token, params, index, params_year, tenant_id, grup){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
@@ -324,14 +351,17 @@ function callSumPerGroupBfsi(params, index, params_year, tenant_id, grup){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callSumPerGroupEnterprise(params, index, params_year, tenant_id, grup){
+function callSumPerGroupEnterprise(token, params, index, params_year, tenant_id, grup){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPS',
         data: {
@@ -352,14 +382,17 @@ function callSumPerGroupEnterprise(params, index, params_year, tenant_id, grup){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function callTop5(params, index, params_year, tenant_id){
+function callTop5(token, params, index, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/TrafficOPStop5',
         data: {
@@ -379,7 +412,7 @@ function callTop5(params, index, params_year, tenant_id){
         },
         error: function (r) {
             // console.log(r);
-            alert("error");
+            // alert("error");
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -1290,12 +1323,12 @@ function remove_hash_from_url()
             // console.log(this.value);
             v_date = this.value;
 
-            callSumAllTenant('day', v_date, 0,  arr_tenant);
-            callSumPerGroupTelkom('day', v_date, 0, arr_tenant, 'TELKOM');
-            callSumPerGroupGovernment('day', v_date, 0, arr_tenant, 'GOVERNMENT');
-            callSumPerGroupBfsi('day', v_date, 0, arr_tenant, 'BFSI');
-            callSumPerGroupEnterprise('day', v_date, 0, arr_tenant, 'ENTERPRISE');
-            callTop5('day', v_date,0, arr_tenant);
+            callSumAllTenant(tokenSession, 'day', v_date, 0,  arr_tenant);
+            callSumPerGroupTelkom(tokenSession, 'day', v_date, 0, arr_tenant, 'TELKOM');
+            callSumPerGroupGovernment(tokenSession, 'day', v_date, 0, arr_tenant, 'GOVERNMENT');
+            callSumPerGroupBfsi(tokenSession, 'day', v_date, 0, arr_tenant, 'BFSI');
+            callSumPerGroupEnterprise(tokenSession, 'day', v_date, 0, arr_tenant, 'ENTERPRISE');
+            callTop5(tokenSession, 'day', v_date,0, arr_tenant);
 
             $('#check-all-channel').prop('checked',false);
             $("input:checkbox.checklist-channel").prop('checked',false);
@@ -1307,17 +1340,26 @@ function remove_hash_from_url()
         $("#filter-loader").fadeIn("slow");
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            callSumAllTenant('day',  $('#input-date-filter').val(), 0, arr_tenant);
-            callSumPerTenant('day', $('#input-date-filter').val(), 0,  arr_tenant);
-            callIntervalTraffic('day',$('#input-date-filter').val(),0,'',  arr_tenant);
+            callSumAllTenant(tokenSession, 'day',  $('#input-date-filter').val(), 0,  arr_tenant);
+            callSumPerGroupTelkom(tokenSession, 'day',  $('#input-date-filter').val(), 0, arr_tenant, 'TELKOM');
+            callSumPerGroupGovernment(tokenSession, 'day',  $('#input-date-filter').val(), 0, arr_tenant, 'GOVERNMENT');
+            callSumPerGroupBfsi(tokenSession, 'day',  $('#input-date-filter').val(), 0, arr_tenant, 'BFSI');
+            callSumPerGroupEnterprise(tokenSession, 'day',  $('#input-date-filter').val(), 0, arr_tenant, 'ENTERPRISE');
+            callTop5(tokenSession, 'day',  $('#input-date-filter').val(),0, arr_tenant);
         }else if(fromParams == 'month'){
-            callSumAllTenant('month',$("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
-            callSumPerTenant('month',$("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
-            callIntervalTraffic('month',$("#select-month").val(), $("#select-year-on-month").val(), '',arr_tenant);
+            callSumAllTenant(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(),  arr_tenant);
+            callSumPerGroupTelkom(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'TELKOM');
+            callSumPerGroupGovernment(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'GOVERNMENT');
+            callSumPerGroupBfsi(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'BFSI');
+            callSumPerGroupEnterprise(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'ENTERPRISE');
+            callTop5(tokenSession, 'month',  $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         }else if(fromParams == 'year'){
-            callSumAllTenant('year',  $('#select-year-only').val(), 0, arr_tenant);
-            callSumPerTenant('year', $('#select-year-only').val(), 0,  arr_tenant);
-            callIntervalTraffic('year',$('#select-year-only').val(),0,'',  arr_tenant);
+            callSumAllTenant(tokenSession, 'year',  $('#select-year-only').val(), 0,  arr_tenant);
+            callSumPerGroupTelkom(tokenSession, 'year',  $('#select-year-only').val(), 0, arr_tenant, 'TELKOM');
+            callSumPerGroupGovernment(tokenSession, 'year',  $('#select-year-only').val(), 0, arr_tenant, 'GOVERNMENT');
+            callSumPerGroupBfsi(tokenSession, 'year',  $('#select-year-only').val(), 0, arr_tenant, 'BFSI');
+            callSumPerGroupEnterprise(tokenSession, 'year',  $('#select-year-only').val(), 0, arr_tenant, 'ENTERPRISE');
+            callTop5(tokenSession, 'year',  $('#select-year-only').val(), 0, arr_tenant);
         }
         $("#filter-loader").fadeOut("slow");
     });
@@ -1351,12 +1393,12 @@ function remove_hash_from_url()
         sessionStorage.removeItem('yearSession');
         // sessionStorage.setItem('yearSession', m);
 
-        callSumAllTenant('day', v_params_today, 0,  arr_tenant);
-        callSumPerGroupTelkom('day', v_params_today, 0, arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('day', v_params_today, 0, arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
-        callTop5('day', v_params_today,0, arr_tenant);
+        callSumAllTenant(tokenSession, 'day', v_params_today, 0,  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'day', v_params_today, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'day', v_params_today, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'day', v_params_today, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'day', v_params_today, 0, arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'day', v_params_today,0, arr_tenant);
 
         $('#filter-date').show();
         $('#filter-month').hide();
@@ -1374,12 +1416,12 @@ function remove_hash_from_url()
         params_time = 'month';
         callYearOnMonth();
 
-        callSumAllTenant('month', n, m,  arr_tenant);
-        callSumPerGroupTelkom('month', n, m, arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('month', n, m, arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('month', n, m, arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('month', n, m, arr_tenant, 'ENTERPRISE');
-        callTop5('month', n,m, arr_tenant);
+        callSumAllTenant(tokenSession, 'month', n, m,  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'month', n, m, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'month', n, m, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'month', n, m, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'month', n, m, arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'month', n,m, arr_tenant);
 
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'month');
@@ -1411,12 +1453,12 @@ function remove_hash_from_url()
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
 
-        callSumAllTenant('year', m, 0,  arr_tenant);
-        callSumPerGroupTelkom('year', m, 0, arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('year', m, 0, arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('year', m, 0, arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('year', m, 0, arr_tenant, 'ENTERPRISE');
-        callTop5('year', m, 0, arr_tenant);
+        callSumAllTenant(tokenSession, 'year', m, 0,  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'year', m, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'year', m, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'year', m, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'year', m, 0, arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'year', m, 0, arr_tenant);
 
         sessionStorage.removeItem('monthSession');
 
@@ -1438,12 +1480,12 @@ function remove_hash_from_url()
         $("#filter-loader").fadeIn("slow");
         v_year = $(this).val();       
         
-        callSumAllTenant('year',v_year, 0,  arr_tenant);
-        callSumPerGroupTelkom('year',v_year, 0, arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('year',v_year, 0, arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('year',v_year, 0, arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('year',v_year, 0, arr_tenant, 'ENTERPRISE');
-        callTop5('year',v_year, 0, arr_tenant);
+        callSumAllTenant(tokenSession, 'year',v_year, 0,  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'year',v_year, 0, arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'year',v_year, 0, arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'year',v_year, 0, arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'year',v_year, 0, arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'year',v_year, 0, arr_tenant);
 
         $('#check-all-channel').prop('checked',false);
         $("input:checkbox.checklist-channel").prop('checked',false);
@@ -1455,12 +1497,12 @@ function remove_hash_from_url()
 
     $('#btn-go').click(function(){
         $("#filter-loader").fadeIn("slow");
-        callSumAllTenant('month', $("#select-month").val(), $("#select-year-on-month").val(),  arr_tenant);
-        callSumPerGroupTelkom('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'TELKOM');
-        callSumPerGroupGovernment('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'GOVERNMENT');
-        callSumPerGroupBfsi('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'BFSI');
-        callSumPerGroupEnterprise('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'ENTERPRISE');
-        callTop5('month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
+        callSumAllTenant(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(),  arr_tenant);
+        callSumPerGroupTelkom(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'TELKOM');
+        callSumPerGroupGovernment(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'GOVERNMENT');
+        callSumPerGroupBfsi(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'BFSI');
+        callSumPerGroupEnterprise(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant, 'ENTERPRISE');
+        callTop5(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), arr_tenant);
         sessionStorage.removeItem('monthSession');
         sessionStorage.setItem('monthSession', $("#select-month").val());
 
