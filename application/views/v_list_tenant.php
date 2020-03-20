@@ -24,7 +24,7 @@
 					</div>
 					<div class="d-flex bd-highlight">
 						<div class="ml-auto p-2 bd-highlight">
-							<a href="<?=base_url()?>admin/add_user" class="btn btn-sm btn-red" style="border-radius: 8px;"><i
+							<a href="<?=base_url()?>admin/add_tenant" class="btn btn-sm btn-red" style="border-radius: 8px;"><i
 									class="fa fa-plus-circle mr-1"></i>Add New</a>
 						</div>
 					</div>

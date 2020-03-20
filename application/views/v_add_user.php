@@ -26,7 +26,7 @@
                                         <img src="<?=base_url()?>public/user/unknown-avatar.jpg"
                                             class="rounded-circle mt-7" style="width:50%">
                                     </div>
-                                    <div class="upload-file" style="margin-top: 11rem">
+                                    <div class="upload-file" style="margin-top: 11rem; margin-left:-30px">
                                         <label for="file-input">
                                             <i class="fa fa-2x fa-plus-circle text-red"></i>
                                         </label>
