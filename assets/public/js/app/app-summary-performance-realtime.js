@@ -988,7 +988,7 @@ function drawPieChartSummary(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mt-3">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
@@ -1047,7 +1047,7 @@ function drawBarLayanan(response){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
-    console.log(response);
+    // console.log(response);
     var dataLayanan = [];
     var LabelX = [];
     var arrColor = [];
