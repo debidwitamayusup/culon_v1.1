@@ -25,11 +25,11 @@ function callTableUser(token){
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
-			{ className: "text-center", targets: 1 },
+			{ className: "text-left", targets: 1 },
 			{ className: "text-left", targets: 2 },
-			{ className: "text-center", targets: 3 },
+			{ className: "text-left", targets: 3 },
             { className: "text-center", targets: 4 },
-            { className: "text-center", targets: 5 },
+            { className: "text-left", targets: 5 },
             {
                 className: "text-center",
                 targets: -1,

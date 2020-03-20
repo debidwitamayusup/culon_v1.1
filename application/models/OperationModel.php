@@ -5,7 +5,9 @@ class OperationModel extends CI_Model
 	public function __construct()
 	{
         parent:: __construct();
-        $this->load->helper('tokenize');
+        $this->load->helper('url');
+		$this->load->helper('tokenize');
+		$this->load->helper('developer_helper');
     }
     
     public function authceck($token)

@@ -13,6 +13,7 @@ if (n < 10) {
 var v_parmas_tenant = 'oct_telkomcare';
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     // console.log(base_url);
     if(sessionParams){
@@ -21,11 +22,11 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
-        drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'day', v_params_this_year, 0, $('#layanan_name').val());
+        drawDataTable(tokenSession, 'day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','day', v_params_this_year, 0, $('#layanan_name').val());
         sessionStorage.setItem('paramsSession', 'day');
         $('#btn-day').prop("class","btn btn-red btn-sm");
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -177,9 +178,12 @@ function setDatePicker(){
     }).attr("readonly", "readonly").css({"cursor":"pointer", "background":"white"});
 }
 
-function performanceBySkill(params, index, params_year, tenant_id){
+function performanceBySkill(token, params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformBYskill',
         data: {
@@ -191,7 +195,18 @@ function performanceBySkill(params, index, params_year, tenant_id){
         success: function (r) { 
             var response = JSON.parse(r);
             // console.log(response);
-            drawTable(response);
+            if(response.status != false){
+                drawTable(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             // drawDataTable(response);
             $("#filter-loader").fadeOut("slow");
         },
@@ -202,9 +217,12 @@ function performanceBySkill(params, index, params_year, tenant_id){
     });
 }
 
-function bestOfFiveCOF(params, params_time, index, params_year, tenant_id){
+function bestOfFiveCOF(token, params, params_time, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
@@ -239,9 +257,12 @@ function bestOfFiveCOF(params, params_time, index, params_year, tenant_id){
     });
 }
 
-function bestOfFiveAHT(params,  params_time, index, params_year, tenant_id){
+function bestOfFiveAHT(token, params,  params_time, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
@@ -263,9 +284,12 @@ function bestOfFiveAHT(params,  params_time, index, params_year, tenant_id){
     });
 }
 
-function bestOfFiveART(params,  params_time, index, params_year, tenant_id){
+function bestOfFiveART(token, params,  params_time, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
         data: {
@@ -405,13 +429,16 @@ function drawTable(response){
     
 }
 
-function drawDataTable(params_time, index, params_year, tenant_id){
+function drawDataTable(token, params_time, index, params_year, tenant_id){
     $('#mytbody').remove();
     $('#tableAgent').append('<tbody style="font-size:12px !important;" id="mytbody"></tbody>');
 
     $('#tableAgent').DataTable({
         processing : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSAgentperformskill',
             type : 'POST',
             data: {
@@ -460,11 +487,11 @@ function remove_hash_from_url()
         // v_date = getToday();
         v_date = '2019-12-01';
         // console.log(params_time);
-        performanceBySkill('day', v_params_this_year, 0, $('#layanan_name').val());
-        drawDataTable('day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveCOF('COF','day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveAHT('AHT','day', v_params_this_year, 0, $('#layanan_name').val());
-        bestOfFiveART('ART','day', v_params_this_year, 0, $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'day', v_params_this_year, 0, $('#layanan_name').val());
+        drawDataTable(tokenSession, 'day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','day', v_params_this_year, 0, $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','day', v_params_this_year, 0, $('#layanan_name').val());
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -480,11 +507,11 @@ function remove_hash_from_url()
     // btn month
     $('#btn-month').click(function(){
         v_params_time = 'month';
-        performanceBySkill('month', n,m, $('#layanan_name').val());
-        drawDataTable('month', n,m, $('#layanan_name').val());
-        bestOfFiveCOF('COF','month', n,m, $('#layanan_name').val());
-        bestOfFiveAHT('AHT','month', n,m, $('#layanan_name').val());
-        bestOfFiveART('ART','month', n,m, $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'month', n,m, $('#layanan_name').val());
+        drawDataTable(tokenSession, 'month', n,m, $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','month', n,m, $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','month', n,m, $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','month', n,m, $('#layanan_name').val());
         callYearOnMonth();
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'month');
@@ -505,11 +532,11 @@ function remove_hash_from_url()
         v_params_time = 'year';
         // console.log(params_time);
         // v_date = getYear();
-        performanceBySkill('year', m, 0, $('#layanan_name').val());
-        drawDataTable('year', m, 0, $('#layanan_name').val());
-        bestOfFiveCOF('COF','year', m, 0, $('#layanan_name').val());
-        bestOfFiveAHT('AHT','year', m, 0, $('#layanan_name').val());
-        bestOfFiveART('ART','year', m, 0, $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'year', m, 0, $('#layanan_name').val());
+        drawDataTable(tokenSession, 'year', m, 0, $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','year', m, 0, $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','year', m, 0, $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','year', m, 0, $('#layanan_name').val());
         callYear();
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'year');
@@ -532,11 +559,11 @@ function remove_hash_from_url()
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            performanceBySkill('day', v_date, 0, $('#layanan_name').val());
-            drawDataTable('day', v_date, 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','day', v_date, 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','day', v_date, 0, $('#layanan_name').val());
-            bestOfFiveART('ART','day', v_date, 0, $('#layanan_name').val());
+            performanceBySkill(tokenSession, 'day', v_date, 0, $('#layanan_name').val());
+            drawDataTable(tokenSession, 'day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveCOF(tokenSession, 'COF','day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveAHT(tokenSession, 'AHT','day', v_date, 0, $('#layanan_name').val());
+            bestOfFiveART(tokenSession, 'ART','day', v_date, 0, $('#layanan_name').val());
         }
     });
 
@@ -567,42 +594,42 @@ function remove_hash_from_url()
     $('#select-year-only').change(function(){
         v_year = $(this).val();
         // console.log(this.value);
-        performanceBySkill('year', v_year, 0, $('#layanan_name').val());
-        drawDataTable('year', v_year, 0, $('#layanan_name').val());
-        bestOfFiveCOF('COF','year', v_year, 0, $('#layanan_name').val());
-        bestOfFiveAHT('AHT','year', v_year, 0, $('#layanan_name').val());
-        bestOfFiveART('ART','year', v_year, 0, $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'year', v_year, 0, $('#layanan_name').val());
+        drawDataTable(tokenSession, 'year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','year', v_year, 0, $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','year', v_year, 0, $('#layanan_name').val());
     });
 
     $('#btn-go').click(function(){
-        performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-        bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        performanceBySkill(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        drawDataTable(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveCOF(tokenSession, 'COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveAHT(tokenSession, 'AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+        bestOfFiveART(tokenSession, 'ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
     });
 
     $('#layanan_name').change(function () {
 		channel_id = $('#channel_name').val();
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            performanceBySkill('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-            drawDataTable('day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
-            bestOfFiveART('ART','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            performanceBySkill(tokenSession, 'day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            drawDataTable(tokenSession, 'day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveCOF(tokenSession, 'COF','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveAHT(tokenSession, 'AHT','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
+            bestOfFiveART(tokenSession, 'ART','day', $("#input-date-filter").val(), 0, $('#layanan_name').val());
         }else if(fromParams == 'month'){
-            performanceBySkill('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            drawDataTable('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveCOF('COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveAHT('AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
-            bestOfFiveART('ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            performanceBySkill(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            drawDataTable(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveCOF(tokenSession, 'COF','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveAHT(tokenSession, 'AHT','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            bestOfFiveART(tokenSession, 'ART','month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
-            performanceBySkill('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            drawDataTable('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            bestOfFiveCOF('COF','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            bestOfFiveAHT('AHT','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
-            bestOfFiveART('ART','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            performanceBySkill(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            drawDataTable(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveCOF(tokenSession, 'COF','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveAHT(tokenSession, 'AHT','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+            bestOfFiveART(tokenSession, 'ART','year', $('#select-year-only').val(), 0, $('#layanan_name').val());
         }
 	});
 })(jQuery);

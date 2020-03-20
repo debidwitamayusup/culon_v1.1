@@ -19,6 +19,7 @@ console.log(n);
 var v_params_this_year = m + '-' + n + '-' + (o);
 var v_params_tenant = 'oct_telkomcare';
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
 	if(sessionParams){
 		params_time = 'day';
@@ -34,7 +35,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-		loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		sessionStorage.setItem('paramsSession', 'day');
 		// ------datepiker
 		$('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -53,9 +54,9 @@ $(document).ready(function () {
 });
 
 
-function loadContent(params, index, params_year, tenant_id){
+function loadContent(token, params, index, params_year, tenant_id){
 	// loadAllChannel();
-    callSummaryInteraction(params, index, params_year, tenant_id);
+    callSummaryInteraction(token, params, index, params_year, tenant_id);
     // callSummaryInteraction('month' , '12', '2019');
 }
 
@@ -201,12 +202,15 @@ function loadAllChannel() {
 	});
 }
 
-function callSummaryInteraction(params, index, year, tenant_id){
+function callSummaryInteraction(token, params, index, year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	// console.log(params)
 	// console.log(index)
 	// console.log(year)
 	$.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		type: 'post',
 		url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
 		data: {
@@ -217,11 +221,21 @@ function callSummaryInteraction(params, index, year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
-            drawPieChart(response);
-			drawKipPerChannelChart(response);
-			callDataSubCategory(params, index, year, tenant_id, '');
-			// $("#filter-loader").fadeOut("slow");
+            if(response.status != false){
+				drawPieChart(response);
+				drawKipPerChannelChart(response);
+				callDataSubCategory(token, params, index, year, tenant_id, '');
+				// $("#filter-loader").fadeOut("slow");
+			}else{
+				var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+			}
 		},
 		error: function (r) {
 			alert("error");
@@ -230,9 +244,12 @@ function callSummaryInteraction(params, index, year, tenant_id){
 	});
 }
 
-function callDataSubCategory(params, index,year,tenant_id,channel_id){
+function callDataSubCategory(token, params, index,year,tenant_id,channel_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		type: 'post',
 		url: base_url + 'api/OperationPerformance/KipController/getDetailKip',
 		data: {
@@ -631,17 +648,6 @@ function drawPieChart(response) {
 					segment: true,
 					precision: 0
 				},
-				// animation:{
-				// 	onComplete: function(animation) {
-				// 		var firstSet = animation.chart.config.data.datasets[0].data,
-				// 				dataSum = firstSet.reduce((accumulator, currentValue) => accumulator + currentValue);
-							
-				// 		if(typeof firstSet !== "object" || dataSum === 0){
-				// 			document.getElementById('no-data').style.display = 'block';
-				// 		  document.getElementById('pieKIP').style.display = 'none';
-				// 		}
-				// 	}
-				// },
 				legendCallback: function (chart, index) {
 					var allData = chart.data.datasets[0].data;
 					var legendHtml = [];
@@ -685,9 +691,8 @@ function drawPieChart(response) {
 		var myLegendContainer = document.getElementById("legend");
 		myLegendContainer.innerHTML = myChart.generateLegend();
 		document.getElementById('no-data').style.display = 'none';
-	// }
 	} else {
-		// $('#pieKIP').append('<div class="col-12 text-center">'+'<img src="'+base_url+'assets/images/brand/no_data.png" class="img-no-data">'+'</div>');
+		document.getElementById('pieKIP').remove()
 		document.getElementById('no-data').style.display = 'block';
 	}
 }
@@ -743,9 +748,10 @@ function drawKipPerChannelChart(response) {
 		});
 		var numberWithCommas = function (x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        };
-		var bar_ctx = document.getElementById('horizontalBarKIP');
+		};
 		
+		
+		var bar_ctx = document.getElementById('horizontalBarKIP');
 		var bar_chart = new Chart(bar_ctx, {
 			// type: 'bar',
 			type: 'horizontalBar',
@@ -756,9 +762,20 @@ function drawKipPerChannelChart(response) {
 			options: {
 				responsive : true,
 				maintainAspectRatio:false,
-				animation: {
-					duration: 10,
-				},
+				// animation: {
+				// 	duration: 10,
+				// },
+				// animation:{
+				// 	onComplete: function(animation) {
+				// 		var firstSet = animation.chart.config.data.datasets[0].data,
+				// 				dataSum = firstSet.reduce((accumulator, currentValue) => accumulator + currentValue);
+							
+				// 		if(typeof firstSet !== "object" || dataSum === 0){
+				// 			document.getElementById('no-data').style.display = 'block';
+				// 		  document.getElementById('horizontalBarKIP').style.display = 'none'
+				// 		}
+				// 	}
+				//   },
 				tooltips: {
 					mode: 'label',
 					callbacks: {
@@ -811,6 +828,11 @@ function drawKipPerChannelChart(response) {
 			// 	}
 			// }]
 		});
+		document.getElementById('no-data2').style.display = 'none';
+	}
+	else{
+		document.getElementById("horizontalBarKIP").remove();
+		document.getElementById('no-data2').style.display = 'block';
 	}
 }
 
@@ -886,12 +908,7 @@ function remove_hash_from_url()
 		// v_date = getToday();
 		v_date = '2019-12-01';
 		// console.log(params_time);
-		if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
-        }else{
-            getTenant('', '');
-        }
-        loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+        loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		$('#input-date-filter').datepicker("setDate", v_params_this_year, '');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -914,7 +931,7 @@ function remove_hash_from_url()
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n, m, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, n, m, $('#layanan_name').val());
 		callYearOnMonth();
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
@@ -937,7 +954,7 @@ function remove_hash_from_url()
 		params_time = 'year';
 		// console.log(params_time);
 		// v_date = getYear();
-		loadContent(params_time, m, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, m, 0, $('#layanan_name').val());
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -956,12 +973,12 @@ function remove_hash_from_url()
 		channel_id = $('#channel_name').val();
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-			callDataSubCategory('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#channel_name").val());
+			callDataSubCategory(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#channel_name").val());
         }else if(fromParams == 'month'){
-            callDataSubCategory('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val(), $("#channel_name").val());
+            callDataSubCategory(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val(), $("#channel_name").val());
             
         }else if(fromParams == 'year'){
-            callDataSubCategory('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $("#channel_name").val());
+            callDataSubCategory(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $("#channel_name").val());
         }
 	});
 
@@ -970,21 +987,21 @@ function remove_hash_from_url()
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
             if(sessionParams.TENANT_ID != null){
-				loadContent('day', $('#input-date-filter').val(),0, sessionParams.TENANT_ID, $("#layanan_name").val());
+				loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $("#layanan_name").val());
             }else{
-				loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+				loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
             }
         }else if(fromParams == 'month'){
             if(sessionParams.TENANT_ID != null){
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID);
+                loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $("#layanan_name").val());
             }else{
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+                loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
             }
         }else if(fromParams == 'year'){
             if(sessionParams.TENANT_ID != null){
-                loadContent('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
+                loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
             }else{
-                loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+                loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
             }
         }
 	});
@@ -1000,7 +1017,7 @@ function remove_hash_from_url()
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+			loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
         }
 	});
 
@@ -1022,11 +1039,11 @@ function remove_hash_from_url()
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
 		// console.log(this.value);
-		loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+		loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
 	});
 
 	$('#btn-go').click(function () {
-		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+		loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
 	});
 
 

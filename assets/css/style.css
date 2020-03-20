@@ -3624,7 +3624,8 @@ input[type="button"].btn-block {
 }
 
 .table td {
-	padding: 0.75rem;
+	/* padding: 0.75rem; */
+	padding:5px;
 	vertical-align: top;
 }
 
@@ -15023,7 +15024,8 @@ p,
 ul,
 ol,
 blockquote {
-	margin-bottom: 1em;
+	/* margin-bottom: 1em; */
+	margin-bottom: 0.8em;
 }
 
 blockquote {
@@ -19494,12 +19496,14 @@ table-margin {
 
 .card-table tr td:first-child,
 .card-table tr th:first-child {
-	padding-left: 1rem;
+	/* padding-left: 1rem; */
+	padding: 5px;
 }
 
 .card-table tr td:last-child,
 .card-table tr th:last-child {
-	padding-right: 1rem;
+	/* padding-right: 1rem; */
+	padding: 5px;
 }
 
 .card-body+.card-table {
@@ -30086,7 +30090,7 @@ div[data-acc-step]:not(.open) .badge-primary {
     cursor: pointer;
 }
 
-/* #no-data{
+#no-data{
 	display : none;
 	/* position: absolute;
 	padding: 50px 0;
@@ -30094,4 +30098,12 @@ div[data-acc-step]:not(.open) .badge-primary {
 	font-size: 3rem;
 	top: 15%;
 	width: 100%; */
-} */
+}
+
+#no-data2{
+	display : none;
+}
+
+#no-data3{
+	display : none;
+}

@@ -23,12 +23,38 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Realtime</h5>
                     </div>
-                    <div class="row mt-2 mb-2" style="padding: 0px 7px 0px 7px;">
+                    <div class="row no-gutters" style="padding:3px;">
+                        <!-- <div class="col-md-6">
+                            <div class="table-responsive table-bordered" style="padding:2px;">
+                                <table
+                                    class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
+                                    id="mytable_1" style="height:475px;">
+                                    <thead class="text-center text-white bg-head" id="mythead_1">
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Tenant</td>
+                                            <td>Queue</td>
+                                            <td>ART (Waiting Time)</td>
+                                            <td>AHT</td>
+                                            <td>AST</td>
+                                            <td>MSG IN</td>
+                                            <td>MSG OUT</td>
+                                            <td>ABD</td>
+                                            <td>Handling</td>
+                                            <td>Offered</td>
+                                            <td>SCR</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-sm" id="mytbody_1">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_1">
+                                    id="mytable_1" style="height:475px">
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
@@ -54,7 +80,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_2">
+                                    id="mytable_2" style="height:475px">
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
@@ -378,7 +404,7 @@
                                                 <td class="text-right">90</td>
                                             </tr> -->
                                         </tbody>
-                                        <tfoot class="table-sm bg-total" id="table_channel_foot">
+                                        <tfoot class="table-sm bg-total font-weight-extrabold" id="table_channel_foot">
                                             <!-- <tr class="font-bold">
                                             <td colspan="2" class="text-center">Total</td>
                                             <td class="text-right">900</td>

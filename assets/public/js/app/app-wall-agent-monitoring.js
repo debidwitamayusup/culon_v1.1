@@ -49,7 +49,7 @@ function getTenant(date, userid){
 }
 
 function drawTableAgentMonitoring(tenant_id){
-    setTimeout(function(){drawTableAgentMonitoring(tenant_id);},15000);
+    // setTimeout(function(){drawTableAgentMonitoring(tenant_id);},15000);
 	$('#tableWallAgent').DataTable({
         ajax: {
             url : base_url + 'api/Wallboard/WallboardController/agentMonitoring',
@@ -70,7 +70,8 @@ function drawTableAgentMonitoring(tenant_id){
 			{ className: "text-center", targets: 8 }
 		], 
         destroy: true,
-        // deferLoading: 0
+        lengthMenu: [[50, 100, -1], [50, 100, "All"]]
+        // deferLoading: false
     });
     // $('#tableWallAgent').on("preXhr.dt", function (e, settings, data) {
     //     $(this).DataTable().clear();
