@@ -908,12 +908,7 @@ function remove_hash_from_url()
 		// v_date = getToday();
 		v_date = '2019-12-01';
 		// console.log(params_time);
-		if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
-        }else{
-            getTenant('', '');
-        }
-        loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+        loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		$('#input-date-filter').datepicker("setDate", v_params_this_year, '');
         $("#btn-month").prop("class","btn btn-light btn-sm");
         $("#btn-year").prop("class","btn btn-light btn-sm");
@@ -936,7 +931,7 @@ function remove_hash_from_url()
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n, m, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, n, m, $('#layanan_name').val());
 		callYearOnMonth();
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
@@ -959,7 +954,7 @@ function remove_hash_from_url()
 		params_time = 'year';
 		// console.log(params_time);
 		// v_date = getYear();
-		loadContent(params_time, m, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, m, 0, $('#layanan_name').val());
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -978,12 +973,12 @@ function remove_hash_from_url()
 		channel_id = $('#channel_name').val();
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-			callDataSubCategory('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#channel_name").val());
+			callDataSubCategory(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#channel_name").val());
         }else if(fromParams == 'month'){
-            callDataSubCategory('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val(), $("#channel_name").val());
+            callDataSubCategory(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val(), $("#channel_name").val());
             
         }else if(fromParams == 'year'){
-            callDataSubCategory('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $("#channel_name").val());
+            callDataSubCategory(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $("#channel_name").val());
         }
 	});
 
@@ -992,21 +987,21 @@ function remove_hash_from_url()
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
             if(sessionParams.TENANT_ID != null){
-				loadContent('day', $('#input-date-filter').val(),0, sessionParams.TENANT_ID[0].TENANT_ID, $("#layanan_name").val());
+				loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $("#layanan_name").val());
             }else{
-				loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+				loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
             }
         }else if(fromParams == 'month'){
             if(sessionParams.TENANT_ID != null){
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), sessionParams.TENANT_ID[0].TENANT_ID);
+                loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $("#layanan_name").val());
             }else{
-                loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+                loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
             }
         }else if(fromParams == 'year'){
             if(sessionParams.TENANT_ID != null){
-                loadContent('year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
+                loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, sessionParams.TENANT_ID);
             }else{
-                loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+                loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
             }
         }
 	});
@@ -1022,7 +1017,7 @@ function remove_hash_from_url()
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+			loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
         }
 	});
 
@@ -1044,11 +1039,11 @@ function remove_hash_from_url()
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
 		// console.log(this.value);
-		loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+		loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
 	});
 
 	$('#btn-go').click(function () {
-		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+		loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
 	});
 
 

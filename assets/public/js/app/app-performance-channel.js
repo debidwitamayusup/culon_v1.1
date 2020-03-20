@@ -196,7 +196,7 @@ function callYear() {
 	});
 }
 
-function loadContent(token, params, index, params_year, tenant_id){
+async function loadContent(token, params, index, params_year, tenant_id){
     summaryService(token, params, index, params_year, tenant_id);
 	summaryChannel(token, params, index, params_year, tenant_id);
 	drawDataTable2(token, params, index, params_year, tenant_id);
@@ -234,7 +234,8 @@ function summaryService(token, params, index, params_year, tenant_id){
             tenant_id: tenant_id
         },
         success: function (response) {
-            // var response = JSON.parse(r);
+			// var responses = JSON.parse(response);
+
             if(response.status != false){
 				drawChartSumService(response);
 				$("#filter-loader").fadeOut("slow");
@@ -251,7 +252,14 @@ function summaryService(token, params, index, params_year, tenant_id){
 		},
 		error: function (r) {
 			// console.log(r);
-			alert("error");
+			var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
 			$("#filter-loader").fadeOut("slow");
 		},
 	});
