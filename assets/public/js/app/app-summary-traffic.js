@@ -319,9 +319,10 @@ function callSummaryInteraction(token,params, index_time, params_year, tenant_id
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
                 if(notif){
-                    window.location = base_url+'main/login';
                     localStorage.clear();
+                    window.location = base_url+'main/login';
                 }else{
+                    localStorage.clear();
                     window.location = base_url+'main/login';
                 }
             }

@@ -30,6 +30,7 @@ var v_params_this_year = m + '-' + n + '-' + (o - 1);
 
 // console.log(v_params_this_year);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 // console.log(n);
 $(document).ready(function () {
 	if(sessionParams){
@@ -57,7 +58,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-		loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		// ------datepiker
 		$('#input-date-filter').datepicker("setDate", v_params_this_year);
 		$('#select-month option[value=' + n + ']').attr('selected', 'selected');
@@ -195,10 +196,10 @@ function callYear() {
 	});
 }
 
-function loadContent(params, index, params_year, tenant_id){
-    drawDataTable2(params, index, params_year, tenant_id);
-    summaryService(params, index, params_year, tenant_id);
-	summaryChannel(params, index, params_year, tenant_id);
+function loadContent(token, params, index, params_year, tenant_id){
+    summaryService(token, params, index, params_year, tenant_id);
+	summaryChannel(token, params, index, params_year, tenant_id);
+	drawDataTable2(token, params, index, params_year, tenant_id);
 	// callSummaryInteraction(params, index,0);
 }
 
@@ -218,9 +219,12 @@ function addCommas(commas) {
 	return x1 + x2;
 }
 
-function summaryService(params, index, params_year, tenant_id){
+function summaryService(token, params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
     $.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryService',
         data: {
@@ -231,9 +235,19 @@ function summaryService(params, index, params_year, tenant_id){
         },
         success: function (response) {
             // var response = JSON.parse(r);
-            // console.log(response);
-            drawChartSumService(response);
-			$("#filter-loader").fadeOut("slow");
+            if(response.status != false){
+				drawChartSumService(response);
+				$("#filter-loader").fadeOut("slow");
+			}else{
+				var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+			}
 		},
 		error: function (r) {
 			// console.log(r);
@@ -243,9 +257,12 @@ function summaryService(params, index, params_year, tenant_id){
 	});
 }
 
-function summaryChannel(params, index, params_year, tenant_id){
+function summaryChannel(token, params, index, params_year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/OperationPerformance/PerformanceByChannel/BarSummaryServiceByChannel',
         data: {
@@ -265,7 +282,7 @@ function summaryChannel(params, index, params_year, tenant_id){
         },
     });
 }
-function drawDataTable2(params, index, params_year, tenant_id){
+function drawDataTable2(token, params, index, params_year, tenant_id){
 	// console.log(params);
 	$("#filter-loader").fadeIn("slow");
 
@@ -276,6 +293,9 @@ function drawDataTable2(params, index, params_year, tenant_id){
     $('#tablesPerformance').DataTable({
         processing : true,
         ajax: {
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("token", token);
+			},
             url : base_url + 'api/AgentPerformance/AgentPerformController/getSTsallchannel',
             type : 'POST',
             data: {
@@ -535,132 +555,6 @@ function drawChartSumChannel(response) {
 	}
 }
 
-function fromTemplate() {
-	"use strict";
-
-	/*----echart summary ticket category----*/
-	var chartdataTicket = [{
-		name: 'ART',
-		type: 'bar',
-		stack: 'Stack',
-		data: [14, 18, 20, 14, 29, 21, 25, 14, 15, 15, 20, 20]
-	}, {
-		name: 'AHT',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 30, 30, 30, 30]
-	}, {
-		name: 'AST',
-		type: 'bar',
-		stack: 'Stack',
-		data: [12, 14, 15, 50, 24, 24, 10, 20, 40, 40, 40, 40]
-	}];
-	/*----echart summary ticket category----*/
-	var optionTicket = {
-		grid: {
-			top: '1%',
-			right: '2%',
-			bottom: '3%',
-			left: '10%',
-			width: 'auto',
-			height: 'auto',
-			containLabel: true
-		},
-		xAxis: {
-			type: 'value',
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		yAxis: {
-			type: 'category',
-			data: ['Live Chat', 'SMS', 'Messenger', 'Email', 'Voice', 'Twitter DM', 'Twitter', 'Whatsapp', 'Line', 'Telegram', 'Facebook', 'Instagram'],
-			splitLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLine: {
-				lineStyle: {
-					color: '#efefff'
-				}
-			},
-			axisLabel: {
-				fontSize: 10,
-				color: '#7886a0'
-			}
-		},
-		series: chartdataTicket,
-		color: ["#A5B0B6", "#009E8C", "#00436D"]
-	};
-	var chartTicket = document.getElementById('echartService');
-	var barChartTicket = echarts.init(chartTicket);
-	barChartTicket.setOption(optionTicket);
-	// $(window).on('responsive', function(){
-	//     if(barChartTicket != null && barChartTicket!= undefined){
-	//         barChartTicket.responsive();
-	//     }
-	// });
-	// Horizontal Bar
-
-	var MeSeContext = document.getElementById("barService");
-	MeSeContext.height = 200;
-	var MeSeData = {
-		labels: [
-			"ART",
-			"AHT",
-			"AST"
-		],
-		datasets: [{
-			label: "data",
-			data: [50, 60, 70],
-			backgroundColor: [
-				"#A5B0B6",
-				"#009E8C",
-				"#00436D"
-			],
-			hoverBackgroundColor: [
-				"#A5B0B6",
-				"#009E8C",
-				"#00436D"
-			]
-		}]
-	};
-	var MeSeChart = new Chart(MeSeContext, {
-		type: 'horizontalBar',
-		data: MeSeData,
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			scales: {
-				xAxes: [{
-					ticks: {
-						min: 0
-					}
-				}],
-				yAxes: [{
-					stacked: true
-				}]
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
-
-
-
-	//    //sample datatable	
-	// $('#tablesPerformance').DataTable();
-}
-
-
 function getToday() {
 	var today = new Date();
 	var dd = String(today.getDate()).padStart(2, '0');
@@ -726,9 +620,9 @@ function remove_hash_from_url()
 		// v_date = '2019-12-01';
 		// console.log(params_time);
 		if(sessionParams.TENANT_ID != null){
-            loadContent(params_time, v_params_this_year, 0, sessionParams.TENANT_ID[0].TENANT_ID);
+            loadContent(tokenSession, params_time, v_params_this_year, 0, sessionParams.TENANT_ID[0].TENANT_ID);
         }else{
-			loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+			loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		}
 		sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
@@ -766,7 +660,7 @@ function remove_hash_from_url()
 		// v_date = getMonth();
 		// callSummaryInteraction(params_time, v_date);
 		// callSummaryInteraction(params_time, $("#select-month").val(), $("#select-year-on-month").val());
-		loadContent(params_time, n,m, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, n,m, $('#layanan_name').val());
 		// callSummaryInteraction('month', '12', '2019');
 		// console.log($("#select-year-only").val());
 		callYearOnMonth();
@@ -791,7 +685,7 @@ function remove_hash_from_url()
 		// console.log(params_time);
 
 		// v_date = getYear();
-		loadContent(params_time, m, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, m, 0, $('#layanan_name').val());
 		callYear();
 		$("#btn-day").prop("class", "btn btn-light btn-sm");
 		$("#btn-month").prop("class", "btn btn-light btn-sm");
@@ -814,7 +708,7 @@ function remove_hash_from_url()
 		onSelect: function (dateText) {
 			// console.log(this.value);
 			v_date = this.value;
-			loadContent('day', v_date, 0, $('#layanan_name').val());
+			loadContent(tokenSession, 'day', v_date, 0, $('#layanan_name').val());
         }
 	});
 
@@ -835,22 +729,22 @@ function remove_hash_from_url()
 	// select option year
 	$('#select-year-only').change(function () {
 		v_year = $(this).val();
-		loadContent('year', v_year, 0, $('#layanan_name').val());
+		loadContent(tokenSession, 'year', v_year, 0, $('#layanan_name').val());
 	});
 
 	$('#btn-go').click(function () {
-		loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+		loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
 	});
 
 	$('#layanan_name').change(function () {
 		channel_id = $('#channel_name').val();
 		let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-			loadContent('day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
+			loadContent(tokenSession, 'day', $('#input-date-filter').val(),0, $('#layanan_name').val(), $("#layanan_name").val());
         }else if(fromParams == 'month'){
-			loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+			loadContent(tokenSession, 'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
-			loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val());
+			loadContent(tokenSession, 'year', $('#select-year-only').val(), 0, $('#layanan_name').val());
         }
 	});
 

@@ -190,6 +190,9 @@ function callIntervalTraffic(token, date, arr_channel, tenant_id){
                 if(notif){
                     localStorage.clear();
                     window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
                 }
             }
         },

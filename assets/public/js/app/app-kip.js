@@ -19,6 +19,7 @@ console.log(n);
 var v_params_this_year = m + '-' + n + '-' + (o);
 var v_params_tenant = 'oct_telkomcare';
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
 	if(sessionParams){
 		params_time = 'day';
@@ -34,7 +35,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-		loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+		loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
 		sessionStorage.setItem('paramsSession', 'day');
 		// ------datepiker
 		$('#input-date-filter').datepicker("setDate", v_params_this_year);
@@ -53,9 +54,9 @@ $(document).ready(function () {
 });
 
 
-function loadContent(params, index, params_year, tenant_id){
+function loadContent(token, params, index, params_year, tenant_id){
 	// loadAllChannel();
-    callSummaryInteraction(params, index, params_year, tenant_id);
+    callSummaryInteraction(token, params, index, params_year, tenant_id);
     // callSummaryInteraction('month' , '12', '2019');
 }
 
@@ -201,12 +202,15 @@ function loadAllChannel() {
 	});
 }
 
-function callSummaryInteraction(params, index, year, tenant_id){
+function callSummaryInteraction(token, params, index, year, tenant_id){
 	$("#filter-loader").fadeIn("slow");
 	// console.log(params)
 	// console.log(index)
 	// console.log(year)
 	$.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		type: 'post',
 		url: base_url + 'api/OperationPerformance/KipController/getSummaryKip',
 		data: {
@@ -217,11 +221,21 @@ function callSummaryInteraction(params, index, year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
-            drawPieChart(response);
-			drawKipPerChannelChart(response);
-			callDataSubCategory(params, index, year, tenant_id, '');
-			// $("#filter-loader").fadeOut("slow");
+            if(response.status != false){
+				drawPieChart(response);
+				drawKipPerChannelChart(response);
+				callDataSubCategory(token, params, index, year, tenant_id, '');
+				// $("#filter-loader").fadeOut("slow");
+			}else{
+				var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+			}
 		},
 		error: function (r) {
 			alert("error");
@@ -230,9 +244,12 @@ function callSummaryInteraction(params, index, year, tenant_id){
 	});
 }
 
-function callDataSubCategory(params, index,year,tenant_id,channel_id){
+function callDataSubCategory(token, params, index,year,tenant_id,channel_id){
 	$("#filter-loader").fadeIn("slow");
 	$.ajax({
+		beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
 		type: 'post',
 		url: base_url + 'api/OperationPerformance/KipController/getDetailKip',
 		data: {

@@ -1,6 +1,7 @@
 var base_url = $('#base_url').val();
 var v_params_tenant = 'oct_telkomcare';
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 var d = new Date();
 var n = d.getFullYear();
 $(document).ready(function () {
@@ -13,9 +14,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        var data_chart = callGraphYear('ShowAll', n, $('#layanan_name').val());
-        var data_graph = callDataPercentage(n, $('#layanan_name').val());
-        var data_table = callDataTableAvg(n, $('#layanan_name').val());
+        var data_chart = callGraphYear(tokenSession, 'ShowAll', n, $('#layanan_name').val());
+        var data_graph = callDataPercentage(tokenSession, n, $('#layanan_name').val());
+        var data_table = callDataTableAvg(tokenSession, n, $('#layanan_name').val());
     }else{
         window.location = base_url
     }
@@ -121,7 +122,7 @@ function callYear() {
     });
 }
 
-function callGraphYear(channel_name, year, tenant_id) {
+function callGraphYear(token, channel_name, year, tenant_id) {
     // $("#filter-loader").fadeIn("slow");
     destroyChartInterval();
     var data = "";
@@ -129,6 +130,9 @@ function callGraphYear(channel_name, year, tenant_id) {
     // console.log(year);
 
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/SummaryTraffic/SummaryYear/gInterval',
         data: {
@@ -139,77 +143,88 @@ function callGraphYear(channel_name, year, tenant_id) {
 
         success: function (r) {
             var response = JSON.parse(r);
-            // var chartdata = [{
-            //     name: 'total',
-            //     type: 'bar',
-            //     data: response.data.total_traffic
-            // }];
-            // console.log(response);
+            if(response.status != false){
+                // var chartdata = [{
+                //     name: 'total',
+                //     type: 'bar',
+                //     data: response.data.total_traffic
+                // }];
+                // console.log(response);
 
-            var numberWithCommas = function (x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            };
+                var numberWithCommas = function (x) {
+                    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                };
 
-            var dataStacked = [];
-            var datasetsStacked = "";
-                datasetsStacked = {
-                        label: response.data.channel_name,
-                        data: response.data.total_traffic,
-                        backgroundColor: response.data.channel_color,
-                        hoverBackgroundColor: response.data.channel_color,
-                        hoverBorderWidth: 0
+                var dataStacked = [];
+                var datasetsStacked = "";
+                    datasetsStacked = {
+                            label: response.data.channel_name,
+                            data: response.data.total_traffic,
+                            backgroundColor: response.data.channel_color,
+                            hoverBackgroundColor: response.data.channel_color,
+                            hoverBorderWidth: 0
+                        },
+
+                    dataStacked.push(datasetsStacked);
+
+                
+                // console.log(dataStacked);
+                var ctx = document.getElementById('BarChartYear');
+
+                var myChart = new Chart( ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: response.data.month_x_axis,
+                        datasets: dataStacked
                     },
-
-                dataStacked.push(datasetsStacked);
-
-            
-            // console.log(dataStacked);
-            var ctx = document.getElementById('BarChartYear');
-
-            var myChart = new Chart( ctx, {
-                type: 'bar',
-                data: {
-                    labels: response.data.month_x_axis,
-                    datasets: dataStacked
-                },
-                options: {
-                 responsive: true,
-                    maintainAspectRatio: false,
-                    legend:{
-                        display : false
+                    options: {
+                    responsive: true,
+                        maintainAspectRatio: false,
+                        legend:{
+                            display : false
+                        },
+                    layout: {
+                            padding: {
+                            left: 20,
+                            right: 20,
+                            top: 25,
+                            bottom: 10
+                        }
                     },
-                 layout: {
-                         padding: {
-                         left: 20,
-                         right: 20,
-                         top: 25,
-                         bottom: 10
-                     }
-                 },
-                 tooltips: {
-                      callbacks: {
-                            label: function(tooltipItem, data) {
-                                var value = data.datasets[0].data[tooltipItem.index];
-                                if(parseInt(value) >= 1000){
-                                           return 'Total: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                        } else {
-                                           return 'Total: ' + value;
-                                        }
-                            }
-                      } // end callbacks:
-                    },
-                    scales: {
-                        yAxes: [ {
-                            ticks: {
-                            callback: function (value) {
-                                return numberWithCommas(value);
+                    tooltips: {
+                        callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var value = data.datasets[0].data[tooltipItem.index];
+                                    if(parseInt(value) >= 1000){
+                                            return 'Total: ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                            } else {
+                                            return 'Total: ' + value;
+                                            }
+                                }
+                        } // end callbacks:
+                        },
+                        scales: {
+                            yAxes: [ {
+                                ticks: {
+                                callback: function (value) {
+                                    return numberWithCommas(value);
+                                    },
                                 },
-                            },
-                                        } ]
-                    },
+                                            } ]
+                        },
+                    }
+                } );
+                $("#filter-loader").fadeOut("slow");
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
                 }
-            } );
-            $("#filter-loader").fadeOut("slow");
+            }
         },
         error: function (r) {
             alert("error");
@@ -238,8 +253,11 @@ function getColorChannel(channel_name) {
     return color[channel_name];
 }
 
-function callDataPercentage(year, tenant_id) {
+function callDataPercentage(token, year, tenant_id) {
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryYear/summaryIntervalYear',
         data: {
@@ -334,8 +352,11 @@ function drawChartPercentageYear(response) {
     });
 }
 
-function callDataTableAvg(year, tenant_id) {
+function callDataTableAvg(token, year, tenant_id) {
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryYear/averageInterval',
         data: {
@@ -553,9 +574,9 @@ function destroyChartPercentage() {
     $('#layanan_name').change(function(){
         //set check all channel
         callYear();
-        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
-        callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
-        callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
+        callGraphYear(tokenSession, $("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
+        callDataPercentage(tokenSession, $("#dateTahun").val(), $('#layanan_name').val());
+        callDataTableAvg(tokenSession, $("#dateTahun").val(), $('#layanan_name').val());
     });
     // change date picker
     // $("select#dateTahun").change(function(){
@@ -581,8 +602,8 @@ function destroyChartPercentage() {
     $('#btn-go').click(function () {
         destroyChartInterval();
         destroyChartPercentage();
-        callGraphYear($("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
-        callDataPercentage($("#dateTahun").val(), $('#layanan_name').val());
-        callDataTableAvg($("#dateTahun").val(), $('#layanan_name').val());
+        callGraphYear(tokenSession, $("#channel_name").val(), $("#dateTahun").val(), $('#layanan_name').val());
+        callDataPercentage(tokenSession, $("#dateTahun").val(), $('#layanan_name').val());
+        callDataTableAvg(tokenSession, $("#dateTahun").val(), $('#layanan_name').val());
     });
 })(jQuery);

@@ -546,7 +546,7 @@ function stackedBarInterval(token, params, channel_name, index, params_year, ten
         },
         success: function (r) {
             var response = JSON.parse(r);
-            if(response.false != false){
+            if(response.status != false){
             // console.log(response.data);
             // Vertical Stacked Bar All Channel Dashboard Traffic Interval Month yang baru 
             // Return with commas in between
@@ -651,7 +651,10 @@ function stackedBarInterval(token, params, channel_name, index, params_year, ten
             if(notif){
                 localStorage.clear();
                 window.location = base_url+'main/login';
-            }   
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         }
             },
         

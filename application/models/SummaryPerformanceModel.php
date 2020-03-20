@@ -59,8 +59,8 @@ Class SummaryPerformanceModel extends CI_Model {
         }
         $query = $this->db->get();
         
-        print_r($this->db->last_query());
-        exit;
+        // print_r($this->db->last_query());
+        // exit;
 
         if($query->num_rows() > 0)
         {

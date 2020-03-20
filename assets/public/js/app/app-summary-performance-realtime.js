@@ -732,17 +732,25 @@ function callThreeTable(token, params, index_time, params_year, tenant_id, offse
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
                 if(notif){
-                    // localStorage.clear();
-                    // window.location = base_url+'main/login';
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
                 }else{
-                    // localStorage.clear();
-                    // window.location = base_url+'main/login';
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
                 }
             }
         },
         error: function (r) {
             // console.log(r);
-            $('#modalError').modal('show');
+            // $('#modalError').modal('show');
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
             // setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
