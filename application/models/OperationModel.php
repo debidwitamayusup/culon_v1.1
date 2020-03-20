@@ -4,8 +4,17 @@ class OperationModel extends CI_Model
 
 	public function __construct()
 	{
-		parent:: __construct();
-	}
+        parent:: __construct();
+        $this->load->helper('url');
+		$this->load->helper('tokenize');
+		$this->load->helper('developer_helper');
+    }
+    
+    public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
 
     public function get_all_channel(){
         $this->db->select('*');

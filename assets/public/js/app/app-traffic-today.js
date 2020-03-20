@@ -3,6 +3,7 @@ var v_date = '';
 var list_channel= [];
 var v_params_tenant = 'oct_telkomcare'
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 var d = new Date();
 var o = d.getDate();
 var n = d.getMonth()+1;
@@ -37,9 +38,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        var data_chart = callIntervalTraffic(v_params_yesterday, list_channel, $('#layanan_name').val());
-        var data_table_avg = callDataTableAvg(v_params_yesterday, $('#layanan_name').val());
-        var data_percentage = callDataPercentage(v_params_yesterday, $('#layanan_name').val());
+        var data_chart = callIntervalTraffic(tokenSession, v_params_yesterday, list_channel, $('#layanan_name').val());
+        var data_table_avg = callDataTableAvg(tokenSession, v_params_yesterday, $('#layanan_name').val());
+        var data_percentage = callDataPercentage(tokenSession, v_params_yesterday, $('#layanan_name').val());
         
     }else{
         window.location = base_url
@@ -164,10 +165,13 @@ function getToday(){
     return today;
 }
 
-function callIntervalTraffic(date, arr_channel, tenant_id){
+function callIntervalTraffic(token, date, arr_channel, tenant_id){
     // console.log(+arr_channel);
     $("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getIntervalTrafficToday2',
         data: {
@@ -178,9 +182,19 @@ function callIntervalTraffic(date, arr_channel, tenant_id){
         },
         success: function (r) {
             var response = JSON.parse(r);
-            // console.log(response);
-            drawChartToday(response);
-            $("#filter-loader").fadeOut("slow");
+            if(response.status != false){
+                drawChartToday(response);
+                $("#filter-loader").fadeOut("slow");
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
             // console.log(r);
@@ -261,8 +275,11 @@ function drawChartToday(response){
     }
 }
 
-function callDataTableAvg(date, tenant_id){
+function callDataTableAvg(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getAverageInterval',
         data: {
@@ -359,8 +376,11 @@ function drawTableToday(response){
     
 }
 
-function callDataPercentage(date, tenant_id){
+function callDataPercentage(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryToday/getPercentageTrafficToday',
         data: {
@@ -510,9 +530,9 @@ function destroyChartPercentage(){
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            callIntervalTraffic(this.value, list_channel, $('#layanan_name').val());
-            callDataTableAvg(this.value, $('#layanan_name').val());
-            callDataPercentage(this.value, $('#layanan_name').val());
+            callIntervalTraffic(tokenSession, this.value, list_channel, $('#layanan_name').val());
+            callDataTableAvg(tokenSession, this.value, $('#layanan_name').val());
+            callDataPercentage(tokenSession, this.value, $('#layanan_name').val());
             
         }
     });
@@ -528,9 +548,9 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
-        callDataTableAvg($('#input-date').val(), $('#layanan_name').val());
-        callDataPercentage($('#input-date').val(), $('#layanan_name').val());
+        callIntervalTraffic(tokenSession, $('#input-date').val(), list_channel, $('#layanan_name').val());
+        callDataTableAvg(tokenSession, $('#input-date').val(), $('#layanan_name').val());
+        callDataPercentage(tokenSession, $('#input-date').val(), $('#layanan_name').val());
     });
 
     // checked all channel
@@ -543,7 +563,7 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+        callIntervalTraffic(tokenSession, $('#input-date').val(), list_channel, $('#layanan_name').val());
     });
 
     //checked channel
@@ -561,7 +581,7 @@ function destroyChartPercentage(){
         });
         // console.log(values);
         list_channel = values;
-        callIntervalTraffic($('#input-date').val(), list_channel, $('#layanan_name').val());
+        callIntervalTraffic(tokenSession, $('#input-date').val(), list_channel, $('#layanan_name').val());
     });
     
 })(jQuery);

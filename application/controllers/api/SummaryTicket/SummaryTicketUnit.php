@@ -11,6 +11,31 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryTicket(){
+
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->module_model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
     	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));	// value params
@@ -34,6 +59,29 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryUnit(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->module_model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
     	$params = $this->security->xss_clean($this->input->post('params', true)); //day month year
 		$index = $this->security->xss_clean($this->input->post('index', true));	// value params
 		$params_year = $this->security->xss_clean($this->input->post('params_year', true));	// value params
@@ -57,6 +105,30 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function getSummaryStatusperUnit(){
+
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->module_model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
 
     	$draw = intval($this->input->get("draw"));
 	    $start = intval($this->input->get("start"));
@@ -102,6 +174,8 @@ class SummaryTicketUnit extends CI_Controller {
     }
 
     public function filterTable(){
+
+        
 
         $params = $this->security->xss_clean($this->input->post('params', true)); //day month year
         $index = $this->security->xss_clean($this->input->post('index', true)); // value params

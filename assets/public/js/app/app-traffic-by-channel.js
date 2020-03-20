@@ -23,6 +23,7 @@ if (n < 10) {
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $('#select-month option[value='+n+']').attr('selected','selected');
@@ -40,7 +41,7 @@ $(document).ready(function () {
         sessionStorage.removeItem('paramsSession');
         sessionStorage.setItem('paramsSession', 'day');
         // console.log($('#layanan_name').val());
-        loadContent(params_time, v_params_this_year, 0, '');
+        loadContent(tokenSession, params_time, v_params_this_year, 0, '');
         getTenant('');
         // $('#tag-time').html(v_params_this_year);
         // $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -240,14 +241,14 @@ function getYear(){
     return year;
 }
 
-async function loadContent(params, index_time, params_year, tenant_id){
+async function loadContent(token, params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(params, index_time, params_year, tenant_id);
-    callTotalInteraction(params, index_time, params_year, tenant_id);
-    callTotalUniqueCustomer(params, index_time, params_year, tenant_id);
+    callSummaryInteraction(token, params, index_time, params_year, tenant_id);
+    callTotalInteraction(token, params, index_time, params_year, tenant_id);
+    callTotalUniqueCustomer(token, params, index_time, params_year, tenant_id);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id);
-    callSummaryCaseTotAgent(params, index_time, params_year, tenant_id);
+    callUniqueCustomerPerChannel(token,params, index_time, params_year, tenant_id);
+    callSummaryCaseTotAgent(token,params, index_time, params_year, tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -296,8 +297,11 @@ function drawCardInteractionNew(value){
     '</div>');
 }
 
-function callSummaryInteraction(params, index_time, params_year, tenant_id){
+function callSummaryInteraction(token, params, index_time, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'Summary-Traffic/cardMain',
         data: {
@@ -459,9 +463,12 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function callTotalInteraction(params, index_time, params_year, tenant_id){
+function callTotalInteraction(token, params, index_time, params_year, tenant_id){
     //call total interaction
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {
@@ -486,9 +493,12 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
     });
 }
 
-function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
+function callTotalUniqueCustomer(token, params, index_time, params_year, tenant_id){
        //call total unique customer
        $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {
@@ -533,11 +543,14 @@ function callAverageCustomer(params, index_time, params_year){
     });
 }
 
-function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id){
+function callUniqueCustomerPerChannel(token, params, index_time, params_year, tenant_id){
     // destroy div card unique customer per channel
     $('#retres-unique').remove(); // this is my <canvas> element
     $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
         data: {
@@ -571,8 +584,11 @@ function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id
     });
 }
 
-function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
+function callSummaryCaseTotAgent(token, params, index_time, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
         data: {
@@ -621,7 +637,7 @@ function setDatePicker(){
             // console.log(this.value);
             v_date = this.value;
 
-            loadContent('day', v_date, 0, '');
+            loadContent(tokenSession,'day', v_date, 0, '');
         }
     });
 
@@ -630,7 +646,7 @@ function setDatePicker(){
         params_time = 'day';
         // console.log(params_time);
         // loadContent(params_time , '2019-12-02');
-        loadContent(params_time, v_params_this_year, 0,  $('#layanan_name').val())
+        loadContent(tokenSession,params_time, v_params_this_year, 0,  $('#layanan_name').val())
         // $('#tag-time').html(v_params_this_year);
         v_date='2019-12-01';
         // callSummaryInteraction(params_time,v_date);
@@ -663,7 +679,7 @@ function setDatePicker(){
         $('#select-year-on-month option[value='+m+']').attr('selected','selected');
         // console.log(params_time);
         // loadContent(params_time , '12');
-        loadContent(params_time, n, m,  $('#layanan_name').val());
+        loadContent(tokenSession,params_time, n, m,  $('#layanan_name').val());
         callYearOnMonth();
         // $('#tag-time').html(monthNumToName(v_month)+' '+v_year);
         // $('#tag-time').html(monthNumToName(n)+' '+m);
@@ -687,7 +703,7 @@ function setDatePicker(){
         params_time = 'year';
         // console.log(params_time);
         // loadContent(params_time , '2019')
-        loadContent(params_time, m, 0,  $('#layanan_name').val());
+        loadContent(tokenSession,params_time, m, 0,  $('#layanan_name').val());
         callYear();
         $('#tag-time').html(m);
         $("#btn-month").prop("class","btn btn-light btn-sm");
@@ -712,19 +728,19 @@ function setDatePicker(){
         // console.log(this.value);
         v_date = this.value;
         
-        loadContent('day', v_date, 0, '');
+        loadContent(tokenSession,'day', v_date, 0, '');
         }
     });
 
     $('#layanan_name').change(function(){
         let fromParams = sessionStorage.getItem('paramsSession');
         if(fromParams == 'day'){
-            loadContent(fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
+            loadContent(tokenSession,fromParams, $('#input-date-filter').val(), 0, $('#layanan_name').val());
         }else if(fromParams == 'month'){
-            loadContent('month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
+            loadContent(tokenSession,'month', $("#select-month").val(), $("#select-year-on-month").val(), $('#layanan_name').val());
         }else if(fromParams == 'year'){
             v_year = $(this).val();
-            loadContent('year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
+            loadContent(tokenSession,'year', $('#select-year-only').val(), 0, $('#layanan_name').val(), $('#layanan_name').val());
         }
     });
 

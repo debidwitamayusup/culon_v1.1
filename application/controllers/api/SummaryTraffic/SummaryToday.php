@@ -10,6 +10,7 @@ class SummaryToday extends CI_Controller {
 	}
 
     public function getIntervalTrafficToday(){
+        
         $date = $this->security->xss_clean($this->input->post('date', true));
         if(!$date){
             $date = date("Y-m-d");
@@ -86,6 +87,31 @@ class SummaryToday extends CI_Controller {
 
     public function getIntervalTrafficToday2(){
 
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
+
         $date =   $this->security->xss_clean($this->input->post('date', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
         $is_dashboard = $this->security->xss_clean($this->input->post('dashboard'));
@@ -158,6 +184,30 @@ class SummaryToday extends CI_Controller {
     }
 
     public function getAverageInterval(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
         $date = $this->security->xss_clean($this->input->post('date', true));
         if(!$date){
             $date = date("Y-m-d");
@@ -182,6 +232,30 @@ class SummaryToday extends CI_Controller {
     }
 
     public function getPercentageTrafficToday(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
         $date = $this->security->xss_clean($this->input->post('date', true));
         if(!$date){
             $date = date("Y-m-d");

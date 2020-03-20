@@ -301,6 +301,66 @@ Class AuthModel extends CI_Model {
         return false;
     }
 
+    public function tenantdata()
+    {
+        $this->db->select('tenant_id as ID, tenant_name as NAME, is_active as STATUS, group_id as GROUP');
+        $this->db->from('m_tenant');
+        $this->db->where('tenant_id > ""');
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            $id = 1;
+            foreach($query->result() as $data)
+            {
+                
+                $result[] = array(
+                    $id,
+                    $data->ID,
+                    $data->NAME,
+                    $data->STATUS,
+                    $data->GROUP
+                );
+                $id++;
+            }
+            return $result;
+        }
+        return false;
+    }
+
+    function tntchecker($id){
+        $this->db->select('tenant_id');
+        $this->db->from('m_tenant');
+        $this->db->where('tenant_id', $id);
+        
+        $query = $this->db->get();
+        if($query->num_rows()>0) 
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function addtnt($id,$name)
+    {
+
+        $data = array(
+            'tenant_id' => $id,
+            'tenant_name' => $name
+        ); //$this->db->insert_id();
+        $ins =  $this->db->insert('m_tenant',$data);
+
+        if($ins)
+        {
+            //where inserted do !
+            $content = array(
+                'tenant_id'          => $id,
+                'name'          => $name
+            );
+            return $content;
+        }
+        return FALSE;
+    }
+
     public function adduser($username,$name,$phone,$email,$previlage)
     {
 

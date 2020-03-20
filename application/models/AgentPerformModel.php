@@ -6,7 +6,14 @@ class AgentPerformModel extends CI_Model
 	{
 		parent:: __construct();
 		$this->load->helper('url');
+		$this->load->helper('tokenize');
+		$this->load->helper('developer_helper');
 	}
+	public function authceck($token)
+    {
+        $data = checkuser_token($token);
+        return $data;
+    }
 
 	public function getScrCof(){
 		$query = $this->db->query("
@@ -328,7 +335,7 @@ class AgentPerformModel extends CI_Model
 		return $query->result();
 		
 	}
-
+	
 
 #endregion
 
