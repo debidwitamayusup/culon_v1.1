@@ -27,6 +27,7 @@
                             <a class="slide-item" href="<?=base_url()?>admin/admin_user">User</a>
                             <a class="slide-item" hidden href="<?=base_url()?>admin/edit_user">User</a>
                             <a class="slide-item" hidden href="<?=base_url()?>admin/add_user">User</a>
+                            <a class="slide-item" href="<?=base_url()?>admin/list_tenant">Tenant</a>
                         </div>
                     </div>
                 </div>
