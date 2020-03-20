@@ -11,6 +11,30 @@ class SummaryYear extends CI_Controller {
 
 	public function gInterval()
 	{
+		#region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
 		$channel_name = $this->input->post('channel_name') ? $this->input->post('channel_name') : "ShowAll";
 
@@ -94,6 +118,30 @@ class SummaryYear extends CI_Controller {
 
 	public function summaryIntervalYear()
 	{
+		#region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		$year = $this->input->post('year') ? $this->input->post('year') : date('Y');
 
 		$array_channel = $this->Stc_Model->get_all_channel();
