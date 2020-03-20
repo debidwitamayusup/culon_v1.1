@@ -1,0 +1,3 @@
+(function(){
+    $('#tableListTenant').dataTable();
+})(jQuery);
