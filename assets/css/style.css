@@ -15023,7 +15023,8 @@ p,
 ul,
 ol,
 blockquote {
-	margin-bottom: 1em;
+	/* margin-bottom: 1em; */
+	margin-bottom: 0.8em;
 }
 
 blockquote {
@@ -19494,12 +19495,14 @@ table-margin {
 
 .card-table tr td:first-child,
 .card-table tr th:first-child {
-	padding-left: 1rem;
+	/* padding-left: 1rem; */
+	padding: 5px;
 }
 
 .card-table tr td:last-child,
 .card-table tr th:last-child {
-	padding-right: 1rem;
+	/* padding-right: 1rem; */
+	padding: 5px;
 }
 
 .card-body+.card-table {

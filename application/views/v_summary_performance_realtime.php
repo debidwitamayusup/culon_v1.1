@@ -76,12 +76,12 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Realtime</h5>
                     </div>
-                    <div class="row mt-2 mb-2" style="padding: 0px 7px 0px 7px;">
+                    <div class="row no-gutterss" style="padding: 4px;">
                         <div class="col-md-4">
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_1">
+                                    id="mytable_1" style="height:320px">
                                     <thead class="text-center text-white bg-head" id="mythead_1">
                                         <tr>
                                             <td>No</td>
@@ -102,7 +102,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_2">
+                                    id="mytable_2" style="height:320px">
                                     <thead class="text-center text-white bg-head" id="mythead_2">
                                         <tr>
                                             <td>No</td>
@@ -123,7 +123,7 @@
                             <div class="table-responsive table-bordered" style="padding:2px;">
                                 <table
                                     class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito9"
-                                    id="mytable_3">
+                                    id="mytable_3" style="height:320px">
                                     <thead class="text-center text-white bg-head" id="mythead_3">
                                         <tr>
                                             <td>No</td>
@@ -184,11 +184,11 @@
                     <div class="row mt-2" style="padding-left:4px; padding-right:4px">
                         <div class="col-lg-4 col-md-12">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-pie">
                                     <div class="canvas-con">
                                         <div id="legend" class="legend-con"></div>
                                         <div class="canvas-con-inner" id="canvas-pie">
-                                            <canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>
+                                            <canvas id="pieChartChannel" class="donutShadow overflow-hidden mb-6"></canvas>
                                         </div>
 
                                     </div>

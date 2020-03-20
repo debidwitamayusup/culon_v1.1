@@ -755,7 +755,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             if (response.data[i]){
                 $('#mytable_1').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(h+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-left" style="font-size:8px">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
@@ -785,7 +785,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             if (response.data[j]){
                 $('#mytable_2').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(h+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[j].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-left" style="font-size:8px">'+(response.data[j].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[j].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[j].AST || 0)+'</td>'+
@@ -815,7 +815,7 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
             if (response.data[k]){
                 $('#mytable_3').find('tbody').append('<tr>'+
                         '<td class="text-center">'+(h+1)+'</td>'+
-                        '<td class="text-left">'+(response.data[k].TENANT_NAME || 0)+'</td>'+
+                        '<td class="text-left" style="font-size:8px">'+(response.data[k].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].ART || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[k].AHT || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[k].AST || 0)+'</td>'+
@@ -945,9 +945,9 @@ function callPieChartSummary(params, index_time, params_year, tenant_id){
 
 function drawPieChartSummary(response){
     $('#pieChartChannel').remove();
-    $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden"></canvas>');
+    $('#canvas-pie').append('<canvas id="pieChartChannel" class="donutShadow overflow-hidden mb-6"></canvas>');
     var ctx = document.getElementById( "pieChartChannel" );
-    ctx.height = 254;
+    ctx.height = 247;
     var myChart = new Chart( ctx, {
         type: 'pie',
         data: {
@@ -981,13 +981,14 @@ function drawPieChartSummary(response){
                 render : 'legend',
                 fontColor : '#000',
                 position : 'outside',
-                segment : true
+                segment : true,
+                fontSize: 10
             },
             legendCallback : function (chart, index){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row">');
+                legendHtml.push('<ul><div class="row mt-3">');
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];
@@ -1185,6 +1186,11 @@ function callLineChart(params, index_time, params_year, tenant_id){
 function drawLineChart(response){
     $('#lineWallSumPerform').remove();
     $('#lineWallSumPerformDiv').append('<canvas id="lineWallSumPerform"  style="height:438px"></canvas>');
+    
+    var numberWithPoint = function (x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+    
     var ctx = document.getElementById( "lineWallSumPerform" );
     var myChart = new Chart( ctx, {
         type: 'line',
@@ -1232,8 +1238,18 @@ function drawLineChart(response){
             // },
             barRoundness: 1,
             scales: {
+                xAxes:[{
+                    ticks:{
+                        fontSize: 10,  
+                        autoSkip: false,   
+                        maxTicksLimit: 30                   
+                    }
+                }],
                 yAxes: [ {
                     ticks: {
+                        callback: function (value) {
+                            return numberWithPoint(value);
+                        },
                         beginAtZero: true
                         }
                     }]
