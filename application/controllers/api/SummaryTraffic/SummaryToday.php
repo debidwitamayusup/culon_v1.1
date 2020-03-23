@@ -131,6 +131,30 @@ class SummaryToday extends CI_Controller {
 
     public function getIntervalTrafficWeekly(){
 
+         #region :: TOKEN
+         $token = $_SERVER['HTTP_TOKEN'];
+         if($token===NULL)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => 'Lengkapi Kredensial anda.');
+ 
+             echo json_encode($response);
+             exit;          
+         }
+ 
+         $res = $this->Stc_Model->authceck($token);
+         if($res == FALSE)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => '404 Not found.');
+ 
+             echo json_encode($response);
+             exit;
+         }
+         #endregion :: TOKEN
+
         $week_id =   $this->security->xss_clean($this->input->post('week', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
 
@@ -143,6 +167,30 @@ class SummaryToday extends CI_Controller {
     }
 
     public function getIntervalTrafficWeeklyBar(){
+
+         #region :: TOKEN
+         $token = $_SERVER['HTTP_TOKEN'];
+         if($token===NULL)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => 'Lengkapi Kredensial anda.');
+ 
+             echo json_encode($response);
+             exit;          
+         }
+ 
+         $res = $this->Stc_Model->authceck($token);
+         if($res == FALSE)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => '404 Not found.');
+ 
+             echo json_encode($response);
+             exit;
+         }
+         #endregion :: TOKEN
 
         $week_id =   $this->security->xss_clean($this->input->post('week', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
@@ -171,6 +219,30 @@ class SummaryToday extends CI_Controller {
     }
 
     public function getIntervalTrafficWeeklyBarAvg(){
+
+         #region :: TOKEN
+         $token = $_SERVER['HTTP_TOKEN'];
+         if($token===NULL)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => 'Lengkapi Kredensial anda.');
+ 
+             echo json_encode($response);
+             exit;          
+         }
+ 
+         $res = $this->Stc_Model->authceck($token);
+         if($res == FALSE)
+         {
+             $response = array(
+             'status'  => FALSE,
+             'message' => '404 Not found.');
+ 
+             echo json_encode($response);
+             exit;
+         }
+         #endregion :: TOKEN
 
         $week_id =   $this->security->xss_clean($this->input->post('week', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));
