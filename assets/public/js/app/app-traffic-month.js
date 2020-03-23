@@ -262,7 +262,7 @@ function drawChartPercentageMonth(response) {
 
     // draw chart
     var ctx_percentage = document.getElementById("echartVerticalMonth");
-    ctx_percentage.height = 506;
+    ctx_percentage.height = 495;
     // ctx_percentage.width = 180;
     var percentageChart = new Chart(ctx_percentage, {
         type: 'horizontalBar',

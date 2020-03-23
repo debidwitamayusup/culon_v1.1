@@ -81,7 +81,7 @@
 						<div class="canvas-con-inner" id="canvas-pie">
 							<canvas id="pieDashSummaryTraffic" class="donutShadow overflow-hidden"></canvas>
 						</div> -->
-							<div class="row">
+							<div class="row no-gutters">
 								<div class="col-md-5">
 									<div id="legend" class="legend-con"></div>
 								</div>
@@ -101,7 +101,7 @@
 						<h5 class="card-title-small card-pt10 font-weight-extrabold">Top 5 Traffic</h5>
 					</div>
 					<div class="card-body" id="barTop5TrafficDiv">
-						<canvas id="barTop5Traffic" style="height:318px"></canvas>
+						<canvas id="barTop5Traffic" style="height:279px"></canvas>
 					</div>
 				</div>
 

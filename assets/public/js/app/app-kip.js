@@ -584,7 +584,7 @@ function drawChartSubCategory_old(response) {
 function drawPieChart(response) {
 	//destroy div piechart
 	$('#pieKIP').remove(); // this is my <canvas> element
-	$('#canvas-pie').append('<canvas id="pieKIP"></canvas>');
+	$('#canvas-pie').append('<canvas id="pieKIP" class="mb-2"></canvas>');
 
 	$('#mylegend').remove();
 	$('#legend').append('<div id="legend" class="legend-con"></div>');
@@ -646,12 +646,13 @@ function drawPieChart(response) {
 					fontColor: '#000',
 					position: 'outside',
 					segment: true,
-					precision: 0
+					precision: 0,
+					fontSize: 10
 				},
 				legendCallback: function (chart, index) {
 					var allData = chart.data.datasets[0].data;
 					var legendHtml = [];
-					legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
+					legendHtml.push('<ul><div id="mylegend" class="row ml-1 mt-1">');
 					allData.forEach(function (data, index) {
 						if (allData[index] != 0) {
 							var label = chart.data.labels[index];

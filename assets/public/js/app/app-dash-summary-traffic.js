@@ -425,7 +425,7 @@ function drawPieChartSumAllTenant(response){
     // $('#mylegend').append('<div id="legend" class="legend-con"></div>');
 
     var ctx = document.getElementById("pieDashSummaryTraffic");
-    ctx.height = 260;
+    ctx.height = 236;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -458,13 +458,14 @@ function drawPieChartSumAllTenant(response){
                 render: 'legend',
                 fontColor: '#000',
                 position: 'outside',
-                segment: true
+                segment: true,
+                fontSize:10
             },
             legendCallback: function (chart, index) {
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div id="mylegend" class="row ml-4">');
+                legendHtml.push('<ul><div id="mylegend" class="row">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
@@ -1161,7 +1162,7 @@ function drawChartPerGroupEnterprise(response){
     
 function drawChartTop5(response){
     $('#barTop5Traffic').remove();
-    $('#barTop5TrafficDiv').append('<canvas id="barTop5Traffic" style="height:318px"></canvas>');
+    $('#barTop5TrafficDiv').append('<canvas id="barTop5Traffic" style="height:279px"></canvas>');
     // horizontal bar chart
     var arrLabelTop5 = [], arrDataTop5 = [], arrColorTop5 = [];
     response.data.forEach(function(value){
