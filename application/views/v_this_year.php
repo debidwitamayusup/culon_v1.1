@@ -115,8 +115,4 @@
 		</div>
 	</div>
 	<?php $this->load->view('temp/footer');?>
-	<!--Chart Plugin -->
-	<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
-	<!--Chart--->
-
 	<script src="<?=base_url()?>assets/public/js/app/app-traffic-year.js"></script>
