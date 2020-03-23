@@ -96,25 +96,25 @@ class WallboardController extends REST_Controller {
 
     public function TrafficOPS_post(){
 
-    #region :: TOKEN
-        $token = $_SERVER['HTTP_TOKEN'];
-            if($token===NULL)
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Lengkapi Kredensial anda.'
-                        ], REST_Controller::HTTP_NOT_FOUND);
-            }
+        #region :: TOKEN
+            $token = $_SERVER['HTTP_TOKEN'];
+                if($token===NULL)
+                {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => 'Lengkapi Kredensial anda.'
+                            ], REST_Controller::HTTP_NOT_FOUND);
+                }
 
-            $res = $this->module_model->authceck($token);
-            if($res == FALSE)
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => '404 Not found.'
-                        ], REST_Controller::HTTP_NOT_FOUND);
-            }
-    #endregion :: TOKEN
+                $res = $this->module_model->authceck($token);
+                if($res == FALSE)
+                {
+                    $this->response([
+                        'status'  => FALSE,
+                        'message' => '404 Not found.'
+                            ], REST_Controller::HTTP_NOT_FOUND);
+                }
+        #endregion :: TOKEN
 
         $date = $this->security->xss_clean($this->input->post('date'));
 
@@ -416,25 +416,25 @@ class WallboardController extends REST_Controller {
 
     public function GetTennantFilter_post()
     {
-        #region :: TOKEN
-        $token = $_SERVER['HTTP_TOKEN'];
-            if($token===NULL)
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => 'Lengkapi Kredensial anda.'
-                        ], REST_Controller::HTTP_NOT_FOUND);
-            }
+        // #region :: TOKEN
+        // $token = $_SERVER['HTTP_TOKEN'];
+        //     if($token===NULL)
+        //     {
+        //         $this->response([
+        //             'status'  => FALSE,
+        //             'message' => 'Lengkapi Kredensial anda.'
+        //                 ], REST_Controller::HTTP_NOT_FOUND);
+        //     }
 
-            $res = $this->module_model->authceck($token);
-            if($res == FALSE)
-            {
-                $this->response([
-                    'status'  => FALSE,
-                    'message' => '404 Not found.'
-                        ], REST_Controller::HTTP_NOT_FOUND);
-            }
-        #endregion :: TOKEN
+        //     $res = $this->module_model->authceck($token);
+        //     if($res == FALSE)
+        //     {
+        //         $this->response([
+        //             'status'  => FALSE,
+        //             'message' => '404 Not found.'
+        //                 ], REST_Controller::HTTP_NOT_FOUND);
+        //     }
+        // #endregion :: TOKEN
 
         $date = $this->security->xss_clean($this->input->post('date'));
         $res = $this->module_model->Tenantscrfilter();
