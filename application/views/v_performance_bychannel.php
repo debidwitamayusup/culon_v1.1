@@ -80,11 +80,11 @@
         <!--Page Header-->
         <div class="row margin0-4">
             <div class="col-md-12 col-lg-5">
-                <div class="card" style="height:425px">
+                <div class="card" style="height:423px">
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Summary Service</h5>
                     </div>
-                    <div class="card-body" style="margin:70px 0px 60px 0px !important" id="barServiceDiv">
+                    <div class="card-body" style="margin:31px 0px 0px 0px !important" id="barServiceDiv">
                         <canvas id="barService"></canvas>
 
                     </div>
