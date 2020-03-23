@@ -621,20 +621,11 @@ function drawChartDaily(token, week,arr_channel, tenant_id){
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
-    // var whatsapp = [20, 20, 20, 20, 20, 20, 20];
-    // var facebook = [40, 40, 40, 40, 40, 40, 40];
-    // var twitter = [60, 60, 60, 60, 60, 60, 60];
-    // var twitterdm = [80, 80, 80, 80, 80, 80, 80];
-    // var instagram = [90, 90, 90, 90, 90, 90, 90];
-    // var messenger = [100, 100, 100, 100, 100, 100, 100];
-    // var telegram = [110, 110, 110, 110, 110, 110, 110];
-    // var line = [120, 120, 120, 120, 120, 120, 120];
-    // var email = [130, 130, 130, 130, 130, 130, 130];
-    // var twitter = [140, 140, 140, 140, 140, 140, 140];
-    // var voice = [150, 150, 150, 150, 150, 150, 150];
-    // var sms = [160, 160, 160, 160, 160, 160, 160];
-    // var livechat = [170, 170, 170, 170, 170, 170, 170];
-    // var chatbot = [180, 180, 180, 180, 180, 180, 180];
-    // var LabelX = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    $("select#layanan_name").change(function(){
+        var selectedTenant = $(this).children("option:selected").val();
+        getSummTrafficByChannel(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        getTrafficInterval(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        drawChartDaily(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+    });
 
 })(jQuery);
