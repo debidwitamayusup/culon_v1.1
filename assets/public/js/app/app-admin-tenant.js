@@ -25,7 +25,7 @@ function callTableTenant(token){
         },
         columnDefs: [
 			{ className: "text-center", targets: 0 },
-			{ className: "text-center", targets: 1 },
+			{ className: "text-left", targets: 1 },
 			{ className: "text-left", targets: 2 }
 			
 		], 

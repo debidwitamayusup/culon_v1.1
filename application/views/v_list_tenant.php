@@ -34,7 +34,7 @@
 							<thead class="text-white bg-head">
 								<tr>
 									<td class="border-bottom-0 text-center" width="2%">No</td>
-									<td class="border-bottom-0 text-center" width="40%">Tenant ID</td>
+									<td class="border-bottom-0 text-center" width="30%">Tenant ID</td>
 									<td class="border-bottom-0 text-center" width="40%">Tenant Name</td>
 								</tr>
 							</thead>

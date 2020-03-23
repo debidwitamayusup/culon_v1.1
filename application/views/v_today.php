@@ -148,6 +148,9 @@
 
 					<div class="card-body" id="chart-interval">
 						<canvas id="customerChartToday" class="h-400"></canvas>
+						<div id="no-data-today-line" class="col-12 text-center" style="margin:100px 0px;">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
+                        </div>
 					</div>
 				</div>
 			</div>
