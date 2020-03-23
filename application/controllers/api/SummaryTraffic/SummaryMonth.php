@@ -48,6 +48,30 @@ class SummaryMonth extends CI_Controller {
 
 	public function lineChartPerMonth()
 	{
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		//date("m")
 		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
 		$year = $this->input->post('year') ? $this->input->post('year') :2019 ;
