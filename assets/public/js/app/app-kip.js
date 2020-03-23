@@ -369,7 +369,19 @@ function drawChartSubCategory(response){
 						}
 					},
 					scales: {
+						xAxes:[{
+							gridLines:{
+								display:true,
+							},
+							ticks:{
+								fontSize:10
+							}
+						}],
 						yAxes: [ {
+							maxBarThickness: 20,
+							gridLines:{
+								display:false
+							},
 							ticks: {
 								beginAtZero: true,
 								callback: function(label) {
@@ -791,9 +803,10 @@ function drawKipPerChannelChart(response) {
 					xAxes: [{
 						stacked: true,
 						gridLines: {
-							display: false
+							display:true
 						},
 						ticks: {
+							fontSize:10,
 							callback: function (value) {
 								return numberWithCommas(value);
 							},
@@ -801,6 +814,9 @@ function drawKipPerChannelChart(response) {
 					}],
 					yAxes: [{
 						stacked: true,
+						gridLines:{
+							display:false
+						},
 						ticks: {
 							callback: function (value) {
 								return numberWithCommas(value);

@@ -659,9 +659,10 @@ function drawChartPerGroupTelkom(response){
                    xAxes: [{
                        stacked: true,
                        gridLines: {
-                           display: false
+                           display: true
                        },
                        ticks: {
+                           fontSize:10,
                            callback: function (value) {
                                return numberWithCommas(value);
                            },
@@ -669,6 +670,9 @@ function drawChartPerGroupTelkom(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       gridLines:{
+                            display:false,
+                        },
                        maxBarThickness: 20,
                        ticks: {
                            callback: function (value) {
@@ -823,9 +827,10 @@ function drawChartPerGroupGovernment(response){
                    xAxes: [{
                        stacked: true,
                        gridLines: {
-                           display: false
+                           display: true
                        },
                        ticks: {
+                           fontSize:10,
                            callback: function (value) {
                                return numberWithCommas(value);
                            },
@@ -833,6 +838,9 @@ function drawChartPerGroupGovernment(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       gridLines:{
+                            display:false
+                        },
                        ticks: {
                            callback: function (value) {
                                return numberWithCommas(value);
@@ -975,9 +983,10 @@ function drawChartPerGroupBfsi(response){
                    xAxes: [{
                        stacked: true,
                        gridLines: {
-                           display: false
+                           display: true
                        },
                        ticks: {
+                           fontSize:10,
                            callback: function (value) {
                                return numberWithCommas(value);
                            },
@@ -985,6 +994,9 @@ function drawChartPerGroupBfsi(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       gridLines:{
+                            display:false,
+                        },
                        maxBarThickness: 20,
                        ticks: {
                            callback: function (value) {
@@ -1130,9 +1142,10 @@ function drawChartPerGroupEnterprise(response){
                    xAxes: [{
                        stacked: true,
                        gridLines: {
-                           display: false
+                           display: true
                        },
                        ticks: {
+                           fontSize:10,
                            callback: function (value) {
                                return numberWithCommas(value);
                            },
@@ -1140,6 +1153,9 @@ function drawChartPerGroupEnterprise(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       gridLines:{
+                            display:false
+                        },
                        ticks: {
                            callback: function (value) {
                                return numberWithCommas(value);
@@ -1207,7 +1223,11 @@ function drawChartTop5(response){
             },
             scales: {
                 xAxes: [{
+                    gridLines:{
+                        display:true
+                    },
                     ticks: {
+                        fontSize:10,
                         min: 0, // Edit the value according to what you need
                         callback: function (value, index, values) {
                             value = value.toString();
@@ -1219,6 +1239,9 @@ function drawChartTop5(response){
                 }],
                 yAxes: [{
                     stacked: true,
+                    gridLines:{
+                        display:false
+                    },
                     maxBarThickness: 20
                 }]
             }

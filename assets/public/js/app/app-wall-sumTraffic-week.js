@@ -219,6 +219,7 @@ function drawSummTrafficByChannel(response){
                 }],
                 xAxes: [{
                     ticks: {
+                        fontSize:10,
                         min: 0, // Edit the value according to what you need
                         callback: function (value, index, values) {
                             value = value.toString();
@@ -336,6 +337,11 @@ function drawTrafficInterval(response) {
                 },
                 barRoundness: 1,
                 scales: {
+                    xAxes:[{
+                        ticks:{
+                            fontSize:10
+                        }
+                    }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true
@@ -534,9 +540,15 @@ function drawChartDaily(token, week,arr_channel, tenant_id){
                     gridLines: {
                         display: false
                     },
+                    ticks:{
+                        fontSize:10
+                    }
                 }],
                 yAxes: [{
                     stacked: true,
+                    gridLines: {
+                        display: true
+                    },
                     ticks: {
                         callback: function (value) {
                             return numberWithCommas(value);

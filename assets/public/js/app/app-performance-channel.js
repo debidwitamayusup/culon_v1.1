@@ -398,6 +398,7 @@ function drawChartSumService(response) {
 							display:true,
 						},
 						ticks: {
+							fontSize: 10,
 							min: 0,
 							callback: function (value, index, values) {
 								//      if(parseInt(value) >= 1000){
@@ -522,6 +523,7 @@ function drawChartSumChannel(response) {
 							display: true
 						},
 						ticks: {
+							fontSize: 10,
 							callback: function (value) {
 								return numberWithCommas(value);
 							},
