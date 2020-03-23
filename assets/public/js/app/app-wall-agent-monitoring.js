@@ -1,5 +1,6 @@
 var base_url = $('#base_url').val();
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 
 $(document).ready(function () {
     if(sessionParams){
@@ -10,7 +11,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        drawTableAgentMonitoring($("#layanan_name").val());
+        drawTableAgentMonitoring(tokenSession, $("#layanan_name").val());
         // $('#tableOperation2').dataTable();
         // callTablePerformOps(v_params_tenant, '', n);
         $("#filter-loader").fadeOut("slow");
@@ -48,10 +49,13 @@ function getTenant(date, userid){
     });
 }
 
-function drawTableAgentMonitoring(tenant_id){
+function drawTableAgentMonitoring(token, tenant_id){
     // setTimeout(function(){drawTableAgentMonitoring(tenant_id);},15000);
 	$('#tableWallAgent').DataTable({
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Wallboard/WallboardController/agentMonitoring',
             type : 'POST',
             data :{
@@ -87,6 +91,6 @@ function drawTableAgentMonitoring(tenant_id){
          // destroyChartInterval();
         var selectedTenant = $(this).children("option:selected").val();
         // callTableCOFByChannel(v_params_yesterday, selectedTenant);
-        drawTableAgentMonitoring(selectedTenant);
+        drawTableAgentMonitoring(tokenSession, selectedTenant);
     });
 })(jQuery);

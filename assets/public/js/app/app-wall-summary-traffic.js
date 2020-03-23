@@ -24,6 +24,7 @@ if (n < 10) {
 //get yesterday
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 for(var i=0; i < sessionParams.TENANT_ID.length; i++){
     arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
 }
@@ -50,7 +51,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        loadContent(params_time, v_params_this_year, 0, $('#layanan_name').val());
+        loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
         
         $('#input-date-filter').datepicker("setDate", v_params_this_year);
         $('#filter-date').show();
@@ -245,14 +246,14 @@ function getYear(){
     return year;
 }
 
-async function loadContent(params, index_time, params_year, tenant_id){
+async function loadContent(token, params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(params, index_time, params_year, tenant_id);
-    callTotalInteraction(params, index_time, params_year, tenant_id);
-    callTotalUniqueCustomer(params, index_time, params_year, tenant_id);
+    callSummaryInteraction(tokenSession, params, index_time, params_year, tenant_id);
+    callTotalInteraction(tokenSession, params, index_time, params_year, tenant_id);
+    callTotalUniqueCustomer(tokenSession, params, index_time, params_year, tenant_id);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id);
-    callSummaryCaseTotAgent(params, index_time, params_year, tenant_id);
+    callUniqueCustomerPerChannel(tokenSession, params, index_time, params_year, tenant_id);
+    callSummaryCaseTotAgent(tokenSession, params, index_time, params_year, tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -301,8 +302,11 @@ function drawCardInteractionNew(value){
     '</div>');
 }
 
-function callSummaryInteraction(params, index_time, params_year, tenant_id){
+function callSummaryInteraction(token, params, index_time, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'Summary-Traffic/cardMain',
         data: {
@@ -313,10 +317,20 @@ function callSummaryInteraction(params, index_time, params_year, tenant_id){
         },
         success: function (r) { 
             var response = JSON.parse(r);
-            // console.log(response);
-            $('#modalError').modal('hide');
-            setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
-            drawChartAndCard(response);
+            if(response.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
+                drawChartAndCard(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
             $('#modalError').modal('show');
@@ -471,9 +485,12 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function callTotalInteraction(params, index_time, params_year, tenant_id){
+function callTotalInteraction(token, params, index_time, params_year, tenant_id){
     //call total interaction
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_interaction',
         data: {
@@ -501,9 +518,12 @@ function callTotalInteraction(params, index_time, params_year, tenant_id){
     });
 }
 
-function callTotalUniqueCustomer(params, index_time, params_year, tenant_id){
+function callTotalUniqueCustomer(token, params, index_time, params_year, tenant_id){
        //call total unique customer
        $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/total_unique_customer',
         data: {
@@ -557,11 +577,14 @@ function callAverageCustomer(params, index_time, params_year, tenant_id){
     });
 }
 
-function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id){
+function callUniqueCustomerPerChannel(token, params, index_time, params_year, tenant_id){
     // destroy div card unique customer per channel
     $('#retres-unique').remove(); // this is my <canvas> element
     $('#card-unique-customer-per-channel').append('<div class="row" id="retres-unique"></div>');
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/uniqueCustomerPerChannel',
         data: {
@@ -599,8 +622,11 @@ function callUniqueCustomerPerChannel(params, index_time, params_year, tenant_id
     });
 }
 
-function callSummaryCaseTotAgent(params, index_time, params_year, tenant_id){
+function callSummaryCaseTotAgent(token, params, index_time, params_year, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryTrafficChannel/getTotalCaseInCaseOut',
         data: {
@@ -639,6 +665,6 @@ function setDatePicker(){
 //jquery
 (function ($) {
     $('#layanan_name').change(function(){
-        loadContent('day', v_params_this_year, 0, $('#layanan_name').val());
+        loadContent(tokenSession, 'day', v_params_this_year, 0, $('#layanan_name').val());
     });
 })(jQuery);
