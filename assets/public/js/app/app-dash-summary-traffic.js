@@ -465,7 +465,7 @@ function drawPieChartSumAllTenant(response){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div id="mylegend" class="row ml-1">');
+                legendHtml.push('<ul><div id="mylegend" class="row">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
