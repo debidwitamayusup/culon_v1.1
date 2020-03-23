@@ -317,8 +317,9 @@ Class AuthModel extends CI_Model {
                     $id,
                     $data->ID,
                     $data->NAME,
+                    $data->GROUP,
                     $data->STATUS,
-                    $data->GROUP
+                    
                 );
                 $id++;
             }
