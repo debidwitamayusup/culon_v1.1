@@ -31,4 +31,17 @@ class admin extends CI_Controller {
 		$this->load->view('v_add_user');
 	}
 
+	public function list_tenant(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_list_tenant');
+	}
+
+	public function add_tenant(){
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_add_tenant');
+	}
 }
