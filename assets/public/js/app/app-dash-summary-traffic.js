@@ -669,6 +669,7 @@ function drawChartPerGroupTelkom(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       maxBarThickness: 20,
                        ticks: {
                            callback: function (value) {
                                return numberWithCommas(value);
@@ -984,6 +985,7 @@ function drawChartPerGroupBfsi(response){
                    }],
                    yAxes: [{
                        stacked: true,
+                       maxBarThickness: 20,
                        ticks: {
                            callback: function (value) {
                                return numberWithCommas(value);
@@ -1216,7 +1218,8 @@ function drawChartTop5(response){
                     }
                 }],
                 yAxes: [{
-                    stacked: true
+                    stacked: true,
+                    maxBarThickness: 20
                 }]
             }
 
