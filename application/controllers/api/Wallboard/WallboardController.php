@@ -11,7 +11,27 @@ class WallboardController extends REST_Controller {
     }
 
     public function SummaryTicketStatusNC_post(){
-            
+        
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
 
         $src = $this->security->xss_clean($this->input->post('src'));
 
@@ -34,6 +54,27 @@ class WallboardController extends REST_Controller {
     }
 
     public function SummAllTicketStatusNC_post(){
+
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
 
         $res = $this->module_model->sumStat_NC();
         
@@ -201,13 +242,26 @@ class WallboardController extends REST_Controller {
 
     public function IntervalToday_post(){
             
-        // if(!$this->input->post('token'))
-        // {
-        //     $this->response([
-        //         'status'  => FALSE,
-        //         'message' => 'Token Not found,Loging off!'
-        //             ], REST_Controller::HTTP_NOT_FOUND);
-        // }
+       #region :: TOKEN
+       $token = $_SERVER['HTTP_TOKEN'];
+       if($token===NULL)
+       {
+           $this->response([
+               'status'  => FALSE,
+               'message' => 'Lengkapi Kredensial anda.'
+                   ], REST_Controller::HTTP_NOT_FOUND);
+       }
+
+       $res = $this->module_model->authceck($token);
+       if($res == FALSE)
+       {
+           $this->response([
+               'status'  => FALSE,
+               'message' => '404 Not found.'
+                   ], REST_Controller::HTTP_NOT_FOUND);
+       }
+        #endregion :: TOKEN
+
 
         $params = $this->security->xss_clean($this->input->post('params'));
         $index = $this->security->xss_clean($this->input->post('index'));
@@ -235,6 +289,26 @@ class WallboardController extends REST_Controller {
 
     public function SummPerformOps_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $date = $this->security->xss_clean($this->input->post('date'));
@@ -259,6 +333,26 @@ class WallboardController extends REST_Controller {
 
     public function SummStatusTicketOps_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
 
         $src = $this->security->xss_clean($this->input->post('search'));
         $date = $this->security->xss_clean($this->input->post('date'));
@@ -282,6 +376,26 @@ class WallboardController extends REST_Controller {
 
     public function GetTennantscr_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $date = $this->security->xss_clean($this->input->post('date'));
         $res = $this->module_model->Tenantscrget($date);
 
@@ -302,6 +416,26 @@ class WallboardController extends REST_Controller {
 
     public function GetTennantFilter_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $date = $this->security->xss_clean($this->input->post('date'));
         $res = $this->module_model->Tenantscrfilter();
 
@@ -322,6 +456,27 @@ class WallboardController extends REST_Controller {
 
     public function SPOKIP_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
+
         $tanggal = $this->security->xss_clean($this->input->post('date'));
         $res = $this->module_model->getSPOstatsticket($tanggal);
 
@@ -343,6 +498,26 @@ class WallboardController extends REST_Controller {
 
     public function GetInvalMonthTable_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $channels = $this->security->xss_clean($this->input->post('channel'));
         $month = $this->security->xss_clean($this->input->post('month'));
         
@@ -373,6 +548,27 @@ class WallboardController extends REST_Controller {
 
     public function GetBarchannelPerMonth_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
+
         $year = $this->security->xss_clean($this->input->post('params_year'));
         $month = $this->security->xss_clean($this->input->post('month'));
 
@@ -398,7 +594,26 @@ class WallboardController extends REST_Controller {
 
     public function WallboardMain_post()
     {
-        //token
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
 
         $res = $this->module_model->WallboardMain();
 
@@ -421,6 +636,26 @@ class WallboardController extends REST_Controller {
     //under const
     public function SummTicketC_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $res = $this->module_model->SummTicketC($months,$year);
         
         if ($res) {
@@ -442,6 +677,26 @@ class WallboardController extends REST_Controller {
 
     public function DataTableNasional_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $data = $this->module_model->get_datatable_perform_nas();
         $channels = $this->module_model->get_channel_only();
         
@@ -466,6 +721,27 @@ class WallboardController extends REST_Controller {
 
     public function getAvaildatawallmon_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
+
         $tid = $this->security->xss_clean($this->input->post('tenant_id', true));
         $offset = $this->security->xss_clean($this->input->post('offset', true));
         $limit = $this->security->xss_clean($this->input->post('limit', true));
@@ -490,6 +766,26 @@ class WallboardController extends REST_Controller {
 
     public function agentMonitoring_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         
         $res = $this->module_model->getAgentMonitoringData();
 
@@ -513,6 +809,26 @@ class WallboardController extends REST_Controller {
     #region :: debi
     public function summaryTicketCloseWall_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $month = $this->security->xss_clean($this->input->post('index', true));
         $year = $this->security->xss_clean($this->input->post('params_year', true));
         //$channel = $this->security->xss_clean($this->input->post('channel_name', true));
@@ -540,6 +856,26 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasional_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $offset = $this->security->xss_clean($this->input->post('offset', true));
         $limit = $this->security->xss_clean($this->input->post('limit', true));
         
@@ -566,6 +902,26 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasionalDANK_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $data = $this->module_model->thomas_the_dank_engine();
     
         if ($data) {
@@ -587,6 +943,25 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasionalBar_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
 
         $data = $this->module_model->summary_performance_nas_bar();
 
@@ -609,6 +984,26 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasionalPie_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $data = $this->module_model->summary_performance_nas_pie();
 
         if ($data) {
@@ -630,6 +1025,26 @@ class WallboardController extends REST_Controller {
 
     public function summaryPerformanceNasionalInterval_post()
     {
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+            if($token===NULL)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'Lengkapi Kredensial anda.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+
+            $res = $this->module_model->authceck($token);
+            if($res == FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => '404 Not found.'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        #endregion :: TOKEN
+
         $channel = $this->security->xss_clean($this->input->post('channel', true));
         $data = $this->module_model->get_interval_performance_nas();
 
