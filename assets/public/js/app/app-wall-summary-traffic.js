@@ -386,6 +386,7 @@ function drawChartAndCard(response){
                 segment: true,
                 precision: 0,
                 showActualPercentages: true,
+                fontSize:10
             },
             legendCallback: function (chart, index) {
                 // console.log(chart);

@@ -211,13 +211,14 @@ function drawPieChartSummary(response){
                 render : 'legend',
                 fontColor : '#000',
                 position : 'outside',
-                segment : true
+                segment : true,
+                fontSize:10
             },
             legendCallback : function (chart, index){
                 var allData = chart.data.datasets[0].data;
                 // console.log(chart)
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row ml-2">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function(data,index){
                     var label = chart.data.labels[index];
                     var dataLabel = allData[index];

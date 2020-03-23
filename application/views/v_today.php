@@ -27,7 +27,7 @@
 					<div class="card-body">
 						<div class="d-flex order-lg-2 ml-auto float-right">
 							<div class="wd-200 mb-3">
-								<div class="input-group">
+								<div class="input-group" style="width:150px;">
 									<div class="input-group-prepend">
 										<div class="input-group-text">
 											<i class="fas fa-calendar tx-16 lh-0 op-6"></i>
@@ -174,7 +174,7 @@
 					<div class="table-responsive table-bordered table-pt10">
 						<table class="table card-table table-striped table-vcenter table-hover fontNunito12"
 							id="table-avg-interval">
-							<thead class="text-center text-white bg-gray1">
+							<thead class="text-center text-white bg-head">
 								<tr>
 									<th style="width:1%">No</th>
 									<th>Channel</th>

@@ -159,9 +159,9 @@
 					</div>
 					<div class="card-pie">
 						<div class="canvas-con">
-							<div id="legend" class="legend-con mt-1"></div>
-							<div class="canvas-con-inner mb-1" id="canvas-pie">
-								<canvas id="pieSummary" class="donutShadow overflow-hidden"></canvas>
+							<div id="legend" class="legend-con"  style="margin-top:12px; margin-left:5px"></div>
+							<div class="canvas-con-inner" id="canvas-pie">
+								<canvas id="pieSummary" class="donutShadow overflow-hidden mb-5 mt-4"></canvas>
 							</div>
 						</div>
 					</div>
@@ -169,7 +169,7 @@
 			</div>
 			<div class="col-xl-8 col-lg-8 col-md-12">
 				<div class="card overflow-hidden">
-					<div class="card-body" id="card-baru" style="padding:5px;">
+					<div class="card-body" id="card-baru" style="padding:9px 5px 1px 5px;">
 						<div class="row" id="row-baru">
 						</div>
 					</div>

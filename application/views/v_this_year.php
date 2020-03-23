@@ -93,7 +93,7 @@
 					<div class="table-responsive table-bordered table-pt10">
 						<table class="table card-table table-striped table-vcenter table-hover table-pt10 fontNunito12"
 							id="table_avg_year">
-							<thead class="text-center text-white bg-gray1">
+							<thead class="text-center text-white bg-head">
 								<tr>
 									<th style="width:1%">No</th>
 									<th>Channel</th>
