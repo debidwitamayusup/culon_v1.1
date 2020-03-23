@@ -24,6 +24,7 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o-1);
 var arr_tenant = [];
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -54,7 +55,7 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        loadContent(arr_tenant);
+        loadContent(tokenSession, arr_tenant);
         // drawBoxMonitoring();
         setMonthPicker();
         setYearPicker();
@@ -225,10 +226,10 @@ function getToday(){
     return today;
 }
 
-async function loadContent(tenant_id){
+async function loadContent(token, tenant_id){
     $("#filter-loader").fadeIn("slow");
     // callBoxMonitoring(tenant_id);
-    callTableMonitoring(tenant_id);
+    callTableMonitoring(token, tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -252,8 +253,11 @@ function getYear(){
     return year;
 }
 
-function callTableMonitoring(tenant_id){
+function callTableMonitoring(token, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/Wallboard/WallboardController/getAvaildatawallmon',
         data: {
@@ -261,10 +265,21 @@ function callTableMonitoring(tenant_id){
         },
         success: function (r) { 
             var response = r;
-            // console.log(response);
-            $('#modalError').modal('hide');
-            setTimeout(function(){callTableMonitoring(tenant_id);},10000);
-            drawTableMonitoring(response);
+            
+            if(response.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callTableMonitoring(tenant_id);},10000);
+                drawTableMonitoring(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
             $('#modalError').modal('show');

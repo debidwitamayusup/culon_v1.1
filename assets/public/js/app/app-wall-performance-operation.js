@@ -17,6 +17,7 @@ var tembak = '2020-03-02';
 //get yesterday
 var v_params_yesterday =m + '-' + n + '-' + (o-1);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -32,8 +33,8 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        callTableCOFByChannel(v_params_yesterday,arr_tenant);
-        callTableStatusTicket(v_params_yesterday, arr_tenant);
+        callTableCOFByChannel(tokenSession, v_params_yesterday,arr_tenant);
+        callTableStatusTicket(tokenSession, v_params_yesterday, arr_tenant);
         // getTenant(v_params_today);
         // callTableCOFByChannel(v_params_today);
 
@@ -85,8 +86,11 @@ function getTenant(date, userid){
     });
 }
 
-function callTableCOFByChannel(date, search){
+function callTableCOFByChannel(token, date, search){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/SummPerformOps',
         data: {
@@ -94,14 +98,23 @@ function callTableCOFByChannel(date, search){
             search: search
         },
         success: function (r) {
-            // var response = JSON.parse(r);
             var response = r;
-            // console.log(response);
-            //hit url for interval 900000 (15 minutes)
-            $('#modalError').modal('hide');
-            setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
-            drawTableCOFByChannel(response);
-            // $("#filter-loader").fadeOut("slow");
+
+            if(response.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
+                drawTableCOFByChannel(response);
+                // $("#filter-loader").fadeOut("slow");
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
             // console.log(r);
@@ -112,8 +125,11 @@ function callTableCOFByChannel(date, search){
     });
 }
 
-function callTableStatusTicket(date, tenant_id){
+function callTableStatusTicket(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/SPOKIP',
         data: {
@@ -310,7 +326,7 @@ function drawTableCOFByChannel(response){
          // destroyChartInterval();
         var selectedTenant = $(this).children("option:selected").val();
         // callTableCOFByChannel(v_params_yesterday, selectedTenant);
-        callTableCOFByChannel(v_params_yesterday, selectedTenant);
+        callTableCOFByChannel(tokenSession, v_params_yesterday, selectedTenant);
     });
 })(jQuery);
 
