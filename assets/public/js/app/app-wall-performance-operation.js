@@ -28,11 +28,6 @@ if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
-        }else{
-            getTenant('', '');
-        }
         callTableCOFByChannel(tokenSession, v_params_yesterday,arr_tenant);
         callTableStatusTicket(tokenSession, v_params_yesterday, arr_tenant);
         // getTenant(v_params_today);
@@ -102,7 +97,7 @@ function callTableCOFByChannel(token, date, search){
 
             if(response.status != false){
                 $('#modalError').modal('hide');
-                setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
+                setTimeout(function(){callTableCOFByChannel(token, date, arr_tenant);},5000);
                 drawTableCOFByChannel(response);
                 // $("#filter-loader").fadeOut("slow");
             }else{
@@ -117,9 +112,18 @@ function callTableCOFByChannel(token, date, search){
             }
         },
         error: function (r) {
-            // console.log(r);
+            if(r.status == 404){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callTableCOFByChannel(date, arr_tenant);},5000);
+            setTimeout(function(){callTableCOFByChannel(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -142,14 +146,14 @@ function callTableStatusTicket(token, date, tenant_id){
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
             $('#modalError').modal('hide');
-            setTimeout(function(){callTableStatusTicket(date, arr_tenant);},5000);
+            setTimeout(function(){callTableStatusTicket(token, date, arr_tenant);},5000);
             drawTableStatusTicket(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTableStatusTicket(date, arr_tenant);},5000);
+            setTimeout(function(){callTableStatusTicket(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });

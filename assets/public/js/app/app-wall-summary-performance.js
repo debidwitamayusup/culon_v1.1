@@ -14,6 +14,7 @@ if (n < 10) {
 var v_params_this_year = m + '-' + n + '-' + (o);
 var arr_tenant = [];
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -24,12 +25,12 @@ if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
 $(document).ready(function(){
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        callThreeTable('', arr_tenant);
-        callPieChartSummary('', arr_tenant);
-        callBarLayanan('', arr_tenant);
+        callThreeTable(tokenSession, '', arr_tenant);
+        callPieChartSummary(tokenSession, '', arr_tenant);
+        callBarLayanan(tokenSession, '', arr_tenant);
         // callLineChart('', arr_tenant);
-        callTotalTable('', arr_tenant);
-        callTableChannel();
+        callTotalTable(tokenSession, '', arr_tenant);
+        callTableChannel(tokenSession);
         $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url
@@ -49,8 +50,11 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function callThreeTable(date, tenant_id){
+function callThreeTable(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
@@ -59,14 +63,35 @@ function callThreeTable(date, tenant_id){
         },
         success: function (r) {
             var response = r;
-            $('#modalError').modal('hide');
-            setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
-            drawTableRealTime(response);
+            if(response.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
+                drawTableRealTime(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
-            // console.log(r);
+            console.log(r);
+            if(r.responseJSON.status == false && r.responseJSON.message == "404 Not found."){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
+            setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -150,24 +175,28 @@ function drawTableRealTime(response){
 }
 
 
-function callPieChartSummary(tenant_id){
+function callPieChartSummary(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalPie',
         data:{
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            date: date
         },
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
+            setTimeout(function(){callPieChartSummary(token, date, arr_tenant);},5000);
             // console.log(response);
             drawPieChartSummary(response);  
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
+            setTimeout(function(){callPieChartSummary(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -243,8 +272,11 @@ function drawPieChartSummary(response){
     myLegendContainer.innerHTML = myChart.generateLegend();
 }
 
-function callBarLayanan(date, tenant_id){
+function callBarLayanan(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalBar',
         data: {
@@ -255,13 +287,13 @@ function callBarLayanan(date, tenant_id){
             var response = r;
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
+            setTimeout(function(){callBarLayanan(token, date, arr_tenant);},5000);
             drawBarLayanan(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
+            setTimeout(function(){callBarLayanan(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -386,8 +418,11 @@ function drawBarLayanan(response){
 }
 
 
-function callTotalTable(date, tenant_id){
+function callTotalTable(token, date, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasionalDANK',
         data: {
@@ -397,14 +432,14 @@ function callTotalTable(date, tenant_id){
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
+            setTimeout(function(){callTotalTable(token, date, arr_tenant);},5000);
             drawTotalTable(response);
             responseTotal = response;
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
+            setTimeout(function(){callTotalTable(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -433,20 +468,23 @@ function callTotalTable_old(date, tenant_id){
     });
 }
 
-function callTableChannel(){
+function callTableChannel(token){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/DataTableNasional',
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){ callTableChannel();},5000);
+            setTimeout(function(){ callTableChannel(token);},5000);
             drawTableChannel(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){ callTableChannel();},5000);
+            setTimeout(function(){ callTableChannel(token);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });

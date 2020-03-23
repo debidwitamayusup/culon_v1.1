@@ -5,11 +5,10 @@ const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        getTenant('')
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
+            getTenant(tokenSession, '', sessionParams.USERID);
         }else{
-            getTenant('', '');
+            getTenant(tokenSession, '', '');
         }
         drawTableAgentMonitoring(tokenSession, $("#layanan_name").val());
         // $('#tableOperation2').dataTable();
@@ -20,8 +19,11 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date, userid){
+function getTenant(token, date, userid){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
@@ -43,14 +45,21 @@ function getTenant(date, userid){
                 $('#layanan_name').html(html);
         },
         error: function (r) {
-            //console.log(r);
-            alert("error");
+            // console.log(r);
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         },
     });
 }
 
 function drawTableAgentMonitoring(token, tenant_id){
-    // setTimeout(function(){drawTableAgentMonitoring(tenant_id);},15000);
+    // setTimeout(function(){drawTableAgentMonitoring(token, tenant_id);},5000);
 	$('#tableWallAgent').DataTable({
         ajax: {
             beforeSend: function (xhr) {

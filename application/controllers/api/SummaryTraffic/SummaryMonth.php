@@ -48,6 +48,30 @@ class SummaryMonth extends CI_Controller {
 
 	public function lineChartPerMonth()
 	{
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 		//date("m")
 		$month = $this->input->post('month') ? $this->input->post('month') :11 ;
 		$year = $this->input->post('year') ? $this->input->post('year') :2019 ;
@@ -168,6 +192,30 @@ class SummaryMonth extends CI_Controller {
 	}
 	
 	public function getIntervalTrafficMonthly(){
+        #region :: TOKEN
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token===NULL)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => 'Lengkapi Kredensial anda.');
+
+            echo json_encode($response);
+            exit;          
+        }
+
+        $res = $this->Stc_Model->authceck($token);
+        if($res == FALSE)
+        {
+            $response = array(
+            'status'  => FALSE,
+            'message' => '404 Not found.');
+
+            echo json_encode($response);
+            exit;
+        }
+        #endregion :: TOKEN
+
 
         $month_id =   $this->security->xss_clean($this->input->post('month', true));
         $channel = $this->security->xss_clean($this->input->post('arr_channel', true));

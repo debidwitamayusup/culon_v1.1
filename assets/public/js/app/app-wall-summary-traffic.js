@@ -47,9 +47,9 @@ $(document).ready(function () {
         sessionStorage.setItem('paramsSession', 'day');
 
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
+            getTenant(tokenSession, '', sessionParams.USERID);
         }else{
-            getTenant('', '');
+            getTenant(tokenSession, '', '');
         }
         loadContent(tokenSession, params_time, v_params_this_year, 0, $('#layanan_name').val());
         
@@ -65,8 +65,11 @@ $(document).ready(function () {
 
 });
 
-function getTenant(date, userid){
+function getTenant(token, date, userid){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
@@ -88,8 +91,14 @@ function getTenant(date, userid){
                 $('#layanan_name').html(html);
         },
         error: function (r) {
-            //console.log(r);
-            alert("error");
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         },
     });
 }
@@ -248,12 +257,12 @@ function getYear(){
 
 async function loadContent(token, params, index_time, params_year, tenant_id){
     $("#filter-loader").fadeIn("slow");
-    callSummaryInteraction(tokenSession, params, index_time, params_year, tenant_id);
-    callTotalInteraction(tokenSession, params, index_time, params_year, tenant_id);
-    callTotalUniqueCustomer(tokenSession, params, index_time, params_year, tenant_id);
+    callSummaryInteraction(token, params, index_time, params_year, tenant_id);
+    callTotalInteraction(token, params, index_time, params_year, tenant_id);
+    callTotalUniqueCustomer(token, params, index_time, params_year, tenant_id);
     // callAverageCustomer(params, index_time);
-    callUniqueCustomerPerChannel(tokenSession, params, index_time, params_year, tenant_id);
-    callSummaryCaseTotAgent(tokenSession, params, index_time, params_year, tenant_id);
+    callUniqueCustomerPerChannel(token, params, index_time, params_year, tenant_id);
+    callSummaryCaseTotAgent(token, params, index_time, params_year, tenant_id);
     $("#filter-loader").fadeOut("slow");
 }
 
@@ -319,7 +328,7 @@ function callSummaryInteraction(token, params, index_time, params_year, tenant_i
             var response = JSON.parse(r);
             if(response.status != false){
                 $('#modalError').modal('hide');
-                setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
+                setTimeout(function(){callSummaryInteraction(token, params, index_time, params_year, $("#layanan_name").val());},5000);
                 drawChartAndCard(response);
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
@@ -334,7 +343,7 @@ function callSummaryInteraction(token, params, index_time, params_year, tenant_i
         },
         error: function (r) {
             $('#modalError').modal('show');
-            setTimeout(function(){callSummaryInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callSummaryInteraction(token, params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -505,7 +514,7 @@ function callTotalInteraction(token, params, index_time, params_year, tenant_id)
             var functionCommas = addCommas(commas);
             // console.log(commas);
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callTotalInteraction(token, params, index_time, params_year, $("#layanan_name").val());},5000);
             $("#total-interaction").html(functionCommas);  
             // console.log(functionCommas);
         },
@@ -513,7 +522,7 @@ function callTotalInteraction(token, params, index_time, params_year, tenant_id)
             // alert("error");
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTotalInteraction(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callTotalInteraction(token, params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -536,7 +545,7 @@ function callTotalUniqueCustomer(token, params, index_time, params_year, tenant_
             var response = JSON.parse(r);
             var commas2 = response.data.total_unique_customer;
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalUniqueCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callTotalUniqueCustomer(token, params, index_time, params_year, $("#layanan_name").val());},5000);
             var functionCommas2 = addCommas(commas2);
             // console.log(response);
             $("#unique-customer").html(functionCommas2);
@@ -545,7 +554,7 @@ function callTotalUniqueCustomer(token, params, index_time, params_year, tenant_
             // alert("error");
             // console.log(r);
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalUniqueCustomer(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callTotalUniqueCustomer(token, params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -596,7 +605,7 @@ function callUniqueCustomerPerChannel(token, params, index_time, params_year, te
         success: function (r) {
             var response = JSON.parse(r);
             $('#modalError').modal('hide');
-            setTimeout(function(){callUniqueCustomerPerChannel(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callUniqueCustomerPerChannel(token, params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(response.data[0].total_unique);
             // console.log(response.data);
             response.data.forEach(function (value, index) {
@@ -617,7 +626,7 @@ function callUniqueCustomerPerChannel(token, params, index_time, params_year, te
             // alert("error");
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callUniqueCustomerPerChannel(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callUniqueCustomerPerChannel(token, params, index_time, params_year, $("#layanan_name").val());},5000);
         },
     });
 }
@@ -636,9 +645,10 @@ function callSummaryCaseTotAgent(token, params, index_time, params_year, tenant_
             tenant_id: tenant_id
         },
         success: function (r) {
+            console.log('masup')
             var response = JSON.parse(r);
             $('#modalError').modal('hide');
-            setTimeout(function(){callSummaryCaseTotAgent(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callSummaryCaseTotAgent(token, params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(response);
             $('#msg-in').html(addCommas(response.data.msg_in));
             $('#msg-out').html(addCommas(response.data.msg_out));
@@ -648,7 +658,7 @@ function callSummaryCaseTotAgent(token, params, index_time, params_year, tenant_
         },
         error: function (r) {
             $('#modalError').modal('show');
-            setTimeout(function(){callSummaryCaseTotAgent(params, index_time, params_year, $("#layanan_name").val());},5000);
+            setTimeout(function(){callSummaryCaseTotAgent(token, params, index_time, params_year, $("#layanan_name").val());},5000);
             // console.log(r);
         },
     });
