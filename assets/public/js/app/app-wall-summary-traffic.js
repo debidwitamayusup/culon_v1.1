@@ -342,7 +342,7 @@ function callSummaryInteraction(token, params, index_time, params_year, tenant_i
 function drawChartAndCard(response){
     //destroy div piechart
     $('#pieWallSummaryTraffic').remove(); // this is my <canvas> element
-    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden"></canvas>');
+    $('#canvas-pie').append('<canvas id="pieWallSummaryTraffic" class="donutShadow overflow-hidden mb-5 mt-4"></canvas>');
 
     //destroy div card content
     $('#row-baru').remove(); // this is my <div> element
@@ -362,7 +362,7 @@ function drawChartAndCard(response){
 
     // draw chart
     var ctx = document.getElementById("pieWallSummaryTraffic");
-    ctx.height = 260;
+    ctx.height = 245;
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -406,7 +406,7 @@ function drawChartAndCard(response){
                 // console.log(chart);
                 var allData = chart.data.datasets[0].data;
                 var legendHtml = [];
-                legendHtml.push('<ul><div class="row mb-1 mt-1 ml-2">');
+                legendHtml.push('<ul><div class="row">');
                 allData.forEach(function (data, index) {
                     if (allData[index] != 0) {
                         var label = chart.data.labels[index];
