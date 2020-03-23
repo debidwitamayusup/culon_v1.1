@@ -16,6 +16,7 @@ var d = new Date();
 var params_week = d.getWeek() - 1;
 // console.log(params_week);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         // $("#filter-loader").fadeIn("slow");
@@ -24,9 +25,9 @@ $(document).ready(function () {
         }else{
             getTenant('', '');
         }
-        getSummTrafficByChannel(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
-        getTrafficInterval(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
-        drawChartDaily(params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        getSummTrafficByChannel(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        getTrafficInterval(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
+        drawChartDaily(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
         
 
         // $('#check-all-channel').prop('checked', false);
@@ -105,8 +106,11 @@ function getColorChannel(channel) {
     return color[channel];
 }
 
-function getSummTrafficByChannel(week, arr_channel, tenant_id){
+function getSummTrafficByChannel(token, week, arr_channel, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBar',
         data: {
@@ -117,11 +121,19 @@ function getSummTrafficByChannel(week, arr_channel, tenant_id){
         success: function (r) {
             $('#modalError').modal('hide');
             var response = JSON.parse(r);
-            //hit url for interval 900000 (15 minutes)
-            // setTimeout(function(){callDataPercentage(date);},900000);
-            setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000);
-            drawSummTrafficByChannel(response);
-            // fromTemplate(response);
+            if(response.status != false){
+                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000);
+                drawSummTrafficByChannel(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
             $('#modalError').modal('show');
@@ -214,8 +226,11 @@ function drawSummTrafficByChannel(response){
     });
 }
 
-function getTrafficInterval(week,arr_channel, tenant_id){
+function getTrafficInterval(token, week,arr_channel, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeekly',
         data: {
@@ -312,8 +327,11 @@ function drawTrafficInterval(response) {
     }
 }
 
-function getTableChart(week,arr_channel, tenant_id){
+function getTableChart(token, week,arr_channel, tenant_id){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
@@ -388,11 +406,14 @@ function drawTableTraffic(response) {
     // $("#filter-loader").fadeOut("slow");
 }
 
-function drawChartDaily(week,arr_channel, tenant_id){
+function drawChartDaily(token, week,arr_channel, tenant_id){
     // Horizontal Bar
     var base_url = $('#base_url').val();
 
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url + 'api/SummaryTraffic/SummaryToday/getIntervalTrafficWeeklyBarAvg',
         data: {
@@ -550,7 +571,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
         list_channel = values;
 
         // call data
-        getTrafficInterval(params_week, list_channel);
+        getTrafficInterval(tokenSession, params_week, list_channel);
     });
 
     //checked channel
@@ -571,7 +592,7 @@ function drawChartDaily(week,arr_channel, tenant_id){
         // console.log(values);
         list_channel = values;
         // call data
-        getTrafficInterval(params_week, list_channel);
+        getTrafficInterval(tokenSession, params_week, list_channel);
     });
 
     // Vertical Bar Wallboard Summary Traffic Week yang baru 
