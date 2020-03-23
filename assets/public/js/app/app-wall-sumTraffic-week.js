@@ -21,9 +21,9 @@ $(document).ready(function () {
     if(sessionParams){
         // $("#filter-loader").fadeIn("slow");
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
+            getTenant(tokenSession, '', sessionParams.USERID);
         }else{
-            getTenant('', '');
+            getTenant(tokenSession, '', '');
         }
         getSummTrafficByChannel(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
         getTrafficInterval(tokenSession, params_week,["Email", "Live Chat", "SMS", "Telegram", "Facebook", "Messenger", "Twitter", "Line", "Instagram", "Whatsapp", "Twitter DM", "ChatBot"], $("#layanan_name").val());
@@ -46,8 +46,11 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date, userid){
+function getTenant(token, date, userid){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
@@ -70,7 +73,14 @@ function getTenant(date, userid){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         },
     });
 }
@@ -122,7 +132,7 @@ function getSummTrafficByChannel(token, week, arr_channel, tenant_id){
             $('#modalError').modal('hide');
             var response = JSON.parse(r);
             if(response.status != false){
-                setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000);
+                setTimeout(function(){getSummTrafficByChannel(token, week, arr_channel, $("#layanan_name").val());},5000);
                 drawSummTrafficByChannel(response);
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
@@ -136,9 +146,19 @@ function getSummTrafficByChannel(token, week, arr_channel, tenant_id){
             }
         },
         error: function (r) {
+            if(r.status == 404){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             $('#modalError').modal('show');
             // console.log(r);
-            setTimeout(function(){getSummTrafficByChannel(week, arr_channel, $("#layanan_name").val());},5000)
+            setTimeout(function(){getSummTrafficByChannel(token, week, arr_channel, $("#layanan_name").val());},5000)
         },
     });
 }
@@ -242,7 +262,7 @@ function getTrafficInterval(token, week,arr_channel, tenant_id){
             var response = JSON.parse(r);
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){getTrafficInterval(week, arr_channel, $("#layanan_name").val());},5000);
+            setTimeout(function(){getTrafficInterval(token, week, arr_channel, $("#layanan_name").val());},5000);
             drawTrafficInterval(response);
             // drawTableTraffic(response);
             // $("#filter-loader").fadeOut("slow");
@@ -250,7 +270,7 @@ function getTrafficInterval(token, week,arr_channel, tenant_id){
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){getTrafficInterval(week, arr_channel, $("#layanan_name").val());},5000);
+            setTimeout(function(){getTrafficInterval(token, week, arr_channel, $("#layanan_name").val());},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -424,7 +444,7 @@ function drawChartDaily(token, week,arr_channel, tenant_id){
         success: function (r) {
             var response = JSON.parse(r);
             $('#modalError').modal('hide');
-            setTimeout(function(){drawChartDaily(week, arr_channel, $("#layanan_name").val());},5000);
+            setTimeout(function(){drawChartDaily(token, week, arr_channel, $("#layanan_name").val());},5000);
             
             drawTableTraffic(response);
             // $('#echartWeek').remove();
@@ -549,7 +569,7 @@ function drawChartDaily(token, week,arr_channel, tenant_id){
         },
         error: function (r) {
             $('#modalError').modal('show');
-            setTimeout(function(){drawChartDaily(week, arr_channel, $("#layanan_name").val());},5000);
+            setTimeout(function(){drawChartDaily(token, week, arr_channel, $("#layanan_name").val());},5000);
             // $("#filter-loader").fadeOut("slow");
         }
     });

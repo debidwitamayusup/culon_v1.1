@@ -65,7 +65,7 @@ function callThreeTable(token, date, tenant_id){
             var response = r;
             if(response.status != false){
                 $('#modalError').modal('hide');
-                setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
+                setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
                 drawTableRealTime(response);
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
@@ -79,9 +79,19 @@ function callThreeTable(token, date, tenant_id){
             }
         },
         error: function (r) {
-            // console.log(r);
+            console.log(r);
+            if(r.responseJSON.status == false && r.responseJSON.message == "404 Not found."){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callThreeTable(date, arr_tenant);},5000);
+            setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -179,14 +189,14 @@ function callPieChartSummary(token, date, tenant_id){
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
+            setTimeout(function(){callPieChartSummary(token, date, arr_tenant);},5000);
             // console.log(response);
             drawPieChartSummary(response);  
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callPieChartSummary(arr_tenant);},5000);
+            setTimeout(function(){callPieChartSummary(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -277,13 +287,13 @@ function callBarLayanan(token, date, tenant_id){
             var response = r;
             // console.log(response);
             $('#modalError').modal('hide');
-            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
+            setTimeout(function(){callBarLayanan(token, date, arr_tenant);},5000);
             drawBarLayanan(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callBarLayanan(date, arr_tenant);},5000);
+            setTimeout(function(){callBarLayanan(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -422,14 +432,14 @@ function callTotalTable(token, date, tenant_id){
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
+            setTimeout(function(){callTotalTable(token, date, arr_tenant);},5000);
             drawTotalTable(response);
             responseTotal = response;
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){callTotalTable(date, arr_tenant);},5000);
+            setTimeout(function(){callTotalTable(token, date, arr_tenant);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -468,13 +478,13 @@ function callTableChannel(token){
         success: function (r) {
             var response = r;
             $('#modalError').modal('hide');
-            setTimeout(function(){ callTableChannel();},5000);
+            setTimeout(function(){ callTableChannel(token);},5000);
             drawTableChannel(response);
         },
         error: function (r) {
             // console.log(r);
             $('#modalError').modal('show');
-            setTimeout(function(){ callTableChannel();},5000);
+            setTimeout(function(){ callTableChannel(token);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });

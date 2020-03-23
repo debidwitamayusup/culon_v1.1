@@ -14,20 +14,21 @@ if (n < 10) {
 //get today
 var v_params_this_year = m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
+            getTenant(tokenSession, '', sessionParams.USERID);
         }else{
-            getTenant('', '');
+            getTenant(tokenSession, '', '');
         }
 
-        callDataPercentage(n,$("#layanan_name").val(),m);
-        callIntervalTraffic(n,["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
-        callTableInterval(n,$("#layanan_name").val());
+        callDataPercentage(tokenSession, n, $("#layanan_name").val(),m);
+        callIntervalTraffic(tokenSession, n, ["Facebook", "Whatsapp", "Twitter", "Email", "Telegram", "Line", "Instagram", "Messenger", "Twitter DM", "Live Chat", "SMS", "ChatBot"], $("#layanan_name").val());
+        callTableInterval(tokenSession, n, $("#layanan_name").val());
         $("#filter-loader").fadeOut("slow");
 
         // $('#check-all-channel').prop('checked',false);
@@ -44,8 +45,11 @@ $(document).ready(function () {
     }
 });
 
-function getTenant(date, userid){
+function getTenant(token, date, userid){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
@@ -68,7 +72,14 @@ function getTenant(date, userid){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         },
     });
 }
@@ -117,10 +128,13 @@ function destroyChartPercentage(){
     $('#barWallTrafficMonthDiv').append('<canvas id="barWallTrafficMonth"></canvas>');
 }
 
-function callIntervalTraffic(month, arr_channel, tenant_id){
+function callIntervalTraffic(token, month, arr_channel, tenant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/SummaryTraffic/SummaryMonth/getIntervalTrafficMonthly',
         data: {
@@ -133,22 +147,35 @@ function callIntervalTraffic(month, arr_channel, tenant_id){
             $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callIntervalTraffic(month, arr_channel, $("#layanan_name").val() );},5000);
+            setTimeout(function(){callIntervalTraffic(token, month, arr_channel, $("#layanan_name").val() );},5000);
             drawChartToday(response);
             // drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
+            if(r.status == 404){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                } 
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
+            setTimeout(function(){callTableInterval(token, month, $("#layanan_name").val());}, 5000);
         },
     });
 }
 
-function callTableInterval(month, tennant_id){
+function callTableInterval(token, month, tennant_id){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/GetInvalMonthTable',
         data: {
@@ -160,7 +187,7 @@ function callTableInterval(month, tennant_id){
             $('#modalError').modal('hide');
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
+            setTimeout(function(){callTableInterval(token, month, $("#layanan_name").val());}, 5000);
             // drawChartToday(response);
             drawTableData(response);
             // $("#filter-loader").fadeOut("slow");
@@ -169,7 +196,7 @@ function callTableInterval(month, tennant_id){
             // console.log(r);
             // setTimeout(function(){ alert("Oops Something Went Wrong..."); }, 3000);
             $('#modalError').modal('show');
-            setTimeout(function(){callTableInterval(month, $("#layanan_name").val());}, 5000);
+            setTimeout(function(){callTableInterval(token, month, $("#layanan_name").val());}, 5000);
         },
     });
 }
@@ -243,8 +270,11 @@ function drawChartToday(response){
     }
 }
 
-function callDataPercentage(month, tenant_id, params_year){
+function callDataPercentage(token, month, tenant_id, params_year){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/GetBarchannelPerMonth',
         data: {
@@ -254,14 +284,34 @@ function callDataPercentage(month, tenant_id, params_year){
         },
         success: function (r) {
             var response = r;
-            $('#modalError').modal('hide');
-            setTimeout(function(){callDataPercentage(month, $("#layanan_name").val(),m);},5000);
-            
-            drawChartPercentageMonth(response);
+            if(response.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callDataPercentage(token, month, $("#layanan_name").val(),m);},5000);
+                drawChartPercentageMonth(response);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
         },
         error: function (r) {
+            if(r.status == 404){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                } 
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callDataPercentage(month,  $("#layanan_name").val(),m);},5000);
+            setTimeout(function(){callDataPercentage(token, month, $("#layanan_name").val(),m);},5000);
         },
     });
 }
