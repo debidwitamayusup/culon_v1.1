@@ -26,6 +26,7 @@ Class AuthModel extends CI_Model {
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
         $this->db->from('m_user');//('m_login');
         $this->db->where(array('userid' => $usr,'password' => MD5($pwd)));
+        $this->db->where('token = ""');
         $this->db->where('is_active','1');
         $this->db->where_in('userlevel', array('supervisor','admin','manager')); //('userlevel','Supervisor'); //temporary - need tenant table access previllage
         
@@ -58,10 +59,6 @@ Class AuthModel extends CI_Model {
                     'PICTURE'       => FCPATH.'public/user/'.$data->gambar
                 );
             }
-           
-
-            
-            
 
             // $this->db->where('userid', $usr);
             // $this->db->update('m_login', array('is_login' => '1'));
@@ -96,36 +93,27 @@ Class AuthModel extends CI_Model {
         return false;
     }
 
-    public function logoutapp($usr){
+    public function logoutapp($token){
         
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE');
         $this->db->from('m_user');
-        $this->db->where('userid', $usr);
-        // if($token)
-        // {
-        //     $this->db->where('token', $token);
-        // }
+        $this->db->where('token', $token);
 
         $query = $this->db->get();
 
         if($query->num_rows()==1) //where clause
         {
             $data    = $query->row();
-            $content = array(
-                'USERID'        => $data->USERID,
-                'NICK'          => $data->LONG_NAME,
-                'NAME'          => $data->LONG_NAME,
-                'PREVILAGE'     => $data->PREVILAGE,
-                'PICTURE'       => APPPATH.'public\user\default-avatar.jpg',//APPPATH.'public\user'.$data->PICTURE,
-              //  'UNIT'          => $data->UNIT_ID
-
-            );
             
-            // $this->db->set('token','');
-            // $this->db->where('token', $token);
-            // $this->db->update('m_user'));
+            $this->db->set('token','');
+            $this->db->where('token', $token);
+            $this->db->update('m_user');
 
-            return $content;
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         return FALSE;
@@ -373,7 +361,8 @@ Class AuthModel extends CI_Model {
             'phone' => $phone,
             'email' => $email,
             'password' => $haspwd,
-            'userlevel' => $previlage
+            'userlevel' => $previlage,
+            'password' => ' '
             
         ); //$this->db->insert_id();
         $ins =  $this->db->insert('m_user',$data);
