@@ -33,20 +33,18 @@ class AuthController extends REST_Controller {
     //not needed
     public function doLogout_post(){
 
-       //$token = $_SERVER['HTTP_TOKEN'];
-    
-       if(!$this->input->post('username'))
-       {
-           $this->response([
-               'status'  => FALSE,
-               'message' => 'Lengkapi Kredensial anda.'
-                   ], REST_Controller::HTTP_NOT_FOUND);
-       }
+        $token = $_SERVER['HTTP_TOKEN'];
+        if($token === NULL || $token == "")
+        {
+            $this->response([
+                'status'  => FALSE,
+                'message' => '404 Not found.'
+                    ], REST_Controller::HTTP_NOT_FOUND);
+        }
 
        $user_id = $this->security->xss_clean($this->input->post('username'));
 
-       $res = $this->module_model->logoutapp($user_id);
-       
+       $res = $this->module_model->logoutapp($token);
        if ($res) {
        // $this->session->set_userdata($res);
            $this->response([
@@ -79,10 +77,10 @@ class AuthController extends REST_Controller {
         $pwd = $this->security->xss_clean($this->input->post('password'));
         $res = $this->module_model->loginapp($user_id,$pwd);
 
-        $tok = $this->module_model->generate_token($user_id);
+        
         
         if ($res) {
-        // $this->session->set_userdata($res);
+        $tok = $this->module_model->generate_token($user_id);
             $this->response([
                 'status'  => TRUE,
                 'message' => 'Login sukses!',
