@@ -415,7 +415,7 @@ function drawChartSumService(response) {
 					}],
 					yAxes: [{
 						stacked: true,
-						maxBarThickness: 20,
+						maxBarThickness: 35,
 						gridLines:{
 							display:false,
 						},

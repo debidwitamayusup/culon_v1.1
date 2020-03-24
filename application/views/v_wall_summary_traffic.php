@@ -30,7 +30,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_user.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="unique-customer"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="unique-customer"></span>
 								<span class="count-name">Customer</span>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="total-interaction"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="total-interaction"></span>
 								<span class="count-name">Session</span>
 							</div>
 						</div>
@@ -64,7 +64,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="msg-in"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="msg-in"></span>
 								<span class="count-name">interaction</span>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 										<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
 									</div>
 								</div>
-								<span class="count-numbers num-font" id="msg-out"></span>
+								<span class="count-numbers num-font font-weight-extrabold" id="msg-out"></span>
 								<span class="count-name">interaction</span>
 							</div>
 						</div>
