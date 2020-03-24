@@ -21,6 +21,24 @@ Class AuthModel extends CI_Model {
         return FALSE;
     }
 
+    public function usercheckempt($usr){ //this check user and password, returning login data value
+
+        $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
+        $this->db->from('m_user');
+        $this->db->where('userid',$usr);
+        $this->db->where('token = ""');
+   
+        $query = $this->db->get();
+        if($query->num_rows()==1) //where clause
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
@@ -30,7 +48,6 @@ Class AuthModel extends CI_Model {
         $this->db->where('is_active','1');
         $this->db->where_in('userlevel', array('supervisor','admin','manager')); //('userlevel','Supervisor'); //temporary - need tenant table access previllage
         
-
         $query = $this->db->get();
 
         if($query->num_rows()==1) //where clause
