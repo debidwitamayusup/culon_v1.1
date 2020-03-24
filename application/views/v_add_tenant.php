@@ -30,7 +30,7 @@
                                         <label for="file-input">
                                             <i class="fa fa-2x fa-plus-circle text-red"></i>
                                         </label>
-                                        <input id="file-input" type="file">
+                                        <input id="file-input" id="file" type="file">
                                     </div>
                                 </div>
                             </div>

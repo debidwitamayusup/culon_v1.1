@@ -4,8 +4,15 @@ $(document).ready(function () {
     if(!items){
         window.location = base_url;
     }
+    // logTabsForWindows();
 });
 
+function logTabsForWindows(windowInfoArray) {
+    for (windowInfo of windowInfoArray) {
+      console.log(`Window: ${windowInfo.id}`);
+      console.log(windowInfo.tabs.map((tab) => {return tab.url}));
+    }
+  }
 // window.onunload = () => {
 //     window.localStorage.clear()
 //  }
@@ -14,9 +21,29 @@ function capitalize(input) {
     return input.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');  
 } 
 
+function onWindowClosing() {
+    if (window.event.clientX < 0 || window.event.clientY < 0) {
+        localStorage.clear();
+        $.ajax({
+            type: "POST",
+            url: base_url+'api/Auth/AuthController/doLogout'
+        });
+    }
+};
+
+function onKeydown(evt) {
+    if (evt != undefined && evt.altKey && evt.keyCode == 115) //Alt + F4 
+    {
+        $.ajax({
+            type: "POST",
+            url: base_url+'api/Auth/AuthController/doLogout'
+        });
+    }
+};
+
 //jquery
 (function ($) {
-     
+
       $('#NICKNAME_NAV').html(items.NAME)
       $('#PREVILAGE_NAV').html(items.PREVILAGE)
       $('#titleTab').html('Infomedia | '+capitalize(items.PREVILAGE))
@@ -57,4 +84,13 @@ function capitalize(input) {
         });
         
     });
+
+    browser.browserAction.onClicked.addListener((tab) => {
+        var getting = browser.windows.getAll({
+          populate: true,
+          windowTypes: ["normal"]
+        });
+        getting.then(logTabsForWindows, onError);
+      });
+
 })(jQuery);
