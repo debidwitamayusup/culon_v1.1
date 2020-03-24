@@ -201,6 +201,4 @@
 	<?php $this->load->view('temp/footer');?>
 
 	<!--Plugin -->
-	<script src="<?=base_url()?>assets/js/apexcharts.js"></script>
-	<script src="<?=base_url()?>assets/plugins/echart/echart.js"></script>
 	<script src="<?=base_url()?>assets/public/js/app/app-traffic-today.js"></script>
