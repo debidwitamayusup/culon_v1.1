@@ -4,6 +4,42 @@ $(document).ready(function () {
 
 });
 
+function doLogoutInLogin(){
+        
+    $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", tokenSessionNav);
+        },
+      type: 'post',
+      url: base_url+'api/Auth/AuthController/doLogout',
+      data: {
+          username: items.USERID
+      },
+      success: function (r) {
+          if(r.status) {
+            localStorage.removeItem('Auth-infomedia');
+            localStorage.clear();
+            window.location = base_url+'main/login';
+          } else {
+              alert(r.message)
+              $("#btn-logout").attr('disabled', false);
+              $("#btn-logout").html('Log Out')
+          }
+      },
+      fail: function (r) {
+          alert("error");
+          $("#btn-logout").attr('disabled', false);
+          $("#btn-logout").html('Log Out')
+      },
+      error: function (r) {
+          alert("error");
+          $("#btn-logout").attr('disabled', false);
+          $("#btn-logout").html('Log Out')
+      },
+    });
+    
+}
+
 //jquery
 (function ($) {
     // Get the input field
@@ -37,7 +73,7 @@ $(document).ready(function () {
                 password: password
             },
             success: function (r) {
-                if(r.status) {
+                if(r.status != false) {
                     // sessionStorage.setItem('Auth-infomedia',JSON.stringify(r.data));
                     localStorage.setItem('Auth-infomedia',JSON.stringify(r.data))
                     localStorage.setItem('Auth-token',JSON.stringify(r.token))
@@ -49,22 +85,35 @@ $(document).ready(function () {
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
                 } else {
-                    alert(r.message)
-                    $("#btn-login").attr('disabled', false);
-                    $("#btn-login").html('Sign in')
+                    if(r.message == "User has logged in!"){
+                        $('#h6ModalError').html('User already logged in');
+                        $('#pModalError').html('Please contact your admin');
+                        $('#modalError').modal('show');
+                    }else{
+                        // alert(r.message)
+                        alert("Login Failed. Please check your Username and Password")
+                        $("#btn-login").attr('disabled', false);
+                        $("#btn-login").html('Sign in')
+                    }
                 }
             },
             fail: function (r) {
-                alert("error");
+                // alert("error");
                 $("#btn-login").attr('disabled', false);
                 $("#btn-login").html('Sign in')
             },
             error: function (r) {
-                alert("error");
+                console.log(r)
+                if(r.responseJSON.message == "User has logged in!"){
+                    alert("This Username is already logged in!");
+                }else{
+                    alert("error");
+                }
                 $("#btn-login").attr('disabled', false);
                 $("#btn-login").html('Sign in')
             },
         });
     });
+    
 
 })(jQuery);

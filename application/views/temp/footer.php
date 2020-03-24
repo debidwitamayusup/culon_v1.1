@@ -26,8 +26,8 @@
 			</div>
 			<div class="modal-body text-center">
 				<i class="fa fa-5x fa-exclamation-triangle text-red mb-2"></i>
-				<h6 class="text-bold">Oops something goes wrong...</h6>
-				<p>Please check your internet connection or contact your IT support.</p>
+				<h6 class="text-bold" id="h6ModalError">Oops something goes wrong...</h6>
+				<p id="pModalError">Please check your internet connection or contact your IT support.</p>
 			</div>
 		</div>
 	</div>

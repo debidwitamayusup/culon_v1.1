@@ -76,15 +76,15 @@ class AuthController extends REST_Controller {
         $user_id = $this->security->xss_clean($this->input->post('username'));
         $pwd = $this->security->xss_clean($this->input->post('password'));
 
-        $data = $this->module_model->usercheckempt($user_id);
+        // $data = $this->module_model->usercheckempt($user_id);
 
-        if($data == false)
-        {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'User has logged in!'
-                    ], REST_Controller::HTTP_NOT_FOUND);
-        }
+        // if($data == false)
+        // {
+        //     $this->response([
+        //         'status'  => FALSE,
+        //         'message' => 'User has logged in!'
+        //             ], REST_Controller::HTTP_NOT_FOUND);
+        // }
 
         $res = $this->module_model->loginapp($user_id,$pwd);
 
