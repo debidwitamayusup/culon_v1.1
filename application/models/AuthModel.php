@@ -38,7 +38,6 @@ Class AuthModel extends CI_Model {
 
     }
 
-
     public function loginapp($usr,$pwd){ //this check user and password, returning login data value
 
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
@@ -481,6 +480,35 @@ Class AuthModel extends CI_Model {
         {
             $this->db->where('userid',$username);
             $this->db->delete('m_akses');    
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
+
+    public function removeuser($username)
+    {
+        if($username)
+        {
+            $this->db->where('userid', $username);
+            $this->db->delete('m_user');
+            if($this->db->affected_rows() == 1)
+            {
+                return true;
+            }
+            return FALSE;
+        }
+        return FALSE;
+    }
+    public function removetenant($tenantid)
+    {
+        if($tenantid)
+        {
+            $this->db->where('tenant_id', $tenantid);
+            $this->db->delete('m_tenant');
             if($this->db->affected_rows() == 1)
             {
                 return true;
