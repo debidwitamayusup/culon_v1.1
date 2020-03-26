@@ -26,9 +26,11 @@ Class AuthModel extends CI_Model {
         $this->db->select('userid AS USERID, name as LONG_NAME, userlevel AS PREVILAGE, tenant_id as TENANT_ID, image as gambar');
         $this->db->from('m_user');
         $this->db->where('userid',$usr);
-        $this->db->where('token = ""');
+        $this->db->where('(token is NULL OR token = "")');
    
+       
         $query = $this->db->get();
+
         if($query->num_rows()==1) //where clause
         {
             return true;
@@ -379,7 +381,7 @@ Class AuthModel extends CI_Model {
             'email' => $email,
             'password' => $haspwd,
             'userlevel' => $previlage,
-            'password' => ' '
+            'token' => ' '
             
         ); //$this->db->insert_id();
         $ins =  $this->db->insert('m_user',$data);
