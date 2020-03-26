@@ -650,13 +650,15 @@ class AuthController extends REST_Controller {
     }
 
     function upload_img($name){
-        
+        // 'max_width'=> 1500,
+        // 'max_height' => 1500, 
         $config = array(
                 'upload_path' => FCPATH.'public/user/',            
                 'allowed_types' => "gif|jpg|png|jpeg",
                 'max_size' => 2000,
-                'max_width'=> 1500,
-                'max_height' => 1500,  
+                'maintain_ratio' => TRUE,
+                'width'=> 150,
+                'height' => 150,  
                 'file_name' => $name,       
                 'overwrite' => TRUE
         );
