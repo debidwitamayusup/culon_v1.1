@@ -218,8 +218,7 @@ class AuthController extends REST_Controller {
         {
             $this->response([
                 'status'  => FALSE,
-                // 'message' => 'Lengkapi Kredensial anda.'
-                'message' => 'token pass kosong'
+                'message' => 'Lengkapi Kredensial anda.'
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
 
@@ -229,7 +228,7 @@ class AuthController extends REST_Controller {
         {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'pwd salah'
+                'message' => 'wrong password'
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
 
