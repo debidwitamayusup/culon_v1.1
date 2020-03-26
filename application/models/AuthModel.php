@@ -27,6 +27,7 @@ Class AuthModel extends CI_Model {
         $this->db->from('m_user');
         $this->db->where('userid',$usr);
         $this->db->where('token = ""');
+        $this->db->where('token is NULL');
    
         $query = $this->db->get();
         if($query->num_rows()==1) //where clause
@@ -378,7 +379,7 @@ Class AuthModel extends CI_Model {
             'email' => $email,
             'password' => $haspwd,
             'userlevel' => $previlage,
-            'password' => ' '
+            'token' => ' '
             
         ); //$this->db->insert_id();
         $ins =  $this->db->insert('m_user',$data);
