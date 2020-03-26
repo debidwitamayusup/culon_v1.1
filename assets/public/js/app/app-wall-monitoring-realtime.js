@@ -51,9 +51,9 @@ $(document).ready(function () {
         sessionStorage.setItem('paramsSession', 'day');
 
         if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
-            getTenant('', sessionParams.USERID);
+            getTenant(tokenSession, '', sessionParams.USERID);
         }else{
-            getTenant('', '');
+            getTenant(tokenSession, '', '');
         }
         loadContent(tokenSession, arr_tenant);
         // drawBoxMonitoring();
@@ -65,8 +65,11 @@ $(document).ready(function () {
 
 });
 
-function getTenant(date, userid){
+function getTenant(token, date, userid){
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'POST',
         url: base_url + 'api/Wallboard/WallboardController/GetTennantFilter',
         data: {
@@ -89,7 +92,15 @@ function getTenant(date, userid){
         },
         error: function (r) {
             //console.log(r);
-            alert("error");
+            // alert("error");
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            if(notif){
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }else{
+                localStorage.clear();
+                window.location = base_url+'main/login';
+            }
         },
     });
 }
@@ -268,7 +279,7 @@ function callTableMonitoring(token, tenant_id){
             
             if(response.status != false){
                 $('#modalError').modal('hide');
-                setTimeout(function(){callTableMonitoring(tenant_id);},10000);
+                setTimeout(function(){callTableMonitoring(token, tenant_id);},10000);
                 drawTableMonitoring(response);
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
@@ -282,7 +293,18 @@ function callTableMonitoring(token, tenant_id){
             }
         },
         error: function (r) {
+            // if(response.status == false && response.message == "404 Not found."){
+            //     var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            //     if(notif){
+            //         localStorage.clear();
+            //         window.location = base_url+'main/login';
+            //     }else{
+            //         localStorage.clear();
+            //         window.location = base_url+'main/login';
+            //     }
+            // }
             $('#modalError').modal('show');
+            setTimeout(function(){callTableMonitoring(token, tenant_id);},10000);
             // setTimeout(function(){loopingBoxMonitoring(tenant_id);},5000);
         },
     });

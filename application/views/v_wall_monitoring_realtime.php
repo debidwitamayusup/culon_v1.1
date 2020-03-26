@@ -14,7 +14,7 @@
         </div>
 
         <!-- first row -->
-        <div class="card overflow-hidden margin0-4" style="margin-left:1px !important;">
+        <div class="card overflow-hidden margin0-4" style="margin-left:1px !important; height:508px">
             <!-- <div class="card-header-small">
                 <h5 class="card-title-small card-pt10">Monitoring Realtime</h5>
             </div> -->

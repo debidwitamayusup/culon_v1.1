@@ -14,37 +14,62 @@ if (n < 10) {
 //get today
 var v_params_today= m + '-' + n + '-' + (o);
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
+const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
         // fromTemplate();
-        callSumNonClose();
-        drawTableSumAgentPeformSkill();
+        callSumNonClose(tokenSession);
+        drawTableSumAgentPeformSkill(tokenSession);
         $("#filter-loader").fadeOut("slow");
     }else{
         window.location = base_url
     }
 });
 
-function callSumNonClose(){
+function callSumNonClose(token){
     // console.log(+arr_channel);
     // $("#filter-loader").fadeIn("slow");
     $.ajax({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("token", token);
+        },
         type: 'post',
         url: base_url+'api/Wallboard/WallboardController/SummAllTicketStatusNC',
         success: function (r) {
             // var response = JSON.parse(r);
             // console.log(response);
             //hit url for interval 900000 (15 minutes)
-            $('#modalError').modal('hide');
-            setTimeout(function(){callSumNonClose();},5000);
-           	drawCard(r);
+            if(r.status != false){
+                $('#modalError').modal('hide');
+                setTimeout(function(){callSumNonClose(token);},5000);
+                drawCard(r);
+            }else{
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             // $("#filter-loader").fadeOut("slow");
         },
         error: function (r) {
             // console.log(r);
+            if(r.status == 404){
+                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+            }
             $('#modalError').modal('show');
-            setTimeout(function(){callSumNonClose();},5000);
+            setTimeout(function(){callSumNonClose(token);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
@@ -162,13 +187,16 @@ function drawCard(response){
         '</div>');
 }
 
-function drawTableSumAgentPeformSkill(){
+function drawTableSumAgentPeformSkill(token){
 	//hit url for every 15 minutes
-	setTimeout(function(){drawTableSumAgentPeformSkill();},900000);
+	// setTimeout(function(){drawTableSumAgentPeformSkill(token);},5000);
 	$('#tableTicket').DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", token);
+            },
             url : base_url + 'api/Wallboard/WallboardController/SummaryTicketStatusNC',
             type : 'POST'
         },

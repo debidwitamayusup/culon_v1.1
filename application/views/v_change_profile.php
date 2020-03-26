@@ -69,9 +69,9 @@
                             </div> -->
 
                             <div class="text-center mb-5 mt-5">
-                                <button type="submit" class="btn btn-sign text-white mr-5"
+                                <button type="submit" class="btn  btn-sm btn-sign text-white mr-5"
                                     style="border-radius:8px !important;" id="btn-cancel">Cancel</button>
-                                <button type="submit" class="btn btn-sign text-white ml-5"
+                                <button type="submit" class="btn btn-sm btn-sign text-white ml-5"
                                     style="border-radius:8px !important;" id="btn-submit">Submit</button>
                             </div>
                         </div>

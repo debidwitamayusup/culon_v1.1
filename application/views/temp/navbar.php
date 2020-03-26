@@ -25,7 +25,7 @@
 								</div>
 							</div> -->
 							<div class="d-sm-flex d-none">
-								<a href="#" class="nav-link icon full-screen-link">
+								<a href="javascript:remove_hash_from_url()" class="nav-link icon full-screen-link">
 									<i class="fe fe-minimize fullscreen-button"></i>
 								</a>
 

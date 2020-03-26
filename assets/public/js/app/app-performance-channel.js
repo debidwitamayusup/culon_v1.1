@@ -329,7 +329,7 @@ function drawChartSumService(response) {
 
 	if (response.status != false) {
 		var MeSeContext = document.getElementById("barService");
-		MeSeContext.height = 190;
+		MeSeContext.height = 326;
 		MeSeContext.width = 430;
 		var MeSeData = {
 			labels: [
@@ -414,6 +414,7 @@ function drawChartSumService(response) {
 					}],
 					yAxes: [{
 						stacked: true,
+						maxBarThickness: 20,
 						gridLines:{
 							display:false,
 						},
@@ -518,7 +519,7 @@ function drawChartSumChannel(response) {
 					xAxes: [{
 						stacked: true,
 						gridLines: {
-							display: false
+							display: true
 						},
 						ticks: {
 							callback: function (value) {
@@ -528,6 +529,9 @@ function drawChartSumChannel(response) {
 					}],
 					yAxes: [{
 						stacked: true,
+						gridLines: {
+							display: false
+						},
 						ticks: {
 							callback: function (value) {
 								return numberWithCommas(value);

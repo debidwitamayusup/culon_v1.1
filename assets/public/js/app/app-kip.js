@@ -276,7 +276,7 @@ function callDataSubCategory(token, params, index,year,tenant_id,channel_id){
 function drawChartSubCategory(response){
 	//destroy div row content
 	$('#content-sub-category').remove(); // this is my <div> element
-	$('#chart-no-data').remove();
+	// $('#chart-no-data').remove();
 	$('#row-sub-category').append('<div id="content-sub-category" class="row"></div>');
 	var color = [];
 	color = ['#A5B0B6', '#009E8C','#00436D'];
@@ -306,9 +306,7 @@ function drawChartSubCategory(response){
 			data.push(value.total_kip);
 		});
 		
-		if (response.data[i].length == 0){
-			$('#echart' + value).append('<div id="chart-no-data" class="text-center mt-9"><span>No Data</span></div>');
-		}else{
+		if (response.data[i].length != 0){
 			var chartdatasub = [{
 				label: label_lng,
 				data: data,
@@ -389,7 +387,11 @@ function drawChartSubCategory(response){
 						display:false
 					}
 				}
-			} );;		
+			} );
+			document.getElementById('no-data-kip').style.display = 'none';
+		}else{
+			document.getElementById('content-sub-category').style.display='none';
+			document.getElementById('no-data-kip').style.display = 'block';
 		}
 		i++;
 	});
@@ -584,7 +586,7 @@ function drawChartSubCategory_old(response) {
 function drawPieChart(response) {
 	//destroy div piechart
 	$('#pieKIP').remove(); // this is my <canvas> element
-	$('#canvas-pie').append('<canvas id="pieKIP"></canvas>');
+	$('#canvas-pie').append('<canvas id="pieKIP" class="mb-2"></canvas>');
 
 	$('#mylegend').remove();
 	$('#legend').append('<div id="legend" class="legend-con"></div>');
@@ -646,12 +648,13 @@ function drawPieChart(response) {
 					fontColor: '#000',
 					position: 'outside',
 					segment: true,
-					precision: 0
+					precision: 0,
+					fontSize: 10
 				},
 				legendCallback: function (chart, index) {
 					var allData = chart.data.datasets[0].data;
 					var legendHtml = [];
-					legendHtml.push('<ul><div id="mylegend" class="row ml-2">');
+					legendHtml.push('<ul><div id="mylegend" class="row ml-1 mt-1">');
 					allData.forEach(function (data, index) {
 						if (allData[index] != 0) {
 							var label = chart.data.labels[index];

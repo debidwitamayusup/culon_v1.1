@@ -88,11 +88,10 @@
                     <div id="legend" class="legend-con"></div>
                     <div class="card-body">
                         <div id="canvas-pie">
-                            <canvas id="pieKIP"></canvas>
+                            <canvas id="pieKIP" class="mb-2"></canvas>
                         </div>
-                        <div id="no-data" class="col-12 text-center">
-                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data"
-                                style="margin-top:0px; margin-bottom:4.3rem;">
+                        <div id="no-data" class="col-12 text-center" style="margin:90px 0px;">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
                         </div>
                     </div>
                 </div>
@@ -108,9 +107,8 @@
                         <div id="horizontalBarKIPDiv">
                             <canvas id="horizontalBarKIP" width="600" height="378"></canvas>
                         </div>
-                        <div id="no-data2" class="col-12 text-center">
-                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data"
-                                style="margin-top:0px; margin-bottom:4.3rem;">
+                        <div id="no-data2" class="col-12 text-center" style="margin:90px 0px;">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
                         </div>
                     </div>
 
@@ -141,17 +139,13 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- chart baru -->
-                        <!-- <div class="card-body">
-                                <canvas id="horizontaklBarKomplain" class="h-300"></canvas>
-                            </div> -->
+                        
                         <div id="row-sub-category">
                             <div class="row" id="content-sub-category"> </div>
                         </div>
-                        <!-- <div id="no-data3" class="col-12 text-center">
-                                <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data"
-                                    style="margin-top:0px; margin-bottom:4.3rem;">
-                            </div> -->
+                        <div id="no-data-kip" class="col-12 text-center" style="margin:25px 0px;">
+                            <img src="<?=base_url()?>assets/images/brand/no_data.png" class="img-no-data" style="margin-top:0px;">
+                        </div>
                     </div>
                 </div>
             </div>
