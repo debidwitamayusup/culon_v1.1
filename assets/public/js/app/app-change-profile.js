@@ -11,6 +11,7 @@ $(document).ready(function () {
     }else{
         window.location = base_url
     }
+    $('#previewing').attr("src", sessionParams.PICTURE);
     $('#username').prop("readonly", true);
     $('#phone_number').prop("disabled", true);
     $('#email').prop("disabled", true);

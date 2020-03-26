@@ -139,6 +139,7 @@ function capitalize(input) {
       //add id
       $('#NICKNAME_NAV2').html(items.NAME);
       $('#PREVILAGE_NAV2').html(items.PREVILAGE);   
+      $('#thumb-avatar').attr('src', items.PICTURE)
 
       // btn logout 
       $('#btn-logout').click(function(){
