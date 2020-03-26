@@ -655,9 +655,10 @@ class AuthController extends REST_Controller {
                 'upload_path' => FCPATH.'public/user/',            
                 'allowed_types' => "gif|jpg|png|jpeg",
                 'max_size' => 2000,
-                'maintain_ratio' => TRUE,
+                'maintain_ratio' => FALSE,
                 'width'=> 150,
-                'height' => 150,  
+                'height' => 150,
+                'quality' => '50%',
                 'file_name' => $name,       
                 'overwrite' => TRUE
         );
