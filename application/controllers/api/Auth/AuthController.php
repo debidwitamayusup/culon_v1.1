@@ -232,16 +232,17 @@ class AuthController extends REST_Controller {
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
 
-        $tru = $this->upload_img($username.date('y'));
-
-        if($tru==FALSE)
+        if (!empty($_FILES['image_user'])) 
         {
-            $this->response([
-                'status'  => FALSE,
-                'message' => 'image upload failed'
-                    ], REST_Controller::HTTP_NOT_FOUND);
+            $tru = $this->upload_img2($username.date('y'));
+            if($tru==FALSE)
+            {
+                $this->response([
+                    'status'  => FALSE,
+                    'message' => 'image upload failed'
+                        ], REST_Controller::HTTP_NOT_FOUND);
+            }
         }
-
         $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$tru);
 
         if ($res) {
@@ -648,32 +649,69 @@ class AuthController extends REST_Controller {
         }
     }
 
-    function upload_img($name){
-        // 'max_width'=> 1500,
-        // 'max_height' => 1500, 
-        $config = array(
-                'upload_path' => FCPATH.'public/user/',            
-                'allowed_types' => "gif|jpg|png|jpeg",
-                'max_size' => 2000,
-                'maintain_ratio' => TRUE,
-                'width'=> 150,
-                'height' => 150,  
-                'file_name' => $name,       
-                'overwrite' => TRUE
-        );
+    // function upload_img($name){
+    //     // 'max_width'=> 1500,
+    //     // 'max_height' => 1500, 
+    //     $config = array(
+    //             'upload_path' => FCPATH.'public/user/',            
+    //             'allowed_types' => "gif|jpg|png|jpeg",
+    //             'max_size' => 2000,
+    //             'maintain_ratio' => FALSE,
+    //             'width'=> 150,
+    //             'height' => 150,
+    //             'quality' => '50%',
+    //             'file_name' => $name,       
+    //             'overwrite' => TRUE
+    //     );
+
+    //     $this->load->library('upload',$config);
+    //     if($this->upload->do_upload('image_user')) 
+    //     {
+    //         $upload_data = $this->upload->data();
+    //         $file_name = $upload_data['file_name'];
+    //         return $file_name;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
+
+    function upload_img2($name)
+    {
+        $config['upload_path'] = FCPATH.'public/user/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        //$config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        $config['file_name']=$name;
 
         $this->load->library('upload',$config);
-         
-            if($this->upload->do_upload('image_user')) 
-            {
-                $upload_data = $this->upload->data();
-                $file_name = $upload_data['file_name'];
-                return $file_name;
-            }
-            else
-            {
+        $this->upload->initialize($config);
+        if(!empty($_FILES['image_user']['name'])){
+ 
+            if ($this->upload->do_upload('image_user')){
+                $gbr = $this->upload->data();
+                //Compress Image
+                $config['image_library']='gd2';
+                $config['source_image']=FCPATH.'public/user/'.$gbr['file_name'];
+                $config['create_thumb']= FALSE;
+                $config['maintain_ratio']= FALSE;
+                $config['quality']= '50%';
+                $config['width']= 300;
+                $config['height']= 300;
+                $config['new_image']= FCPATH.'public/user/'.$gbr['file_name'];
+                
+                $this->load->library('image_lib', $config);
+                if($this->image_lib->resize())
+                {
+                    return $name;
+                }
                 return false;
+               
             }
+                      
+        }else{
+            return true;
+        }
     }
 
 #Endregion
