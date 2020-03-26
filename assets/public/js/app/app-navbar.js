@@ -3,7 +3,7 @@ let items = JSON.parse(localStorage.getItem('Auth-infomedia'));
 const tokenSessionNav = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function () {
     if(!items){
-        window.location = base_url;
+        window.location = base_url + 'main/login';
     }
     // logTabsForWindows();
 });
@@ -129,7 +129,7 @@ function capitalize(input) {
         //       $("#btn-logout").html('Log Out')
         //   },
         // });
-        localStorage.clear();
+        // localStorage.clear();
         
     });
     // window.onunload = closeTabAndBrowser;
