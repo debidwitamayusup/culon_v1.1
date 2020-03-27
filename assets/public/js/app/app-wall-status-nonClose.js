@@ -189,8 +189,20 @@ function drawCard(response){
 
 function drawTableSumAgentPeformSkill(token){
 	//hit url for every 15 minutes
-	// setTimeout(function(){drawTableSumAgentPeformSkill(token);},5000);
-	$('#tableTicket').DataTable({
+    // setTimeout(function(){drawTableSumAgentPeformSkill(token);},5000);
+    $.fn.dataTable.ext.errMode = 'none';
+	$('#tableTicket').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {

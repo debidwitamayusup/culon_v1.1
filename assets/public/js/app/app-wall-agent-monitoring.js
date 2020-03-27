@@ -60,7 +60,19 @@ function getTenant(token, date, userid){
 
 function drawTableAgentMonitoring(token, tenant_id){
     // setTimeout(function(){drawTableAgentMonitoring(token, tenant_id);},5000);
-	$('#tableWallAgent').DataTable({
+    $.fn.dataTable.ext.errMode = 'none';
+	$('#tableWallAgent').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         ajax: {
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("token", token);
