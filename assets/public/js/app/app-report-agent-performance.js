@@ -123,7 +123,19 @@ function getSkill(){
 
 function drawTableAgentPerform(token, tenant_id, start_date, end_date, skill){
     $("#filter-loader").fadeIn("slow");
-	$('#reportAgentPerformance').DataTable({
+    $.fn.dataTable.ext.errMode = 'none';
+	$('#reportAgentPerformance').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         ajax: {
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("token", token);

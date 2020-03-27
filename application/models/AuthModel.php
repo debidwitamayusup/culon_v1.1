@@ -75,7 +75,7 @@ Class AuthModel extends CI_Model {
                     'NAME'          => $data->LONG_NAME,
                     'PREVILAGE'     => $data->PREVILAGE,
                     'TENANT_ID'     => $this->getTenantAccess($data->USERID),
-                    'PICTURE'       => base_url().'public/user/'.$data->gambar.".png"
+                    'PICTURE'       => base_url().'public/user/'.$data->gambar
                 );
             }
 

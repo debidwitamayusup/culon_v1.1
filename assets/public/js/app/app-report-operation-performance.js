@@ -125,7 +125,19 @@ function drawTablePerformOps_old(tenant_id, channel_id, month){
 
 function drawTablePerformOps(token, tenant_id, start_date, end_date){
     $("#filter-loader").fadeIn("slow");
-	$('#tableOperationPerform1').DataTable({
+    $.fn.dataTable.ext.errMode = 'none';
+	$('#tableOperationPerform1').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {
@@ -170,7 +182,19 @@ function drawTablePerformOps(token, tenant_id, start_date, end_date){
 
 function drawTablePerformOpsBySkill(token,tenant_id, start_date, end_date){
     $("#filter-loader").fadeIn("slow");
-	$('#tableOperationPerform2').DataTable({
+    $.fn.dataTable.ext.errMode = 'none';
+	$('#tableOperationPerform2').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         // processing : true,
         // serverSide : true,
         ajax: {

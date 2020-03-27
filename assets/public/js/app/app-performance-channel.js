@@ -293,12 +293,23 @@ function summaryChannel(token, params, index, params_year, tenant_id){
 function drawDataTable2(token, params, index, params_year, tenant_id){
 	// console.log(params);
 	$("#filter-loader").fadeIn("slow");
-
+	$.fn.dataTable.ext.errMode = 'none';
     $('#mytbody').remove();
     // $('#mytfoot').remove();
     $('#tablesPerformance').append('<tbody class="text-center" id="mytbody">');
 
-    $('#tablesPerformance').DataTable({
+    $('#tablesPerformance').on( 'error.dt', function ( e, settings, techNote, message ) {
+        if(settings.jqXHR.status == 404){
+            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                if(notif){
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }else{
+                    localStorage.clear();
+                    window.location = base_url+'main/login';
+                }
+        }
+        } ).DataTable({
         processing : true,
         ajax: {
 			beforeSend: function (xhr) {
