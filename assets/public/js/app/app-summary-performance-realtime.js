@@ -727,7 +727,7 @@ function callThreeTable(token, params, index_time, params_year, tenant_id, offse
             // var response = dataset;
             // $('#modalError').modal('hide');
             if(response.status != false){
-                drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit);
+                drawTableRealTime(token, response, params, index_time, params_year, tenant_id, offset, limit);
                 drawTotalTable(response);
             }else{
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
@@ -757,7 +757,7 @@ function callThreeTable(token, params, index_time, params_year, tenant_id, offse
     });
 }
 
-function drawTableRealTime(response, params, index_time, params_year, tenant_id, offset, limit){
+function drawTableRealTime(token, response, params, index_time, params_year, tenant_id, offset, limit){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
@@ -864,10 +864,10 @@ function drawTableRealTime(response, params, index_time, params_year, tenant_id,
     console.log(totalPage)
     console.log(offset)
     var varA = "";
-    var pagDot = pagination(offset, totalPage, params, index_time, params_year, tenant_id, limit);
+    var pagDot = pagination(token, offset, totalPage, params, index_time, params_year, tenant_id, limit);
 }
 
-function pagination(currentPage, nrOfPages, params, index_time, params_year, tenant_id, limit) {
+function pagination(token, currentPage, nrOfPages, params, index_time, params_year, tenant_id, limit) {
     var delta = 2,
         range = [],
         rangeWithDots = [],
@@ -907,18 +907,18 @@ function pagination(currentPage, nrOfPages, params, index_time, params_year, ten
     console.log('rangewithdotlength= '+rangeWithDots.length);
     for (var k = 0; k < rangeWithDots.length; k++){
         if (k != indexDot){
-            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(rangeWithDots[k]-1)+"','"+limit+"'"+')">'+rangeWithDots[k]+'</a></li>'
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(rangeWithDots[k]-1)+"','"+limit+"'"+')">'+rangeWithDots[k]+'</a></li>'
         }else{
-            varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+(indexDot-1)+"','"+nrOfPages+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+limit+"'"+')">...</a></li>'
+            varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+token+"','"+(indexDot-1)+"','"+nrOfPages+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+limit+"'"+')">...</a></li>'
         }
     }
     $("#paging").empty();
     $("#paging").append('<li class="page-item">'+
-    '<a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+0+"','"+limit+"'"+')">&laquo;</a>'+
+    '<a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+0+"','"+limit+"'"+')">&laquo;</a>'+
     '</li>'+
         varA+
         '<li class="page-item">'+
-        '<a class="page-link" href="javascript:callThreeTable('+"'"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(nrOfPages-1)+"','"+limit+"'"+')">&raquo;</a>'+
+        '<a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+params+"','"+index_time+"','"+params_year+"','"+tenant_id+"','"+(nrOfPages-1)+"','"+limit+"'"+')">&raquo;</a>'+
         '</li>'
     );
     

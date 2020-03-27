@@ -1,4 +1,4 @@
-<div class=" app-content">
+<div class=" app-content" id="app-content">
     <div class="side-app">
         <div class="page-header d-flex bd-highlight">
             <ol class="breadcrumb">

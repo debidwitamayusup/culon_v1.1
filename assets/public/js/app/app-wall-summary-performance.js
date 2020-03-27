@@ -15,6 +15,53 @@ var v_params_this_year = m + '-' + n + '-' + (o);
 var arr_tenant = [];
 const sessionParams = JSON.parse(localStorage.getItem('Auth-infomedia'));
 const tokenSession = JSON.parse(localStorage.getItem('Auth-token'));
+var dataset = {
+    "status":true,
+    "message":"Data available!",
+    "data_amt":40,
+    "data":[
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        {"TENANT_NAME":"Telkomsel","QUEUE":"21","HANDLING":"2003","MESSAGE_IN":"3622","MESSAGE_OUT":"2011","ABANDON":"1086","ART":"00:06:09","AHT":"00:02:42","AST":"00:05:18","OFFERED":"3089","SCR":58.6},
+        {"TENANT_NAME":"Pos Indonesia","QUEUE":"222","HANDLING":"726","MESSAGE_IN":"2471","MESSAGE_OUT":"1959","ABANDON":"277","ART":"00:42:54","AHT":"00:07:51","AST":"01:34:37","OFFERED":"1003","SCR":50},
+        {"TENANT_NAME":"Telkom Care","QUEUE":"11","HANDLING":"2486","MESSAGE_IN":"6392","MESSAGE_OUT":"5228","ABANDON":"1468","ART":"00:21:31","AHT":"00:06:21","AST":"00:22:59","OFFERED":"3954","SCR":58},
+        ]
+    }
 if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
     for(var i=0; i < sessionParams.TENANT_ID.length; i++){
         arr_tenant.push(sessionParams.TENANT_ID[i].TENANT_ID);
@@ -25,7 +72,7 @@ if(sessionParams.TENANT_ID[0].TENANT_ID != ''){
 $(document).ready(function(){
     if(sessionParams){
         $("#filter-loader").fadeIn("slow");
-        callThreeTable(tokenSession, '', arr_tenant);
+        callThreeTable(tokenSession, '', arr_tenant, 0, 30);
         callPieChartSummary(tokenSession, '', arr_tenant);
         callBarLayanan(tokenSession, '', arr_tenant);
         // callLineChart('', arr_tenant);
@@ -50,7 +97,7 @@ function addCommas(commas)
     return x1 + x2;
 }
 
-function callThreeTable(token, date, tenant_id){
+function callThreeTable(token, date, tenant_id, offset, limit){
     $.ajax({
         beforeSend: function (xhr) {
             xhr.setRequestHeader("token", token);
@@ -59,27 +106,29 @@ function callThreeTable(token, date, tenant_id){
         url: base_url + 'api/Wallboard/WallboardController/summaryPerformanceNasional',
         data: {
             date: date,
-            tenant_id: tenant_id
+            tenant_id: tenant_id,
+            offset: offset,
+            limit: limit
         },
         success: function (r) {
             var response = r;
-            if(response.status != false){
+            // if(response.status != false){
                 $('#modalError').modal('hide');
-                setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
-                drawTableRealTime(response);
-            }else{
-                var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
-                if(notif){
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }else{
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }
-            }
+                setTimeout(function(){callThreeTable(token, date, arr_tenant, offset, limit);},5000);
+                drawTableRealTime(token, response, date, tenant_id, offset, limit);
+            // }else{
+            //     // var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            //     // if(notif){
+            //     //     localStorage.clear();
+            //     //     window.location = base_url+'main/login';
+            //     // }else{
+            //     //     localStorage.clear();
+            //     //     window.location = base_url+'main/login';
+            //     // }
+            //     console.log(response)
+            // }
         },
         error: function (r) {
-            console.log(r);
             if(r.responseJSON.status == false && r.responseJSON.message == "404 Not found."){
                 var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
                 if(notif){
@@ -91,23 +140,33 @@ function callThreeTable(token, date, tenant_id){
                 }
             }
             $('#modalError').modal('show');
-            setTimeout(function(){callThreeTable(token, date, arr_tenant);},5000);
+            // setTimeout(function(){callThreeTable(token, date, arr_tenant, offset, limit);},5000);
             // $("#filter-loader").fadeOut("slow");
         },
     });
 }
 
-function drawTableRealTime(response){
+function drawTableRealTime(token, response, date, tenant_id, offset, limit){
     // for (var i = 0; i < 10; i++) {
     //     console.log(response.data[i].TENANT_NAME);
     // }
     // console.log(response.data[0].TENANT_NAME);
+    var s = limit;
+    var h = 0;
+    var t = 0;
+
+    if (offset == 0){
+        h = 0;
+    }else{
+        h = (s*Number(offset));
+        t = (s*Number(offset));
+    }
     $('#mytbody_1').empty();
     if (response.data.length != 0) {
         for (var i = 0; i < 15; i++) {
             if (response.data[i]){
                 $('#mytable_1').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
+                        '<td class="text-center">'+(h+1)+'</td>'+
                         '<td class="text-left" style="font-size:8px;">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
                         '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
                         '<td class="text-center">'+(response.data[i].ART || 0)+'</td>'+
@@ -123,7 +182,7 @@ function drawTableRealTime(response){
             }else{
                 $('#mytable_1').find('tbody').append(
                 '<tr>'+
-                    '<td class="text-center">'+(i+1)+'</td>'+
+                    '<td class="text-center">'+(h+1)+'</td>'+
                     '<td class="text-left"></td>'+
                     '<td class="text-right"></td>'+
                     '<td class="text-center"></td>'+
@@ -137,6 +196,7 @@ function drawTableRealTime(response){
                     '<td class="text-right"></td>'+
                 '</tr>');
             }
+            h++;
         }
     }
 
@@ -145,18 +205,23 @@ function drawTableRealTime(response){
         for (var i = 15; i < 30; i++) {
             if (response.data[i]){
                 $('#mytable_2').find('tbody').append('<tr>'+
-                        '<td class="text-center">'+(i+1)+'</td>'+
-                        '<td class="text-left" style="font-size:8px;">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
-                        '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].WAITING || 0)+'</td>'+
-                        '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
-                        '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
-                        '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
-                    '</tr>');
+                '<td class="text-center">'+(h+1)+'</td>'+
+                '<td class="text-left" style="font-size:8px;">'+(response.data[i].TENANT_NAME || 0)+'</td>'+
+                '<td class="text-right">'+(response.data[i].QUEUE || 0)+'</td>'+
+                '<td class="text-center">'+(response.data[i].ART || 0)+'</td>'+
+                '<td class="text-center">'+(response.data[i].AHT || 0)+'</td>'+
+                '<td class="text-center">'+(response.data[i].AST || 0)+'</td>'+
+                '<td class="text-right">'+(addCommas(response.data[i].MESSAGE_IN) || 0)+'</td>'+
+                '<td class="text-right">'+(addCommas(response.data[i].MESSAGE_OUT) || 0)+'</td>'+
+                '<td class="text-right">'+(addCommas(response.data[i].ABANDON) || 0)+'</td>'+
+                '<td class="text-right">'+(addCommas(response.data[i].HANDLING) || 0)+'</td>'+
+                '<td class="text-right">'+(addCommas(response.data[i].OFFERED) || 0)+'</td>'+
+                '<td class="text-right font-weight-extrabold">'+((response.data[i].SCR.toString()).replace('.',',') || 0)+'%</td>'+
+                '</tr>');
             }else{
                 $('#mytable_2').find('tbody').append(
                 '<tr>'+
-                '<td class="text-center">'+(i+1)+'</td>'+
+                '<td class="text-center">'+(h+1)+'</td>'+
                 '<td class="text-left"></td>'+
                 '<td class="text-right"></td>'+
                 '<td class="text-center"></td>'+
@@ -170,8 +235,87 @@ function drawTableRealTime(response){
                 '<td class="text-right"></td>'+
                 '</tr>');
             }
+            h++;
         }
     }
+    console.log(response)
+    var totalPage = Math.ceil(response.data_amt/limit);
+    console.log(totalPage)
+    console.log(offset)
+    var varA = "";
+    var pagDot = pagination(token, offset, totalPage, date, tenant_id, limit);
+}
+
+function pagination(token, currentPage, nrOfPages, date, tenant_id, limit) {
+    var delta = 2,
+        range = [],
+        rangeWithDots = [],
+        l,
+        varA = "",
+        indexDot;
+
+    range.push(1);  
+
+    if (nrOfPages <= 1){
+ 	return range;
+    }
+
+    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
+        if (i < nrOfPages && i > 1) {
+            range.push(i);
+        }
+    }  
+    
+    range.push(nrOfPages);
+
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    indexDot = rangeWithDots.indexOf('...');
+    console.log('indexDot='+indexDot);
+    // console.log(rangeWithDots);
+    console.log('rangewithdotlength= '+rangeWithDots.length);
+    for (var k = 0; k < rangeWithDots.length; k++){
+        if (k != indexDot){
+            varA += '<li class="page-item" id="li'+rangeWithDots[k]+'"><a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+date+"','"+tenant_id+"','"+(rangeWithDots[k]-1)+"','"+limit+"'"+')">'+rangeWithDots[k]+'</a></li>'
+        }else{
+            varA += '<li class="page-item"><a class="page-link" href="javascript:pagination('+"'"+token+"','"+(indexDot-1)+"','"+nrOfPages+"','"+date+"','"+tenant_id+"','"+limit+"'"+')">...</a></li>'
+        }
+    }
+    $("#paging").empty();
+    $("#paging").append('<li class="page-item">'+
+    '<a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+date+"','"+tenant_id+"','"+0+"','"+limit+"'"+')">&laquo;</a>'+
+    '</li>'+
+        varA+
+        '<li class="page-item">'+
+        '<a class="page-link" href="javascript:callThreeTable('+"'"+token+"','"+date+"','"+tenant_id+"','"+(nrOfPages-1)+"','"+limit+"'"+')">&raquo;</a>'+
+        '</li>'
+    );
+    
+    var forID = "#li"+(Number(currentPage)+1).toString();
+    $(""+forID+"").prop("class","page-item active");
+    $("#app-content").on('mouseover', 'a', function (e) {
+        var $link = $(this),
+            href = $link.attr('href') || $link.data("href");
+    
+        $link.off('click.chrome');
+        $link.on('click.chrome', function () {
+            window.location.href = href;
+        })
+        .attr('data-href', href) 
+        .css({ cursor: 'pointer' })
+        .removeAttr('href'); 
+    });
+    // return rangeWithDots;
 }
 
 
