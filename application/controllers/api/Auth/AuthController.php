@@ -242,6 +242,11 @@ class AuthController extends REST_Controller {
                     'message' => 'image upload failed'
                         ], REST_Controller::HTTP_NOT_FOUND);
             }
+            if($tru==TRUE)
+            {
+                $tru = NULL;
+            }
+           
         }
         $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$tru);
 
@@ -683,6 +688,7 @@ class AuthController extends REST_Controller {
         $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
         //$config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
         $config['file_name']=$name;
+        $config['overwrite']=TRUE;
 
         $this->load->library('upload',$config);
         $this->upload->initialize($config);
@@ -706,7 +712,6 @@ class AuthController extends REST_Controller {
                     return $name;
                 }
                 return false;
-               
             }
                       
         }else{
