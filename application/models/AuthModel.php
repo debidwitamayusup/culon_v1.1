@@ -62,7 +62,8 @@ Class AuthModel extends CI_Model {
                     'NAME'          => $data->LONG_NAME,
                     'PREVILAGE'     => $data->PREVILAGE,
                     'TENANT_ID'     => $this->getTenantAccess($data->USERID),
-                    'PICTURE'       => FCPATH."public/user/unknown-avatar.jpg"
+                    // 'PICTURE'       => FCPATH."public/user/unknown-avatar.jpg"
+                    'PICTURE'       => base_url()."public/user/unknown-avatar.jpg"
            
                 );
 
@@ -74,7 +75,7 @@ Class AuthModel extends CI_Model {
                     'NAME'          => $data->LONG_NAME,
                     'PREVILAGE'     => $data->PREVILAGE,
                     'TENANT_ID'     => $this->getTenantAccess($data->USERID),
-                    'PICTURE'       => FCPATH.'public/user/'.$data->gambar
+                    'PICTURE'       => base_url().'public/user/'.$data->gambar.".png"
                 );
             }
 
@@ -270,9 +271,13 @@ Class AuthModel extends CI_Model {
                 $this->db->set('image',$image);
             }  
             $this->db->where('token', $token);
-            $this->db->update('m_user');
+            // $this->db->update('m_user');
 
-            if($this->db->affected_rows() == 1)
+            // if($this->db->affected_rows() == 1)
+            // {
+            //     return true;
+            // }
+            if( $this->db->update('m_user'))
             {
                 return true;
             }
@@ -323,8 +328,9 @@ Class AuthModel extends CI_Model {
                     $id,
                     $data->ID,
                     $data->NAME,
+                    $data->GROUP,
                     $data->STATUS,
-                    $data->GROUP
+                    
                 );
                 $id++;
             }

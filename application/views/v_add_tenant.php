@@ -18,11 +18,11 @@
                     <div class="card-header-small">
                         <h5 class="card-title-small card-pt10">Add Tenant</h5>
                     </div>
-                    <div class="card-body" style="margin-top:76px;">
+                    <div class="card-body" style="margin-top:70px;">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="d-flex" style="margin-left:70px;">
-                                    <div class="text-center rounded-circle" style="background:#cdcdcd; height:120px; width:120px;">
+                                <div class="d-flex" style="margin-left:60px;">
+                                    <div class="text-center rounded-circle" style="background:#cdcdcd; width:120px;">
                                         <img src="<?=base_url()?>public/tenant/tenant.png"
                                             class="mt-7" style="width:60%">
                                     </div>
@@ -30,7 +30,7 @@
                                         <label for="file-input">
                                             <i class="fa fa-2x fa-plus-circle text-red"></i>
                                         </label>
-                                        <input id="file-input" type="file">
+                                        <input id="file-input" id="file" type="file">
                                     </div>
                                 </div>
                             </div>

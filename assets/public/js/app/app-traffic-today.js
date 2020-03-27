@@ -208,6 +208,7 @@ function drawChartToday(response){
     destroyChartInterval();
     var data = [];
     if(!response.data.series){
+       
         $('#customerChartToday').remove(); // this is my <canvas> element
         $('#chart-interval').append('<div id="chart-no-data" class="h-400"><h6>No Data</h6></div>');
     }else{
@@ -456,6 +457,7 @@ function drawChartPercentageToday(response){
                 }],
                 xAxes: [{
                     ticks: {
+                        fontSize:10,
                         min: 0, // Edit the value according to what you need
                         callback: function(value, index, values) {
                            //      if(parseInt(value) >= 1000){

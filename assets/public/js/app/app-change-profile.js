@@ -11,7 +11,8 @@ $(document).ready(function () {
     }else{
         window.location = base_url
     }
-    $('#username').prop("disabled", true);
+    $('#previewing').attr("src", sessionParams.PICTURE);
+    $('#username').prop("readonly", true);
     $('#phone_number').prop("disabled", true);
     $('#email').prop("disabled", true);
     $('#error-phone').hide();
@@ -31,7 +32,7 @@ function getDataProf(token){
         url: base_url + 'api/Auth/AuthController/getdataupdate',
         success: function (r) {
             var response = r;
-            $('#username').prop("disabled", true);
+            $('#username').prop("readonly", true);
             $('#username').val(response.data.ID);
             $('#phone_number').prop("disabled", false);
             $('#email').prop("disabled", false);
@@ -119,17 +120,87 @@ function callChangeProfile(token,username, phone_number, email, password){
         $('#modalConfirmPassword').modal({
     		backdrop: 'static',
     		keyboard: false
-		});
+        });
     });
 
-    $('#btn-confirm-password').click(function(){
+    // $('#btn-confirm-password').click(function(){
+    //     $(this).attr('disabled', true);
+    //     $(this).html('Processing...')
+    //     $('#password').attr('disabled', true);
+    //     $('#btn-cancel').attr('disabled', true);
+    //     var image_users =  new FormData($('#form')[0])
+    //     // console.log(user_image)
+    //     // callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), image_user, $('#password').val());
+    // });
+
+    $("#btn-confirm-password").on('click',(function(e) {
         $(this).attr('disabled', true);
         $(this).html('Processing...')
-        $('#password').attr('disabled', true);
+        $('#password').attr('readonly', true);
         $('#btn-cancel').attr('disabled', true);
-        callChangeProfile(tokenSession, $('#username').val(), $('#phone_number').val(), $('#email').val(), $('#password').val());
-    });
+        var formData = new FormData($('#form')[0])
+        e.preventDefault();
+        $.ajax({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("token", tokenSession);
+            },
+            url: base_url + 'api/Auth/AuthController/updateprof',
+            type: "POST",
+            data:  formData,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(r)
+                {
+                    var response = r;
+                    if(response.status == true){
+                        // alert("change profile succed");
+                        window.location = base_url+'main/v_home';
+                    }else{
+                        alert(response.message);
+                    }
+                },
+            error: function (r) {
+                $('#error-password').show();
+                $( "#passwordDiv" ).addClass( "error" );
+                $('#btn-cancel').attr('disabled', false);
+                $('#password').attr('disabled', false);
+                $("#btn-confirm-password").html('Submit')
+                // alert(r.responseJSON.message);
+                },       
+            });
+       }));
    
+       // Function to preview image after validation\
+    $("#uploadImage").change(function() {
+    
+    var file = this.files[0];
+    var imagefile = file.type;
+    var match= ["image/jpeg","image/png","image/jpg"];
+    if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+    {
+        $('#previewing').attr('src','noimage.png');
+        return false;
+        }
+    else
+    {
+        var reader = new FileReader();
+        reader.onload = imageIsLoaded;
+        reader.readAsDataURL(this.files[0]);
+    }
+    });
+
+
+    function imageIsLoaded(e) {
+    $('#previewing').attr('src', e.target.result);
+    $('#previewing').attr('width', '100px');
+    $('#previewing').attr('height', '150px');
+    };
+
+    $('#uploadImageLink').click(function(){
+        $('#uploadImage').click();
+    });
+
     $('#btn-cancel').click(function(){
         window.location = base_url+'main/v_home';
     });

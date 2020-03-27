@@ -645,6 +645,7 @@ function remove_hash_from_url()
     }
 }
 
+
 //jquery
 (function ($) {
 

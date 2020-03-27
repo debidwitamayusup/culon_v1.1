@@ -263,6 +263,11 @@ function drawChartToday(response){
                 },
                 barRoundness:  1,
                 scales: {
+                    xAxes:[{
+                        ticks:{
+                            fontSize:10
+                        }
+                    }],
                     yAxes: [ {
                         ticks: {
                             beginAtZero: true
@@ -389,6 +394,7 @@ function drawChartPercentageMonth(response){
                 }],
                 xAxes: [{
                     ticks: {
+                        fontSize:10,
                         min: 0, // Edit the value according to what you need
                         callback: function(value, index, values) {
                            //      if(parseInt(value) >= 1000){

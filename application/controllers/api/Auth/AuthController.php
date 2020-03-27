@@ -228,7 +228,7 @@ class AuthController extends REST_Controller {
         {
             $this->response([
                 'status'  => FALSE,
-                'message' => 'Kredensial Akun anda salah.'
+                'message' => 'wrong password'
                     ], REST_Controller::HTTP_NOT_FOUND);
         }
 
@@ -684,6 +684,7 @@ class AuthController extends REST_Controller {
 
     function upload_img2($name)
     {
+        $config['overwrite']=TRUE;
         $config['upload_path'] = FCPATH.'public/user/'; //path folder
         $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
         //$config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
@@ -715,7 +716,7 @@ class AuthController extends REST_Controller {
             }
                       
         }else{
-            return true;
+            return $name;
         }
     }
 

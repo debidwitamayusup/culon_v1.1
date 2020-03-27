@@ -31,8 +31,9 @@
 
 								<div class="dropdown">
 									<a class="nav-link pr-0 leading-none d-flex" data-toggle="dropdown" href="#">
-										<span class="avatar avatar-md brround cover-image"
-											data-image-src="<?=base_url()?>public/user/unknown-avatar.jpg"></span>
+										<span  class="avatar avatar-md brround cover-image"
+											><img id="thumb-avatar" src="<?=base_url()?>public/user/unknown-avatar.jpg" class="avatar avatar-md brround cover-image"></span>
+
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="drop-heading">

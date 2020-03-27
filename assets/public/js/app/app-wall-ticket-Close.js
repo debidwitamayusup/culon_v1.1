@@ -161,6 +161,9 @@ function drawStackedBar(token, params, index, params_year, tenant_id) {
                             gridLines: {
                                 display: false
                             },
+                            ticks:{
+                                fontSize:10
+                            }
                         }],
                         yAxes: [{
                             stacked: true,
@@ -251,6 +254,7 @@ function drawHorizontalChart(response) {
             scales: {
                 xAxes: [{
                     ticks: {
+                        fontSize:10,
                         min: 0, // Edit the value according to what you need
                         callback: function (value, index, values) {
                             //      if(parseInt(value) >= 1000){
