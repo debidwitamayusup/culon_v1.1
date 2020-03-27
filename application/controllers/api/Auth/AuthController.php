@@ -234,7 +234,8 @@ class AuthController extends REST_Controller {
 
         if (!empty($_FILES['image_user'])) 
         {
-            $tru = $this->upload_img2($username.date('y'));
+            $tru = $this->upload_img2($username.date('y').'.png');
+           
             if($tru==FALSE)
             {
                 $this->response([
@@ -242,8 +243,15 @@ class AuthController extends REST_Controller {
                     'message' => 'image upload failed'
                         ], REST_Controller::HTTP_NOT_FOUND);
             }
+            if($tru == $username.date('y')||$tru == TRUE)
+            {
+                $image_name = $username.date('y').'.png';
+            }
+           
         }
-        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$tru);
+        // print_r($tru);
+        // exit;
+        $res = $this->module_model->update_prof($token,$username,$email,$phone,$pass,$image_name);
 
         if ($res) {
             $this->response([
@@ -681,9 +689,12 @@ class AuthController extends REST_Controller {
     {
         $config['overwrite']=TRUE;
         $config['upload_path'] = FCPATH.'public/user/'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['allowed_types'] = 'jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
         //$config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
         $config['file_name']=$name;
+        $config['file_ext_tolower']=$name;
+        $config['overwrite']=TRUE;
+
 
         $this->load->library('upload',$config);
         $this->upload->initialize($config);
@@ -701,15 +712,16 @@ class AuthController extends REST_Controller {
                 $config['height']= 300;
                 $config['new_image']= FCPATH.'public/user/'.$gbr['file_name'];
                 
+                
+                $file_name = $gbr['file_name'];
+
                 $this->load->library('image_lib', $config);
                 if($this->image_lib->resize())
                 {
                     return $name;
                 }
                 return false;
-               
-            }
-                      
+            }         
         }else{
             return $name;
         }
