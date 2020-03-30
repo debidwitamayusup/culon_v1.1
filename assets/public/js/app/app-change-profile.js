@@ -194,7 +194,7 @@ function callChangeProfile(token,username, phone_number, email, password){
     function imageIsLoaded(e) {
     $('#previewing').attr('src', e.target.result);
     $('#previewing').attr('width', '100px');
-    $('#previewing').attr('height', '150px');
+    // $('#previewing').attr('height', '150px');
     };
 
     $('#uploadImageLink').click(function(){
