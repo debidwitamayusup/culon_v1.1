@@ -28,6 +28,9 @@ class AuthController extends REST_Controller {
         $this->load->model('OperationModel');
         $this->load->model('AuthModel','module_model');
         // $this->load->library('REST_Controller','rest');
+
+        //MY_Output's disable_cache() method
+        $this->output->disable_cache();
     }
 
     //not needed
