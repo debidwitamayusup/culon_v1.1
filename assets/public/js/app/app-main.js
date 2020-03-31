@@ -4,57 +4,43 @@ $(document).ready(function () {
 
 });
 
-function doLogoutInLogin(){
-        
-    $.ajax({
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("token", tokenSessionNav);
-        },
-      type: 'post',
-      url: base_url+'api/Auth/AuthController/doLogout',
-      data: {
-          username: items.USERID
-      },
-      success: function (r) {
-          if(r.status) {
-            localStorage.removeItem('Auth-infomedia');
-            localStorage.clear();
-            window.location = base_url+'main/login';
-          } else {
-              alert(r.message)
-              $("#btn-logout").attr('disabled', false);
-              $("#btn-logout").html('Log Out')
-          }
-      },
-      fail: function (r) {
-          alert("error");
-          $("#btn-logout").attr('disabled', false);
-          $("#btn-logout").html('Log Out')
-      },
-      error: function (r) {
-          alert("error");
-          $("#btn-logout").attr('disabled', false);
-          $("#btn-logout").html('Log Out')
-      },
-    });
-    
-}
-
 //jquery
 (function ($) {
     // Get the input field
     var input = document.getElementById("password");
-
+    var usernameInput = document.getElementById("username");
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
-      // Number 13 is the "Enter" key on the keyboard
-      if (event.keyCode === 13) {
-        // Cancel the default action, if needed
         event.preventDefault();
-        // Trigger the button element with a click
-        document.getElementById("btn-login").click();
+        if($("#username").val() == "" || $("#password").val() == ""){
+            $("#btn-login").attr("disabled", true);
+        // Number 13 is the "Enter" key on the keyboard
+        }else{
+            $("#btn-login").attr("disabled", false);
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                // Trigger the button element with a click
+                $("#btn-login").click();
+            }
       }
     });
+
+    usernameInput.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        // Number 13 is the "Enter" key on the keyboard
+        if($("#username").val() == "" || $("#password").val() == ""){
+                $("#btn-login").attr("disabled", true);
+            }else{
+                $("#btn-login").attr("disabled", false);
+                if (event.keyCode === 13) {
+                    // Cancel the default action, if needed
+                    // Trigger the button element with a click
+                    $("#btn-login").click();
+                }
+        }
+      });
+
+
 
     // btn login
     $('#btn-login').click(function(){
