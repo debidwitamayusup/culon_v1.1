@@ -111,8 +111,10 @@ function callChangeProfile(token,username, phone_number, email, password){
     var inputPassword = document.getElementById("password");
     inputPassword.addEventListener("keyup", function(event) {
         event.preventDefault();
-            $('#error-phone').hide();
-            $( "#phoneDiv" ).removeClass( "error" );
+            $('#error-password').hide();
+            $("#passwordDiv" ).removeClass("error");
+            $("#password").attr('disabled', false);
+            $('#password').attr('readonly', false);
             $("#btn-confirm-password").attr('disabled', false);
     });
 
@@ -152,10 +154,15 @@ function callChangeProfile(token,username, phone_number, email, password){
             processData:false,
             success: function(r)
                 {
+                    $('#modalConfirmPassword').modal("hide");
                     var response = r;
                     if(response.status == true){
-                        // alert("change profile succed");
-                        window.location = base_url+'main/v_home';
+                        var sukses = alert("change profile succed");
+                        if(sukses){
+                            window.location = base_url+'main/v_home';
+                        }else{
+                            window.location = base_url+'main/v_home';
+                        }
                     }else{
                         alert(response.message);
                     }

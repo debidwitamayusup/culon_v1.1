@@ -85,7 +85,7 @@ function callResetPassword(token,username){
             var response = r;
 
             if(response.status == true){
-                var answer = alert ("Reset Password Success")
+                var answer = alert ("Reset "+username+" Password Success")
                 // if (answer){
                 //     window.location = base_url+'admin/admin_user';
                 // } else{

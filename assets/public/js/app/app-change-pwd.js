@@ -88,10 +88,12 @@ function callChangePwd(password, new_password, token){
             $("#btn-submit").attr('disabled', true);
             $('#error-new-password').show();
             $( "#newPwdDiv" ).addClass( "error" );
+            $('#btn-submit').attr('disabled', true);
         }else{
             $("#btn-submit").attr('disabled', false);
             $('#error-new-password').hide();
             $( "#newPwdDiv" ).removeClass( "error" );
+            $('#btn-submit').attr('disabled', false);
         }
     });
 
@@ -102,10 +104,12 @@ function callChangePwd(password, new_password, token){
             $("#btn-submit").attr('disabled', true);
             $('#error-confirm-password').show();
             $( "#confirmPwdDiv" ).addClass( "error" );
+            $('#btn-submit').attr('disabled', true);
         }else{
             $("#btn-submit").attr('disabled', false);
             $('#error-confirm-password').hide();
             $( "#confirmPwdDiv" ).removeClass( "error" );
+            $('#btn-submit').attr('disabled', false);
         }
     });
 
