@@ -433,7 +433,7 @@ Class AuthModel extends CI_Model {
         $password = md5('infomedia');
         
         $this->db->set('password',$password);
-        $this->db->set('token','""');
+        $this->db->set('token','');
         $this->db->where('userid', $username);
         $this->db->update('m_user');
 
