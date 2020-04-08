@@ -236,22 +236,23 @@ function summaryService(token, params, index, params_year, tenant_id){
         success: function (response) {
 			// var responses = JSON.parse(response);
 
-            if(response.status != false){
+            // if(response.status != false){
 				drawChartSumService(response);
 				$("#filter-loader").fadeOut("slow");
-			}else{
-				var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
-                if(notif){
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }else{
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }
-			}
+			// }else{
+				// var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+                // if(notif){
+                //     localStorage.clear();
+                //     window.location = base_url+'main/login';
+                // }else{
+                //     localStorage.clear();
+                //     window.location = base_url+'main/login';
+				// }
+				// alert('summary service')
+			// }
 		},
 		error: function (r) {
-			// console.log(r);
+			console.log(r);
 			var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
                 if(notif){
                     localStorage.clear();
@@ -259,7 +260,8 @@ function summaryService(token, params, index, params_year, tenant_id){
                 }else{
                     localStorage.clear();
                     window.location = base_url+'main/login';
-                }
+			    }
+			// alert('summary service error')
 			$("#filter-loader").fadeOut("slow");
 		},
 	});
@@ -300,14 +302,15 @@ function drawDataTable2(token, params, index, params_year, tenant_id){
 
     $('#tablesPerformance').on( 'error.dt', function ( e, settings, techNote, message ) {
         if(settings.jqXHR.status == 404){
-            var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
-                if(notif){
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }else{
-                    localStorage.clear();
-                    window.location = base_url+'main/login';
-                }
+            // var notif = alert('Your Account Credential is Invalid. Maybe someone else has logon to your account.')
+            //     if(notif){
+            //         localStorage.clear();
+            //         window.location = base_url+'main/login';
+            //     }else{
+            //         localStorage.clear();
+            //         window.location = base_url+'main/login';
+			//     }
+			alert('datatable2')
         }
         } ).DataTable({
         processing : true,
