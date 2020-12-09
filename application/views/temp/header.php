@@ -9,10 +9,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon"
-		href="<?php echo base_url();?>assets/images/brand/logo_logos.png" />
+		href="<?php echo base_url();?>assets/images/brand/chingluh_logo.png" />
 
 	<!-- Title -->
-	<title id="titleTab">Infomedia</title>
+	<title id="titleTab">Victory Ching Luh Indonesia</title>
 
 	<!--Bootstrap.min css-->
 	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/css/bootstrap.min.css">

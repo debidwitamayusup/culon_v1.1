@@ -4,9 +4,9 @@
 	<div class="side-tab-body p-0 border-0" id="sidemenu-Tab">
 		<div class="first-sidemenu">
 			<ul class="resp-tabs-list hor_1">
-				<li data-toggle="tooltip" data-placement="right" title="Wallboard">
+				<li data-toggle="tooltip" data-placement="right" title="Layanan Karyawan">
 					<div class="side-menutext"><i class="side-menu__icon fe fe-monitor"></i>
-						<h6 class="font10 mt-1 text-white">Wallboard</h6><span class="side-menu__label">Wallboard</span>
+						<h6 class="font10 mt-1 text-white">Layanan Karyawan</h6><span class="side-menu__label">Layanan Karyawan</span>
 					</div>
 				</li>
 				<li data-toggle="tooltip" data-placement="right" title="Dashboard">
@@ -33,14 +33,11 @@
 				<div id=parent_menu>
 					<div class="row">
 						<div class="col-md-12 ">
-						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom fe fe-monitor mr-1"></i>Wallboard</h5>
+						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom fe fe-monitor mr-1"></i>Layanan Karyawan</h5>
 						<hr class="alert-dark-grey mb-1">
-							<a class="slide-item" href="<?=base_url()?>main/wall_monitoring_realtime">Monitoring
-								Realtime</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_summary_traffic">Summary Traffic
-								Today</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_summary_performance"> Summary
-								Performance Realtime</a>
+							<a class="slide-item" href="<?=base_url()?>main">Pengajuan Cuti</a>
+							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan">Approve Pengajuan Cuti</a>
+							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan_hrd">Approve Pengajuan Cuti (HRD)</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
 								Performance Operation</a>
 							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>

@@ -12,8 +12,9 @@
 					<div class="d-flex">
 						<a class="header-brand" href="#">
 							<img alt="logo" class="header-brand-img main-logo"
-								src="<?=base_url()?>assets/images/brand/white-logo.png">
+								src="<?=base_url()?>assets/images/brand/chingluh_logo.png">
 						</a>
+						<h1>Victory Ching Luh Indonesia</h1>
 						<div class="d-flex order-lg-2 ml-auto">
 							<!-- <div class="d-flex bd-highlight mr-4">
 								<div class="p-2 bd-highlight" id="layanan_name_parent">
@@ -35,7 +36,7 @@
 											><img id="thumb-avatar" src="<?=base_url()?>public/user/unknown-avatar.jpg" class="avatar avatar-md brround cover-image"></span>
 
 									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+									<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<div class="drop-heading">
 											<div class="text-left">
 												<h5 class="text-dark mb-1" id="NICKNAME_NAV"></h5>

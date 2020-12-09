@@ -77,10 +77,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '10.194.176.149',
-	'username' => 'benhil',
-	'password' => 'Qwerty!@#2019',
-	'database' => 'db_dashboard', //on4
+	// 'hostname' => '10.194.176.149',
+	// 'username' => 'benhil',
+	// 'password' => 'Qwerty!@#2019',
+	'hostname'	=> '127.0.0.1',
+	'username'	=>	'root',
+	'password' => '',
+	'database' => 'culon', //on4
 	'port' 	   =>  3306,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -4,179 +4,232 @@
 			<div class="flex-grow-1 bd-highlight">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item active" aria-current="page">
-						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Dashboard</h4>
+						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Layanan Karyawan</h4>
 					</li>
-					<li class="breadcrumb-item active mt-2" aria-current="page">Traffic by Channel</li>
+					<li class="breadcrumb-item active mt-2" aria-current="page">Form Pengajuan Cuti</li>
 				</ol>
-
-			</div>
-			<div class="bd-highlight" id="layanan_name_parent" style="margin-right: 9px; margin-bottom: 30px;">
-				<select class="form-control-sm select-tenant" style="border-color:#efecec;font-size:12px" id="layanan_name">
-
-				</select>
-			</div>
-			<div class="bd-highlight">
-				<div class="d-flex align-items-end flex-column bd-highlight">
-					<div class="bd-highlight">
-						<div class="card-options d-none d-sm-block">
-							<div class="btn-group text-center btn-sm">
-								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-day">
-									<span class="">Day</a></span>
-								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-month">
-									<span class="">Month</a></span>
-								<a href="javascript:remove_hash_from_url()" class="btn btn-light btn-sm" id="btn-year">
-									<span class="">Year</a></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- daily -->
-				<div id="filter-date" class="mt-1 mr-0" style="padding: 0px 0px 0px 3.2rem;">
-					<input id="input-date-filter" class="w-55 ml-auto form-control form-control-sm fc-datepicker"
-						placeholder="MM/DD/YYYY" type="text">
-				</div>
-
-				<!-- monthly -->
-				<div id="filter-month" class="row mt-1" style="padding: 0px 0px 0px 0.65rem;">
-					<div class="col-md-auto">
-						<select name="select-month" id="select-month" class="form-control form-control-sm">
-							<option value="1">January</option>
-							<option value="2">February</option>
-							<option value="3">March</option>
-							<option value="4">April</option>
-							<option value="5">May</option>
-							<option value="6">June</option>
-							<option value="7">July</option>
-							<option value="8">August</option>
-							<option value="9">September</option>
-							<option value="10">October</option>
-							<option value="11">November</option>
-							<option value="12">December</option>
-						</select>
-					</div>
-					<!-- Monthly -->
-					<div>
-						<select name="select-year-on-month" id="select-year-on-month"
-							class="form-control form-control-sm">
-						</select>
-					</div>
-					<!-- Monthly -->
-					<div>
-						<span class="col-auto">
-							<button class="btn btn-sm btn-dark" type="button" style="height:29px" id="btn-go"><i
-									class="fe fe-arrow-right text-white"></i></button>
-						</span>
-					</div>
-				</div>
-
-				<!-- yearly -->
-				<div id="filter-year" class="mt-1 mr-0" style="padding: 0px 0px 0px 9.87rem;">
-					<select name="select-year-only" id="select-year-only" class="form-control form-control-sm">
-					</select>
-				</div>
-				<!-- yearly -->
 			</div>
 		</div>
-		<div class="row" style="margin-right:0px; margin-left:0px;">
-			<div class="col-xl-12 col-lg-12 col-md-12">
-				<div class="row">
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Unique Customer</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_user.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font font-weight-extrabold" id="unique-customer"></span>
-								<span class="count-name">Customer</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Total Session</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_clock.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font font-weight-extrabold" id="total-interaction"></span>
-								<span class="count-name">Session</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Message In</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_envelope2.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font font-weight-extrabold" id="msg-in"></span>
-								<span class="count-name">interaction</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 text-center">
-						<div class="card-custom overflow-hidden">
-							<div class="card-header-small bg-light-3">
-								<h6 class="card-body fontPoppins font-weight-extrabold">Message Out</h6>
-							</div>
-							<div class="card-body dash2">
-								<div class="chart-circle chart-circle-sm float-left mt-2" data-value="0.67"
-									data-thickness="10" data-color="#d9dbdc99">
-									<div class="chart-circle-value fs">
-										<img src="<?=base_url()?>assets/images/ICON/img_envelope.png">
-									</div>
-								</div>
-								<span class="count-numbers num-font font-weight-extrabold" id="msg-out"></span>
-								<span class="count-name">interaction</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="margin-right:0px; margin-left:-2px;">
-			<div class="col-xl-4 col-lg-4 col-md-12">
+		<!-- FORM AWAL , cuman diedit padding nya aja -->
+		<!-- <div class="row" style="margin-right:0px; margin-left:-2px;">
+			<div class="col-xl-6 col-lg-6 col-md-12">
 				<div class="card overflow-hidden">
 					<div class="card-header-small">
-						<h5 class="card-title-small card-pt10 font-weight-extrabold">Summary Traffic</h5>
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Data Singkat Karyawan</h5>
 					</div>
-					<div class="card-pie">
-						<div class="canvas-con">
-							<div id="legend" class="legend-con"  style="margin-top:12px; margin-left:5px"></div>
-							<div class="canvas-con-inner" id="canvas-pie">
-								<canvas id="pieSummary" class="donutShadow overflow-hidden mb-5 mt-4"></canvas>
-							</div>
-						</div>
+					<div style="padding:10px 15px;">
+						<form>
+							<label>Nomor Induk Karyawan</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="id_karyawan"
+								placeholder="id karyawan" readonly>
+							<label>Nama Karyawan</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="nama_karyawan"
+								placeholder="nama" readonly>
+							<label>Tanggal Bergabung</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="tgl_gabung"
+								placeholder="nama" readonly>
+							<label>Lama Bergabung</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="lama_gabung"
+								placeholder="nama" readonly>
+							<label>ID Leader</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="id_leader"
+								placeholder="nama" readonly>
+							<label>Nama Leader</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="nama_leader"
+								placeholder="nama" readonly>
+						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-xl-8 col-lg-8 col-md-12">
+			<div class="col-xl-6 col-lg-6 col-md-12">
 				<div class="card overflow-hidden">
-					<div class="card-body" id="card-baru" style="padding:9px 5px 1px 5px;">
-						<div class="row" id="row-baru">
-						</div>
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Form Isian Pengajuan Cuti</h5>
+					</div>
+					<div style="padding: 10px 15px;">
+						<form>
+							<label>Jenis Cuti</label>
+							<div class="col-sm-auto">
+								<div class="form-group row"> -->
+									<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
+									<!-- <select class="form-control select2" id="dropdownCuti"> -->
+										<!-- <option value="1">2019</option>
+																<option value="2">2020</option> -->
+									<!-- </select>
+								</div> -->
+								<!-- <p>Sisa Cuti:</p><span><p id="sisaCuti">Sisa Cuti</p></span> -->
+								<!-- <div class="d-flex">
+									<div class="p-2">Sisa Cuti :</div>
+									<div class="p-2" id="sisaCuti">Sisa Cuti</div>
+								</div>
+							</div>
+
+							<label>Durasi Cuti</label>
+							<input class="form-control form-control-sm mb-2" type="number" id="durasiCuti"
+								placeholder="nama" min="0" max="90">
+							<label>Tanggal Mulai Cuti</label>
+							<input id="startDate" class="form-control form-control-sm fc-datepicker mb-2"
+								placeholder="MM/DD/YYYY" type="text">
+							<label>Tanggal Selesai Cuti</label>
+							<input id="endDate" class="form-control form-control-sm fc-datepicker mb-2"
+								placeholder="MM/DD/YYYY" type="text">
+							<label>ID Pekerja Pengganti</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="lama_gabung"
+								placeholder="nama" readonly>
+							<label>Pekerja Pengganti</label>
+							<input class="form-control form-control-sm mb-2" type="text" id="lama_gabung"
+								placeholder="nama">
+							<label>Alasan</label>
+							<input class="form-control form-control-sm mb-2" type="textarea" id="lama_gabung"
+								placeholder="nama">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- CLOSE FORM AWAL -->
+		
+		<!-- FORM 2 OPSI -->
+		<div class="row" style="margin-right:0px; margin-left:-2px;">
+			<div class="col-xl-6 col-lg-6 col-md-12">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Data Singkat Karyawan</h5>
+					</div>
+					<div style="padding:10px 15px;">
+						<form>
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col">
+									<label>Nomor Induk Karyawan</label>
+									<input class="form-control form-control-sm" type="text" id="id_karyawan"
+										placeholder="id karyawan" readonly>
+								</div>
+								<div class="col">
+									<label>Nama Karyawan</label>
+									<input class="form-control form-control-sm" type="text" id="nama_karyawan"
+										placeholder="nama" readonly>
+								</div>
+							</div>
+
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col">
+									<label>Tanggal Bergabung</label>
+									<input class="form-control form-control-sm" type="text" id="tgl_gabung"
+										placeholder="Tanggal Bergabung" readonly>
+								</div>
+								<div class="col">
+									<label>Lama Bergabung</label>
+									<input class="form-control form-control-sm" type="text" id="lama_gabung"
+										placeholder="Lama Bergabung" readonly>
+								</div>
+							</div>
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col">
+									<label>ID Leader</label>
+									<input class="form-control form-control-sm" type="text" id="id_leader"
+										placeholder="ID Leader" readonly>
+								</div>
+								<div class="col">
+									<label>Nama Leader</label>
+									<input class="form-control form-control-sm" type="text" id="nama_leader"
+										placeholder="Nama Leader" readonly>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-12">
+				<div class="card overflow-hidden">
+					<div class="card-header-small">
+						<h5 class="card-title-small card-pt10 font-weight-extrabold">Form Isian Pengajuan Cuti</h5>
+					</div>
+					<div style="padding: 10px 15px;">
+						<form>
+							<div class="row" style="margin-right:0px; margin-left:-2px; margin-bottom: 10px;">
+								<div class="col-3">Pengajuan Cuti Hari Ini
+								</div>
+								<div class="col-2">:<span id="pegajuanCutiHariIni"> Cuti</span><br>
+								</div>
+								<div class="col-5">Sisa Kuota Pengajuan Cuti Hari Ini
+								</div>
+								<div class="col-1">:<span id="sisaCutiHariIni"> Sisa Cuti</span><br>
+								</div>
+							</div>
+							<div class="row" style="margin-right:0px; margin-left:-2px;">
+								<div class="col-12">
+									<label>Jenis Cuti</label>
+
+									<div class="form-group row" style="margin-left: 1px; margin-right: 1px;">
+										<!-- <input type="text" class="form-control select2" id="dropdownYear"/>	 -->
+										<select class="form-control form-control-sm select2" id="dropdownCuti">
+											<!-- <option value="1">2019</option>
+															<option value="2">2020</option> -->
+										</select>
+									</div>
+								</div>
+								<!-- <div class="col"> -->
+									<!-- <label>Durasi Cuti</label>
+									<input class="form-control form-control-sm" type="number" id="durasiCuti"
+										placeholder="nama" min="0" max="90"> -->
+								<!-- </div> -->
+							</div>
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col-sm-3">Sisa Cuti
+								</div>
+								<div class="col">:<span id="sisaCuti"> Sisa Cuti</span>
+								</div>
+								<div class="col-sm-3">Durasi Cuti:
+								</div>
+								<div class="col">
+									<!-- <label>Durasi Cuti</label> -->
+									<span><input class="form-control form-control-sm" type="number" id="durasiCuti"
+								placeholder="Durasi Cuti" min="0" max="90"></span>
+								</div>
+							</div>
+
+							<!-- <p>Sisa Cuti:</p><span><p id="sisaCuti">Sisa Cuti</p></span> -->
+
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col">
+									<label>Tanggal Mulai Cuti</label>
+									<input id="startDate" class="form-control form-control-sm fc-datepicker"
+										placeholder="MM/DD/YYYY" type="text">
+								</div>
+								<div class="col">
+									<label>Tanggal Selesai Cuti</label>
+									<input id="endDate" class="form-control form-control-sm fc-datepicker"
+										placeholder="MM/DD/YYYY" type="text">
+								</div>
+							</div>
+
+							<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
+								<div class="col">
+									<label>ID Pekerja Pengganti</label>
+									<input class="form-control form-control-sm" type="text" id="idPengganti"
+										placeholder="ID Pengganti" readonly>
+								</div>
+								<div class="col">
+									<label>Pekerja Pengganti</label>
+									<div class="autocomplete">
+										<input class="form-control form-control-sm" type="text" id="namaPengganti"
+										placeholder="nama">
+									</div>
+								</div>
+							</div>
+							<label>Alasan</label>
+							<textarea class="form-control" rows="3" id="alasan"
+								placeholder="Ketikan Alasan Anda"></textarea>
+								<button class="btn btn-sm btn-primary" type="button" style="height:35px"
+                                    id="btn-submit"><i class="fas fa-download mr-2"></i>Submit</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- CLOSE FORM OPSI 2 -->
 	</div>
 	<?php $this->load->view('temp/footer');?>
 	<!-- <script src="<?= base_url()?>assets/public/js/app/api.js"></script> -->
-	<script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script>
+	<!-- <script src="<?= base_url()?>assets/public/js/app/app-summary-traffic.js"></script> -->
+	<script src="<?= base_url()?>assets/public/js/app/pengajuan-cuti.js"></script>

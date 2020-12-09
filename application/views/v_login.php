@@ -15,7 +15,7 @@
                             <div class="card-group mb-0">
                                 <div class="card-cust">
                                     <div class="text-center mb-6 mt-8">
-                                        <img src="<?php echo base_url();?>assets/images/brand/logo_infomedia.png"
+                                        <img src="<?php echo base_url();?>assets/images/brand/chingluh_logo.png"
                                             class="" style="max-width: 69% !important;" alt="">
                                     </div>
                                     <div class="card-body">
