@@ -86,7 +86,8 @@ Class CutiModel extends CI_Model {
                     'noBpjskes'     => $data->no_bpjskes,
                     'noNpwp'        => $data->no_npwp,
                     'tglGabung'     => $data->tgl_gabung,
-                    'dataLeader'    => $this->getLeaderApp($data->nomor_induk, $data->id_leader)
+                    'dataLeader'    => $this->getLeaderApp($data->nomor_induk, $data->id_leader),
+                    'dataJabatan'   => $this->getJabatanApp($data->nomor_induk)
                 );
 
                 return $content;
@@ -117,6 +118,26 @@ Class CutiModel extends CI_Model {
                     'nomorIndukLeader'        => $data->nomor_induk,
                     'namaLeader'     => $data->nama,
                     'jabatanLeader'          => $data->id_jabatan
+                );
+                return $content;
+            }
+        return FALSE;
+    }
+
+    public function getJabatanApp($nomorInduk){
+        $que = '
+        SELECT j.id_jabatann, j.nama_jabatan from jabatan j  
+        left join karyawan k on j.id_jabatann = k.id_jabatan 
+        where k.nomor_induk = "'.$nomorInduk.'"
+        ';
+        
+        $query = $this->db->query($que);
+        $data    = $query->row();
+        if($query->num_rows()==1) //where clause
+        {
+                $content = array(
+                    'idJabatan'        => $data->id_jabatann,
+                    'namaJabatan'     => $data->nama_jabatan
                 );
                 return $content;
             }
@@ -529,6 +550,64 @@ Class CutiModel extends CI_Model {
         if($query)
         {
             return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function postSimpanKaryawan($nomorInduk, $nama, $idJabatan, $tempatLahir, $idLeader,
+    $tglLahir, $jenisKelamin, $agama, $nik, $noKK, $kwn, $status, $alamatKTP, $alamatSekarang, $noTelp,
+    $noBPJSTK, $noBPJSKES, $npwp, $tglGabung){
+        $que = 'INSERT INTO karyawan (nomor_induk, nama, id_jabatan, tempat_lahir, id_leader, tgl_lahir, 
+                        jenis_kelamin, agama, nik, no_kk, kwn, status, alamat_ktp, alamat_sekarang, no_telp, 
+                        no_bpjstk, no_bpjskes, no_npwp, tgl_gabung) 
+                VALUES ("'.$nomorInduk.'", "'.$nama.'", "'.$idJabatan.'", "'.$tempatLahir.'", "'.$idLeader.'",
+                        "'.$tglLahir.'", "'.$jenisKelamin.'", "'.$agama.'", "'.$nik.'", "'.$noKK.'", "'.$kwn.'", 
+                        "'.$status.'", "'.$alamatKTP.'", "'.$alamatSekarang.'", "'.$noTelp.'", "'.$noBPJSTK.'", 
+                        "'.$noBPJSKES.'", "'.$npwp.'", "'.$tglGabung.'")';
+        $query = $this->db->query($que);
+        if($query)
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function getJabatan(){
+        $this->db->select('*');
+        $this->db->from('jabatan');
+
+        $query = $this->db->get()->result();
+        // print_r($this->db->last_query());
+        // print_r($query);
+        // exit;
+        if($query){
+            foreach($query as $data){
+                $content[] = array(
+                    'idJabatan'        => $data->id_jabatann,
+                    'namaJabatan'    => $data->nama_jabatan
+                );
+            }
+            // print_r($content);
+            // exit;
+            return $content;
+        }
+        return FALSE;
+    }
+
+    public function getLatestID(){
+        $que ='select nomor_induk from karyawan k order by nomor_induk  desc limit 1';
+        $query = $this->db->query($que);
+        $data    = $query->row();
+        // print_r($this->db->last_query());
+        // exit;
+
+        if($query->num_rows()==1) //where clause
+        {
+            $content = array(
+                'nomorInduk'        => $data->nomor_induk
+            );
+
+            return $content;
         }
         return FALSE;
     }

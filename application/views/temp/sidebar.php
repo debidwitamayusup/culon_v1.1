@@ -9,7 +9,7 @@
 						<h6 class="font10 mt-1 text-white">Layanan Karyawan</h6><span class="side-menu__label">Layanan Karyawan</span>
 					</div>
 				</li>
-				<li data-toggle="tooltip" data-placement="right" title="Dashboard">
+				<!-- <li data-toggle="tooltip" data-placement="right" title="Dashboard">
 					<div class="side-menutext"><i class="side-menu__icon fe fe-grid"></i>
 						<h6 class="font10 mt-1 text-white">Dashboard</h6><span class="side-menu__label">Dashboard</span>
 					</div>
@@ -19,7 +19,7 @@
 					<div class="side-menutext"><i class="side-menu__icon si si-layers" style="line-height:2.4"></i>
 						<h6 class="font10 mt-1 text-white">Report</h6><span class="side-menu__label">Report</span>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<div class="second-sidemenu">
@@ -38,36 +38,36 @@
 							<a class="slide-item" href="<?=base_url()?>main">Pengajuan Cuti</a>
 							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan">Approve Pengajuan Cuti</a>
 							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan_hrd">Approve Pengajuan Cuti (HRD)</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
+							<!-- <a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary
 								Performance Operation</a>
-							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a>
+							<a class="slide-item" href="<?=base_url()?>main/wall_agent_monitoring">Agent Monitoring</a> -->
 
 
 							<div class="side-menu p-0">
 								<div class="slide submenu">
-									<a class="side-menu__item" data-toggle="slide" href="#"><span
+									<!-- <a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label"> Traffic Interval</span><i
-											class="angle fa fa-angle-down"></i></a>
+											class="angle fa fa-angle-down"></i></a> -->
 									<ul class="slide-menu submenu-list" id="child_menu">
 										<!-- <li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_day" class="slide-item">Traffic
 												by Today</a>
 										</li> -->
-										<li>
+										<!-- <li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_week"
 												class="slide-item">Traffic by This Week</a>
-										</li>
-										<li>
+										</li> -->
+										<!-- <li>
 											<a href="<?=base_url()?>main/wall_sumTraffic_month"
 												class="slide-item">Traffic by This Month</a>
-										</li>
+										</li> -->
 									</ul>
 								</div>
 								<div class="slide submenu">
-									<a class="side-menu__item" data-toggle="slide" href="#"><span
+									<!-- <a class="side-menu__item" data-toggle="slide" href="#"><span
 											class="side-menu__label"> Ticket</span><i
-											class="angle fa fa-angle-down"></i></a>
-									<ul class="slide-menu submenu-list" id="child_menu">
+											class="angle fa fa-angle-down"></i></a> -->
+									<!-- <ul class="slide-menu submenu-list" id="child_menu">
 										<li>
 											<a href="<?=base_url()?>main/wall_status_nonClose"
 												class="slide-item">Summary Status Today (Non Close)</a>
@@ -77,7 +77,7 @@
 												Ticket (Close)</a>
 										</li>
 
-									</ul>
+									</ul> -->
 								</div>
 							</div>
 						</div>

@@ -95,5 +95,15 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_add_user');
 	}
+
+	function pdf(){
+		$this->load->helper('pdf_helper');
+		/*
+			---- ---- ---- ----
+			your code here
+			---- ---- ---- ----
+		*/
+		$this->load->view('pdfreport');
+	}
 	
 }

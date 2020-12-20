@@ -289,6 +289,38 @@ function getNamaPengganti(namaPengganti) {
     });
 }
 
+function cetakPengajuan(id_karyawan, namaCuti, durasiCuti, startDate, endDate, alasan){
+    window.location = base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan;
+    /*
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/ReportController/printSuratPengajuanCUti',
+        data: {
+            "id_karyawan": id_karyawan,
+            "namaCuti": namaCuti,
+            "durasiCuti": durasiCuti,
+            "startDate": startDate,
+            "endDate": endDate,
+            "alasan": alasan
+        },
+
+        success: function(r) {
+            var response = JSON.parse(r);
+            let namaArr = []
+            response.data.forEach(function (value, index) {
+				namaArr.push(value.nama+"|"+value.nomorInduk)
+			});
+            console.log(namaArr)
+            autocomplete(document.getElementById("namaPengganti"), namaArr);
+        },
+        error: function(r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+    */
+}
+
 //jquery
 (function($) {
     $('#dropdownCuti').change(function() {
@@ -381,5 +413,11 @@ function getNamaPengganti(namaPengganti) {
         $('#dropdownCuti').val()
         submitPengajuan($('#dropdownCuti').val(), $('#id_karyawan').val(), $('#alasan').val(), $('#durasiCuti').val(), 
         $('#startDate').val(), $('#endDate').val(), $('#idPengganti').val(), $('#namaPengganti').val())
+    });
+
+    $('#btn-cetak').click(function(){
+        $('#dropdownCuti').val()
+        cetakPengajuan($('#id_karyawan').val(), $('#dropdownCuti option:selected').text(), $('#durasiCuti').val(), $('#startDate').val(),
+        $('#endDate').val(), $('#alasan').val())
     });
 })(jQuery);

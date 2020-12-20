@@ -35,67 +35,148 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group error" id="idDiv">
-                                    <label for="idUser">User Name</label>
-                                    <input type="text" class="form-control box-shadow-input" id="idUser"
+                                <div class="form-group error" id="divUsernamae">
+                                    <label for="labelUsername">User Name</label>
+                                    <input type="text" class="form-control box-shadow-input" id="inputUsername"
                                         placeholder="User Name">
-                                    <div class="error-message" id="errorID">Username cannot be empty or more than 20 characters</div>
+                                    <div class="error-message" id="errorUsername">Username tidak boleh kosong atau lebih dari 20 karakter</div>
                                 </div>
-                                <div class="form-group error" id="nameDiv">
-                                    <label for="nameUser">Name</label>
-                                    <input type="text" class="form-control box-shadow-input" id="nameUser"
-                                        placeholder="Your Name">
-                                    <div class="error-message" id="errorName">Name cannot be empty or more than 50 characters</div>
+                                <div class="form-group error" id="divNamaKaryawan">
+                                    <label for="labelNamaKaryawan">Nama Karyawan</label>
+                                    <input type="text" class="form-control box-shadow-input" id="inputNamaKaryawan"
+                                        placeholder="Nama Karyawan">
+                                    <div class="error-message" id="errorNamaKaryawan">Nama tidak boleh kosong atau lebih dari 50 karakter</div>
                                 </div>
-                                <div class=" form-group">
-                                    <label for="levelUser">User Level</label>
-                                    <div class="input-group border-input-group w-100">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text border-input bg-gray text-white">
-                                                <i class="fa fa-user tx-16 lh-0 op-6"></i>
-                                            </div>
-                                        </div> <select class="form-control" id="levelUser">
-                                            <option value="manager">Manager</option>
-                                            <option value="supervisor">Supervisor</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group error" id="divNomorInduk">
+                                    <label for="labelNamaKaryawan">Nomor Induk Karyawan</label>
+                                    <input type="text" class="form-control box-shadow-input" id="inputNomorInduk"
+                                        placeholder="Nomor Induk Karyawan">
+                                    <!-- <div class="error-message" id="errorNomorInduk">Nama tidak boleh kosong atau lebih dari 50 karakter</div> -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="Tenant">Tenant</label>
+                                    <label for="labelJabatan">Jabatan</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text border-input bg-gray text-white">
                                                 <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <select class="form-control" id="tenantUser">
-                                            <option value="">All Tenant</option>
+                                        </div> <select class="form-control" id="inputJabatan">
+                                            <option value="">--</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group error" id="telpDiv">
-                                    <label for="noTelp">No. Telp</label>
+                                <label for="labelTempatLahir">Tempat Lahir Karyawan</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputTempatLahir" placeholder="Tempat Lahir Karyawan">
+
+                                <div class="form-group error" id="divNamaLeader" style="position: inherit;">
+                                    <label for="labelNamaLeader">Nama Leader</label>
+                                    <div class="autocomplete">
+                                        <input type="text" class="form-control box-shadow-input" id="inputNamaLeader"
+                                        placeholder="NamaLeader">
+                                    </div>  
+                                    <!-- <div class="error-message" id="errorNomorInduk">Nama Leader Tidak Boleh Kosong</div> -->
+                                </div>
+                                <div class="form-group error" id="divIdLeader">
+                                    <label for="labelIdLeader">ID Leader</label>
+                                    <input type="text" class="form-control box-shadow-input" id="inputIdLeader"
+                                        placeholder="ID Leader">
+                                    <!-- <div class="error-message" id="errorNomorInduk">Nama tidak boleh kosong atau lebih dari 50 karakter</div> -->
+                                </div>
+
+                                <label for="labelTglLahir">Tanggal Lahir Karyawan</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputTglLahir" placeholder="YYYY-MM-DD">
+
+                                <div class="form-group">
+                                    <label for="labelJenisKelamin">Jenis Kelamin</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text border-input bg-gray text-white">
-                                                <i class="fa fa-phone tx-16 lh-0 op-6"></i>
+                                                <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <input type="text" class="form-control form-control-sm" id="noTelp"
-                                            placeholder="62813xxxxxxx">
+                                        </div> <select class="form-control" id="inputJenisKelamin">
+                                            <option value="L">Laki-laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
                                     </div>
-                                    <div class="error-message" id="errorTelp">phone number must only numbers and has 13 max length</div>
                                 </div>
-                                <div class="form-group error" id="emailDiv">
-                                    <label for="Email">Email</label>
+
+                                <div class="form-group">
+                                    <label for="labelAgama">Agama</label>
                                     <div class="input-group border-input-group w-100">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text border-input bg-gray text-white">
-                                                <i class="fa fa-envelope tx-16 lh-0 op-6"></i>
+                                                <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
                                             </div>
-                                        </div> <input type="text" class="form-control form-control-sm" id="Email"
-                                            placeholder="example@infomedia.co.id">
+                                        </div> <select class="form-control" id="inputAgama">
+                                            <option value="Islam">Islam</option>
+                                            <option value="Protestan">Protestan</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Buddha">Buddha</option>
+                                            <option value="Khonghuchu">Khonghuchu</option>
+                                        </select>
                                     </div>
-                                    <div class="error-message" id="errorEmail">format email not valid</div>
                                 </div>
+
+                                <label for="labelnik">NIK KTP</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputNik" placeholder="NIK KTP">
+
+                                <label for="labelNoKK">No. Kartu Keluarga</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputKK" placeholder="No. Kartu Keluarga">
+
+                                <div class="form-group">
+                                    <label for="labelKewarganegaraan">Kewarganegaraan</label>
+                                    <div class="input-group border-input-group w-100">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text border-input bg-gray text-white">
+                                                <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
+                                            </div>
+                                        </div> <select class="form-control" id="inputKewarganegaraan">
+                                            <option value="">--</option>
+                                            <option value="wni">WNI</option>
+                                            <option value="wna">WNA</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="labelStatus">Status</label>
+                                    <div class="input-group border-input-group w-100">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text border-input bg-gray text-white">
+                                                <i class="fa fa-handshake tx-16 lh-0 op-6"></i>
+                                            </div>
+                                        </div> <select class="form-control" id="inputStatus">
+                                            <option value="">--</option>
+                                            <option value="kawin">Kawin</option>
+                                            <option value="belum kawin">Belum Kawin</option>
+                                            <option value="janda">Janda</option>
+                                            <option value="duda">Duda</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <label for="labelAlamatKTP">Alamat KTP</label>
+                                <input type="textarea" class="form-control box-shadow-input" id="inputAlamatKTP" placeholder="Alamat Sesuai KTP">
+
+                                <label for="labelAlamatSekarang">Alamat Sekarang</label>
+                                <input type="textarea" class="form-control box-shadow-input" id="inputAlamatSekarang" placeholder="Alamat Saat Ini">
+
+                                <label for="labelNoTelp">No. Telp</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputNoTelp" placeholder="08XXX">
+
+                                <label for="labelBPJSTK">No. BPJSTK</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputBPJSTK" placeholder="No. BPJSTK">
+
+                                <label for="labelBPJS">No. BPJS</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputBPJS" placeholder="No. BPJS">
+
+                                <label for="labelNPWP">NPWP</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputNPWP" placeholder="No. NPWP">
+
+                                <label for="labelTglGabung">Tanggal Gabung</label>
+                                <input type="text" class="form-control box-shadow-input" id="inputTglGabung" placeholder="YYYY-MM-DD">
+
                                 <div class="fPoppins float-right mt-2">
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-add">Add</button>
@@ -109,4 +190,4 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
-    <script src="<?=base_url()?>assets/public/js/app/app-admin-add-user.js"></script>
+    <script src="<?=base_url()?>assets/public/js/app/app-add-user.js"></script>

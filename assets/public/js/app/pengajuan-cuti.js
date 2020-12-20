@@ -178,6 +178,7 @@ function getNamaPengganti(namaPengganti) {
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
+    console.log(inp)
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function(e) {
@@ -207,7 +208,7 @@ function autocomplete(inp, arr) {
             b.addEventListener("click", function(e) {
                 /*insert the value for the autocomplete text field:*/
                 let panjangNama = (this.getElementsByTagName("input")[0].value).length
-                let untukSubstrStart = panjangNama - 10
+                let untukSubstrStart = panjangNama - 7
                 let namaPenggantiAssign = (this.getElementsByTagName("input")[0].value).substring(0, untukSubstrStart)
                 inp.value = namaPenggantiAssign;
                 $('#idPengganti').val((this.getElementsByTagName("input")[0].value).substring(untukSubstrStart+1, panjangNama));
