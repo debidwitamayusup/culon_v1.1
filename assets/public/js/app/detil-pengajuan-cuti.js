@@ -84,7 +84,7 @@ function getDetilCuti(idUnikCuti) {
             $('#endDate').val(response.data[0].keTanggal)
             $('#idPengganti').val(response.data[0].idPengganti)
             $('#namaPengganti').val(response.data[0].namaPengganti[0].namaPengganti)
-            $('#alasan').val(response.data[0].alasan)
+            $('#alasan').val(response.data[0].alasanPengajuan)
             $('#dropdownCuti').prop('disabled', true)
             $('#durasiCuti').prop('disabled', true)
             $('#startDate').prop('disabled', true)

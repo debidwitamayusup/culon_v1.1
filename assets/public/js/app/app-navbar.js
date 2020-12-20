@@ -8,7 +8,7 @@ $(document).ready(function () {
     if(items.idJabatan == 'ADMD'){
          var html = '';
          html += '<div class="drop-heading"> <div class="text-left"> <h5 class="text-dark mb-1" id="NICKNAME_NAV"></h5> <small class="text-muted" id="PREVILAGE_NAV"></small> </div> </div>';
-         html += '<a class="dropdown-item" href="main/add_user"><i class="dropdown-icon fe fe-settings"></i>Add User</a>';
+         html += '<a class="dropdown-item" href="add_user"><i class="dropdown-icon fe fe-settings"></i>Add User</a>';
          html += '<button class="dropdown-item" id="btn-logout"><i class="dropdown-icon fe fe-power"></i>Log Out</button>';
         // for(i=0; i<response.data.length; i++){
         //     html += '<option value='+response.data[i].TENANT_ID+'>'+response.data[i].TENANT_NAME+'</option>';
