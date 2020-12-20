@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group error" id="divUsernamae">
+                                <div class="form-group error" id="divUsername">
                                     <label for="labelUsername">User Name</label>
                                     <input type="text" class="form-control box-shadow-input" id="inputUsername"
                                         placeholder="User Name">
@@ -51,7 +51,7 @@
                                     <label for="labelNamaKaryawan">Nomor Induk Karyawan</label>
                                     <input type="text" class="form-control box-shadow-input" id="inputNomorInduk"
                                         placeholder="Nomor Induk Karyawan">
-                                    <!-- <div class="error-message" id="errorNomorInduk">Nama tidak boleh kosong atau lebih dari 50 karakter</div> -->
+                                    <div class="error-message" id="errorNomorInduk">Nomor Induk tidak boleh kosog atau lebih dari 10 karakter</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="labelJabatan">Jabatan</label>

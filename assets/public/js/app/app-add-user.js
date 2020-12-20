@@ -4,6 +4,7 @@ var base_url = $('#base_url').val();
 $(document).ready(function(){
     getJabatan();
     getLatestID();
+    $("#inputIdLeader").attr('readonly', true);
 });
 
 function getJabatan(){
@@ -119,7 +120,17 @@ function getLatestID(){
         success: function (r) {
             //dont parse response if using rest controller
             var response = JSON.parse(r);
-              
+            // console.log(response)
+            var oldNomorInduk, newNomorInduk, depan, belakang;
+            oldNomorInduk = response.data.nomorInduk;
+            newNomorInduk = oldNomorInduk.substring(0,5)+(parseInt(oldNomorInduk.substring(5,6))+1)
+            // console.log(newNomorInduk)
+            $('#inputUsername').val(newNomorInduk);
+            $('#inputNomorInduk').val(newNomorInduk);
+            $('#errorUsername').hide();
+            $( "#divUsername" ).removeClass( "error" );
+            $('#errorNomorInduk').hide();
+            $( "#divNomorInduk" ).removeClass( "error" );
         },
         error: function (r) {
             //console.log(r);
@@ -164,6 +175,8 @@ function autocomplete(inp, arr) {
                 let namaPenggantiAssign = (this.getElementsByTagName("input")[0].value).substring(0, untukSubstrStart)
                 inp.value = namaPenggantiAssign;
                 $('#inputIdLeader').val((this.getElementsByTagName("input")[0].value).substring(untukSubstrStart+1, panjangNama));
+                $('#errorIdLeader').hide();
+                $( "#divIdLeader" ).removeClass( "error" );
                 // $('#alasan').prop('disabled', false);
                 // $('#btn-submit').prop('disabled', false);
                 /*close the list of autocompleted values,
@@ -232,46 +245,95 @@ function autocomplete(inp, arr) {
   }
 
 (function ($) {
-/*
-    $('#levelUser').change(function(){
-        if($(this).val() == 'supervisor'){
-            $('#tenantUser').prop('disabled', false);
-            getTenant('','');
-        }else{
-            $('#tenantUser option[value=""]').attr('selected', 'selected');
-            $('#tenantUser').html('<option value="">All Tenant</option>');
-            $('#tenantUser').prop('disabled', true);
-        }
-    });
-
-    var inputID = document.getElementById("idUser");
-    inputID.addEventListener("keyup", function(event) {
-        event.preventDefault();
-        if($('#idUser').val() == "" ||  $('#idUser').val().length > 20){
-            $('#errorID').show();
-            $( "#idDiv" ).addClass( "error" );
-            $("#btn-add").attr('disabled', true);           
-        }else{
-            $('#errorID').hide();
-            $( "#idDiv" ).removeClass( "error" );
-            $("#btn-add").attr('disabled', false);
-        }
-    });
-
-    var inputName = document.getElementById("nameUser");
+    var inputName = document.getElementById("inputNamaKaryawan");
     inputName.addEventListener("keyup", function(event) {
         event.preventDefault();
-        if($('#nameUser').val() == "" ||  $('#nameUser').val().length > 20){
-            $('#errorName').show();
-            $( "#nameDiv" ).addClass( "error" );
+        if($('#inputNamaKaryawan').val() == "" ||  $('#inputNamaKaryawan').val().length > 20){
+            $('#errorNamaKaryawan').show();
+            $( "#divNamaKaryawan" ).addClass( "error" );
             $("#btn-add").attr('disabled', true);           
         }else{
-            $('#errorName').hide();
-            $( "#nameDiv" ).removeClass( "error" );
+            $('#errorNamaKaryawan').hide();
+            $( "#divNamaKaryawan" ).removeClass( "error" );
             $("#btn-add").attr('disabled', false);
         }
     });
 
+    var inputUsername = document.getElementById("inputUsername");
+    inputUsername.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($('#inputUsername').val() == "" ||  $('#inputUsername').val().length > 20){
+            $('#errorUsername').show();
+            $( "#divUsername" ).addClass( "error" );
+            $("#btn-add").attr('disabled', true);           
+        }else{
+            $('#errorUsername').hide();
+            $( "#divUsername" ).removeClass( "error" );
+            $("#btn-add").attr('disabled', false);
+        }
+    });
+
+    var inputNomorInduk = document.getElementById("inputNomorInduk");
+    inputNomorInduk.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($('#inputNomorInduk').val() == "" ||  $('#inputNomorInduk').val().length > 20){
+            $('#errorNomorInduk').show();
+            $( "#divNomorInduk" ).addClass( "error" );
+            $("#btn-add").attr('disabled', true);           
+        }else{
+            $('#errorNomorInduk').hide();
+            $( "#divNomorInduk" ).removeClass( "error" );
+            $("#btn-add").attr('disabled', false);
+        }
+    });
+
+    var inputNamaLeader = document.getElementById("inputNamaLeader");
+    inputNamaLeader.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if($('#inputNamaLeader').val() == "" ||  $('#inputNamaLeader').val().length > 20){
+            $('#errorNamaLeader').show();
+            $( "#divNamaLeader" ).addClass( "error" );
+            $("#btn-add").attr('disabled', true);           
+        }else{
+            $('#errorNamaLeader').hide();
+            $( "#divNamaLeader" ).removeClass( "error" );
+            $("#btn-add").attr('disabled', false);
+        }
+    });
+
+    var dates = new Date();
+    dates.setDate(dates.getDate()>0);
+    $('#inputTglLahir').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: 'now',
+        // onSelect: function(dateText) {
+        //     // console.log(this.value);
+        //     v_date = this.value;
+        //     startDate = v_date
+        //     $('#endDate').prop('disabled', false)
+            
+        // }
+    });
+
+    $('#inputTglGabung').datepicker({
+        dateFormat: 'yy-mm-dd',
+        maxDate: 'now',
+        showTodayButton: true,
+        showClear: true,
+        // minDate: 'now',
+        // onSelect: function(dateText) {
+        //     // console.log(this.value);
+        //     v_date = this.value;
+        //     startDate = v_date
+        //     $('#endDate').prop('disabled', false)
+            
+        // }
+    });
+
+    /*
     var inputEmail = document.getElementById("Email");
     inputEmail.addEventListener("keyup", function(event) {
       var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;

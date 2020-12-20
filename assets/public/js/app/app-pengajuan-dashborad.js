@@ -46,6 +46,6 @@ function drawDataTable2(nomorInduk){
 //jquery
 (function($) {
     $('#btn-tambah').click(function(){
-        window.location = base_url + '/v_pengajuan'
+        window.location = base_url + 'main/v_pengajuan'
     });
 })(jQuery);

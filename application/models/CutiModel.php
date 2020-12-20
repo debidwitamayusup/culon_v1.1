@@ -612,5 +612,14 @@ Class CutiModel extends CI_Model {
         return FALSE;
     }
 
-    
+    public function postSimpanUser($Username, $Password, $nomorInduk){
+        $que = 'INSERT INTO user (id_user, nomor_induk, password) 
+        VALUES ("'.$Username.'", "'.$Password.'", "'.$nomorInduk.'")';
+        $query = $this->db->query($que);
+        if($query)
+        {
+        return TRUE;
+        }
+        return FALSE;
+    }
 }

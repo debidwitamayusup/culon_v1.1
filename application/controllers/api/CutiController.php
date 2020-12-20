@@ -372,11 +372,20 @@ class CutiController extends CI_Controller {
 
         if($data != FALSE)
         {
-            $response = array(
-                'status'  => TRUE,
-                'message' => 'Data Berhasil Disimpan!'
-            );
-            echo json_encode($response);
+            $data2 = $this->module_model->postSimpanUser($nomorInduk, $nomorInduk, $nomorInduk);
+            if($data2 != FALSE){
+                $response = array(
+                    'status'  => TRUE,
+                    'message' => 'Data Berhasil Disimpan!'
+                );
+                echo json_encode($response);   
+            }else{
+                $response = array(
+                    'status'  => FALSE,
+                    'message' => 'Data Gagal Disimpan!'
+                );
+                echo json_encode($response);
+            }
         }else{
             $response = array(
                 'status'  => FALSE,

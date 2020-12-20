@@ -342,7 +342,7 @@ function autocomplete(inp, arr) {
             if(response.status == true){
                 alert('Anda masih memiliki cuti yang belum di approve')
             }
-            insertHistorisPengajuan(idCuti, nomorInduk, $('#dropdownCuti option:selected').text(), durasiPengajuan)
+            // insertHistorisPengajuan(idCuti, nomorInduk, $('#dropdownCuti option:selected').text(), durasiPengajuan)
             // alert(response.data.message);
         },
         error: function(r) {
@@ -398,9 +398,10 @@ function autocomplete(inp, arr) {
     inputDurasiCuti.addEventListener("keyup", function(event) {
         event.preventDefault();
         // console.log($('#durasiCuti').val())
-        // console.log(totalBalance)
+        console.log(totalBalance)
+        console.log($('#durasiCuti').val()+'>'+totalBalance)
         // $('#startDate').prop('disabled', false)
-        if ($('#durasiCuti').val() > totalBalance) {
+        if (parseInt($('#durasiCuti').val()) > parseInt(totalBalance)) {
             alert("Saldo Cuti Tidak Mencukupi!")
             $('#startDate').prop('disabled', true)
         }else if ($('#durasiCuti').val() === ''){
