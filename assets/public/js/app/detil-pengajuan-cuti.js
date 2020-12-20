@@ -24,6 +24,7 @@ $(document).ready(function() {
     // getDataKaryawan(items.userId)
     getDropdownJenisCuti(items.jenisKelamin)
     getDetilCuti(idUnikCuti)
+    getStatusApproval(idUnikCuti)
     $('#durasiCuti').prop('disabled', true)
     $('#startDate').prop('disabled', true)
     $('#endDate').prop('disabled', true)
@@ -31,6 +32,34 @@ $(document).ready(function() {
     $('#alasan').prop('disabled', true)
     $('#btn-submit').prop('disabled', true)
 });
+
+function getStatusApproval(idUnikCuti){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/CutiController/getStatusApproval',
+        data: {
+            "idUnikCuti": idUnikCuti
+        },
+
+        success: function(r) {
+            //dont parse response if using rest controller
+            var response = JSON.parse(r);
+            // var response = r;
+            console.log(response);
+            // tenants = response.data;
+            if(response.data[0].approveLeader == 'Y' && response.data[0].approveHRD == 'Y'){
+                $('#btn-cetak').prop('disabled', false)
+            }else{
+                $('#btn-cetak').prop('disabled', true)
+            }
+            
+        },
+        error: function(r) {
+            //console.log(r);
+            alert("error");
+        },
+    });
+}
 
 function getDataKaryawan(username) {
     $.ajax({

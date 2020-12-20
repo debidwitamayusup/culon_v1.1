@@ -332,7 +332,7 @@ Class CutiModel extends CI_Model {
                     $data->approve_leader,
                     $data->approve_kepala_bagian,
                     $data->approve_hrd,
-                    '<a href="main/v_detil_pengajuan?id='.$data->idUnikCuti.'">Detil</a>'
+                    '<a href="v_detil_pengajuan?id='.$data->idUnikCuti.'">Detil</a>'
                 );
                 $id++;
             }
@@ -619,6 +619,29 @@ Class CutiModel extends CI_Model {
         if($query)
         {
         return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function getStatusApproval($idUnikCuti){
+        $this->db->select('approve_leader, approve_hrd');
+        $this->db->from('pengajuan_cuti');
+        $this->db->where('id_pengajuan_cuti', $idUnikCuti);
+
+        $query = $this->db->get()->result();
+        // print_r($this->db->last_query());
+        // print_r($query);
+        // exit;
+        if($query){
+            foreach($query as $data){
+                $content[] = array(
+                    'approveLeader'        => $data->approve_leader,
+                    'approveHRD'    => $data->approve_hrd
+                );
+            }
+            // print_r($content);
+            // exit;
+            return $content;
         }
         return FALSE;
     }
