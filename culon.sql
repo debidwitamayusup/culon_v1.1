@@ -97,15 +97,17 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
   CONSTRAINT `FK_karyawan_karyawan` FOREIGN KEY (`id_leader`) REFERENCES `karyawan` (`nomor_induk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table culon.karyawan: ~5 rows (approximately)
+-- Dumping data for table culon.karyawan: ~7 rows (approximately)
 DELETE FROM `karyawan`;
 /*!40000 ALTER TABLE `karyawan` DISABLE KEYS */;
 INSERT INTO `karyawan` (`nomor_induk`, `nama`, `id_jabatan`, `tempat_lahir`, `id_leader`, `tgl_lahir`, `jenis_kelamin`, `agama`, `nik`, `no_kk`, `kwn`, `status`, `alamat_ktp`, `alamat_sekarang`, `no_telp`, `no_bpjstk`, `no_bpjskes`, `no_npwp`, `tgl_gabung`) VALUES
 	('000000', 'admin', 'ADMD', NULL, '000000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	('000001', 'Debi Dwitama Yusup', 'STA', NULL, 'KRY000002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-29'),
+	('000001', 'Debi Dwitama Yusup', 'STA', NULL, '000002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-29'),
 	('000002', 'Willi Arya Galih F', 'HRD', 'Lebak', '000001', NULL, 'L', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-11-21'),
-	('KRY000001', 'Debi Dwitama Yusup', 'STA', 'Lebak', 'KRY000002', '1996-09-08', 'L', 'Islam', '3602020809960001', '3602020809960001', 'Indonesia', 'Belum Kawin', 'Kp. Cisiih RT 02/02', 'Jl. Sawo Kebayoran Baru', '087718938581', '98798998', '98709879', '98798789', '2019-07-23'),
-	('KRY000002', 'Firlan Juliansyah', 'MNG', 'lebak', NULL, '1993-07-14', 'L', 'Islam', '3602021407930001', '3602021407930001', 'Indonesia', 'Belum Kawin', 'Kp. Cisiih', 'Bintaro', '087898798798', '9898', '98798', '9879', '2019-07-28');
+	('000003', 'Sidqy Alfarisyi', 'SPL1', 'Petukangan Selatan', '000002', '1998-12-19', 'L', 'Islam', '3602021912980001', '3602021912980001', 'wni', 'belum kawin', 'Kp. Cisiih', 'Petukangan Selatan', '0877189386765', '999999', '000000', '222222', '2019-12-19'),
+	('000004', 'Ihsan Nurfaizal', 'HRD', 'Lebak', '000002', '1994-08-12', 'L', 'Islam', '360202089098776', '360202089098776', 'wni', 'belum kawin', 'Cisiih', 'Cisiih', '087787876565', '', '', '', '2019-08-19'),
+	('000005', 'Bayay', 'STA', 'Lebak', '000001', '1997-12-08', 'L', 'Islam', '393908730928', '236928298029', 'wni', 'kawin', 'Cisiih', 'Cisiih', '98798', '998090', '98798', '98798', '2019-12-17'),
+	('000006', 'Iqbal Hakiki', 'SPL4', 'Lebak', '000004', '1998-12-13', 'L', 'Islam', '', '', '', '', '', '', '', '', '', '', '2019-12-13');
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 
 -- Dumping structure for table culon.karyawan_cuti_historis
@@ -117,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `karyawan_cuti_historis` (
   `banyak_pengajuan` int(11) DEFAULT NULL,
   `tgl_pengajuan` date DEFAULT curdate(),
   PRIMARY KEY (`idHistoris`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table culon.karyawan_cuti_historis: ~9 rows (approximately)
+-- Dumping data for table culon.karyawan_cuti_historis: ~11 rows (approximately)
 DELETE FROM `karyawan_cuti_historis`;
 /*!40000 ALTER TABLE `karyawan_cuti_historis` DISABLE KEYS */;
 INSERT INTO `karyawan_cuti_historis` (`idHistoris`, `id_cuti`, `nomor_induk`, `desc_cuti`, `banyak_pengajuan`, `tgl_pengajuan`) VALUES
@@ -133,7 +135,9 @@ INSERT INTO `karyawan_cuti_historis` (`idHistoris`, `id_cuti`, `nomor_induk`, `d
 	(8, 'd', '000001', 'Sakit', 2, '2020-11-14'),
 	(9, 'e5', '000001', 'Keluarga Pekerja (istri, suami, anak, orang tua/mertua, menantu) meninggal dunia', 1, '2020-11-14'),
 	(10, 'e4', '000001', 'Pekerja Menyunatkan / Membaptiskan Anak', 1, '2020-11-14'),
-	(11, 'e7', '000001', 'Lainnya', 2, '2020-11-14');
+	(11, 'e7', '000001', 'Lainnya', 2, '2020-11-14'),
+	(12, 'd', '000003', 'Sakit', 2, '2020-12-20'),
+	(13, 'a', '000005', 'Cuti Tahunan', 0, '2020-12-20');
 /*!40000 ALTER TABLE `karyawan_cuti_historis` ENABLE KEYS */;
 
 -- Dumping structure for table culon.karyawan_saldo_cuti
@@ -190,22 +194,17 @@ CREATE TABLE IF NOT EXISTS `pengajuan_cuti` (
   KEY `id_pengajuan_cuti` (`id_pengajuan_cuti`),
   CONSTRAINT `FK_pengajuan_cuti_culon.karyawan` FOREIGN KEY (`nomor_induk`) REFERENCES `karyawan` (`nomor_induk`),
   CONSTRAINT `FK_pengajuan_cuti_jenis_cuti` FOREIGN KEY (`id_cuti`) REFERENCES `jenis_cuti` (`id_cuti`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table culon.pengajuan_cuti: ~8 rows (approximately)
+-- Dumping data for table culon.pengajuan_cuti: ~5 rows (approximately)
 DELETE FROM `pengajuan_cuti`;
 /*!40000 ALTER TABLE `pengajuan_cuti` DISABLE KEYS */;
 INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_cuti`, `nomor_induk`, `tgl_pengajuan`, `alasan_pengajuan`, `durasi_pengajuan`, `dari_tanggal`, `dari_jam`, `ke_tanggal`, `ke_jam`, `id_karyawan_pengganti`, `nama_karyawan_pengganti`, `approve_pemohon`, `approve_pekerja_pengganti`, `approve_leader`, `approve_kepala_bagian`, `approve_hrd`, `keterangan`, `tgl_approve_leader`, `tgl_approve_pekerja_pengganti`, `tgl_approve_kepala_bagian`, `tgl_approve_hrd`, `id_approve_pengganti`, `id_approve_leader`, `id_approve_hrd`, `id_approve_kepala_bagian`) VALUES
-	(2, 'd', 'KRY000001', '2020-08-04 00:00:00', 'Demam', 2, '0000-00-00', NULL, '2020-08-05', NULL, '2020-08-06', 'Firlan Juliansyah', 'Y', 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(4, 'a', 'KRY000001', '2020-08-04 00:00:00', 'Liburan dong', 4, '0000-00-00', NULL, '2020-08-07', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(6, 'e1', 'KRY000001', '2020-08-04 00:00:00', 'Lejuss', 3, '0000-00-00', NULL, '2020-08-07', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(10, 'e5', 'KRY000001', '2020-08-04 00:00:00', 'Berduka', 2, '2020-08-05', NULL, '2020-08-06', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(11, 'a', 'KRY000001', '2020-08-12 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 'N', 'N', 'N', NULL, '2020-11-21', NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(14, 'e1', 'KRY000001', '2020-08-13 00:00:00', '', 3, '2020-08-14', NULL, '2020-08-14', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
 	(15, 'd', '000001', '2020-11-14 00:00:00', 'ya pengen weeeh', 2, '2020-11-17', NULL, '2020-11-18', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'Y', 'N', 'Y', NULL, '2020-11-21', NULL, NULL, '2020-11-21', NULL, 'KRY000002', '000002', NULL),
 	(16, 'e5', '000001', '2020-11-14 00:00:00', 'mertua meninggal dong', 1, '2020-11-19', NULL, '2020-11-19', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
 	(17, 'e4', '000001', '2020-11-14 00:00:00', 'anak saya di baptis dong', 1, '2020-11-26', NULL, '2020-11-26', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL),
-	(18, 'e7', '000001', '2020-11-14 12:44:42', 'kepo deh loo', 2, '2020-11-23', NULL, '2020-11-24', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'N', 'N', 'N', NULL, NULL, NULL, NULL, '0000-00-00', NULL, NULL, NULL, NULL);
+	(18, 'e7', '000001', '2020-11-14 12:44:42', 'kepo deh loo', 2, '2020-11-23', NULL, '2020-11-24', NULL, 'KRY000002', 'Firlan Juliansyah', 'Y', 'N', 'Y', 'N', 'N', NULL, '2020-12-19', NULL, NULL, '0000-00-00', NULL, 'KRY000002', NULL, NULL),
+	(19, 'd', '000003', '2020-12-20 20:12:41', 'aku sakit mas', 2, '2020-12-21', NULL, '2020-12-22', NULL, '000001', 'Debi Dwitama Yusup', 'Y', 'N', 'N', 'N', 'Y', NULL, '2020-12-20', NULL, NULL, '2020-12-20', NULL, '000002', '000004', NULL);
 /*!40000 ALTER TABLE `pengajuan_cuti` ENABLE KEYS */;
 
 -- Dumping structure for table culon.user
@@ -220,13 +219,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `FK_user_karyawan` FOREIGN KEY (`nomor_induk`) REFERENCES `karyawan` (`nomor_induk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table culon.user: ~1 rows (approximately)
+-- Dumping data for table culon.user: ~7 rows (approximately)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id_user`, `nomor_induk`, `password`, `create_date`, `update_pwd`) VALUES
+	('000005', '000005', '000005', '2020-12-20 21:02:42', '2020-12-20 21:02:42'),
+	('000006', '000006', '000006', '2020-12-20 21:29:17', '2020-12-20 21:29:17'),
 	('admin', '000000', 'admin', '2020-11-22 10:56:04', '2020-11-22 10:56:04'),
 	('debi', '000001', 'debi', '2020-08-29 17:35:41', '2020-08-29 17:35:43'),
-	('firlan', 'KRY000002', 'firlan', '2020-11-14 15:11:52', '2020-11-14 15:11:52'),
+	('ihsan', '000004', 'ihsan', '2020-12-20 20:19:53', '2020-12-20 20:19:53'),
+	('sidqy', '000003', 'sidqy', '2020-12-20 20:10:38', '2020-12-20 20:10:38'),
 	('willy', '000002', 'willy', '2020-11-21 20:56:53', '2020-11-21 20:56:53');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
