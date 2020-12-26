@@ -45,7 +45,8 @@ Class CutiModel extends CI_Model {
                     'noBpjskes'     => $data->no_bpjskes,
                     'noNpwp'        => $data->no_npwp,
                     'tglGabung'     => $data->tgl_gabung,
-                    'dataLeader'    => $this->getLeaderApp($data->nomor_induk, $data->id_leader)
+                    'dataLeader'    => $this->getLeaderApp($data->nomor_induk, $data->id_leader),
+                    'dataKaryawanFull'  => $this->getKaryawanDataNotLoginApp($data->nomor_induk)
                 );
 
                 return $content;

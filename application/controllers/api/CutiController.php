@@ -453,4 +453,26 @@ class CutiController extends CI_Controller {
             echo json_encode($response);
         }
     }
+
+    public function getDataKaryawanNotLogin(){
+        $idUser = $this->security->xss_clean($this->input->post('idUser'));
+
+        $data = $this->module_model->getKaryawanDataApp($idUser);
+
+        if($data != FALSE)
+        { 
+            $response = array(
+                'status'  => TRUE,
+                'message' => 'Data ditemukan!',
+                'data'  => $data
+            );
+            echo json_encode($response);
+        }else{
+            $response = array(
+                'status'  => FALSE,
+                'message' => 'Data Tidak Ditemukan!'
+            );
+            echo json_encode($response);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 <!-- Title -->
 
-<body style="background-image : url('<?php echo base_url('assets/images/brand/LD_20.jpg');?>');"
+<body style="background-image : url('<?php echo base_url('assets/images/brand/LD_11s.jpg');?>');"
     class="background-sign">
     <!-- Global Loader-->
 
