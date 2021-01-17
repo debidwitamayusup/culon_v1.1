@@ -113,5 +113,13 @@ class main extends CI_Controller {
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_edit_profil');
 	}
+
+	public function v_ubah_password()
+	{
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar');
+		$this->load->view('v_change_password');
+	}
 	
 }

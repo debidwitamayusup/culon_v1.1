@@ -34,11 +34,68 @@ function getDataKaryawan(username) {
             // $('#id_leader').val(response.data.dataLeader.nomorIndukLeader);
             // $('#nama_leader').val(response.data.dataLeader.namaLeader);
             $('#inputUsername').val(response.data.userId);
-            $('#inputNomorInduk').val();
             $('#errorUsername').hide();
             $( "#divUsername" ).removeClass( "error" );
+            $('#inputNamaKaryawan').val(response.data.dataKaryawanFull.nama);
+            $('#errorNamaKaryawan').hide();
+            $('#divNamaKaryawan').removeClass('error');
+            $('#inputNamaKaryawan').attr('readonly', true);
+            $('#inputNomorInduk').val(response.data.dataKaryawanFull.nomorInduk);
             $('#errorNomorInduk').hide();
             $( "#divNomorInduk" ).removeClass( "error" );
+            $('#inputNomorInduk').attr('readonly', true);
+            $('#inputJabatan').html('<option value='+response.data.dataKaryawanFull.dataJabatan.idJabatan+'>'+response.data.dataKaryawanFull.dataJabatan.namaJabatan+'</option>');
+            $('#inputJabatan').attr('readonly', true);
+            $('#inputTempatLahir').val(response.data.dataKaryawanFull.tempatLahir);
+            $('#errorTempatLahir').hide();
+            $('#divTempatLahir').removeClass('error');
+            $('#inputTempatLahir').attr('readonly', true);
+            $('#inputNamaLeader').val(response.data.dataLeader.namaLeader);
+            $('#errorNamaLeader').hide();
+            $('#divNamaLeader').removeClass('error');
+            $('#inputNamaLeader').attr('readonly', true);
+            $('#inputIdLeader').val(response.data.dataLeader.nomorIndukLeader);
+            $('#errorIdLeader').hide();
+            $('#divIdLeader').removeClass('error');
+            $('#inputIdLeader').attr('readonly', true);
+            $('#inputTglLahir').val(response.data.dataKaryawanFull.tglLahir);
+            $('#errorTglLahir').hide();
+            $('#divTglLahir').removeClass('error');
+            $('#inputTglLahir').attr('readonly', true);
+            $('#inputJenisKelamin option[value='+response.data.dataKaryawanFull.jenisKelamin+']').attr('selected','selected');
+            $('#inputJenisKelamin').prop('disabled', 'disabled');
+            $('#inputAgama option[value='+response.data.dataKaryawanFull.agama+']').attr('selected','selected');
+            $('#inputNik').val(response.data.dataKaryawanFull.nik);
+            $('#errorNik').hide();
+            $('#divNik').removeClass('error');
+            $('#inputKK').val(response.data.dataKaryawanFull.noKK);
+            $('#errorKK').hide();
+            $('#divKK').removeClass('error');
+            $('#inputKewarganegaraan option[value='+response.data.dataKaryawanFull.kwn+']').attr('selected','selected');
+            $('#inputStatus option[value='+response.data.dataKaryawanFull.status+']').attr('selected','selected');
+            $('#inputAlamatKTP').val(response.data.dataKaryawanFull.alamatKtp);
+            $('#errorAlamatKTP').hide();
+            $('#divAlamatKTP').removeClass('error');
+            $('#inputAlamatSekarang').val(response.data.dataKaryawanFull.alamatSekarang);
+            $('#errorAlamatSekarang').hide();
+            $('#divAlamatSekarang').removeClass('error');
+            $('#inputNoTelp').val(response.data.dataKaryawanFull.noTelp);
+            $('#errorNoTelp').hide();
+            $('#divNoTelp').removeClass('error');
+            $('#inputBPJSTK').val(response.data.dataKaryawanFull.noBpjstk);
+            $('#errorBPJSTK').hide();
+            $('#divBPJSTK').removeClass('error');
+            $('#inputBPJS').val(response.data.dataKaryawanFull.noBpjskes);
+            $('#errorBPJS').hide();
+            $('#divBPJS').removeClass('error');
+            $('#inputNPWP').val(response.data.dataKaryawanFull.noNpwp);
+            $('#errorNPWP').hide();
+            $('#divNPWP').removeClass('error');
+            $('#inputTglGabung').val(response.data.dataKaryawanFull.tglGabung);
+            $('#errorTglGabung').hide();
+            $('#divTglGabung').removeClass('error');
+            $('#inputTglGabung').attr('readonly', true);
+
         },
         error: function(r) {
             //console.log(r);
@@ -78,12 +135,53 @@ function getJabatan(){
     });
 }
 
-function callAddUser(nomorInduk, nama, idJabatan, tempatLahir, idLeader, tglLahir, jenisKelamin, agama, 
+function confirmPassword(username, password){
+    $.ajax({
+        type: 'POST',
+        url: base_url + 'api/AuthController/doLogin',
+        data: {
+            id_user: username,
+            password: password
+        },
+        success: function (r) {
+            // var response = r;
+            var response = JSON.parse(r);
+            if(response.status == true){
+                storageBaru = response.data;
+                console.log(response.data);
+                storageBaru.userId = $('#inputUsername').val();
+                localStorage.setItem('Auth-data', JSON.stringify(storageBaru));
+                // alert(response.message);
+                callChangeUser($('#inputUsername').val(), $('#inputNomorInduk').val(), $('#inputNamaKaryawan').val(), $('#inputJabatan').val(), $('#inputTempatLahir').val(), 
+                $('#inputIdLeader').val(), $('#inputTglLahir').val(), $('#inputJenisKelamin').val(), $('#inputAgama').val(), $('#inputNik').val(),
+                $('#inputKK').val(), $('#inputKewarganegaraan').val(), $('#inputStatus').val(), $('#inputAlamatKTP').val(), $('#inputAlamatSekarang').val(),
+                $('#inputNoTelp').val(), $('#inputBPJSTK').val(), $('#inputBPJS').val(), $('#inputNPWP').val(), $('#inputTglGabung').val());
+            }else{
+                $('#error-password').show();
+                $( "#passwordDiv" ).addClass( "error" );
+                $('#btn-cancel').attr('disabled', false);
+                $('#password').attr('disabled', false);
+                $("#btn-confirm-password").html('Submit');
+            }
+        },
+        error: function (r) {
+            // $('#error-password').show();
+            // $( "#passwordDiv" ).addClass( "error" );
+            // $('#btn-cancel').attr('disabled', false);
+            // $('#password').attr('disabled', false);
+            // $("#btn-confirm-password").html('Submit')
+            alert(r.message);
+        },
+    });
+}
+
+function callChangeUser(username, nomorInduk, nama, idJabatan, tempatLahir, idLeader, tglLahir, jenisKelamin, agama, 
                     nik, noKK, kwn, status, alamatKTP, alamatSekarang, noTelp, noBPJSTK, noBPJSKES, npwp, tglGabung){
     $.ajax({
         type: 'POST',
-        url: base_url + 'api/CutiController/simpanKaryawanApp',
+        url: base_url + 'api/CutiController/ubahKaryawanApp',
         data: {
+            username: username,
             nomorInduk : nomorInduk,
             nama : nama,
             idJabatan : idJabatan,
@@ -108,7 +206,7 @@ function callAddUser(nomorInduk, nama, idJabatan, tempatLahir, idLeader, tglLahi
             // var response = r;
             var response = JSON.parse(r);
             if(response.status == true){
-                alert("Input Data Berhasil");
+                alert("Ubah Profil Berhasil");
                 window.location = base_url+'main/v_home';
                 // alert(response.message);
                 // callAssignTenant(token, username, tenant_id);
@@ -341,13 +439,13 @@ function autocomplete(inp, arr) {
         }
     });
 
-    var dates = new Date();
-    dates.setDate(dates.getDate()>0);
-    $('#inputTglLahir').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: 'now',
-        showTodayButton: true,
-        showClear: true,
+    // var dates = new Date();
+    // dates.setDate(dates.getDate()>0);
+    // $('#inputTglLahir').datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     maxDate: 'now',
+    //     showTodayButton: true,
+    //     showClear: true,
         // minDate: 'now',
         // onSelect: function(dateText) {
         //     // console.log(this.value);
@@ -356,13 +454,13 @@ function autocomplete(inp, arr) {
         //     $('#endDate').prop('disabled', false)
             
         // }
-    });
+    // });
 
-    $('#inputTglGabung').datepicker({
-        dateFormat: 'yy-mm-dd',
-        maxDate: 'now',
-        showTodayButton: true,
-        showClear: true,
+    // $('#inputTglGabung').datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     maxDate: 'now',
+    //     showTodayButton: true,
+    //     showClear: true,
         // minDate: 'now',
         // onSelect: function(dateText) {
         //     // console.log(this.value);
@@ -371,38 +469,8 @@ function autocomplete(inp, arr) {
         //     $('#endDate').prop('disabled', false)
             
         // }
-    });
+    // });
 
-    /*
-    var inputEmail = document.getElementById("Email");
-    inputEmail.addEventListener("keyup", function(event) {
-      var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        event.preventDefault();
-        if(!emailReg.test($('#Email').val()) || $.trim($('#Email').val()).length == 0){
-            $('#errorEmail').show();
-            $( "#emailDiv" ).addClass( "error" );
-            $("#btn-add").attr('disabled', true);
-        }else{
-            $('#errorEmail').hide();
-            $( "#emailDiv" ).removeClass( "error" );
-            $("#btn-add").attr('disabled', false);
-        }
-    });
-
-    var inputPhone = document.getElementById("noTelp");
-    inputPhone.addEventListener("keyup", function(event) {
-        event.preventDefault();
-        if($.isNumeric($('#noTelp').val()) == false ||  $('#noTelp').val().length > 13){
-            $('#errorTelp').show();
-            $( "#telpDiv" ).addClass( "error" );
-            $("#btn-add").attr('disabled', true);           
-        }else{
-            $('#errorTelp').hide();
-            $( "#telpDiv" ).removeClass( "error" );
-            $("#btn-add").attr('disabled', false);
-        }
-    });
-    */
 
    var leader = document.getElementById("inputNamaLeader");
    leader.addEventListener("keyup", function(event) {
@@ -411,11 +479,31 @@ function autocomplete(inp, arr) {
        getNamaLeader($('#inputNamaLeader').val())
    });
 
+   var inputPassword = document.getElementById("password");
+    inputPassword.addEventListener("keyup", function(event) {
+        event.preventDefault();
+            $('#error-password').hide();
+            $( "#passwordDiv" ).removeClass( "error" );
+            $("#btn-confirm-password").attr('disabled', false);
+    });
+    
     $('#btn-add').click(function(){
-        callAddUser($('#inputNomorInduk').val(), $('#inputNamaKaryawan').val(), $('#inputJabatan').val(), $('#inputTempatLahir').val(), 
-        $('#inputIdLeader').val(), $('#inputTglLahir').val(), $('#inputJenisKelamin').val(), $('#inputAgama').val(), $('#inputNik').val(),
-        $('#inputKK').val(), $('#inputKewarganegaraan').val(), $('#inputStatus').val(), $('#inputAlamatKTP').val(), $('#inputAlamatSekarang').val(),
-        $('#inputNoTelp').val(), $('#inputBPJSTK').val(), $('#inputBPJS').val(), $('#inputNPWP').val(), $('#inputTglGabung').val());
+        $('#modalConfirmPassword').modal({
+    		backdrop: 'static',
+    		keyboard: false
+		});
+        // callAddUser($('#inputNomorInduk').val(), $('#inputNamaKaryawan').val(), $('#inputJabatan').val(), $('#inputTempatLahir').val(), 
+        // $('#inputIdLeader').val(), $('#inputTglLahir').val(), $('#inputJenisKelamin').val(), $('#inputAgama').val(), $('#inputNik').val(),
+        // $('#inputKK').val(), $('#inputKewarganegaraan').val(), $('#inputStatus').val(), $('#inputAlamatKTP').val(), $('#inputAlamatSekarang').val(),
+        // $('#inputNoTelp').val(), $('#inputBPJSTK').val(), $('#inputBPJS').val(), $('#inputNPWP').val(), $('#inputTglGabung').val());
+    });
+
+    $('#btn-confirm-password').click(function(){
+        $(this).attr('disabled', true);
+        $(this).html('Processing...')
+        $('#password').attr('disabled', true);
+        $('#btn-cancel').attr('disabled', true);
+        confirmPassword(items.userId,$('#password').val());
     });
 
     $('#btn-cancel').click(function(){

@@ -395,6 +395,57 @@ class CutiController extends CI_Controller {
         }
     }
 
+    public function ubahKaryawanApp(){
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $nomorInduk = $this->security->xss_clean($this->input->post('nomorInduk'));
+        $nama = $this->security->xss_clean($this->input->post('nama'));
+        $idJabatan = $this->security->xss_clean($this->input->post('idJabatan'));
+        $tempatLahir = $this->security->xss_clean($this->input->post('tempatLahir'));
+        $idLeader = $this->security->xss_clean($this->input->post('idLeader'));
+        $tglLahir = $this->security->xss_clean($this->input->post('tglLahir'));
+        $jenisKelamin = $this->security->xss_clean($this->input->post('jenisKelamin'));
+        $agama = $this->security->xss_clean($this->input->post('agama'));
+        $nik = $this->security->xss_clean($this->input->post('nik'));
+        $noKK = $this->security->xss_clean($this->input->post('noKK'));
+        $kwn = $this->security->xss_clean($this->input->post('kwn'));
+        $status = $this->security->xss_clean($this->input->post('status'));
+        $alamatKTP = $this->security->xss_clean($this->input->post('alamatKTP'));
+        $alamatSekarang = $this->security->xss_clean($this->input->post('alamatSekarang'));
+        $noTelp = $this->security->xss_clean($this->input->post('noTelp'));
+        $noBPJSTK = $this->security->xss_clean($this->input->post('noBPJSTK'));
+        $noBPJSKES = $this->security->xss_clean($this->input->post('noBPJSKES'));
+        $npwp = $this->security->xss_clean($this->input->post('npwp'));
+        $tglGabung = $this->security->xss_clean($this->input->post('tglGabung'));
+
+        $data = $this->module_model->postUbahKaryawan($username, $nomorInduk, $nama, $idJabatan, $tempatLahir, $idLeader,
+                $tglLahir, $jenisKelamin, $agama, $nik, $noKK, $kwn, $status, $alamatKTP, $alamatSekarang, $noTelp,
+                $noBPJSTK, $noBPJSKES, $npwp, $tglGabung);
+
+        if($data != FALSE)
+        {
+            // $data2 = $this->module_model->postSimpanUser($nomorInduk, $nomorInduk, $nomorInduk);
+            // if($data2 != FALSE){
+                $response = array(
+                    'status'  => TRUE,
+                    'message' => 'Data Berhasil Disimpan!'
+                );
+                echo json_encode($response);   
+            // }else{
+            //     $response = array(
+            //         'status'  => FALSE,
+            //         'message' => 'Data Gagal Disimpan!'
+            //     );
+            //     echo json_encode($response);
+            // }
+        }else{
+            $response = array(
+                'status'  => FALSE,
+                'message' => 'Data Gagal Disimpan!'
+            );
+            echo json_encode($response);
+        }
+    }
+
     public function getJabatanApp(){
         $data = $this->module_model->getJabatan();
         if($data)

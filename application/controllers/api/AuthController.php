@@ -63,5 +63,29 @@ class AuthController extends CI_Controller {
             echo json_encode($response);
         }
     }
+
+    public function updatepwd(){
+
+        $password = $this->security->xss_clean($this->input->post('password'));
+        $nomorInduk = $this->security->xss_clean($this->input->post('nomorInduk'));
+
+        $data = $this->module_model->c_pwd($password,$nomorInduk);
+
+        if($data != FALSE)
+        {
+            $response = array(
+                'status'  => TRUE,
+                'message' => 'Data berhasil diubah!'
+            );
+            echo json_encode($response);
+        }else{
+            $response = array(
+                'status'  => FALSE,
+                'message' => 'Data gagal diubah!'
+            );
+            echo json_encode($response);
+        }
+
+    }
 }
 ?>

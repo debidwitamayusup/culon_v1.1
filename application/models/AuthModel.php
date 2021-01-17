@@ -50,4 +50,18 @@ Class AuthModel extends CI_Model {
 
             return FALSE;
         }
+
+        public function c_pwd($password,$nomorInduk){
+
+            $queUser = 'UPDATE user SET password = "'.$password.'" WHERE nomor_induk = "'.$nomorInduk.'"';
+            $query = $this->db->query($queUser);
+            if($queUser)
+            {
+                return TRUE;
+            }
+            return FALSE;
+    
+        }
     }
+
+    

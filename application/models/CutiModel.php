@@ -74,8 +74,10 @@ Class CutiModel extends CI_Model {
                     'nomorInduk'     => $data->nomor_induk,
                     'nama'          => $data->nama,
                     'idJabatan'     => $data->id_jabatan,
-                    'tempatLahir'   => $data->tgl_lahir,
-                    'jenisKelamin' => $data->agama,
+                    'tempatLahir'   => $data->tempat_lahir,
+                    'tglLahir'      => $data->tgl_lahir,
+                    'jenisKelamin' =>$data->jenis_kelamin,
+                    'agama'         => $data->agama,
                     'nik'           => $data->nik,
                     'noKK'          => $data->no_kk,
                     'kwn'           => $data->kwn,
@@ -567,6 +569,25 @@ Class CutiModel extends CI_Model {
                         "'.$noBPJSKES.'", "'.$npwp.'", "'.$tglGabung.'")';
         $query = $this->db->query($que);
         if($query)
+        {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function postUbahKaryawan($username, $nomorInduk, $nama, $idJabatan, $tempatLahir, $idLeader,
+    $tglLahir, $jenisKelamin, $agama, $nik, $noKK, $kwn, $status, $alamatKTP, $alamatSekarang, $noTelp,
+    $noBPJSTK, $noBPJSKES, $npwp, $tglGabung){
+        $queUser = 'UPDATE user SET id_user = "'.$username.'" WHERE nomor_induk = "'.$nomorInduk.'"';
+        $que = 'UPDATE karyawan SET nama = "'.$nama.'", id_jabatan = "'.$idJabatan.'",
+                         tempat_lahir = "'.$tempatLahir.'", id_leader = "'.$idLeader.'", tgl_lahir = "'.$tglLahir.'", 
+                        jenis_kelamin = "'.$jenisKelamin.'", agama = "'.$agama.'", nik = "'.$nik.'", no_kk = "'.$noKK.'", 
+                        kwn = "'.$kwn.'", status = "'.$status.'", alamat_ktp = "'.$alamatKTP.'", alamat_sekarang = "'.$alamatSekarang.'", 
+                        no_telp = "'.$noTelp.'", no_bpjstk = "'.$noBPJSTK.'", no_bpjskes = "'.$noBPJSKES.'", no_npwp = "'.$npwp.'", 
+                        tgl_gabung = "'.$tglGabung.'" WHERE nomor_induk = "'.$nomorInduk.'"';
+        $query = $this->db->query($queUser);                
+        $query = $this->db->query($que);
+        if($queUser && $que)
         {
             return TRUE;
         }

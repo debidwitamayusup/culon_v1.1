@@ -44,9 +44,9 @@
 											</div>
 										</div>
 										<div class="dropdown-divider m-0"></div>
-										<a class="dropdown-item" href="<?=base_url()?>main/change_profile"><i
+										<a class="dropdown-item" href="<?=base_url()?>main/v_edit_profil"><i
 												class="dropdown-icon fe fe-user"></i>Change Profile</a>
-										<a class="dropdown-item" href="<?=base_url()?>main/change_password"><i
+										<a class="dropdown-item" href="<?=base_url()?>main/v_ubah_password"><i
 												class="dropdown-icon fe fe-settings"></i>Change
 											Password</a>
 										<button class="dropdown-item" id="btn-logout"><i

@@ -149,7 +149,7 @@
                                         </div> <select class="form-control" id="inputStatus">
                                             <option value="">--</option>
                                             <option value="kawin">Kawin</option>
-                                            <option value="belum kawin">Belum Kawin</option>
+                                            <option value="b">Belum Kawin</option>
                                             <option value="janda">Janda</option>
                                             <option value="duda">Duda</option>
                                         </select>
@@ -190,4 +190,39 @@
 
     </div>
     <?php $this->load->view('temp/footer');?>
+    <!-- modal dialog confirm password -->
+<div class="modal fade" id="modalConfirmPassword" tabindex="-1" role="dialog" aria-labelledby="modalConfirmPassword"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document" style="left:8% !important;">
+		<div class="modal-content" style="border-radius:8px; border:0px; width:68% !important">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-info-circle mr-2"></i>Confirmation</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="ml-2 col-sm-auto">
+					<div class="input-group border-input-group error" id="passwordDiv">
+						<div class="input-group-prepend">
+							<div class="input-group-text border-input">
+								<i class="fa fa-lock tx-16 lh-0 op-6"></i>
+							</div>
+						</div><input type="password" class="form-control border-input2 font12" id="password"
+							placeholder="Password" name="password">
+                    </div>
+                    <div class="error-message" id="error-password">Password Salah</div>
+				</div>
+
+				<div class="text-center mb-2 mt-2">
+					<button type="submit" class="btn btn-sm btn-light mr-5" style="border-radius:8px !important;"
+						id="btn-cancel" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-sm btn-sign ml-5 text-white" style="border-radius:8px !important;"
+						id="btn-confirm-password">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ----------------------------- --> 
     <script src="<?=base_url()?>assets/public/js/app/app-edit-profil.js"></script>
