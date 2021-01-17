@@ -155,6 +155,7 @@ function callChangePwd(password, nomorInduk){
         $('#confirm-password').attr('disabled', true);
         $('#btn-cancel').attr('disabled', true);
         confirmPassword(items.userId, $('#current-password').val());
+        // confirmPassword(items.userId, $('#current-password').val());
     });
    
     $('#btn-cancel').click(function(){
