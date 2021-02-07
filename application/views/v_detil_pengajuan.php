@@ -172,8 +172,7 @@
 
 						<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
 							<div class="col-xs-auto ml-1">
-									<button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-cetak"><i
-											class="fas fa-download mr-2"></i>Cetak</button>
+									<button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-cetak"><i class="fas fa-print mr-2"></i>Cetak</button>
 							</div>		
 						</div>
 					</div>

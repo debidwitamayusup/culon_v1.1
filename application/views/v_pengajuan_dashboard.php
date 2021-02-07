@@ -50,8 +50,7 @@
 
                             </div> -->
                             <div class="col-xs-auto ml-1">
-                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-tambah"><i
-                                        class="fas fa-download mr-2"></i>Tambah Pengajuan</button>
+                                <button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-tambah"><i class="fas fa-plus-circle mr-2"></i>Tambah Pengajuan</button>
 
                             </div>
                         </div>
