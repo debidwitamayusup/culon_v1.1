@@ -66,10 +66,10 @@
                                     <td class="border-bottom-0">Durasi Cuti</td>
                                     <td class="border-bottom-0">Dari Tgl</td>
                                     <td class="border-bottom-0">Ke Tgl</td>
-                                    <td class="border-bottom-0">Approve Pemohon</td>
-                                    <td class="border-bottom-0">Approve Pengganti</td>
+                                    <!-- <td class="border-bottom-0">Approve Pemohon</td>
+                                    <td class="border-bottom-0">Approve Pengganti</td> -->
                                     <td class="border-bottom-0">Approve Leader</td>
-                                    <td class="border-bottom-0">Approve Kabag</td>
+                                    <!-- <td class="border-bottom-0">Approve Kabag</td> -->
                                     <td class="border-bottom-0">Approve HRD</td>
                                     <td class="border-bottom-0">Aksi</td>
                                 </tr>

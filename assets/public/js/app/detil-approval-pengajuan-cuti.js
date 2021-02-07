@@ -22,7 +22,7 @@ var idUnikCuti = search_params.get('id');
 // const tokenSessionNav = JSON.parse(localStorage.getItem('Auth-token'));
 $(document).ready(function() {
     // getDataKaryawan(items.userId)
-    getDropdownJenisCuti(items.jenisKelamin)
+    getDropdownJenisCuti(items.nomorInduk)
     getDetilCuti(idUnikCuti)
     $('#durasiCuti').prop('disabled', true)
     $('#startDate').prop('disabled', true)
@@ -54,7 +54,8 @@ function getDataKaryawan(username) {
             $('#id_karyawan').val(response.data.nomorInduk);
             $('#nama_karyawan').val(response.data.nama);
             $('#tgl_gabung').val(response.data.tglGabung);
-            $('#lama_gabung').val(durasi_hari + " hari");
+            $('#lama_gabung').val(getAge(new Date(response.data.tglGabung), new Date()));
+            // $('#lama_gabung').val(durasi_hari + " hari");
             $('#id_leader').val(response.data.dataLeader.nomorIndukLeader);
             $('#nama_leader').val(response.data.dataLeader.namaLeader);
 
@@ -84,7 +85,7 @@ function getDetilCuti(idUnikCuti) {
             $('#endDate').val(response.data[0].keTanggal)
             $('#idPengganti').val(response.data[0].idPengganti)
             $('#namaPengganti').val(response.data[0].namaPengganti[0].namaPengganti)
-            $('#alasan').val(response.data[0].alasan)
+            $('#alasan').val(response.data[0].alasanPengajuan)
             $('#dropdownCuti').prop('disabled', true)
             $('#durasiCuti').prop('disabled', true)
             $('#startDate').prop('disabled', true)
@@ -101,12 +102,14 @@ function getDetilCuti(idUnikCuti) {
             let date2 = new Date(v_params_this_year)
             let beda_tgl = date2.getTime() - date1.getTime()
             let durasi_hari = beda_tgl / (1000 * 3600 * 24)
-            $('#lama_gabung').val(durasi_hari + " hari");
+            // $('#lama_gabung').val(durasi_hari + " hari");
+            $('#lama_gabung').val(getAge(new Date(response.data[0].dataKaryawan.tglGabung), new Date()));
             $('#id_leader').val(response.data[0].dataKaryawan.dataLeader.nomorIndukLeader);
             $('#nama_leader').val(response.data[0].dataKaryawan.dataLeader.namaLeader);
 
             $('#pemohon').html(response.data[0].dataKaryawan.nama);
             $('#leader').html(response.data[0].dataKaryawan.dataLeader.namaLeader);
+            $('#hrd').html(response.data[0].dataApproveHRD.nama);
             
             if(response.data[0].approvePekerjaPengganti === 'Y'){
                 $('#yaPengganti').attr('checked', 'checked');
@@ -320,6 +323,48 @@ function simpanApprove(idPengajuan, stApprove){
     });
 }
 
+function getAge(date_1, date_2)
+    {
+    
+        //convert to UTC
+        var date2_UTC = new Date(Date.UTC(date_2.getUTCFullYear(), date_2.getUTCMonth(), date_2.getUTCDate()));
+        var date1_UTC = new Date(Date.UTC(date_1.getUTCFullYear(), date_1.getUTCMonth(), date_1.getUTCDate()));
+
+
+        var yAppendix, mAppendix, dAppendix;
+
+
+        //--------------------------------------------------------------
+        var days = date2_UTC.getDate() - date1_UTC.getDate();
+        if (days < 0)
+        {
+
+            date2_UTC.setMonth(date2_UTC.getMonth() - 1);
+            days += DaysInMonth(date2_UTC);
+        }
+        //--------------------------------------------------------------
+        var months = date2_UTC.getMonth() - date1_UTC.getMonth();
+        if (months < 0)
+        {
+            date2_UTC.setFullYear(date2_UTC.getFullYear() - 1);
+            months += 12;
+        }
+        //--------------------------------------------------------------
+        var years = date2_UTC.getFullYear() - date1_UTC.getFullYear();
+
+
+
+
+        if (years > 1) yAppendix = " tahun";
+        else yAppendix = " tahun";
+        if (months > 1) mAppendix = " bulan";
+        else mAppendix = " bulan";
+        if (days > 1) dAppendix = " hari";
+        else dAppendix = " hari";
+
+
+        return years + yAppendix + ", " + months + mAppendix + ", " + days + dAppendix;
+    }
 //jquery
 (function($) {
     $('#dropdownCuti').change(function() {

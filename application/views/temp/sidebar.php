@@ -35,7 +35,7 @@
 						<div class="col-md-12 ">
 						<h5 class="font-weight-extrabold"><i class="side-menu__icon-custom fe fe-monitor mr-1"></i>Layanan Karyawan</h5>
 						<hr class="alert-dark-grey mb-1">
-							<a class="slide-item" href="<?=base_url()?>main">Pengajuan Cuti</a>
+							<a class="slide-item" href="<?=base_url()?>main/index">Pengajuan Cuti</a>
 							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan">Approve Pengajuan Cuti (Leader)</a>
 							<a class="slide-item" href="<?=base_url()?>main/v_approve_pengajuan_hrd">Approve Pengajuan Cuti (HRD)</a>
 							<!-- <a class="slide-item" href="<?=base_url()?>main/wall_performance_operation"> Summary

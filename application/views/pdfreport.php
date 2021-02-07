@@ -66,12 +66,12 @@
             <table border:none>
                 <tr style="text-align: center;">
                     <td>
-                    Pemohon,<br><br><br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
-                    <td>Leader,<br><br><br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
+                    Pemohon,<br><br>[TTD]<br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
+                    <td>Leader,<br><br>[TTD]<br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
                 </tr>
                 <tr style="text-align:center;">
                     <td colspan="2">
-                    HRD,<br><br><br><br>Nama HRD
+                    HRD,<br><br>[TTD]<br><br>'.$arrData["dataCuti"]["namaHRD"].'
                     </td>
                 </tr>
             </table>

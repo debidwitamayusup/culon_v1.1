@@ -10,7 +10,7 @@
 				<!-- Navbar Right Menu-->
 				<div class="container-fluid">
 					<div class="d-flex">
-						<a class="header-brand" href="#">
+						<a class="header-brand" href="<?=base_url()?>main/index">
 							<img alt="logo" class="header-brand-img main-logo"
 								src="<?=base_url()?>assets/images/brand/chingluh_logo.png">
 						</a>

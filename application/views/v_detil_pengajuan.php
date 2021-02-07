@@ -64,7 +64,7 @@
 					</div>
 					<div style="padding:10px 15px;">
                         <table class="table">
-                            <tr>
+                            <!-- <tr>
                                 <td>Approve Pemohon</td>
                                 <td>(<span id="pemohon">Nama Pemohon</span>)</td>
                                 <td>: Ya <input type="radio" disabled checked></td>
@@ -75,19 +75,19 @@
                                 <td>(<span id="pengganti">Nama Pengganti</span>)</td>
                                 <td>: Ya <input type="radio" id="yaPengganti" disabled></td>
                                 <td>Tidak <input type="radio" id="tidakPengganti" disabled></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Approve Leader</td>
                                 <td>(<span id="leader">Nama Leader</span>)</td>
                                 <td>: Ya <input type="radio" id="yaLeader" disabled></td>
                                 <td>Tidak <input type="radio" id="tidakLeader" disabled></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Approve Kepala Bagian</td>
                                 <td>(<span id="kabag">Nama Kepala Bagian</span>)</td>
                                 <td>: Ya <input type="radio" id="yaKabag" disabled></td>
                                 <td>Tidak <input type="radio" id="tidakKabag" disabled></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Approve HRD</td>
                                 <td>(<span id="hrd">Nama HRD</span>)</td>

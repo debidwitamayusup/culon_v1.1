@@ -71,8 +71,12 @@ function getDataKaryawan(username) {
             $('#inputKK').val(response.data.dataKaryawanFull.noKK);
             $('#errorKK').hide();
             $('#divKK').removeClass('error');
-            $('#inputKewarganegaraan option[value='+response.data.dataKaryawanFull.kwn+']').attr('selected','selected');
-            $('#inputStatus option[value='+response.data.dataKaryawanFull.status+']').attr('selected','selected');
+            if(response.data.dataKaryawanFull.kwn != ''){
+                $('#inputKewarganegaraan option[value='+response.data.dataKaryawanFull.kwn+']').attr('selected','selected');
+            }
+            if(response.data.dataKaryawanFull.status != ''){
+                $('#inputStatus option[value='+response.data.dataKaryawanFull.status+']').attr('selected','selected');
+            }
             $('#inputAlamatKTP').val(response.data.dataKaryawanFull.alamatKtp);
             $('#errorAlamatKTP').hide();
             $('#divAlamatKTP').removeClass('error');

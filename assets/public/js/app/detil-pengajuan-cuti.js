@@ -136,6 +136,7 @@ function getDetilCuti(idUnikCuti) {
 
             $('#pemohon').html(response.data[0].dataKaryawan.nama);
             $('#leader').html(response.data[0].dataKaryawan.dataLeader.namaLeader);
+            $('#hrd').html(response.data[0].dataApproveHRD.nama);
             
             if(response.data[0].approvePekerjaPengganti === 'Y'){
                 $('#yaPengganti').attr('checked', 'checked');
@@ -318,8 +319,9 @@ function getNamaPengganti(namaPengganti) {
     });
 }
 
-function cetakPengajuan(id_karyawan, namaCuti, durasiCuti, startDate, endDate, alasan){
-    window.location = base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan;
+function cetakPengajuan(id_karyawan, namaCuti, durasiCuti, startDate, endDate, alasan, hrd){
+    // window.location = base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan+'&hrd='+hrd;
+    window.open(base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan+'&hrd='+hrd, '_blank')
     /*
     $.ajax({
         type: 'POST',
@@ -447,6 +449,6 @@ function cetakPengajuan(id_karyawan, namaCuti, durasiCuti, startDate, endDate, a
     $('#btn-cetak').click(function(){
         $('#dropdownCuti').val()
         cetakPengajuan($('#id_karyawan').val(), $('#dropdownCuti option:selected').text(), $('#durasiCuti').val(), $('#startDate').val(),
-        $('#endDate').val(), $('#alasan').val())
+        $('#endDate').val(), $('#alasan').val(), $('#hrd').html())
     });
 })(jQuery);

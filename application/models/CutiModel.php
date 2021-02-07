@@ -168,14 +168,19 @@ Class CutiModel extends CI_Model {
     }
 
     public function getBalanceCutiApp($usr, $idCuti){
+        $idCuti = $this->security->xss_clean($this->input->post('id_cuti'));
         $this->db->select('*');
         $this->db->from('karyawan_cuti_historis');
         $this->db->where('id_cuti', $idCuti);
         $this->db->where('nomor_induk', $usr);
+        if($idCuti != 'a'){
+            $this->db->where('MONTH(tgl_pengajuan) = MONTH(CURDATE())');
+        }
         $this->db->where('YEAR(tgl_pengajuan) = YEAR(CURDATE())');
-
         $query = $this->db->get()->result();
 
+        // print_r($this->db->last_query());
+        // exit;
         if($query){
             foreach($query as $data){
                 $content[] = array(
@@ -261,15 +266,20 @@ Class CutiModel extends CI_Model {
     }
 
     public function cekApprovalCutiApp($idCUti, $nomorInduk){
+        $queMonth= '';
+        $idCuti = $this->security->xss_clean($this->input->post('idCuti'));
+        if($idCuti != 'a'){
+            $queMonth = 'AND MONTH(a.tgl_pengajuan) = MONTH(CURDATE())';
+        }
         $que = '
         SELECT * FROM pengajuan_cuti a
         INNER JOIN (
-            select id_cuti as id_cuti2, nomor_induk as nomor_induk2
+            select id_cuti as id_cuti2, nomor_induk as nomor_induk2, tgl_pengajuan
             FROM pengajuan_cuti where approve_pemohon = "N" OR approve_pekerja_pengganti = "N"
             OR approve_leader = "N" OR approve_kepala_bagian = "N" OR approve_hrd = "N"
-        ) AS b ON a.id_cuti = b.id_cuti2 AND a.nomor_induk = b.nomor_induk2
+        ) AS b ON a.id_cuti = b.id_cuti2 AND a.nomor_induk = b.nomor_induk2 and a.tgl_pengajuan = b.tgl_pengajuan
         WHERE a.id_cuti = "'.$idCUti.'" AND a.nomor_induk = "'.$nomorInduk.'"
-        AND YEAR(a.tgl_pengajuan) = YEAR(CURDATE())
+        '.$queMonth. ' AND YEAR(a.tgl_pengajuan) = YEAR(CURDATE())
         ';
         
         $query = $this->db->query($que);
@@ -330,10 +340,10 @@ Class CutiModel extends CI_Model {
                     $data->durasi_pengajuan,
                     $data->dari_tanggal,
                     $data->ke_tanggal,
-                    $data->approve_pemohon,
-                    $data->approve_pekerja_pengganti,
+                    // $data->approve_pemohon,
+                    // $data->approve_pekerja_pengganti,
                     $data->approve_leader,
-                    $data->approve_kepala_bagian,
+                    // $data->approve_kepala_bagian,
                     $data->approve_hrd,
                     '<a href="v_detil_pengajuan?id='.$data->idUnikCuti.'">Detil</a>'
                 );
@@ -354,6 +364,7 @@ Class CutiModel extends CI_Model {
         LEFT JOIN jenis_cuti jc ON pc.id_cuti = jc.id_cuti 
         LEFT JOIN karyawan k ON k.nomor_induk = pc.nomor_induk 
         WHERE k.id_leader = "'.$nomorInduk.'"
+        ORDER BY pc.tgl_pengajuan desc
         ';
         
         $query = $this->db->query($que);
@@ -374,10 +385,10 @@ Class CutiModel extends CI_Model {
                     $data->durasi_pengajuan,
                     $data->dari_tanggal,
                     $data->ke_tanggal,
-                    $data->approve_pemohon,
-                    $data->approve_pekerja_pengganti,
+                    // $data->approve_pemohon,
+                    // $data->approve_pekerja_pengganti,
                     $data->approve_leader,
-                    $data->approve_kepala_bagian,
+                    // $data->approve_kepala_bagian,
                     $data->approve_hrd,
                     '<a href="v_detil_approval_pengajuan?id='.$data->idUnikCuti.'">Proses</a>'
                 );
@@ -397,6 +408,7 @@ Class CutiModel extends CI_Model {
         FROM  pengajuan_cuti pc
         LEFT JOIN jenis_cuti jc ON pc.id_cuti = jc.id_cuti 
         LEFT JOIN karyawan k ON k.nomor_induk = pc.nomor_induk
+        ORDER BY pc.tgl_pengajuan desc
         ';
         
         $query = $this->db->query($que);
@@ -417,10 +429,10 @@ Class CutiModel extends CI_Model {
                     $data->durasi_pengajuan,
                     $data->dari_tanggal,
                     $data->ke_tanggal,
-                    $data->approve_pemohon,
-                    $data->approve_pekerja_pengganti,
+                    // $data->approve_pemohon,
+                    // $data->approve_pekerja_pengganti,
                     $data->approve_leader,
-                    $data->approve_kepala_bagian,
+                    // $data->approve_kepala_bagian,
                     $data->approve_hrd,
                     '<a href="v_detil_approval_pengajuan_hrd?id='.$data->idUnikCuti.'">Proses</a>'
                 );
@@ -433,7 +445,7 @@ Class CutiModel extends CI_Model {
     }
 
     public function getLimitCutiHariIniApp(){
-        $que = 'SELECT COUNT(tgl_pengajuan) sisaCuti FROM pengajuan_cuti WHERE tgl_pengajuan  = CURDATE()';
+        $que = 'SELECT COUNT(tgl_pengajuan) sisaCuti FROM pengajuan_cuti WHERE DATE(tgl_pengajuan)  = CURDATE()';
 
         $query = $this->db->query($que);
         $data    = $query->row();
@@ -482,12 +494,35 @@ Class CutiModel extends CI_Model {
                     'keterangan'        => $data->keterangan,
                     'jenisCuti'          => $this->getJenisCuti($data->id_cuti),
                     'namaPengganti'     => $this->getNamaPengganti($data->id_karyawan_pengganti),
-                    'dataKaryawan'      => $this->getKaryawanDataNotLoginApp($data->nomor_induk)
+                    'dataKaryawan'      => $this->getKaryawanDataNotLoginApp($data->nomor_induk),
+                    'dataApproveHRD'    => $this->getHRDApp($data->id_approve_hrd)
                 );
             }
             return $content;
         }
         return FALSE;
+    }
+
+    public function getHRDApp($nomorInduk){
+        $que = '
+        SELECT * FROM karyawan WHERE nomor_induk = "'.$nomorInduk.'"
+    ';
+    
+    $query = $this->db->query($que);
+    $data    = $query->row();
+    // print_r($this->db->last_query());
+    // exit;
+
+    if($query->num_rows()==1) //where clause
+    {
+            $content = array(
+                'nomorInduk'     => $data->nomor_induk,
+                'nama'          => $data->nama
+            );
+
+            return $content;
+    }
+     return FALSE;
     }
 
     public function getJenisCuti($idCuti){

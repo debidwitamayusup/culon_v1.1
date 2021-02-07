@@ -6,7 +6,7 @@
 					<li class="breadcrumb-item active" aria-current="page">
 						<h4 class="page-title"><i class="fe fe-grid mr-1"></i>Layanan Karyawan</h4>
 					</li>
-					<li class="breadcrumb-item active mt-2" aria-current="page">Detil Pengajuan Cuti (HRD)</li>
+					<li class="breadcrumb-item active mt-2" aria-current="page">Detil Pengajuan Cuti (Leader)</li>
 				</ol>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 					</div>
 					<div style="padding:10px 15px;">
                         <table class="table">
-                            <tr>
+                            <!-- <tr>
                                 <td>Approve Pemohon</td>
                                 <td>(<span id="pemohon">Nama Pemohon</span>)</td>
                                 <td>: Ya <input type="radio" disabled checked></td>
@@ -75,19 +75,19 @@
                                 <td>(<span id="pengganti">Nama Pengganti</span>)</td>
                                 <td>: Ya <input type="radio" id="yaPengganti" disabled></td>
                                 <td>Tidak <input type="radio" id="tidakPengganti" disabled></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Approve Leader</td>
                                 <td>(<span id="leader">Nama Leader</span>)</td>
                                 <td>: Ya <input name="approveLeader" class="approveLeader" type="radio" id="yaLeader" value="Y"></td>
                                 <td>Tidak <input name="approveLeader" class="approveLeader" type="radio" id="tidakLeader" value="N"></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Approve Kepala Bagian</td>
                                 <td>(<span id="kabag">Nama Kepala Bagian</span>)</td>
                                 <td>: Ya <input type="radio" id="yaKabag" disabled></td>
                                 <td>Tidak <input type="radio" id="tidakKabag" disabled></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>Approve HRD</td>
                                 <td>(<span id="hrd">Nama HRD</span>)</td>

@@ -15,6 +15,7 @@
             $startDate = $this->security->xss_clean($this->input->get('startDate'));
             $endDate = $this->security->xss_clean($this->input->get('endDate'));
             $alasan = $this->security->xss_clean($this->input->get('alasan'));
+            $namaHRD = $this->security->xss_clean($this->input->get('hrd'));
             
             $dataKaryawan = $this->module_model->getKaryawanDataNotLoginApp($user_id);
             $arrCuti = array(
@@ -22,7 +23,8 @@
                 "durasiCuti"    => $durasiCuti,
                 "startDate"     => $startDate,
                 "endDate"       => $endDate,
-                "alasan"        => $alasan
+                "alasan"        => $alasan,
+                "namaHRD"           => $namaHRD
             );
 
             $arrData = array(
