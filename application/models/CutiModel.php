@@ -90,7 +90,8 @@ Class CutiModel extends CI_Model {
                     'noNpwp'        => $data->no_npwp,
                     'tglGabung'     => $data->tgl_gabung,
                     'dataLeader'    => $this->getLeaderApp($data->nomor_induk, $data->id_leader),
-                    'dataJabatan'   => $this->getJabatanApp($data->nomor_induk)
+                    'dataJabatan'   => $this->getJabatanApp($data->nomor_induk),
+                    'ttd'           => $data->ttd
                 );
 
                 return $content;
@@ -106,7 +107,8 @@ Class CutiModel extends CI_Model {
         $que = '
         SELECT karyawan.nomor_induk,
         karyawan.nama,
-        karyawan.id_jabatan
+        karyawan.id_jabatan,
+        karyawan.ttd
         FROM karyawan
         LEFT JOIN (
             SELECT * FROM karyawan WHERE nomor_induk = "'.$nomorInduk.'") AS a ON a.nomor_induk = karyawan.id_leader
@@ -120,7 +122,8 @@ Class CutiModel extends CI_Model {
                 $content = array(
                     'nomorIndukLeader'        => $data->nomor_induk,
                     'namaLeader'     => $data->nama,
-                    'jabatanLeader'          => $data->id_jabatan
+                    'jabatanLeader'          => $data->id_jabatan,
+                    'ttd'           => $data->ttd
                 );
                 return $content;
             }
@@ -275,8 +278,7 @@ Class CutiModel extends CI_Model {
         SELECT * FROM pengajuan_cuti a
         INNER JOIN (
             select id_cuti as id_cuti2, nomor_induk as nomor_induk2, tgl_pengajuan
-            FROM pengajuan_cuti where approve_pemohon = "N" OR approve_pekerja_pengganti = "N"
-            OR approve_leader = "N" OR approve_kepala_bagian = "N" OR approve_hrd = "N"
+            FROM pengajuan_cuti where approve_leader = "N" OR approve_hrd = "N"
         ) AS b ON a.id_cuti = b.id_cuti2 AND a.nomor_induk = b.nomor_induk2 and a.tgl_pengajuan = b.tgl_pengajuan
         WHERE a.id_cuti = "'.$idCUti.'" AND a.nomor_induk = "'.$nomorInduk.'"
         '.$queMonth. ' AND YEAR(a.tgl_pengajuan) = YEAR(CURDATE())
@@ -517,7 +519,8 @@ Class CutiModel extends CI_Model {
     {
             $content = array(
                 'nomorInduk'     => $data->nomor_induk,
-                'nama'          => $data->nama
+                'nama'          => $data->nama,
+                'ttd'           => $data->ttd
             );
 
             return $content;

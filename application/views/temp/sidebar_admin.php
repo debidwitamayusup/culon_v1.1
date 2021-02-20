@@ -24,11 +24,11 @@
                         <div class="col-md-12">
                             <h5 class="font-weight-extrabold"><img src="<?=base_url()?>assets/images/brand/icon-admin3.png" class="side-menu__icon-custom mr-1" style="padding:8px !important">Administration</h5>
                             <hr class="alert-dark-grey mb-1">
-                            <a class="slide-item" href="<?=base_url()?>admin/admin_user">User</a>
-                            <a class="slide-item" hidden href="<?=base_url()?>admin/edit_user">User</a>
-                            <a class="slide-item" hidden href="<?=base_url()?>admin/add_user">User</a>
+                            <a class="slide-item" href="<?=base_url()?>main/index_admin">List Karyawan</a>
+                            <!-- <a class="slide-item" hidden href="<?=base_url()?>admin/edit_user">User</a> -->
+                            <!-- <a class="slide-item" hidden href="<?=base_url()?>admin/add_user">User</a>
                             <a class="slide-item" href="<?=base_url()?>admin/list_tenant">Tenant</a>
-                            <a class="slide-item" hidden href="<?=base_url()?>admin/add_tenant">Tenant</a>
+                            <a class="slide-item" hidden href="<?=base_url()?>admin/add_tenant">Tenant</a> -->
                         </div>
                     </div>
                 </div>

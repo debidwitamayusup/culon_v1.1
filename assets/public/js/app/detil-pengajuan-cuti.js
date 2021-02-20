@@ -323,7 +323,7 @@ function getNamaPengganti(namaPengganti) {
 
 function cetakPengajuan(id_karyawan, namaCuti, durasiCuti, startDate, endDate, alasan, hrd){
     // window.location = base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan+'&hrd='+hrd;
-    window.open(base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan+'&hrd='+hrd, '_blank')
+    window.open(base_url + 'api/ReportController/printSuratPengajuanCUti?id_karyawan='+id_karyawan+'&namaCuti='+namaCuti+'&durasiCuti='+durasiCuti+'&startDate='+startDate+'&endDate='+endDate+'&alasan='+alasan+'&hrd='+hrd+'&idCuti='+idUnikCuti, '_blank')
     /*
     $.ajax({
         type: 'POST',

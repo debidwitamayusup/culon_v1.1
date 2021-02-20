@@ -62,8 +62,12 @@ $(document).ready(function() {
                 var response = JSON.parse(r);
                 if (response.status != false) {
                     localStorage.setItem('Auth-data', JSON.stringify(response.data))
-                        // console.log(response)
-                    window.location = base_url + 'main/index'
+                        console.log(response)
+                    if(response.data.idJabatan == 'ADMD'){
+                        window.location = base_url + 'main/index_admin'
+                    }else{
+                        window.location = base_url + 'main/index'
+                    }
                     $("#btn-login").attr('disabled', false);
                     $("#btn-login").html('Sign in')
                 } else {

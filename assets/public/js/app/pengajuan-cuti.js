@@ -41,7 +41,6 @@ function getDataKaryawan(username) {
             var response = JSON.parse(r);
             // var response = r;
             // console.log(response);
-            // tenants = response.data;
             let date1 = new Date(response.data.tglGabung)
             let date2 = new Date(v_params_this_year)
             let beda_tgl = date2.getTime() - date1.getTime()
@@ -345,6 +344,8 @@ function autocomplete(inp, arr) {
 
         success: function(r) {
             var response = JSON.parse(r);
+            // var response = r;
+            console.log(response)
             if(response.status == true){
                 alert('Anda masih memiliki cuti yang belum di approve');
                 $('#durasiCuti').prop('disabled', true)
@@ -460,6 +461,8 @@ function autocomplete(inp, arr) {
             $('#startDate').prop('disabled', true)
         }else{
             $('#startDate').prop('disabled', false)
+            $('#startDate').val('')
+            $('#namaPengganti').prop('disabled', true);
         }
 
         // if($('#durasiCuti').val() != ''){
@@ -469,6 +472,7 @@ function autocomplete(inp, arr) {
         // }
     });
 
+    
     var dates = new Date();
     dates.setDate(dates.getDate()>0);
     $('#startDate').datepicker({
@@ -480,8 +484,26 @@ function autocomplete(inp, arr) {
         onSelect: function(dateText) {
             // console.log(this.value);
             v_date = this.value;
-            startDate = v_date
-            $('#endDate').prop('disabled', false)
+            startDate = new Date(v_date)
+            var myCurrentDate=new Date();
+            console.log(myCurrentDate)
+            var myCurrentDates=new Date(this.value);
+            console.log(myCurrentDates)
+            var myFutureDate=new Date(myCurrentDates);
+            myFutureDate.setDate(myFutureDate.getDate()+ parseInt($('#durasiCuti').val())-1);
+            console.log(myFutureDate)
+            dd = myFutureDate.getDate();
+            mm = myFutureDate.getMonth() + 1;
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            y = myFutureDate.getFullYear();
+            $('#endDate').val(y+'-'+mm+'-'+dd)
+            $('#namaPengganti').prop('disabled', false);
+            
             
         }
     });
@@ -499,9 +521,10 @@ function autocomplete(inp, arr) {
             let dateendDate = new Date(this.value)
             let beda_tglDate = dateendDate.getTime() - datestartDate.getTime()
             let durasi_hariDate = beda_tglDate / (1000 * 3600 * 24)
-            console.log(durasi_hariDate)
-            if (totalBalance < durasi_hariDate-1){
+            console.log(durasi_hariDate +'>'+ $('#durasiCuti').val())
+            if (durasi_hariDate+1 > $('#durasiCuti').val()){
                 alert('Durasi Melebihi Batas Jatah Cuti')
+                $('#namaPengganti').prop('disabled', true);
             }else{
                 $('#namaPengganti').prop('disabled', false);
             }

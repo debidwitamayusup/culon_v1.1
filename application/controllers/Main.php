@@ -92,7 +92,7 @@ class main extends CI_Controller {
 	{
 		$this->load->view('temp/header');
 		$this->load->view('temp/navbar');
-		$this->load->view('temp/sidebar');
+		$this->load->view('temp/sidebar_admin');
 		$this->load->view('v_add_user');
 	}
 
@@ -120,6 +120,22 @@ class main extends CI_Controller {
 		$this->load->view('temp/navbar');
 		$this->load->view('temp/sidebar');
 		$this->load->view('v_change_password');
+	}
+
+	public function index_admin()
+	{
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_admin_dashboard');
+	}
+
+	public function ubah_pass_admin()
+	{
+		$this->load->view('temp/header');
+		$this->load->view('temp/navbar');
+		$this->load->view('temp/sidebar_admin');
+		$this->load->view('v_ubah_password_admin');
 	}
 	
 }

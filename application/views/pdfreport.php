@@ -19,6 +19,8 @@
     $obj_pdf->AddPage();
     // ob_start();
         // we can have any view part here like HTML, PHP etc
+        // print_r($arrData["dataCutiFromDB"][0]); 
+        //  echo $arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"];die;
         $tgl = date('d-m-Y');
         $content = '
         <html>
@@ -66,12 +68,18 @@
             <table border:none>
                 <tr style="text-align: center;">
                     <td>
-                    Pemohon,<br><br>[TTD]<br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
-                    <td>Leader,<br><br>[TTD]<br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
+                    Pemohon,<br><br>
+                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["ttd"].'">
+                    <br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
+                    <td>Leader,<br><br>
+                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["dataLeader"]["ttd"].'"> 
+                    <br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
                 </tr>
                 <tr style="text-align:center;">
                     <td colspan="2">
-                    HRD,<br><br>[TTD]<br><br>'.$arrData["dataCuti"]["namaHRD"].'
+                    HRD,<br><br>
+                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"].'">
+                    <br><br>'.$arrData["dataCuti"]["namaHRD"].'
                     </td>
                 </tr>
             </table>
@@ -82,5 +90,5 @@
     // ob_end_clean();
     $obj_pdf->writeHTML($content, true, false, true, false, '');
     $obj_pdf->Output($arrData["dataKaryawan"]["nomorInduk"].'-Surat Cuti '.$arrData["dataCuti"]["namaCuti"].'.pdf', 'I');
-
+    // echo $content;
 ?>
