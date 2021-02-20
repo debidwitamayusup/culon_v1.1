@@ -23,7 +23,7 @@ var idUnikCuti = search_params.get('id');
 $(document).ready(function() {
     // getDataKaryawan(items.userId)
     getDropdownJenisCuti(items.jenisKelamin)
-    getDetilCuti(idUnikCuti)
+    // getDetilCuti(idUnikCuti)
     getStatusApproval(idUnikCuti)
     $('#durasiCuti').prop('disabled', true)
     $('#startDate').prop('disabled', true)
@@ -253,6 +253,7 @@ function getDropdownJenisCuti(jenis_kelamin) {
                 html += '<option value=' + response.data[i].idCuti + '>' + response.data[i].descCuti + '</option>';
             }
             $('#dropdownCuti').html(html);
+            getDetilCuti(idUnikCuti)
         },
         error: function(r) {
             //console.log(r);
