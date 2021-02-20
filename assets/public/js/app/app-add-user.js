@@ -69,7 +69,7 @@ function callAddUser(nomorInduk, nama, idJabatan, tempatLahir, idLeader, tglLahi
             var response = JSON.parse(r);
             if(response.status == true){
                 alert("Input Data Berhasil");
-                window.location = base_url+'main/v_home';
+                window.location = base_url+'main/index_admin';
                 // alert(response.message);
                 // callAssignTenant(token, username, tenant_id);
             }else{
@@ -379,6 +379,6 @@ function autocomplete(inp, arr) {
     });
 
     $('#btn-cancel').click(function(){
-        window.location = base_url+'main/v_home';
+        window.location = base_url+'main/index_admin';
     });
 })(jQuery);
