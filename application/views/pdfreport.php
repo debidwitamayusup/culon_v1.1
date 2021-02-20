@@ -21,6 +21,24 @@
         // we can have any view part here like HTML, PHP etc
         // print_r($arrData["dataCutiFromDB"][0]); 
         //  echo $arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"];die;
+        if($arrData["dataKaryawan"]["ttd"] != ''){
+            $ttdUser = '<img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["ttd"].'">';
+        }else{
+            $ttdUser = '';
+        }
+
+        if($arrData["dataKaryawan"]["dataLeader"]["ttd"] != ''){
+            $ttdLeader = '<img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["dataLeader"]["ttd"].'"> ';
+        }else{
+            $ttdLeader = '';
+        }
+
+        if($arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"] != ''){
+            $ttdHRD = '<img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"].'">';
+        }else{
+            $ttdHRD = '';
+        }
+
         $tgl = date('d-m-Y');
         $content = '
         <html>
@@ -69,16 +87,16 @@
                 <tr style="text-align: center;">
                     <td>
                     Pemohon,<br><br>
-                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["ttd"].'">
+                    '.$ttdUser.'
                     <br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
                     <td>Leader,<br><br>
-                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataKaryawan"]["dataLeader"]["ttd"].'"> 
+                    '.$ttdLeader.'
                     <br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
                 </tr>
                 <tr style="text-align:center;">
                     <td colspan="2">
                     HRD,<br><br>
-                    <img style="width: 80;" src="'.base_url().'assets/images/signatures/'.$arrData["dataCutiFromDB"][0]["dataApproveHRD"]["ttd"].'">
+                    '.$ttdHRD.'
                     <br><br>'.$arrData["dataCuti"]["namaHRD"].'
                     </td>
                 </tr>
