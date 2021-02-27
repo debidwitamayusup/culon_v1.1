@@ -37,10 +37,21 @@ function drawDataTable2(nomorInduk){
             url : base_url + 'api/CutiController/listApprovalPengajuanCutiHRD',
             type : 'POST'
         },
-        // columnDefs: [
-		// 	{ className: "text-right", targets: 5 },
-		// 	{ className: "text-right", targets: 6 }
-		// ],   
+        columnDefs : [
+            { targets : [7],
+            render : function (data, type, row) {
+                return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+            }
+            },
+            { className: "text-center", targets: 7 },
+            { targets : [8],
+                render : function (data, type, row) {
+                    return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+                }
+                },
+                { className: "text-center", targets: 8 }
+
+        ],     
         destroy: true,
     });
     // console.log(response);

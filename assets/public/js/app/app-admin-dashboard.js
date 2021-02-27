@@ -32,9 +32,9 @@ function drawDataTable2(){
             type : 'POST'
         },
         // columnDefs: [
-		// 	{ className: "text-right", targets: 5 },
-		// 	{ className: "text-right", targets: 6 }
-		// ],   
+		//  	{ className: "text-right", targets: 6 },
+		// // 	{ className: "text-right", targets: 6 }
+		//  ],   
         destroy: true,
     });
     // console.log(response);

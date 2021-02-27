@@ -34,13 +34,26 @@ function drawDataTable2(nomorInduk){
             	nomorInduk: nomorInduk
             }
         },
-        // columnDefs: [
-		// 	{ className: "text-right", targets: 5 },
-		// 	{ className: "text-right", targets: 6 }
-		// ],   
+            columnDefs : [
+                { targets : [6],
+                render : function (data, type, row) {
+                    return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+                }
+                },
+                { className: "text-center", targets: 6 },
+                { targets : [7],
+                    render : function (data, type, row) {
+                        return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+                    }
+                    },
+                    { className: "text-center", targets: 7 }
+
+        ],
         destroy: true,
     });
     // console.log(response);
+    // var rowData = table.rows( { selected: true } ).data()[6]['approve_leader'];
+    // console.log(rowData)
 }
 
 //jquery

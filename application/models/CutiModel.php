@@ -318,8 +318,12 @@ Class CutiModel extends CI_Model {
 
     public function listPengajuanCutiApp($nomorInduk){
         $que = '
-        SELECT a.id_pengajuan_cuti idUnikCuti, b.desc_cuti, a.tgl_pengajuan, a.durasi_pengajuan, a.dari_tanggal, a.ke_tanggal, a.approve_pemohon,
-        a.approve_pekerja_pengganti, a.approve_leader, a.approve_kepala_bagian, a.approve_hrd 
+        SELECT a.id_pengajuan_cuti idUnikCuti, b.desc_cuti, a.tgl_pengajuan, a.durasi_pengajuan, a.dari_tanggal, a.ke_tanggal, 
+        a.approve_pemohon,
+        a.approve_pekerja_pengganti, 
+        a.approve_leader, 
+        a.approve_kepala_bagian, 
+        a.approve_hrd 
         FROM pengajuan_cuti a, jenis_cuti b
         WHERE a.nomor_induk = "'.$nomorInduk.'" AND a.id_cuti = b.id_cuti
         ORDER BY a.tgl_pengajuan DESC
@@ -347,7 +351,7 @@ Class CutiModel extends CI_Model {
                     $data->approve_leader,
                     // $data->approve_kepala_bagian,
                     $data->approve_hrd,
-                    '<a href="v_detil_pengajuan?id='.$data->idUnikCuti.'">Detil</a>'
+                    '<a href="v_detil_pengajuan?id='.$data->idUnikCuti.'"><button class="btn-xsm btn-info">Detil</button></a>'
                 );
                 $id++;
             }
@@ -392,7 +396,7 @@ Class CutiModel extends CI_Model {
                     $data->approve_leader,
                     // $data->approve_kepala_bagian,
                     $data->approve_hrd,
-                    '<a href="v_detil_approval_pengajuan?id='.$data->idUnikCuti.'">Proses</a>'
+                    '<a href="v_detil_approval_pengajuan?id='.$data->idUnikCuti.'"><button class="btn-xsm btn-info">Proses</button></a>'
                 );
                 $id++;
             }
@@ -436,7 +440,7 @@ Class CutiModel extends CI_Model {
                     $data->approve_leader,
                     // $data->approve_kepala_bagian,
                     $data->approve_hrd,
-                    '<a href="v_detil_approval_pengajuan_hrd?id='.$data->idUnikCuti.'">Proses</a>'
+                    '<a href="v_detil_approval_pengajuan_hrd?id='.$data->idUnikCuti.'"><button class="btn-xsm btn-info">Proses</button></a>'
                 );
                 $id++;
             }

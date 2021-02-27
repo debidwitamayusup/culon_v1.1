@@ -63,7 +63,7 @@
                                     <td class="border-bottom-0">No.</td>
                                     <td class="border-bottom-0">Nomor Induk</td>
                                     <td class="border-bottom-0">Nama</td>
-                                    <td class="border-bottom-0">Nama Cuti</td>
+                                    <td class="border-bottom-0"  width="200px">Nama Cuti</td>
                                     <td class="border-bottom-0">Durasi Cuti</td>
                                     <td class="border-bottom-0">Dari Tgl</td>
                                     <td class="border-bottom-0">Ke Tgl</td>
