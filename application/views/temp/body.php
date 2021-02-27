@@ -217,11 +217,18 @@
 									</div>
 								</div>
 							</div>
+							<div class="row mb-3" style="margin-right:0px; margin-left:-2px;">
+
 							<label>Alasan</label>
 							<textarea class="form-control" rows="3" id="alasan"
 								placeholder="Ketikan Alasan Anda"></textarea>
+
+							</div>
+							
+							<div class="row" style="margin-right:0px; margin-left:-2px;">
 								<button class="btn btn-sm btn-primary" type="button" style="height:35px"
                                     id="btn-submit"><i class="fas fa-download mr-2"></i>Submit</button>
+							</div>
 						</form>
 					</div>
 				</div>

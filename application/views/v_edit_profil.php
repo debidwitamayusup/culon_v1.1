@@ -177,6 +177,11 @@
                                 <label for="labelTglGabung">Tanggal Gabung</label>
                                 <input type="text" class="form-control box-shadow-input" id="inputTglGabung" placeholder="YYYY-MM-DD">
 
+                                <label for="labelUploadTTD">Upload Tandatangan</label>
+                                <form action="" enctype="multipart/form-data">
+                                <input type="file" class="form-control box-shadow-input" name="berkas" />
+                                </form>
+
                                 <div class="fPoppins float-right mt-2">
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-cancel">Cancel</button>
                                     <button type="button" class="btn btn-grey2 btn-sm mr-2" id="btn-add">Add</button>

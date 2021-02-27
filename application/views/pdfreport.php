@@ -83,21 +83,45 @@
             </table>
             <br>
             <p>Surat ini merupakan bukti keabsahan permohonan cuti/ijin karena telah disetujui oleh pihak-pihak yang bersangkutan:</p>
-            <table border:none>
+            <table border="0" style="table-layout:fixed;">
                 <tr style="text-align: center;">
                     <td>
-                    Pemohon,<br><br>
-                    '.$ttdUser.'
-                    <br><br>'.$arrData["dataKaryawan"]["nama"].'</td>
-                    <td>Leader,<br><br>
-                    '.$ttdLeader.'
-                    <br><br>'.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'</td>
+                        Pemohon,
+                       
+                    </td>
+                    <td>
+                        Leader,
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="height:70px">
+                        <br><br>'.$ttdUser.'
+                    </td>
+                    <td style="height:70px">
+                        <br><br>'.$ttdLeader.'
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td>
+                        '.$arrData["dataKaryawan"]["nama"].'
+                    </td>
+                    <td>
+                        '.$arrData["dataKaryawan"]["dataLeader"]["namaLeader"].'
+                    </td>
                 </tr>
                 <tr style="text-align:center;">
                     <td colspan="2">
-                    HRD,<br><br>
-                    '.$ttdHRD.'
-                    <br><br>'.$arrData["dataCuti"]["namaHRD"].'
+                    HRD,
+                    </td>
+                </tr>
+                <tr style="text-align:center; ">
+                    <td colspan="2" style="height:70px">
+                        <br><br>'.$ttdHRD.'
+                    </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="2">
+                        '.$arrData["dataCuti"]["namaHRD"].'
                     </td>
                 </tr>
             </table>

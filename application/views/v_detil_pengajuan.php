@@ -166,14 +166,14 @@
 									</div>
 								</div>
 							</div>
-							<label>Alasan</label>
-							<textarea class="form-control" rows="3" id="alasan"></textarea>
+							<div class="row mb-3" style="margin-right:0px; margin-left:-2px;">
+								<label>Alasan</label>
+								<textarea class="form-control" rows="3" id="alasan"></textarea>
+							</div>
 						</form>
 
 						<div class="row mb-4" style="margin-right:0px; margin-left:-2px;">
-							<div class="col-xs-auto ml-1">
-									<button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-cetak"><i class="fas fa-print mr-2"></i>Cetak</button>
-							</div>		
+							<button class="btn btn-sm btn-primary" type="button" style="height:35px" id="btn-cetak"><i class="fas fa-print mr-2"></i>Cetak</button>
 						</div>
 					</div>
 				</div>

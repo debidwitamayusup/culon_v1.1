@@ -129,6 +129,7 @@ function getLimitCuti(idCuti, historiCuti) {
 
         success: function(r) {
             var response = JSON.parse(r);
+            if(response.status != false){
             if (historiCuti != 0) {
                 totalBalance = response.data[0].limitCuti - historiCuti
                 // console.log(totalBalance)
@@ -147,6 +148,9 @@ function getLimitCuti(idCuti, historiCuti) {
                     alert('Sisa Jatah Cuti Anda Telah Habis')
                 }
             }
+        }else{
+            $('#durasiCuti').prop('disabled', true)
+        }
         },
         error: function(r) {
             //console.log(r);
@@ -433,7 +437,7 @@ function autocomplete(inp, arr) {
         historiCuti = 0;
         getCutiBalance(items.nomorInduk, $('#dropdownCuti').val());
         cekApproval($('#dropdownCuti').val(), $('#id_karyawan').val())
-        console.log("val dropdown: "+$('#dropdownCuti').val())
+        // console.log("val dropdown: "+$('#dropdownCuti').val())
         if($('#dropdownCuti').val() != ''){
             $('#durasiCuti').prop('disabled', false)
             $('#startDate').prop('disabled', true)
