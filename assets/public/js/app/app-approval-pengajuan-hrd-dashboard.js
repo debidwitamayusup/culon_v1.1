@@ -40,13 +40,13 @@ function drawDataTable2(nomorInduk){
         columnDefs : [
             { targets : [7],
             render : function (data, type, row) {
-                return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+                return data == 'Y' ? '<span class="badge-md rounded-pill bg-success" style="padding:0px 4px 0px 4px;">Diterima</span>' : (data == 'N' ? '<span class="badge-md rounded-pill bg-danger" style="padding:0px 4px 0px 4px;">Ditolak</span>' : '<span class="badge-md rounded-pill bg-warning" style="padding:0px 4px 0px 4px;">Belum Diproses</span>')
             }
             },
             { className: "text-center", targets: 7 },
             { targets : [8],
                 render : function (data, type, row) {
-                    return data == 'Y' ? '<button class="btn-xsm btn-success">Diterima</button>' : '<button class="btn-xsm btn-danger">Ditolak</button>'
+                return data == 'Y' ? '<span class="badge-md rounded-pill bg-success" style="padding:0px 4px 0px 4px;">Diterima</span>' : (data == 'N' ? '<span class="badge-md rounded-pill bg-danger" style="padding:0px 4px 0px 4px;">Ditolak</span>' : '<span class="badge-md rounded-pill bg-warning" style="padding:0px 4px 0px 4px;">Belum Diproses</span>')
                 }
                 },
                 { className: "text-center", targets: 8 }

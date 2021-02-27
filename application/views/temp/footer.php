@@ -1,9 +1,9 @@
 <!--footer-->
 <footer class="footer">
-	<div class="container">
+	<div class="container">	
 		<div class="row align-items-center flex-row-reverse">
 			<div class="col-md-12 col-sm-12 text-center">
-				PT. Victory Ching Luh Indonesia © 2020
+				<h7>PT. Victory Ching Luh Indonesia © 2021</h7>
 			</div>
 		</div>
 	</div>
